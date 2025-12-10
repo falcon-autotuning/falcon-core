@@ -15,6 +15,8 @@ typedef void* AxesMeasurementContextHandle;
 // @category:allocation
 AxesMeasurementContextHandle AxesMeasurementContext_create_empty();
 // @category:allocation
+AxesMeasurementContextHandle AxesMeasurementContext_copy(AxesMeasurementContextHandle handle);
+// @category:allocation
 AxesMeasurementContextHandle AxesMeasurementContext_create(ListMeasurementContextHandle data);
 // @category:deallocation
 void AxesMeasurementContext_destroy(AxesMeasurementContextHandle handle);
@@ -39,9 +41,9 @@ size_t AxesMeasurementContext_index(AxesMeasurementContextHandle handle, Measure
 // @category:read
 AxesMeasurementContextHandle AxesMeasurementContext_intersection(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
 // @category:read
-bool AxesMeasurementContext_equal(AxesMeasurementContextHandle a, AxesMeasurementContextHandle b);
+bool AxesMeasurementContext_equal(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
 // @category:read
-bool AxesMeasurementContext_not_equal(AxesMeasurementContextHandle a, AxesMeasurementContextHandle b);
+bool AxesMeasurementContext_not_equal(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
 
 // @category:read
 StringHandle      AxesMeasurementContext_to_json_string(AxesMeasurementContextHandle handle);

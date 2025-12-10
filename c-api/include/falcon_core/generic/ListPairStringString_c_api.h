@@ -13,6 +13,8 @@ typedef void* ListPairStringStringHandle;
 
 // @category:allocation
 ListPairStringStringHandle ListPairStringString_create_empty();
+// @category:allocation
+ListPairStringStringHandle ListPairStringString_copy(ListPairStringStringHandle handle);
 
 // @category:allocation
 ListPairStringStringHandle ListPairStringString_fill_value(size_t count, PairStringStringHandle value);
@@ -41,9 +43,9 @@ size_t ListPairStringString_index(ListPairStringStringHandle handle, PairStringS
 // @category:read
 ListPairStringStringHandle ListPairStringString_intersection(ListPairStringStringHandle handle, ListPairStringStringHandle other);
 // @category:read
-bool ListPairStringString_equal(ListPairStringStringHandle a, ListPairStringStringHandle b);
+bool ListPairStringString_equal(ListPairStringStringHandle handle, ListPairStringStringHandle other);
 // @category:read
-bool ListPairStringString_not_equal(ListPairStringStringHandle a, ListPairStringStringHandle b);
+bool ListPairStringString_not_equal(ListPairStringStringHandle handle, ListPairStringStringHandle other);
 
 // @category:read
 StringHandle      ListPairStringString_to_json_string(ListPairStringStringHandle handle);

@@ -13,6 +13,8 @@ typedef void* ListPairConnectionFloatHandle;
 
 // @category:allocation
 ListPairConnectionFloatHandle ListPairConnectionFloat_create_empty();
+// @category:allocation
+ListPairConnectionFloatHandle ListPairConnectionFloat_copy(ListPairConnectionFloatHandle handle);
 
 // @category:allocation
 ListPairConnectionFloatHandle ListPairConnectionFloat_fill_value(size_t count, PairConnectionFloatHandle value);
@@ -41,9 +43,9 @@ size_t ListPairConnectionFloat_index(ListPairConnectionFloatHandle handle, PairC
 // @category:read
 ListPairConnectionFloatHandle ListPairConnectionFloat_intersection(ListPairConnectionFloatHandle handle, ListPairConnectionFloatHandle other);
 // @category:read
-bool ListPairConnectionFloat_equal(ListPairConnectionFloatHandle a, ListPairConnectionFloatHandle b);
+bool ListPairConnectionFloat_equal(ListPairConnectionFloatHandle handle, ListPairConnectionFloatHandle other);
 // @category:read
-bool ListPairConnectionFloat_not_equal(ListPairConnectionFloatHandle a, ListPairConnectionFloatHandle b);
+bool ListPairConnectionFloat_not_equal(ListPairConnectionFloatHandle handle, ListPairConnectionFloatHandle other);
 
 // @category:read
 StringHandle      ListPairConnectionFloat_to_json_string(ListPairConnectionFloatHandle handle);

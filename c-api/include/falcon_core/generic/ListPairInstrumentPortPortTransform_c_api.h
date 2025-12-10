@@ -13,6 +13,8 @@ typedef void* ListPairInstrumentPortPortTransformHandle;
 
 // @category:allocation
 ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_create_empty();
+// @category:allocation
+ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_copy(ListPairInstrumentPortPortTransformHandle handle);
 
 // @category:allocation
 ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_fill_value(size_t count, PairInstrumentPortPortTransformHandle value);
@@ -41,9 +43,9 @@ size_t ListPairInstrumentPortPortTransform_index(ListPairInstrumentPortPortTrans
 // @category:read
 ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_intersection(ListPairInstrumentPortPortTransformHandle handle, ListPairInstrumentPortPortTransformHandle other);
 // @category:read
-bool ListPairInstrumentPortPortTransform_equal(ListPairInstrumentPortPortTransformHandle a, ListPairInstrumentPortPortTransformHandle b);
+bool ListPairInstrumentPortPortTransform_equal(ListPairInstrumentPortPortTransformHandle handle, ListPairInstrumentPortPortTransformHandle other);
 // @category:read
-bool ListPairInstrumentPortPortTransform_not_equal(ListPairInstrumentPortPortTransformHandle a, ListPairInstrumentPortPortTransformHandle b);
+bool ListPairInstrumentPortPortTransform_not_equal(ListPairInstrumentPortPortTransformHandle handle, ListPairInstrumentPortPortTransformHandle other);
 
 // @category:read
 StringHandle      ListPairInstrumentPortPortTransform_to_json_string(ListPairInstrumentPortPortTransformHandle handle);

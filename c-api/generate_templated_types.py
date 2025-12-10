@@ -132,6 +132,7 @@ class ImplementationContext:
         self.file.write(
             f"#include <{self.remove_leftmost(self.path).parent}/{self.temp.name}.hpp>\n"
             f'#include "{self.remove_leftmost(self.header_path)}"\n'
+            f'#include "falcon_core/Precompiled_c_api.h"\n'
         )
         for header in self.impl_includes:
             self.file.write(f"#include {header}\n")
@@ -272,6 +273,8 @@ class Entry:
             f.write(f"""
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_create_empty();
+// @category:allocation
+{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 {allocate_signature}
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value);
@@ -300,9 +303,9 @@ size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
 // @category:read
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
+bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);
 """)
 
     def generate_labelled_arrays_header(self):
@@ -313,6 +316,8 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_create(
     List{c_type} arrays);
+// @category:allocation
+{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:deallocation
 void {self.mangled_name()}_destroy(
     {self.chandle()} handle);
@@ -377,6 +382,8 @@ bool {self.mangled_name()}_not_equal(
             f.write(f"""
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle contextDoubleMap);
+// @category:allocation
+{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:read
@@ -444,6 +451,8 @@ bool {self.mangled_name()}_not_equal({self.chandle()} handle,{self.chandle()} ot
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_create_empty();
 // @category:allocation
+{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create(List{self.name()}Handle data);
 // @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
@@ -468,9 +477,9 @@ size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
 // @category:read
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
+bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);
 """)
 
     def generate_pair_header(self):
@@ -480,6 +489,8 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);
             f.write(f"""
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_create({c_type_1} first, {c_type_2} second);
+// @category:allocation
+{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:read
@@ -487,9 +498,9 @@ void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:read
 {c_type_2} {self.mangled_name()}_second({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);""")
+bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);""")
 
     def generate_farray_header(self):
         c_type = self.combo[0]
@@ -498,6 +509,8 @@ bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);"""
             f.write(f"""
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_create_empty(const size_t* shape, size_t ndim);
+// @category:allocation
+{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_create_zeros(const size_t* shape, size_t ndim);
 // @category:allocation
@@ -622,6 +635,8 @@ double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} h
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_create_empty();
 // @category:allocation
+{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
+// @category:allocation
 {self.chandle()} {self.mangled_name()}_create(Pair{name}Handle* data, size_t count);
 // @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
@@ -648,9 +663,9 @@ List{value_name}Handle {self.mangled_name()}_values({self.chandle()} handle);
 // @category:read
 ListPair{name}Handle {self.mangled_name()}_items({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} a, {self.chandle()} b);
+bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} a, {self.chandle()} b);""")
+bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);""")
 
     def error_type_handling(self, type: str) -> str:
         if type == "bool":
@@ -724,6 +739,13 @@ for (size_t i = 0; i < n; ++i) {{
         with self.edit_implementation() as f:
             f.write(f"""
 extern "C" {{
+using MACROList{c_type}= falcon_core::generic::List<{cpp_real}>;
+DEFINE_C_API_COPY_TEMPLATE({self.mangled_name()}, MACROList{c_type})
+DEFINE_C_API_DESTROY_TEMPLATE({self.mangled_name()}, MACROList{c_type});
+DEFINE_C_API_EQUAL_TEMPLATE({self.mangled_name()}, MACROList{c_type});
+DEFINE_C_API_NOT_EQUAL_TEMPLATE({self.mangled_name()}, MACROList{c_type});
+DEFINE_C_API_TO_JSON_TEMPLATE({self.mangled_name()}, MACROList{c_type});
+DEFINE_C_API_FROM_JSON_TEMPLATE({self.mangled_name()}, MACROList{c_type});
 {self.chandle()} {self.mangled_name()}_create_empty() {{
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<{cpp_real}>(std::make_shared<falcon_core::generic::List<{cpp_real}>>());
@@ -750,15 +772,6 @@ throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_cr
     return new falcon_core::generic::ListSP<{cpp_real}>(
         std::make_shared<falcon_core::generic::List<{cpp_real}>>(vec));
     FALCON_C_API_END(nullptr)
-}}
-
-void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-    if (!handle) {{
-    throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
-    }}
-    delete static_cast<falcon_core::generic::ListSP<{cpp_real}>*>(handle);
-    FALCON_C_API_END()
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
@@ -852,28 +865,6 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
     FALCON_C_API_END({self.error_type_handling(c_type)})
 }}
 
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
-}}
-    auto listA = *static_cast<falcon_core::generic::ListSP<{cpp_real}>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<{cpp_real}>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}}
-
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
-}}
-    auto listA = *static_cast<falcon_core::generic::ListSP<{cpp_real}>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<{cpp_real}>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}}
-
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
@@ -885,26 +876,6 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_interse
     return new falcon_core::generic::ListSP<{cpp_real}>(result);
     FALCON_C_API_END(nullptr)
 }}
-
-StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
-}}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<{cpp_real}>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}}
-
-{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
-    FALCON_C_API_BEGIN
-if (!json) {{
-throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
-}}
-  auto ptr = falcon_core::generic::List<{cpp_real}>::from_json_string<falcon_core::generic::List<{cpp_real}>>(json->raw);
-  return new falcon_core::generic::ListSP<{cpp_real}>(ptr);
-    FALCON_C_API_END(nullptr)
-}}
 }}
 """)
 
@@ -914,6 +885,14 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
         with self.edit_implementation() as f:
             f.write(f"""
 extern "C" {{
+using MACROLabelledArrays{c_type}= falcon_core::math::arrays::LabelledArrays<{cpp_type}>;
+DEFINE_C_API_COPY_TEMPLATE({self.mangled_name()}, MACROLabelledArrays{c_type})
+DEFINE_C_API_DESTROY_TEMPLATE({self.mangled_name()}, MACROLabelledArrays{c_type});
+DEFINE_C_API_EQUAL_TEMPLATE({self.mangled_name()}, MACROLabelledArrays{c_type});
+DEFINE_C_API_NOT_EQUAL_TEMPLATE({self.mangled_name()}, MACROLabelledArrays{c_type});
+DEFINE_C_API_TO_JSON_TEMPLATE({self.mangled_name()}, MACROLabelledArrays{c_type});
+DEFINE_C_API_FROM_JSON_TEMPLATE({self.mangled_name()}, MACROLabelledArrays{c_type});
+
 {self.chandle()} {self.mangled_name()}_create(
     List{c_type} arrays) {{
     FALCON_C_API_BEGIN
@@ -924,15 +903,6 @@ extern "C" {{
     return new falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>(
         std::make_shared<falcon_core::math::arrays::LabelledArrays<{cpp_type}>>(list->items()));
     FALCON_C_API_END(nullptr)
-}}
-
-void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
-}}
-    delete static_cast<falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>*>(handle);
-    FALCON_C_API_END()
 }}
 
 List{c_type} {self.mangled_name()}_arrays(
@@ -1076,48 +1046,6 @@ throw std::invalid_argument("Null value passed to {self.mangled_name()}_index");
     return (*static_cast<falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
 }}
-
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
-}}
-    auto listA = *static_cast<falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>*>(handle);
-    auto listB = *static_cast<falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}}
-
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
-}}
-    auto listA = *static_cast<falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>*>(handle);
-    auto listB = *static_cast<falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}}
-
-StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
-}}
-    std::string json = (*static_cast<falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}}
-
-{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
-    FALCON_C_API_BEGIN
-if (!json) {{
-throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
-}}
-  auto ptr = falcon_core::math::arrays::LabelledArrays<{cpp_type}>::from_json_string<falcon_core::math::arrays::LabelledArrays<{cpp_type}>>(json->raw);
-  return new falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>(ptr);
-    FALCON_C_API_END(nullptr)
-}}
 }}
 """)
 
@@ -1157,6 +1085,13 @@ for (size_t i = 0; i < n; ++i) {{
         with self.edit_implementation() as f:
             f.write(f"""
 extern "C" {{
+using MACROAxes{c_type}= falcon_core::math::Axes<{cpp_real}>;
+DEFINE_C_API_COPY_TEMPLATE({self.mangled_name()}, MACROAxes{c_type})
+DEFINE_C_API_DESTROY_TEMPLATE({self.mangled_name()}, MACROAxes{c_type});
+DEFINE_C_API_EQUAL_TEMPLATE({self.mangled_name()}, MACROAxes{c_type});
+DEFINE_C_API_NOT_EQUAL_TEMPLATE({self.mangled_name()}, MACROAxes{c_type});
+DEFINE_C_API_TO_JSON_TEMPLATE({self.mangled_name()}, MACROAxes{c_type});
+DEFINE_C_API_FROM_JSON_TEMPLATE({self.mangled_name()}, MACROAxes{c_type});
 {self.chandle()} {self.mangled_name()}_create_empty() {{
     FALCON_C_API_BEGIN
     return new falcon_core::math::AxesSP<{cpp_real}>(
@@ -1173,15 +1108,6 @@ throw std::invalid_argument("Null data handle passed to {self.mangled_name()}_cr
     return new falcon_core::math::AxesSP<{cpp_real}>(
             std::make_shared<falcon_core::math::Axes<{cpp_real}>>(list));
     FALCON_C_API_END(nullptr)
-}}
-
-void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
-}}
-    delete static_cast<falcon_core::math::AxesSP<{cpp_real}>*>(handle);
-    FALCON_C_API_END()
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
@@ -1275,28 +1201,6 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
     FALCON_C_API_END({self.error_type_handling(c_type)})
 }}
 
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
-}}
-    auto listA = *static_cast<falcon_core::math::AxesSP<{cpp_real}>*>(handle);
-    auto listB = *static_cast<falcon_core::math::AxesSP<{cpp_real}>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}}
-
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
-}}
-    auto listA = *static_cast<falcon_core::math::AxesSP<{cpp_real}>*>(handle);
-    auto listB = *static_cast<falcon_core::math::AxesSP<{cpp_real}>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}}
-
 {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other) {{
     FALCON_C_API_BEGIN
 if (!handle || !other) {{
@@ -1306,26 +1210,6 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_interse
     auto listB = *static_cast<falcon_core::math::AxesSP<{cpp_real}>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::math::AxesSP<{cpp_real}>(std::make_shared<falcon_core::math::Axes<{cpp_real}>>(result));
-    FALCON_C_API_END(nullptr)
-}}
-
-StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
-}}
-    std::string json = (*static_cast<falcon_core::math::AxesSP<{cpp_real}>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}}
-
-{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
-    FALCON_C_API_BEGIN
-if (!json) {{
-throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
-}}
-  auto ptr = falcon_core::math::Axes<{cpp_real}>::from_json_string<falcon_core::math::Axes<{cpp_real}>>(json->raw);
-  return new falcon_core::math::AxesSP<{cpp_real}>(ptr);
     FALCON_C_API_END(nullptr)
 }}
 }}
@@ -1396,6 +1280,13 @@ return cstr;"""
             # Write the complete implementation
             f.write(f"""
 extern "C" {{
+using MACROPair{c_type_1}{c_type_2} = falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>;
+DEFINE_C_API_COPY_TEMPLATE({self.mangled_name()}, MACROPair{c_type_1}{c_type_2})
+DEFINE_C_API_DESTROY_TEMPLATE({self.mangled_name()}, MACROPair{c_type_1}{c_type_2});
+DEFINE_C_API_EQUAL_TEMPLATE({self.mangled_name()}, MACROPair{c_type_1}{c_type_2});
+DEFINE_C_API_NOT_EQUAL_TEMPLATE({self.mangled_name()}, MACROPair{c_type_1}{c_type_2});
+DEFINE_C_API_TO_JSON_TEMPLATE({self.mangled_name()}, MACROPair{c_type_1}{c_type_2});
+DEFINE_C_API_FROM_JSON_TEMPLATE({self.mangled_name()}, MACROPair{c_type_1}{c_type_2});
 {self.chandle()} {self.mangled_name()}_create({c_type_1} first, {c_type_2} second) {{
     FALCON_C_API_BEGIN
     {first_create_adjustment}
@@ -1404,15 +1295,6 @@ extern "C" {{
         std::make_shared<falcon_core::generic::Pair<{cpp_real_1}, {cpp_real_2}>>
             (first_obj, second_obj));
     FALCON_C_API_END(nullptr)
-}}
-
-void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
-}}
-    delete static_cast<falcon_core::generic::PairSP<{cpp_real_1}, {cpp_real_2}>*>(handle);
-    FALCON_C_API_END()
 }}
 
 {c_type_1} {self.mangled_name()}_first({self.chandle()} handle) {{
@@ -1431,48 +1313,6 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_second"
 }}
     {second_return}
     FALCON_C_API_END({self.error_type_handling(c_type_2)})
-}}
-
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
-}}
-    auto pair_a = *static_cast<falcon_core::generic::PairSP<{cpp_real_1}, {cpp_real_2}>*>(handle);
-    auto pair_b = *static_cast<falcon_core::generic::PairSP<{cpp_real_1}, {cpp_real_2}>*>(other);
-    return *pair_a == *pair_b;
-    FALCON_C_API_END(false)
-}}
-
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
-}}
-    auto pair_a = *static_cast<falcon_core::generic::PairSP<{cpp_real_1}, {cpp_real_2}>*>(handle);
-    auto pair_b = *static_cast<falcon_core::generic::PairSP<{cpp_real_1}, {cpp_real_2}>*>(other);
-    return *pair_a != *pair_b;
-    FALCON_C_API_END(false)
-}}
-
-StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
-}}
-std::string json = (*static_cast<falcon_core::generic::PairSP<{cpp_real_1},{cpp_real_2}>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}}
-
-{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
-    FALCON_C_API_BEGIN
-if (!json) {{
-throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
-}}
-  auto ptr = falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>::from_json_string<falcon_core::generic::Pair<{cpp_real_1},{cpp_real_2}>>(json->raw);
-  return new falcon_core::generic::PairSP<{cpp_real_1},{cpp_real_2}>(ptr);
-    FALCON_C_API_END(nullptr)
 }}
 }}
 """)
@@ -1502,6 +1342,13 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
         with self.edit_implementation() as f:
             f.write(f"""
 extern "C" {{
+using MACROInterpretationContainer{c_value_type}= falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>;
+DEFINE_C_API_COPY_TEMPLATE({self.mangled_name()}, MACROInterpretationContainer{c_value_type})
+DEFINE_C_API_DESTROY_TEMPLATE({self.mangled_name()}, MACROInterpretationContainer{c_value_type});
+DEFINE_C_API_EQUAL_TEMPLATE({self.mangled_name()}, MACROInterpretationContainer{c_value_type});
+DEFINE_C_API_NOT_EQUAL_TEMPLATE({self.mangled_name()}, MACROInterpretationContainer{c_value_type});
+DEFINE_C_API_TO_JSON_TEMPLATE({self.mangled_name()}, MACROInterpretationContainer{c_value_type});
+DEFINE_C_API_FROM_JSON_TEMPLATE({self.mangled_name()}, MACROInterpretationContainer{c_value_type});
 {self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle map) {{
     FALCON_C_API_BEGIN
 if (!map) {{
@@ -1512,15 +1359,6 @@ throw std::invalid_argument("Null map handle passed to {self.mangled_name()}_cre
     return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<{cpp_value_type}>(
         std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>>(real_map));
     FALCON_C_API_END(nullptr)
-}}
-
-void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null map handle passed to {self.mangled_name()}_destroy");
-}}
-    delete static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<{cpp_value_type}>*>(handle);
-    FALCON_C_API_END()
 }}
 
 SymbolUnitHandle {self.mangled_name()}_unit(
@@ -1761,48 +1599,6 @@ ListPairInterpretationContext{self.name()}Handle {self.mangled_name()}_items(
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,{cpp_value_type}>>(that->items());
     FALCON_C_API_END(nullptr)
 }}
-
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
-}}
-    auto listA = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<{cpp_value_type}>*>(handle);
-    auto listB = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<{cpp_value_type}>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}}
-
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
-}}
-    auto listA = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<{cpp_value_type}>*>(handle);
-    auto listB = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<{cpp_value_type}>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}}
-
-StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
-}}
-std::string json = (*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<{cpp_value_type}>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}}
-
-{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
-    FALCON_C_API_BEGIN
-if (!json) {{
-throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
-}}
-  auto ptr = falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>::from_json_string<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<{cpp_value_type}>>(json->raw);
-  return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<{cpp_value_type}>(ptr);
-    FALCON_C_API_END(nullptr)
-}}
 }}
 """)
 
@@ -1856,6 +1652,14 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
         with self.edit_implementation() as f:
             f.write(f"""
 extern "C" {{
+using MACROMap{c_key_type}{c_value_type} = falcon_core::generic::Map<{cpp_key_type}, {cpp_value_type}>;
+DEFINE_C_API_COPY_TEMPLATE({self.mangled_name()}, MACROMap{c_key_type}{c_value_type})
+DEFINE_C_API_DESTROY_TEMPLATE({self.mangled_name()}, MACROMap{c_key_type}{c_value_type});
+DEFINE_C_API_EQUAL_TEMPLATE({self.mangled_name()}, MACROMap{c_key_type}{c_value_type});
+DEFINE_C_API_NOT_EQUAL_TEMPLATE({self.mangled_name()}, MACROMap{c_key_type}{c_value_type});
+DEFINE_C_API_TO_JSON_TEMPLATE({self.mangled_name()}, MACROMap{c_key_type}{c_value_type});
+DEFINE_C_API_FROM_JSON_TEMPLATE({self.mangled_name()}, MACROMap{c_key_type}{c_value_type});
+
 {self.chandle()} {self.mangled_name()}_create_empty() {{
     FALCON_C_API_BEGIN
     return new falcon_core::generic::MapSP<{cpp_key_type},{cpp_value_type}>(std::make_shared<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>()); 
@@ -1875,15 +1679,6 @@ throw std::invalid_argument("Null data pointer passed to {self.mangled_name()}_c
     return new falcon_core::generic::MapSP<{cpp_key_type}, {cpp_value_type}>(
         std::make_shared<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(vec));
     FALCON_C_API_END(nullptr)
-}}
-
-void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
-}}
-    delete static_cast<falcon_core::generic::MapSP<{cpp_key_type}, {cpp_value_type}>*>(handle);
-    FALCON_C_API_END()
 }}
 
 void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,  {c_key_type} key,  {c_value_type} value) {{
@@ -2002,48 +1797,6 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_items")
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<{cpp_key_type},{cpp_value_type}>>(items_sp);
     FALCON_C_API_END(nullptr)
 }}
-
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
-}}
-    auto listA = *static_cast<falcon_core::generic::MapSP<{cpp_key_type},{cpp_value_type}>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<{cpp_key_type},{cpp_value_type}>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}}
-
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
-}}
-    auto listA = *static_cast<falcon_core::generic::MapSP<{cpp_key_type},{cpp_value_type}>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<{cpp_key_type},{cpp_value_type}>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}}
-
-StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
-}}
-std::string json = (*static_cast<falcon_core::generic::MapSP<{cpp_key_type},{cpp_value_type}>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}}
-
-{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
-    FALCON_C_API_BEGIN
-if (!json) {{
-throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
-}}
-  auto ptr = falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>::from_json_string<falcon_core::generic::Map<{cpp_key_type},{cpp_value_type}>>(json->raw);
-  return new falcon_core::generic::MapSP<{cpp_key_type},{cpp_value_type}>(ptr);
-    FALCON_C_API_END(nullptr)
-}}
 }}
 """)
 
@@ -2053,6 +1806,13 @@ throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_
         with self.edit_implementation() as f:
             f.write(f"""
 extern "C" {{
+using MACROFArray{c_type}= falcon_core::generic::FArray<{cpp_type}>;
+DEFINE_C_API_COPY_TEMPLATE({self.mangled_name()}, MACROFArray{c_type})
+DEFINE_C_API_DESTROY_TEMPLATE({self.mangled_name()}, MACROFArray{c_type});
+DEFINE_C_API_EQUAL_TEMPLATE({self.mangled_name()}, MACROFArray{c_type});
+DEFINE_C_API_NOT_EQUAL_TEMPLATE({self.mangled_name()}, MACROFArray{c_type});
+DEFINE_C_API_TO_JSON_TEMPLATE({self.mangled_name()}, MACROFArray{c_type});
+DEFINE_C_API_FROM_JSON_TEMPLATE({self.mangled_name()}, MACROFArray{c_type});
 {self.chandle()} {self.mangled_name()}_create_empty(const size_t* shape, size_t ndim) {{
     FALCON_C_API_BEGIN
 if (!shape) {{
@@ -2110,15 +1870,6 @@ throw std::invalid_argument("Null shape passed to {self.mangled_name()}_from_dat
       xt::adapt(data, total_size, xt::no_ownership(), shapeVec);
     return new falcon_core::generic::FArraySP<{cpp_type}>(std::make_shared<falcon_core::generic::FArray<{cpp_type}>>(arr));
     FALCON_C_API_END(nullptr)
-}}
-
-void {self.mangled_name()}_destroy({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_destroy");
-}}
-    delete static_cast<falcon_core::generic::FArraySP<{cpp_type}>*>(handle);
-    FALCON_C_API_END()
 }}
 
 size_t {self.mangled_name()}_size({self.chandle()} handle) {{
@@ -2521,28 +2272,6 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_max_arr
     FALCON_C_API_END(nullptr)
 }}
 
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_equal");
-}}
-    falcon_core::generic::FArraySP<{cpp_type}> farray = *static_cast<falcon_core::generic::FArraySP<{cpp_type}>*>(handle);
-    auto oarray= *static_cast<falcon_core::generic::FArraySP<{cpp_type}>*>(other);
-    return *farray == *oarray;
-    FALCON_C_API_END(false)
-}}
-
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other) {{
-    FALCON_C_API_BEGIN
-if (!handle || !other) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_not_equal");
-}}
-    falcon_core::generic::FArraySP<{cpp_type}> farray = *static_cast<falcon_core::generic::FArraySP<{cpp_type}>*>(handle);
-    auto oarray= *static_cast<falcon_core::generic::FArraySP<{cpp_type}>*>(other);
-    return *farray != *oarray;
-    FALCON_C_API_END(false)
-}}
-
 bool {self.mangled_name()}_greater_than({self.chandle()} handle,  {c_type} value) {{
     FALCON_C_API_BEGIN
 if (!handle) {{
@@ -2686,26 +2415,6 @@ throw std::invalid_argument("Null handle passed to {self.mangled_name()}_get_sum
     auto oarray = *static_cast<falcon_core::generic::FArraySP<{cpp_type}>*>(other);
     return farray->get_sum_of_squares(oarray);
     FALCON_C_API_END(0.0)
-}}
-
-StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle) {{
-    FALCON_C_API_BEGIN
-if (!handle) {{
-throw std::invalid_argument("Null handle passed to {self.mangled_name()}_to_json_string");
-}}
-  std::string json = (*static_cast<falcon_core::generic::FArraySP<{c_type}>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}}
-
-{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json) {{
-    FALCON_C_API_BEGIN
-if (!json) {{
-throw std::invalid_argument("Null string handle passed to {self.mangled_name()}_from_json_string");
-}}
-    auto ptr = falcon_core::generic::FArray<{cpp_type}>::from_json_string<falcon_core::generic::FArray<{cpp_type}>>(json->raw);
-    return new falcon_core::generic::FArraySP<{cpp_type}>(ptr);
-    FALCON_C_API_END(nullptr)
 }}
 }}
 """)

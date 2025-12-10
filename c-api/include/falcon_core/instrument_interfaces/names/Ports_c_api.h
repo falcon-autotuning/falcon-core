@@ -12,13 +12,24 @@ extern "C" {
 typedef void* PortsHandle;
 
 // @category:allocation
-PortsHandle Ports_create_empty();
-// @category:allocation
-PortsHandle Ports_create(ListInstrumentPortHandle items);
+PortsHandle Ports_copy(PortsHandle handle);
 // @category:deallocation
 void Ports_destroy(PortsHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Ports_ports | falcon_core::instrument_interfaces::names::Ports::ports */
+bool Ports_equal(PortsHandle handle, PortsHandle other);
+// @category:read
+bool Ports_not_equal(PortsHandle handle, PortsHandle other);
+// @category:read
+StringHandle Ports_to_json_string(PortsHandle handle);
+// @category:allocation
+PortsHandle Ports_from_json_string(StringHandle json);
+// @category:allocation
+PortsHandle Ports_create_empty();
+// @category:allocation
+PortsHandle Ports_create(ListInstrumentPortHandle items);
+// @category:read
+/* AUTO-DOC from cpp: Ports_ports |
+ * falcon_core::instrument_interfaces::names::Ports::ports */
 /**
  * @brief return the collection of ports.
  */
@@ -28,19 +39,24 @@ ListStringHandle Ports_default_names(PortsHandle handle);
 // @category:read
 ListConnectionHandle Ports_get_psuedo_names(PortsHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Ports__get_raw_names | falcon_core::instrument_interfaces::names::Ports::_get_raw_names */
+/* AUTO-DOC from cpp: Ports__get_raw_names |
+ * falcon_core::instrument_interfaces::names::Ports::_get_raw_names */
 /**
  * @brief Return the raw string names of the ports.
  */
 ListStringHandle Ports__get_raw_names(PortsHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Ports__get_instrument_facing_names | falcon_core::instrument_interfaces::names::Ports::_get_instrument_facing_names */
+/* AUTO-DOC from cpp: Ports__get_instrument_facing_names |
+ * falcon_core::instrument_interfaces::names::Ports::_get_instrument_facing_names
+ */
 /**
  * @brief Gets a llist of names to satisfy an instrument interface.
  */
 ListStringHandle Ports__get_instrument_facing_names(PortsHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Ports__get_psuedoname_matching_port | falcon_core::instrument_interfaces::names::Ports::_get_psuedoname_matching_port */
+/* AUTO-DOC from cpp: Ports__get_psuedoname_matching_port |
+ * falcon_core::instrument_interfaces::names::Ports::_get_psuedoname_matching_port
+ */
 /**
  * @brief Check if any port has the given pseudo name.
  * @param name The pseudo name to check for.
@@ -50,7 +66,9 @@ ListStringHandle Ports__get_instrument_facing_names(PortsHandle handle);
 InstrumentPortHandle Ports__get_psuedoname_matching_port(PortsHandle handle,
                                                          ConnectionHandle name);
 // @category:read
-/* AUTO-DOC from cpp: Ports__get_instrument_type_matching_port | falcon_core::instrument_interfaces::names::Ports::_get_instrument_type_matching_port */
+/* AUTO-DOC from cpp: Ports__get_instrument_type_matching_port |
+ * falcon_core::instrument_interfaces::names::Ports::_get_instrument_type_matching_port
+ */
 /**
  * @brief Check if any port has the given instrument type.
  * @param type The instrument type to check for.
@@ -60,14 +78,16 @@ InstrumentPortHandle Ports__get_psuedoname_matching_port(PortsHandle handle,
 InstrumentPortHandle Ports__get_instrument_type_matching_port(
     PortsHandle handle, StringHandle insttype);
 // @category:read
-/* AUTO-DOC from cpp: Ports_is_knobs | falcon_core::instrument_interfaces::names::Ports::is_knobs */
+/* AUTO-DOC from cpp: Ports_is_knobs |
+ * falcon_core::instrument_interfaces::names::Ports::is_knobs */
 /**
  * @brief Check if the ports contains only knobs.
  * @return True if the ports only contain knobs.
  */
 bool Ports_is_knobs(PortsHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Ports_is_meters | falcon_core::instrument_interfaces::names::Ports::is_meters */
+/* AUTO-DOC from cpp: Ports_is_meters |
+ * falcon_core::instrument_interfaces::names::Ports::is_meters */
 /**
  * @brief Check if the ports contains only meters.
  * @return True if the ports only contain meters.
@@ -93,14 +113,6 @@ ListStringHandle Ports_items(PortsHandle handle);
 bool Ports_contains(PortsHandle handle, InstrumentPortHandle value);
 // @category:read
 size_t Ports_index(PortsHandle handle, InstrumentPortHandle value);
-// @category:read
-bool Ports_equal(PortsHandle a, PortsHandle b);
-// @category:read
-bool Ports_not_equal(PortsHandle a, PortsHandle b);
-// @category:read
-StringHandle Ports_to_json_string(PortsHandle handle);
-// @category:allocation
-PortsHandle Ports_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

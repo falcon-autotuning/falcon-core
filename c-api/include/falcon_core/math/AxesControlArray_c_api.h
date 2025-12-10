@@ -15,6 +15,8 @@ typedef void* AxesControlArrayHandle;
 // @category:allocation
 AxesControlArrayHandle AxesControlArray_create_empty();
 // @category:allocation
+AxesControlArrayHandle AxesControlArray_copy(AxesControlArrayHandle handle);
+// @category:allocation
 AxesControlArrayHandle AxesControlArray_create(ListControlArrayHandle data);
 // @category:deallocation
 void AxesControlArray_destroy(AxesControlArrayHandle handle);
@@ -39,9 +41,9 @@ size_t AxesControlArray_index(AxesControlArrayHandle handle, ControlArrayHandle 
 // @category:read
 AxesControlArrayHandle AxesControlArray_intersection(AxesControlArrayHandle handle, AxesControlArrayHandle other);
 // @category:read
-bool AxesControlArray_equal(AxesControlArrayHandle a, AxesControlArrayHandle b);
+bool AxesControlArray_equal(AxesControlArrayHandle handle, AxesControlArrayHandle other);
 // @category:read
-bool AxesControlArray_not_equal(AxesControlArrayHandle a, AxesControlArrayHandle b);
+bool AxesControlArray_not_equal(AxesControlArrayHandle handle, AxesControlArrayHandle other);
 
 // @category:read
 StringHandle      AxesControlArray_to_json_string(AxesControlArrayHandle handle);

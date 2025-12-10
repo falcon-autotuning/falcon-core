@@ -1,9 +1,18 @@
 #include <falcon_core/generic/Map.hpp>
 #include "falcon_core/generic/MapIntInt_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROMapintint = falcon_core::generic::Map<int, int>;
+DEFINE_C_API_COPY_TEMPLATE(MapIntInt, MACROMapintint)
+DEFINE_C_API_DESTROY_TEMPLATE(MapIntInt, MACROMapintint);
+DEFINE_C_API_EQUAL_TEMPLATE(MapIntInt, MACROMapintint);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(MapIntInt, MACROMapintint);
+DEFINE_C_API_TO_JSON_TEMPLATE(MapIntInt, MACROMapintint);
+DEFINE_C_API_FROM_JSON_TEMPLATE(MapIntInt, MACROMapintint);
+
 MapIntIntHandle MapIntInt_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::MapSP<int,int>(std::make_shared<falcon_core::generic::Map<int,int>>()); 
@@ -23,15 +32,6 @@ throw std::invalid_argument("Null data pointer passed to MapIntInt_create");
     return new falcon_core::generic::MapSP<int, int>(
         std::make_shared<falcon_core::generic::Map<int,int>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void MapIntInt_destroy(MapIntIntHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapIntInt_destroy");
-}
-    delete static_cast<falcon_core::generic::MapSP<int, int>*>(handle);
-    FALCON_C_API_END()
 }
 
 void MapIntInt_insert_or_assign(MapIntIntHandle handle,  int key,  int value) {
@@ -148,48 +148,6 @@ throw std::invalid_argument("Null handle passed to MapIntInt_items");
     auto map = *static_cast<falcon_core::generic::MapSP<int,int>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<int,int>> items_sp = map->items(); 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<int,int>>(items_sp);
-    FALCON_C_API_END(nullptr)
-}
-
-bool MapIntInt_equal(MapIntIntHandle handle, MapIntIntHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapIntInt_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<int,int>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<int,int>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool MapIntInt_not_equal(MapIntIntHandle handle, MapIntIntHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapIntInt_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<int,int>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<int,int>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      MapIntInt_to_json_string(MapIntIntHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapIntInt_to_json_string");
-}
-std::string json = (*static_cast<falcon_core::generic::MapSP<int,int>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-MapIntIntHandle MapIntInt_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to MapIntInt_from_json_string");
-}
-  auto ptr = falcon_core::generic::Map<int,int>::from_json_string<falcon_core::generic::Map<int,int>>(json->raw);
-  return new falcon_core::generic::MapSP<int,int>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

@@ -15,6 +15,8 @@ typedef void* AxesCoupledLabelledDomainHandle;
 // @category:allocation
 AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create_empty();
 // @category:allocation
+AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_copy(AxesCoupledLabelledDomainHandle handle);
+// @category:allocation
 AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create(ListCoupledLabelledDomainHandle data);
 // @category:deallocation
 void AxesCoupledLabelledDomain_destroy(AxesCoupledLabelledDomainHandle handle);
@@ -39,9 +41,9 @@ size_t AxesCoupledLabelledDomain_index(AxesCoupledLabelledDomainHandle handle, C
 // @category:read
 AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_intersection(AxesCoupledLabelledDomainHandle handle, AxesCoupledLabelledDomainHandle other);
 // @category:read
-bool AxesCoupledLabelledDomain_equal(AxesCoupledLabelledDomainHandle a, AxesCoupledLabelledDomainHandle b);
+bool AxesCoupledLabelledDomain_equal(AxesCoupledLabelledDomainHandle handle, AxesCoupledLabelledDomainHandle other);
 // @category:read
-bool AxesCoupledLabelledDomain_not_equal(AxesCoupledLabelledDomainHandle a, AxesCoupledLabelledDomainHandle b);
+bool AxesCoupledLabelledDomain_not_equal(AxesCoupledLabelledDomainHandle handle, AxesCoupledLabelledDomainHandle other);
 
 // @category:read
 StringHandle      AxesCoupledLabelledDomain_to_json_string(AxesCoupledLabelledDomainHandle handle);

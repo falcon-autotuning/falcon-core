@@ -13,6 +13,8 @@ typedef void* PairInstrumentPortPortTransformHandle;
 
 // @category:allocation
 PairInstrumentPortPortTransformHandle PairInstrumentPortPortTransform_create(InstrumentPortHandle first, PortTransformHandle second);
+// @category:allocation
+PairInstrumentPortPortTransformHandle PairInstrumentPortPortTransform_copy(PairInstrumentPortPortTransformHandle handle);
 // @category:deallocation
 void PairInstrumentPortPortTransform_destroy(PairInstrumentPortPortTransformHandle handle);
 // @category:read
@@ -20,9 +22,9 @@ InstrumentPortHandle PairInstrumentPortPortTransform_first(PairInstrumentPortPor
 // @category:read
 PortTransformHandle PairInstrumentPortPortTransform_second(PairInstrumentPortPortTransformHandle handle);
 // @category:read
-bool PairInstrumentPortPortTransform_equal(PairInstrumentPortPortTransformHandle a, PairInstrumentPortPortTransformHandle b);
+bool PairInstrumentPortPortTransform_equal(PairInstrumentPortPortTransformHandle handle, PairInstrumentPortPortTransformHandle other);
 // @category:read
-bool PairInstrumentPortPortTransform_not_equal(PairInstrumentPortPortTransformHandle a, PairInstrumentPortPortTransformHandle b);
+bool PairInstrumentPortPortTransform_not_equal(PairInstrumentPortPortTransformHandle handle, PairInstrumentPortPortTransformHandle other);
 // @category:read
 StringHandle      PairInstrumentPortPortTransform_to_json_string(PairInstrumentPortPortTransformHandle handle);
 // @category:allocation

@@ -9,20 +9,39 @@ extern "C" {
 typedef void* DotGatesWithNeighborsHandle;
 
 // @category:allocation
+DotGatesWithNeighborsHandle DotGatesWithNeighbors_copy(
+    DotGatesWithNeighborsHandle handle);
+// @category:deallocation
+void DotGatesWithNeighbors_destroy(DotGatesWithNeighborsHandle handle);
+// @category:read
+bool DotGatesWithNeighbors_equal(DotGatesWithNeighborsHandle handle,
+                                 DotGatesWithNeighborsHandle other);
+// @category:read
+bool DotGatesWithNeighbors_not_equal(DotGatesWithNeighborsHandle handle,
+                                     DotGatesWithNeighborsHandle other);
+// @category:read
+StringHandle DotGatesWithNeighbors_to_json_string(
+    DotGatesWithNeighborsHandle handle);
+// @category:allocation
+DotGatesWithNeighborsHandle DotGatesWithNeighbors_from_json_string(
+    StringHandle json);
+// @category:allocation
 DotGatesWithNeighborsHandle DotGatesWithNeighbors_create_empty();
 // @category:allocation
 DotGatesWithNeighborsHandle DotGatesWithNeighbors_create(
     ListDotGateWithNeighborsHandle items);
-// @category:deallocation
-void DotGatesWithNeighbors_destroy(DotGatesWithNeighborsHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: DotGatesWithNeighbors_is_plunger_gates | falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates */
+/* AUTO-DOC from cpp: DotGatesWithNeighbors_is_plunger_gates |
+ * falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates
+ */
 /**
  * @brief Check if all connections are plunger gates.
  */
 bool DotGatesWithNeighbors_is_plunger_gates(DotGatesWithNeighborsHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: DotGatesWithNeighbors_is_barrier_gates | falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates */
+/* AUTO-DOC from cpp: DotGatesWithNeighbors_is_barrier_gates |
+ * falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates
+ */
 /**
  * @brief Check if all connections are barrier gates.
  */
@@ -54,18 +73,6 @@ bool DotGatesWithNeighbors_contains(DotGatesWithNeighborsHandle handle,
 // @category:read
 size_t DotGatesWithNeighbors_index(DotGatesWithNeighborsHandle handle,
                                    DotGateWithNeighborsHandle  value);
-// @category:read
-bool DotGatesWithNeighbors_equal(DotGatesWithNeighborsHandle handle,
-                                 DotGatesWithNeighborsHandle other);
-// @category:read
-bool DotGatesWithNeighbors_not_equal(DotGatesWithNeighborsHandle handle,
-                                     DotGatesWithNeighborsHandle other);
-// @category:read
-StringHandle DotGatesWithNeighbors_to_json_string(
-    DotGatesWithNeighborsHandle handle);
-// @category:allocation
-DotGatesWithNeighborsHandle DotGatesWithNeighbors_from_json_string(
-    StringHandle json);
 
 #ifdef __cplusplus
 }

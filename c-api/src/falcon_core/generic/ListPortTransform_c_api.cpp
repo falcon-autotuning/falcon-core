@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListPortTransform_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListPortTransformHandle= falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>;
+DEFINE_C_API_COPY_TEMPLATE(ListPortTransform, MACROListPortTransformHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListPortTransform, MACROListPortTransformHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListPortTransform, MACROListPortTransformHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListPortTransform, MACROListPortTransformHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListPortTransform, MACROListPortTransformHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListPortTransform, MACROListPortTransformHandle);
 ListPortTransformHandle ListPortTransform_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>(std::make_shared<falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListPortTransform_create
     return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>(
         std::make_shared<falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListPortTransform_destroy(ListPortTransformHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListPortTransform_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListPortTransform_size(ListPortTransformHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListPortTransform_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListPortTransform_equal(ListPortTransformHandle handle, ListPortTransformHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPortTransform_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListPortTransform_not_equal(ListPortTransformHandle handle, ListPortTransformHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPortTransform_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListPortTransformHandle ListPortTransform_intersection(ListPortTransformHandle handle, ListPortTransformHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListPortTransform_intersectio
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListPortTransform_to_json_string(ListPortTransformHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListPortTransform_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListPortTransformHandle ListPortTransform_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListPortTransform_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>::from_json_string<falcon_core::generic::List<falcon_core::instrument_interfaces::port_transforms::PortTransform>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::instrument_interfaces::port_transforms::PortTransform>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

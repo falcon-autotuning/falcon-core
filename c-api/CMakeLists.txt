@@ -118,6 +118,8 @@ endif()
 file(GLOB_RECURSE C_API_SOURCES "src/*.cpp" "src/*.c")
 
 add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
+target_precompile_headers(${C_API_LIB_NAME} PRIVATE
+                          include/falcon_core/Precompiled_c_api.h)
 set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD ON)
 set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
                                                    ${BATCH_SIZE})

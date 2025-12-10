@@ -14,6 +14,19 @@ extern "C" {
 typedef void* PortTransformHandle;
 
 // @category:allocation
+PortTransformHandle PortTransform_copy(PortTransformHandle handle);
+// @category:deallocation
+void PortTransform_destroy(PortTransformHandle handle);
+// @category:read
+bool PortTransform_equal(PortTransformHandle handle, PortTransformHandle other);
+// @category:read
+bool PortTransform_not_equal(PortTransformHandle handle,
+                             PortTransformHandle other);
+// @category:read
+StringHandle PortTransform_to_json_string(PortTransformHandle handle);
+// @category:allocation
+PortTransformHandle PortTransform_from_json_string(StringHandle json);
+// @category:allocation
 PortTransformHandle PortTransform_create(InstrumentPortHandle   port,
                                          AnalyticFunctionHandle transform);
 // @category:allocation
@@ -22,10 +35,9 @@ PortTransformHandle PortTransform_create_constant_transform(
 // @category:allocation
 PortTransformHandle PortTransform_create_identity_transform(
     InstrumentPortHandle port);
-// @category:deallocation
-void PortTransform_destroy(PortTransformHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: PortTransform_port | falcon_core::instrument_interfaces::port_transforms::PortTransform::port */
+/* AUTO-DOC from cpp: PortTransform_port |
+ * falcon_core::instrument_interfaces::port_transforms::PortTransform::port */
 /**
  * @brief Returns the port associated with the transform.
  */
@@ -41,14 +53,6 @@ FArrayDoubleHandle PortTransform_evaluate_arraywise(PortTransformHandle handle,
                                                     MapStringDoubleHandle args,
                                                     double deltaT,
                                                     double maxTime);
-// @category:read
-bool PortTransform_equal(PortTransformHandle a, PortTransformHandle b);
-// @category:read
-bool PortTransform_not_equal(PortTransformHandle a, PortTransformHandle b);
-// @category:read
-StringHandle PortTransform_to_json_string(PortTransformHandle handle);
-// @category:allocation
-PortTransformHandle PortTransform_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -13,6 +13,8 @@ typedef void* PairConnectionQuantityHandle;
 
 // @category:allocation
 PairConnectionQuantityHandle PairConnectionQuantity_create(ConnectionHandle first, QuantityHandle second);
+// @category:allocation
+PairConnectionQuantityHandle PairConnectionQuantity_copy(PairConnectionQuantityHandle handle);
 // @category:deallocation
 void PairConnectionQuantity_destroy(PairConnectionQuantityHandle handle);
 // @category:read
@@ -20,9 +22,9 @@ ConnectionHandle PairConnectionQuantity_first(PairConnectionQuantityHandle handl
 // @category:read
 QuantityHandle PairConnectionQuantity_second(PairConnectionQuantityHandle handle);
 // @category:read
-bool PairConnectionQuantity_equal(PairConnectionQuantityHandle a, PairConnectionQuantityHandle b);
+bool PairConnectionQuantity_equal(PairConnectionQuantityHandle handle, PairConnectionQuantityHandle other);
 // @category:read
-bool PairConnectionQuantity_not_equal(PairConnectionQuantityHandle a, PairConnectionQuantityHandle b);
+bool PairConnectionQuantity_not_equal(PairConnectionQuantityHandle handle, PairConnectionQuantityHandle other);
 // @category:read
 StringHandle      PairConnectionQuantity_to_json_string(PairConnectionQuantityHandle handle);
 // @category:allocation

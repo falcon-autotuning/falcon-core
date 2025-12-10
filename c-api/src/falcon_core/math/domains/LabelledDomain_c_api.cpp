@@ -1,16 +1,17 @@
 #include "falcon_core/math/domains/LabelledDomain_c_api.h"
 
 #include <falcon_core/math/domains/LabelledDomain.hpp>
-#include <memory>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 using namespace falcon_core::math::domains;
 
 extern "C" {
+DEFINE_C_API_COPY(LabelledDomain);
+DEFINE_C_API_DESTROY(LabelledDomain);
+DEFINE_C_API_EQUAL(LabelledDomain);
+DEFINE_C_API_NOT_EQUAL(LabelledDomain);
+DEFINE_C_API_TO_JSON(LabelledDomain);
+DEFINE_C_API_FROM_JSON(LabelledDomain);
 LabelledDomainHandle LabelledDomain_create_primitive_knob(
     StringHandle     default_name,
     double           min_val,
@@ -226,16 +227,6 @@ LabelledDomainHandle LabelledDomain_create_from_domain(
       *static_cast<falcon_core::physics::units::SymbolUnitSP*>(units),
       std::string(description->raw, description->length)));
   FALCON_C_API_END(nullptr)
-}
-
-void LabelledDomain_destroy(LabelledDomainHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "LabelledDomain_destroy: handle cannot be null");
-  }
-  delete static_cast<LabelledDomainSP*>(handle);
-  FALCON_C_API_END()
 }
 
 InstrumentPortHandle LabelledDomain_port(LabelledDomainHandle handle) {
@@ -455,58 +446,5 @@ double LabelledDomain_transform(LabelledDomainHandle handle,
   return (*static_cast<LabelledDomainSP*>(handle))
       ->transform(*static_cast<LabelledDomainSP*>(other), value);
   FALCON_C_API_END(0.0)
-}
-
-bool LabelledDomain_equal(LabelledDomainHandle handle,
-                          LabelledDomainHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("LabelledDomain_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("LabelledDomain_equal: other cannot be null");
-  }
-  return *(*static_cast<LabelledDomainSP*>(handle)) ==
-         *(*static_cast<LabelledDomainSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool LabelledDomain_not_equal(LabelledDomainHandle handle,
-                              LabelledDomainHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "LabelledDomain_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "LabelledDomain_not_equal: other cannot be null");
-  }
-  return *(*static_cast<LabelledDomainSP*>(handle)) !=
-         *(*static_cast<LabelledDomainSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle LabelledDomain_to_json_string(LabelledDomainHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "LabelledDomain_to_json_string: handle cannot be null");
-  }
-  std::string json =
-      (*static_cast<LabelledDomainSP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-LabelledDomainHandle LabelledDomain_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "LabelledDomain_from_json_string: json cannot be null");
-  }
-  std::string json_str = json->raw;
-  return new LabelledDomainSP(
-      LabelledDomain::from_json_string<LabelledDomain>(json_str));
-  FALCON_C_API_END(nullptr)
 }
 }

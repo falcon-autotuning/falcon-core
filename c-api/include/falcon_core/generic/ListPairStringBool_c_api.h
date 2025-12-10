@@ -13,6 +13,8 @@ typedef void* ListPairStringBoolHandle;
 
 // @category:allocation
 ListPairStringBoolHandle ListPairStringBool_create_empty();
+// @category:allocation
+ListPairStringBoolHandle ListPairStringBool_copy(ListPairStringBoolHandle handle);
 
 // @category:allocation
 ListPairStringBoolHandle ListPairStringBool_fill_value(size_t count, PairStringBoolHandle value);
@@ -41,9 +43,9 @@ size_t ListPairStringBool_index(ListPairStringBoolHandle handle, PairStringBoolH
 // @category:read
 ListPairStringBoolHandle ListPairStringBool_intersection(ListPairStringBoolHandle handle, ListPairStringBoolHandle other);
 // @category:read
-bool ListPairStringBool_equal(ListPairStringBoolHandle a, ListPairStringBoolHandle b);
+bool ListPairStringBool_equal(ListPairStringBoolHandle handle, ListPairStringBoolHandle other);
 // @category:read
-bool ListPairStringBool_not_equal(ListPairStringBoolHandle a, ListPairStringBoolHandle b);
+bool ListPairStringBool_not_equal(ListPairStringBoolHandle handle, ListPairStringBoolHandle other);
 
 // @category:read
 StringHandle      ListPairStringBool_to_json_string(ListPairStringBoolHandle handle);

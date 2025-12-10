@@ -13,6 +13,8 @@ typedef void* ListGroupHandle;
 
 // @category:allocation
 ListGroupHandle ListGroup_create_empty();
+// @category:allocation
+ListGroupHandle ListGroup_copy(ListGroupHandle handle);
 
 // @category:allocation
 ListGroupHandle ListGroup_fill_value(size_t count, GroupHandle value);
@@ -41,9 +43,9 @@ size_t ListGroup_index(ListGroupHandle handle, GroupHandle value);
 // @category:read
 ListGroupHandle ListGroup_intersection(ListGroupHandle handle, ListGroupHandle other);
 // @category:read
-bool ListGroup_equal(ListGroupHandle a, ListGroupHandle b);
+bool ListGroup_equal(ListGroupHandle handle, ListGroupHandle other);
 // @category:read
-bool ListGroup_not_equal(ListGroupHandle a, ListGroupHandle b);
+bool ListGroup_not_equal(ListGroupHandle handle, ListGroupHandle other);
 
 // @category:read
 StringHandle      ListGroup_to_json_string(ListGroupHandle handle);

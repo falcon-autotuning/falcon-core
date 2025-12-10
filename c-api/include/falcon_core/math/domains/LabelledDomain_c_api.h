@@ -11,6 +11,20 @@ extern "C" {
 typedef void* LabelledDomainHandle;
 
 // @category:allocation
+LabelledDomainHandle LabelledDomain_copy(LabelledDomainHandle handle);
+// @category:deallocation
+void LabelledDomain_destroy(LabelledDomainHandle handle);
+// @category:read
+bool LabelledDomain_equal(LabelledDomainHandle handle,
+                          LabelledDomainHandle other);
+// @category:read
+bool LabelledDomain_not_equal(LabelledDomainHandle handle,
+                              LabelledDomainHandle other);
+// @category:read
+StringHandle LabelledDomain_to_json_string(LabelledDomainHandle handle);
+// @category:allocation
+LabelledDomainHandle LabelledDomain_from_json_string(StringHandle json);
+// @category:allocation
 LabelledDomainHandle LabelledDomain_create_primitive_knob(
     StringHandle     default_name,
     double           min_val,
@@ -61,8 +75,6 @@ LabelledDomainHandle LabelledDomain_create_from_domain(
     StringHandle     instrument_type,
     SymbolUnitHandle units,
     StringHandle     description);
-// @category:deallocation
-void LabelledDomain_destroy(LabelledDomainHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: LabelledDomain_port |
  * falcon_core::math::domains::LabelledDomain::port */
@@ -123,16 +135,6 @@ LabelledDomainHandle LabelledDomain_scale(LabelledDomainHandle handle,
 double LabelledDomain_transform(LabelledDomainHandle handle,
                                 LabelledDomainHandle other,
                                 double               value);
-// @category:read
-bool LabelledDomain_equal(LabelledDomainHandle handle,
-                          LabelledDomainHandle other);
-// @category:read
-bool LabelledDomain_not_equal(LabelledDomainHandle handle,
-                              LabelledDomainHandle other);
-// @category:read
-StringHandle LabelledDomain_to_json_string(LabelledDomainHandle handle);
-// @category:allocation
-LabelledDomainHandle LabelledDomain_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

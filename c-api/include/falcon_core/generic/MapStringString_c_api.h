@@ -15,6 +15,8 @@ typedef void* MapStringStringHandle;
 // @category:allocation
 MapStringStringHandle MapStringString_create_empty();
 // @category:allocation
+MapStringStringHandle MapStringString_copy(MapStringStringHandle handle);
+// @category:allocation
 MapStringStringHandle MapStringString_create(PairStringStringHandle* data, size_t count);
 // @category:deallocation
 void MapStringString_destroy(MapStringStringHandle handle);
@@ -41,9 +43,9 @@ ListStringHandle MapStringString_values(MapStringStringHandle handle);
 // @category:read
 ListPairStringStringHandle MapStringString_items(MapStringStringHandle handle);
 // @category:read
-bool MapStringString_equal(MapStringStringHandle a, MapStringStringHandle b);
+bool MapStringString_equal(MapStringStringHandle handle, MapStringStringHandle other);
 // @category:read
-bool MapStringString_not_equal(MapStringStringHandle a, MapStringStringHandle b);
+bool MapStringString_not_equal(MapStringStringHandle handle, MapStringStringHandle other);
 // @category:read
 StringHandle      MapStringString_to_json_string(MapStringStringHandle handle);
 // @category:allocation

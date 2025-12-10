@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListPairIntInt_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListPairIntIntHandle= falcon_core::generic::List<falcon_core::generic::Pair<int, int>>;
+DEFINE_C_API_COPY_TEMPLATE(ListPairIntInt, MACROListPairIntIntHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListPairIntInt, MACROListPairIntIntHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListPairIntInt, MACROListPairIntIntHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListPairIntInt, MACROListPairIntIntHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListPairIntInt, MACROListPairIntIntHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListPairIntInt, MACROListPairIntIntHandle);
 ListPairIntIntHandle ListPairIntInt_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListPairIntInt_create");
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListPairIntInt_destroy(ListPairIntIntHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListPairIntInt_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListPairIntInt_size(ListPairIntIntHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListPairIntInt_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListPairIntInt_equal(ListPairIntIntHandle handle, ListPairIntIntHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairIntInt_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListPairIntInt_not_equal(ListPairIntIntHandle handle, ListPairIntIntHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairIntInt_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListPairIntIntHandle ListPairIntInt_intersection(ListPairIntIntHandle handle, ListPairIntIntHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListPairIntInt_intersection")
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListPairIntInt_to_json_string(ListPairIntIntHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListPairIntInt_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListPairIntIntHandle ListPairIntInt_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListPairIntInt_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<int, int>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<int, int>>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::generic::Pair<int, int>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

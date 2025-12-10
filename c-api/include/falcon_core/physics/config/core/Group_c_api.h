@@ -12,6 +12,18 @@ extern "C" {
 typedef void* GroupHandle;
 
 // @category:allocation
+GroupHandle Group_copy(GroupHandle handle);
+// @category:deallocation
+void Group_destroy(GroupHandle handle);
+// @category:read
+bool Group_equal(GroupHandle handle, GroupHandle other);
+// @category:read
+bool Group_not_equal(GroupHandle handle, GroupHandle other);
+// @category:read
+StringHandle Group_to_json_string(GroupHandle handle);
+// @category:allocation
+GroupHandle Group_from_json_string(StringHandle json);
+// @category:allocation
 GroupHandle Group_create(ChannelHandle     name,
                          int               num_dots,
                          ConnectionsHandle screening_gates,
@@ -19,28 +31,30 @@ GroupHandle Group_create(ChannelHandle     name,
                          ConnectionsHandle plunger_gates,
                          ConnectionsHandle barrier_gates,
                          ConnectionsHandle order);
-// @category:deallocation
-void Group_destroy(GroupHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Group_name | falcon_core::physics::config::core::Group::name */
+/* AUTO-DOC from cpp: Group_name |
+ * falcon_core::physics::config::core::Group::name */
 /**
  * @brief collect the name of this group.
  */
 ChannelHandle Group_name(GroupHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Group_num_dots | falcon_core::physics::config::core::Group::num_dots */
+/* AUTO-DOC from cpp: Group_num_dots |
+ * falcon_core::physics::config::core::Group::num_dots */
 /**
  * @brief collect the number of dots in this group.
  */
 int Group_num_dots(GroupHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Group_order | falcon_core::physics::config::core::Group::order */
+/* AUTO-DOC from cpp: Group_order |
+ * falcon_core::physics::config::core::Group::order */
 /**
  * @brief collect the order of the gates in this group.
  */
 GateGeometryArray1DHandle Group_order(GroupHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Group_has_channel | falcon_core::physics::config::core::Group::has_channel */
+/* AUTO-DOC from cpp: Group_has_channel |
+ * falcon_core::physics::config::core::Group::has_channel */
 /**
  * @brief Validates if this channel is present.
  * @param channel The channel to validate.
@@ -48,14 +62,16 @@ GateGeometryArray1DHandle Group_order(GroupHandle handle);
  */
 bool Group_has_channel(GroupHandle handle, ChannelHandle channel);
 // @category:read
-/* AUTO-DOC from cpp: Group_is_charge_sensor | falcon_core::physics::config::core::Group::is_charge_sensor */
+/* AUTO-DOC from cpp: Group_is_charge_sensor |
+ * falcon_core::physics::config::core::Group::is_charge_sensor */
 /**
  * @brief Checks if this channel could be a charge sensor.
  * @returns true if the channel has a single dot.
  */
 bool Group_is_charge_sensor(GroupHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Group_get_all_channel_gates | falcon_core::physics::config::core::Group::get_all_channel_gates */
+/* AUTO-DOC from cpp: Group_get_all_channel_gates |
+ * falcon_core::physics::config::core::Group::get_all_channel_gates */
 /**
  * @brief Gets all of the gates assocciated with this channel from the
  * config.
@@ -73,7 +89,8 @@ ConnectionsHandle Group_plunger_gates(GroupHandle handle);
 // @category:read
 ConnectionsHandle Group_barrier_gates(GroupHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Group_ohmics | falcon_core::physics::config::core::Group::ohmics */
+/* AUTO-DOC from cpp: Group_ohmics |
+ * falcon_core::physics::config::core::Group::ohmics */
 /**
  * @brief collect the ohmics pertaining to this group.
  */
@@ -112,14 +129,6 @@ bool Group_has_reservoir_gate(GroupHandle      handle,
 // @category:read
 bool Group_has_screening_gate(GroupHandle      handle,
                               ConnectionHandle screening_gate);
-// @category:read
-bool Group_equal(GroupHandle handle, GroupHandle other);
-// @category:read
-bool Group_not_equal(GroupHandle handle, GroupHandle other);
-// @category:read
-StringHandle Group_to_json_string(GroupHandle handle);
-// @category:allocation
-GroupHandle Group_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

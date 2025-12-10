@@ -13,6 +13,8 @@ typedef void* ListInterpretationContextHandle;
 
 // @category:allocation
 ListInterpretationContextHandle ListInterpretationContext_create_empty();
+// @category:allocation
+ListInterpretationContextHandle ListInterpretationContext_copy(ListInterpretationContextHandle handle);
 
 // @category:allocation
 ListInterpretationContextHandle ListInterpretationContext_fill_value(size_t count, InterpretationContextHandle value);
@@ -41,9 +43,9 @@ size_t ListInterpretationContext_index(ListInterpretationContextHandle handle, I
 // @category:read
 ListInterpretationContextHandle ListInterpretationContext_intersection(ListInterpretationContextHandle handle, ListInterpretationContextHandle other);
 // @category:read
-bool ListInterpretationContext_equal(ListInterpretationContextHandle a, ListInterpretationContextHandle b);
+bool ListInterpretationContext_equal(ListInterpretationContextHandle handle, ListInterpretationContextHandle other);
 // @category:read
-bool ListInterpretationContext_not_equal(ListInterpretationContextHandle a, ListInterpretationContextHandle b);
+bool ListInterpretationContext_not_equal(ListInterpretationContextHandle handle, ListInterpretationContextHandle other);
 
 // @category:read
 StringHandle      ListInterpretationContext_to_json_string(ListInterpretationContextHandle handle);

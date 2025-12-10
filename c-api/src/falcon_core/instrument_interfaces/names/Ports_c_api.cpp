@@ -1,15 +1,18 @@
 #include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
 
 #include <falcon_core/instrument_interfaces/names/Ports.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/List.hpp"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 
 using namespace falcon_core::instrument_interfaces::names;
 
 extern "C" {
+DEFINE_C_API_COPY(Ports);
+DEFINE_C_API_DESTROY(Ports);
+DEFINE_C_API_EQUAL(Ports);
+DEFINE_C_API_NOT_EQUAL(Ports);
+DEFINE_C_API_TO_JSON(Ports);
+DEFINE_C_API_FROM_JSON(Ports);
 PortsHandle Ports_create_empty() {
   FALCON_C_API_BEGIN
   return new PortsSP(std::make_shared<Ports>());
@@ -25,15 +28,6 @@ PortsHandle Ports_create(ListInstrumentPortHandle items) {
       *static_cast<falcon_core::generic::ListSP<InstrumentPort>*>(items);
   return new PortsSP(std::make_shared<Ports>(item_list->items()));
   FALCON_C_API_END(nullptr)
-}
-
-void Ports_destroy(PortsHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Ports_destroy: handle cannot be null");
-  }
-  delete static_cast<PortsSP*>(handle);
-  FALCON_C_API_END()
 }
 
 ListInstrumentPortHandle Ports_ports(PortsHandle handle) {
@@ -292,54 +286,5 @@ size_t Ports_index(PortsHandle handle, InstrumentPortHandle value) {
           falcon_core::instrument_interfaces::names::InstrumentPortSP*>(value);
   return self->index(real_value);
   FALCON_C_API_END(0)
-}
-
-bool Ports_equal(PortsHandle handle, PortsHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Ports_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Ports_equal: b cannot be null");
-  }
-  PortsSP self_a = *static_cast<PortsSP*>(handle);
-  PortsSP self_b = *static_cast<PortsSP*>(other);
-  return *self_a == *self_b;
-  FALCON_C_API_END(false)
-}
-
-bool Ports_not_equal(PortsHandle handle, PortsHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Ports_not_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Ports_not_equal: b cannot be null");
-  }
-  PortsSP self_a = *static_cast<PortsSP*>(handle);
-  PortsSP self_b = *static_cast<PortsSP*>(other);
-  return *self_a != *self_b;
-  FALCON_C_API_END(false)
-}
-
-StringHandle Ports_to_json_string(PortsHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Ports_to_json_string: handle cannot be null");
-  }
-  PortsSP     self = *static_cast<PortsSP*>(handle);
-  std::string json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-PortsHandle Ports_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument("Ports_from_json_string: json cannot be null");
-  }
-  std::string json_str(json->raw, json->length);
-  return new PortsSP(Ports::from_json_string<Ports>(json_str));
-  FALCON_C_API_END(nullptr)
 }
 }

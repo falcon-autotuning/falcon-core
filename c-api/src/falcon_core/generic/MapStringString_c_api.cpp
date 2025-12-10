@@ -1,9 +1,18 @@
 #include <falcon_core/generic/Map.hpp>
 #include "falcon_core/generic/MapStringString_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROMapStringHandleStringHandle = falcon_core::generic::Map<std::string, std::string>;
+DEFINE_C_API_COPY_TEMPLATE(MapStringString, MACROMapStringHandleStringHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(MapStringString, MACROMapStringHandleStringHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(MapStringString, MACROMapStringHandleStringHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(MapStringString, MACROMapStringHandleStringHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(MapStringString, MACROMapStringHandleStringHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(MapStringString, MACROMapStringHandleStringHandle);
+
 MapStringStringHandle MapStringString_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::MapSP<std::string,std::string>(std::make_shared<falcon_core::generic::Map<std::string,std::string>>()); 
@@ -23,15 +32,6 @@ throw std::invalid_argument("Null data pointer passed to MapStringString_create"
     return new falcon_core::generic::MapSP<std::string, std::string>(
         std::make_shared<falcon_core::generic::Map<std::string,std::string>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void MapStringString_destroy(MapStringStringHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapStringString_destroy");
-}
-    delete static_cast<falcon_core::generic::MapSP<std::string, std::string>*>(handle);
-    FALCON_C_API_END()
 }
 
 void MapStringString_insert_or_assign(MapStringStringHandle handle,  StringHandle key,  StringHandle value) {
@@ -180,48 +180,6 @@ throw std::invalid_argument("Null handle passed to MapStringString_items");
     auto map = *static_cast<falcon_core::generic::MapSP<std::string,std::string>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string,std::string>> items_sp = map->items(); 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string,std::string>>(items_sp);
-    FALCON_C_API_END(nullptr)
-}
-
-bool MapStringString_equal(MapStringStringHandle handle, MapStringStringHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapStringString_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<std::string,std::string>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<std::string,std::string>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool MapStringString_not_equal(MapStringStringHandle handle, MapStringStringHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapStringString_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<std::string,std::string>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<std::string,std::string>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      MapStringString_to_json_string(MapStringStringHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapStringString_to_json_string");
-}
-std::string json = (*static_cast<falcon_core::generic::MapSP<std::string,std::string>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-MapStringStringHandle MapStringString_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to MapStringString_from_json_string");
-}
-  auto ptr = falcon_core::generic::Map<std::string,std::string>::from_json_string<falcon_core::generic::Map<std::string,std::string>>(json->raw);
-  return new falcon_core::generic::MapSP<std::string,std::string>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

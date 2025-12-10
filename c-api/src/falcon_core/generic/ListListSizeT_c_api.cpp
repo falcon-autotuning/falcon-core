@@ -1,8 +1,16 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListListSizeT_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListListSizeTHandle= falcon_core::generic::List<falcon_core::generic::List<size_t>>;
+DEFINE_C_API_COPY_TEMPLATE(ListListSizeT, MACROListListSizeTHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListListSizeT, MACROListListSizeTHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListListSizeT, MACROListListSizeTHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListListSizeT, MACROListListSizeTHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListListSizeT, MACROListListSizeTHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListListSizeT, MACROListListSizeTHandle);
 ListListSizeTHandle ListListSizeT_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::List<size_t>>>());
@@ -38,15 +46,6 @@ throw std::invalid_argument("Null data handle passed to ListListSizeT_create");
     return new falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::List<size_t>>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListListSizeT_destroy(ListListSizeTHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListListSizeT_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListListSizeT_size(ListListSizeTHandle handle) {
@@ -158,28 +157,6 @@ throw std::invalid_argument("Null handle passed to ListListSizeT_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListListSizeT_equal(ListListSizeTHandle handle, ListListSizeTHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListListSizeT_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListListSizeT_not_equal(ListListSizeTHandle handle, ListListSizeTHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListListSizeT_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListListSizeTHandle ListListSizeT_intersection(ListListSizeTHandle handle, ListListSizeTHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -189,26 +166,6 @@ throw std::invalid_argument("Null handle passed to ListListSizeT_intersection");
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListListSizeT_to_json_string(ListListSizeTHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListListSizeT_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListListSizeTHandle ListListSizeT_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListListSizeT_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::generic::List<size_t>>::from_json_string<falcon_core::generic::List<falcon_core::generic::List<size_t>>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::generic::List<size_t>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

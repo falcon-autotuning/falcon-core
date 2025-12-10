@@ -2,11 +2,16 @@
 
 #include <falcon_core/physics/device_structures/Impedances.hpp>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ListImpedance_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 using namespace falcon_core::physics::device_structures;
 
 extern "C" {
+DEFINE_C_API_COPY(Impedances);
+DEFINE_C_API_DESTROY(Impedances);
+DEFINE_C_API_EQUAL(Impedances);
+DEFINE_C_API_NOT_EQUAL(Impedances);
+DEFINE_C_API_TO_JSON(Impedances);
+DEFINE_C_API_FROM_JSON(Impedances);
 ImpedancesHandle Impedances_create_empty() {
   FALCON_C_API_BEGIN
   return new ImpedancesSP(std::make_shared<Impedances>());
@@ -22,15 +27,6 @@ ImpedancesHandle Impedances_create(const ListImpedanceHandle items) {
       *static_cast<falcon_core::generic::ListSP<Impedance>*>(items);
   return new ImpedancesSP(std::make_shared<Impedances>(list->items()));
   FALCON_C_API_END(nullptr)
-}
-
-void Impedances_destroy(ImpedancesHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Impedances_destroy: handle cannot be null");
-  }
-  delete static_cast<ImpedancesSP*>(handle);
-  FALCON_C_API_END()
 }
 
 ImpedancesHandle Impedances_intersection(ImpedancesHandle handle,
@@ -145,53 +141,5 @@ size_t Impedances_index(ImpedancesHandle handle, ImpedanceHandle value) {
   return (*static_cast<ImpedancesSP*>(handle))
       ->index(*static_cast<ImpedanceSP*>(value));
   FALCON_C_API_END(0)
-}
-
-bool Impedances_equal(ImpedancesHandle handle, ImpedancesHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Impedances_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Impedances_equal: handle cannot be null");
-  }
-  return *(*static_cast<ImpedancesSP*>(handle)) ==
-         *(*static_cast<ImpedancesSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool Impedances_not_equal(ImpedancesHandle handle, ImpedancesHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Impedances_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Impedances_not_equal: handle cannot be null");
-  }
-  return *(*static_cast<ImpedancesSP*>(handle)) !=
-         *(*static_cast<ImpedancesSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle Impedances_to_json_string(ImpedancesHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Impedances_to_json_string: handle cannot be null");
-  }
-  std::string json = (*static_cast<ImpedancesSP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-ImpedancesHandle Impedances_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Impedances_from_json_string: json cannot be null");
-  }
-  auto ptr = Impedances::from_json_string<Impedances>(json->raw);
-  return new ImpedancesSP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

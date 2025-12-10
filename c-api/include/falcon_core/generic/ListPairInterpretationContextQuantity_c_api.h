@@ -13,6 +13,8 @@ typedef void* ListPairInterpretationContextQuantityHandle;
 
 // @category:allocation
 ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_create_empty();
+// @category:allocation
+ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_copy(ListPairInterpretationContextQuantityHandle handle);
 
 // @category:allocation
 ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_fill_value(size_t count, PairInterpretationContextQuantityHandle value);
@@ -41,9 +43,9 @@ size_t ListPairInterpretationContextQuantity_index(ListPairInterpretationContext
 // @category:read
 ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_intersection(ListPairInterpretationContextQuantityHandle handle, ListPairInterpretationContextQuantityHandle other);
 // @category:read
-bool ListPairInterpretationContextQuantity_equal(ListPairInterpretationContextQuantityHandle a, ListPairInterpretationContextQuantityHandle b);
+bool ListPairInterpretationContextQuantity_equal(ListPairInterpretationContextQuantityHandle handle, ListPairInterpretationContextQuantityHandle other);
 // @category:read
-bool ListPairInterpretationContextQuantity_not_equal(ListPairInterpretationContextQuantityHandle a, ListPairInterpretationContextQuantityHandle b);
+bool ListPairInterpretationContextQuantity_not_equal(ListPairInterpretationContextQuantityHandle handle, ListPairInterpretationContextQuantityHandle other);
 
 // @category:read
 StringHandle      ListPairInterpretationContextQuantity_to_json_string(ListPairInterpretationContextQuantityHandle handle);

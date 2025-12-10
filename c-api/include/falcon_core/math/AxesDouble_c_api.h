@@ -14,6 +14,8 @@ typedef void* AxesDoubleHandle;
 // @category:allocation
 AxesDoubleHandle AxesDouble_create_empty();
 // @category:allocation
+AxesDoubleHandle AxesDouble_copy(AxesDoubleHandle handle);
+// @category:allocation
 AxesDoubleHandle AxesDouble_create(ListDoubleHandle data);
 // @category:deallocation
 void AxesDouble_destroy(AxesDoubleHandle handle);
@@ -38,9 +40,9 @@ size_t AxesDouble_index(AxesDoubleHandle handle, double value);
 // @category:read
 AxesDoubleHandle AxesDouble_intersection(AxesDoubleHandle handle, AxesDoubleHandle other);
 // @category:read
-bool AxesDouble_equal(AxesDoubleHandle a, AxesDoubleHandle b);
+bool AxesDouble_equal(AxesDoubleHandle handle, AxesDoubleHandle other);
 // @category:read
-bool AxesDouble_not_equal(AxesDoubleHandle a, AxesDoubleHandle b);
+bool AxesDouble_not_equal(AxesDoubleHandle handle, AxesDoubleHandle other);
 
 // @category:read
 StringHandle      AxesDouble_to_json_string(AxesDoubleHandle handle);

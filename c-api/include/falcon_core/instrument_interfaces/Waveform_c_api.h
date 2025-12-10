@@ -16,6 +16,18 @@ extern "C" {
 typedef void* WaveformHandle;
 
 // @category:allocation
+WaveformHandle Waveform_copy(WaveformHandle handle);
+// @category:deallocation
+void Waveform_destroy(WaveformHandle handle);
+// @category:read
+bool Waveform_equal(WaveformHandle handle, WaveformHandle other);
+// @category:read
+bool Waveform_not_equal(WaveformHandle handle, WaveformHandle other);
+// @category:read
+StringHandle Waveform_to_json_string(WaveformHandle handle);
+// @category:allocation
+WaveformHandle Waveform_from_json_string(StringHandle json);
+// @category:allocation
 WaveformHandle Waveform_create(DiscreteSpaceHandle     space,
                                ListPortTransformHandle transforms);
 // @category:allocation
@@ -57,10 +69,9 @@ WaveformHandle Waveform_create_cartesian_identity_waveform_1D(
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,
     DomainHandle                domain);
-// @category:deallocation
-void Waveform_destroy(WaveformHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Waveform_space | falcon_core::instrument_interfaces::Waveform::space */
+/* AUTO-DOC from cpp: Waveform_space |
+ * falcon_core::instrument_interfaces::Waveform::space */
 /**
  * @brief Get the measurement space.
  */
@@ -88,14 +99,6 @@ size_t Waveform_index(WaveformHandle handle, PortTransformHandle value);
 // @category:read
 WaveformHandle Waveform_intersection(WaveformHandle handle,
                                      WaveformHandle other);
-// @category:read
-bool Waveform_equal(WaveformHandle handle, WaveformHandle other);
-// @category:read
-bool Waveform_not_equal(WaveformHandle handle, WaveformHandle other);
-// @category:read
-StringHandle Waveform_to_json_string(WaveformHandle handle);
-// @category:allocation
-WaveformHandle Waveform_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

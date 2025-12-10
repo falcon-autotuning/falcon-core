@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListMapStringBool_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Map.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListMapStringBoolHandle= falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>;
+DEFINE_C_API_COPY_TEMPLATE(ListMapStringBool, MACROListMapStringBoolHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListMapStringBool, MACROListMapStringBoolHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListMapStringBool, MACROListMapStringBoolHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListMapStringBool, MACROListMapStringBoolHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListMapStringBool, MACROListMapStringBoolHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListMapStringBool, MACROListMapStringBoolHandle);
 ListMapStringBoolHandle ListMapStringBool_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListMapStringBool_create
     return new falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListMapStringBool_destroy(ListMapStringBoolHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListMapStringBool_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListMapStringBool_size(ListMapStringBoolHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListMapStringBool_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListMapStringBool_equal(ListMapStringBoolHandle handle, ListMapStringBoolHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListMapStringBool_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListMapStringBool_not_equal(ListMapStringBoolHandle handle, ListMapStringBoolHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListMapStringBool_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListMapStringBoolHandle ListMapStringBool_intersection(ListMapStringBoolHandle handle, ListMapStringBoolHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListMapStringBool_intersectio
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListMapStringBool_to_json_string(ListMapStringBoolHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListMapStringBool_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListMapStringBoolHandle ListMapStringBool_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListMapStringBool_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::generic::Map<std::string, bool>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

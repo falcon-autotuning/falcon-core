@@ -13,6 +13,8 @@ typedef void* ListBoolHandle;
 // @category:allocation
 ListBoolHandle ListBool_create_empty();
 // @category:allocation
+ListBoolHandle ListBool_copy(ListBoolHandle handle);
+// @category:allocation
 ListBoolHandle ListBool_allocate(size_t count);
 // @category:allocation
 ListBoolHandle ListBool_fill_value(size_t count, bool value);
@@ -41,9 +43,9 @@ size_t ListBool_index(ListBoolHandle handle, bool value);
 // @category:read
 ListBoolHandle ListBool_intersection(ListBoolHandle handle, ListBoolHandle other);
 // @category:read
-bool ListBool_equal(ListBoolHandle a, ListBoolHandle b);
+bool ListBool_equal(ListBoolHandle handle, ListBoolHandle other);
 // @category:read
-bool ListBool_not_equal(ListBoolHandle a, ListBoolHandle b);
+bool ListBool_not_equal(ListBoolHandle handle, ListBoolHandle other);
 
 // @category:read
 StringHandle      ListBool_to_json_string(ListBoolHandle handle);

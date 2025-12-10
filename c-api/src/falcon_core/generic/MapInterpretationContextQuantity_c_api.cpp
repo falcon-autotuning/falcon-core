@@ -1,11 +1,20 @@
 #include <falcon_core/generic/Map.hpp>
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/math/Quantity.hpp>
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROMapInterpretationContextHandleQuantityHandle = falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>;
+DEFINE_C_API_COPY_TEMPLATE(MapInterpretationContextQuantity, MACROMapInterpretationContextHandleQuantityHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(MapInterpretationContextQuantity, MACROMapInterpretationContextHandleQuantityHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(MapInterpretationContextQuantity, MACROMapInterpretationContextHandleQuantityHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(MapInterpretationContextQuantity, MACROMapInterpretationContextHandleQuantityHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(MapInterpretationContextQuantity, MACROMapInterpretationContextHandleQuantityHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(MapInterpretationContextQuantity, MACROMapInterpretationContextHandleQuantityHandle);
+
 MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>()); 
@@ -25,15 +34,6 @@ throw std::invalid_argument("Null data pointer passed to MapInterpretationContex
     return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>(
         std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void MapInterpretationContextQuantity_destroy(MapInterpretationContextQuantityHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_destroy");
-}
-    delete static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>*>(handle);
-    FALCON_C_API_END()
 }
 
 void MapInterpretationContextQuantity_insert_or_assign(MapInterpretationContextQuantityHandle handle,  InterpretationContextHandle key,  QuantityHandle value) {
@@ -178,48 +178,6 @@ throw std::invalid_argument("Null handle passed to MapInterpretationContextQuant
     auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>> items_sp = map->items(); 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>(items_sp);
-    FALCON_C_API_END(nullptr)
-}
-
-bool MapInterpretationContextQuantity_equal(MapInterpretationContextQuantityHandle handle, MapInterpretationContextQuantityHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool MapInterpretationContextQuantity_not_equal(MapInterpretationContextQuantityHandle handle, MapInterpretationContextQuantityHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      MapInterpretationContextQuantity_to_json_string(MapInterpretationContextQuantityHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapInterpretationContextQuantity_to_json_string");
-}
-std::string json = (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to MapInterpretationContextQuantity_from_json_string");
-}
-  auto ptr = falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>::from_json_string<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>(json->raw);
-  return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

@@ -13,6 +13,8 @@ typedef void* ListPairSizeTSizeTHandle;
 
 // @category:allocation
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_create_empty();
+// @category:allocation
+ListPairSizeTSizeTHandle ListPairSizeTSizeT_copy(ListPairSizeTSizeTHandle handle);
 
 // @category:allocation
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_fill_value(size_t count, PairSizeTSizeTHandle value);
@@ -41,9 +43,9 @@ size_t ListPairSizeTSizeT_index(ListPairSizeTSizeTHandle handle, PairSizeTSizeTH
 // @category:read
 ListPairSizeTSizeTHandle ListPairSizeTSizeT_intersection(ListPairSizeTSizeTHandle handle, ListPairSizeTSizeTHandle other);
 // @category:read
-bool ListPairSizeTSizeT_equal(ListPairSizeTSizeTHandle a, ListPairSizeTSizeTHandle b);
+bool ListPairSizeTSizeT_equal(ListPairSizeTSizeTHandle handle, ListPairSizeTSizeTHandle other);
 // @category:read
-bool ListPairSizeTSizeT_not_equal(ListPairSizeTSizeTHandle a, ListPairSizeTSizeTHandle b);
+bool ListPairSizeTSizeT_not_equal(ListPairSizeTSizeTHandle handle, ListPairSizeTSizeTHandle other);
 
 // @category:read
 StringHandle      ListPairSizeTSizeT_to_json_string(ListPairSizeTSizeTHandle handle);

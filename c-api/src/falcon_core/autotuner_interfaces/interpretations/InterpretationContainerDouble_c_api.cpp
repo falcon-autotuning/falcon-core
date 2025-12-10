@@ -1,5 +1,6 @@
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp>
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/List.hpp>
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp>
@@ -8,6 +9,13 @@
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROInterpretationContainerdouble= falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<double>;
+DEFINE_C_API_COPY_TEMPLATE(InterpretationContainerDouble, MACROInterpretationContainerdouble)
+DEFINE_C_API_DESTROY_TEMPLATE(InterpretationContainerDouble, MACROInterpretationContainerdouble);
+DEFINE_C_API_EQUAL_TEMPLATE(InterpretationContainerDouble, MACROInterpretationContainerdouble);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(InterpretationContainerDouble, MACROInterpretationContainerdouble);
+DEFINE_C_API_TO_JSON_TEMPLATE(InterpretationContainerDouble, MACROInterpretationContainerdouble);
+DEFINE_C_API_FROM_JSON_TEMPLATE(InterpretationContainerDouble, MACROInterpretationContainerdouble);
 InterpretationContainerDoubleHandle InterpretationContainerDouble_create(MapInterpretationContextDoubleHandle map) {
     FALCON_C_API_BEGIN
 if (!map) {
@@ -18,15 +26,6 @@ throw std::invalid_argument("Null map handle passed to InterpretationContainerDo
     return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<double>(
         std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<double>>(real_map));
     FALCON_C_API_END(nullptr)
-}
-
-void InterpretationContainerDouble_destroy(InterpretationContainerDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null map handle passed to InterpretationContainerDouble_destroy");
-}
-    delete static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<double>*>(handle);
-    FALCON_C_API_END()
 }
 
 SymbolUnitHandle InterpretationContainerDouble_unit(
@@ -265,48 +264,6 @@ ListPairInterpretationContextDoubleHandle InterpretationContainerDouble_items(
                     }
     auto that = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<double>*>(handle);
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,double>>(that->items());
-    FALCON_C_API_END(nullptr)
-}
-
-bool InterpretationContainerDouble_equal(InterpretationContainerDoubleHandle handle, InterpretationContainerDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to InterpretationContainerDouble_equal");
-}
-    auto listA = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<double>*>(handle);
-    auto listB = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<double>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool InterpretationContainerDouble_not_equal(InterpretationContainerDoubleHandle handle, InterpretationContainerDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to InterpretationContainerDouble_not_equal");
-}
-    auto listA = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<double>*>(handle);
-    auto listB = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<double>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      InterpretationContainerDouble_to_json_string(InterpretationContainerDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to InterpretationContainerDouble_to_json_string");
-}
-std::string json = (*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<double>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-InterpretationContainerDoubleHandle InterpretationContainerDouble_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to InterpretationContainerDouble_from_json_string");
-}
-  auto ptr = falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<double>::from_json_string<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<double>>(json->raw);
-  return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<double>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

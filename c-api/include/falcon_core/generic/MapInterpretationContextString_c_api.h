@@ -15,6 +15,8 @@ typedef void* MapInterpretationContextStringHandle;
 // @category:allocation
 MapInterpretationContextStringHandle MapInterpretationContextString_create_empty();
 // @category:allocation
+MapInterpretationContextStringHandle MapInterpretationContextString_copy(MapInterpretationContextStringHandle handle);
+// @category:allocation
 MapInterpretationContextStringHandle MapInterpretationContextString_create(PairInterpretationContextStringHandle* data, size_t count);
 // @category:deallocation
 void MapInterpretationContextString_destroy(MapInterpretationContextStringHandle handle);
@@ -41,9 +43,9 @@ ListStringHandle MapInterpretationContextString_values(MapInterpretationContextS
 // @category:read
 ListPairInterpretationContextStringHandle MapInterpretationContextString_items(MapInterpretationContextStringHandle handle);
 // @category:read
-bool MapInterpretationContextString_equal(MapInterpretationContextStringHandle a, MapInterpretationContextStringHandle b);
+bool MapInterpretationContextString_equal(MapInterpretationContextStringHandle handle, MapInterpretationContextStringHandle other);
 // @category:read
-bool MapInterpretationContextString_not_equal(MapInterpretationContextStringHandle a, MapInterpretationContextStringHandle b);
+bool MapInterpretationContextString_not_equal(MapInterpretationContextStringHandle handle, MapInterpretationContextStringHandle other);
 // @category:read
 StringHandle      MapInterpretationContextString_to_json_string(MapInterpretationContextStringHandle handle);
 // @category:allocation

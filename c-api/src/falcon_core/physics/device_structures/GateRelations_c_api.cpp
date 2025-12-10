@@ -2,11 +2,18 @@
 
 #include <falcon_core/physics/device_structures/GateRelations.hpp>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::generic;
 
 extern "C" {
+DEFINE_C_API_COPY(GateRelations);
+DEFINE_C_API_DESTROY(GateRelations);
+DEFINE_C_API_EQUAL(GateRelations);
+DEFINE_C_API_NOT_EQUAL(GateRelations);
+DEFINE_C_API_TO_JSON(GateRelations);
+DEFINE_C_API_FROM_JSON(GateRelations);
 GateRelationsHandle GateRelations_create_empty() {
   FALCON_C_API_BEGIN
   return new GateRelationsSP(std::make_shared<GateRelations>());
@@ -29,15 +36,6 @@ GateRelationsHandle GateRelations_create(
 
   return new GateRelationsSP(std::make_shared<GateRelations>(vec));
   FALCON_C_API_END(nullptr)
-}
-
-void GateRelations_destroy(GateRelationsHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("GateRelations_destroy: handle cannot be null");
-  }
-  delete static_cast<GateRelationsSP*>(handle);
-  FALCON_C_API_END()
 }
 
 void GateRelations_insert_or_assign(GateRelationsHandle handle,
@@ -179,58 +177,6 @@ ListPairConnectionConnectionsHandle GateRelations_items(
   ListSP<Pair<Connection, Connections>> items =
       (*static_cast<GateRelationsSP*>(handle))->items();
   return new ListSP<Pair<Connection, Connections>>(items);
-  FALCON_C_API_END(nullptr)
-}
-
-bool GateRelations_equal(GateRelationsHandle handle,
-                         GateRelationsHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("GateRelations_equal: handle a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("GateRelations_equal: handle b cannot be null");
-  }
-  return *(*static_cast<GateRelationsSP*>(handle)) ==
-         *(*static_cast<GateRelationsSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool GateRelations_not_equal(GateRelationsHandle handle,
-                             GateRelationsHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "GateRelations_not_equal: handle a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "GateRelations_not_equal: handle b cannot be null");
-  }
-  return *(*static_cast<GateRelationsSP*>(handle)) !=
-         *(*static_cast<GateRelationsSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle GateRelations_to_json_string(GateRelationsHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "GateRelations_to_json_string: handle cannot be null");
-  }
-  std::string json = (*static_cast<GateRelationsSP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-GateRelationsHandle GateRelations_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "GateRelations_from_json_string: json cannot be null");
-  }
-  auto ptr = GateRelations::from_json_string<GateRelations>(json->raw);
-  return new GateRelationsSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

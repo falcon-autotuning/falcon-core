@@ -1,11 +1,20 @@
 #include <falcon_core/math/arrays/LabelledArrays.hpp>
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/List.hpp>
 #include <falcon_core/math/arrays/LabelledArrays.hpp>
 #include <falcon_core/math/arrays/LabelledControlArray.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROLabelledArraysLabelledControlArrayHandle= falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray>;
+DEFINE_C_API_COPY_TEMPLATE(LabelledArraysLabelledControlArray, MACROLabelledArraysLabelledControlArrayHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(LabelledArraysLabelledControlArray, MACROLabelledArraysLabelledControlArrayHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(LabelledArraysLabelledControlArray, MACROLabelledArraysLabelledControlArrayHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(LabelledArraysLabelledControlArray, MACROLabelledArraysLabelledControlArrayHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(LabelledArraysLabelledControlArray, MACROLabelledArraysLabelledControlArrayHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(LabelledArraysLabelledControlArray, MACROLabelledArraysLabelledControlArrayHandle);
+
 LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_create(
     ListLabelledControlArrayHandle arrays) {
     FALCON_C_API_BEGIN
@@ -16,15 +25,6 @@ LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_crea
     return new falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>(
         std::make_shared<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray>>(list->items()));
     FALCON_C_API_END(nullptr)
-}
-
-void LabelledArraysLabelledControlArray_destroy(LabelledArraysLabelledControlArrayHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray_destroy");
-}
-    delete static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>*>(handle);
-    FALCON_C_API_END()
 }
 
 ListLabelledControlArrayHandle LabelledArraysLabelledControlArray_arrays(
@@ -167,47 +167,5 @@ throw std::invalid_argument("Null value passed to LabelledArraysLabelledControlA
     auto stored_obj = falcon_core::math::arrays::LabelledControlArraySP(*static_cast<falcon_core::math::arrays::LabelledControlArraySP*>(value));
     return (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
-}
-
-bool LabelledArraysLabelledControlArray_equal(LabelledArraysLabelledControlArrayHandle handle, LabelledArraysLabelledControlArrayHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray_equal");
-}
-    auto listA = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>*>(handle);
-    auto listB = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool LabelledArraysLabelledControlArray_not_equal(LabelledArraysLabelledControlArrayHandle handle, LabelledArraysLabelledControlArrayHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray_not_equal");
-}
-    auto listA = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>*>(handle);
-    auto listB = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      LabelledArraysLabelledControlArray_to_json_string(LabelledArraysLabelledControlArrayHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to LabelledArraysLabelledControlArray_from_json_string");
-}
-  auto ptr = falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray>::from_json_string<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledControlArray>>(json->raw);
-  return new falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>(ptr);
-    FALCON_C_API_END(nullptr)
 }
 }

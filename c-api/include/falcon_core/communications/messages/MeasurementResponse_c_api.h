@@ -10,15 +10,10 @@ extern "C" {
 typedef void* MeasurementResponseHandle;
 
 // @category:allocation
-MeasurementResponseHandle MeasurementResponse_create(
-    LabelledArraysLabelledMeasuredArrayHandle arrays);
+MeasurementResponseHandle MeasurementResponse_copy(
+    MeasurementResponseHandle handle);
 // @category:deallocation
 void MeasurementResponse_destroy(MeasurementResponseHandle handle);
-// @category:read
-LabelledArraysLabelledMeasuredArrayHandle MeasurementResponse_arrays(
-    MeasurementResponseHandle handle);
-// @category:read
-StringHandle MeasurementResponse_message(MeasurementResponseHandle handle);
 // @category:read
 bool MeasurementResponse_equal(MeasurementResponseHandle handle,
                                MeasurementResponseHandle other);
@@ -31,6 +26,14 @@ StringHandle MeasurementResponse_to_json_string(
 // @category:allocation
 MeasurementResponseHandle MeasurementResponse_from_json_string(
     StringHandle json);
+// @category:allocation
+MeasurementResponseHandle MeasurementResponse_create(
+    LabelledArraysLabelledMeasuredArrayHandle arrays);
+// @category:read
+LabelledArraysLabelledMeasuredArrayHandle MeasurementResponse_arrays(
+    MeasurementResponseHandle handle);
+// @category:read
+StringHandle MeasurementResponse_message(MeasurementResponseHandle handle);
 
 #ifdef __cplusplus
 }

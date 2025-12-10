@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListChannel_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/autotuner_interfaces/names/Channel.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListChannelHandle= falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>;
+DEFINE_C_API_COPY_TEMPLATE(ListChannel, MACROListChannelHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListChannel, MACROListChannelHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListChannel, MACROListChannelHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListChannel, MACROListChannelHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListChannel, MACROListChannelHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListChannel, MACROListChannelHandle);
 ListChannelHandle ListChannel_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>(std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListChannel_create");
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>(
         std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListChannel_destroy(ListChannelHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListChannel_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListChannel_size(ListChannelHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListChannel_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListChannel_equal(ListChannelHandle handle, ListChannelHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListChannel_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListChannel_not_equal(ListChannelHandle handle, ListChannelHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListChannel_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListChannelHandle ListChannel_intersection(ListChannelHandle handle, ListChannelHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListChannel_intersection");
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListChannel_to_json_string(ListChannelHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListChannel_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListChannelHandle ListChannel_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListChannel_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>::from_json_string<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Channel>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Channel>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

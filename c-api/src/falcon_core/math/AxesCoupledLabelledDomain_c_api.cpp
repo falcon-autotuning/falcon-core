@@ -1,10 +1,18 @@
 #include <falcon_core/math/Axes.hpp>
 #include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/List.hpp>
 #include <falcon_core/math/domains/CoupledLabelledDomain.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROAxesCoupledLabelledDomainHandle= falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>;
+DEFINE_C_API_COPY_TEMPLATE(AxesCoupledLabelledDomain, MACROAxesCoupledLabelledDomainHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(AxesCoupledLabelledDomain, MACROAxesCoupledLabelledDomainHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(AxesCoupledLabelledDomain, MACROAxesCoupledLabelledDomainHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(AxesCoupledLabelledDomain, MACROAxesCoupledLabelledDomainHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(AxesCoupledLabelledDomain, MACROAxesCoupledLabelledDomainHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(AxesCoupledLabelledDomain, MACROAxesCoupledLabelledDomainHandle);
 AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>(
@@ -21,15 +29,6 @@ throw std::invalid_argument("Null data handle passed to AxesCoupledLabelledDomai
     return new falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>(
             std::make_shared<falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>>(list));
     FALCON_C_API_END(nullptr)
-}
-
-void AxesCoupledLabelledDomain_destroy(AxesCoupledLabelledDomainHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to AxesCoupledLabelledDomain_destroy");
-}
-    delete static_cast<falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t AxesCoupledLabelledDomain_size(AxesCoupledLabelledDomainHandle handle) {
@@ -138,28 +137,6 @@ throw std::invalid_argument("Null handle passed to AxesCoupledLabelledDomain_at"
     FALCON_C_API_END(nullptr)
 }
 
-bool AxesCoupledLabelledDomain_equal(AxesCoupledLabelledDomainHandle handle, AxesCoupledLabelledDomainHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to AxesCoupledLabelledDomain_equal");
-}
-    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
-    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool AxesCoupledLabelledDomain_not_equal(AxesCoupledLabelledDomainHandle handle, AxesCoupledLabelledDomainHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to AxesCoupledLabelledDomain_not_equal");
-}
-    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle);
-    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_intersection(AxesCoupledLabelledDomainHandle handle, AxesCoupledLabelledDomainHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -169,26 +146,6 @@ throw std::invalid_argument("Null handle passed to AxesCoupledLabelledDomain_int
     auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>(std::make_shared<falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>>(result));
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      AxesCoupledLabelledDomain_to_json_string(AxesCoupledLabelledDomainHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to AxesCoupledLabelledDomain_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to AxesCoupledLabelledDomain_from_json_string");
-}
-  auto ptr = falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>::from_json_string<falcon_core::math::Axes<falcon_core::math::domains::CoupledLabelledDomain>>(json->raw);
-  return new falcon_core::math::AxesSP<falcon_core::math::domains::CoupledLabelledDomain>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

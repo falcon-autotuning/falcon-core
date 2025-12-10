@@ -13,6 +13,8 @@ typedef void* ListPairChannelConnectionsHandle;
 
 // @category:allocation
 ListPairChannelConnectionsHandle ListPairChannelConnections_create_empty();
+// @category:allocation
+ListPairChannelConnectionsHandle ListPairChannelConnections_copy(ListPairChannelConnectionsHandle handle);
 
 // @category:allocation
 ListPairChannelConnectionsHandle ListPairChannelConnections_fill_value(size_t count, PairChannelConnectionsHandle value);
@@ -41,9 +43,9 @@ size_t ListPairChannelConnections_index(ListPairChannelConnectionsHandle handle,
 // @category:read
 ListPairChannelConnectionsHandle ListPairChannelConnections_intersection(ListPairChannelConnectionsHandle handle, ListPairChannelConnectionsHandle other);
 // @category:read
-bool ListPairChannelConnections_equal(ListPairChannelConnectionsHandle a, ListPairChannelConnectionsHandle b);
+bool ListPairChannelConnections_equal(ListPairChannelConnectionsHandle handle, ListPairChannelConnectionsHandle other);
 // @category:read
-bool ListPairChannelConnections_not_equal(ListPairChannelConnectionsHandle a, ListPairChannelConnectionsHandle b);
+bool ListPairChannelConnections_not_equal(ListPairChannelConnectionsHandle handle, ListPairChannelConnectionsHandle other);
 
 // @category:read
 StringHandle      ListPairChannelConnections_to_json_string(ListPairChannelConnectionsHandle handle);

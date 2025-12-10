@@ -1,8 +1,16 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListFloat_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListfloat= falcon_core::generic::List<float>;
+DEFINE_C_API_COPY_TEMPLATE(ListFloat, MACROListfloat)
+DEFINE_C_API_DESTROY_TEMPLATE(ListFloat, MACROListfloat);
+DEFINE_C_API_EQUAL_TEMPLATE(ListFloat, MACROListfloat);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListFloat, MACROListfloat);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListFloat, MACROListfloat);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListFloat, MACROListfloat);
 ListFloatHandle ListFloat_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<float>(std::make_shared<falcon_core::generic::List<float>>());
@@ -32,15 +40,6 @@ throw std::invalid_argument("Null data handle passed to ListFloat_create");
     return new falcon_core::generic::ListSP<float>(
         std::make_shared<falcon_core::generic::List<float>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListFloat_destroy(ListFloatHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListFloat_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<float>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListFloat_size(ListFloatHandle handle) {
@@ -134,28 +133,6 @@ throw std::invalid_argument("Null handle passed to ListFloat_at");
     FALCON_C_API_END(0.0)
 }
 
-bool ListFloat_equal(ListFloatHandle handle, ListFloatHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListFloat_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<float>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<float>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListFloat_not_equal(ListFloatHandle handle, ListFloatHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListFloat_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<float>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<float>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListFloatHandle ListFloat_intersection(ListFloatHandle handle, ListFloatHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -165,26 +142,6 @@ throw std::invalid_argument("Null handle passed to ListFloat_intersection");
     auto listB = *static_cast<falcon_core::generic::ListSP<float>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<float>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListFloat_to_json_string(ListFloatHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListFloat_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<float>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListFloatHandle ListFloat_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListFloat_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<float>::from_json_string<falcon_core::generic::List<float>>(json->raw);
-  return new falcon_core::generic::ListSP<float>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

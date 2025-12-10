@@ -1,5 +1,6 @@
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp>
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/List.hpp>
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp>
@@ -9,6 +10,13 @@
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROInterpretationContainerQuantityHandle= falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<falcon_core::math::Quantity>;
+DEFINE_C_API_COPY_TEMPLATE(InterpretationContainerQuantity, MACROInterpretationContainerQuantityHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(InterpretationContainerQuantity, MACROInterpretationContainerQuantityHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(InterpretationContainerQuantity, MACROInterpretationContainerQuantityHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(InterpretationContainerQuantity, MACROInterpretationContainerQuantityHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(InterpretationContainerQuantity, MACROInterpretationContainerQuantityHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(InterpretationContainerQuantity, MACROInterpretationContainerQuantityHandle);
 InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(MapInterpretationContextQuantityHandle map) {
     FALCON_C_API_BEGIN
 if (!map) {
@@ -19,15 +27,6 @@ throw std::invalid_argument("Null map handle passed to InterpretationContainerQu
     return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<falcon_core::math::Quantity>(
         std::make_shared<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<falcon_core::math::Quantity>>(real_map));
     FALCON_C_API_END(nullptr)
-}
-
-void InterpretationContainerQuantity_destroy(InterpretationContainerQuantityHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null map handle passed to InterpretationContainerQuantity_destroy");
-}
-    delete static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<falcon_core::math::Quantity>*>(handle);
-    FALCON_C_API_END()
 }
 
 SymbolUnitHandle InterpretationContainerQuantity_unit(
@@ -274,48 +273,6 @@ ListPairInterpretationContextQuantityHandle InterpretationContainerQuantity_item
                     }
     auto that = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<falcon_core::math::Quantity>*>(handle);
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,falcon_core::math::Quantity>>(that->items());
-    FALCON_C_API_END(nullptr)
-}
-
-bool InterpretationContainerQuantity_equal(InterpretationContainerQuantityHandle handle, InterpretationContainerQuantityHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to InterpretationContainerQuantity_equal");
-}
-    auto listA = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<falcon_core::math::Quantity>*>(handle);
-    auto listB = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<falcon_core::math::Quantity>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool InterpretationContainerQuantity_not_equal(InterpretationContainerQuantityHandle handle, InterpretationContainerQuantityHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to InterpretationContainerQuantity_not_equal");
-}
-    auto listA = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<falcon_core::math::Quantity>*>(handle);
-    auto listB = *static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<falcon_core::math::Quantity>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      InterpretationContainerQuantity_to_json_string(InterpretationContainerQuantityHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to InterpretationContainerQuantity_to_json_string");
-}
-std::string json = (*static_cast<falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<falcon_core::math::Quantity>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-InterpretationContainerQuantityHandle InterpretationContainerQuantity_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to InterpretationContainerQuantity_from_json_string");
-}
-  auto ptr = falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<falcon_core::math::Quantity>::from_json_string<falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<falcon_core::math::Quantity>>(json->raw);
-  return new falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP<falcon_core::math::Quantity>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

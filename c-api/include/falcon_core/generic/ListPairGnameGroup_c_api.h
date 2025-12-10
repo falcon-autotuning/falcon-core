@@ -13,6 +13,8 @@ typedef void* ListPairGnameGroupHandle;
 
 // @category:allocation
 ListPairGnameGroupHandle ListPairGnameGroup_create_empty();
+// @category:allocation
+ListPairGnameGroupHandle ListPairGnameGroup_copy(ListPairGnameGroupHandle handle);
 
 // @category:allocation
 ListPairGnameGroupHandle ListPairGnameGroup_fill_value(size_t count, PairGnameGroupHandle value);
@@ -41,9 +43,9 @@ size_t ListPairGnameGroup_index(ListPairGnameGroupHandle handle, PairGnameGroupH
 // @category:read
 ListPairGnameGroupHandle ListPairGnameGroup_intersection(ListPairGnameGroupHandle handle, ListPairGnameGroupHandle other);
 // @category:read
-bool ListPairGnameGroup_equal(ListPairGnameGroupHandle a, ListPairGnameGroupHandle b);
+bool ListPairGnameGroup_equal(ListPairGnameGroupHandle handle, ListPairGnameGroupHandle other);
 // @category:read
-bool ListPairGnameGroup_not_equal(ListPairGnameGroupHandle a, ListPairGnameGroupHandle b);
+bool ListPairGnameGroup_not_equal(ListPairGnameGroupHandle handle, ListPairGnameGroupHandle other);
 
 // @category:read
 StringHandle      ListPairGnameGroup_to_json_string(ListPairGnameGroupHandle handle);

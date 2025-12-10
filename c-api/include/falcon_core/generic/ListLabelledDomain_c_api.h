@@ -13,6 +13,8 @@ typedef void* ListLabelledDomainHandle;
 
 // @category:allocation
 ListLabelledDomainHandle ListLabelledDomain_create_empty();
+// @category:allocation
+ListLabelledDomainHandle ListLabelledDomain_copy(ListLabelledDomainHandle handle);
 
 // @category:allocation
 ListLabelledDomainHandle ListLabelledDomain_fill_value(size_t count, LabelledDomainHandle value);
@@ -41,9 +43,9 @@ size_t ListLabelledDomain_index(ListLabelledDomainHandle handle, LabelledDomainH
 // @category:read
 ListLabelledDomainHandle ListLabelledDomain_intersection(ListLabelledDomainHandle handle, ListLabelledDomainHandle other);
 // @category:read
-bool ListLabelledDomain_equal(ListLabelledDomainHandle a, ListLabelledDomainHandle b);
+bool ListLabelledDomain_equal(ListLabelledDomainHandle handle, ListLabelledDomainHandle other);
 // @category:read
-bool ListLabelledDomain_not_equal(ListLabelledDomainHandle a, ListLabelledDomainHandle b);
+bool ListLabelledDomain_not_equal(ListLabelledDomainHandle handle, ListLabelledDomainHandle other);
 
 // @category:read
 StringHandle      ListLabelledDomain_to_json_string(ListLabelledDomainHandle handle);

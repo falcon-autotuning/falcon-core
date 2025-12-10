@@ -18,6 +18,18 @@ extern "C" {
 typedef void* HDF5DataHandle;
 
 // @category:allocation
+HDF5DataHandle HDF5Data_copy(HDF5DataHandle handle);
+// @category:deallocation
+void HDF5Data_destroy(HDF5DataHandle handle);
+// @category:read
+bool HDF5Data_equal(HDF5DataHandle handle, HDF5DataHandle other);
+// @category:read
+bool HDF5Data_not_equal(HDF5DataHandle handle, HDF5DataHandle other);
+// @category:read
+StringHandle HDF5Data_to_json_string(HDF5DataHandle handle);
+// @category:allocation
+HDF5DataHandle HDF5Data_from_json_string(StringHandle json);
+// @category:allocation
 HDF5DataHandle HDF5Data_create(AxesIntHandle                   shape,
                                AxesControlArrayHandle          unit_domain,
                                AxesCoupledLabelledDomainHandle domain_labels,
@@ -37,8 +49,6 @@ HDF5DataHandle HDF5Data_create_from_communications(
     StringHandle              measurement_title,
     int                       unique_id,
     int                       timestamp);
-// @category:deallocation
-void HDF5Data_destroy(HDF5DataHandle handle);
 // @category:write
 /* AUTO-DOC from cpp: HDF5Data_to_file |
  * falcon_core::communications::HDF5Data::to_file */
@@ -74,14 +84,6 @@ StringHandle HDF5Data_measurement_title(HDF5DataHandle handle);
 int HDF5Data_unique_id(HDF5DataHandle handle);
 // @category:read
 int HDF5Data_timestamp(HDF5DataHandle handle);
-// @category:read
-bool HDF5Data_equal(HDF5DataHandle handle, HDF5DataHandle other);
-// @category:read
-bool HDF5Data_not_equal(HDF5DataHandle handle, HDF5DataHandle other);
-// @category:read
-StringHandle HDF5Data_to_json_string(HDF5DataHandle handle);
-// @category:allocation
-HDF5DataHandle HDF5Data_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

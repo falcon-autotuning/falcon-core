@@ -14,6 +14,8 @@ typedef void* MapFloatFloatHandle;
 // @category:allocation
 MapFloatFloatHandle MapFloatFloat_create_empty();
 // @category:allocation
+MapFloatFloatHandle MapFloatFloat_copy(MapFloatFloatHandle handle);
+// @category:allocation
 MapFloatFloatHandle MapFloatFloat_create(PairFloatFloatHandle* data, size_t count);
 // @category:deallocation
 void MapFloatFloat_destroy(MapFloatFloatHandle handle);
@@ -40,9 +42,9 @@ ListFloatHandle MapFloatFloat_values(MapFloatFloatHandle handle);
 // @category:read
 ListPairFloatFloatHandle MapFloatFloat_items(MapFloatFloatHandle handle);
 // @category:read
-bool MapFloatFloat_equal(MapFloatFloatHandle a, MapFloatFloatHandle b);
+bool MapFloatFloat_equal(MapFloatFloatHandle handle, MapFloatFloatHandle other);
 // @category:read
-bool MapFloatFloat_not_equal(MapFloatFloatHandle a, MapFloatFloatHandle b);
+bool MapFloatFloat_not_equal(MapFloatFloatHandle handle, MapFloatFloatHandle other);
 // @category:read
 StringHandle      MapFloatFloat_to_json_string(MapFloatFloatHandle handle);
 // @category:allocation

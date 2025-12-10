@@ -3,8 +3,7 @@
 #include <falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp>
 #include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 using namespace falcon_core;
@@ -12,6 +11,12 @@ using namespace falcon_core::autotuner_interfaces;
 using namespace falcon_core::autotuner_interfaces::contexts;
 
 extern "C" {
+DEFINE_C_API_COPY(AcquisitionContext);
+DEFINE_C_API_DESTROY(AcquisitionContext);
+DEFINE_C_API_EQUAL(AcquisitionContext);
+DEFINE_C_API_NOT_EQUAL(AcquisitionContext);
+DEFINE_C_API_TO_JSON(AcquisitionContext);
+DEFINE_C_API_FROM_JSON(AcquisitionContext);
 AcquisitionContextHandle AcquisitionContext_create(ConnectionHandle connection,
                                                    StringHandle instrument_type,
                                                    SymbolUnitHandle units) {
@@ -51,23 +56,6 @@ AcquisitionContextHandle AcquisitionContext_create_from_port(
   return new AcquisitionContextSP(
       std::make_shared<AcquisitionContext>(real_port));
   FALCON_C_API_END(nullptr)
-}
-
-void AcquisitionContext_destroy(AcquisitionContextHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "AcquisitionContext_destroy: handle cannot be null");
-  }
-  delete static_cast<AcquisitionContextSP*>(handle);
-  FALCON_C_API_END()
-}
-
-AcquisitionContextHandle AcquisitionContext_copy(
-    AcquisitionContextHandle handle) {
-  if (!handle) return nullptr;
-  AcquisitionContextSP self = *static_cast<AcquisitionContextSP*>(handle);
-  return new AcquisitionContextSP(std::make_shared<AcquisitionContext>(*self));
 }
 
 ConnectionHandle AcquisitionContext_connection(
@@ -175,64 +163,5 @@ bool AcquisitionContext_match_instrument_type(AcquisitionContextHandle handle,
   std::string          oinstr_type = std::string(other->raw, other->length);
   return self->match_instrument_type(oinstr_type);
   FALCON_C_API_END(false)
-}
-
-bool AcquisitionContext_equal(AcquisitionContextHandle handle,
-                              AcquisitionContextHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "AcquisitionContext_equal: handle a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "AcquisitionContext_equal: handle b cannot be null");
-  }
-  return *(*static_cast<AcquisitionContextSP*>(handle)) ==
-         *(*static_cast<AcquisitionContextSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool AcquisitionContext_not_equal(AcquisitionContextHandle handle,
-                                  AcquisitionContextHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "AcquisitionContext_not_equal: handle a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "AcquisitionContext_not_equal: handle b cannot be null");
-  }
-  return *(*static_cast<AcquisitionContextSP*>(handle)) !=
-         *(*static_cast<AcquisitionContextSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle AcquisitionContext_to_json_string(
-    AcquisitionContextHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "AcquisitionContext_to_json_string: handle cannot be null");
-  }
-  AcquisitionContextSP self = *static_cast<AcquisitionContextSP*>(handle);
-  std::string          json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-AcquisitionContextHandle AcquisitionContext_from_json_string(
-    const StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "AcquisitionContext_from_json_string: json cannot be null");
-  }
-  std::string          raw_json(json->raw);
-  AcquisitionContextSP context =
-      AcquisitionContext::from_json_string<AcquisitionContext>(raw_json);
-  return new AcquisitionContextSP(context);
-  FALCON_C_API_END(nullptr)
 }
 }

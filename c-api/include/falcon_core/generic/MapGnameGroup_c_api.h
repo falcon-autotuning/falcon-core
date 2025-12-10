@@ -15,6 +15,8 @@ typedef void* MapGnameGroupHandle;
 // @category:allocation
 MapGnameGroupHandle MapGnameGroup_create_empty();
 // @category:allocation
+MapGnameGroupHandle MapGnameGroup_copy(MapGnameGroupHandle handle);
+// @category:allocation
 MapGnameGroupHandle MapGnameGroup_create(PairGnameGroupHandle* data, size_t count);
 // @category:deallocation
 void MapGnameGroup_destroy(MapGnameGroupHandle handle);
@@ -41,9 +43,9 @@ ListGroupHandle MapGnameGroup_values(MapGnameGroupHandle handle);
 // @category:read
 ListPairGnameGroupHandle MapGnameGroup_items(MapGnameGroupHandle handle);
 // @category:read
-bool MapGnameGroup_equal(MapGnameGroupHandle a, MapGnameGroupHandle b);
+bool MapGnameGroup_equal(MapGnameGroupHandle handle, MapGnameGroupHandle other);
 // @category:read
-bool MapGnameGroup_not_equal(MapGnameGroupHandle a, MapGnameGroupHandle b);
+bool MapGnameGroup_not_equal(MapGnameGroupHandle handle, MapGnameGroupHandle other);
 // @category:read
 StringHandle      MapGnameGroup_to_json_string(MapGnameGroupHandle handle);
 // @category:allocation

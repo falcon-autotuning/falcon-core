@@ -11,13 +11,24 @@ extern "C" {
 typedef void* ControlArrayHandle;
 
 // @category:allocation
+ControlArrayHandle ControlArray_copy(ControlArrayHandle handle);
+// @category:deallocation
+void ControlArray_destroy(ControlArrayHandle handle);
+// @category:read
+bool ControlArray_equal(ControlArrayHandle handle, ControlArrayHandle other);
+// @category:read
+bool ControlArray_not_equal(ControlArrayHandle handle,
+                            ControlArrayHandle other);
+// @category:read
+StringHandle ControlArray_to_json_string(ControlArrayHandle handle);
+// @category:allocation
+ControlArrayHandle ControlArray_from_json_string(StringHandle json);
+// @category:allocation
 ControlArrayHandle ControlArray_from_data(const double* data,
                                           const size_t* shape,
                                           size_t        ndim);
 // @category:allocation
 ControlArrayHandle ControlArray_from_farray(FArrayDoubleHandle farray);
-// @category:deallocation
-void ControlArray_destroy(ControlArrayHandle handle);
 // @category:read
 size_t ControlArray_size(ControlArrayHandle handle);
 // @category:read
@@ -93,7 +104,8 @@ ControlArrayHandle ControlArray_pow(ControlArrayHandle handle, double other);
 // @category:read
 ControlArrayHandle ControlArray_abs(ControlArrayHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: ControlArray_min | falcon_core::math::arrays::ControlArray::min */
+/* AUTO-DOC from cpp: ControlArray_min |
+ * falcon_core::math::arrays::ControlArray::min */
 /**
  * @brief Return the minimum value of the array.
  */
@@ -105,7 +117,8 @@ ControlArrayHandle ControlArray_min_farray(ControlArrayHandle handle,
 ControlArrayHandle ControlArray_min_control_array(ControlArrayHandle handle,
                                                   ControlArrayHandle other);
 // @category:read
-/* AUTO-DOC from cpp: ControlArray_max | falcon_core::math::arrays::ControlArray::max */
+/* AUTO-DOC from cpp: ControlArray_max |
+ * falcon_core::math::arrays::ControlArray::max */
 /**
  * @brief Return the maximum value of the array.
  */
@@ -117,11 +130,6 @@ ControlArrayHandle ControlArray_max_farray(ControlArrayHandle handle,
 ControlArrayHandle ControlArray_max_control_array(ControlArrayHandle handle,
                                                   ControlArrayHandle other);
 // @category:read
-bool ControlArray_equal(ControlArrayHandle handle, ControlArrayHandle other);
-// @category:read
-bool ControlArray_not_equal(ControlArrayHandle handle,
-                            ControlArrayHandle other);
-// @category:read
 bool ControlArray_greater_than(ControlArrayHandle handle, double value);
 // @category:read
 bool ControlArray_less_than(ControlArrayHandle handle, double value);
@@ -132,7 +140,8 @@ double ControlArray_sum(ControlArrayHandle handle);
 // @category:read
 ListListSizeTHandle ControlArray_where(ControlArrayHandle handle, double value);
 // @category:read
-/* AUTO-DOC from cpp: ControlArray_flip | falcon_core::math::arrays::ControlArray::flip */
+/* AUTO-DOC from cpp: ControlArray_flip |
+ * falcon_core::math::arrays::ControlArray::flip */
 /**
  * @brief Flip the data along the given axis.
  * @param axis The axis to flip.
@@ -157,10 +166,6 @@ double ControlArray_get_summed_diff_double_of_squares(ControlArrayHandle handle,
 // @category:read
 double ControlArray_get_summed_diff_array_of_squares(ControlArrayHandle handle,
                                                      ControlArrayHandle other);
-// @category:read
-StringHandle ControlArray_to_json_string(ControlArrayHandle handle);
-// @category:allocation
-ControlArrayHandle ControlArray_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

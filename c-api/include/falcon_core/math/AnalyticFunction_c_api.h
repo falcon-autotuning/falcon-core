@@ -12,23 +12,37 @@ extern "C" {
 typedef void* AnalyticFunctionHandle;
 
 // @category:allocation
+AnalyticFunctionHandle AnalyticFunction_copy(AnalyticFunctionHandle handle);
+// @category:deallocation
+void AnalyticFunction_destroy(AnalyticFunctionHandle handle);
+// @category:read
+bool AnalyticFunction_equal(AnalyticFunctionHandle handle,
+                            AnalyticFunctionHandle other);
+// @category:read
+bool AnalyticFunction_not_equal(AnalyticFunctionHandle handle,
+                                AnalyticFunctionHandle other);
+// @category:read
+StringHandle AnalyticFunction_to_json_string(AnalyticFunctionHandle handle);
+// @category:allocation
+AnalyticFunctionHandle AnalyticFunction_from_json_string(StringHandle json);
+// @category:allocation
 AnalyticFunctionHandle AnalyticFunction_create(ListStringHandle labels,
                                                StringHandle     expression);
 // @category:allocation
 AnalyticFunctionHandle AnalyticFunction_create_identity();
 // @category:allocation
 AnalyticFunctionHandle AnalyticFunction_create_constant(double value);
-// @category:deallocation
-void AnalyticFunction_destroy(AnalyticFunctionHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: AnalyticFunction_labels | falcon_core::math::AnalyticFunction::labels */
+/* AUTO-DOC from cpp: AnalyticFunction_labels |
+ * falcon_core::math::AnalyticFunction::labels */
 /**
  * @brief Return the set of labels in proper order of the function's arguments
  * to their names.
  */
 ListStringHandle AnalyticFunction_labels(AnalyticFunctionHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: AnalyticFunction_evaluate | falcon_core::math::AnalyticFunction::evaluate */
+/* AUTO-DOC from cpp: AnalyticFunction_evaluate |
+ * falcon_core::math::AnalyticFunction::evaluate */
 /**
  * @brief Returns the evaluated analytic function.
  * @param args The vector arguments supplied with human readable names
@@ -43,15 +57,6 @@ FArrayDoubleHandle AnalyticFunction_evaluate_arraywise(
     MapStringDoubleHandle  args,
     double                 deltaT,
     double                 maxTime);
-// @category:read
-bool AnalyticFunction_equal(AnalyticFunctionHandle a, AnalyticFunctionHandle b);
-// @category:read
-bool AnalyticFunction_not_equal(AnalyticFunctionHandle a,
-                                AnalyticFunctionHandle b);
-// @category:read
-StringHandle AnalyticFunction_to_json_string(AnalyticFunctionHandle handle);
-// @category:allocation
-AnalyticFunctionHandle AnalyticFunction_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

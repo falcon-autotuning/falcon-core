@@ -1,8 +1,16 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListInt_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListint= falcon_core::generic::List<int>;
+DEFINE_C_API_COPY_TEMPLATE(ListInt, MACROListint)
+DEFINE_C_API_DESTROY_TEMPLATE(ListInt, MACROListint);
+DEFINE_C_API_EQUAL_TEMPLATE(ListInt, MACROListint);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListInt, MACROListint);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListInt, MACROListint);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListInt, MACROListint);
 ListIntHandle ListInt_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<int>(std::make_shared<falcon_core::generic::List<int>>());
@@ -32,15 +40,6 @@ throw std::invalid_argument("Null data handle passed to ListInt_create");
     return new falcon_core::generic::ListSP<int>(
         std::make_shared<falcon_core::generic::List<int>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListInt_destroy(ListIntHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListInt_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<int>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListInt_size(ListIntHandle handle) {
@@ -134,28 +133,6 @@ throw std::invalid_argument("Null handle passed to ListInt_at");
     FALCON_C_API_END(0)
 }
 
-bool ListInt_equal(ListIntHandle handle, ListIntHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListInt_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<int>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<int>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListInt_not_equal(ListIntHandle handle, ListIntHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListInt_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<int>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<int>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListIntHandle ListInt_intersection(ListIntHandle handle, ListIntHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -165,26 +142,6 @@ throw std::invalid_argument("Null handle passed to ListInt_intersection");
     auto listB = *static_cast<falcon_core::generic::ListSP<int>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<int>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListInt_to_json_string(ListIntHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListInt_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<int>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListIntHandle ListInt_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListInt_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<int>::from_json_string<falcon_core::generic::List<int>>(json->raw);
-  return new falcon_core::generic::ListSP<int>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

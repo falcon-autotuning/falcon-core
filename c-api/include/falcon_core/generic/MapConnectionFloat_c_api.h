@@ -15,6 +15,8 @@ typedef void* MapConnectionFloatHandle;
 // @category:allocation
 MapConnectionFloatHandle MapConnectionFloat_create_empty();
 // @category:allocation
+MapConnectionFloatHandle MapConnectionFloat_copy(MapConnectionFloatHandle handle);
+// @category:allocation
 MapConnectionFloatHandle MapConnectionFloat_create(PairConnectionFloatHandle* data, size_t count);
 // @category:deallocation
 void MapConnectionFloat_destroy(MapConnectionFloatHandle handle);
@@ -41,9 +43,9 @@ ListFloatHandle MapConnectionFloat_values(MapConnectionFloatHandle handle);
 // @category:read
 ListPairConnectionFloatHandle MapConnectionFloat_items(MapConnectionFloatHandle handle);
 // @category:read
-bool MapConnectionFloat_equal(MapConnectionFloatHandle a, MapConnectionFloatHandle b);
+bool MapConnectionFloat_equal(MapConnectionFloatHandle handle, MapConnectionFloatHandle other);
 // @category:read
-bool MapConnectionFloat_not_equal(MapConnectionFloatHandle a, MapConnectionFloatHandle b);
+bool MapConnectionFloat_not_equal(MapConnectionFloatHandle handle, MapConnectionFloatHandle other);
 // @category:read
 StringHandle      MapConnectionFloat_to_json_string(MapConnectionFloatHandle handle);
 // @category:allocation

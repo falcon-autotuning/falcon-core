@@ -1,15 +1,20 @@
 #include "falcon_core/math/Point_c_api.h"
 
 #include <falcon_core/math/Point.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core;
 using namespace falcon_core::math;
 using namespace falcon_core::physics;
 
 extern "C" {
+DEFINE_C_API_COPY(Point);
+DEFINE_C_API_DESTROY(Point);
+DEFINE_C_API_EQUAL(Point);
+DEFINE_C_API_NOT_EQUAL(Point);
+DEFINE_C_API_TO_JSON(Point);
+DEFINE_C_API_FROM_JSON(Point);
 PointHandle Point_create_empty() {
   FALCON_C_API_BEGIN
   return new PointSP(std::make_shared<Point>());
@@ -44,15 +49,6 @@ PointHandle Point_create_from_parent(MapConnectionQuantityHandle items) {
           items);
   return new PointSP(std::make_shared<Point>(real_items));
   FALCON_C_API_END(nullptr)
-}
-
-void Point_destroy(PointHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Point_destroy: handle cannot be null");
-  }
-  delete static_cast<PointSP*>(handle);
-  FALCON_C_API_END()
 }
 
 SymbolUnitHandle Point_unit(PointHandle handle) {
@@ -305,54 +301,5 @@ void Point_set_unit(PointHandle handle, SymbolUnitHandle unit) {
   units::SymbolUnitSP real_unit = *static_cast<units::SymbolUnitSP*>(unit);
   self->set_unit(real_unit);
   FALCON_C_API_END()
-}
-
-bool Point_equal(PointHandle a, PointHandle b) {
-  FALCON_C_API_BEGIN
-  if (!a) {
-    throw std::invalid_argument("Point_equal: a cannot be null");
-  }
-  if (!b) {
-    throw std::invalid_argument("Point_equal: b cannot be null");
-  }
-  PointSP self_a = *static_cast<PointSP*>(a);
-  PointSP self_b = *static_cast<PointSP*>(b);
-  return *self_a == *self_b;
-  FALCON_C_API_END(false)
-}
-
-bool Point_not_equal(PointHandle a, PointHandle b) {
-  FALCON_C_API_BEGIN
-  if (!a) {
-    throw std::invalid_argument("Point_not_equal: a cannot be null");
-  }
-  if (!b) {
-    throw std::invalid_argument("Point_not_equal: b cannot be null");
-  }
-  PointSP self_a = *static_cast<PointSP*>(a);
-  PointSP self_b = *static_cast<PointSP*>(b);
-  return *self_a != *self_b;
-  FALCON_C_API_END(false)
-}
-
-StringHandle Point_to_json_string(PointHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Point_to_json_string: handle cannot be null");
-  }
-  PointSP     self = *static_cast<PointSP*>(handle);
-  std::string json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-PointHandle Point_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument("Point_from_json_string: json cannot be null");
-  }
-  std::string json_str = json->raw;
-  return new PointSP(Point::from_json_string<Point>(json_str));
-  FALCON_C_API_END(nullptr)
 }
 }

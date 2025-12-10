@@ -1,11 +1,9 @@
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
 
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>
-#include <string>
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 using namespace falcon_core;
@@ -13,6 +11,12 @@ using namespace falcon_core::autotuner_interfaces;
 using namespace falcon_core::autotuner_interfaces::interpretations;
 
 extern "C" {
+DEFINE_C_API_COPY(InterpretationContext);
+DEFINE_C_API_DESTROY(InterpretationContext);
+DEFINE_C_API_EQUAL(InterpretationContext);
+DEFINE_C_API_NOT_EQUAL(InterpretationContext);
+DEFINE_C_API_TO_JSON(InterpretationContext);
+DEFINE_C_API_FROM_JSON(InterpretationContext);
 InterpretationContextHandle InterpretationContext_create(
     AxesMeasurementContextHandle independant_variables,
     ListMeasurementContextHandle dependant_variables,
@@ -43,24 +47,6 @@ InterpretationContextHandle InterpretationContext_create(
   return new InterpretationContextSP(std::make_shared<InterpretationContext>(
       independant_vars, dependant_vars, symbol_unit));
   FALCON_C_API_END(nullptr)
-}
-
-void InterpretationContext_destroy(InterpretationContextHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to InterpretationContext_destroy");
-  }
-  delete static_cast<InterpretationContextSP*>(handle);
-  FALCON_C_API_END()
-}
-
-InterpretationContextHandle InterpretationContext_copy(
-    InterpretationContextHandle handle) {
-  if (!handle) return nullptr;
-  InterpretationContextSP self = *static_cast<InterpretationContextSP*>(handle);
-  return new InterpretationContextSP(
-      std::make_shared<InterpretationContext>(*self));
 }
 
 AxesMeasurementContextHandle InterpretationContext_independent_variables(
@@ -190,61 +176,6 @@ InterpretationContextHandle InterpretationContext_with_unit(
   physics::units::SymbolUnitSP symbol_unit =
       *static_cast<physics::units::SymbolUnitSP*>(unit);
   return new InterpretationContextSP(context->with_unit(symbol_unit));
-  FALCON_C_API_END(nullptr)
-}
-
-bool InterpretationContext_equal(InterpretationContextHandle handle,
-                                 InterpretationContextHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to InterpretationContext_equal");
-  }
-  auto context_a = *static_cast<InterpretationContextSP*>(handle);
-  auto context_b = *static_cast<InterpretationContextSP*>(other);
-  return (*context_a == *context_b);
-  FALCON_C_API_END(false)
-}
-
-bool InterpretationContext_not_equal(InterpretationContextHandle handle,
-                                     InterpretationContextHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to InterpretationContext_not_equal");
-  }
-  auto context_a = *static_cast<InterpretationContextSP*>(handle);
-  auto context_b = *static_cast<InterpretationContextSP*>(other);
-  return (*context_a != *context_b);
-  FALCON_C_API_END(false)
-}
-
-StringHandle InterpretationContext_to_json_string(
-    InterpretationContextHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to InterpretationContext_to_json_string");
-  }
-  InterpretationContextSP context =
-      *static_cast<InterpretationContextSP*>(handle);
-  std::string json = context->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-InterpretationContextHandle InterpretationContext_from_json_string(
-    StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Null string handle passed to "
-        "InterpretationContext_from_json_string");
-  }
-  std::string raw_json(json->raw);
-  auto        ptr =
-      InterpretationContext::from_json_string<InterpretationContext>(raw_json);
-  return new InterpretationContextSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

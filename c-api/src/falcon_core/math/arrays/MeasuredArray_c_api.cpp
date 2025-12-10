@@ -1,17 +1,20 @@
 #include "falcon_core/math/arrays/MeasuredArray_c_api.h"
 
 #include <falcon_core/math/arrays/MeasuredArray.hpp>
-#include <string>
 #include <xtensor/xadapt.hpp>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 using namespace falcon_core;
 using namespace falcon_core::math;
 using namespace falcon_core::math::arrays;
 
 extern "C" {
+DEFINE_C_API_COPY(MeasuredArray);
+DEFINE_C_API_DESTROY(MeasuredArray);
+DEFINE_C_API_EQUAL(MeasuredArray);
+DEFINE_C_API_NOT_EQUAL(MeasuredArray);
+DEFINE_C_API_TO_JSON(MeasuredArray);
+DEFINE_C_API_FROM_JSON(MeasuredArray);
 MeasuredArrayHandle MeasuredArray_from_data(const double* data,
                                             const size_t* shape,
                                             size_t        ndim) {
@@ -46,15 +49,6 @@ MeasuredArrayHandle MeasuredArray_from_farray(FArrayDoubleHandle farray) {
       *static_cast<generic::FArraySP<double>*>(farray);
   return new MeasuredArraySP(std::make_shared<MeasuredArray>(real_farray));
   FALCON_C_API_END(nullptr)
-}
-
-void MeasuredArray_destroy(MeasuredArrayHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Null handle passed to MeasuredArray_destroy");
-  }
-  delete static_cast<MeasuredArraySP*>(handle);
-  FALCON_C_API_END()
 }
 
 size_t MeasuredArray_size(MeasuredArrayHandle handle) {
@@ -604,31 +598,6 @@ MeasuredArrayHandle MeasuredArray_max_measured_array(
   FALCON_C_API_END(nullptr)
 }
 
-bool MeasuredArray_equal(MeasuredArrayHandle handle,
-                         MeasuredArrayHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument("Null handle passed to MeasuredArray_equal");
-  }
-  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
-  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
-  return measured_array->operator==(*oarray);
-  FALCON_C_API_END(false)
-}
-
-bool MeasuredArray_not_equal(MeasuredArrayHandle handle,
-                             MeasuredArrayHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasuredArray_not_equal");
-  }
-  MeasuredArraySP measured_array = *static_cast<MeasuredArraySP*>(handle);
-  MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
-  return measured_array->operator!=(*oarray);
-  FALCON_C_API_END(false)
-}
-
 bool MeasuredArray_greater_than(MeasuredArrayHandle handle,
                                 const double        value) {
   FALCON_C_API_BEGIN
@@ -795,28 +764,5 @@ double MeasuredArray_get_summed_diff_array_of_squares(
   MeasuredArraySP oarray         = *static_cast<MeasuredArraySP*>(other);
   return measured_array->get_sum_of_squares(oarray);
   FALCON_C_API_END(0.0)
-}
-
-StringHandle MeasuredArray_to_json_string(MeasuredArrayHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasuredArray_to_json_string");
-  }
-  std::string json = (*static_cast<MeasuredArraySP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-MeasuredArrayHandle MeasuredArray_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Null string handle passed to MeasuredArray_from_json_string");
-  }
-  std::string raw_json(json->raw);
-  auto        ptr = MeasuredArray::from_json_string<MeasuredArray>(raw_json);
-  return new MeasuredArraySP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

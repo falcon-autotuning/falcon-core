@@ -1,15 +1,17 @@
 #include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
 
 #include <falcon_core/math/domains/CoupledLabelledDomain.hpp>
-#include <memory>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon_core/Precompiled_c_api.h"
 using namespace falcon_core::math::domains;
 
 extern "C" {
+DEFINE_C_API_COPY(CoupledLabelledDomain);
+DEFINE_C_API_DESTROY(CoupledLabelledDomain);
+DEFINE_C_API_EQUAL(CoupledLabelledDomain);
+DEFINE_C_API_NOT_EQUAL(CoupledLabelledDomain);
+DEFINE_C_API_TO_JSON(CoupledLabelledDomain);
+DEFINE_C_API_FROM_JSON(CoupledLabelledDomain);
 CoupledLabelledDomainHandle CoupledLabelledDomain_create_empty() {
   FALCON_C_API_BEGIN
   return new CoupledLabelledDomainSP(std::make_shared<CoupledLabelledDomain>());
@@ -28,16 +30,6 @@ CoupledLabelledDomainHandle CoupledLabelledDomain_create(
   return new CoupledLabelledDomainSP(
       std::make_shared<CoupledLabelledDomain>(list->items()));
   FALCON_C_API_END(nullptr)
-}
-
-void CoupledLabelledDomain_destroy(CoupledLabelledDomainHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "CoupledLabelledDomain_destroy: handle cannot be null");
-  }
-  delete static_cast<CoupledLabelledDomainSP*>(handle);
-  FALCON_C_API_END()
 }
 
 ListLabelledDomainHandle CoupledLabelledDomain_domains(
@@ -247,63 +239,5 @@ size_t CoupledLabelledDomain_index(CoupledLabelledDomainHandle handle,
   LabelledDomainSP        real_value = *static_cast<LabelledDomainSP*>(value);
   return self->index(real_value);
   FALCON_C_API_END(0)
-}
-
-bool CoupledLabelledDomain_equal(CoupledLabelledDomainHandle handle,
-                                 CoupledLabelledDomainHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "CoupledLabelledDomain_equal: handle a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "CoupledLabelledDomain_equal: handle b cannot be null");
-  }
-  return *(*static_cast<CoupledLabelledDomainSP*>(handle)) ==
-         *(*static_cast<CoupledLabelledDomainSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool CoupledLabelledDomain_not_equal(CoupledLabelledDomainHandle handle,
-                                     CoupledLabelledDomainHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "CoupledLabelledDomain_not_equal: handle a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "CoupledLabelledDomain_not_equal: handle b cannot be null");
-  }
-  return *(*static_cast<CoupledLabelledDomainSP*>(handle)) !=
-         *(*static_cast<CoupledLabelledDomainSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle CoupledLabelledDomain_to_json_string(
-    CoupledLabelledDomainHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "CoupledLabelledDomain_to_json_string: handle cannot be null");
-  }
-  CoupledLabelledDomainSP self = *static_cast<CoupledLabelledDomainSP*>(handle);
-  std::string             json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-CoupledLabelledDomainHandle CoupledLabelledDomain_from_json_string(
-    StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "CoupledLabelledDomain_from_json_string: json cannot be null");
-  }
-  std::string json_str = json->raw;
-  return new CoupledLabelledDomainSP(
-      CoupledLabelledDomain::from_json_string<CoupledLabelledDomain>(json_str));
-  FALCON_C_API_END(nullptr)
 }
 }

@@ -1,10 +1,19 @@
 #include <falcon_core/generic/Map.hpp>
 #include "falcon_core/generic/MapConnectionFloat_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/physics/device_structures/Connection.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROMapConnectionHandlefloat = falcon_core::generic::Map<falcon_core::physics::device_structures::Connection, float>;
+DEFINE_C_API_COPY_TEMPLATE(MapConnectionFloat, MACROMapConnectionHandlefloat)
+DEFINE_C_API_DESTROY_TEMPLATE(MapConnectionFloat, MACROMapConnectionHandlefloat);
+DEFINE_C_API_EQUAL_TEMPLATE(MapConnectionFloat, MACROMapConnectionHandlefloat);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(MapConnectionFloat, MACROMapConnectionHandlefloat);
+DEFINE_C_API_TO_JSON_TEMPLATE(MapConnectionFloat, MACROMapConnectionHandlefloat);
+DEFINE_C_API_FROM_JSON_TEMPLATE(MapConnectionFloat, MACROMapConnectionHandlefloat);
+
 MapConnectionFloatHandle MapConnectionFloat_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection,float>(std::make_shared<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>>()); 
@@ -24,15 +33,6 @@ throw std::invalid_argument("Null data pointer passed to MapConnectionFloat_crea
     return new falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection, float>(
         std::make_shared<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void MapConnectionFloat_destroy(MapConnectionFloatHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapConnectionFloat_destroy");
-}
-    delete static_cast<falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection, float>*>(handle);
-    FALCON_C_API_END()
 }
 
 void MapConnectionFloat_insert_or_assign(MapConnectionFloatHandle handle,  ConnectionHandle key,  float value) {
@@ -169,48 +169,6 @@ throw std::invalid_argument("Null handle passed to MapConnectionFloat_items");
     auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection,float>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>> items_sp = map->items(); 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection,float>>(items_sp);
-    FALCON_C_API_END(nullptr)
-}
-
-bool MapConnectionFloat_equal(MapConnectionFloatHandle handle, MapConnectionFloatHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapConnectionFloat_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection,float>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection,float>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool MapConnectionFloat_not_equal(MapConnectionFloatHandle handle, MapConnectionFloatHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapConnectionFloat_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection,float>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection,float>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      MapConnectionFloat_to_json_string(MapConnectionFloatHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapConnectionFloat_to_json_string");
-}
-std::string json = (*static_cast<falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection,float>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-MapConnectionFloatHandle MapConnectionFloat_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to MapConnectionFloat_from_json_string");
-}
-  auto ptr = falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>::from_json_string<falcon_core::generic::Map<falcon_core::physics::device_structures::Connection,float>>(json->raw);
-  return new falcon_core::generic::MapSP<falcon_core::physics::device_structures::Connection,float>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

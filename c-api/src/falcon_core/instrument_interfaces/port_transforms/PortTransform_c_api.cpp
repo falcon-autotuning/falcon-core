@@ -1,16 +1,21 @@
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
 
 #include <falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core;
 using namespace instrument_interfaces;
 using namespace port_transforms;
 using namespace names;
 
 extern "C" {
+DEFINE_C_API_COPY(PortTransform);
+DEFINE_C_API_DESTROY(PortTransform);
+DEFINE_C_API_EQUAL(PortTransform);
+DEFINE_C_API_NOT_EQUAL(PortTransform);
+DEFINE_C_API_TO_JSON(PortTransform);
+DEFINE_C_API_FROM_JSON(PortTransform);
 PortTransformHandle PortTransform_create(InstrumentPortHandle   port,
                                          AnalyticFunctionHandle transform) {
   FALCON_C_API_BEGIN
@@ -53,15 +58,6 @@ PortTransformHandle PortTransform_create_identity_transform(
   return new PortTransformSP(std::make_shared<PortTransform>(
       real_port, math::AnalyticFunction::Identity()));
   FALCON_C_API_END(nullptr)
-}
-
-void PortTransform_destroy(PortTransformHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("PortTransform_destroy: handle cannot be null");
-  }
-  delete static_cast<PortTransformSP*>(handle);
-  FALCON_C_API_END()
 }
 
 InstrumentPortHandle PortTransform_port(PortTransformHandle handle) {
@@ -120,65 +116,6 @@ FArrayDoubleHandle PortTransform_evaluate_arraywise(PortTransformHandle handle,
       *static_cast<generic::MapSP<std::string, double>*>(args);
   return new generic::FArraySP<double>(
       self->evaluate(real_args, deltaT, maxTime));
-  FALCON_C_API_END(nullptr)
-}
-
-bool PortTransform_equal(PortTransformHandle handle,
-                         PortTransformHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "PortTransform_equal: first handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "PortTransform_equal: second handle cannot be null");
-  }
-  PortTransformSP self       = *static_cast<PortTransformSP*>(handle);
-  PortTransformSP real_other = *static_cast<PortTransformSP*>(other);
-  return *self == *real_other;
-  FALCON_C_API_END(false)
-}
-
-bool PortTransform_not_equal(PortTransformHandle handle,
-                             PortTransformHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "PortTransform_not_equal: first handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "PortTransform_not_equal: second handle cannot be null");
-  }
-  PortTransformSP self       = *static_cast<PortTransformSP*>(handle);
-  PortTransformSP real_other = *static_cast<PortTransformSP*>(other);
-  return *self != *real_other;
-  FALCON_C_API_END(false)
-}
-
-StringHandle PortTransform_to_json_string(PortTransformHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "PortTransform_to_json_string: handle cannot be null");
-  }
-  PortTransformSP self = *static_cast<PortTransformSP*>(handle);
-  std::string     json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-PortTransformHandle PortTransform_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "PortTransform_from_json_string: json cannot be null");
-  }
-  std::string     real_json(json->raw, json->length);
-  PortTransformSP real_port_transform =
-      PortTransform::from_json_string<PortTransform>(real_json);
-  return new PortTransformSP(real_port_transform);
   FALCON_C_API_END(nullptr)
 }
 }

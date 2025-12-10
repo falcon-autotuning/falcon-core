@@ -1,8 +1,16 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListSizeT_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListsize_t= falcon_core::generic::List<size_t>;
+DEFINE_C_API_COPY_TEMPLATE(ListSizeT, MACROListsize_t)
+DEFINE_C_API_DESTROY_TEMPLATE(ListSizeT, MACROListsize_t);
+DEFINE_C_API_EQUAL_TEMPLATE(ListSizeT, MACROListsize_t);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListSizeT, MACROListsize_t);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListSizeT, MACROListsize_t);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListSizeT, MACROListsize_t);
 ListSizeTHandle ListSizeT_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<size_t>(std::make_shared<falcon_core::generic::List<size_t>>());
@@ -32,15 +40,6 @@ throw std::invalid_argument("Null data handle passed to ListSizeT_create");
     return new falcon_core::generic::ListSP<size_t>(
         std::make_shared<falcon_core::generic::List<size_t>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListSizeT_destroy(ListSizeTHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListSizeT_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<size_t>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListSizeT_size(ListSizeTHandle handle) {
@@ -134,28 +133,6 @@ throw std::invalid_argument("Null handle passed to ListSizeT_at");
     FALCON_C_API_END(0)
 }
 
-bool ListSizeT_equal(ListSizeTHandle handle, ListSizeTHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListSizeT_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<size_t>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<size_t>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListSizeT_not_equal(ListSizeTHandle handle, ListSizeTHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListSizeT_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<size_t>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<size_t>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListSizeTHandle ListSizeT_intersection(ListSizeTHandle handle, ListSizeTHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -165,26 +142,6 @@ throw std::invalid_argument("Null handle passed to ListSizeT_intersection");
     auto listB = *static_cast<falcon_core::generic::ListSP<size_t>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<size_t>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListSizeT_to_json_string(ListSizeTHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListSizeT_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<size_t>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListSizeTHandle ListSizeT_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListSizeT_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<size_t>::from_json_string<falcon_core::generic::List<size_t>>(json->raw);
-  return new falcon_core::generic::ListSP<size_t>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

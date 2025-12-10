@@ -13,6 +13,8 @@ typedef void* ListImpedanceHandle;
 
 // @category:allocation
 ListImpedanceHandle ListImpedance_create_empty();
+// @category:allocation
+ListImpedanceHandle ListImpedance_copy(ListImpedanceHandle handle);
 
 // @category:allocation
 ListImpedanceHandle ListImpedance_fill_value(size_t count, ImpedanceHandle value);
@@ -41,9 +43,9 @@ size_t ListImpedance_index(ListImpedanceHandle handle, ImpedanceHandle value);
 // @category:read
 ListImpedanceHandle ListImpedance_intersection(ListImpedanceHandle handle, ListImpedanceHandle other);
 // @category:read
-bool ListImpedance_equal(ListImpedanceHandle a, ListImpedanceHandle b);
+bool ListImpedance_equal(ListImpedanceHandle handle, ListImpedanceHandle other);
 // @category:read
-bool ListImpedance_not_equal(ListImpedanceHandle a, ListImpedanceHandle b);
+bool ListImpedance_not_equal(ListImpedanceHandle handle, ListImpedanceHandle other);
 
 // @category:read
 StringHandle      ListImpedance_to_json_string(ListImpedanceHandle handle);

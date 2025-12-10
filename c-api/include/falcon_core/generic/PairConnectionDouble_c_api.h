@@ -12,6 +12,8 @@ typedef void* PairConnectionDoubleHandle;
 
 // @category:allocation
 PairConnectionDoubleHandle PairConnectionDouble_create(ConnectionHandle first, double second);
+// @category:allocation
+PairConnectionDoubleHandle PairConnectionDouble_copy(PairConnectionDoubleHandle handle);
 // @category:deallocation
 void PairConnectionDouble_destroy(PairConnectionDoubleHandle handle);
 // @category:read
@@ -19,9 +21,9 @@ ConnectionHandle PairConnectionDouble_first(PairConnectionDoubleHandle handle);
 // @category:read
 double PairConnectionDouble_second(PairConnectionDoubleHandle handle);
 // @category:read
-bool PairConnectionDouble_equal(PairConnectionDoubleHandle a, PairConnectionDoubleHandle b);
+bool PairConnectionDouble_equal(PairConnectionDoubleHandle handle, PairConnectionDoubleHandle other);
 // @category:read
-bool PairConnectionDouble_not_equal(PairConnectionDoubleHandle a, PairConnectionDoubleHandle b);
+bool PairConnectionDouble_not_equal(PairConnectionDoubleHandle handle, PairConnectionDoubleHandle other);
 // @category:read
 StringHandle      PairConnectionDouble_to_json_string(PairConnectionDoubleHandle handle);
 // @category:allocation

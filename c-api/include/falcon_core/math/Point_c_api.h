@@ -17,14 +17,24 @@ extern "C" {
 typedef void* PointHandle;
 
 // @category:allocation
+PointHandle Point_copy(PointHandle handle);
+// @category:deallocation
+void Point_destroy(PointHandle handle);
+// @category:read
+bool Point_equal(PointHandle handle, PointHandle other);
+// @category:read
+bool Point_not_equal(PointHandle handle, PointHandle other);
+// @category:read
+StringHandle Point_to_json_string(PointHandle handle);
+// @category:allocation
+PointHandle Point_from_json_string(StringHandle json);
+// @category:allocation
 PointHandle Point_create_empty();
 // @category:allocation
 PointHandle Point_create(MapConnectionDoubleHandle items,
                          SymbolUnitHandle          unit);
 // @category:allocation
 PointHandle Point_create_from_parent(MapConnectionQuantityHandle items);
-// @category:deallocation
-void Point_destroy(PointHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Point_unit | falcon_core::math::Point::unit */
 /**
@@ -32,7 +42,8 @@ void Point_destroy(PointHandle handle);
  */
 SymbolUnitHandle Point_unit(PointHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: Point_insert_or_assign | falcon_core::math::Point::insert_or_assign */
+/* AUTO-DOC from cpp: Point_insert_or_assign |
+ * falcon_core::math::Point::insert_or_assign */
 /**
  * @brief an overide of insert to make sure units are fixed.
  */
@@ -62,13 +73,15 @@ ListQuantityHandle Point_values(PointHandle handle);
 // @category:read
 ListPairConnectionQuantityHandle Point_items(PointHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Point_coordinates | falcon_core::math::Point::coordinates */
+/* AUTO-DOC from cpp: Point_coordinates | falcon_core::math::Point::coordinates
+ */
 /**
  * @brief Returns the coordinates for the point.
  */
 MapConnectionQuantityHandle Point_coordinates(PointHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Point_connections | falcon_core::math::Point::connections */
+/* AUTO-DOC from cpp: Point_connections | falcon_core::math::Point::connections
+ */
 /**
  * @brief Returns the connections for the point.
  */
@@ -85,14 +98,6 @@ PointHandle Point_division(PointHandle handle, double scalar);
 PointHandle Point_negation(PointHandle handle);
 // @category:write
 void Point_set_unit(PointHandle handle, SymbolUnitHandle unit);
-// @category:read
-bool Point_equal(PointHandle a, PointHandle b);
-// @category:read
-bool Point_not_equal(PointHandle a, PointHandle b);
-// @category:read
-StringHandle Point_to_json_string(PointHandle handle);
-// @category:allocation
-PointHandle Point_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

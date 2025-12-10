@@ -16,6 +16,18 @@ extern "C" {
 typedef void* UnitSpaceHandle;
 
 // @category:allocation
+UnitSpaceHandle UnitSpace_copy(UnitSpaceHandle handle);
+// @category:deallocation
+void UnitSpace_destroy(UnitSpaceHandle handle);
+// @category:read
+bool UnitSpace_equal(UnitSpaceHandle handle, UnitSpaceHandle other);
+// @category:read
+bool UnitSpace_not_equal(UnitSpaceHandle handle, UnitSpaceHandle other);
+// @category:read
+StringHandle UnitSpace_to_json_string(UnitSpaceHandle handle);
+// @category:allocation
+UnitSpaceHandle UnitSpace_from_json_string(StringHandle json);
+// @category:allocation
 UnitSpaceHandle UnitSpace_create(AxesDiscretizerHandle axes,
                                  DomainHandle          domain);
 // @category:allocation
@@ -31,8 +43,6 @@ UnitSpaceHandle UnitSpace_create_cartesian_1D_space(double       delta,
 // @category:allocation
 UnitSpaceHandle UnitSpace_create_cartesian_2D_space(AxesDoubleHandle deltas,
                                                     DomainHandle     domain);
-// @category:deallocation
-void UnitSpace_destroy(UnitSpaceHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: UnitSpace_axes | falcon_core::math::UnitSpace::axes */
 /**
@@ -58,19 +68,22 @@ FArrayDoubleHandle UnitSpace_space(UnitSpaceHandle handle);
  */
 ListIntHandle UnitSpace_shape(UnitSpaceHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: UnitSpace_dimension | falcon_core::math::UnitSpace::dimension */
+/* AUTO-DOC from cpp: UnitSpace_dimension |
+ * falcon_core::math::UnitSpace::dimension */
 /**
  * @brief Return the number of dimensions in the space.
  */
 size_t UnitSpace_dimension(UnitSpaceHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: UnitSpace_compile | falcon_core::math::UnitSpace::compile */
+/* AUTO-DOC from cpp: UnitSpace_compile | falcon_core::math::UnitSpace::compile
+ */
 /**
  * @brief Compile the unit space into a space.
  */
 void UnitSpace_compile(UnitSpaceHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: UnitSpace_create_array | falcon_core::math::UnitSpace::create_array */
+/* AUTO-DOC from cpp: UnitSpace_create_array |
+ * falcon_core::math::UnitSpace::create_array */
 /**
  * @brief Return the projection of the space onto the given axes.
  * The projection contains the indexes of the axes to project onto.
@@ -102,14 +115,6 @@ size_t UnitSpace_index(UnitSpaceHandle handle, DiscretizerHandle value);
 // @category:read
 UnitSpaceHandle UnitSpace_intersection(UnitSpaceHandle handle,
                                        UnitSpaceHandle other);
-// @category:read
-bool UnitSpace_equal(UnitSpaceHandle a, UnitSpaceHandle b);
-// @category:read
-bool UnitSpace_not_equal(UnitSpaceHandle a, UnitSpaceHandle b);
-// @category:read
-StringHandle UnitSpace_to_json_string(UnitSpaceHandle handle);
-// @category:allocation
-UnitSpaceHandle UnitSpace_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -13,6 +13,8 @@ typedef void* ListConnectionHandle;
 
 // @category:allocation
 ListConnectionHandle ListConnection_create_empty();
+// @category:allocation
+ListConnectionHandle ListConnection_copy(ListConnectionHandle handle);
 
 // @category:allocation
 ListConnectionHandle ListConnection_fill_value(size_t count, ConnectionHandle value);
@@ -41,9 +43,9 @@ size_t ListConnection_index(ListConnectionHandle handle, ConnectionHandle value)
 // @category:read
 ListConnectionHandle ListConnection_intersection(ListConnectionHandle handle, ListConnectionHandle other);
 // @category:read
-bool ListConnection_equal(ListConnectionHandle a, ListConnectionHandle b);
+bool ListConnection_equal(ListConnectionHandle handle, ListConnectionHandle other);
 // @category:read
-bool ListConnection_not_equal(ListConnectionHandle a, ListConnectionHandle b);
+bool ListConnection_not_equal(ListConnectionHandle handle, ListConnectionHandle other);
 
 // @category:read
 StringHandle      ListConnection_to_json_string(ListConnectionHandle handle);

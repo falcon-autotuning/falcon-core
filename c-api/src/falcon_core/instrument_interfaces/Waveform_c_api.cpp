@@ -1,17 +1,19 @@
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 
 #include <falcon_core/instrument_interfaces/Waveform.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
-#include "falcon_core/math/discrete_spaces/DiscreteSpace.hpp"
+#include "falcon_core/Precompiled_c_api.h"
 using namespace falcon_core;
 using namespace instrument_interfaces;
 using namespace names;
 
 extern "C" {
+DEFINE_C_API_COPY(Waveform);
+DEFINE_C_API_DESTROY(Waveform);
+DEFINE_C_API_EQUAL(Waveform);
+DEFINE_C_API_NOT_EQUAL(Waveform);
+DEFINE_C_API_TO_JSON(Waveform);
+DEFINE_C_API_FROM_JSON(Waveform);
 WaveformHandle Waveform_create(DiscreteSpaceHandle     space,
                                ListPortTransformHandle transforms) {
   FALCON_C_API_BEGIN
@@ -270,15 +272,6 @@ WaveformHandle Waveform_create_cartesian_identity_waveform_1D(
   FALCON_C_API_END(nullptr)
 }
 
-void Waveform_destroy(WaveformHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Waveform_destroy: handle cannot be null");
-  }
-  delete static_cast<WaveformSP*>(handle);
-  FALCON_C_API_END()
-}
-
 DiscreteSpaceHandle Waveform_space(WaveformHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
@@ -418,55 +411,6 @@ WaveformHandle Waveform_intersection(WaveformHandle handle,
   generic::ListSP<port_transforms::PortTransform> result =
       self->intersection(real_other);
   return new WaveformSP(std::make_shared<Waveform>(self->space(), result));
-  FALCON_C_API_END(nullptr)
-}
-
-bool Waveform_equal(WaveformHandle handle, WaveformHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Waveform_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Waveform_equal: other cannot be null");
-  }
-  return *(*static_cast<WaveformSP*>(handle)) ==
-         *(*static_cast<WaveformSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool Waveform_not_equal(WaveformHandle handle, WaveformHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Waveform_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Waveform_not_equal: other cannot be null");
-  }
-  return *(*static_cast<WaveformSP*>(handle)) !=
-         *(*static_cast<WaveformSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle Waveform_to_json_string(WaveformHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Waveform_to_json_string: handle cannot be null");
-  }
-  std::string json = (*static_cast<WaveformSP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-WaveformHandle Waveform_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "PortTransform_from_json_string: json cannot be null");
-  }
-  std::string real_json(json->raw, json->length);
-  WaveformSP  real_waveform = Waveform::from_json_string<Waveform>(real_json);
-  return new WaveformSP(real_waveform);
   FALCON_C_API_END(nullptr)
 }
 }

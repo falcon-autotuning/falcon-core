@@ -1,8 +1,16 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListDouble_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListdouble= falcon_core::generic::List<double>;
+DEFINE_C_API_COPY_TEMPLATE(ListDouble, MACROListdouble)
+DEFINE_C_API_DESTROY_TEMPLATE(ListDouble, MACROListdouble);
+DEFINE_C_API_EQUAL_TEMPLATE(ListDouble, MACROListdouble);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListDouble, MACROListdouble);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListDouble, MACROListdouble);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListDouble, MACROListdouble);
 ListDoubleHandle ListDouble_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<double>(std::make_shared<falcon_core::generic::List<double>>());
@@ -32,15 +40,6 @@ throw std::invalid_argument("Null data handle passed to ListDouble_create");
     return new falcon_core::generic::ListSP<double>(
         std::make_shared<falcon_core::generic::List<double>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListDouble_destroy(ListDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListDouble_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<double>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListDouble_size(ListDoubleHandle handle) {
@@ -134,28 +133,6 @@ throw std::invalid_argument("Null handle passed to ListDouble_at");
     FALCON_C_API_END(0.0)
 }
 
-bool ListDouble_equal(ListDoubleHandle handle, ListDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListDouble_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<double>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<double>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListDouble_not_equal(ListDoubleHandle handle, ListDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListDouble_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<double>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<double>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListDoubleHandle ListDouble_intersection(ListDoubleHandle handle, ListDoubleHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -165,26 +142,6 @@ throw std::invalid_argument("Null handle passed to ListDouble_intersection");
     auto listB = *static_cast<falcon_core::generic::ListSP<double>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<double>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListDouble_to_json_string(ListDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListDouble_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<double>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListDoubleHandle ListDouble_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListDouble_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<double>::from_json_string<falcon_core::generic::List<double>>(json->raw);
-  return new falcon_core::generic::ListSP<double>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

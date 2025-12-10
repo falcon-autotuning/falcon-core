@@ -1,17 +1,20 @@
 #include "falcon_core/communications/HDF5Data_c_api.h"
 
-#include <falcon_core/generic/String_c_api.h>
-
 #include <falcon_core/communications/HDF5Data.hpp>
-#include <string>
 
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/communications/messages/MeasurementRequest.hpp"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 using namespace falcon_core;
 using namespace falcon_core::communications;
 
 extern "C" {
+DEFINE_C_API_COPY(HDF5Data);
+DEFINE_C_API_DESTROY(HDF5Data);
+DEFINE_C_API_EQUAL(HDF5Data);
+DEFINE_C_API_NOT_EQUAL(HDF5Data);
+DEFINE_C_API_TO_JSON(HDF5Data);
+DEFINE_C_API_FROM_JSON(HDF5Data);
 HDF5DataHandle HDF5Data_create(AxesIntHandle                   shape,
                                AxesControlArrayHandle          unit_domain,
                                AxesCoupledLabelledDomainHandle domain_labels,
@@ -131,15 +134,6 @@ HDF5DataHandle HDF5Data_create_from_communications(
   FALCON_C_API_END(nullptr)
 }
 
-void HDF5Data_destroy(HDF5DataHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Null handle passed to HDF5Data_destroy");
-  }
-  delete static_cast<HDF5DataSP*>(handle);
-  FALCON_C_API_END()
-}
-
 void HDF5Data_to_file(HDF5DataHandle handle, StringHandle path) {
   FALCON_C_API_BEGIN
   if (!handle) {
@@ -169,30 +163,6 @@ PairMeasurementResponseMeasurementRequestHandle HDF5Data_to_communications(
       std::make_shared<generic::Pair<messages::MeasurementResponse,
                                      messages::MeasurementRequest>>(
           pair.first, pair.second));
-  FALCON_C_API_END(nullptr)
-}
-
-StringHandle HDF5Data_to_json_string(HDF5DataHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to HDF5Data_to_json_string");
-  }
-  HDF5DataSP  hdf5_data = *static_cast<HDF5DataSP*>(handle);
-  std::string json_str  = hdf5_data->to_json_string();
-  return String_create(json_str.c_str(), json_str.size());
-  FALCON_C_API_END(nullptr)
-}
-
-HDF5DataHandle HDF5Data_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Null string handle passed to HDF5Data_from_json_string");
-  }
-  std::string raw_json(json->raw);
-  auto        ptr = HDF5Data::from_json_string<HDF5Data>(raw_json);
-  return new HDF5DataSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 
@@ -285,37 +255,5 @@ int HDF5Data_timestamp(HDF5DataHandle handle) {
   HDF5DataSP hdf5_data = *static_cast<HDF5DataSP*>(handle);
   return hdf5_data->timestamp();
   FALCON_C_API_END(0)
-}
-
-bool HDF5Data_equal(HDF5DataHandle handle, HDF5DataHandle other_handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to HDF5Data_equals: handle");
-  }
-  if (!other_handle) {
-    throw std::invalid_argument(
-        "Null handle passed to HDF5Data_equals: other_handle");
-  }
-  HDF5DataSP hdf5_data       = *static_cast<HDF5DataSP*>(handle);
-  HDF5DataSP other_hdf5_data = *static_cast<HDF5DataSP*>(other_handle);
-  return (*hdf5_data == *other_hdf5_data);
-  FALCON_C_API_END(false)
-}
-
-bool HDF5Data_not_equal(HDF5DataHandle handle, HDF5DataHandle other_handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to HDF5Data_not_equals: handle");
-  }
-  if (!other_handle) {
-    throw std::invalid_argument(
-        "Null handle passed to HDF5Data_not_equals: other_handle");
-  }
-  HDF5DataSP hdf5_data       = *static_cast<HDF5DataSP*>(handle);
-  HDF5DataSP other_hdf5_data = *static_cast<HDF5DataSP*>(other_handle);
-  return (*hdf5_data != *other_hdf5_data);
-  FALCON_C_API_END(false)
 }
 }

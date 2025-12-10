@@ -14,6 +14,8 @@ typedef void* AxesIntHandle;
 // @category:allocation
 AxesIntHandle AxesInt_create_empty();
 // @category:allocation
+AxesIntHandle AxesInt_copy(AxesIntHandle handle);
+// @category:allocation
 AxesIntHandle AxesInt_create(ListIntHandle data);
 // @category:deallocation
 void AxesInt_destroy(AxesIntHandle handle);
@@ -38,9 +40,9 @@ size_t AxesInt_index(AxesIntHandle handle, int value);
 // @category:read
 AxesIntHandle AxesInt_intersection(AxesIntHandle handle, AxesIntHandle other);
 // @category:read
-bool AxesInt_equal(AxesIntHandle a, AxesIntHandle b);
+bool AxesInt_equal(AxesIntHandle handle, AxesIntHandle other);
 // @category:read
-bool AxesInt_not_equal(AxesIntHandle a, AxesIntHandle b);
+bool AxesInt_not_equal(AxesIntHandle handle, AxesIntHandle other);
 
 // @category:read
 StringHandle      AxesInt_to_json_string(AxesIntHandle handle);

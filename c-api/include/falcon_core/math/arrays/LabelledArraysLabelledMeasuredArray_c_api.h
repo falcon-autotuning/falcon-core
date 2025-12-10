@@ -15,6 +15,8 @@ typedef void* LabelledArraysLabelledMeasuredArrayHandle;
 // @category:allocation
 LabelledArraysLabelledMeasuredArrayHandle LabelledArraysLabelledMeasuredArray_create(
     ListLabelledMeasuredArrayHandle arrays);
+// @category:allocation
+LabelledArraysLabelledMeasuredArrayHandle LabelledArraysLabelledMeasuredArray_copy(LabelledArraysLabelledMeasuredArrayHandle handle);
 // @category:deallocation
 void LabelledArraysLabelledMeasuredArray_destroy(
     LabelledArraysLabelledMeasuredArrayHandle handle);

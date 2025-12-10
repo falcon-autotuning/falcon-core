@@ -15,6 +15,8 @@ typedef void* MapChannelConnectionsHandle;
 // @category:allocation
 MapChannelConnectionsHandle MapChannelConnections_create_empty();
 // @category:allocation
+MapChannelConnectionsHandle MapChannelConnections_copy(MapChannelConnectionsHandle handle);
+// @category:allocation
 MapChannelConnectionsHandle MapChannelConnections_create(PairChannelConnectionsHandle* data, size_t count);
 // @category:deallocation
 void MapChannelConnections_destroy(MapChannelConnectionsHandle handle);
@@ -41,9 +43,9 @@ ListConnectionsHandle MapChannelConnections_values(MapChannelConnectionsHandle h
 // @category:read
 ListPairChannelConnectionsHandle MapChannelConnections_items(MapChannelConnectionsHandle handle);
 // @category:read
-bool MapChannelConnections_equal(MapChannelConnectionsHandle a, MapChannelConnectionsHandle b);
+bool MapChannelConnections_equal(MapChannelConnectionsHandle handle, MapChannelConnectionsHandle other);
 // @category:read
-bool MapChannelConnections_not_equal(MapChannelConnectionsHandle a, MapChannelConnectionsHandle b);
+bool MapChannelConnections_not_equal(MapChannelConnectionsHandle handle, MapChannelConnectionsHandle other);
 // @category:read
 StringHandle      MapChannelConnections_to_json_string(MapChannelConnectionsHandle handle);
 // @category:allocation

@@ -13,6 +13,8 @@ typedef void* ListLabelledMeasuredArray1DHandle;
 
 // @category:allocation
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_create_empty();
+// @category:allocation
+ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_copy(ListLabelledMeasuredArray1DHandle handle);
 
 // @category:allocation
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_fill_value(size_t count, LabelledMeasuredArray1DHandle value);
@@ -41,9 +43,9 @@ size_t ListLabelledMeasuredArray1D_index(ListLabelledMeasuredArray1DHandle handl
 // @category:read
 ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_intersection(ListLabelledMeasuredArray1DHandle handle, ListLabelledMeasuredArray1DHandle other);
 // @category:read
-bool ListLabelledMeasuredArray1D_equal(ListLabelledMeasuredArray1DHandle a, ListLabelledMeasuredArray1DHandle b);
+bool ListLabelledMeasuredArray1D_equal(ListLabelledMeasuredArray1DHandle handle, ListLabelledMeasuredArray1DHandle other);
 // @category:read
-bool ListLabelledMeasuredArray1D_not_equal(ListLabelledMeasuredArray1DHandle a, ListLabelledMeasuredArray1DHandle b);
+bool ListLabelledMeasuredArray1D_not_equal(ListLabelledMeasuredArray1DHandle handle, ListLabelledMeasuredArray1DHandle other);
 
 // @category:read
 StringHandle      ListLabelledMeasuredArray1D_to_json_string(ListLabelledMeasuredArray1DHandle handle);

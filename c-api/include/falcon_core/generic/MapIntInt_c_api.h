@@ -14,6 +14,8 @@ typedef void* MapIntIntHandle;
 // @category:allocation
 MapIntIntHandle MapIntInt_create_empty();
 // @category:allocation
+MapIntIntHandle MapIntInt_copy(MapIntIntHandle handle);
+// @category:allocation
 MapIntIntHandle MapIntInt_create(PairIntIntHandle* data, size_t count);
 // @category:deallocation
 void MapIntInt_destroy(MapIntIntHandle handle);
@@ -40,9 +42,9 @@ ListIntHandle MapIntInt_values(MapIntIntHandle handle);
 // @category:read
 ListPairIntIntHandle MapIntInt_items(MapIntIntHandle handle);
 // @category:read
-bool MapIntInt_equal(MapIntIntHandle a, MapIntIntHandle b);
+bool MapIntInt_equal(MapIntIntHandle handle, MapIntIntHandle other);
 // @category:read
-bool MapIntInt_not_equal(MapIntIntHandle a, MapIntIntHandle b);
+bool MapIntInt_not_equal(MapIntIntHandle handle, MapIntIntHandle other);
 // @category:read
 StringHandle      MapIntInt_to_json_string(MapIntIntHandle handle);
 // @category:allocation

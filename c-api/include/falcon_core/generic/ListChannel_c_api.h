@@ -13,6 +13,8 @@ typedef void* ListChannelHandle;
 
 // @category:allocation
 ListChannelHandle ListChannel_create_empty();
+// @category:allocation
+ListChannelHandle ListChannel_copy(ListChannelHandle handle);
 
 // @category:allocation
 ListChannelHandle ListChannel_fill_value(size_t count, ChannelHandle value);
@@ -41,9 +43,9 @@ size_t ListChannel_index(ListChannelHandle handle, ChannelHandle value);
 // @category:read
 ListChannelHandle ListChannel_intersection(ListChannelHandle handle, ListChannelHandle other);
 // @category:read
-bool ListChannel_equal(ListChannelHandle a, ListChannelHandle b);
+bool ListChannel_equal(ListChannelHandle handle, ListChannelHandle other);
 // @category:read
-bool ListChannel_not_equal(ListChannelHandle a, ListChannelHandle b);
+bool ListChannel_not_equal(ListChannelHandle handle, ListChannelHandle other);
 
 // @category:read
 StringHandle      ListChannel_to_json_string(ListChannelHandle handle);

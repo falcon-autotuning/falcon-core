@@ -14,7 +14,8 @@ LoaderHandle Loader_create(StringHandle config_path);
 // @category:deallocation
 void Loader_destroy(LoaderHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Loader_config | falcon_core::physics::config::Loader::config */
+/* AUTO-DOC from cpp: Loader_config |
+ * falcon_core::physics::config::Loader::config */
 /**
  * @brief Returns the config.
  */

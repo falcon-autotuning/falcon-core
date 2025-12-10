@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListMeasurementContext_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListMeasurementContextHandle= falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>;
+DEFINE_C_API_COPY_TEMPLATE(ListMeasurementContext, MACROListMeasurementContextHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListMeasurementContext, MACROListMeasurementContextHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListMeasurementContext, MACROListMeasurementContextHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListMeasurementContext, MACROListMeasurementContextHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListMeasurementContext, MACROListMeasurementContextHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListMeasurementContext, MACROListMeasurementContextHandle);
 ListMeasurementContextHandle ListMeasurementContext_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListMeasurementContext_c
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(
         std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListMeasurementContext_destroy(ListMeasurementContextHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListMeasurementContext_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListMeasurementContext_size(ListMeasurementContextHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListMeasurementContext_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListMeasurementContext_equal(ListMeasurementContextHandle handle, ListMeasurementContextHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListMeasurementContext_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListMeasurementContext_not_equal(ListMeasurementContextHandle handle, ListMeasurementContextHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListMeasurementContext_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListMeasurementContextHandle ListMeasurementContext_intersection(ListMeasurementContextHandle handle, ListMeasurementContextHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListMeasurementContext_inters
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListMeasurementContext_to_json_string(ListMeasurementContextHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListMeasurementContext_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListMeasurementContextHandle ListMeasurementContext_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListMeasurementContext_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>::from_json_string<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::MeasurementContext>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::MeasurementContext>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

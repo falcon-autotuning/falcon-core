@@ -1,16 +1,20 @@
 #include "falcon_core/communications/messages/VoltageStatesResponse_c_api.h"
 
-#include <falcon_core/generic/String_c_api.h>
-
 #include <falcon_core/communications/messages/VoltageStatesResponse.hpp>
 #include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 
 using namespace falcon_core;
 using namespace falcon_core::communications::messages;
 
 extern "C" {
+DEFINE_C_API_COPY(VoltageStatesResponse);
+DEFINE_C_API_DESTROY(VoltageStatesResponse);
+DEFINE_C_API_EQUAL(VoltageStatesResponse);
+DEFINE_C_API_NOT_EQUAL(VoltageStatesResponse);
+DEFINE_C_API_TO_JSON(VoltageStatesResponse);
+DEFINE_C_API_FROM_JSON(VoltageStatesResponse);
 VoltageStatesResponseHandle VoltageStatesResponse_create(
     StringHandle message, DeviceVoltageStatesHandle states) {
   FALCON_C_API_BEGIN
@@ -29,16 +33,6 @@ VoltageStatesResponseHandle VoltageStatesResponse_create(
   return new VoltageStatesResponseSP(
       std::make_shared<VoltageStatesResponse>(msg_str, states_sp));
   FALCON_C_API_END(nullptr)
-}
-
-void VoltageStatesResponse_destroy(VoltageStatesResponseHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to VoltageStatesResponse_destroy");
-  }
-  delete static_cast<VoltageStatesResponseSP*>(handle);
-  FALCON_C_API_END()
 }
 
 StringHandle VoltageStatesResponse_message(VoltageStatesResponseHandle handle) {
@@ -63,58 +57,6 @@ DeviceVoltageStatesHandle VoltageStatesResponse_states(
   auto response = *static_cast<VoltageStatesResponseSP*>(handle);
   return new communications::voltage_states::DeviceVoltageStatesSP(
       (response->states()));
-  FALCON_C_API_END(nullptr)
-}
-
-bool VoltageStatesResponse_equal(VoltageStatesResponseHandle handle,
-                                 VoltageStatesResponseHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to VoltageStatesResponse_equal");
-  }
-  return *(*static_cast<VoltageStatesResponseSP*>(handle)) ==
-         *(*static_cast<VoltageStatesResponseSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool VoltageStatesResponse_not_equal(VoltageStatesResponseHandle handle,
-                                     VoltageStatesResponseHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to VoltageStatesResponse_not_equal");
-  }
-  return *(*static_cast<VoltageStatesResponseSP*>(handle)) !=
-         *(*static_cast<VoltageStatesResponseSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle VoltageStatesResponse_to_json_string(
-    VoltageStatesResponseHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to VoltageStatesResponse_to_json_string");
-  }
-  auto        response = *static_cast<VoltageStatesResponseSP*>(handle);
-  std::string json_str = response->to_json_string();
-  return String_create(json_str.c_str(), json_str.size());
-  FALCON_C_API_END(nullptr)
-}
-
-VoltageStatesResponseHandle VoltageStatesResponse_from_json_string(
-    StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Null string handle passed to "
-        "VoltageStatesResponse_from_json_string");
-  }
-  std::string raw_json(json->raw);
-  auto        ptr =
-      VoltageStatesResponse::from_json_string<VoltageStatesResponse>(raw_json);
-  return new VoltageStatesResponseSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

@@ -13,6 +13,8 @@ typedef void* PairStringStringHandle;
 
 // @category:allocation
 PairStringStringHandle PairStringString_create(StringHandle first, StringHandle second);
+// @category:allocation
+PairStringStringHandle PairStringString_copy(PairStringStringHandle handle);
 // @category:deallocation
 void PairStringString_destroy(PairStringStringHandle handle);
 // @category:read
@@ -20,9 +22,9 @@ StringHandle PairStringString_first(PairStringStringHandle handle);
 // @category:read
 StringHandle PairStringString_second(PairStringStringHandle handle);
 // @category:read
-bool PairStringString_equal(PairStringStringHandle a, PairStringStringHandle b);
+bool PairStringString_equal(PairStringStringHandle handle, PairStringStringHandle other);
 // @category:read
-bool PairStringString_not_equal(PairStringStringHandle a, PairStringStringHandle b);
+bool PairStringString_not_equal(PairStringStringHandle handle, PairStringStringHandle other);
 // @category:read
 StringHandle      PairStringString_to_json_string(PairStringStringHandle handle);
 // @category:allocation

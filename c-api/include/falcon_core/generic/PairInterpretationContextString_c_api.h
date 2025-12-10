@@ -12,6 +12,8 @@ typedef void* PairInterpretationContextStringHandle;
 
 // @category:allocation
 PairInterpretationContextStringHandle PairInterpretationContextString_create(InterpretationContextHandle first, StringHandle second);
+// @category:allocation
+PairInterpretationContextStringHandle PairInterpretationContextString_copy(PairInterpretationContextStringHandle handle);
 // @category:deallocation
 void PairInterpretationContextString_destroy(PairInterpretationContextStringHandle handle);
 // @category:read
@@ -19,9 +21,9 @@ InterpretationContextHandle PairInterpretationContextString_first(PairInterpreta
 // @category:read
 StringHandle PairInterpretationContextString_second(PairInterpretationContextStringHandle handle);
 // @category:read
-bool PairInterpretationContextString_equal(PairInterpretationContextStringHandle a, PairInterpretationContextStringHandle b);
+bool PairInterpretationContextString_equal(PairInterpretationContextStringHandle handle, PairInterpretationContextStringHandle other);
 // @category:read
-bool PairInterpretationContextString_not_equal(PairInterpretationContextStringHandle a, PairInterpretationContextStringHandle b);
+bool PairInterpretationContextString_not_equal(PairInterpretationContextStringHandle handle, PairInterpretationContextStringHandle other);
 // @category:read
 StringHandle      PairInterpretationContextString_to_json_string(PairInterpretationContextStringHandle handle);
 // @category:allocation

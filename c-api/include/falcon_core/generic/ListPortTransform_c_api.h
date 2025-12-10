@@ -13,6 +13,8 @@ typedef void* ListPortTransformHandle;
 
 // @category:allocation
 ListPortTransformHandle ListPortTransform_create_empty();
+// @category:allocation
+ListPortTransformHandle ListPortTransform_copy(ListPortTransformHandle handle);
 
 // @category:allocation
 ListPortTransformHandle ListPortTransform_fill_value(size_t count, PortTransformHandle value);
@@ -41,9 +43,9 @@ size_t ListPortTransform_index(ListPortTransformHandle handle, PortTransformHand
 // @category:read
 ListPortTransformHandle ListPortTransform_intersection(ListPortTransformHandle handle, ListPortTransformHandle other);
 // @category:read
-bool ListPortTransform_equal(ListPortTransformHandle a, ListPortTransformHandle b);
+bool ListPortTransform_equal(ListPortTransformHandle handle, ListPortTransformHandle other);
 // @category:read
-bool ListPortTransform_not_equal(ListPortTransformHandle a, ListPortTransformHandle b);
+bool ListPortTransform_not_equal(ListPortTransformHandle handle, ListPortTransformHandle other);
 
 // @category:read
 StringHandle      ListPortTransform_to_json_string(ListPortTransformHandle handle);

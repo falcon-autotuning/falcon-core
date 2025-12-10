@@ -13,6 +13,8 @@ typedef void* ListDoubleHandle;
 // @category:allocation
 ListDoubleHandle ListDouble_create_empty();
 // @category:allocation
+ListDoubleHandle ListDouble_copy(ListDoubleHandle handle);
+// @category:allocation
 ListDoubleHandle ListDouble_allocate(size_t count);
 // @category:allocation
 ListDoubleHandle ListDouble_fill_value(size_t count, double value);
@@ -41,9 +43,9 @@ size_t ListDouble_index(ListDoubleHandle handle, double value);
 // @category:read
 ListDoubleHandle ListDouble_intersection(ListDoubleHandle handle, ListDoubleHandle other);
 // @category:read
-bool ListDouble_equal(ListDoubleHandle a, ListDoubleHandle b);
+bool ListDouble_equal(ListDoubleHandle handle, ListDoubleHandle other);
 // @category:read
-bool ListDouble_not_equal(ListDoubleHandle a, ListDoubleHandle b);
+bool ListDouble_not_equal(ListDoubleHandle handle, ListDoubleHandle other);
 
 // @category:read
 StringHandle      ListDouble_to_json_string(ListDoubleHandle handle);

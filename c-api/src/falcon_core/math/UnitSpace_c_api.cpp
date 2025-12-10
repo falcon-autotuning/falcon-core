@@ -3,11 +3,17 @@
 #include <falcon_core/math/UnitSpace.hpp>
 #include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::math;
 
 extern "C" {
+DEFINE_C_API_COPY(UnitSpace);
+DEFINE_C_API_DESTROY(UnitSpace);
+DEFINE_C_API_EQUAL(UnitSpace);
+DEFINE_C_API_NOT_EQUAL(UnitSpace);
+DEFINE_C_API_TO_JSON(UnitSpace);
+DEFINE_C_API_FROM_JSON(UnitSpace);
 UnitSpaceHandle UnitSpace_create(AxesDiscretizerHandle axes,
                                  DomainHandle          domain) {
   FALCON_C_API_BEGIN
@@ -89,15 +95,6 @@ UnitSpaceHandle UnitSpace_create_cartesian_2D_space(AxesDoubleHandle deltas,
       *static_cast<falcon_core::math::domains::DomainSP*>(domain);
   return new UnitSpaceSP(UnitSpace::CartesianSpace(real_deltas, real_domain));
   FALCON_C_API_END(nullptr)
-}
-
-void UnitSpace_destroy(UnitSpaceHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("UnitSpace_destroy: handle cannot be null");
-  }
-  delete static_cast<UnitSpaceSP*>(handle);
-  FALCON_C_API_END()
 }
 
 AxesDiscretizerHandle UnitSpace_axes(UnitSpaceHandle handle) {
@@ -319,57 +316,6 @@ UnitSpaceHandle UnitSpace_intersection(UnitSpaceHandle handle,
       std::make_shared<Axes<falcon_core::math::discrete_spaces::Discretizer>>(
           result),
       self->domain()));
-  FALCON_C_API_END(nullptr)
-}
-
-bool UnitSpace_equal(UnitSpaceHandle handle, UnitSpaceHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("UnitSpace_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("UnitSpace_equal: b cannot be null");
-  }
-  UnitSpaceSP self_a = *static_cast<UnitSpaceSP*>(handle);
-  UnitSpaceSP self_b = *static_cast<UnitSpaceSP*>(other);
-  return *self_a == *self_b;
-  FALCON_C_API_END(false)
-}
-
-bool UnitSpace_not_equal(UnitSpaceHandle handle, UnitSpaceHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("UnitSpace_not_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("UnitSpace_not_equal: b cannot be null");
-  }
-  UnitSpaceSP self_a = *static_cast<UnitSpaceSP*>(handle);
-  UnitSpaceSP self_b = *static_cast<UnitSpaceSP*>(other);
-  return *self_a != *self_b;
-  FALCON_C_API_END(false)
-}
-
-StringHandle UnitSpace_to_json_string(UnitSpaceHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "UnitSpace_to_json_string: handle cannot be null");
-  }
-  UnitSpaceSP self = *static_cast<UnitSpaceSP*>(handle);
-  std::string json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-UnitSpaceHandle UnitSpace_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "UnitSpace_from_json_string: json cannot be null");
-  }
-  std::string json_str = json->raw;
-  return new UnitSpaceSP(UnitSpace::from_json_string<UnitSpace>(json_str));
   FALCON_C_API_END(nullptr)
 }
 }

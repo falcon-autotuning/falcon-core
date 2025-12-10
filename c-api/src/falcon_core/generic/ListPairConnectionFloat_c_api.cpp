@@ -1,10 +1,18 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListPairConnectionFloat_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/physics/device_structures/Connection.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListPairConnectionFloatHandle= falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>;
+DEFINE_C_API_COPY_TEMPLATE(ListPairConnectionFloat, MACROListPairConnectionFloatHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListPairConnectionFloat, MACROListPairConnectionFloatHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListPairConnectionFloat, MACROListPairConnectionFloatHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListPairConnectionFloat, MACROListPairConnectionFloatHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListPairConnectionFloat, MACROListPairConnectionFloatHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListPairConnectionFloat, MACROListPairConnectionFloatHandle);
 ListPairConnectionFloatHandle ListPairConnectionFloat_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>>());
@@ -40,15 +48,6 @@ throw std::invalid_argument("Null data handle passed to ListPairConnectionFloat_
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListPairConnectionFloat_destroy(ListPairConnectionFloatHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListPairConnectionFloat_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListPairConnectionFloat_size(ListPairConnectionFloatHandle handle) {
@@ -160,28 +159,6 @@ throw std::invalid_argument("Null handle passed to ListPairConnectionFloat_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListPairConnectionFloat_equal(ListPairConnectionFloatHandle handle, ListPairConnectionFloatHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairConnectionFloat_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListPairConnectionFloat_not_equal(ListPairConnectionFloatHandle handle, ListPairConnectionFloatHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairConnectionFloat_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListPairConnectionFloatHandle ListPairConnectionFloat_intersection(ListPairConnectionFloatHandle handle, ListPairConnectionFloatHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -191,26 +168,6 @@ throw std::invalid_argument("Null handle passed to ListPairConnectionFloat_inter
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListPairConnectionFloat_to_json_string(ListPairConnectionFloatHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListPairConnectionFloat_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListPairConnectionFloatHandle ListPairConnectionFloat_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListPairConnectionFloat_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::physics::device_structures::Connection, float>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

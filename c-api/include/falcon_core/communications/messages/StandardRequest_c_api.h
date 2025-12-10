@@ -9,11 +9,9 @@ extern "C" {
 typedef void* StandardRequestHandle;
 
 // @category:allocation
-StandardRequestHandle StandardRequest_create(StringHandle message);
+StandardRequestHandle StandardRequest_copy(StandardRequestHandle handle);
 // @category:deallocation
 void StandardRequest_destroy(StandardRequestHandle handle);
-// @category:read
-StringHandle StandardRequest_message(StandardRequestHandle handle);
 // @category:read
 bool StandardRequest_equal(StandardRequestHandle handle,
                            StandardRequestHandle other);
@@ -24,6 +22,10 @@ bool StandardRequest_not_equal(StandardRequestHandle handle,
 StringHandle StandardRequest_to_json_string(StandardRequestHandle handle);
 // @category:allocation
 StandardRequestHandle StandardRequest_from_json_string(StringHandle json);
+// @category:allocation
+StandardRequestHandle StandardRequest_create(StringHandle message);
+// @category:read
+StringHandle StandardRequest_message(StandardRequestHandle handle);
 
 #ifdef __cplusplus
 }

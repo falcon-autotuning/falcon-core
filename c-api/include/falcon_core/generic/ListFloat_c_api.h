@@ -13,6 +13,8 @@ typedef void* ListFloatHandle;
 // @category:allocation
 ListFloatHandle ListFloat_create_empty();
 // @category:allocation
+ListFloatHandle ListFloat_copy(ListFloatHandle handle);
+// @category:allocation
 ListFloatHandle ListFloat_allocate(size_t count);
 // @category:allocation
 ListFloatHandle ListFloat_fill_value(size_t count, float value);
@@ -41,9 +43,9 @@ size_t ListFloat_index(ListFloatHandle handle, float value);
 // @category:read
 ListFloatHandle ListFloat_intersection(ListFloatHandle handle, ListFloatHandle other);
 // @category:read
-bool ListFloat_equal(ListFloatHandle a, ListFloatHandle b);
+bool ListFloat_equal(ListFloatHandle handle, ListFloatHandle other);
 // @category:read
-bool ListFloat_not_equal(ListFloatHandle a, ListFloatHandle b);
+bool ListFloat_not_equal(ListFloatHandle handle, ListFloatHandle other);
 
 // @category:read
 StringHandle      ListFloat_to_json_string(ListFloatHandle handle);

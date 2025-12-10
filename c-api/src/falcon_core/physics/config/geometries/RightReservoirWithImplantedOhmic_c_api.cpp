@@ -1,14 +1,18 @@
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
 
 #include <falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 
 using namespace falcon_core::physics::config::geometries;
 
 extern "C" {
+DEFINE_C_API_COPY(RightReservoirWithImplantedOhmic);
+DEFINE_C_API_DESTROY(RightReservoirWithImplantedOhmic);
+DEFINE_C_API_EQUAL(RightReservoirWithImplantedOhmic);
+DEFINE_C_API_NOT_EQUAL(RightReservoirWithImplantedOhmic);
+DEFINE_C_API_TO_JSON(RightReservoirWithImplantedOhmic);
+DEFINE_C_API_FROM_JSON(RightReservoirWithImplantedOhmic);
 RightReservoirWithImplantedOhmicHandle RightReservoirWithImplantedOhmic_create(
     StringHandle     name,
     ConnectionHandle right_neighbor,
@@ -38,17 +42,6 @@ RightReservoirWithImplantedOhmicHandle RightReservoirWithImplantedOhmic_create(
       std::make_shared<RightReservoirWithImplantedOhmic>(
           real_name, right_conn, ohmic_conn));
   FALCON_C_API_END(nullptr)
-}
-
-void RightReservoirWithImplantedOhmic_destroy(
-    RightReservoirWithImplantedOhmicHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "RightReservoirWithImplantedOhmic_destroy: handle cannot be null");
-  }
-  delete static_cast<RightReservoirWithImplantedOhmicSP*>(handle);
-  FALCON_C_API_END()
 }
 
 StringHandle RightReservoirWithImplantedOhmic_name(
@@ -103,78 +96,6 @@ ConnectionHandle RightReservoirWithImplantedOhmic_left_neighbor(
       *static_cast<RightReservoirWithImplantedOhmicSP*>(handle);
   return new falcon_core::physics::device_structures::ConnectionSP(
       self->left_neighbor());
-  FALCON_C_API_END(nullptr)
-}
-
-bool RightReservoirWithImplantedOhmic_equal(
-    RightReservoirWithImplantedOhmicHandle handle,
-    RightReservoirWithImplantedOhmicHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "RightReservoirWithImplantedOhmic_equal: first handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "RightReservoirWithImplantedOhmic_equal: second handle cannot be null");
-  }
-  RightReservoirWithImplantedOhmicSP self =
-      *static_cast<RightReservoirWithImplantedOhmicSP*>(handle);
-  RightReservoirWithImplantedOhmicSP real_other =
-      *static_cast<RightReservoirWithImplantedOhmicSP*>(other);
-  return *self == *real_other;
-  FALCON_C_API_END(false)
-}
-
-bool RightReservoirWithImplantedOhmic_not_equal(
-    RightReservoirWithImplantedOhmicHandle handle,
-    RightReservoirWithImplantedOhmicHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "RightReservoirWithImplantedOhmic_not_equal: first handle cannot be "
-        "null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "RightReservoirWithImplantedOhmic_not_equal: second handle cannot be "
-        "null");
-  }
-  RightReservoirWithImplantedOhmicSP self =
-      *static_cast<RightReservoirWithImplantedOhmicSP*>(handle);
-  RightReservoirWithImplantedOhmicSP real_other =
-      *static_cast<RightReservoirWithImplantedOhmicSP*>(other);
-  return *self != *real_other;
-  FALCON_C_API_END(false)
-}
-
-StringHandle RightReservoirWithImplantedOhmic_to_json_string(
-    RightReservoirWithImplantedOhmicHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "RightReservoirWithImplantedOhmic_to_json_string: handle cannot be "
-        "null");
-  }
-  RightReservoirWithImplantedOhmicSP self =
-      *static_cast<RightReservoirWithImplantedOhmicSP*>(handle);
-  return String_create(self->to_json_string().c_str(),
-                       self->to_json_string().size());
-  FALCON_C_API_END(nullptr)
-}
-
-RightReservoirWithImplantedOhmicHandle
-RightReservoirWithImplantedOhmic_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "RightReservoirWithImplantedOhmic_from_json_string: json cannot be "
-        "null");
-  }
-  std::string real_json(json->raw, json->length);
-  return new RightReservoirWithImplantedOhmicSP(
-      RightReservoirWithImplantedOhmic::from_json_string<
-          RightReservoirWithImplantedOhmic>(real_json));
   FALCON_C_API_END(nullptr)
 }
 }

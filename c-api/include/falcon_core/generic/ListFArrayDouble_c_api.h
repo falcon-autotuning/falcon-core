@@ -13,6 +13,8 @@ typedef void* ListFArrayDoubleHandle;
 
 // @category:allocation
 ListFArrayDoubleHandle ListFArrayDouble_create_empty();
+// @category:allocation
+ListFArrayDoubleHandle ListFArrayDouble_copy(ListFArrayDoubleHandle handle);
 
 // @category:allocation
 ListFArrayDoubleHandle ListFArrayDouble_fill_value(size_t count, FArrayDoubleHandle value);
@@ -41,9 +43,9 @@ size_t ListFArrayDouble_index(ListFArrayDoubleHandle handle, FArrayDoubleHandle 
 // @category:read
 ListFArrayDoubleHandle ListFArrayDouble_intersection(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
 // @category:read
-bool ListFArrayDouble_equal(ListFArrayDoubleHandle a, ListFArrayDoubleHandle b);
+bool ListFArrayDouble_equal(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
 // @category:read
-bool ListFArrayDouble_not_equal(ListFArrayDoubleHandle a, ListFArrayDoubleHandle b);
+bool ListFArrayDouble_not_equal(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
 
 // @category:read
 StringHandle      ListFArrayDouble_to_json_string(ListFArrayDoubleHandle handle);

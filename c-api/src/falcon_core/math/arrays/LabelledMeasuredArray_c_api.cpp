@@ -1,19 +1,20 @@
 #include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
 
 #include <falcon_core/math/arrays/LabelledMeasuredArray.hpp>
-#include <stdexcept>
-#include <string>
 #include <xtensor/xadapt.hpp>
 
-#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 using namespace falcon_core;
 using namespace falcon_core::math;
 using namespace falcon_core::math::arrays;
 
 extern "C" {
+DEFINE_C_API_COPY(LabelledMeasuredArray);
+DEFINE_C_API_DESTROY(LabelledMeasuredArray);
+DEFINE_C_API_EQUAL(LabelledMeasuredArray);
+DEFINE_C_API_NOT_EQUAL(LabelledMeasuredArray);
+DEFINE_C_API_TO_JSON(LabelledMeasuredArray);
+DEFINE_C_API_FROM_JSON(LabelledMeasuredArray);
 LabelledMeasuredArrayHandle LabelledMeasuredArray_from_farray(
     FArrayDoubleHandle farray, AcquisitionContextHandle label) {
   FALCON_C_API_BEGIN
@@ -46,16 +47,6 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_from_measured_array(
   return new LabelledMeasuredArraySP(
       std::make_shared<LabelledMeasuredArray>(real_measuredarray, real_label));
   FALCON_C_API_END(nullptr)
-}
-
-void LabelledMeasuredArray_destroy(LabelledMeasuredArrayHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_destroy");
-  }
-  delete static_cast<LabelledMeasuredArraySP*>(handle);
-  FALCON_C_API_END()
 }
 
 AcquisitionContextHandle LabelledMeasuredArray_label(
@@ -745,35 +736,6 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
   return new LabelledMeasuredArraySP(labelled_measured_array->max(oarray));
   FALCON_C_API_END(nullptr)
 }
-bool LabelledMeasuredArray_equal(LabelledMeasuredArrayHandle handle,
-                                 LabelledMeasuredArrayHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_equal");
-  }
-  LabelledMeasuredArraySP labelled_measured_array =
-      *static_cast<LabelledMeasuredArraySP*>(handle);
-  LabelledMeasuredArraySP oarray =
-      *static_cast<LabelledMeasuredArraySP*>(other);
-  return labelled_measured_array->operator==(*oarray);
-  FALCON_C_API_END(false)
-}
-
-bool LabelledMeasuredArray_not_equal(LabelledMeasuredArrayHandle handle,
-                                     LabelledMeasuredArrayHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_not_equal");
-  }
-  LabelledMeasuredArraySP labelled_measured_array =
-      *static_cast<LabelledMeasuredArraySP*>(handle);
-  LabelledMeasuredArraySP oarray =
-      *static_cast<LabelledMeasuredArraySP*>(other);
-  return labelled_measured_array->operator!=(*oarray);
-  FALCON_C_API_END(false)
-}
 
 bool LabelledMeasuredArray_greater_than(LabelledMeasuredArrayHandle handle,
                                         const double                value) {
@@ -954,33 +916,5 @@ double LabelledMeasuredArray_get_summed_diff_array_of_squares(
       *static_cast<LabelledMeasuredArraySP*>(other);
   return labelled_measured_array->get_sum_of_squares(oarray);
   FALCON_C_API_END(0.0)
-}
-
-StringHandle LabelledMeasuredArray_to_json_string(
-    LabelledMeasuredArrayHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to LabelledMeasuredArray_to_json_string");
-  }
-  LabelledMeasuredArraySP labelled_measured_array =
-      *static_cast<LabelledMeasuredArraySP*>(handle);
-  std::string json_str = labelled_measured_array->to_json_string();
-  return String_create(json_str.c_str(), json_str.size());
-  FALCON_C_API_END(nullptr)
-}
-
-LabelledMeasuredArrayHandle LabelledMeasuredArray_from_json_string(
-    StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Null string handle passed to LabelledMeasuredArray_from_json_string");
-  }
-  std::string raw_json(json->raw);
-  auto        ptr =
-      LabelledMeasuredArray::from_json_string<LabelledMeasuredArray>(raw_json);
-  return new LabelledMeasuredArraySP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

@@ -10,9 +10,19 @@ extern "C" {
 typedef void* QuantityHandle;
 
 // @category:allocation
-QuantityHandle Quantity_create(double value, SymbolUnitHandle unit);
+QuantityHandle Quantity_copy(QuantityHandle handle);
 // @category:deallocation
 void Quantity_destroy(QuantityHandle handle);
+// @category:read
+bool Quantity_equal(QuantityHandle handle, QuantityHandle other);
+// @category:read
+bool Quantity_not_equal(QuantityHandle handle, QuantityHandle other);
+// @category:read
+StringHandle Quantity_to_json_string(QuantityHandle handle);
+// @category:allocation
+QuantityHandle Quantity_from_json_string(StringHandle json);
+// @category:allocation
+QuantityHandle Quantity_create(double value, SymbolUnitHandle unit);
 // @category:read
 /* AUTO-DOC from cpp: Quantity_value | falcon_core::math::Quantity::value */
 /**
@@ -26,7 +36,8 @@ double Quantity_value(QuantityHandle handle);
  */
 SymbolUnitHandle Quantity_unit(QuantityHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: Quantity_convert_to | falcon_core::math::Quantity::convert_to */
+/* AUTO-DOC from cpp: Quantity_convert_to |
+ * falcon_core::math::Quantity::convert_to */
 /**
  * @brief Convert the quantity to a different unit.
  * @param target_unit the raget unit to convert to.
@@ -80,14 +91,6 @@ QuantityHandle Quantity_subtract_equals_quantity(QuantityHandle handle,
 QuantityHandle Quantity_negate(QuantityHandle handle);
 // @category:read
 QuantityHandle Quantity_abs(QuantityHandle handle);
-// @category:read
-bool Quantity_equal(QuantityHandle a, QuantityHandle b);
-// @category:read
-bool Quantity_not_equal(QuantityHandle a, QuantityHandle b);
-// @category:read
-StringHandle Quantity_to_json_string(QuantityHandle handle);
-// @category:allocation
-QuantityHandle Quantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

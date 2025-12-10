@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListQuantity_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/math/Quantity.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListQuantityHandle= falcon_core::generic::List<falcon_core::math::Quantity>;
+DEFINE_C_API_COPY_TEMPLATE(ListQuantity, MACROListQuantityHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListQuantity, MACROListQuantityHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListQuantity, MACROListQuantityHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListQuantity, MACROListQuantityHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListQuantity, MACROListQuantityHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListQuantity, MACROListQuantityHandle);
 ListQuantityHandle ListQuantity_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::math::Quantity>(std::make_shared<falcon_core::generic::List<falcon_core::math::Quantity>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListQuantity_create");
     return new falcon_core::generic::ListSP<falcon_core::math::Quantity>(
         std::make_shared<falcon_core::generic::List<falcon_core::math::Quantity>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListQuantity_destroy(ListQuantityHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListQuantity_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::math::Quantity>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListQuantity_size(ListQuantityHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListQuantity_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListQuantity_equal(ListQuantityHandle handle, ListQuantityHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListQuantity_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::math::Quantity>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::math::Quantity>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListQuantity_not_equal(ListQuantityHandle handle, ListQuantityHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListQuantity_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::math::Quantity>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::math::Quantity>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListQuantityHandle ListQuantity_intersection(ListQuantityHandle handle, ListQuantityHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListQuantity_intersection");
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::math::Quantity>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::math::Quantity>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListQuantity_to_json_string(ListQuantityHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListQuantity_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::math::Quantity>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListQuantityHandle ListQuantity_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListQuantity_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::math::Quantity>::from_json_string<falcon_core::generic::List<falcon_core::math::Quantity>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::math::Quantity>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

@@ -15,6 +15,8 @@ typedef void* MapInstrumentPortPortTransformHandle;
 // @category:allocation
 MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_create_empty();
 // @category:allocation
+MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_copy(MapInstrumentPortPortTransformHandle handle);
+// @category:allocation
 MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_create(PairInstrumentPortPortTransformHandle* data, size_t count);
 // @category:deallocation
 void MapInstrumentPortPortTransform_destroy(MapInstrumentPortPortTransformHandle handle);
@@ -41,9 +43,9 @@ ListPortTransformHandle MapInstrumentPortPortTransform_values(MapInstrumentPortP
 // @category:read
 ListPairInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_items(MapInstrumentPortPortTransformHandle handle);
 // @category:read
-bool MapInstrumentPortPortTransform_equal(MapInstrumentPortPortTransformHandle a, MapInstrumentPortPortTransformHandle b);
+bool MapInstrumentPortPortTransform_equal(MapInstrumentPortPortTransformHandle handle, MapInstrumentPortPortTransformHandle other);
 // @category:read
-bool MapInstrumentPortPortTransform_not_equal(MapInstrumentPortPortTransformHandle a, MapInstrumentPortPortTransformHandle b);
+bool MapInstrumentPortPortTransform_not_equal(MapInstrumentPortPortTransformHandle handle, MapInstrumentPortPortTransformHandle other);
 // @category:read
 StringHandle      MapInstrumentPortPortTransform_to_json_string(MapInstrumentPortPortTransformHandle handle);
 // @category:allocation

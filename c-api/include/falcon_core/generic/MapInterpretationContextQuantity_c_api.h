@@ -15,6 +15,8 @@ typedef void* MapInterpretationContextQuantityHandle;
 // @category:allocation
 MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create_empty();
 // @category:allocation
+MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_copy(MapInterpretationContextQuantityHandle handle);
+// @category:allocation
 MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create(PairInterpretationContextQuantityHandle* data, size_t count);
 // @category:deallocation
 void MapInterpretationContextQuantity_destroy(MapInterpretationContextQuantityHandle handle);
@@ -41,9 +43,9 @@ ListQuantityHandle MapInterpretationContextQuantity_values(MapInterpretationCont
 // @category:read
 ListPairInterpretationContextQuantityHandle MapInterpretationContextQuantity_items(MapInterpretationContextQuantityHandle handle);
 // @category:read
-bool MapInterpretationContextQuantity_equal(MapInterpretationContextQuantityHandle a, MapInterpretationContextQuantityHandle b);
+bool MapInterpretationContextQuantity_equal(MapInterpretationContextQuantityHandle handle, MapInterpretationContextQuantityHandle other);
 // @category:read
-bool MapInterpretationContextQuantity_not_equal(MapInterpretationContextQuantityHandle a, MapInterpretationContextQuantityHandle b);
+bool MapInterpretationContextQuantity_not_equal(MapInterpretationContextQuantityHandle handle, MapInterpretationContextQuantityHandle other);
 // @category:read
 StringHandle      MapInterpretationContextQuantity_to_json_string(MapInterpretationContextQuantityHandle handle);
 // @category:allocation

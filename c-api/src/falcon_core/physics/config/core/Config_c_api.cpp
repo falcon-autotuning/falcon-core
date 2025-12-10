@@ -2,11 +2,18 @@
 
 #include <falcon_core/physics/config/core/Config.hpp>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::config::core;
 
 extern "C" {
+DEFINE_C_API_COPY(Config);
+DEFINE_C_API_DESTROY(Config);
+DEFINE_C_API_EQUAL(Config);
+DEFINE_C_API_NOT_EQUAL(Config);
+DEFINE_C_API_TO_JSON(Config);
+DEFINE_C_API_FROM_JSON(Config);
 ConfigHandle Config_create(ConnectionsHandle        screening_gates,
                            ConnectionsHandle        plunger_gates,
                            ConnectionsHandle        ohmics,
@@ -70,15 +77,6 @@ ConfigHandle Config_create(ConnectionsHandle        screening_gates,
                                                real_wiring_DC,
                                                real_constraints));
   FALCON_C_API_END(nullptr)
-}
-
-void Config_destroy(ConfigHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Config_destroy: handle cannot be null");
-  }
-  delete static_cast<ConfigSP*>(handle);
-  FALCON_C_API_END()
 }
 
 int Config_num_unique_channels(ConfigHandle handle) {
@@ -1484,55 +1482,5 @@ bool Config_has_screening_gate(ConfigHandle     handle,
           screening_gate);
   return self->has_screening_gate(real_screening_gate);
   FALCON_C_API_END(false)
-}
-
-bool Config_equal(ConfigHandle handle, ConfigHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Config_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Config_equal: other cannot be null");
-  }
-  ConfigSP self         = *static_cast<ConfigSP*>(handle);
-  ConfigSP other_config = *static_cast<ConfigSP*>(other);
-  return *self == *other_config;
-  FALCON_C_API_END(false)
-}
-
-bool Config_not_equal(ConfigHandle handle, ConfigHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Config_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Config_not_equal: other cannot be null");
-  }
-  ConfigSP self{*static_cast<ConfigSP*>(handle)};
-  ConfigSP other_config{*static_cast<ConfigSP*>(other)};
-  return *self != *other_config;
-  FALCON_C_API_END(false)
-}
-
-StringHandle Config_to_json_string(ConfigHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Config_to_json_string: handle cannot be null");
-  }
-  ConfigSP    self = *static_cast<ConfigSP*>(handle);
-  std::string json = self->to_json_string();
-  return String_wrap(json.data());
-  FALCON_C_API_END(nullptr)
-}
-
-ConfigHandle Config_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument("Config_from_json_string: json cannot be null");
-  }
-  std::string json_str = std::string(json->raw, json->length);
-  ConfigSP    ptr      = Config::from_json_string<Config>(json_str);
-  return new ConfigSP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

@@ -1,9 +1,17 @@
 #include <falcon_core/math/Axes.hpp>
 #include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROAxesdouble= falcon_core::math::Axes<double>;
+DEFINE_C_API_COPY_TEMPLATE(AxesDouble, MACROAxesdouble)
+DEFINE_C_API_DESTROY_TEMPLATE(AxesDouble, MACROAxesdouble);
+DEFINE_C_API_EQUAL_TEMPLATE(AxesDouble, MACROAxesdouble);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(AxesDouble, MACROAxesdouble);
+DEFINE_C_API_TO_JSON_TEMPLATE(AxesDouble, MACROAxesdouble);
+DEFINE_C_API_FROM_JSON_TEMPLATE(AxesDouble, MACROAxesdouble);
 AxesDoubleHandle AxesDouble_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::math::AxesSP<double>(
@@ -20,15 +28,6 @@ throw std::invalid_argument("Null data handle passed to AxesDouble_create");
     return new falcon_core::math::AxesSP<double>(
             std::make_shared<falcon_core::math::Axes<double>>(list));
     FALCON_C_API_END(nullptr)
-}
-
-void AxesDouble_destroy(AxesDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to AxesDouble_destroy");
-}
-    delete static_cast<falcon_core::math::AxesSP<double>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t AxesDouble_size(AxesDoubleHandle handle) {
@@ -122,28 +121,6 @@ throw std::invalid_argument("Null handle passed to AxesDouble_at");
     FALCON_C_API_END(0.0)
 }
 
-bool AxesDouble_equal(AxesDoubleHandle handle, AxesDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to AxesDouble_equal");
-}
-    auto listA = *static_cast<falcon_core::math::AxesSP<double>*>(handle);
-    auto listB = *static_cast<falcon_core::math::AxesSP<double>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool AxesDouble_not_equal(AxesDoubleHandle handle, AxesDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to AxesDouble_not_equal");
-}
-    auto listA = *static_cast<falcon_core::math::AxesSP<double>*>(handle);
-    auto listB = *static_cast<falcon_core::math::AxesSP<double>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 AxesDoubleHandle AxesDouble_intersection(AxesDoubleHandle handle, AxesDoubleHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -153,26 +130,6 @@ throw std::invalid_argument("Null handle passed to AxesDouble_intersection");
     auto listB = *static_cast<falcon_core::math::AxesSP<double>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::math::AxesSP<double>(std::make_shared<falcon_core::math::Axes<double>>(result));
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      AxesDouble_to_json_string(AxesDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to AxesDouble_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::math::AxesSP<double>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-AxesDoubleHandle AxesDouble_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to AxesDouble_from_json_string");
-}
-  auto ptr = falcon_core::math::Axes<double>::from_json_string<falcon_core::math::Axes<double>>(json->raw);
-  return new falcon_core::math::AxesSP<double>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

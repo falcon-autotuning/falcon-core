@@ -2,11 +2,17 @@
 
 #include <falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 
 using namespace falcon_core::physics::config::geometries;
 
 extern "C" {
+DEFINE_C_API_COPY(DotGatesWithNeighbors);
+DEFINE_C_API_DESTROY(DotGatesWithNeighbors);
+DEFINE_C_API_EQUAL(DotGatesWithNeighbors);
+DEFINE_C_API_NOT_EQUAL(DotGatesWithNeighbors);
+DEFINE_C_API_TO_JSON(DotGatesWithNeighbors);
+DEFINE_C_API_FROM_JSON(DotGatesWithNeighbors);
 DotGatesWithNeighborsHandle DotGatesWithNeighbors_create_empty() {
   FALCON_C_API_BEGIN
   return new DotGatesWithNeighborsSP(std::make_shared<DotGatesWithNeighbors>());
@@ -28,15 +34,6 @@ DotGatesWithNeighborsHandle DotGatesWithNeighbors_create(
 }
 
 // Destructor
-void DotGatesWithNeighbors_destroy(DotGatesWithNeighborsHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DotGatesWithNeighbors_destroy: handle cannot be null");
-  }
-  delete static_cast<DotGatesWithNeighborsSP*>(handle);
-  FALCON_C_API_END()
-}
 
 // Methods
 bool DotGatesWithNeighbors_is_plunger_gates(
@@ -217,68 +214,5 @@ size_t DotGatesWithNeighbors_index(DotGatesWithNeighborsHandle handle,
       *static_cast<DotGateWithNeighborsSP*>(value);
   return self->index(real_value);
   FALCON_C_API_END(0)
-}
-
-bool DotGatesWithNeighbors_equal(DotGatesWithNeighborsHandle handle,
-                                 DotGatesWithNeighborsHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DotGatesWithNeighbors_equal: first handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "DotGatesWithNeighbors_equal: second handle cannot be null");
-  }
-  DotGatesWithNeighborsSP self = *static_cast<DotGatesWithNeighborsSP*>(handle);
-  DotGatesWithNeighborsSP real_other =
-      *static_cast<DotGatesWithNeighborsSP*>(other);
-  return *self == *real_other;
-  FALCON_C_API_END(false)
-}
-
-bool DotGatesWithNeighbors_not_equal(DotGatesWithNeighborsHandle handle,
-                                     DotGatesWithNeighborsHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DotGatesWithNeighbors_not_equal: first handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "DotGatesWithNeighbors_not_equal: second handle cannot be null");
-  }
-  DotGatesWithNeighborsSP self = *static_cast<DotGatesWithNeighborsSP*>(handle);
-  DotGatesWithNeighborsSP real_other =
-      *static_cast<DotGatesWithNeighborsSP*>(other);
-  return *self != *real_other;
-  FALCON_C_API_END(false)
-}
-
-StringHandle DotGatesWithNeighbors_to_json_string(
-    DotGatesWithNeighborsHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DotGatesWithNeighbors_to_json_string: handle cannot be null");
-  }
-  DotGatesWithNeighborsSP self = *static_cast<DotGatesWithNeighborsSP*>(handle);
-  return String_create(self->to_json_string().c_str(),
-                       self->to_json_string().size());
-  FALCON_C_API_END(nullptr)
-}
-
-DotGatesWithNeighborsHandle DotGatesWithNeighbors_from_json_string(
-    StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "DotGatesWithNeighbors_from_json_string: json cannot be null");
-  }
-  std::string real_json(json->raw, json->length);
-  return new DotGatesWithNeighborsSP(
-      DotGatesWithNeighbors::from_json_string<DotGatesWithNeighbors>(
-          real_json));
-  FALCON_C_API_END(nullptr)
 }
 }

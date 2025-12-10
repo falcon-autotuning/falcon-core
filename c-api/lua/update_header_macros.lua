@@ -80,26 +80,61 @@ end
 ---Removes lines matching any cleanup pattern, and also removes a preceding category comment if present.
 ---@param lines string[]
 ---@param patterns string[]
+---@param Type string
 ---@return string[]
-local function cleanup_lines_with_comments(lines, patterns)
+local function cleanup_lines_with_comments(lines, patterns, Type)
 	local cleaned = {}
+	local skip_mode = false
 	local i = 1
 	while i <= #lines do
 		local line = lines[i]
-		local skip = false
-		for _, pat in ipairs(patterns) do
-			if line:match(pat) then
-				skip = true
-				-- Also skip the previous line if it's a category comment
+
+		-- Handle case where type is on its own line and next line is a function declaration
+		if line:match("^%s*" .. Type .. "Handle%s*$") and i < #lines then
+			local next_line = lines[i + 1]
+			local match_next = false
+			for _, pat in ipairs(patterns) do
+				if next_line:match(pat) then
+					match_next = true
+					break
+				end
+			end
+			if match_next then
+				-- Remove preceding category comment if present
 				if #cleaned > 0 and cleaned[#cleaned]:match("^%s*// @category:") then
 					table.remove(cleaned, #cleaned)
 				end
-				break
+				-- Skip both lines
+				i = i + 2
+				goto continue
 			end
 		end
-		if not skip then
+
+		if skip_mode then
+			if line:find("%);%s*$") then
+				skip_mode = false
+			end
+		elseif
+			(function()
+				for _, pat in ipairs(patterns) do
+					if line:match(pat) then
+						return true
+					end
+				end
+				return false
+			end)()
+		then
+			if #cleaned > 0 and cleaned[#cleaned]:match("^%s*// @category:") then
+				table.remove(cleaned, #cleaned)
+			end
+			if not line:find("%);%s*$") then
+				skip_mode = true
+			end
+		else
 			table.insert(cleaned, line)
 		end
+
+		::continue::
 		i = i + 1
 	end
 	return cleaned
@@ -135,7 +170,7 @@ local function update_header_macros()
 	end
 	-- Remove existing function declarations and their category comments
 	local cleanup_patterns = get_cleanup_patterns(Type)
-	lines = cleanup_lines_with_comments(lines, cleanup_patterns)
+	lines = cleanup_lines_with_comments(lines, cleanup_patterns, Type)
 	-- Recompute typedef index after cleanup
 	_, typedef_idx = find_typedef_type(lines)
 	-- Insert new function declarations after typedef

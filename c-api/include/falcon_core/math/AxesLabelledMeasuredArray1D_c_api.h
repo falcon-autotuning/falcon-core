@@ -15,6 +15,8 @@ typedef void* AxesLabelledMeasuredArray1DHandle;
 // @category:allocation
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create_empty();
 // @category:allocation
+AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_copy(AxesLabelledMeasuredArray1DHandle handle);
+// @category:allocation
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create(ListLabelledMeasuredArray1DHandle data);
 // @category:deallocation
 void AxesLabelledMeasuredArray1D_destroy(AxesLabelledMeasuredArray1DHandle handle);
@@ -39,9 +41,9 @@ size_t AxesLabelledMeasuredArray1D_index(AxesLabelledMeasuredArray1DHandle handl
 // @category:read
 AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_intersection(AxesLabelledMeasuredArray1DHandle handle, AxesLabelledMeasuredArray1DHandle other);
 // @category:read
-bool AxesLabelledMeasuredArray1D_equal(AxesLabelledMeasuredArray1DHandle a, AxesLabelledMeasuredArray1DHandle b);
+bool AxesLabelledMeasuredArray1D_equal(AxesLabelledMeasuredArray1DHandle handle, AxesLabelledMeasuredArray1DHandle other);
 // @category:read
-bool AxesLabelledMeasuredArray1D_not_equal(AxesLabelledMeasuredArray1DHandle a, AxesLabelledMeasuredArray1DHandle b);
+bool AxesLabelledMeasuredArray1D_not_equal(AxesLabelledMeasuredArray1DHandle handle, AxesLabelledMeasuredArray1DHandle other);
 
 // @category:read
 StringHandle      AxesLabelledMeasuredArray1D_to_json_string(AxesLabelledMeasuredArray1DHandle handle);

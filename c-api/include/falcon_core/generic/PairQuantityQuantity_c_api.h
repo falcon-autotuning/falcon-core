@@ -12,6 +12,8 @@ typedef void* PairQuantityQuantityHandle;
 
 // @category:allocation
 PairQuantityQuantityHandle PairQuantityQuantity_create(QuantityHandle first, QuantityHandle second);
+// @category:allocation
+PairQuantityQuantityHandle PairQuantityQuantity_copy(PairQuantityQuantityHandle handle);
 // @category:deallocation
 void PairQuantityQuantity_destroy(PairQuantityQuantityHandle handle);
 // @category:read
@@ -19,9 +21,9 @@ QuantityHandle PairQuantityQuantity_first(PairQuantityQuantityHandle handle);
 // @category:read
 QuantityHandle PairQuantityQuantity_second(PairQuantityQuantityHandle handle);
 // @category:read
-bool PairQuantityQuantity_equal(PairQuantityQuantityHandle a, PairQuantityQuantityHandle b);
+bool PairQuantityQuantity_equal(PairQuantityQuantityHandle handle, PairQuantityQuantityHandle other);
 // @category:read
-bool PairQuantityQuantity_not_equal(PairQuantityQuantityHandle a, PairQuantityQuantityHandle b);
+bool PairQuantityQuantity_not_equal(PairQuantityQuantityHandle handle, PairQuantityQuantityHandle other);
 // @category:read
 StringHandle      PairQuantityQuantity_to_json_string(PairQuantityQuantityHandle handle);
 // @category:allocation

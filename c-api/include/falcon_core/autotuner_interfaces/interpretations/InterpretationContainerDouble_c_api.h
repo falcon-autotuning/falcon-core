@@ -20,6 +20,8 @@ typedef void* InterpretationContainerDoubleHandle;
 
 // @category:allocation
 InterpretationContainerDoubleHandle InterpretationContainerDouble_create(MapInterpretationContextDoubleHandle contextDoubleMap);
+// @category:allocation
+InterpretationContainerDoubleHandle InterpretationContainerDouble_copy(InterpretationContainerDoubleHandle handle);
 // @category:deallocation
 void InterpretationContainerDouble_destroy(InterpretationContainerDoubleHandle handle);
 // @category:read

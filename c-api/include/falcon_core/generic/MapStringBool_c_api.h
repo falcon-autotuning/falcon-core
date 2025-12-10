@@ -16,6 +16,8 @@ typedef void* MapStringBoolHandle;
 // @category:allocation
 MapStringBoolHandle MapStringBool_create_empty();
 // @category:allocation
+MapStringBoolHandle MapStringBool_copy(MapStringBoolHandle handle);
+// @category:allocation
 MapStringBoolHandle MapStringBool_create(PairStringBoolHandle* data, size_t count);
 // @category:deallocation
 void MapStringBool_destroy(MapStringBoolHandle handle);
@@ -42,9 +44,9 @@ ListBoolHandle MapStringBool_values(MapStringBoolHandle handle);
 // @category:read
 ListPairStringBoolHandle MapStringBool_items(MapStringBoolHandle handle);
 // @category:read
-bool MapStringBool_equal(MapStringBoolHandle a, MapStringBoolHandle b);
+bool MapStringBool_equal(MapStringBoolHandle handle, MapStringBoolHandle other);
 // @category:read
-bool MapStringBool_not_equal(MapStringBoolHandle a, MapStringBoolHandle b);
+bool MapStringBool_not_equal(MapStringBoolHandle handle, MapStringBoolHandle other);
 // @category:read
 StringHandle      MapStringBool_to_json_string(MapStringBoolHandle handle);
 // @category:allocation

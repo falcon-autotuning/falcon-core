@@ -1,13 +1,18 @@
 #include "falcon_core/math/Quantity_c_api.h"
 
 #include <falcon_core/math/Quantity.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::math;
 
 extern "C" {
+DEFINE_C_API_COPY(Quantity);
+DEFINE_C_API_DESTROY(Quantity);
+DEFINE_C_API_EQUAL(Quantity);
+DEFINE_C_API_NOT_EQUAL(Quantity);
+DEFINE_C_API_TO_JSON(Quantity);
+DEFINE_C_API_FROM_JSON(Quantity);
 QuantityHandle Quantity_create(double value, SymbolUnitHandle unit) {
   FALCON_C_API_BEGIN
   if (!unit) {
@@ -17,15 +22,6 @@ QuantityHandle Quantity_create(double value, SymbolUnitHandle unit) {
       *static_cast<falcon_core::physics::units::SymbolUnitSP*>(unit);
   return new QuantitySP(std::make_shared<Quantity>(value, real_unit));
   FALCON_C_API_END(nullptr)
-}
-
-void Quantity_destroy(QuantityHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Quantity_destroy: handle cannot be null");
-  }
-  delete static_cast<QuantitySP*>(handle);
-  FALCON_C_API_END()
 }
 
 double Quantity_value(QuantityHandle handle) {
@@ -320,57 +316,6 @@ QuantityHandle Quantity_abs(QuantityHandle handle) {
   }
   QuantitySP self = *static_cast<QuantitySP*>(handle);
   return new QuantitySP(self->abs());
-  FALCON_C_API_END(nullptr)
-}
-
-bool Quantity_equal(QuantityHandle handle, QuantityHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Quantity_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Quantity_equal: b cannot be null");
-  }
-  QuantitySP self_a = *static_cast<QuantitySP*>(handle);
-  QuantitySP self_b = *static_cast<QuantitySP*>(other);
-  return *self_a == *self_b;
-  FALCON_C_API_END(false)
-}
-
-bool Quantity_not_equal(QuantityHandle handle, QuantityHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Quantity_not_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Quantity_not_equal: b cannot be null");
-  }
-  QuantitySP self_a = *static_cast<QuantitySP*>(handle);
-  QuantitySP self_b = *static_cast<QuantitySP*>(other);
-  return *self_a != *self_b;
-  FALCON_C_API_END(false)
-}
-
-StringHandle Quantity_to_json_string(QuantityHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Quantity_to_json_string: handle cannot be null");
-  }
-  QuantitySP  self = *static_cast<QuantitySP*>(handle);
-  std::string json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-QuantityHandle Quantity_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Quantity_from_json_string: json cannot be null");
-  }
-  QuantitySP ptr = Quantity::from_json_string<Quantity>(json->raw);
-  return new QuantitySP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

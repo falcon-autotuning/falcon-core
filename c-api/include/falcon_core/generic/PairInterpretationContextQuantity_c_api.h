@@ -13,6 +13,8 @@ typedef void* PairInterpretationContextQuantityHandle;
 
 // @category:allocation
 PairInterpretationContextQuantityHandle PairInterpretationContextQuantity_create(InterpretationContextHandle first, QuantityHandle second);
+// @category:allocation
+PairInterpretationContextQuantityHandle PairInterpretationContextQuantity_copy(PairInterpretationContextQuantityHandle handle);
 // @category:deallocation
 void PairInterpretationContextQuantity_destroy(PairInterpretationContextQuantityHandle handle);
 // @category:read
@@ -20,9 +22,9 @@ InterpretationContextHandle PairInterpretationContextQuantity_first(PairInterpre
 // @category:read
 QuantityHandle PairInterpretationContextQuantity_second(PairInterpretationContextQuantityHandle handle);
 // @category:read
-bool PairInterpretationContextQuantity_equal(PairInterpretationContextQuantityHandle a, PairInterpretationContextQuantityHandle b);
+bool PairInterpretationContextQuantity_equal(PairInterpretationContextQuantityHandle handle, PairInterpretationContextQuantityHandle other);
 // @category:read
-bool PairInterpretationContextQuantity_not_equal(PairInterpretationContextQuantityHandle a, PairInterpretationContextQuantityHandle b);
+bool PairInterpretationContextQuantity_not_equal(PairInterpretationContextQuantityHandle handle, PairInterpretationContextQuantityHandle other);
 // @category:read
 StringHandle      PairInterpretationContextQuantity_to_json_string(PairInterpretationContextQuantityHandle handle);
 // @category:allocation

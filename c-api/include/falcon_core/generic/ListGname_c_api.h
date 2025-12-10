@@ -13,6 +13,8 @@ typedef void* ListGnameHandle;
 
 // @category:allocation
 ListGnameHandle ListGname_create_empty();
+// @category:allocation
+ListGnameHandle ListGname_copy(ListGnameHandle handle);
 
 // @category:allocation
 ListGnameHandle ListGname_fill_value(size_t count, GnameHandle value);
@@ -41,9 +43,9 @@ size_t ListGname_index(ListGnameHandle handle, GnameHandle value);
 // @category:read
 ListGnameHandle ListGname_intersection(ListGnameHandle handle, ListGnameHandle other);
 // @category:read
-bool ListGname_equal(ListGnameHandle a, ListGnameHandle b);
+bool ListGname_equal(ListGnameHandle handle, ListGnameHandle other);
 // @category:read
-bool ListGname_not_equal(ListGnameHandle a, ListGnameHandle b);
+bool ListGname_not_equal(ListGnameHandle handle, ListGnameHandle other);
 
 // @category:read
 StringHandle      ListGname_to_json_string(ListGnameHandle handle);

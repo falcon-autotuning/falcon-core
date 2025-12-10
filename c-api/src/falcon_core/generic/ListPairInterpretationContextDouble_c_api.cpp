@@ -1,10 +1,18 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListPairInterpretationContextDoubleHandle= falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>;
+DEFINE_C_API_COPY_TEMPLATE(ListPairInterpretationContextDouble, MACROListPairInterpretationContextDoubleHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListPairInterpretationContextDouble, MACROListPairInterpretationContextDoubleHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListPairInterpretationContextDouble, MACROListPairInterpretationContextDoubleHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListPairInterpretationContextDouble, MACROListPairInterpretationContextDoubleHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListPairInterpretationContextDouble, MACROListPairInterpretationContextDoubleHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListPairInterpretationContextDouble, MACROListPairInterpretationContextDoubleHandle);
 ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>>());
@@ -40,15 +48,6 @@ throw std::invalid_argument("Null data handle passed to ListPairInterpretationCo
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListPairInterpretationContextDouble_destroy(ListPairInterpretationContextDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListPairInterpretationContextDouble_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListPairInterpretationContextDouble_size(ListPairInterpretationContextDoubleHandle handle) {
@@ -160,28 +159,6 @@ throw std::invalid_argument("Null handle passed to ListPairInterpretationContext
     FALCON_C_API_END(nullptr)
 }
 
-bool ListPairInterpretationContextDouble_equal(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairInterpretationContextDouble_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListPairInterpretationContextDouble_not_equal(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairInterpretationContextDouble_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_intersection(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -191,26 +168,6 @@ throw std::invalid_argument("Null handle passed to ListPairInterpretationContext
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListPairInterpretationContextDouble_to_json_string(ListPairInterpretationContextDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListPairInterpretationContextDouble_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListPairInterpretationContextDouble_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, double>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

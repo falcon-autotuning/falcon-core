@@ -1,5 +1,6 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/generic/List.hpp>
 #include <falcon_core/math/Quantity.hpp>
@@ -7,6 +8,13 @@
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListPairInterpretationContextQuantityHandle= falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>;
+DEFINE_C_API_COPY_TEMPLATE(ListPairInterpretationContextQuantity, MACROListPairInterpretationContextQuantityHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListPairInterpretationContextQuantity, MACROListPairInterpretationContextQuantityHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListPairInterpretationContextQuantity, MACROListPairInterpretationContextQuantityHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListPairInterpretationContextQuantity, MACROListPairInterpretationContextQuantityHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListPairInterpretationContextQuantity, MACROListPairInterpretationContextQuantityHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListPairInterpretationContextQuantity, MACROListPairInterpretationContextQuantityHandle);
 ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>>());
@@ -42,15 +50,6 @@ throw std::invalid_argument("Null data handle passed to ListPairInterpretationCo
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListPairInterpretationContextQuantity_destroy(ListPairInterpretationContextQuantityHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListPairInterpretationContextQuantity_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListPairInterpretationContextQuantity_size(ListPairInterpretationContextQuantityHandle handle) {
@@ -162,28 +161,6 @@ throw std::invalid_argument("Null handle passed to ListPairInterpretationContext
     FALCON_C_API_END(nullptr)
 }
 
-bool ListPairInterpretationContextQuantity_equal(ListPairInterpretationContextQuantityHandle handle, ListPairInterpretationContextQuantityHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairInterpretationContextQuantity_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListPairInterpretationContextQuantity_not_equal(ListPairInterpretationContextQuantityHandle handle, ListPairInterpretationContextQuantityHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairInterpretationContextQuantity_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_intersection(ListPairInterpretationContextQuantityHandle handle, ListPairInterpretationContextQuantityHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -193,26 +170,6 @@ throw std::invalid_argument("Null handle passed to ListPairInterpretationContext
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListPairInterpretationContextQuantity_to_json_string(ListPairInterpretationContextQuantityHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListPairInterpretationContextQuantity_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListPairInterpretationContextQuantity_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, falcon_core::math::Quantity>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

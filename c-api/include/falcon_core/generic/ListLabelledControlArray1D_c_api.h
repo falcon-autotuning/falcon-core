@@ -13,6 +13,8 @@ typedef void* ListLabelledControlArray1DHandle;
 
 // @category:allocation
 ListLabelledControlArray1DHandle ListLabelledControlArray1D_create_empty();
+// @category:allocation
+ListLabelledControlArray1DHandle ListLabelledControlArray1D_copy(ListLabelledControlArray1DHandle handle);
 
 // @category:allocation
 ListLabelledControlArray1DHandle ListLabelledControlArray1D_fill_value(size_t count, LabelledControlArray1DHandle value);
@@ -41,9 +43,9 @@ size_t ListLabelledControlArray1D_index(ListLabelledControlArray1DHandle handle,
 // @category:read
 ListLabelledControlArray1DHandle ListLabelledControlArray1D_intersection(ListLabelledControlArray1DHandle handle, ListLabelledControlArray1DHandle other);
 // @category:read
-bool ListLabelledControlArray1D_equal(ListLabelledControlArray1DHandle a, ListLabelledControlArray1DHandle b);
+bool ListLabelledControlArray1D_equal(ListLabelledControlArray1DHandle handle, ListLabelledControlArray1DHandle other);
 // @category:read
-bool ListLabelledControlArray1D_not_equal(ListLabelledControlArray1DHandle a, ListLabelledControlArray1DHandle b);
+bool ListLabelledControlArray1D_not_equal(ListLabelledControlArray1DHandle handle, ListLabelledControlArray1DHandle other);
 
 // @category:read
 StringHandle      ListLabelledControlArray1D_to_json_string(ListLabelledControlArray1DHandle handle);

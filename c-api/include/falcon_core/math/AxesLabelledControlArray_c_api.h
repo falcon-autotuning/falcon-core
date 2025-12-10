@@ -15,6 +15,8 @@ typedef void* AxesLabelledControlArrayHandle;
 // @category:allocation
 AxesLabelledControlArrayHandle AxesLabelledControlArray_create_empty();
 // @category:allocation
+AxesLabelledControlArrayHandle AxesLabelledControlArray_copy(AxesLabelledControlArrayHandle handle);
+// @category:allocation
 AxesLabelledControlArrayHandle AxesLabelledControlArray_create(ListLabelledControlArrayHandle data);
 // @category:deallocation
 void AxesLabelledControlArray_destroy(AxesLabelledControlArrayHandle handle);
@@ -39,9 +41,9 @@ size_t AxesLabelledControlArray_index(AxesLabelledControlArrayHandle handle, Lab
 // @category:read
 AxesLabelledControlArrayHandle AxesLabelledControlArray_intersection(AxesLabelledControlArrayHandle handle, AxesLabelledControlArrayHandle other);
 // @category:read
-bool AxesLabelledControlArray_equal(AxesLabelledControlArrayHandle a, AxesLabelledControlArrayHandle b);
+bool AxesLabelledControlArray_equal(AxesLabelledControlArrayHandle handle, AxesLabelledControlArrayHandle other);
 // @category:read
-bool AxesLabelledControlArray_not_equal(AxesLabelledControlArrayHandle a, AxesLabelledControlArrayHandle b);
+bool AxesLabelledControlArray_not_equal(AxesLabelledControlArrayHandle handle, AxesLabelledControlArrayHandle other);
 
 // @category:read
 StringHandle      AxesLabelledControlArray_to_json_string(AxesLabelledControlArrayHandle handle);

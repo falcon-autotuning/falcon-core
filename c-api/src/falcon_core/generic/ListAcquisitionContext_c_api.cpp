@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListAcquisitionContext_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListAcquisitionContextHandle= falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>;
+DEFINE_C_API_COPY_TEMPLATE(ListAcquisitionContext, MACROListAcquisitionContextHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListAcquisitionContext, MACROListAcquisitionContextHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListAcquisitionContext, MACROListAcquisitionContextHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListAcquisitionContext, MACROListAcquisitionContextHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListAcquisitionContext, MACROListAcquisitionContextHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListAcquisitionContext, MACROListAcquisitionContextHandle);
 ListAcquisitionContextHandle ListAcquisitionContext_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListAcquisitionContext_c
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(
         std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListAcquisitionContext_destroy(ListAcquisitionContextHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListAcquisitionContext_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListAcquisitionContext_size(ListAcquisitionContextHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListAcquisitionContext_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListAcquisitionContext_equal(ListAcquisitionContextHandle handle, ListAcquisitionContextHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListAcquisitionContext_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListAcquisitionContext_not_equal(ListAcquisitionContextHandle handle, ListAcquisitionContextHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListAcquisitionContext_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListAcquisitionContextHandle ListAcquisitionContext_intersection(ListAcquisitionContextHandle handle, ListAcquisitionContextHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListAcquisitionContext_inters
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListAcquisitionContext_to_json_string(ListAcquisitionContextHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListAcquisitionContext_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListAcquisitionContextHandle ListAcquisitionContext_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListAcquisitionContext_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>::from_json_string<falcon_core::generic::List<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::contexts::AcquisitionContext>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

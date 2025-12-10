@@ -1,18 +1,20 @@
 #include "falcon_core/math/arrays/ControlArray_c_api.h"
 
 #include <falcon_core/math/arrays/ControlArray.hpp>
-#include <stdexcept>
-#include <string>
 #include <xtensor/xadapt.hpp>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 using namespace falcon_core;
 using namespace falcon_core::math;
 using namespace falcon_core::math::arrays;
 
 extern "C" {
+DEFINE_C_API_COPY(ControlArray);
+DEFINE_C_API_DESTROY(ControlArray);
+DEFINE_C_API_EQUAL(ControlArray);
+DEFINE_C_API_NOT_EQUAL(ControlArray);
+DEFINE_C_API_TO_JSON(ControlArray);
+DEFINE_C_API_FROM_JSON(ControlArray);
 ControlArrayHandle ControlArray_from_data(const double* data,
                                           const size_t* shape,
                                           size_t        ndim) {
@@ -45,15 +47,6 @@ ControlArrayHandle ControlArray_from_farray(FArrayDoubleHandle farray) {
       *static_cast<generic::FArraySP<double>*>(farray);
   return new ControlArraySP(std::make_shared<ControlArray>(real_farray));
   FALCON_C_API_END(nullptr)
-}
-
-void ControlArray_destroy(ControlArrayHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Null handle passed to ControlArray_destroy");
-  }
-  delete static_cast<ControlArraySP*>(handle);
-  FALCON_C_API_END()
 }
 
 size_t ControlArray_size(ControlArrayHandle handle) {
@@ -487,29 +480,6 @@ ControlArrayHandle ControlArray_max_control_array(ControlArrayHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-bool ControlArray_equal(ControlArrayHandle handle, ControlArrayHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument("Null handle passed to ControlArray_equal");
-  }
-  auto control_array = *static_cast<ControlArraySP*>(handle);
-  auto oarray        = *static_cast<ControlArraySP*>(other);
-  return *control_array == *oarray;
-  FALCON_C_API_END(false)
-}
-
-bool ControlArray_not_equal(ControlArrayHandle handle,
-                            ControlArrayHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument("Null handle passed to ControlArray_not_equal");
-  }
-  auto control_array = *static_cast<ControlArraySP*>(handle);
-  auto oarray        = *static_cast<ControlArraySP*>(other);
-  return *control_array != *oarray;
-  FALCON_C_API_END(false)
-}
-
 bool ControlArray_greater_than(ControlArrayHandle handle, const double value) {
   FALCON_C_API_BEGIN
   if (!handle) {
@@ -658,28 +628,5 @@ double ControlArray_get_summed_diff_array_of_squares(ControlArrayHandle handle,
       std::make_shared<ControlArray>(*static_cast<ControlArraySP*>(other));
   return control_array->get_sum_of_squares(oarray);
   FALCON_C_API_END(0.0)
-}
-
-StringHandle ControlArray_to_json_string(ControlArrayHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to ControlArray_to_json_string");
-  }
-  std::string json = (*static_cast<ControlArraySP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-ControlArrayHandle ControlArray_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Null string handle passed to ControlArray_from_json_string");
-  }
-  std::string raw_json(json->raw);
-  auto        ptr = ControlArray::from_json_string<ControlArray>(raw_json);
-  return new ControlArraySP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

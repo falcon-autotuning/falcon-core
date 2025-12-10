@@ -15,6 +15,8 @@ typedef void* MapInterpretationContextDoubleHandle;
 // @category:allocation
 MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create_empty();
 // @category:allocation
+MapInterpretationContextDoubleHandle MapInterpretationContextDouble_copy(MapInterpretationContextDoubleHandle handle);
+// @category:allocation
 MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create(PairInterpretationContextDoubleHandle* data, size_t count);
 // @category:deallocation
 void MapInterpretationContextDouble_destroy(MapInterpretationContextDoubleHandle handle);
@@ -41,9 +43,9 @@ ListDoubleHandle MapInterpretationContextDouble_values(MapInterpretationContextD
 // @category:read
 ListPairInterpretationContextDoubleHandle MapInterpretationContextDouble_items(MapInterpretationContextDoubleHandle handle);
 // @category:read
-bool MapInterpretationContextDouble_equal(MapInterpretationContextDoubleHandle a, MapInterpretationContextDoubleHandle b);
+bool MapInterpretationContextDouble_equal(MapInterpretationContextDoubleHandle handle, MapInterpretationContextDoubleHandle other);
 // @category:read
-bool MapInterpretationContextDouble_not_equal(MapInterpretationContextDoubleHandle a, MapInterpretationContextDoubleHandle b);
+bool MapInterpretationContextDouble_not_equal(MapInterpretationContextDoubleHandle handle, MapInterpretationContextDoubleHandle other);
 // @category:read
 StringHandle      MapInterpretationContextDouble_to_json_string(MapInterpretationContextDoubleHandle handle);
 // @category:allocation

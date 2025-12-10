@@ -13,6 +13,8 @@ typedef void* ListPairInterpretationContextDoubleHandle;
 
 // @category:allocation
 ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create_empty();
+// @category:allocation
+ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_copy(ListPairInterpretationContextDoubleHandle handle);
 
 // @category:allocation
 ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_fill_value(size_t count, PairInterpretationContextDoubleHandle value);
@@ -41,9 +43,9 @@ size_t ListPairInterpretationContextDouble_index(ListPairInterpretationContextDo
 // @category:read
 ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_intersection(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other);
 // @category:read
-bool ListPairInterpretationContextDouble_equal(ListPairInterpretationContextDoubleHandle a, ListPairInterpretationContextDoubleHandle b);
+bool ListPairInterpretationContextDouble_equal(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other);
 // @category:read
-bool ListPairInterpretationContextDouble_not_equal(ListPairInterpretationContextDoubleHandle a, ListPairInterpretationContextDoubleHandle b);
+bool ListPairInterpretationContextDouble_not_equal(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other);
 
 // @category:read
 StringHandle      ListPairInterpretationContextDouble_to_json_string(ListPairInterpretationContextDoubleHandle handle);

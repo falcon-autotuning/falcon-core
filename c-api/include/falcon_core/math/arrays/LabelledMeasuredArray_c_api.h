@@ -13,13 +13,28 @@ extern "C" {
 typedef void* LabelledMeasuredArrayHandle;
 
 // @category:allocation
+LabelledMeasuredArrayHandle LabelledMeasuredArray_copy(
+    LabelledMeasuredArrayHandle handle);
+// @category:deallocation
+void LabelledMeasuredArray_destroy(LabelledMeasuredArrayHandle handle);
+// @category:read
+bool LabelledMeasuredArray_equal(LabelledMeasuredArrayHandle handle,
+                                 LabelledMeasuredArrayHandle other);
+// @category:read
+bool LabelledMeasuredArray_not_equal(LabelledMeasuredArrayHandle handle,
+                                     LabelledMeasuredArrayHandle other);
+// @category:read
+StringHandle LabelledMeasuredArray_to_json_string(
+    LabelledMeasuredArrayHandle handle);
+// @category:allocation
+LabelledMeasuredArrayHandle LabelledMeasuredArray_from_json_string(
+    StringHandle json);
+// @category:allocation
 LabelledMeasuredArrayHandle LabelledMeasuredArray_from_farray(
     FArrayDoubleHandle farray, AcquisitionContextHandle label);
 // @category:allocation
 LabelledMeasuredArrayHandle LabelledMeasuredArray_from_measured_array(
     MeasuredArrayHandle measuredarray, AcquisitionContextHandle label);
-// @category:deallocation
-void LabelledMeasuredArray_destroy(LabelledMeasuredArrayHandle handle);
 // @category:read
 AcquisitionContextHandle LabelledMeasuredArray_label(
     LabelledMeasuredArrayHandle handle);
@@ -147,7 +162,8 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_pow(
 LabelledMeasuredArrayHandle LabelledMeasuredArray_abs(
     LabelledMeasuredArrayHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledMeasuredArray_min | falcon_core::math::arrays::LabelledMeasuredArray::min */
+/* AUTO-DOC from cpp: LabelledMeasuredArray_min |
+ * falcon_core::math::arrays::LabelledMeasuredArray::min */
 /**
  * @brief Return the minimum value of the array.
  */
@@ -159,7 +175,8 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_min_farray(
 LabelledMeasuredArrayHandle LabelledMeasuredArray_min_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
 // @category:read
-/* AUTO-DOC from cpp: LabelledMeasuredArray_max | falcon_core::math::arrays::LabelledMeasuredArray::max */
+/* AUTO-DOC from cpp: LabelledMeasuredArray_max |
+ * falcon_core::math::arrays::LabelledMeasuredArray::max */
 /**
  * @brief Return the maximum value of the array.
  */
@@ -170,12 +187,6 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
 // @category:read
 LabelledMeasuredArrayHandle LabelledMeasuredArray_max_measured_array(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
-// @category:read
-bool LabelledMeasuredArray_equal(LabelledMeasuredArrayHandle handle,
-                                 LabelledMeasuredArrayHandle other);
-// @category:read
-bool LabelledMeasuredArray_not_equal(LabelledMeasuredArrayHandle handle,
-                                     LabelledMeasuredArrayHandle other);
 // @category:read
 bool LabelledMeasuredArray_greater_than(LabelledMeasuredArrayHandle handle,
                                         double                      value);
@@ -188,7 +199,8 @@ void LabelledMeasuredArray_remove_offset(LabelledMeasuredArrayHandle handle,
 // @category:read
 double LabelledMeasuredArray_sum(LabelledMeasuredArrayHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledMeasuredArray_reshape | falcon_core::math::arrays::LabelledMeasuredArray::reshape */
+/* AUTO-DOC from cpp: LabelledMeasuredArray_reshape |
+ * falcon_core::math::arrays::LabelledMeasuredArray::reshape */
 /**
  * @brief Return a new Array with the given shape.
  * @param shape The new shape.
@@ -200,7 +212,8 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_reshape(
 ListListSizeTHandle LabelledMeasuredArray_where(
     LabelledMeasuredArrayHandle handle, double value);
 // @category:read
-/* AUTO-DOC from cpp: LabelledMeasuredArray_flip | falcon_core::math::arrays::LabelledMeasuredArray::flip */
+/* AUTO-DOC from cpp: LabelledMeasuredArray_flip |
+ * falcon_core::math::arrays::LabelledMeasuredArray::flip */
 /**
  * @brief Flip the data along the given axis.
  * @param axis The axis to flip.
@@ -214,7 +227,8 @@ size_t LabelledMeasuredArray_full_gradient(
     LabelledMeasuredArrayHandle* out_buffer,
     size_t                       buffer_size);
 // @category:read
-/* AUTO-DOC from cpp: LabelledMeasuredArray_gradient | falcon_core::math::arrays::LabelledMeasuredArray::gradient */
+/* AUTO-DOC from cpp: LabelledMeasuredArray_gradient |
+ * falcon_core::math::arrays::LabelledMeasuredArray::gradient */
 /**
  * @brief Return the gradient of the data along a given axis.
  * Computes the gradient along the specified axis using finite differences:
@@ -224,7 +238,8 @@ size_t LabelledMeasuredArray_full_gradient(
  * @param axis The axis to compute the gradient.
  * @return The gradient FArray.
  */
-/* AUTO-DOC from cpp: LabelledMeasuredArray_gradient | falcon_core::math::arrays::LabelledMeasuredArray::gradient */
+/* AUTO-DOC from cpp: LabelledMeasuredArray_gradient |
+ * falcon_core::math::arrays::LabelledMeasuredArray::gradient */
 /**
  * @brief Return the gradient of the data along a given axis.
  * Computes the gradient along the specified axis using finite differences:
@@ -248,12 +263,6 @@ double LabelledMeasuredArray_get_summed_diff_double_of_squares(
 // @category:read
 double LabelledMeasuredArray_get_summed_diff_array_of_squares(
     LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
-// @category:read
-StringHandle LabelledMeasuredArray_to_json_string(
-    LabelledMeasuredArrayHandle handle);
-// @category:allocation
-LabelledMeasuredArrayHandle LabelledMeasuredArray_from_json_string(
-    StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -12,6 +12,8 @@ typedef void* PairConnectionFloatHandle;
 
 // @category:allocation
 PairConnectionFloatHandle PairConnectionFloat_create(ConnectionHandle first, float second);
+// @category:allocation
+PairConnectionFloatHandle PairConnectionFloat_copy(PairConnectionFloatHandle handle);
 // @category:deallocation
 void PairConnectionFloat_destroy(PairConnectionFloatHandle handle);
 // @category:read
@@ -19,9 +21,9 @@ ConnectionHandle PairConnectionFloat_first(PairConnectionFloatHandle handle);
 // @category:read
 float PairConnectionFloat_second(PairConnectionFloatHandle handle);
 // @category:read
-bool PairConnectionFloat_equal(PairConnectionFloatHandle a, PairConnectionFloatHandle b);
+bool PairConnectionFloat_equal(PairConnectionFloatHandle handle, PairConnectionFloatHandle other);
 // @category:read
-bool PairConnectionFloat_not_equal(PairConnectionFloatHandle a, PairConnectionFloatHandle b);
+bool PairConnectionFloat_not_equal(PairConnectionFloatHandle handle, PairConnectionFloatHandle other);
 // @category:read
 StringHandle      PairConnectionFloat_to_json_string(PairConnectionFloatHandle handle);
 // @category:allocation

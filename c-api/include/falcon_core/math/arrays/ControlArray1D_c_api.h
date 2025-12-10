@@ -12,13 +12,25 @@ extern "C" {
 typedef void* ControlArray1DHandle;
 
 // @category:allocation
+ControlArray1DHandle ControlArray1D_copy(ControlArray1DHandle handle);
+// @category:deallocation
+void ControlArray1D_destroy(ControlArray1DHandle handle);
+// @category:read
+bool ControlArray1D_equal(ControlArray1DHandle handle,
+                          ControlArray1DHandle other);
+// @category:read
+bool ControlArray1D_not_equal(ControlArray1DHandle handle,
+                              ControlArray1DHandle other);
+// @category:read
+StringHandle ControlArray1D_to_json_string(ControlArray1DHandle handle);
+// @category:allocation
+ControlArray1DHandle ControlArray1D_from_json_string(StringHandle json);
+// @category:allocation
 ControlArray1DHandle ControlArray1D_from_data(const double* data,
                                               const size_t* shape,
                                               size_t        ndim);
 // @category:allocation
 ControlArray1DHandle ControlArray1D_from_farray(FArrayDoubleHandle farray);
-// @category:deallocation
-void ControlArray1D_destroy(ControlArray1DHandle handle);
 // @category:read
 bool ControlArray1D_is_1D(ControlArray1DHandle handle);
 // @category:read
@@ -127,7 +139,8 @@ ControlArray1DHandle ControlArray1D_pow(ControlArray1DHandle handle,
 // @category:read
 ControlArray1DHandle ControlArray1D_abs(ControlArray1DHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: ControlArray1D_min | falcon_core::math::arrays::ControlArray1D::min */
+/* AUTO-DOC from cpp: ControlArray1D_min |
+ * falcon_core::math::arrays::ControlArray1D::min */
 /**
  * @brief Return the minimum value of the array.
  */
@@ -139,7 +152,8 @@ ControlArray1DHandle ControlArray1D_min_farray(ControlArray1DHandle handle,
 ControlArray1DHandle ControlArray1D_min_control_array(
     ControlArray1DHandle handle, ControlArray1DHandle other);
 // @category:read
-/* AUTO-DOC from cpp: ControlArray1D_max | falcon_core::math::arrays::ControlArray1D::max */
+/* AUTO-DOC from cpp: ControlArray1D_max |
+ * falcon_core::math::arrays::ControlArray1D::max */
 /**
  * @brief Return the maximum value of the array.
  */
@@ -150,12 +164,6 @@ ControlArray1DHandle ControlArray1D_max_farray(ControlArray1DHandle handle,
 // @category:read
 ControlArray1DHandle ControlArray1D_max_control_array(
     ControlArray1DHandle handle, ControlArray1DHandle other);
-// @category:read
-bool ControlArray1D_equal(ControlArray1DHandle handle,
-                          ControlArray1DHandle other);
-// @category:read
-bool ControlArray1D_not_equal(ControlArray1DHandle handle,
-                              ControlArray1DHandle other);
 // @category:read
 bool ControlArray1D_greater_than(ControlArray1DHandle handle, double value);
 // @category:read
@@ -168,7 +176,8 @@ double ControlArray1D_sum(ControlArray1DHandle handle);
 ListListSizeTHandle ControlArray1D_where(ControlArray1DHandle handle,
                                          double               value);
 // @category:read
-/* AUTO-DOC from cpp: ControlArray1D_flip | falcon_core::math::arrays::ControlArray1D::flip */
+/* AUTO-DOC from cpp: ControlArray1D_flip |
+ * falcon_core::math::arrays::ControlArray1D::flip */
 /**
  * @brief Flip the data along the given axis.
  * @param axis The axis to flip.
@@ -181,7 +190,8 @@ size_t ControlArray1D_full_gradient(ControlArray1DHandle handle,
                                     FArrayDoubleHandle*  out_buffer,
                                     size_t               buffer_size);
 // @category:read
-/* AUTO-DOC from cpp: ControlArray1D_gradient | falcon_core::math::arrays::ControlArray1D::gradient */
+/* AUTO-DOC from cpp: ControlArray1D_gradient |
+ * falcon_core::math::arrays::ControlArray1D::gradient */
 /**
  * @brief Return the gradient of the data along a given axis.
  * Computes the gradient along the specified axis using finite differences:
@@ -204,10 +214,6 @@ double ControlArray1D_get_summed_diff_double_of_squares(
 // @category:read
 double ControlArray1D_get_summed_diff_array_of_squares(
     ControlArray1DHandle handle, ControlArray1DHandle other);
-// @category:read
-StringHandle ControlArray1D_to_json_string(ControlArray1DHandle handle);
-// @category:allocation
-ControlArray1DHandle ControlArray1D_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

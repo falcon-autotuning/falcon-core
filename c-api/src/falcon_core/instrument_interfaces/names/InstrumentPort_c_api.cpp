@@ -1,14 +1,18 @@
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 
 #include <falcon_core/instrument_interfaces/names/InstrumentPort.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 
 using namespace falcon_core::instrument_interfaces::names;
 
 extern "C" {
+DEFINE_C_API_COPY(InstrumentPort);
+DEFINE_C_API_DESTROY(InstrumentPort);
+DEFINE_C_API_EQUAL(InstrumentPort);
+DEFINE_C_API_NOT_EQUAL(InstrumentPort);
+DEFINE_C_API_TO_JSON(InstrumentPort);
+DEFINE_C_API_FROM_JSON(InstrumentPort);
 InstrumentPortHandle InstrumentPort_create_port(StringHandle     default_name,
                                                 ConnectionHandle psuedo_name,
                                                 StringHandle instrument_type,
@@ -136,16 +140,6 @@ InstrumentPortHandle InstrumentPort_create_execution_clock() {
   FALCON_C_API_END(nullptr)
 }
 
-void InstrumentPort_destroy(InstrumentPortHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "InstrumentPort_destroy: handle cannot be null");
-  }
-  delete static_cast<InstrumentPortSP*>(handle);
-  FALCON_C_API_END()
-}
-
 StringHandle InstrumentPort_default_name(InstrumentPortHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
@@ -245,58 +239,5 @@ bool InstrumentPort_is_port(InstrumentPortHandle handle) {
   }
   return (*static_cast<InstrumentPortSP*>(handle))->is_port();
   FALCON_C_API_END(false)
-}
-
-bool InstrumentPort_equal(InstrumentPortHandle handle,
-                          InstrumentPortHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("InstrumentPort_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("InstrumentPort_equal: other cannot be null");
-  }
-  return *(*static_cast<InstrumentPortSP*>(handle)) ==
-         *(*static_cast<InstrumentPortSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool InstrumentPort_not_equal(InstrumentPortHandle handle,
-                              InstrumentPortHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "InstrumentPort_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "InstrumentPort_not_equal: other cannot be null");
-  }
-  return *(*static_cast<InstrumentPortSP*>(handle)) !=
-         *(*static_cast<InstrumentPortSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle InstrumentPort_to_json_string(InstrumentPortHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "InstrumentPort_to_json_string: handle cannot be null");
-  }
-  std::string json =
-      (*static_cast<InstrumentPortSP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-InstrumentPortHandle InstrumentPort_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "InstrumentPort_from_json_string: json cannot be null");
-  }
-  auto ptr = InstrumentPort::from_json_string<InstrumentPort>(json->raw);
-  return new InstrumentPortSP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

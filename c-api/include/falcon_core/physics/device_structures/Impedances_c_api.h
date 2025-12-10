@@ -9,11 +9,21 @@ extern "C" {
 typedef void* ImpedancesHandle;
 
 // @category:allocation
+ImpedancesHandle Impedances_copy(ImpedancesHandle handle);
+// @category:deallocation
+void Impedances_destroy(ImpedancesHandle handle);
+// @category:read
+bool Impedances_equal(ImpedancesHandle handle, ImpedancesHandle other);
+// @category:read
+bool Impedances_not_equal(ImpedancesHandle handle, ImpedancesHandle other);
+// @category:read
+StringHandle Impedances_to_json_string(ImpedancesHandle handle);
+// @category:allocation
+ImpedancesHandle Impedances_from_json_string(StringHandle json);
+// @category:allocation
 ImpedancesHandle Impedances_create_empty();
 // @category:allocation
 ImpedancesHandle Impedances_create(ListImpedanceHandle items);
-// @category:deallocation
-void Impedances_destroy(ImpedancesHandle handle);
 // @category:write
 void Impedances_push_back(ImpedancesHandle handle, ImpedanceHandle value);
 // @category:read
@@ -35,14 +45,6 @@ ImpedancesHandle Impedances_intersection(ImpedancesHandle handle,
                                          ImpedancesHandle other);
 // @category:read
 size_t Impedances_index(ImpedancesHandle handle, ImpedanceHandle value);
-// @category:read
-bool Impedances_equal(ImpedancesHandle handle, ImpedancesHandle other);
-// @category:read
-bool Impedances_not_equal(ImpedancesHandle handle, ImpedancesHandle other);
-// @category:read
-StringHandle Impedances_to_json_string(ImpedancesHandle handle);
-// @category:allocation
-ImpedancesHandle Impedances_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

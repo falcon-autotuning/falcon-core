@@ -16,6 +16,19 @@ extern "C" {
 typedef void* DiscreteSpaceHandle;
 
 // @category:allocation
+DiscreteSpaceHandle DiscreteSpace_copy(DiscreteSpaceHandle handle);
+// @category:deallocation
+void DiscreteSpace_destroy(DiscreteSpaceHandle handle);
+// @category:read
+bool DiscreteSpace_equal(DiscreteSpaceHandle handle, DiscreteSpaceHandle other);
+// @category:read
+bool DiscreteSpace_not_equal(DiscreteSpaceHandle handle,
+                             DiscreteSpaceHandle other);
+// @category:read
+StringHandle DiscreteSpace_to_json_string(DiscreteSpaceHandle handle);
+// @category:allocation
+DiscreteSpaceHandle DiscreteSpace_from_json_string(StringHandle json);
+// @category:allocation
 DiscreteSpaceHandle DiscreteSpace_create(UnitSpaceHandle                 space,
                                          AxesCoupledLabelledDomainHandle axes,
                                          AxesMapStringBoolHandle increasing);
@@ -31,35 +44,40 @@ DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space_1D(
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,
     DomainHandle                domain);
-// @category:deallocation
-void DiscreteSpace_destroy(DiscreteSpaceHandle handle);
 
 // @category:read
-/* AUTO-DOC from cpp: DiscreteSpace_space | falcon_core::math::discrete_spaces::DiscreteSpace::space */
+/* AUTO-DOC from cpp: DiscreteSpace_space |
+ * falcon_core::math::discrete_spaces::DiscreteSpace::space */
 /**
  * @brief Return the stored UnitSpace.
  */
 UnitSpaceHandle DiscreteSpace_space(DiscreteSpaceHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: DiscreteSpace_axes | falcon_core::math::discrete_spaces::DiscreteSpace::axes */
+/* AUTO-DOC from cpp: DiscreteSpace_axes |
+ * falcon_core::math::discrete_spaces::DiscreteSpace::axes */
 /**
  * @brief Return the stored axes.
  */
 AxesCoupledLabelledDomainHandle DiscreteSpace_axes(DiscreteSpaceHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: DiscreteSpace_increasing | falcon_core::math::discrete_spaces::DiscreteSpace::increasing */
+/* AUTO-DOC from cpp: DiscreteSpace_increasing |
+ * falcon_core::math::discrete_spaces::DiscreteSpace::increasing */
 /**
  * @brief Return the increasing properties.
  */
 AxesMapStringBoolHandle DiscreteSpace_increasing(DiscreteSpaceHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: DiscreteSpace_knobs | falcon_core::math::discrete_spaces::DiscreteSpace::knobs */
+/* AUTO-DOC from cpp: DiscreteSpace_knobs |
+ * falcon_core::math::discrete_spaces::DiscreteSpace::knobs */
 /**
  * @brief Return the knobs.
  */
 PortsHandle DiscreteSpace_knobs(DiscreteSpaceHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: DiscreteSpace_validate_unit_space_dimensionality_matches_knobs | falcon_core::math::discrete_spaces::DiscreteSpace::validate_unit_space_dimensionality_matches_knobs */
+/* AUTO-DOC from cpp:
+ * DiscreteSpace_validate_unit_space_dimensionality_matches_knobs |
+ * falcon_core::math::discrete_spaces::DiscreteSpace::validate_unit_space_dimensionality_matches_knobs
+ */
 /**
  * @brief Validate that the unit space dimensionality matches the number of
  * knobs.
@@ -67,13 +85,16 @@ PortsHandle DiscreteSpace_knobs(DiscreteSpaceHandle handle);
 void DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(
     DiscreteSpaceHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: DiscreteSpace_validate_knob_uniqueness | falcon_core::math::discrete_spaces::DiscreteSpace::validate_knob_uniqueness */
+/* AUTO-DOC from cpp: DiscreteSpace_validate_knob_uniqueness |
+ * falcon_core::math::discrete_spaces::DiscreteSpace::validate_knob_uniqueness
+ */
 /**
  * @brief Validate that the knobs are unique.
  */
 void DiscreteSpace_validate_knob_uniqueness(DiscreteSpaceHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: DiscreteSpace_get_axis | falcon_core::math::discrete_spaces::DiscreteSpace::get_axis */
+/* AUTO-DOC from cpp: DiscreteSpace_get_axis |
+ * falcon_core::math::discrete_spaces::DiscreteSpace::get_axis */
 /**
  * @brief Return the index of the axis containing the given knob.
  * @param knob The knob to search for.
@@ -83,7 +104,8 @@ void DiscreteSpace_validate_knob_uniqueness(DiscreteSpaceHandle handle);
 int DiscreteSpace_get_axis(DiscreteSpaceHandle  handle,
                            InstrumentPortHandle knob);
 // @category:read
-/* AUTO-DOC from cpp: DiscreteSpace_get_domain | falcon_core::math::discrete_spaces::DiscreteSpace::get_domain */
+/* AUTO-DOC from cpp: DiscreteSpace_get_domain |
+ * falcon_core::math::discrete_spaces::DiscreteSpace::get_domain */
 /**
  * @brief Return the domain of the given knob.
  * @param knob The knob to search for.
@@ -92,7 +114,8 @@ int DiscreteSpace_get_axis(DiscreteSpaceHandle  handle,
 DomainHandle DiscreteSpace_get_domain(DiscreteSpaceHandle  handle,
                                       InstrumentPortHandle knob);
 // @category:read
-/* AUTO-DOC from cpp: DiscreteSpace_get_projection | falcon_core::math::discrete_spaces::DiscreteSpace::get_projection */
+/* AUTO-DOC from cpp: DiscreteSpace_get_projection |
+ * falcon_core::math::discrete_spaces::DiscreteSpace::get_projection */
 /**
  * @brief Return the projection of the unit space onto the given axes.
  * @param projection The axes to project onto.
@@ -100,15 +123,6 @@ DomainHandle DiscreteSpace_get_domain(DiscreteSpaceHandle  handle,
  */
 AxesLabelledControlArrayHandle DiscreteSpace_get_projection(
     DiscreteSpaceHandle handle, AxesInstrumentPortHandle projection);
-// @category:read
-bool DiscreteSpace_equal(DiscreteSpaceHandle handle, DiscreteSpaceHandle other);
-// @category:read
-bool DiscreteSpace_not_equal(DiscreteSpaceHandle handle,
-                             DiscreteSpaceHandle other);
-// @category:read
-StringHandle DiscreteSpace_to_json_string(DiscreteSpaceHandle handle);
-// @category:allocation
-DiscreteSpaceHandle DiscreteSpace_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

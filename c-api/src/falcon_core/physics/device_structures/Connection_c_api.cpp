@@ -1,13 +1,18 @@
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 
 #include <falcon_core/physics/device_structures/Connection.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::physics::device_structures;
 
 extern "C" {
+DEFINE_C_API_COPY(Connection);
+DEFINE_C_API_DESTROY(Connection);
+DEFINE_C_API_EQUAL(Connection);
+DEFINE_C_API_NOT_EQUAL(Connection);
+DEFINE_C_API_TO_JSON(Connection);
+DEFINE_C_API_FROM_JSON(Connection);
 
 ConnectionHandle Connection_create_barrier_gate(StringHandle name) {
   FALCON_C_API_BEGIN
@@ -61,16 +66,6 @@ ConnectionHandle Connection_create_ohmic(StringHandle name) {
   return new ConnectionSP(std::make_shared<Connection>(
       std::string(name->raw, name->length), DeviceFeature::Ohmic));
   FALCON_C_API_END(nullptr)
-}
-
-void Connection_destroy(ConnectionHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Connection_destroy: handle cannot be null");
-  }
-  delete static_cast<ConnectionSP*>(handle);
-  return;
-  FALCON_C_API_END()
 }
 
 StringHandle Connection_name(ConnectionHandle handle) {
@@ -159,54 +154,6 @@ bool Connection_is_gate(ConnectionHandle handle) {
   }
   return (*static_cast<ConnectionSP*>(handle))->is_gate();
   FALCON_C_API_END(false)
-}
-
-bool Connection_equal(ConnectionHandle handle, ConnectionHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Connection_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Connection_equal: handle cannot be null");
-  }
-  return *(*static_cast<ConnectionSP*>(handle)) ==
-         *(*static_cast<ConnectionSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool Connection_not_equal(ConnectionHandle handle, ConnectionHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Connection_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Connection_not_equal: handle cannot be null");
-  }
-  return *(*static_cast<ConnectionSP*>(handle)) !=
-         *(*static_cast<ConnectionSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle Connection_to_json_string(ConnectionHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Connection_to_json_string: handle cannot be null");
-  }
-  std::string json = (*static_cast<ConnectionSP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-ConnectionHandle Connection_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Connection_from_json_string: json cannot be null");
-  }
-  auto ptr = Connection::from_json_string<Connection>(json->raw);
-  return new ConnectionSP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 
 }  // extern "C"

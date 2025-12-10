@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListControlArray1D_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/math/arrays/ControlArray1D.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListControlArray1DHandle= falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>;
+DEFINE_C_API_COPY_TEMPLATE(ListControlArray1D, MACROListControlArray1DHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListControlArray1D, MACROListControlArray1DHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListControlArray1D, MACROListControlArray1DHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListControlArray1D, MACROListControlArray1DHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListControlArray1D, MACROListControlArray1DHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListControlArray1D, MACROListControlArray1DHandle);
 ListControlArray1DHandle ListControlArray1D_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>(std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListControlArray1D_creat
     return new falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>(
         std::make_shared<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListControlArray1D_destroy(ListControlArray1DHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListControlArray1D_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListControlArray1D_size(ListControlArray1DHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListControlArray1D_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListControlArray1D_equal(ListControlArray1DHandle handle, ListControlArray1DHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListControlArray1D_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListControlArray1D_not_equal(ListControlArray1DHandle handle, ListControlArray1DHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListControlArray1D_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListControlArray1DHandle ListControlArray1D_intersection(ListControlArray1DHandle handle, ListControlArray1DHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListControlArray1D_intersecti
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListControlArray1D_to_json_string(ListControlArray1DHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListControlArray1D_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListControlArray1DHandle ListControlArray1D_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListControlArray1D_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>::from_json_string<falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::math::arrays::ControlArray1D>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

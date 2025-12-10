@@ -1,17 +1,21 @@
 #include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 
-#include <falcon_core/generic/String_c_api.h>
-
 #include <falcon_core/communications/messages/MeasurementRequest.hpp>
 #include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 
 using namespace falcon_core;
 using namespace falcon_core::communications::messages;
 
 extern "C" {
+DEFINE_C_API_COPY(MeasurementRequest);
+DEFINE_C_API_DESTROY(MeasurementRequest);
+DEFINE_C_API_EQUAL(MeasurementRequest);
+DEFINE_C_API_NOT_EQUAL(MeasurementRequest);
+DEFINE_C_API_TO_JSON(MeasurementRequest);
+DEFINE_C_API_FROM_JSON(MeasurementRequest);
 MeasurementRequestHandle MeasurementRequest_create(
     StringHandle                         message,
     StringHandle                         measurement_name,
@@ -68,23 +72,6 @@ MeasurementRequestHandle MeasurementRequest_create(
                                            real_meter_transforms,
                                            real_time_domain));
   FALCON_C_API_END(nullptr)
-}
-
-void MeasurementRequest_destroy(MeasurementRequestHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasurementRequest_destroy");
-  }
-  delete static_cast<MeasurementRequestSP*>(handle);
-  FALCON_C_API_END()
-}
-
-MeasurementRequestHandle MeasurementRequest_copy(
-    MeasurementRequestHandle handle) {
-  if (!handle) return nullptr;
-  MeasurementRequestSP self = *static_cast<MeasurementRequestSP*>(handle);
-  return new MeasurementRequestSP(std::make_shared<MeasurementRequest>(*self));
 }
 
 StringHandle MeasurementRequest_measurement_name(
@@ -168,72 +155,6 @@ StringHandle MeasurementRequest_message(MeasurementRequestHandle handle) {
       *static_cast<MeasurementRequestSP*>(handle);
   std::string message = measurement_request->message();
   return String_create(message.c_str(), message.size());
-  FALCON_C_API_END(nullptr)
-}
-
-bool MeasurementRequest_equal(MeasurementRequestHandle handle,
-                              MeasurementRequestHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasurementRequest_equal: handle");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasurementRequest_equal: other");
-  }
-  MeasurementRequestSP measurement_request =
-      *static_cast<MeasurementRequestSP*>(handle);
-  MeasurementRequestSP other_request =
-      *static_cast<MeasurementRequestSP*>(other);
-  return *measurement_request == *other_request;
-  FALCON_C_API_END(false)
-}
-
-bool MeasurementRequest_not_equal(MeasurementRequestHandle handle,
-                                  MeasurementRequestHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasurementRequest_not_equal: handle");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasurementRequest_not_equal: other");
-  }
-  MeasurementRequestSP measurement_request =
-      *static_cast<MeasurementRequestSP*>(handle);
-  MeasurementRequestSP other_request =
-      *static_cast<MeasurementRequestSP*>(other);
-  return *measurement_request != *other_request;
-  FALCON_C_API_END(false)
-}
-
-StringHandle MeasurementRequest_to_json_string(
-    MeasurementRequestHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasurementRequest_to_json_string");
-  }
-  MeasurementRequestSP measurement_request =
-      *static_cast<MeasurementRequestSP*>(handle);
-  std::string json = measurement_request->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-MeasurementRequestHandle MeasurementRequest_from_json_string(
-    StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Null handle passed to MeasurementRequest_from_json_string");
-  }
-  std::string          json_str = std::string(json->raw, json->length);
-  MeasurementRequestSP request =
-      MeasurementRequest::from_json_string<MeasurementRequest>(json_str);
-  return new MeasurementRequestSP(request);
   FALCON_C_API_END(nullptr)
 }
 }

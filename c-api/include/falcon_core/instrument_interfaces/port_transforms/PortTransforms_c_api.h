@@ -11,11 +11,23 @@ extern "C" {
 typedef void* PortTransformsHandle;
 
 // @category:allocation
+PortTransformsHandle PortTransforms_copy(PortTransformsHandle handle);
+// @category:deallocation
+void PortTransforms_destroy(PortTransformsHandle handle);
+// @category:read
+bool PortTransforms_equal(PortTransformsHandle handle,
+                          PortTransformsHandle other);
+// @category:read
+bool PortTransforms_not_equal(PortTransformsHandle handle,
+                              PortTransformsHandle other);
+// @category:read
+StringHandle PortTransforms_to_json_string(PortTransformsHandle handle);
+// @category:allocation
+PortTransformsHandle PortTransforms_from_json_string(StringHandle json);
+// @category:allocation
 PortTransformsHandle PortTransforms_create_empty();
 // @category:allocation
 PortTransformHandle PortTransforms_create(ListPortTransformHandle handle);
-// @category:deallocation
-void PortTransforms_destroy(PortTransformsHandle handle);
 // @category:read
 ListPortTransformHandle PortTransforms_transforms(PortTransformsHandle handle);
 // @category:write
@@ -42,14 +54,6 @@ size_t PortTransforms_index(PortTransformsHandle handle,
 // @category:read
 PortTransformsHandle PortTransforms_intersection(PortTransformsHandle handle,
                                                  PortTransformsHandle other);
-// @category:read
-bool PortTransforms_equal(PortTransformsHandle a, PortTransformsHandle b);
-// @category:read
-bool PortTransforms_not_equal(PortTransformsHandle a, PortTransformsHandle b);
-// @category:read
-StringHandle PortTransforms_to_json_string(PortTransformsHandle handle);
-// @category:allocation
-PortTransformsHandle PortTransforms_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

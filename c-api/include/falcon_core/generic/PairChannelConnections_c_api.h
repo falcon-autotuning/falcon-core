@@ -13,6 +13,8 @@ typedef void* PairChannelConnectionsHandle;
 
 // @category:allocation
 PairChannelConnectionsHandle PairChannelConnections_create(ChannelHandle first, ConnectionsHandle second);
+// @category:allocation
+PairChannelConnectionsHandle PairChannelConnections_copy(PairChannelConnectionsHandle handle);
 // @category:deallocation
 void PairChannelConnections_destroy(PairChannelConnectionsHandle handle);
 // @category:read
@@ -20,9 +22,9 @@ ChannelHandle PairChannelConnections_first(PairChannelConnectionsHandle handle);
 // @category:read
 ConnectionsHandle PairChannelConnections_second(PairChannelConnectionsHandle handle);
 // @category:read
-bool PairChannelConnections_equal(PairChannelConnectionsHandle a, PairChannelConnectionsHandle b);
+bool PairChannelConnections_equal(PairChannelConnectionsHandle handle, PairChannelConnectionsHandle other);
 // @category:read
-bool PairChannelConnections_not_equal(PairChannelConnectionsHandle a, PairChannelConnectionsHandle b);
+bool PairChannelConnections_not_equal(PairChannelConnectionsHandle handle, PairChannelConnectionsHandle other);
 // @category:read
 StringHandle      PairChannelConnections_to_json_string(PairChannelConnectionsHandle handle);
 // @category:allocation

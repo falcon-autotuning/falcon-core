@@ -1,13 +1,18 @@
 #include "falcon_core/math/Vector_c_api.h"
 
 #include <falcon_core/math/Vector.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::math;
 
 extern "C" {
+DEFINE_C_API_COPY(Vector);
+DEFINE_C_API_DESTROY(Vector);
+DEFINE_C_API_EQUAL(Vector);
+DEFINE_C_API_NOT_EQUAL(Vector);
+DEFINE_C_API_TO_JSON(Vector);
+DEFINE_C_API_FROM_JSON(Vector);
 VectorHandle Vector_create(PointHandle start, PointHandle end) {
   FALCON_C_API_BEGIN
   if (!start) {
@@ -141,15 +146,6 @@ VectorHandle Vector_create_from_parent(MapConnectionQuantityHandle items) {
               Quantity>*>(items);
   return new VectorSP(std::make_shared<Vector>(real_items));
   FALCON_C_API_END(nullptr)
-}
-
-void Vector_destroy(VectorHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Vector_destroy: handle cannot be null");
-  }
-  delete static_cast<VectorSP*>(handle);
-  FALCON_C_API_END()
 }
 
 PointHandle Vector_end_point(VectorHandle handle) {
@@ -699,55 +695,5 @@ void Vector_update_unit(VectorHandle handle, SymbolUnitHandle unit) {
       *static_cast<falcon_core::physics::units::SymbolUnitSP*>(unit);
   self->update_unit(real_unit);
   FALCON_C_API_END()
-}
-
-bool Vector_equal(VectorHandle a, VectorHandle b) {
-  FALCON_C_API_BEGIN
-  if (!a) {
-    throw std::invalid_argument("Vector_equal: a cannot be null");
-  }
-  if (!b) {
-    throw std::invalid_argument("Vector_equal: b cannot be null");
-  }
-  VectorSP self_a = *static_cast<VectorSP*>(a);
-  VectorSP self_b = *static_cast<VectorSP*>(b);
-  return *self_a == *self_b;
-  FALCON_C_API_END(false)
-}
-
-bool Vector_not_equal(VectorHandle a, VectorHandle b) {
-  FALCON_C_API_BEGIN
-  if (!a) {
-    throw std::invalid_argument("Vector_not_equal: a cannot be null");
-  }
-  if (!b) {
-    throw std::invalid_argument("Vector_not_equal: b cannot be null");
-  }
-  VectorSP self_a = *static_cast<VectorSP*>(a);
-  VectorSP self_b = *static_cast<VectorSP*>(b);
-  return *self_a != *self_b;
-  FALCON_C_API_END(false)
-}
-
-StringHandle Vector_to_json_string(VectorHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Vector_to_json_string: handle cannot be null");
-  }
-  VectorSP    self = *static_cast<VectorSP*>(handle);
-  std::string json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-VectorHandle Vector_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument("Vector_from_json_string: json cannot be null");
-  }
-  std::string raw_json = json->raw;
-  VectorSP    ptr      = Vector::from_json_string<Vector>(raw_json);
-  return new VectorSP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

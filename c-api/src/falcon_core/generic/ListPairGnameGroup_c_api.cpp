@@ -1,11 +1,19 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListPairGnameGroup_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/autotuner_interfaces/names/Gname.hpp>
 #include <falcon_core/physics/config/core/Group.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListPairGnameGroupHandle= falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>;
+DEFINE_C_API_COPY_TEMPLATE(ListPairGnameGroup, MACROListPairGnameGroupHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListPairGnameGroup, MACROListPairGnameGroupHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListPairGnameGroup, MACROListPairGnameGroupHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListPairGnameGroup, MACROListPairGnameGroupHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListPairGnameGroup, MACROListPairGnameGroupHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListPairGnameGroup, MACROListPairGnameGroupHandle);
 ListPairGnameGroupHandle ListPairGnameGroup_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>>());
@@ -41,15 +49,6 @@ throw std::invalid_argument("Null data handle passed to ListPairGnameGroup_creat
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListPairGnameGroup_destroy(ListPairGnameGroupHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListPairGnameGroup_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListPairGnameGroup_size(ListPairGnameGroupHandle handle) {
@@ -161,28 +160,6 @@ throw std::invalid_argument("Null handle passed to ListPairGnameGroup_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListPairGnameGroup_equal(ListPairGnameGroupHandle handle, ListPairGnameGroupHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairGnameGroup_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListPairGnameGroup_not_equal(ListPairGnameGroupHandle handle, ListPairGnameGroupHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairGnameGroup_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListPairGnameGroupHandle ListPairGnameGroup_intersection(ListPairGnameGroupHandle handle, ListPairGnameGroupHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -192,26 +169,6 @@ throw std::invalid_argument("Null handle passed to ListPairGnameGroup_intersecti
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListPairGnameGroup_to_json_string(ListPairGnameGroupHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListPairGnameGroup_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListPairGnameGroupHandle ListPairGnameGroup_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListPairGnameGroup_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

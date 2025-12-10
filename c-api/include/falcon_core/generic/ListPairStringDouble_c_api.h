@@ -13,6 +13,8 @@ typedef void* ListPairStringDoubleHandle;
 
 // @category:allocation
 ListPairStringDoubleHandle ListPairStringDouble_create_empty();
+// @category:allocation
+ListPairStringDoubleHandle ListPairStringDouble_copy(ListPairStringDoubleHandle handle);
 
 // @category:allocation
 ListPairStringDoubleHandle ListPairStringDouble_fill_value(size_t count, PairStringDoubleHandle value);
@@ -41,9 +43,9 @@ size_t ListPairStringDouble_index(ListPairStringDoubleHandle handle, PairStringD
 // @category:read
 ListPairStringDoubleHandle ListPairStringDouble_intersection(ListPairStringDoubleHandle handle, ListPairStringDoubleHandle other);
 // @category:read
-bool ListPairStringDouble_equal(ListPairStringDoubleHandle a, ListPairStringDoubleHandle b);
+bool ListPairStringDouble_equal(ListPairStringDoubleHandle handle, ListPairStringDoubleHandle other);
 // @category:read
-bool ListPairStringDouble_not_equal(ListPairStringDoubleHandle a, ListPairStringDoubleHandle b);
+bool ListPairStringDouble_not_equal(ListPairStringDoubleHandle handle, ListPairStringDoubleHandle other);
 
 // @category:read
 StringHandle      ListPairStringDouble_to_json_string(ListPairStringDoubleHandle handle);

@@ -9,25 +9,28 @@ extern "C" {
 typedef void* GnameHandle;
 
 // @category:allocation
-GnameHandle Gname_create_from_num(int num);
-// @category:allocation
-GnameHandle Gname_create(StringHandle name);
+GnameHandle Gname_copy(GnameHandle handle);
 // @category:deallocation
 void Gname_destroy(GnameHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Gname_gname | falcon_core::autotuner_interfaces::names::Gname::gname */
-/**
- * @brief Collect the gname as a string.
- */
-StringHandle Gname_gname(GnameHandle handle);
+bool Gname_equal(GnameHandle handle, GnameHandle other);
 // @category:read
-bool Gname_equal(GnameHandle a, GnameHandle b);
-// @category:read
-bool Gname_not_equal(GnameHandle a, GnameHandle b);
+bool Gname_not_equal(GnameHandle handle, GnameHandle other);
 // @category:read
 StringHandle Gname_to_json_string(GnameHandle handle);
 // @category:allocation
 GnameHandle Gname_from_json_string(StringHandle json);
+// @category:allocation
+GnameHandle Gname_create_from_num(int num);
+// @category:allocation
+GnameHandle Gname_create(StringHandle name);
+// @category:read
+/* AUTO-DOC from cpp: Gname_gname |
+ * falcon_core::autotuner_interfaces::names::Gname::gname */
+/**
+ * @brief Collect the gname as a string.
+ */
+StringHandle Gname_gname(GnameHandle handle);
 
 #ifdef __cplusplus
 }

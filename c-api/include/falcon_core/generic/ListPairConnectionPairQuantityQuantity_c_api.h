@@ -13,6 +13,8 @@ typedef void* ListPairConnectionPairQuantityQuantityHandle;
 
 // @category:allocation
 ListPairConnectionPairQuantityQuantityHandle ListPairConnectionPairQuantityQuantity_create_empty();
+// @category:allocation
+ListPairConnectionPairQuantityQuantityHandle ListPairConnectionPairQuantityQuantity_copy(ListPairConnectionPairQuantityQuantityHandle handle);
 
 // @category:allocation
 ListPairConnectionPairQuantityQuantityHandle ListPairConnectionPairQuantityQuantity_fill_value(size_t count, PairConnectionPairQuantityQuantityHandle value);
@@ -41,9 +43,9 @@ size_t ListPairConnectionPairQuantityQuantity_index(ListPairConnectionPairQuanti
 // @category:read
 ListPairConnectionPairQuantityQuantityHandle ListPairConnectionPairQuantityQuantity_intersection(ListPairConnectionPairQuantityQuantityHandle handle, ListPairConnectionPairQuantityQuantityHandle other);
 // @category:read
-bool ListPairConnectionPairQuantityQuantity_equal(ListPairConnectionPairQuantityQuantityHandle a, ListPairConnectionPairQuantityQuantityHandle b);
+bool ListPairConnectionPairQuantityQuantity_equal(ListPairConnectionPairQuantityQuantityHandle handle, ListPairConnectionPairQuantityQuantityHandle other);
 // @category:read
-bool ListPairConnectionPairQuantityQuantity_not_equal(ListPairConnectionPairQuantityQuantityHandle a, ListPairConnectionPairQuantityQuantityHandle b);
+bool ListPairConnectionPairQuantityQuantity_not_equal(ListPairConnectionPairQuantityQuantityHandle handle, ListPairConnectionPairQuantityQuantityHandle other);
 
 // @category:read
 StringHandle      ListPairConnectionPairQuantityQuantity_to_json_string(ListPairConnectionPairQuantityQuantityHandle handle);

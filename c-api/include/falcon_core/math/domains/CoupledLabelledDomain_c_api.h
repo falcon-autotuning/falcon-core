@@ -12,28 +12,46 @@ extern "C" {
 typedef void* CoupledLabelledDomainHandle;
 
 // @category:allocation
+CoupledLabelledDomainHandle CoupledLabelledDomain_copy(
+    CoupledLabelledDomainHandle handle);
+// @category:deallocation
+void CoupledLabelledDomain_destroy(CoupledLabelledDomainHandle handle);
+// @category:read
+bool CoupledLabelledDomain_equal(CoupledLabelledDomainHandle handle,
+                                 CoupledLabelledDomainHandle other);
+// @category:read
+bool CoupledLabelledDomain_not_equal(CoupledLabelledDomainHandle handle,
+                                     CoupledLabelledDomainHandle other);
+// @category:read
+StringHandle CoupledLabelledDomain_to_json_string(
+    CoupledLabelledDomainHandle handle);
+// @category:allocation
+CoupledLabelledDomainHandle CoupledLabelledDomain_from_json_string(
+    StringHandle json);
+// @category:allocation
 CoupledLabelledDomainHandle CoupledLabelledDomain_create_empty();
 // @category:allocation
 CoupledLabelledDomainHandle CoupledLabelledDomain_create(
     ListLabelledDomainHandle items);
-// @category:deallocation
-void CoupledLabelledDomain_destroy(CoupledLabelledDomainHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: CoupledLabelledDomain_domains | falcon_core::math::domains::CoupledLabelledDomain::domains */
+/* AUTO-DOC from cpp: CoupledLabelledDomain_domains |
+ * falcon_core::math::domains::CoupledLabelledDomain::domains */
 /**
  * @brief Get all domains.
  */
 ListLabelledDomainHandle CoupledLabelledDomain_domains(
     CoupledLabelledDomainHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: CoupledLabelledDomain_labels | falcon_core::math::domains::CoupledLabelledDomain::labels */
+/* AUTO-DOC from cpp: CoupledLabelledDomain_labels |
+ * falcon_core::math::domains::CoupledLabelledDomain::labels */
 /**
  * @brief Get all labels.
  * @return Vector of shared pointers to labels.
  */
 PortsHandle CoupledLabelledDomain_labels(CoupledLabelledDomainHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: CoupledLabelledDomain_get_domain | falcon_core::math::domains::CoupledLabelledDomain::get_domain */
+/* AUTO-DOC from cpp: CoupledLabelledDomain_get_domain |
+ * falcon_core::math::domains::CoupledLabelledDomain::get_domain */
 /**
  * @brief Get domain by label.
  * @param search Shared pointer to label to search for.
@@ -72,18 +90,6 @@ bool CoupledLabelledDomain_contains(CoupledLabelledDomainHandle handle,
 // @category:read
 size_t CoupledLabelledDomain_index(CoupledLabelledDomainHandle handle,
                                    LabelledDomainHandle        value);
-// @category:read
-bool CoupledLabelledDomain_equal(CoupledLabelledDomainHandle a,
-                                 CoupledLabelledDomainHandle b);
-// @category:read
-bool CoupledLabelledDomain_not_equal(CoupledLabelledDomainHandle a,
-                                     CoupledLabelledDomainHandle b);
-// @category:read
-StringHandle CoupledLabelledDomain_to_json_string(
-    CoupledLabelledDomainHandle handle);
-// @category:allocation
-CoupledLabelledDomainHandle CoupledLabelledDomain_from_json_string(
-    StringHandle json);
 
 #ifdef __cplusplus
 }

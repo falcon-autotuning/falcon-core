@@ -39,10 +39,6 @@ generate_types:
 	@test -f ${GENERATED_MANIFEST} || touch ${GENERATED_MANIFEST} 
 	@python3 ./generate_templated_types.py --manifest $(GENERATED_MANIFEST)
 
-update-headers:
-	@for header in $$(find c-api/include -name '*_c_api.h' | grep -v 'Macro' | grep -v 'ErrorHandling' | grep -v 'String'); do \
-	  nvim --headless +"luafile c-api/lua/update_header_macros.lua" +"lua require('update_header_macros').update_header_macros()" +"wq" $$header; \
-	done
 
 build: generate_types 
 	@if [ ! -d "$(CORE_BUILD_DIR)" ]; then \

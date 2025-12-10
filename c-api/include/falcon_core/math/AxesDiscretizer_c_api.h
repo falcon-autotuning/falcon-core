@@ -15,6 +15,8 @@ typedef void* AxesDiscretizerHandle;
 // @category:allocation
 AxesDiscretizerHandle AxesDiscretizer_create_empty();
 // @category:allocation
+AxesDiscretizerHandle AxesDiscretizer_copy(AxesDiscretizerHandle handle);
+// @category:allocation
 AxesDiscretizerHandle AxesDiscretizer_create(ListDiscretizerHandle data);
 // @category:deallocation
 void AxesDiscretizer_destroy(AxesDiscretizerHandle handle);
@@ -39,9 +41,9 @@ size_t AxesDiscretizer_index(AxesDiscretizerHandle handle, DiscretizerHandle val
 // @category:read
 AxesDiscretizerHandle AxesDiscretizer_intersection(AxesDiscretizerHandle handle, AxesDiscretizerHandle other);
 // @category:read
-bool AxesDiscretizer_equal(AxesDiscretizerHandle a, AxesDiscretizerHandle b);
+bool AxesDiscretizer_equal(AxesDiscretizerHandle handle, AxesDiscretizerHandle other);
 // @category:read
-bool AxesDiscretizer_not_equal(AxesDiscretizerHandle a, AxesDiscretizerHandle b);
+bool AxesDiscretizer_not_equal(AxesDiscretizerHandle handle, AxesDiscretizerHandle other);
 
 // @category:read
 StringHandle      AxesDiscretizer_to_json_string(AxesDiscretizerHandle handle);

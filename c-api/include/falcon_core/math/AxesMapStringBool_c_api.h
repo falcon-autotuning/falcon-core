@@ -14,6 +14,8 @@ typedef void* AxesMapStringBoolHandle;
 // @category:allocation
 AxesMapStringBoolHandle AxesMapStringBool_create_empty();
 // @category:allocation
+AxesMapStringBoolHandle AxesMapStringBool_copy(AxesMapStringBoolHandle handle);
+// @category:allocation
 AxesMapStringBoolHandle AxesMapStringBool_create(ListMapStringBoolHandle data);
 // @category:deallocation
 void AxesMapStringBool_destroy(AxesMapStringBoolHandle handle);
@@ -38,9 +40,9 @@ size_t AxesMapStringBool_index(AxesMapStringBoolHandle handle, MapStringBoolHand
 // @category:read
 AxesMapStringBoolHandle AxesMapStringBool_intersection(AxesMapStringBoolHandle handle, AxesMapStringBoolHandle other);
 // @category:read
-bool AxesMapStringBool_equal(AxesMapStringBoolHandle a, AxesMapStringBoolHandle b);
+bool AxesMapStringBool_equal(AxesMapStringBoolHandle handle, AxesMapStringBoolHandle other);
 // @category:read
-bool AxesMapStringBool_not_equal(AxesMapStringBoolHandle a, AxesMapStringBoolHandle b);
+bool AxesMapStringBool_not_equal(AxesMapStringBoolHandle handle, AxesMapStringBoolHandle other);
 
 // @category:read
 StringHandle      AxesMapStringBool_to_json_string(AxesMapStringBoolHandle handle);

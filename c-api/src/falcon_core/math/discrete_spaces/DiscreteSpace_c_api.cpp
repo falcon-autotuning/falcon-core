@@ -1,15 +1,17 @@
 #include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
 
 #include <falcon_core/math/discrete_spaces/DiscreteSpace.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
+#include "falcon_core/Precompiled_c_api.h"
 using namespace falcon_core::math::discrete_spaces;
 
 extern "C" {
+DEFINE_C_API_COPY(DiscreteSpace);
+DEFINE_C_API_DESTROY(DiscreteSpace);
+DEFINE_C_API_EQUAL(DiscreteSpace);
+DEFINE_C_API_NOT_EQUAL(DiscreteSpace);
+DEFINE_C_API_TO_JSON(DiscreteSpace);
+DEFINE_C_API_FROM_JSON(DiscreteSpace);
 DiscreteSpaceHandle DiscreteSpace_create(UnitSpaceHandle                 space,
                                          AxesCoupledLabelledDomainHandle axes,
                                          AxesMapStringBoolHandle increasing) {
@@ -102,15 +104,6 @@ DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space_1D(
   return new DiscreteSpaceSP(DiscreteSpace::CartesianDiscreteSpace1D(
       division, real_shared_domain, real_increasing, real_domain));
   FALCON_C_API_END(nullptr)
-}
-
-void DiscreteSpace_destroy(DiscreteSpaceHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("DiscreteSpace_destroy: handle cannot be null");
-  }
-  delete static_cast<DiscreteSpaceSP*>(handle);
-  FALCON_C_API_END()
 }
 
 UnitSpaceHandle DiscreteSpace_space(DiscreteSpaceHandle handle) {
@@ -232,62 +225,6 @@ AxesLabelledControlArrayHandle DiscreteSpace_get_projection(
       *static_cast<falcon_core::math::AxesSP<
           falcon_core::instrument_interfaces::names::InstrumentPort>*>(
           projection)));
-  FALCON_C_API_END(nullptr)
-}
-
-bool DiscreteSpace_equal(DiscreteSpaceHandle handle,
-                         DiscreteSpaceHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("DiscreteSpace_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("DiscreteSpace_equal: other cannot be null");
-  }
-  DiscreteSpaceSP self  = *static_cast<DiscreteSpaceSP*>(handle);
-  DiscreteSpaceSP oself = *static_cast<DiscreteSpaceSP*>(other);
-  return *self == *oself;
-  FALCON_C_API_END(false)
-}
-
-bool DiscreteSpace_not_equal(DiscreteSpaceHandle handle,
-                             DiscreteSpaceHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DiscreteSpace_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "DiscreteSpace_not_equal: other cannot be null");
-  }
-  DiscreteSpaceSP self  = *static_cast<DiscreteSpaceSP*>(handle);
-  DiscreteSpaceSP oself = *static_cast<DiscreteSpaceSP*>(other);
-  return *self != *oself;
-  FALCON_C_API_END(false)
-}
-
-StringHandle DiscreteSpace_to_json_string(DiscreteSpaceHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DiscreteSpace_to_json_string: handle cannot be null");
-  }
-  DiscreteSpaceSP self = *static_cast<DiscreteSpaceSP*>(handle);
-  std::string     json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-DiscreteSpaceHandle DiscreteSpace_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "DiscreteSpace_from_json_string: json cannot be null");
-  }
-  std::string json_str(json->raw);
-  return new DiscreteSpaceSP(
-      DiscreteSpace::from_json_string<DiscreteSpace>(json_str));
   FALCON_C_API_END(nullptr)
 }
 }

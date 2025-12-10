@@ -3,11 +3,17 @@
 #include <falcon_core/autotuner_interfaces/names/Channels.hpp>
 #include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::autotuner_interfaces::names;
 
 extern "C" {
+DEFINE_C_API_COPY(Channels);
+DEFINE_C_API_DESTROY(Channels);
+DEFINE_C_API_EQUAL(Channels);
+DEFINE_C_API_NOT_EQUAL(Channels);
+DEFINE_C_API_TO_JSON(Channels);
+DEFINE_C_API_FROM_JSON(Channels);
 ChannelsHandle Channels_create_empty() {
   FALCON_C_API_BEGIN
   return new ChannelsSP(std::make_shared<Channels>());
@@ -23,21 +29,6 @@ ChannelsHandle Channels_create(ListChannelHandle items) {
       *static_cast<falcon_core::generic::ListSP<Channel>*>(items);
   return new ChannelsSP(std::make_shared<Channels>(item_list->items()));
   FALCON_C_API_END(nullptr)
-}
-
-void Channels_destroy(ChannelsHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Channels_destroy: handle cannot be null");
-  }
-  delete static_cast<ChannelsSP*>(handle);
-  FALCON_C_API_END()
-}
-
-ChannelsHandle Channels_copy(ChannelsHandle handle) {
-  if (!handle) return nullptr;
-  ChannelsSP self = *static_cast<ChannelsSP*>(handle);
-  return new ChannelsSP(std::make_shared<Channels>(*self));
 }
 
 ChannelsHandle Channels_intersection(ChannelsHandle handle,
@@ -165,57 +156,5 @@ size_t Channels_index(ChannelsHandle handle, ChannelHandle value) {
       *static_cast<falcon_core::autotuner_interfaces::names::ChannelSP*>(value);
   return self->index(real_value);
   FALCON_C_API_END(0)
-}
-
-bool Channels_equal(ChannelsHandle handle, ChannelsHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Channels_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Channels_equal: b cannot be null");
-  }
-  ChannelsSP self_a = *static_cast<ChannelsSP*>(handle);
-  ChannelsSP self_b = *static_cast<ChannelsSP*>(other);
-  return *self_a == *self_b;
-  FALCON_C_API_END(false)
-}
-
-bool Channels_not_equal(ChannelsHandle handle, ChannelsHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Channels_not_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Channels_not_equal: b cannot be null");
-  }
-  ChannelsSP self_a = *static_cast<ChannelsSP*>(handle);
-  ChannelsSP self_b = *static_cast<ChannelsSP*>(other);
-  return *self_a != *self_b;
-  FALCON_C_API_END(false)
-}
-
-StringHandle Channels_to_json_string(ChannelsHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Channels_to_json_string: handle cannot be null");
-  }
-  ChannelsSP  self = *static_cast<ChannelsSP*>(handle);
-  std::string json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-ChannelsHandle Channels_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Channels_from_json_string: json cannot be null");
-  }
-  std::string raw_json(json->raw);
-  auto        ptr = Channels::from_json_string<Channels>(raw_json);
-  return new ChannelsSP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

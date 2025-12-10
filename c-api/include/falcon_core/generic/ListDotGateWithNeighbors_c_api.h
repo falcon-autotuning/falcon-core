@@ -13,6 +13,8 @@ typedef void* ListDotGateWithNeighborsHandle;
 
 // @category:allocation
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create_empty();
+// @category:allocation
+ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_copy(ListDotGateWithNeighborsHandle handle);
 
 // @category:allocation
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_fill_value(size_t count, DotGateWithNeighborsHandle value);
@@ -41,9 +43,9 @@ size_t ListDotGateWithNeighbors_index(ListDotGateWithNeighborsHandle handle, Dot
 // @category:read
 ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_intersection(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
 // @category:read
-bool ListDotGateWithNeighbors_equal(ListDotGateWithNeighborsHandle a, ListDotGateWithNeighborsHandle b);
+bool ListDotGateWithNeighbors_equal(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
 // @category:read
-bool ListDotGateWithNeighbors_not_equal(ListDotGateWithNeighborsHandle a, ListDotGateWithNeighborsHandle b);
+bool ListDotGateWithNeighbors_not_equal(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
 
 // @category:read
 StringHandle      ListDotGateWithNeighbors_to_json_string(ListDotGateWithNeighborsHandle handle);

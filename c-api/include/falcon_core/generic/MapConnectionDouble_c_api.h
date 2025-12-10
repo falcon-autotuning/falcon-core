@@ -15,6 +15,8 @@ typedef void* MapConnectionDoubleHandle;
 // @category:allocation
 MapConnectionDoubleHandle MapConnectionDouble_create_empty();
 // @category:allocation
+MapConnectionDoubleHandle MapConnectionDouble_copy(MapConnectionDoubleHandle handle);
+// @category:allocation
 MapConnectionDoubleHandle MapConnectionDouble_create(PairConnectionDoubleHandle* data, size_t count);
 // @category:deallocation
 void MapConnectionDouble_destroy(MapConnectionDoubleHandle handle);
@@ -41,9 +43,9 @@ ListDoubleHandle MapConnectionDouble_values(MapConnectionDoubleHandle handle);
 // @category:read
 ListPairConnectionDoubleHandle MapConnectionDouble_items(MapConnectionDoubleHandle handle);
 // @category:read
-bool MapConnectionDouble_equal(MapConnectionDoubleHandle a, MapConnectionDoubleHandle b);
+bool MapConnectionDouble_equal(MapConnectionDoubleHandle handle, MapConnectionDoubleHandle other);
 // @category:read
-bool MapConnectionDouble_not_equal(MapConnectionDoubleHandle a, MapConnectionDoubleHandle b);
+bool MapConnectionDouble_not_equal(MapConnectionDoubleHandle handle, MapConnectionDoubleHandle other);
 // @category:read
 StringHandle      MapConnectionDouble_to_json_string(MapConnectionDoubleHandle handle);
 // @category:allocation

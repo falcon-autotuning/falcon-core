@@ -16,6 +16,8 @@ typedef void* MapStringDoubleHandle;
 // @category:allocation
 MapStringDoubleHandle MapStringDouble_create_empty();
 // @category:allocation
+MapStringDoubleHandle MapStringDouble_copy(MapStringDoubleHandle handle);
+// @category:allocation
 MapStringDoubleHandle MapStringDouble_create(PairStringDoubleHandle* data, size_t count);
 // @category:deallocation
 void MapStringDouble_destroy(MapStringDoubleHandle handle);
@@ -42,9 +44,9 @@ ListDoubleHandle MapStringDouble_values(MapStringDoubleHandle handle);
 // @category:read
 ListPairStringDoubleHandle MapStringDouble_items(MapStringDoubleHandle handle);
 // @category:read
-bool MapStringDouble_equal(MapStringDoubleHandle a, MapStringDoubleHandle b);
+bool MapStringDouble_equal(MapStringDoubleHandle handle, MapStringDoubleHandle other);
 // @category:read
-bool MapStringDouble_not_equal(MapStringDoubleHandle a, MapStringDoubleHandle b);
+bool MapStringDouble_not_equal(MapStringDoubleHandle handle, MapStringDoubleHandle other);
 // @category:read
 StringHandle      MapStringDouble_to_json_string(MapStringDoubleHandle handle);
 // @category:allocation

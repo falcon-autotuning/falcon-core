@@ -13,6 +13,8 @@ typedef void* ListCoupledLabelledDomainHandle;
 
 // @category:allocation
 ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create_empty();
+// @category:allocation
+ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_copy(ListCoupledLabelledDomainHandle handle);
 
 // @category:allocation
 ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_fill_value(size_t count, CoupledLabelledDomainHandle value);
@@ -41,9 +43,9 @@ size_t ListCoupledLabelledDomain_index(ListCoupledLabelledDomainHandle handle, C
 // @category:read
 ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_intersection(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
 // @category:read
-bool ListCoupledLabelledDomain_equal(ListCoupledLabelledDomainHandle a, ListCoupledLabelledDomainHandle b);
+bool ListCoupledLabelledDomain_equal(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
 // @category:read
-bool ListCoupledLabelledDomain_not_equal(ListCoupledLabelledDomainHandle a, ListCoupledLabelledDomainHandle b);
+bool ListCoupledLabelledDomain_not_equal(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
 
 // @category:read
 StringHandle      ListCoupledLabelledDomain_to_json_string(ListCoupledLabelledDomainHandle handle);

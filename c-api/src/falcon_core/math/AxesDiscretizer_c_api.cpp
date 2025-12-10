@@ -1,10 +1,18 @@
 #include <falcon_core/math/Axes.hpp>
 #include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/List.hpp>
 #include <falcon_core/math/discrete_spaces/Discretizer.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROAxesDiscretizerHandle= falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>;
+DEFINE_C_API_COPY_TEMPLATE(AxesDiscretizer, MACROAxesDiscretizerHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(AxesDiscretizer, MACROAxesDiscretizerHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(AxesDiscretizer, MACROAxesDiscretizerHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(AxesDiscretizer, MACROAxesDiscretizerHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(AxesDiscretizer, MACROAxesDiscretizerHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(AxesDiscretizer, MACROAxesDiscretizerHandle);
 AxesDiscretizerHandle AxesDiscretizer_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>(
@@ -21,15 +29,6 @@ throw std::invalid_argument("Null data handle passed to AxesDiscretizer_create")
     return new falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>(
             std::make_shared<falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>>(list));
     FALCON_C_API_END(nullptr)
-}
-
-void AxesDiscretizer_destroy(AxesDiscretizerHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to AxesDiscretizer_destroy");
-}
-    delete static_cast<falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t AxesDiscretizer_size(AxesDiscretizerHandle handle) {
@@ -138,28 +137,6 @@ throw std::invalid_argument("Null handle passed to AxesDiscretizer_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool AxesDiscretizer_equal(AxesDiscretizerHandle handle, AxesDiscretizerHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to AxesDiscretizer_equal");
-}
-    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>*>(handle);
-    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool AxesDiscretizer_not_equal(AxesDiscretizerHandle handle, AxesDiscretizerHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to AxesDiscretizer_not_equal");
-}
-    auto listA = *static_cast<falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>*>(handle);
-    auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 AxesDiscretizerHandle AxesDiscretizer_intersection(AxesDiscretizerHandle handle, AxesDiscretizerHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -169,26 +146,6 @@ throw std::invalid_argument("Null handle passed to AxesDiscretizer_intersection"
     auto listB = *static_cast<falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>(std::make_shared<falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>>(result));
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      AxesDiscretizer_to_json_string(AxesDiscretizerHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to AxesDiscretizer_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-AxesDiscretizerHandle AxesDiscretizer_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to AxesDiscretizer_from_json_string");
-}
-  auto ptr = falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>::from_json_string<falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>>(json->raw);
-  return new falcon_core::math::AxesSP<falcon_core::math::discrete_spaces::Discretizer>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

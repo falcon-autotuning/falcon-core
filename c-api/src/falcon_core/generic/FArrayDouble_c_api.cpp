@@ -1,10 +1,18 @@
 #include <falcon_core/generic/FArray.hpp>
 #include "falcon_core/generic/FArrayDouble_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/FArray.hpp>
 #include <xtensor/xadapt.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROFArraydouble= falcon_core::generic::FArray<double>;
+DEFINE_C_API_COPY_TEMPLATE(FArrayDouble, MACROFArraydouble)
+DEFINE_C_API_DESTROY_TEMPLATE(FArrayDouble, MACROFArraydouble);
+DEFINE_C_API_EQUAL_TEMPLATE(FArrayDouble, MACROFArraydouble);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(FArrayDouble, MACROFArraydouble);
+DEFINE_C_API_TO_JSON_TEMPLATE(FArrayDouble, MACROFArraydouble);
+DEFINE_C_API_FROM_JSON_TEMPLATE(FArrayDouble, MACROFArraydouble);
 FArrayDoubleHandle FArrayDouble_create_empty(const size_t* shape, size_t ndim) {
     FALCON_C_API_BEGIN
 if (!shape) {
@@ -62,15 +70,6 @@ throw std::invalid_argument("Null shape passed to FArrayDouble_from_data");
       xt::adapt(data, total_size, xt::no_ownership(), shapeVec);
     return new falcon_core::generic::FArraySP<double>(std::make_shared<falcon_core::generic::FArray<double>>(arr));
     FALCON_C_API_END(nullptr)
-}
-
-void FArrayDouble_destroy(FArrayDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to FArrayDouble_destroy");
-}
-    delete static_cast<falcon_core::generic::FArraySP<double>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t FArrayDouble_size(FArrayDoubleHandle handle) {
@@ -473,28 +472,6 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_max_arraywise");
     FALCON_C_API_END(nullptr)
 }
 
-bool FArrayDouble_equal(FArrayDoubleHandle handle, FArrayDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to FArrayDouble_equal");
-}
-    falcon_core::generic::FArraySP<double> farray = *static_cast<falcon_core::generic::FArraySP<double>*>(handle);
-    auto oarray= *static_cast<falcon_core::generic::FArraySP<double>*>(other);
-    return *farray == *oarray;
-    FALCON_C_API_END(false)
-}
-
-bool FArrayDouble_not_equal(FArrayDoubleHandle handle, FArrayDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to FArrayDouble_not_equal");
-}
-    falcon_core::generic::FArraySP<double> farray = *static_cast<falcon_core::generic::FArraySP<double>*>(handle);
-    auto oarray= *static_cast<falcon_core::generic::FArraySP<double>*>(other);
-    return *farray != *oarray;
-    FALCON_C_API_END(false)
-}
-
 bool FArrayDouble_greater_than(FArrayDoubleHandle handle,  double value) {
     FALCON_C_API_BEGIN
 if (!handle) {
@@ -638,25 +615,5 @@ throw std::invalid_argument("Null handle passed to FArrayDouble_get_summed_diff_
     auto oarray = *static_cast<falcon_core::generic::FArraySP<double>*>(other);
     return farray->get_sum_of_squares(oarray);
     FALCON_C_API_END(0.0)
-}
-
-StringHandle      FArrayDouble_to_json_string(FArrayDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to FArrayDouble_to_json_string");
-}
-  std::string json = (*static_cast<falcon_core::generic::FArraySP<double>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-FArrayDoubleHandle FArrayDouble_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to FArrayDouble_from_json_string");
-}
-    auto ptr = falcon_core::generic::FArray<double>::from_json_string<falcon_core::generic::FArray<double>>(json->raw);
-    return new falcon_core::generic::FArraySP<double>(ptr);
-    FALCON_C_API_END(nullptr)
 }
 }

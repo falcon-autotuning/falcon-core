@@ -1,19 +1,20 @@
 #include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
 
 #include <falcon_core/math/arrays/LabelledControlArray.hpp>
-#include <stdexcept>
-#include <string>
 #include <xtensor/xadapt.hpp>
 
-#include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 using namespace falcon_core;
 using namespace falcon_core::math;
 using namespace falcon_core::math::arrays;
 
 extern "C" {
+DEFINE_C_API_COPY(LabelledControlArray);
+DEFINE_C_API_DESTROY(LabelledControlArray);
+DEFINE_C_API_EQUAL(LabelledControlArray);
+DEFINE_C_API_NOT_EQUAL(LabelledControlArray);
+DEFINE_C_API_TO_JSON(LabelledControlArray);
+DEFINE_C_API_FROM_JSON(LabelledControlArray);
 LabelledControlArrayHandle LabelledControlArray_from_farray(
     FArrayDoubleHandle farray, AcquisitionContextHandle label) {
   FALCON_C_API_BEGIN
@@ -54,16 +55,6 @@ LabelledControlArrayHandle LabelledControlArray_from_control_array(
   return new LabelledControlArraySP(
       std::make_shared<LabelledControlArray>(real_controlarray, real_label));
   FALCON_C_API_END(nullptr)
-}
-
-void LabelledControlArray_destroy(LabelledControlArrayHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray_destroy");
-  }
-  delete static_cast<LabelledControlArraySP*>(handle);
-  FALCON_C_API_END()
 }
 
 AcquisitionContextHandle LabelledControlArray_label(
@@ -616,34 +607,6 @@ LabelledControlArrayHandle LabelledControlArray_max_control_array(
   FALCON_C_API_END(nullptr)
 }
 
-bool LabelledControlArray_equal(LabelledControlArrayHandle handle,
-                                LabelledControlArrayHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray_equal");
-  }
-  LabelledControlArraySP labelled_control_array =
-      *static_cast<LabelledControlArraySP*>(handle);
-  return *labelled_control_array ==
-         *(*static_cast<LabelledControlArraySP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool LabelledControlArray_not_equal(LabelledControlArrayHandle handle,
-                                    LabelledControlArrayHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle || !other) {
-    throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray_not_equal");
-  }
-  LabelledControlArraySP labelled_control_array =
-      *static_cast<LabelledControlArraySP*>(handle);
-  return *labelled_control_array !=
-         *(*static_cast<LabelledControlArraySP*>(other));
-  FALCON_C_API_END(false)
-}
-
 bool LabelledControlArray_greater_than(LabelledControlArrayHandle handle,
                                        const double               value) {
   FALCON_C_API_BEGIN
@@ -823,33 +786,5 @@ double LabelledControlArray_get_summed_diff_array_of_squares(
   LabelledControlArraySP oarray = *static_cast<LabelledControlArraySP*>(other);
   return labelled_control_array->get_sum_of_squares(oarray);
   FALCON_C_API_END(0.0)
-}
-
-StringHandle LabelledControlArray_to_json_string(
-    LabelledControlArrayHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Null handle passed to LabelledControlArray_to_json_string");
-  }
-  LabelledControlArraySP labelled_control_array =
-      *static_cast<LabelledControlArraySP*>(handle);
-  std::string json_str = labelled_control_array->to_json_string();
-  return String_create(json_str.c_str(), json_str.size());
-  FALCON_C_API_END(nullptr)
-}
-
-LabelledControlArrayHandle LabelledControlArray_from_json_string(
-    StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Null string handle passed to LabelledControlArray_from_json_string");
-  }
-  std::string raw_json(json->raw);
-  auto        ptr =
-      LabelledControlArray::from_json_string<LabelledControlArray>(raw_json);
-  return new LabelledControlArraySP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

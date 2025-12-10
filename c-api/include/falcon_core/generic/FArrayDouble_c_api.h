@@ -14,6 +14,8 @@ typedef void* FArrayDoubleHandle;
 // @category:allocation
 FArrayDoubleHandle FArrayDouble_create_empty(const size_t* shape, size_t ndim);
 // @category:allocation
+FArrayDoubleHandle FArrayDouble_copy(FArrayDoubleHandle handle);
+// @category:allocation
 FArrayDoubleHandle FArrayDouble_create_zeros(const size_t* shape, size_t ndim);
 // @category:allocation
 FArrayDoubleHandle FArrayDouble_from_shape(const size_t* shape, size_t ndim);

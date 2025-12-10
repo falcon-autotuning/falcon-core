@@ -1,10 +1,19 @@
 #include <falcon_core/generic/Map.hpp>
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROMapInterpretationContextHandleStringHandle = falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>;
+DEFINE_C_API_COPY_TEMPLATE(MapInterpretationContextString, MACROMapInterpretationContextHandleStringHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(MapInterpretationContextString, MACROMapInterpretationContextHandleStringHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(MapInterpretationContextString, MACROMapInterpretationContextHandleStringHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(MapInterpretationContextString, MACROMapInterpretationContextHandleStringHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(MapInterpretationContextString, MACROMapInterpretationContextHandleStringHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(MapInterpretationContextString, MACROMapInterpretationContextHandleStringHandle);
+
 MapInterpretationContextStringHandle MapInterpretationContextString_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>(std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>>()); 
@@ -24,15 +33,6 @@ throw std::invalid_argument("Null data pointer passed to MapInterpretationContex
     return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>(
         std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void MapInterpretationContextString_destroy(MapInterpretationContextStringHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapInterpretationContextString_destroy");
-}
-    delete static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext, std::string>*>(handle);
-    FALCON_C_API_END()
 }
 
 void MapInterpretationContextString_insert_or_assign(MapInterpretationContextStringHandle handle,  InterpretationContextHandle key,  StringHandle value) {
@@ -181,48 +181,6 @@ throw std::invalid_argument("Null handle passed to MapInterpretationContextStrin
     auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>> items_sp = map->items(); 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>>(items_sp);
-    FALCON_C_API_END(nullptr)
-}
-
-bool MapInterpretationContextString_equal(MapInterpretationContextStringHandle handle, MapInterpretationContextStringHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapInterpretationContextString_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool MapInterpretationContextString_not_equal(MapInterpretationContextStringHandle handle, MapInterpretationContextStringHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapInterpretationContextString_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      MapInterpretationContextString_to_json_string(MapInterpretationContextStringHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapInterpretationContextString_to_json_string");
-}
-std::string json = (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-MapInterpretationContextStringHandle MapInterpretationContextString_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to MapInterpretationContextString_from_json_string");
-}
-  auto ptr = falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>::from_json_string<falcon_core::generic::Map<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>>(json->raw);
-  return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::interpretations::InterpretationContext,std::string>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

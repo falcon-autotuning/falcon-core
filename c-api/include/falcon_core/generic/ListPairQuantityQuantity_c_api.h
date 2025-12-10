@@ -13,6 +13,8 @@ typedef void* ListPairQuantityQuantityHandle;
 
 // @category:allocation
 ListPairQuantityQuantityHandle ListPairQuantityQuantity_create_empty();
+// @category:allocation
+ListPairQuantityQuantityHandle ListPairQuantityQuantity_copy(ListPairQuantityQuantityHandle handle);
 
 // @category:allocation
 ListPairQuantityQuantityHandle ListPairQuantityQuantity_fill_value(size_t count, PairQuantityQuantityHandle value);
@@ -41,9 +43,9 @@ size_t ListPairQuantityQuantity_index(ListPairQuantityQuantityHandle handle, Pai
 // @category:read
 ListPairQuantityQuantityHandle ListPairQuantityQuantity_intersection(ListPairQuantityQuantityHandle handle, ListPairQuantityQuantityHandle other);
 // @category:read
-bool ListPairQuantityQuantity_equal(ListPairQuantityQuantityHandle a, ListPairQuantityQuantityHandle b);
+bool ListPairQuantityQuantity_equal(ListPairQuantityQuantityHandle handle, ListPairQuantityQuantityHandle other);
 // @category:read
-bool ListPairQuantityQuantity_not_equal(ListPairQuantityQuantityHandle a, ListPairQuantityQuantityHandle b);
+bool ListPairQuantityQuantity_not_equal(ListPairQuantityQuantityHandle handle, ListPairQuantityQuantityHandle other);
 
 // @category:read
 StringHandle      ListPairQuantityQuantity_to_json_string(ListPairQuantityQuantityHandle handle);

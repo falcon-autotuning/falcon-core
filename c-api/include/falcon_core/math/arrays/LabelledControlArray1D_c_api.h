@@ -14,13 +14,28 @@ extern "C" {
 typedef void* LabelledControlArray1DHandle;
 
 // @category:allocation
+LabelledControlArray1DHandle LabelledControlArray1D_copy(
+    LabelledControlArray1DHandle handle);
+// @category:deallocation
+void LabelledControlArray1D_destroy(LabelledControlArray1DHandle handle);
+// @category:read
+bool LabelledControlArray1D_equal(LabelledControlArray1DHandle handle,
+                                  LabelledControlArray1DHandle other);
+// @category:read
+bool LabelledControlArray1D_not_equal(LabelledControlArray1DHandle handle,
+                                      LabelledControlArray1DHandle other);
+// @category:read
+StringHandle LabelledControlArray1D_to_json_string(
+    LabelledControlArray1DHandle handle);
+// @category:allocation
+LabelledControlArray1DHandle LabelledControlArray1D_from_json_string(
+    StringHandle json);
+// @category:allocation
 LabelledControlArray1DHandle LabelledControlArray1D_from_farray(
     FArrayDoubleHandle farray, AcquisitionContextHandle label);
 // @category:allocation
 LabelledControlArray1DHandle LabelledControlArray1D_from_control_array(
     ControlArrayHandle controlarray, AcquisitionContextHandle label);
-// @category:deallocation
-void LabelledControlArray1D_destroy(LabelledControlArray1DHandle handle);
 // @category:read
 bool LabelledControlArray1D_is_1D(LabelledControlArray1DHandle handle);
 // @category:read
@@ -148,7 +163,8 @@ LabelledControlArray1DHandle LabelledControlArray1D_pow(
 LabelledControlArray1DHandle LabelledControlArray1D_abs(
     LabelledControlArray1DHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: LabelledControlArray1D_min | falcon_core::math::arrays::LabelledControlArray1D::min */
+/* AUTO-DOC from cpp: LabelledControlArray1D_min |
+ * falcon_core::math::arrays::LabelledControlArray1D::min */
 /**
  * @brief Return the minimum value of the array.
  */
@@ -160,7 +176,8 @@ LabelledControlArray1DHandle LabelledControlArray1D_min_farray(
 LabelledControlArray1DHandle LabelledControlArray1D_min_control_array(
     LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
 // @category:read
-/* AUTO-DOC from cpp: LabelledControlArray1D_max | falcon_core::math::arrays::LabelledControlArray1D::max */
+/* AUTO-DOC from cpp: LabelledControlArray1D_max |
+ * falcon_core::math::arrays::LabelledControlArray1D::max */
 /**
  * @brief Return the maximum value of the array.
  */
@@ -171,12 +188,6 @@ LabelledControlArray1DHandle LabelledControlArray1D_max_farray(
 // @category:read
 LabelledControlArray1DHandle LabelledControlArray1D_max_control_array(
     LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
-// @category:read
-bool LabelledControlArray1D_equal(LabelledControlArray1DHandle handle,
-                                  LabelledControlArray1DHandle other);
-// @category:read
-bool LabelledControlArray1D_not_equal(LabelledControlArray1DHandle handle,
-                                      LabelledControlArray1DHandle other);
 // @category:read
 bool LabelledControlArray1D_greater_than(LabelledControlArray1DHandle handle,
                                          double                       value);
@@ -192,7 +203,8 @@ double LabelledControlArray1D_sum(LabelledControlArray1DHandle handle);
 ListListSizeTHandle LabelledControlArray1D_where(
     LabelledControlArray1DHandle handle, double value);
 // @category:read
-/* AUTO-DOC from cpp: LabelledControlArray1D_flip | falcon_core::math::arrays::LabelledControlArray1D::flip */
+/* AUTO-DOC from cpp: LabelledControlArray1D_flip |
+ * falcon_core::math::arrays::LabelledControlArray1D::flip */
 /**
  * @brief Flip the data along the given axis.
  * @param axis The axis to flip.
@@ -205,7 +217,8 @@ size_t LabelledControlArray1D_full_gradient(LabelledControlArray1DHandle handle,
                                             FArrayDoubleHandle* out_buffer,
                                             size_t              buffer_size);
 // @category:read
-/* AUTO-DOC from cpp: LabelledControlArray1D_gradient | falcon_core::math::arrays::LabelledControlArray1D::gradient */
+/* AUTO-DOC from cpp: LabelledControlArray1D_gradient |
+ * falcon_core::math::arrays::LabelledControlArray1D::gradient */
 /**
  * @brief Return the gradient of the data along a given axis.
  * Computes the gradient along the specified axis using finite differences:
@@ -215,7 +228,8 @@ size_t LabelledControlArray1D_full_gradient(LabelledControlArray1DHandle handle,
  * @param axis The axis to compute the gradient.
  * @return The gradient FArray.
  */
-/* AUTO-DOC from cpp: LabelledControlArray1D_gradient | falcon_core::math::arrays::LabelledControlArray1D::gradient */
+/* AUTO-DOC from cpp: LabelledControlArray1D_gradient |
+ * falcon_core::math::arrays::LabelledControlArray1D::gradient */
 /**
  * @brief Return the gradient of the data along a given axis.
  * Computes the gradient along the specified axis using finite differences:
@@ -239,12 +253,6 @@ double LabelledControlArray1D_get_summed_diff_double_of_squares(
 // @category:read
 double LabelledControlArray1D_get_summed_diff_array_of_squares(
     LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
-// @category:read
-StringHandle LabelledControlArray1D_to_json_string(
-    LabelledControlArray1DHandle handle);
-// @category:allocation
-LabelledControlArray1DHandle LabelledControlArray1D_from_json_string(
-    StringHandle json);
 
 #ifdef __cplusplus
 }

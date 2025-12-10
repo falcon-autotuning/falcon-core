@@ -1,11 +1,20 @@
 #include <falcon_core/math/arrays/LabelledArrays.hpp>
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/List.hpp>
 #include <falcon_core/math/arrays/LabelledArrays.hpp>
 #include <falcon_core/math/arrays/LabelledMeasuredArray1D.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROLabelledArraysLabelledMeasuredArray1DHandle= falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray1D>;
+DEFINE_C_API_COPY_TEMPLATE(LabelledArraysLabelledMeasuredArray1D, MACROLabelledArraysLabelledMeasuredArray1DHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(LabelledArraysLabelledMeasuredArray1D, MACROLabelledArraysLabelledMeasuredArray1DHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(LabelledArraysLabelledMeasuredArray1D, MACROLabelledArraysLabelledMeasuredArray1DHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(LabelledArraysLabelledMeasuredArray1D, MACROLabelledArraysLabelledMeasuredArray1DHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(LabelledArraysLabelledMeasuredArray1D, MACROLabelledArraysLabelledMeasuredArray1DHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(LabelledArraysLabelledMeasuredArray1D, MACROLabelledArraysLabelledMeasuredArray1DHandle);
+
 LabelledArraysLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1D_create(
     ListLabelledMeasuredArray1DHandle arrays) {
     FALCON_C_API_BEGIN
@@ -16,15 +25,6 @@ LabelledArraysLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1
     return new falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>(
         std::make_shared<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray1D>>(list->items()));
     FALCON_C_API_END(nullptr)
-}
-
-void LabelledArraysLabelledMeasuredArray1D_destroy(LabelledArraysLabelledMeasuredArray1DHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasuredArray1D_destroy");
-}
-    delete static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
-    FALCON_C_API_END()
 }
 
 ListLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1D_arrays(
@@ -167,47 +167,5 @@ throw std::invalid_argument("Null value passed to LabelledArraysLabelledMeasured
     auto stored_obj = falcon_core::math::arrays::LabelledMeasuredArray1DSP(*static_cast<falcon_core::math::arrays::LabelledMeasuredArray1DSP*>(value));
     return (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->index(stored_obj);
     FALCON_C_API_END(0)
-}
-
-bool LabelledArraysLabelledMeasuredArray1D_equal(LabelledArraysLabelledMeasuredArray1DHandle handle, LabelledArraysLabelledMeasuredArray1DHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasuredArray1D_equal");
-}
-    auto listA = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
-    auto listB = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool LabelledArraysLabelledMeasuredArray1D_not_equal(LabelledArraysLabelledMeasuredArray1DHandle handle, LabelledArraysLabelledMeasuredArray1DHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasuredArray1D_not_equal");
-}
-    auto listA = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle);
-    auto listB = *static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      LabelledArraysLabelledMeasuredArray1D_to_json_string(LabelledArraysLabelledMeasuredArray1DHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to LabelledArraysLabelledMeasuredArray1D_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-LabelledArraysLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1D_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to LabelledArraysLabelledMeasuredArray1D_from_json_string");
-}
-  auto ptr = falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray1D>::from_json_string<falcon_core::math::arrays::LabelledArrays<falcon_core::math::arrays::LabelledMeasuredArray1D>>(json->raw);
-  return new falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledMeasuredArray1D>(ptr);
-    FALCON_C_API_END(nullptr)
 }
 }

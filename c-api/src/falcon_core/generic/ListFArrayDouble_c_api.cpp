@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListFArrayDouble_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/FArray.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListFArrayDoubleHandle= falcon_core::generic::List<falcon_core::generic::FArray<double>>;
+DEFINE_C_API_COPY_TEMPLATE(ListFArrayDouble, MACROListFArrayDoubleHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListFArrayDouble, MACROListFArrayDoubleHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListFArrayDouble, MACROListFArrayDoubleHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListFArrayDouble, MACROListFArrayDoubleHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListFArrayDouble, MACROListFArrayDoubleHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListFArrayDouble, MACROListFArrayDoubleHandle);
 ListFArrayDoubleHandle ListFArrayDouble_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::FArray<double>>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListFArrayDouble_create"
     return new falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::FArray<double>>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListFArrayDouble_destroy(ListFArrayDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListFArrayDouble_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListFArrayDouble_size(ListFArrayDoubleHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListFArrayDouble_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListFArrayDouble_equal(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListFArrayDouble_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListFArrayDouble_not_equal(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListFArrayDouble_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListFArrayDoubleHandle ListFArrayDouble_intersection(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListFArrayDouble_intersection
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListFArrayDouble_to_json_string(ListFArrayDoubleHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListFArrayDouble_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListFArrayDoubleHandle ListFArrayDouble_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListFArrayDouble_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::generic::FArray<double>>::from_json_string<falcon_core::generic::List<falcon_core::generic::FArray<double>>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::generic::FArray<double>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

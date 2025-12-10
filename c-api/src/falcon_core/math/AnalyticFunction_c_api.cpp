@@ -1,13 +1,18 @@
 #include "falcon_core/math/AnalyticFunction_c_api.h"
 
 #include <falcon_core/math/AnalyticFunction.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::math;
 
 extern "C" {
+DEFINE_C_API_COPY(AnalyticFunction);
+DEFINE_C_API_DESTROY(AnalyticFunction);
+DEFINE_C_API_EQUAL(AnalyticFunction);
+DEFINE_C_API_NOT_EQUAL(AnalyticFunction);
+DEFINE_C_API_TO_JSON(AnalyticFunction);
+DEFINE_C_API_FROM_JSON(AnalyticFunction);
 AnalyticFunctionHandle AnalyticFunction_create(ListStringHandle labels,
                                                StringHandle     expression) {
   FALCON_C_API_BEGIN
@@ -39,16 +44,6 @@ AnalyticFunctionHandle AnalyticFunction_create_constant(double value) {
   FALCON_C_API_BEGIN
   return new AnalyticFunctionSP(AnalyticFunction::Constant(value));
   FALCON_C_API_END(nullptr)
-}
-
-void AnalyticFunction_destroy(AnalyticFunctionHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "AnalyticFunction_destroy: handle cannot be null");
-  }
-  delete static_cast<AnalyticFunctionSP*>(handle);
-  FALCON_C_API_END()
 }
 
 ListStringHandle AnalyticFunction_labels(AnalyticFunctionHandle handle) {
@@ -100,60 +95,6 @@ FArrayDoubleHandle AnalyticFunction_evaluate_arraywise(
       *static_cast<falcon_core::generic::MapSP<std::string, double>*>(args);
   return new falcon_core::generic::FArraySP<double>(
       self->evaluate(args_map, deltaT, maxTime));
-  FALCON_C_API_END(nullptr)
-}
-
-bool AnalyticFunction_equal(AnalyticFunctionHandle handle,
-                            AnalyticFunctionHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("AnalyticFunction_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("AnalyticFunction_equal: b cannot be null");
-  }
-  AnalyticFunctionSP self_a = *static_cast<AnalyticFunctionSP*>(handle);
-  AnalyticFunctionSP self_b = *static_cast<AnalyticFunctionSP*>(other);
-  return *self_a == *self_b;
-  FALCON_C_API_END(false)
-}
-
-bool AnalyticFunction_not_equal(AnalyticFunctionHandle handle,
-                                AnalyticFunctionHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("AnalyticFunction_not_equal: a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("AnalyticFunction_not_equal: b cannot be null");
-  }
-  AnalyticFunctionSP self_a = *static_cast<AnalyticFunctionSP*>(handle);
-  AnalyticFunctionSP self_b = *static_cast<AnalyticFunctionSP*>(other);
-  return *self_a != *self_b;
-  FALCON_C_API_END(false)
-}
-
-StringHandle AnalyticFunction_to_json_string(AnalyticFunctionHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "AnalyticFunction_to_json_string: handle cannot be null");
-  }
-  AnalyticFunctionSP self = *static_cast<AnalyticFunctionSP*>(handle);
-  std::string        json = self->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-AnalyticFunctionHandle AnalyticFunction_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "AnalyticFunction_from_json_string: json cannot be null");
-  }
-  std::string json_str(json->raw, json->length);
-  auto ptr = AnalyticFunction::from_json_string<AnalyticFunction>(json_str);
-  return new AnalyticFunctionSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

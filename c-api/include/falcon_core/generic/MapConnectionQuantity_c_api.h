@@ -15,6 +15,8 @@ typedef void* MapConnectionQuantityHandle;
 // @category:allocation
 MapConnectionQuantityHandle MapConnectionQuantity_create_empty();
 // @category:allocation
+MapConnectionQuantityHandle MapConnectionQuantity_copy(MapConnectionQuantityHandle handle);
+// @category:allocation
 MapConnectionQuantityHandle MapConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count);
 // @category:deallocation
 void MapConnectionQuantity_destroy(MapConnectionQuantityHandle handle);
@@ -41,9 +43,9 @@ ListQuantityHandle MapConnectionQuantity_values(MapConnectionQuantityHandle hand
 // @category:read
 ListPairConnectionQuantityHandle MapConnectionQuantity_items(MapConnectionQuantityHandle handle);
 // @category:read
-bool MapConnectionQuantity_equal(MapConnectionQuantityHandle a, MapConnectionQuantityHandle b);
+bool MapConnectionQuantity_equal(MapConnectionQuantityHandle handle, MapConnectionQuantityHandle other);
 // @category:read
-bool MapConnectionQuantity_not_equal(MapConnectionQuantityHandle a, MapConnectionQuantityHandle b);
+bool MapConnectionQuantity_not_equal(MapConnectionQuantityHandle handle, MapConnectionQuantityHandle other);
 // @category:read
 StringHandle      MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle);
 // @category:allocation

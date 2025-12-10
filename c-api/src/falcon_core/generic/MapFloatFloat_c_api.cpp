@@ -1,9 +1,18 @@
 #include <falcon_core/generic/Map.hpp>
 #include "falcon_core/generic/MapFloatFloat_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROMapfloatfloat = falcon_core::generic::Map<float, float>;
+DEFINE_C_API_COPY_TEMPLATE(MapFloatFloat, MACROMapfloatfloat)
+DEFINE_C_API_DESTROY_TEMPLATE(MapFloatFloat, MACROMapfloatfloat);
+DEFINE_C_API_EQUAL_TEMPLATE(MapFloatFloat, MACROMapfloatfloat);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(MapFloatFloat, MACROMapfloatfloat);
+DEFINE_C_API_TO_JSON_TEMPLATE(MapFloatFloat, MACROMapfloatfloat);
+DEFINE_C_API_FROM_JSON_TEMPLATE(MapFloatFloat, MACROMapfloatfloat);
+
 MapFloatFloatHandle MapFloatFloat_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::MapSP<float,float>(std::make_shared<falcon_core::generic::Map<float,float>>()); 
@@ -23,15 +32,6 @@ throw std::invalid_argument("Null data pointer passed to MapFloatFloat_create");
     return new falcon_core::generic::MapSP<float, float>(
         std::make_shared<falcon_core::generic::Map<float,float>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void MapFloatFloat_destroy(MapFloatFloatHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapFloatFloat_destroy");
-}
-    delete static_cast<falcon_core::generic::MapSP<float, float>*>(handle);
-    FALCON_C_API_END()
 }
 
 void MapFloatFloat_insert_or_assign(MapFloatFloatHandle handle,  float key,  float value) {
@@ -148,48 +148,6 @@ throw std::invalid_argument("Null handle passed to MapFloatFloat_items");
     auto map = *static_cast<falcon_core::generic::MapSP<float,float>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<float,float>> items_sp = map->items(); 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<float,float>>(items_sp);
-    FALCON_C_API_END(nullptr)
-}
-
-bool MapFloatFloat_equal(MapFloatFloatHandle handle, MapFloatFloatHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapFloatFloat_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<float,float>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<float,float>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool MapFloatFloat_not_equal(MapFloatFloatHandle handle, MapFloatFloatHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapFloatFloat_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<float,float>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<float,float>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      MapFloatFloat_to_json_string(MapFloatFloatHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapFloatFloat_to_json_string");
-}
-std::string json = (*static_cast<falcon_core::generic::MapSP<float,float>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-MapFloatFloatHandle MapFloatFloat_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to MapFloatFloat_from_json_string");
-}
-  auto ptr = falcon_core::generic::Map<float,float>::from_json_string<falcon_core::generic::Map<float,float>>(json->raw);
-  return new falcon_core::generic::MapSP<float,float>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

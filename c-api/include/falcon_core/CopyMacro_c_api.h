@@ -1,14 +1,15 @@
 #pragma once
 
-#define DECLARE_C_API_COPY(Type) Type##Handle Type##_copy(Type##Handle handle);
-
-#define DEFINE_C_API_COPY(Type)                                                \
-  extern "C" Type##Handle Type##_copy(Type##Handle handle) {                   \
-    FALCON_C_API_BEGIN                                                         \
-    if (!handle) {                                                             \
-      throw std::invalid_argument(#Type "_copy: handle cannot be null");       \
-    }                                                                          \
-    std::shared_ptr<Type> self = *static_cast<std::shared_ptr<Type>*>(handle); \
-    return new std::shared_ptr<Type>(std::make_shared<Type>(*self));           \
-    FALCON_C_API_END(nullptr)                                                  \
+#define DEFINE_C_API_COPY_TEMPLATE(CType, CPPType)                         \
+  CType##Handle CType##_copy(CType##Handle handle) {                       \
+    FALCON_C_API_BEGIN                                                     \
+    if (!handle) {                                                         \
+      throw std::invalid_argument(#CType "_copy: handle cannot be null");  \
+    }                                                                      \
+    std::shared_ptr<CPPType> self =                                        \
+        *static_cast<std::shared_ptr<CPPType>*>(handle);                   \
+    return new std::shared_ptr<CPPType>(std::make_shared<CPPType>(*self)); \
+    FALCON_C_API_END(nullptr)                                              \
   }
+
+#define DEFINE_C_API_COPY(Type) DEFINE_C_API_COPY_TEMPLATE(Type, Type)

@@ -10,22 +10,10 @@ extern "C" {
 typedef void* LeftReservoirWithImplantedOhmicHandle;
 
 // @category:allocation
-LeftReservoirWithImplantedOhmicHandle LeftReservoirWithImplantedOhmic_create(
-    StringHandle name, ConnectionHandle right_neighbor, ConnectionHandle ohmic);
+LeftReservoirWithImplantedOhmicHandle LeftReservoirWithImplantedOhmic_copy(
+    LeftReservoirWithImplantedOhmicHandle handle);
 // @category:deallocation
 void LeftReservoirWithImplantedOhmic_destroy(
-    LeftReservoirWithImplantedOhmicHandle handle);
-// @category:read
-StringHandle LeftReservoirWithImplantedOhmic_name(
-    LeftReservoirWithImplantedOhmicHandle handle);
-// @category:read
-StringHandle LeftReservoirWithImplantedOhmic_type(
-    LeftReservoirWithImplantedOhmicHandle handle);
-// @category:read
-ConnectionHandle LeftReservoirWithImplantedOhmic_ohmic(
-    LeftReservoirWithImplantedOhmicHandle handle);
-// @category:read
-ConnectionHandle LeftReservoirWithImplantedOhmic_right_neighbor(
     LeftReservoirWithImplantedOhmicHandle handle);
 // @category:read
 bool LeftReservoirWithImplantedOhmic_equal(
@@ -41,7 +29,21 @@ StringHandle LeftReservoirWithImplantedOhmic_to_json_string(
 // @category:allocation
 LeftReservoirWithImplantedOhmicHandle
 LeftReservoirWithImplantedOhmic_from_json_string(StringHandle json);
-
+// @category:allocation
+LeftReservoirWithImplantedOhmicHandle LeftReservoirWithImplantedOhmic_create(
+    StringHandle name, ConnectionHandle right_neighbor, ConnectionHandle ohmic);
+// @category:read
+StringHandle LeftReservoirWithImplantedOhmic_name(
+    LeftReservoirWithImplantedOhmicHandle handle);
+// @category:read
+StringHandle LeftReservoirWithImplantedOhmic_type(
+    LeftReservoirWithImplantedOhmicHandle handle);
+// @category:read
+ConnectionHandle LeftReservoirWithImplantedOhmic_ohmic(
+    LeftReservoirWithImplantedOhmicHandle handle);
+// @category:read
+ConnectionHandle LeftReservoirWithImplantedOhmic_right_neighbor(
+    LeftReservoirWithImplantedOhmicHandle handle);
 #ifdef __cplusplus
 }
 #endif

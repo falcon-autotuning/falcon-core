@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListPairStringBool_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListPairStringBoolHandle= falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>;
+DEFINE_C_API_COPY_TEMPLATE(ListPairStringBool, MACROListPairStringBoolHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListPairStringBool, MACROListPairStringBoolHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListPairStringBool, MACROListPairStringBoolHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListPairStringBool, MACROListPairStringBoolHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListPairStringBool, MACROListPairStringBoolHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListPairStringBool, MACROListPairStringBoolHandle);
 ListPairStringBoolHandle ListPairStringBool_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>(std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListPairStringBool_creat
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>(
         std::make_shared<falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListPairStringBool_destroy(ListPairStringBoolHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListPairStringBool_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListPairStringBool_size(ListPairStringBoolHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListPairStringBool_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListPairStringBool_equal(ListPairStringBoolHandle handle, ListPairStringBoolHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairStringBool_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListPairStringBool_not_equal(ListPairStringBoolHandle handle, ListPairStringBoolHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListPairStringBool_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListPairStringBoolHandle ListPairStringBool_intersection(ListPairStringBoolHandle handle, ListPairStringBoolHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListPairStringBool_intersecti
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListPairStringBool_to_json_string(ListPairStringBoolHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListPairStringBool_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListPairStringBoolHandle ListPairStringBool_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListPairStringBool_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>::from_json_string<falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::generic::Pair<std::string, bool>>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

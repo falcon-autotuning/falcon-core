@@ -13,6 +13,8 @@ typedef void* ListDeviceVoltageStateHandle;
 
 // @category:allocation
 ListDeviceVoltageStateHandle ListDeviceVoltageState_create_empty();
+// @category:allocation
+ListDeviceVoltageStateHandle ListDeviceVoltageState_copy(ListDeviceVoltageStateHandle handle);
 
 // @category:allocation
 ListDeviceVoltageStateHandle ListDeviceVoltageState_fill_value(size_t count, DeviceVoltageStateHandle value);
@@ -41,9 +43,9 @@ size_t ListDeviceVoltageState_index(ListDeviceVoltageStateHandle handle, DeviceV
 // @category:read
 ListDeviceVoltageStateHandle ListDeviceVoltageState_intersection(ListDeviceVoltageStateHandle handle, ListDeviceVoltageStateHandle other);
 // @category:read
-bool ListDeviceVoltageState_equal(ListDeviceVoltageStateHandle a, ListDeviceVoltageStateHandle b);
+bool ListDeviceVoltageState_equal(ListDeviceVoltageStateHandle handle, ListDeviceVoltageStateHandle other);
 // @category:read
-bool ListDeviceVoltageState_not_equal(ListDeviceVoltageStateHandle a, ListDeviceVoltageStateHandle b);
+bool ListDeviceVoltageState_not_equal(ListDeviceVoltageStateHandle handle, ListDeviceVoltageStateHandle other);
 
 // @category:read
 StringHandle      ListDeviceVoltageState_to_json_string(ListDeviceVoltageStateHandle handle);

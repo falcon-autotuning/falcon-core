@@ -13,6 +13,8 @@ typedef void* ListPairConnectionDoubleHandle;
 
 // @category:allocation
 ListPairConnectionDoubleHandle ListPairConnectionDouble_create_empty();
+// @category:allocation
+ListPairConnectionDoubleHandle ListPairConnectionDouble_copy(ListPairConnectionDoubleHandle handle);
 
 // @category:allocation
 ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value(size_t count, PairConnectionDoubleHandle value);
@@ -41,9 +43,9 @@ size_t ListPairConnectionDouble_index(ListPairConnectionDoubleHandle handle, Pai
 // @category:read
 ListPairConnectionDoubleHandle ListPairConnectionDouble_intersection(ListPairConnectionDoubleHandle handle, ListPairConnectionDoubleHandle other);
 // @category:read
-bool ListPairConnectionDouble_equal(ListPairConnectionDoubleHandle a, ListPairConnectionDoubleHandle b);
+bool ListPairConnectionDouble_equal(ListPairConnectionDoubleHandle handle, ListPairConnectionDoubleHandle other);
 // @category:read
-bool ListPairConnectionDouble_not_equal(ListPairConnectionDoubleHandle a, ListPairConnectionDoubleHandle b);
+bool ListPairConnectionDouble_not_equal(ListPairConnectionDoubleHandle handle, ListPairConnectionDoubleHandle other);
 
 // @category:read
 StringHandle      ListPairConnectionDouble_to_json_string(ListPairConnectionDoubleHandle handle);

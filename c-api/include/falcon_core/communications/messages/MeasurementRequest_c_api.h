@@ -13,6 +13,21 @@ extern "C" {
 typedef void* MeasurementRequestHandle;
 
 // @category:allocation
+MeasurementRequestHandle MeasurementRequest_copy(
+    MeasurementRequestHandle handle);
+// @category:deallocation
+void MeasurementRequest_destroy(MeasurementRequestHandle handle);
+// @category:read
+bool MeasurementRequest_equal(MeasurementRequestHandle handle,
+                              MeasurementRequestHandle other);
+// @category:read
+bool MeasurementRequest_not_equal(MeasurementRequestHandle handle,
+                                  MeasurementRequestHandle other);
+// @category:read
+StringHandle MeasurementRequest_to_json_string(MeasurementRequestHandle handle);
+// @category:allocation
+MeasurementRequestHandle MeasurementRequest_from_json_string(StringHandle json);
+// @category:allocation
 MeasurementRequestHandle MeasurementRequest_create(
     StringHandle                         message,
     StringHandle                         measurement_name,
@@ -20,8 +35,6 @@ MeasurementRequestHandle MeasurementRequest_create(
     PortsHandle                          getters,
     MapInstrumentPortPortTransformHandle meter_transforms,
     LabelledDomainHandle                 time_domain);
-// @category:deallocation
-void MeasurementRequest_destroy(MeasurementRequestHandle handle);
 // @category:read
 StringHandle MeasurementRequest_measurement_name(
     MeasurementRequestHandle handle);
@@ -38,16 +51,6 @@ LabelledDomainHandle MeasurementRequest_time_domain(
     MeasurementRequestHandle handle);
 // @category:read
 StringHandle MeasurementRequest_message(MeasurementRequestHandle handle);
-// @category:read
-bool MeasurementRequest_equal(MeasurementRequestHandle handle,
-                              MeasurementRequestHandle other);
-// @category:read
-bool MeasurementRequest_not_equal(MeasurementRequestHandle handle,
-                                  MeasurementRequestHandle other);
-// @category:read
-StringHandle MeasurementRequest_to_json_string(MeasurementRequestHandle handle);
-// @category:allocation
-MeasurementRequestHandle MeasurementRequest_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

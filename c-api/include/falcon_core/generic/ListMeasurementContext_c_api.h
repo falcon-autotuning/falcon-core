@@ -13,6 +13,8 @@ typedef void* ListMeasurementContextHandle;
 
 // @category:allocation
 ListMeasurementContextHandle ListMeasurementContext_create_empty();
+// @category:allocation
+ListMeasurementContextHandle ListMeasurementContext_copy(ListMeasurementContextHandle handle);
 
 // @category:allocation
 ListMeasurementContextHandle ListMeasurementContext_fill_value(size_t count, MeasurementContextHandle value);
@@ -41,9 +43,9 @@ size_t ListMeasurementContext_index(ListMeasurementContextHandle handle, Measure
 // @category:read
 ListMeasurementContextHandle ListMeasurementContext_intersection(ListMeasurementContextHandle handle, ListMeasurementContextHandle other);
 // @category:read
-bool ListMeasurementContext_equal(ListMeasurementContextHandle a, ListMeasurementContextHandle b);
+bool ListMeasurementContext_equal(ListMeasurementContextHandle handle, ListMeasurementContextHandle other);
 // @category:read
-bool ListMeasurementContext_not_equal(ListMeasurementContextHandle a, ListMeasurementContextHandle b);
+bool ListMeasurementContext_not_equal(ListMeasurementContextHandle handle, ListMeasurementContextHandle other);
 
 // @category:read
 StringHandle      ListMeasurementContext_to_json_string(ListMeasurementContextHandle handle);

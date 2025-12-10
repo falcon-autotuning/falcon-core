@@ -11,6 +11,8 @@ typedef void* ListListSizeTHandle;
 
 // @category:allocation
 ListListSizeTHandle ListListSizeT_create_empty();
+// @category:allocation
+ListListSizeTHandle ListListSizeT_copy(ListListSizeTHandle handle);
 
 // @category:allocation
 ListListSizeTHandle ListListSizeT_fill_value(size_t count, ListSizeTHandle value);
@@ -39,9 +41,9 @@ size_t ListListSizeT_index(ListListSizeTHandle handle, ListSizeTHandle value);
 // @category:read
 ListListSizeTHandle ListListSizeT_intersection(ListListSizeTHandle handle, ListListSizeTHandle other);
 // @category:read
-bool ListListSizeT_equal(ListListSizeTHandle a, ListListSizeTHandle b);
+bool ListListSizeT_equal(ListListSizeTHandle handle, ListListSizeTHandle other);
 // @category:read
-bool ListListSizeT_not_equal(ListListSizeTHandle a, ListListSizeTHandle b);
+bool ListListSizeT_not_equal(ListListSizeTHandle handle, ListListSizeTHandle other);
 
 // @category:read
 StringHandle      ListListSizeT_to_json_string(ListListSizeTHandle handle);

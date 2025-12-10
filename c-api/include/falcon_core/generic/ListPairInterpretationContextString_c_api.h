@@ -13,6 +13,8 @@ typedef void* ListPairInterpretationContextStringHandle;
 
 // @category:allocation
 ListPairInterpretationContextStringHandle ListPairInterpretationContextString_create_empty();
+// @category:allocation
+ListPairInterpretationContextStringHandle ListPairInterpretationContextString_copy(ListPairInterpretationContextStringHandle handle);
 
 // @category:allocation
 ListPairInterpretationContextStringHandle ListPairInterpretationContextString_fill_value(size_t count, PairInterpretationContextStringHandle value);
@@ -41,9 +43,9 @@ size_t ListPairInterpretationContextString_index(ListPairInterpretationContextSt
 // @category:read
 ListPairInterpretationContextStringHandle ListPairInterpretationContextString_intersection(ListPairInterpretationContextStringHandle handle, ListPairInterpretationContextStringHandle other);
 // @category:read
-bool ListPairInterpretationContextString_equal(ListPairInterpretationContextStringHandle a, ListPairInterpretationContextStringHandle b);
+bool ListPairInterpretationContextString_equal(ListPairInterpretationContextStringHandle handle, ListPairInterpretationContextStringHandle other);
 // @category:read
-bool ListPairInterpretationContextString_not_equal(ListPairInterpretationContextStringHandle a, ListPairInterpretationContextStringHandle b);
+bool ListPairInterpretationContextString_not_equal(ListPairInterpretationContextStringHandle handle, ListPairInterpretationContextStringHandle other);
 
 // @category:read
 StringHandle      ListPairInterpretationContextString_to_json_string(ListPairInterpretationContextStringHandle handle);

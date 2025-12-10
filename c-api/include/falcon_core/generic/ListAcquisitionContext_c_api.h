@@ -13,6 +13,8 @@ typedef void* ListAcquisitionContextHandle;
 
 // @category:allocation
 ListAcquisitionContextHandle ListAcquisitionContext_create_empty();
+// @category:allocation
+ListAcquisitionContextHandle ListAcquisitionContext_copy(ListAcquisitionContextHandle handle);
 
 // @category:allocation
 ListAcquisitionContextHandle ListAcquisitionContext_fill_value(size_t count, AcquisitionContextHandle value);
@@ -41,9 +43,9 @@ size_t ListAcquisitionContext_index(ListAcquisitionContextHandle handle, Acquisi
 // @category:read
 ListAcquisitionContextHandle ListAcquisitionContext_intersection(ListAcquisitionContextHandle handle, ListAcquisitionContextHandle other);
 // @category:read
-bool ListAcquisitionContext_equal(ListAcquisitionContextHandle a, ListAcquisitionContextHandle b);
+bool ListAcquisitionContext_equal(ListAcquisitionContextHandle handle, ListAcquisitionContextHandle other);
 // @category:read
-bool ListAcquisitionContext_not_equal(ListAcquisitionContextHandle a, ListAcquisitionContextHandle b);
+bool ListAcquisitionContext_not_equal(ListAcquisitionContextHandle handle, ListAcquisitionContextHandle other);
 
 // @category:read
 StringHandle      ListAcquisitionContext_to_json_string(ListAcquisitionContextHandle handle);

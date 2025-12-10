@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/communications/voltage_states/DeviceVoltageState.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListDeviceVoltageStateHandle= falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>;
+DEFINE_C_API_COPY_TEMPLATE(ListDeviceVoltageState, MACROListDeviceVoltageStateHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListDeviceVoltageState, MACROListDeviceVoltageStateHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListDeviceVoltageState, MACROListDeviceVoltageStateHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListDeviceVoltageState, MACROListDeviceVoltageStateHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListDeviceVoltageState, MACROListDeviceVoltageStateHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListDeviceVoltageState, MACROListDeviceVoltageStateHandle);
 ListDeviceVoltageStateHandle ListDeviceVoltageState_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>(std::make_shared<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListDeviceVoltageState_c
     return new falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>(
         std::make_shared<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListDeviceVoltageState_destroy(ListDeviceVoltageStateHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListDeviceVoltageState_size(ListDeviceVoltageStateHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListDeviceVoltageState_equal(ListDeviceVoltageStateHandle handle, ListDeviceVoltageStateHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListDeviceVoltageState_not_equal(ListDeviceVoltageStateHandle handle, ListDeviceVoltageStateHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListDeviceVoltageStateHandle ListDeviceVoltageState_intersection(ListDeviceVoltageStateHandle handle, ListDeviceVoltageStateHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_inters
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListDeviceVoltageState_to_json_string(ListDeviceVoltageStateHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListDeviceVoltageState_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListDeviceVoltageStateHandle ListDeviceVoltageState_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListDeviceVoltageState_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>::from_json_string<falcon_core::generic::List<falcon_core::communications::voltage_states::DeviceVoltageState>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::communications::voltage_states::DeviceVoltageState>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

@@ -12,14 +12,26 @@ extern "C" {
 typedef void* GateRelationsHandle;
 
 // @category:allocation
+GateRelationsHandle GateRelations_copy(GateRelationsHandle handle);
+// @category:deallocation
+void GateRelations_destroy(GateRelationsHandle handle);
+// @category:read
+bool GateRelations_equal(GateRelationsHandle handle, GateRelationsHandle other);
+// @category:read
+bool GateRelations_not_equal(GateRelationsHandle handle,
+                             GateRelationsHandle other);
+// @category:read
+StringHandle GateRelations_to_json_string(GateRelationsHandle handle);
+// @category:allocation
+GateRelationsHandle GateRelations_from_json_string(StringHandle json);
+// @category:allocation
 GateRelationsHandle GateRelations_create_empty();
 // @category:allocation
 GateRelationsHandle GateRelations_create(
     ListPairConnectionConnectionsHandle items);
-// @category:deallocation
-void GateRelations_destroy(GateRelationsHandle handle);
 // @category:write
-/* AUTO-DOC from cpp: GateRelations_insert_or_assign | falcon_core::physics::device_structures::GateRelations::insert_or_assign */
+/* AUTO-DOC from cpp: GateRelations_insert_or_assign |
+ * falcon_core::physics::device_structures::GateRelations::insert_or_assign */
 /**
  * @brief Override the default Map assignment to force gate typing.
  */
@@ -50,15 +62,6 @@ ListConnectionsHandle GateRelations_values(GateRelationsHandle handle);
 // @category:read
 ListPairConnectionConnectionsHandle GateRelations_items(
     GateRelationsHandle handle);
-// @category:read
-bool GateRelations_equal(GateRelationsHandle handle, GateRelationsHandle other);
-// @category:read
-bool GateRelations_not_equal(GateRelationsHandle handle,
-                             GateRelationsHandle other);
-// @category:read
-StringHandle GateRelations_to_json_string(GateRelationsHandle handle);
-// @category:allocation
-GateRelationsHandle GateRelations_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

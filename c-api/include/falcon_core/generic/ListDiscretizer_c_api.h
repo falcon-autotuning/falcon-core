@@ -13,6 +13,8 @@ typedef void* ListDiscretizerHandle;
 
 // @category:allocation
 ListDiscretizerHandle ListDiscretizer_create_empty();
+// @category:allocation
+ListDiscretizerHandle ListDiscretizer_copy(ListDiscretizerHandle handle);
 
 // @category:allocation
 ListDiscretizerHandle ListDiscretizer_fill_value(size_t count, DiscretizerHandle value);
@@ -41,9 +43,9 @@ size_t ListDiscretizer_index(ListDiscretizerHandle handle, DiscretizerHandle val
 // @category:read
 ListDiscretizerHandle ListDiscretizer_intersection(ListDiscretizerHandle handle, ListDiscretizerHandle other);
 // @category:read
-bool ListDiscretizer_equal(ListDiscretizerHandle a, ListDiscretizerHandle b);
+bool ListDiscretizer_equal(ListDiscretizerHandle handle, ListDiscretizerHandle other);
 // @category:read
-bool ListDiscretizer_not_equal(ListDiscretizerHandle a, ListDiscretizerHandle b);
+bool ListDiscretizer_not_equal(ListDiscretizerHandle handle, ListDiscretizerHandle other);
 
 // @category:read
 StringHandle      ListDiscretizer_to_json_string(ListDiscretizerHandle handle);

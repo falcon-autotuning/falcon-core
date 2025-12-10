@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListImpedance_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/physics/device_structures/Impedance.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListImpedanceHandle= falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>;
+DEFINE_C_API_COPY_TEMPLATE(ListImpedance, MACROListImpedanceHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListImpedance, MACROListImpedanceHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListImpedance, MACROListImpedanceHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListImpedance, MACROListImpedanceHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListImpedance, MACROListImpedanceHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListImpedance, MACROListImpedanceHandle);
 ListImpedanceHandle ListImpedance_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>(std::make_shared<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListImpedance_create");
     return new falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>(
         std::make_shared<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListImpedance_destroy(ListImpedanceHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListImpedance_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListImpedance_size(ListImpedanceHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListImpedance_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListImpedance_equal(ListImpedanceHandle handle, ListImpedanceHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListImpedance_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListImpedance_not_equal(ListImpedanceHandle handle, ListImpedanceHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListImpedance_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListImpedanceHandle ListImpedance_intersection(ListImpedanceHandle handle, ListImpedanceHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListImpedance_intersection");
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListImpedance_to_json_string(ListImpedanceHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListImpedance_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListImpedanceHandle ListImpedance_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListImpedance_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>::from_json_string<falcon_core::generic::List<falcon_core::physics::device_structures::Impedance>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::physics::device_structures::Impedance>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

@@ -1,11 +1,20 @@
 #include <falcon_core/generic/Map.hpp>
 #include "falcon_core/generic/MapGnameGroup_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/autotuner_interfaces/names/Gname.hpp>
 #include <falcon_core/physics/config/core/Group.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROMapGnameHandleGroupHandle = falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>;
+DEFINE_C_API_COPY_TEMPLATE(MapGnameGroup, MACROMapGnameHandleGroupHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(MapGnameGroup, MACROMapGnameHandleGroupHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(MapGnameGroup, MACROMapGnameHandleGroupHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(MapGnameGroup, MACROMapGnameHandleGroupHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(MapGnameGroup, MACROMapGnameHandleGroupHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(MapGnameGroup, MACROMapGnameHandleGroupHandle);
+
 MapGnameGroupHandle MapGnameGroup_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>(std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>>()); 
@@ -25,15 +34,6 @@ throw std::invalid_argument("Null data pointer passed to MapGnameGroup_create");
     return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>(
         std::make_shared<falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void MapGnameGroup_destroy(MapGnameGroupHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapGnameGroup_destroy");
-}
-    delete static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname, falcon_core::physics::config::core::Group>*>(handle);
-    FALCON_C_API_END()
 }
 
 void MapGnameGroup_insert_or_assign(MapGnameGroupHandle handle,  GnameHandle key,  GroupHandle value) {
@@ -178,48 +178,6 @@ throw std::invalid_argument("Null handle passed to MapGnameGroup_items");
     auto map = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>*>(handle);
     falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>> items_sp = map->items(); 
     return new falcon_core::generic::ListSP<falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>>(items_sp);
-    FALCON_C_API_END(nullptr)
-}
-
-bool MapGnameGroup_equal(MapGnameGroupHandle handle, MapGnameGroupHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapGnameGroup_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool MapGnameGroup_not_equal(MapGnameGroupHandle handle, MapGnameGroupHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to MapGnameGroup_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
-StringHandle      MapGnameGroup_to_json_string(MapGnameGroupHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to MapGnameGroup_to_json_string");
-}
-std::string json = (*static_cast<falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-MapGnameGroupHandle MapGnameGroup_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to MapGnameGroup_from_json_string");
-}
-  auto ptr = falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>::from_json_string<falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>>(json->raw);
-  return new falcon_core::generic::MapSP<falcon_core::autotuner_interfaces::names::Gname,falcon_core::physics::config::core::Group>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }

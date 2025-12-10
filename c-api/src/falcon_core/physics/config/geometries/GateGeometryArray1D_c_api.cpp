@@ -1,14 +1,18 @@
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h"
 
 #include <falcon_core/physics/config/geometries/GateGeometryArray1D.hpp>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
 using namespace falcon_core::physics::config::geometries;
 extern "C" {
+DEFINE_C_API_COPY(GateGeometryArray1D);
+DEFINE_C_API_DESTROY(GateGeometryArray1D);
+DEFINE_C_API_EQUAL(GateGeometryArray1D);
+DEFINE_C_API_NOT_EQUAL(GateGeometryArray1D);
+DEFINE_C_API_TO_JSON(GateGeometryArray1D);
+DEFINE_C_API_FROM_JSON(GateGeometryArray1D);
 
 GateGeometryArray1DHandle GateGeometryArray1D_create(
     ConnectionsHandle lineararray, ConnectionsHandle screening_gates) {
@@ -30,16 +34,6 @@ GateGeometryArray1DHandle GateGeometryArray1D_create(
   return new GateGeometryArray1DSP(std::make_shared<GateGeometryArray1D>(
       real_linear_array, real_screening_gates));
   FALCON_C_API_END(nullptr)
-}
-
-void GateGeometryArray1D_destroy(GateGeometryArray1DHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "GateGeometryArray1D_destroy: handle cannot be null");
-  }
-  delete static_cast<GateGeometryArray1DSP*>(handle);
-  FALCON_C_API_END()
 }
 
 void GateGeometryArray1D_append_central_gate(GateGeometryArray1DHandle handle,
@@ -224,67 +218,6 @@ ConnectionsHandle GateGeometryArray1D_ohmics(GateGeometryArray1DHandle handle) {
   GateGeometryArray1DSP self = *static_cast<GateGeometryArray1DSP*>(handle);
   return new falcon_core::physics::device_structures::ConnectionsSP(
       self->ohmics());
-  FALCON_C_API_END(nullptr)
-}
-
-bool GateGeometryArray1D_equal(GateGeometryArray1DHandle handle,
-                               GateGeometryArray1DHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "GateGeometryArray1D_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "GateGeometryArray1D_equal: other cannot be null");
-  }
-  GateGeometryArray1DSP self = *static_cast<GateGeometryArray1DSP*>(handle);
-  GateGeometryArray1DSP real_other =
-      *static_cast<GateGeometryArray1DSP*>(other);
-  return *self == *real_other;
-  FALCON_C_API_END(false)
-}
-
-bool GateGeometryArray1D_not_equal(GateGeometryArray1DHandle handle,
-                                   GateGeometryArray1DHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "GateGeometryArray1D_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "GateGeometryArray1D_not_equal: other cannot be null");
-  }
-  GateGeometryArray1DSP self = *static_cast<GateGeometryArray1DSP*>(handle);
-  GateGeometryArray1DSP real_other =
-      *static_cast<GateGeometryArray1DSP*>(other);
-  return *self != *real_other;
-  FALCON_C_API_END(false)
-}
-
-StringHandle GateGeometryArray1D_to_json_string(
-    GateGeometryArray1DHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "GateGeometryArray1D_to_json_string: handle cannot be null");
-  }
-  GateGeometryArray1DSP self = *static_cast<GateGeometryArray1DSP*>(handle);
-  return String_create(self->to_json_string().c_str(),
-                       self->to_json_string().size());
-  FALCON_C_API_END(nullptr)
-}
-GateGeometryArray1DHandle GateGeometryArray1D_from_json_string(
-    StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "GateGeometryArray1D_from_json_string: json cannot be null");
-  }
-  std::string real_json(json->raw, json->length);
-  return new GateGeometryArray1DSP(
-      GateGeometryArray1D::from_json_string<GateGeometryArray1D>(real_json));
   FALCON_C_API_END(nullptr)
 }
 }

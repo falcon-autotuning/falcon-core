@@ -2,12 +2,18 @@
 
 #include <falcon_core/physics/config/core/Adjacency.hpp>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include "falcon_core/generic/Pair.hpp"
 #include "xtensor/xadapt.hpp"
 using namespace falcon_core::physics::config::core;
 
 extern "C" {
+DEFINE_C_API_COPY(Adjacency);
+DEFINE_C_API_DESTROY(Adjacency);
+DEFINE_C_API_EQUAL(Adjacency);
+DEFINE_C_API_NOT_EQUAL(Adjacency);
+DEFINE_C_API_TO_JSON(Adjacency);
+DEFINE_C_API_FROM_JSON(Adjacency);
 AdjacencyHandle Adjacency_create(const int*        data,
                                  const size_t*     shape,
                                  size_t            ndim,
@@ -35,15 +41,6 @@ AdjacencyHandle Adjacency_create(const int*        data,
       xt::adapt(data, total_size, xt::no_ownership(), shapeVec);
   return new AdjacencySP(std::make_shared<Adjacency>(arr, real_indexes));
   FALCON_C_API_END(nullptr)
-}
-
-void Adjacency_destroy(AdjacencyHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Adjacency_destroy: handle cannot be null");
-  }
-  delete static_cast<AdjacencySP*>(handle);
-  FALCON_C_API_END()
 }
 
 ConnectionsHandle Adjacency_indexes(AdjacencyHandle handle) {
@@ -170,34 +167,6 @@ AdjacencyHandle Adjacency_times_farray(AdjacencyHandle handle,
   FALCON_C_API_END(nullptr)
 }
 
-bool Adjacency_equal(AdjacencyHandle handle, AdjacencyHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Adjacency_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Adjacency_equal: other cannot be null");
-  }
-  AdjacencySP self  = *static_cast<AdjacencySP*>(handle);
-  AdjacencySP oself = *static_cast<AdjacencySP*>(other);
-  return *self == *oself;
-  FALCON_C_API_END(false)
-}
-
-bool Adjacency_not_equal(AdjacencyHandle handle, AdjacencyHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Adjacency_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Adjacency_not_equal: other cannot be null");
-  }
-  AdjacencySP self  = *static_cast<AdjacencySP*>(handle);
-  AdjacencySP oself = *static_cast<AdjacencySP*>(other);
-  return *self != *oself;
-  FALCON_C_API_END(false)
-}
-
 int Adjacency_sum(AdjacencyHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
@@ -227,28 +196,6 @@ AdjacencyHandle Adjacency_flip(AdjacencyHandle handle, size_t axis) {
   AdjacencySP self = *static_cast<AdjacencySP*>(handle);
   return new AdjacencySP(
       std::make_shared<Adjacency>(*self->flip(axis), self->indexes()));
-  FALCON_C_API_END(nullptr)
-}
-
-StringHandle Adjacency_to_json_string(AdjacencyHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "Adjacency_to_json_string: handle cannot be null");
-  }
-  std::string json = (*static_cast<AdjacencySP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-AdjacencyHandle Adjacency_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "Adjacency_from_json_string: json cannot be null");
-  }
-  auto ptr = Adjacency::from_json_string<Adjacency>(json->raw);
-  return new AdjacencySP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

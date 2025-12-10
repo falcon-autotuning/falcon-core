@@ -12,6 +12,8 @@ typedef void* PairSizeTSizeTHandle;
 
 // @category:allocation
 PairSizeTSizeTHandle PairSizeTSizeT_create(size_t first, size_t second);
+// @category:allocation
+PairSizeTSizeTHandle PairSizeTSizeT_copy(PairSizeTSizeTHandle handle);
 // @category:deallocation
 void PairSizeTSizeT_destroy(PairSizeTSizeTHandle handle);
 // @category:read
@@ -19,9 +21,9 @@ size_t PairSizeTSizeT_first(PairSizeTSizeTHandle handle);
 // @category:read
 size_t PairSizeTSizeT_second(PairSizeTSizeTHandle handle);
 // @category:read
-bool PairSizeTSizeT_equal(PairSizeTSizeTHandle a, PairSizeTSizeTHandle b);
+bool PairSizeTSizeT_equal(PairSizeTSizeTHandle handle, PairSizeTSizeTHandle other);
 // @category:read
-bool PairSizeTSizeT_not_equal(PairSizeTSizeTHandle a, PairSizeTSizeTHandle b);
+bool PairSizeTSizeT_not_equal(PairSizeTSizeTHandle handle, PairSizeTSizeTHandle other);
 // @category:read
 StringHandle      PairSizeTSizeT_to_json_string(PairSizeTSizeTHandle handle);
 // @category:allocation

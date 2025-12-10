@@ -2,11 +2,18 @@
 
 #include <falcon_core/physics/config/core/Group.hpp>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::physics::config::core;
 using namespace falcon_core::physics::device_structures;
 
 extern "C" {
+DEFINE_C_API_COPY(Group);
+DEFINE_C_API_DESTROY(Group);
+DEFINE_C_API_EQUAL(Group);
+DEFINE_C_API_NOT_EQUAL(Group);
+DEFINE_C_API_TO_JSON(Group);
+DEFINE_C_API_FROM_JSON(Group);
 GroupHandle Group_create(ChannelHandle     name,
                          int               num_dots,
                          ConnectionsHandle screening_gates,
@@ -52,15 +59,6 @@ GroupHandle Group_create(ChannelHandle     name,
                                              real_barrier_gates,
                                              real_order));
   FALCON_C_API_END(nullptr)
-}
-
-void Group_destroy(GroupHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Group_destroy: handle cannot be null");
-  }
-  delete static_cast<GroupSP*>(handle);
-  FALCON_C_API_END()
 }
 
 ChannelHandle Group_name(GroupHandle handle) {
@@ -391,49 +389,5 @@ bool Group_has_screening_gate(GroupHandle      handle,
           screening_gate);
   return self->has_screening_gate(real_screening_gate);
   FALCON_C_API_END(false)
-}
-
-bool Group_equal(GroupHandle handle, GroupHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Group_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Group_equal: other cannot be null");
-  }
-  return *(*static_cast<GroupSP*>(handle)) == *(*static_cast<GroupSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool Group_not_equal(GroupHandle handle, GroupHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Group_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("Group_not_equal: other cannot be null");
-  }
-  return *(*static_cast<GroupSP*>(handle)) != *(*static_cast<GroupSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle Group_to_json_string(GroupHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("Group_to_json_string: handle cannot be null");
-  }
-  std::string json = (*static_cast<GroupSP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-GroupHandle Group_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument("Group_from_json_string: json cannot be null");
-  }
-  GroupSP ptr = Group::from_json_string<Group>(json->raw);
-  return new GroupSP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

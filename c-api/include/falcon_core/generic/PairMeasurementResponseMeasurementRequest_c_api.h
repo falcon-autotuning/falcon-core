@@ -13,6 +13,8 @@ typedef void* PairMeasurementResponseMeasurementRequestHandle;
 
 // @category:allocation
 PairMeasurementResponseMeasurementRequestHandle PairMeasurementResponseMeasurementRequest_create(MeasurementResponseHandle first, MeasurementRequestHandle second);
+// @category:allocation
+PairMeasurementResponseMeasurementRequestHandle PairMeasurementResponseMeasurementRequest_copy(PairMeasurementResponseMeasurementRequestHandle handle);
 // @category:deallocation
 void PairMeasurementResponseMeasurementRequest_destroy(PairMeasurementResponseMeasurementRequestHandle handle);
 // @category:read
@@ -20,9 +22,9 @@ MeasurementResponseHandle PairMeasurementResponseMeasurementRequest_first(PairMe
 // @category:read
 MeasurementRequestHandle PairMeasurementResponseMeasurementRequest_second(PairMeasurementResponseMeasurementRequestHandle handle);
 // @category:read
-bool PairMeasurementResponseMeasurementRequest_equal(PairMeasurementResponseMeasurementRequestHandle a, PairMeasurementResponseMeasurementRequestHandle b);
+bool PairMeasurementResponseMeasurementRequest_equal(PairMeasurementResponseMeasurementRequestHandle handle, PairMeasurementResponseMeasurementRequestHandle other);
 // @category:read
-bool PairMeasurementResponseMeasurementRequest_not_equal(PairMeasurementResponseMeasurementRequestHandle a, PairMeasurementResponseMeasurementRequestHandle b);
+bool PairMeasurementResponseMeasurementRequest_not_equal(PairMeasurementResponseMeasurementRequestHandle handle, PairMeasurementResponseMeasurementRequestHandle other);
 // @category:read
 StringHandle      PairMeasurementResponseMeasurementRequest_to_json_string(PairMeasurementResponseMeasurementRequestHandle handle);
 // @category:allocation

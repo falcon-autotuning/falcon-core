@@ -15,6 +15,8 @@ typedef void* FArrayIntHandle;
 // @category:allocation
 FArrayIntHandle FArrayInt_create_empty(const size_t* shape, size_t ndim);
 // @category:allocation
+FArrayIntHandle FArrayInt_copy(FArrayIntHandle handle);
+// @category:allocation
 FArrayIntHandle FArrayInt_create_zeros(const size_t* shape, size_t ndim);
 // @category:allocation
 FArrayIntHandle FArrayInt_from_shape(const size_t* shape, size_t ndim);

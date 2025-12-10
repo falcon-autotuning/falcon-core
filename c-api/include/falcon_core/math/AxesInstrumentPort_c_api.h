@@ -15,6 +15,8 @@ typedef void* AxesInstrumentPortHandle;
 // @category:allocation
 AxesInstrumentPortHandle AxesInstrumentPort_create_empty();
 // @category:allocation
+AxesInstrumentPortHandle AxesInstrumentPort_copy(AxesInstrumentPortHandle handle);
+// @category:allocation
 AxesInstrumentPortHandle AxesInstrumentPort_create(ListInstrumentPortHandle data);
 // @category:deallocation
 void AxesInstrumentPort_destroy(AxesInstrumentPortHandle handle);
@@ -39,9 +41,9 @@ size_t AxesInstrumentPort_index(AxesInstrumentPortHandle handle, InstrumentPortH
 // @category:read
 AxesInstrumentPortHandle AxesInstrumentPort_intersection(AxesInstrumentPortHandle handle, AxesInstrumentPortHandle other);
 // @category:read
-bool AxesInstrumentPort_equal(AxesInstrumentPortHandle a, AxesInstrumentPortHandle b);
+bool AxesInstrumentPort_equal(AxesInstrumentPortHandle handle, AxesInstrumentPortHandle other);
 // @category:read
-bool AxesInstrumentPort_not_equal(AxesInstrumentPortHandle a, AxesInstrumentPortHandle b);
+bool AxesInstrumentPort_not_equal(AxesInstrumentPortHandle handle, AxesInstrumentPortHandle other);
 
 // @category:read
 StringHandle      AxesInstrumentPort_to_json_string(AxesInstrumentPortHandle handle);

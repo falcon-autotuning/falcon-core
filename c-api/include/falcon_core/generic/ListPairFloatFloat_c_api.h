@@ -13,6 +13,8 @@ typedef void* ListPairFloatFloatHandle;
 
 // @category:allocation
 ListPairFloatFloatHandle ListPairFloatFloat_create_empty();
+// @category:allocation
+ListPairFloatFloatHandle ListPairFloatFloat_copy(ListPairFloatFloatHandle handle);
 
 // @category:allocation
 ListPairFloatFloatHandle ListPairFloatFloat_fill_value(size_t count, PairFloatFloatHandle value);
@@ -41,9 +43,9 @@ size_t ListPairFloatFloat_index(ListPairFloatFloatHandle handle, PairFloatFloatH
 // @category:read
 ListPairFloatFloatHandle ListPairFloatFloat_intersection(ListPairFloatFloatHandle handle, ListPairFloatFloatHandle other);
 // @category:read
-bool ListPairFloatFloat_equal(ListPairFloatFloatHandle a, ListPairFloatFloatHandle b);
+bool ListPairFloatFloat_equal(ListPairFloatFloatHandle handle, ListPairFloatFloatHandle other);
 // @category:read
-bool ListPairFloatFloat_not_equal(ListPairFloatFloatHandle a, ListPairFloatFloatHandle b);
+bool ListPairFloatFloat_not_equal(ListPairFloatFloatHandle handle, ListPairFloatFloatHandle other);
 
 // @category:read
 StringHandle      ListPairFloatFloat_to_json_string(ListPairFloatFloatHandle handle);

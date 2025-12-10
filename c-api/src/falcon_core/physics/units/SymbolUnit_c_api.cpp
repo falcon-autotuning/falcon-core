@@ -2,10 +2,17 @@
 
 #include <falcon_core/physics/units/SymbolUnit.hpp>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::physics::units;
 
 extern "C" {
+DEFINE_C_API_COPY(SymbolUnit);
+DEFINE_C_API_DESTROY(SymbolUnit);
+DEFINE_C_API_EQUAL(SymbolUnit);
+DEFINE_C_API_NOT_EQUAL(SymbolUnit);
+DEFINE_C_API_TO_JSON(SymbolUnit);
+DEFINE_C_API_FROM_JSON(SymbolUnit);
 SymbolUnitHandle SymbolUnit_create_meter() {
   FALCON_C_API_BEGIN
   return new SymbolUnitSP(SymbolUnit::Meter());
@@ -342,15 +349,6 @@ SymbolUnitHandle SymbolUnit_create_watts_per_meter_kelvin() {
   FALCON_C_API_END(nullptr)
 }
 
-void SymbolUnit_destroy(SymbolUnitHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("SymbolUnit_destroy: handle cannot be null");
-  }
-  delete static_cast<SymbolUnitSP*>(handle);
-  FALCON_C_API_END()
-}
-
 StringHandle SymbolUnit_symbol(SymbolUnitHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {
@@ -458,53 +456,5 @@ bool SymbolUnit_is_compatible_with(SymbolUnitHandle handle,
   return (*static_cast<SymbolUnitSP*>(handle))
       ->is_compatible_with(*static_cast<SymbolUnitSP*>(other));
   FALCON_C_API_END(false)
-}
-
-bool SymbolUnit_equal(SymbolUnitHandle handle, SymbolUnitHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("SymbolUnit_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("SymbolUnit_equal: other cannot be null");
-  }
-  return *(*static_cast<SymbolUnitSP*>(handle)) ==
-         *(*static_cast<SymbolUnitSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool SymbolUnit_not_equal(SymbolUnitHandle handle, SymbolUnitHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument("SymbolUnit_not_equal: handle cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument("SymbolUnit_not_equal: other cannot be null");
-  }
-  return *(*static_cast<SymbolUnitSP*>(handle)) !=
-         *(*static_cast<SymbolUnitSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle SymbolUnit_to_json_string(SymbolUnitHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "SymbolUnit_to_json_string: handle cannot be null");
-  }
-  std::string json = (*static_cast<SymbolUnitSP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-SymbolUnitHandle SymbolUnit_from_json_string(StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "SymbolUnit_from_json_string: json cannot be null");
-  }
-  auto ptr = SymbolUnit::from_json_string<SymbolUnit>(json->raw);
-  return new SymbolUnitSP(ptr);
-  FALCON_C_API_END(nullptr)
 }
 }

@@ -13,6 +13,8 @@ typedef void* ListMapStringBoolHandle;
 
 // @category:allocation
 ListMapStringBoolHandle ListMapStringBool_create_empty();
+// @category:allocation
+ListMapStringBoolHandle ListMapStringBool_copy(ListMapStringBoolHandle handle);
 
 // @category:allocation
 ListMapStringBoolHandle ListMapStringBool_fill_value(size_t count, MapStringBoolHandle value);
@@ -41,9 +43,9 @@ size_t ListMapStringBool_index(ListMapStringBoolHandle handle, MapStringBoolHand
 // @category:read
 ListMapStringBoolHandle ListMapStringBool_intersection(ListMapStringBoolHandle handle, ListMapStringBoolHandle other);
 // @category:read
-bool ListMapStringBool_equal(ListMapStringBoolHandle a, ListMapStringBoolHandle b);
+bool ListMapStringBool_equal(ListMapStringBoolHandle handle, ListMapStringBoolHandle other);
 // @category:read
-bool ListMapStringBool_not_equal(ListMapStringBoolHandle a, ListMapStringBoolHandle b);
+bool ListMapStringBool_not_equal(ListMapStringBoolHandle handle, ListMapStringBoolHandle other);
 
 // @category:read
 StringHandle      ListMapStringBool_to_json_string(ListMapStringBoolHandle handle);

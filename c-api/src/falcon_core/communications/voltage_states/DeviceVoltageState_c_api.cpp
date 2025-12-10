@@ -1,14 +1,18 @@
 #include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
 
 #include <falcon_core/communications/voltage_states/DeviceVoltageState.hpp>
-#include <memory>
-#include <string>
 
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/String_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
+
 using namespace falcon_core::communications::voltage_states;
 
 extern "C" {
+DEFINE_C_API_COPY(DeviceVoltageState);
+DEFINE_C_API_DESTROY(DeviceVoltageState);
+DEFINE_C_API_EQUAL(DeviceVoltageState);
+DEFINE_C_API_NOT_EQUAL(DeviceVoltageState);
+DEFINE_C_API_TO_JSON(DeviceVoltageState);
+DEFINE_C_API_FROM_JSON(DeviceVoltageState);
 DeviceVoltageStateHandle DeviceVoltageState_create(ConnectionHandle connection,
                                                    double           voltage,
                                                    SymbolUnitHandle unit) {
@@ -29,16 +33,6 @@ DeviceVoltageStateHandle DeviceVoltageState_create(ConnectionHandle connection,
   return new DeviceVoltageStateSP(std::make_shared<DeviceVoltageState>(
       real_connection, voltage, real_unit));
   FALCON_C_API_END(nullptr)
-}
-
-void DeviceVoltageState_destroy(DeviceVoltageStateHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_destroy: handle cannot be null");
-  }
-  delete static_cast<DeviceVoltageStateSP*>(handle);
-  FALCON_C_API_END()
 }
 
 ConnectionHandle DeviceVoltageState_connection(
@@ -392,64 +386,6 @@ DeviceVoltageStateHandle DeviceVoltageState_abs(
   falcon_core::math::QuantitySP result = self->abs();
   return new DeviceVoltageStateSP(std::make_shared<DeviceVoltageState>(
       self->connection(), result->value(), self->unit()));
-  FALCON_C_API_END(nullptr)
-}
-
-bool DeviceVoltageState_equal(DeviceVoltageStateHandle handle,
-                              DeviceVoltageStateHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_equal: handle a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_equal: handle b cannot be null");
-  }
-  return *(*static_cast<DeviceVoltageStateSP*>(handle)) ==
-         *(*static_cast<DeviceVoltageStateSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-bool DeviceVoltageState_not_equal(DeviceVoltageStateHandle handle,
-                                  DeviceVoltageStateHandle other) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_not_equal: handle a cannot be null");
-  }
-  if (!other) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_not_equal: handle b cannot be null");
-  }
-  return *(*static_cast<DeviceVoltageStateSP*>(handle)) !=
-         *(*static_cast<DeviceVoltageStateSP*>(other));
-  FALCON_C_API_END(false)
-}
-
-StringHandle DeviceVoltageState_to_json_string(
-    DeviceVoltageStateHandle handle) {
-  FALCON_C_API_BEGIN
-  if (!handle) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_to_json_string: handle cannot be null");
-  }
-  std::string json =
-      (*static_cast<DeviceVoltageStateSP*>(handle))->to_json_string();
-  return String_create(json.c_str(), json.size());
-  FALCON_C_API_END(nullptr)
-}
-
-DeviceVoltageStateHandle DeviceVoltageState_from_json_string(
-    StringHandle json) {
-  FALCON_C_API_BEGIN
-  if (!json) {
-    throw std::invalid_argument(
-        "DeviceVoltageState_from_json_string: json cannot be null");
-  }
-  auto ptr =
-      DeviceVoltageState::from_json_string<DeviceVoltageState>(json->raw);
-  return new DeviceVoltageStateSP(ptr);
   FALCON_C_API_END(nullptr)
 }
 }

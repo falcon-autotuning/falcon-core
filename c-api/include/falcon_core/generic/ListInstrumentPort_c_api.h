@@ -13,6 +13,8 @@ typedef void* ListInstrumentPortHandle;
 
 // @category:allocation
 ListInstrumentPortHandle ListInstrumentPort_create_empty();
+// @category:allocation
+ListInstrumentPortHandle ListInstrumentPort_copy(ListInstrumentPortHandle handle);
 
 // @category:allocation
 ListInstrumentPortHandle ListInstrumentPort_fill_value(size_t count, InstrumentPortHandle value);
@@ -41,9 +43,9 @@ size_t ListInstrumentPort_index(ListInstrumentPortHandle handle, InstrumentPortH
 // @category:read
 ListInstrumentPortHandle ListInstrumentPort_intersection(ListInstrumentPortHandle handle, ListInstrumentPortHandle other);
 // @category:read
-bool ListInstrumentPort_equal(ListInstrumentPortHandle a, ListInstrumentPortHandle b);
+bool ListInstrumentPort_equal(ListInstrumentPortHandle handle, ListInstrumentPortHandle other);
 // @category:read
-bool ListInstrumentPort_not_equal(ListInstrumentPortHandle a, ListInstrumentPortHandle b);
+bool ListInstrumentPort_not_equal(ListInstrumentPortHandle handle, ListInstrumentPortHandle other);
 
 // @category:read
 StringHandle      ListInstrumentPort_to_json_string(ListInstrumentPortHandle handle);

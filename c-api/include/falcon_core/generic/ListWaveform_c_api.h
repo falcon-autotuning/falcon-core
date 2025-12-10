@@ -13,6 +13,8 @@ typedef void* ListWaveformHandle;
 
 // @category:allocation
 ListWaveformHandle ListWaveform_create_empty();
+// @category:allocation
+ListWaveformHandle ListWaveform_copy(ListWaveformHandle handle);
 
 // @category:allocation
 ListWaveformHandle ListWaveform_fill_value(size_t count, WaveformHandle value);
@@ -41,9 +43,9 @@ size_t ListWaveform_index(ListWaveformHandle handle, WaveformHandle value);
 // @category:read
 ListWaveformHandle ListWaveform_intersection(ListWaveformHandle handle, ListWaveformHandle other);
 // @category:read
-bool ListWaveform_equal(ListWaveformHandle a, ListWaveformHandle b);
+bool ListWaveform_equal(ListWaveformHandle handle, ListWaveformHandle other);
 // @category:read
-bool ListWaveform_not_equal(ListWaveformHandle a, ListWaveformHandle b);
+bool ListWaveform_not_equal(ListWaveformHandle handle, ListWaveformHandle other);
 
 // @category:read
 StringHandle      ListWaveform_to_json_string(ListWaveformHandle handle);

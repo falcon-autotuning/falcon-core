@@ -1,9 +1,17 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListGname_c_api.h"
+#include "falcon_core/Precompiled_c_api.h"
 #include <falcon_core/autotuner_interfaces/names/Gname.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
+using MACROListGnameHandle= falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>;
+DEFINE_C_API_COPY_TEMPLATE(ListGname, MACROListGnameHandle)
+DEFINE_C_API_DESTROY_TEMPLATE(ListGname, MACROListGnameHandle);
+DEFINE_C_API_EQUAL_TEMPLATE(ListGname, MACROListGnameHandle);
+DEFINE_C_API_NOT_EQUAL_TEMPLATE(ListGname, MACROListGnameHandle);
+DEFINE_C_API_TO_JSON_TEMPLATE(ListGname, MACROListGnameHandle);
+DEFINE_C_API_FROM_JSON_TEMPLATE(ListGname, MACROListGnameHandle);
 ListGnameHandle ListGname_create_empty() {
     FALCON_C_API_BEGIN
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>(std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>>());
@@ -39,15 +47,6 @@ throw std::invalid_argument("Null data handle passed to ListGname_create");
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>(
         std::make_shared<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>>(vec));
     FALCON_C_API_END(nullptr)
-}
-
-void ListGname_destroy(ListGnameHandle handle) {
-    FALCON_C_API_BEGIN
-    if (!handle) {
-    throw std::invalid_argument("Null handle passed to ListGname_destroy");
-    }
-    delete static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>*>(handle);
-    FALCON_C_API_END()
 }
 
 size_t ListGname_size(ListGnameHandle handle) {
@@ -159,28 +158,6 @@ throw std::invalid_argument("Null handle passed to ListGname_at");
     FALCON_C_API_END(nullptr)
 }
 
-bool ListGname_equal(ListGnameHandle handle, ListGnameHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListGname_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>*>(other);
-    return *listA == *listB;
-    FALCON_C_API_END(false)
-}
-
-bool ListGname_not_equal(ListGnameHandle handle, ListGnameHandle other) {
-    FALCON_C_API_BEGIN
-if (!handle || !other) {
-throw std::invalid_argument("Null handle passed to ListGname_not_equal");
-}
-    auto listA = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>*>(handle);
-    auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>*>(other);
-    return *listA != *listB;
-    FALCON_C_API_END(false)
-}
-
 ListGnameHandle ListGname_intersection(ListGnameHandle handle, ListGnameHandle other) {
     FALCON_C_API_BEGIN
 if (!handle || !other) {
@@ -190,26 +167,6 @@ throw std::invalid_argument("Null handle passed to ListGname_intersection");
     auto listB = *static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>*>(other);
     auto result = listA->intersection(listB);
     return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>(result);
-    FALCON_C_API_END(nullptr)
-}
-
-StringHandle      ListGname_to_json_string(ListGnameHandle handle) {
-    FALCON_C_API_BEGIN
-if (!handle) {
-throw std::invalid_argument("Null handle passed to ListGname_to_json_string");
-}
-    std::string json = (*static_cast<falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>*>(handle))->to_json_string();
-    return String_create(json.c_str(), json.size());
-    FALCON_C_API_END(nullptr)
-}
-
-ListGnameHandle ListGname_from_json_string(StringHandle json) {
-    FALCON_C_API_BEGIN
-if (!json) {
-throw std::invalid_argument("Null string handle passed to ListGname_from_json_string");
-}
-  auto ptr = falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>::from_json_string<falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>>(json->raw);
-  return new falcon_core::generic::ListSP<falcon_core::autotuner_interfaces::names::Gname>(ptr);
     FALCON_C_API_END(nullptr)
 }
 }
