@@ -15,6 +15,7 @@ USE_VCPKG ?= 0
 build:
 	$(MAKE) -C cpp build USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
 	$(MAKE) -C c-api build USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
+	$(MAKE) -C cpp build USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
 
 build-dev:
 	$(MAKE) -C cpp build-dev USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
@@ -36,6 +37,7 @@ clean:
 	$(MAKE) -C cpp clean
 	$(MAKE) -C c-api clean
 	rm cpp-coverage-report.txt c-api-coverage-report.txt
+	rm -r out
 
 clean-all: clean
 	$(MAKE) -C cpp clean-all
