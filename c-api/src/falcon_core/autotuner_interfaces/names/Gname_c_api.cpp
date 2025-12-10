@@ -33,6 +33,12 @@ void Gname_destroy(GnameHandle handle) {
   FALCON_C_API_END()
 }
 
+GnameHandle Gname_copy(GnameHandle handle) {
+  if (!handle) return nullptr;
+  GnameSP self = *static_cast<GnameSP*>(handle);
+  return new GnameSP(std::make_shared<Gname>(*self));
+}
+
 StringHandle Gname_gname(GnameHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {

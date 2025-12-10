@@ -63,6 +63,13 @@ void AcquisitionContext_destroy(AcquisitionContextHandle handle) {
   FALCON_C_API_END()
 }
 
+AcquisitionContextHandle AcquisitionContext_copy(
+    AcquisitionContextHandle handle) {
+  if (!handle) return nullptr;
+  AcquisitionContextSP self = *static_cast<AcquisitionContextSP*>(handle);
+  return new AcquisitionContextSP(std::make_shared<AcquisitionContext>(*self));
+}
+
 ConnectionHandle AcquisitionContext_connection(
     AcquisitionContextHandle handle) {
   FALCON_C_API_BEGIN

@@ -80,6 +80,13 @@ void MeasurementRequest_destroy(MeasurementRequestHandle handle) {
   FALCON_C_API_END()
 }
 
+MeasurementRequestHandle MeasurementRequest_copy(
+    MeasurementRequestHandle handle) {
+  if (!handle) return nullptr;
+  MeasurementRequestSP self = *static_cast<MeasurementRequestSP*>(handle);
+  return new MeasurementRequestSP(std::make_shared<MeasurementRequest>(*self));
+}
+
 StringHandle MeasurementRequest_measurement_name(
     MeasurementRequestHandle handle) {
   FALCON_C_API_BEGIN

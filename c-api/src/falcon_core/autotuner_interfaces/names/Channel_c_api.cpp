@@ -27,6 +27,12 @@ void Channel_destroy(ChannelHandle handle) {
   FALCON_C_API_END()
 }
 
+ChannelHandle Channel_copy(ChannelHandle handle) {
+  if (!handle) return nullptr;
+  ChannelSP self = *static_cast<ChannelSP*>(handle);
+  return new ChannelSP(std::make_shared<Channel>(*self));
+}
+
 StringHandle Channel_name(ChannelHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {

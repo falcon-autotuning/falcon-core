@@ -34,6 +34,12 @@ void Channels_destroy(ChannelsHandle handle) {
   FALCON_C_API_END()
 }
 
+ChannelsHandle Channels_copy(ChannelsHandle handle) {
+  if (!handle) return nullptr;
+  ChannelsSP self = *static_cast<ChannelsSP*>(handle);
+  return new ChannelsSP(std::make_shared<Channels>(*self));
+}
+
 ChannelsHandle Channels_intersection(ChannelsHandle handle,
                                      ChannelsHandle other) {
   FALCON_C_API_BEGIN

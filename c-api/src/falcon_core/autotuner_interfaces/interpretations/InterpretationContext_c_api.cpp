@@ -55,6 +55,14 @@ void InterpretationContext_destroy(InterpretationContextHandle handle) {
   FALCON_C_API_END()
 }
 
+InterpretationContextHandle InterpretationContext_copy(
+    InterpretationContextHandle handle) {
+  if (!handle) return nullptr;
+  InterpretationContextSP self = *static_cast<InterpretationContextSP*>(handle);
+  return new InterpretationContextSP(
+      std::make_shared<InterpretationContext>(*self));
+}
+
 AxesMeasurementContextHandle InterpretationContext_independent_variables(
     InterpretationContextHandle handle) {
   FALCON_C_API_BEGIN

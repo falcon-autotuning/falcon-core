@@ -31,6 +31,12 @@ void StandardRequest_destroy(StandardRequestHandle handle) {
   FALCON_C_API_END()
 }
 
+StandardRequestHandle StandardRequest_copy(StandardRequestHandle handle) {
+  if (!handle) return nullptr;
+  StandardRequestSP self = *static_cast<StandardRequestSP*>(handle);
+  return new StandardRequestSP(std::make_shared<StandardRequest>(*self));
+}
+
 StringHandle StandardRequest_message(StandardRequestHandle handle) {
   FALCON_C_API_BEGIN
   if (!handle) {

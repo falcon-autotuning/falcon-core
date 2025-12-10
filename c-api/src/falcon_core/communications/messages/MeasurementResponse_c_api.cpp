@@ -38,6 +38,14 @@ void MeasurementResponse_destroy(MeasurementResponseHandle handle) {
   FALCON_C_API_END()
 }
 
+MeasurementResponseHandle MeasurementResponse_copy(
+    MeasurementResponseHandle handle) {
+  if (!handle) return nullptr;
+  MeasurementResponseSP self = *static_cast<MeasurementResponseSP*>(handle);
+  return new MeasurementResponseSP(
+      std::make_shared<MeasurementResponse>(*self));
+}
+
 LabelledArraysLabelledMeasuredArrayHandle MeasurementResponse_arrays(
     MeasurementResponseHandle handle) {
   FALCON_C_API_BEGIN
