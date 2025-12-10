@@ -150,3 +150,14 @@ TEST_F(AcquisitionContextTest, ToJsonFromJson) {
   AcquisitionContext_from_json_string(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
+
+TEST_F(AcquisitionContextTest, CopyConstructor) {
+  AcquisitionContextHandle copy = AcquisitionContext_copy(ctx);
+  EXPECT_NE(copy, nullptr);
+  EXPECT_TRUE(AcquisitionContext_equal(ctx, copy));
+  AcquisitionContext_destroy(copy);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(AcquisitionContext_copy(nullptr), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+}

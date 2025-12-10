@@ -418,3 +418,79 @@ TEST_F(HDF5DataTest, UniqueIdTimestamp) {
   HDF5Data_destroy(h2);
   String_destroy(json);
 }
+
+TEST_F(HDF5DataTest, GettersReturnValidHandles) {
+  auto shape_out = HDF5Data_shape(hdf5);
+  EXPECT_NE(shape_out, nullptr);
+  AxesInt_destroy(shape_out);
+
+  auto unit_domain_out = HDF5Data_unit_domain(hdf5);
+  EXPECT_NE(unit_domain_out, nullptr);
+  AxesControlArray_destroy(unit_domain_out);
+
+  auto domain_labels_out = HDF5Data_domain_labels(hdf5);
+  EXPECT_NE(domain_labels_out, nullptr);
+  AxesCoupledLabelledDomain_destroy(domain_labels_out);
+
+  auto ranges_out = HDF5Data_ranges(hdf5);
+  EXPECT_NE(ranges_out, nullptr);
+  LabelledArraysLabelledMeasuredArray_destroy(ranges_out);
+
+  auto metadata_out = HDF5Data_metadata(hdf5);
+  EXPECT_NE(metadata_out, nullptr);
+  MapStringString_destroy(metadata_out);
+
+  auto title_out = HDF5Data_measurement_title(hdf5);
+  EXPECT_NE(title_out, nullptr);
+  String_destroy(title_out);
+}
+
+TEST_F(HDF5DataTest, GettersReturnCorrectValues) {
+  EXPECT_EQ(HDF5Data_unique_id(hdf5), unique_id);
+  EXPECT_EQ(HDF5Data_timestamp(hdf5), timestamp);
+}
+
+TEST_F(HDF5DataTest, GettersNullptrHandle) {
+  set_last_error(0, nullptr);
+  EXPECT_EQ(HDF5Data_shape(nullptr), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(HDF5Data_unit_domain(nullptr), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(HDF5Data_domain_labels(nullptr), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(HDF5Data_ranges(nullptr), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(HDF5Data_metadata(nullptr), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(HDF5Data_measurement_title(nullptr), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(HDF5Data_unique_id(nullptr), 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(HDF5Data_timestamp(nullptr), 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+
+TEST_F(HDF5DataTest, CopyConstructor) {
+  HDF5DataHandle copy = HDF5Data_copy(hdf5);
+  EXPECT_NE(copy, nullptr);
+  EXPECT_TRUE(HDF5Data_equal(hdf5, copy));
+  HDF5Data_destroy(copy);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(HDF5Data_copy(nullptr), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+}

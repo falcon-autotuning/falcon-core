@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/ListPairSizeTSizeT_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -297,4 +295,15 @@ TEST_F(AdjacencyTest, TimesFarrayWorks) {
     Adjacency_destroy(result);
   }
   FArrayInt_destroy(farray);
+}
+
+TEST_F(AdjacencyTest, CopyConstructor) {
+  AdjacencyHandle copy = Adjacency_copy(handle);
+  EXPECT_NE(copy, nullptr);
+  EXPECT_TRUE(Adjacency_equal(handle, copy));
+  Adjacency_destroy(copy);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(Adjacency_copy(nullptr), nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
 }

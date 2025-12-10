@@ -1,9 +1,8 @@
 #include <falcon_core/generic/String_c_api.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <falcon_core/math/AnalyticFunction_c_api.h>
 #include <gtest/gtest.h>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/MapStringDouble_c_api.h"
@@ -127,5 +126,16 @@ TEST_F(AnalyticFunctionTest, ToJsonFromJson) {
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   AnalyticFunction_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+TEST_F(AnalyticFunctionTest, CopyConstructor) {
+  auto                   handle = AnalyticFunction_create(label_x, expr_x1);
+  AnalyticFunctionHandle copy   = AnalyticFunction_copy(handle);
+  EXPECT_NE(copy, nullptr);
+  EXPECT_TRUE(AnalyticFunction_equal(handle, copy));
+  AnalyticFunction_destroy(copy);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(AnalyticFunction_copy(nullptr), nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }

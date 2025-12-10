@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -166,5 +165,16 @@ TEST_F(ConnectionTest, SerializationRoundTrip) {
 
   set_last_error(0, nullptr);
   Connection_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+
+TEST_F(ConnectionTest, CopyConstructor) {
+  ConnectionHandle copy = Connection_copy(barrier);
+  EXPECT_NE(copy, nullptr);
+  EXPECT_TRUE(Connection_equal(barrier, copy));
+  Connection_destroy(copy);
+
+  set_last_error(0, nullptr);
+  EXPECT_EQ(Connection_copy(nullptr), nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
