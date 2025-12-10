@@ -1,4 +1,3 @@
-
 # Makefile to simplify the CMake build process for falcon-core-cpp 
 
 .PHONY: all build build-part install test clean setup-vcpkg clean-all
