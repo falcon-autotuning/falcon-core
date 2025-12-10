@@ -24,6 +24,7 @@ const std::string Time::to_string() const {
   std::time_t sec = _micro_seconds_since_epoch / 1000000;
 
   // std::tm     tm  = *std::localtime(&sec);
+  std::tm tm{};
   #ifdef _WIN32
     localtime_s(&tm, &sec);   // secure Windows version, no warnings
   #else
