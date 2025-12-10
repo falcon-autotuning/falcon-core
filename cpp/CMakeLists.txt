@@ -98,6 +98,9 @@ message(STATUS "hdf5 include dir: ${HDF5_INCLUDE_DIR}")
 find_package(Boost REQUIRED COMPONENTS filesystem)
 get_target_property(BOOST_INCLUDE_DIR ${BOOST_FILESYSTEM_TARGET}
                     INTERFACE_INCLUDE_DIRECTORIES)
+
+find_package(Threads REQUIRED)
+target_link_libraries(${CPP_LIB_NAME} PUBLIC Threads::Threads)
 message(STATUS "Boost filesystem include dir: ${BOOST_INCLUDE_DIR}")
 if(USE_VCPKG)
   find_package(Boost REQUIRED COMPONENTS system uuid)
