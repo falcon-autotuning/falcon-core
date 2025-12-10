@@ -1,0 +1,47 @@
+- comment_raw: "/**\n   * @brief A container for interpretations of the contents.\n\
+    \   * @param contexts The list of contexts.\n   * @throws std::invalid_argument\
+    \ if contexts have different units.\n   */"
+  comment: '@brief A container for interpretations of the contents.
+
+    @param contexts The list of contexts.
+
+    @throws std::invalid_argument if contexts have different units.'
+  declaration: "InterpretationContainer(\n      const generic::MapSP<InterpretationContext,\
+    \ Value>& map)\n      : generic::Map<InterpretationContext, Value>(), _unit(nullptr)\
+    \ {"
+  kind: function
+  name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer
+- comment_raw: "/**\n   * @brief Returns the unit that all contexts in this constainer\
+    \ must have.\n   */"
+  comment: '@brief Returns the unit that all contexts in this constainer must have.'
+  declaration: const physics::units::SymbolUnitSP unit() const {
+  kind: function
+  name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit
+- comment_raw: "/**\n   * @brief Select contexts that involve a specific connection.\n\
+    \   * @param connection The connection to search for.\n   * @returns A list of\
+    \ contexts that involve the specified connection in either\n   * independant or\
+    \ dependant variables.\n   */"
+  comment: '@brief Select contexts that involve a specific connection.
+
+    @param connection The connection to search for.
+
+    @returns A list of contexts that involve the specified connection in either
+
+    independant or dependant variables.'
+  declaration: "const generic::ListSP<InterpretationContext> select_by_connection(\n\
+    \      const physics::device_structures::ConnectionSP& connection) const {"
+  kind: function
+  name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection
+- comment_raw: "/**\n   * @brief Select contexts that involve all of the specified\
+    \ connections.\n   * @param connections List of connections to search for.\n \
+    \  * @returns A list of contexts that involve all specified connections.\n   */"
+  comment: '@brief Select contexts that involve all of the specified connections.
+
+    @param connections List of connections to search for.
+
+    @returns A list of contexts that involve all specified connections.'
+  declaration: "const generic::ListSP<InterpretationContext> select_by_connections(\n\
+    \      const std::vector<physics::device_structures::ConnectionSP>& connections)\n\
+    \      const {"
+  kind: function
+  name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections

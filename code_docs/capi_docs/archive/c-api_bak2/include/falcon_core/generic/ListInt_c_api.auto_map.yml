@@ -1,0 +1,10 @@
+c_header: ListInt_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/List.hpp
+mappings:
+- cpp: falcon_core::generic::List::intersection
+  c: ListInt_intersection
+- cpp: falcon_core::generic::List::clear
+  c: ListInt_clear
+- cpp: falcon_core::generic::List::erase_at
+  c: ListInt_erase_at

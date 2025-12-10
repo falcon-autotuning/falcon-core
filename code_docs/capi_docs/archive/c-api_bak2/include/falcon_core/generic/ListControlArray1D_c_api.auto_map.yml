@@ -1,0 +1,10 @@
+c_header: ListControlArray1D_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/List.hpp
+mappings:
+- cpp: falcon_core::generic::List::intersection
+  c: ListControlArray1D_intersection
+- cpp: falcon_core::generic::List::clear
+  c: ListControlArray1D_clear
+- cpp: falcon_core::generic::List::erase_at
+  c: ListControlArray1D_erase_at

@@ -1,0 +1,18 @@
+c_header: UnitSpace_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/math/UnitSpace.hpp
+mappings:
+- cpp: falcon_core::math::UnitSpace::axes
+  c: UnitSpace_axes
+- cpp: falcon_core::math::UnitSpace::domain
+  c: UnitSpace_domain
+- cpp: falcon_core::math::UnitSpace::space
+  c: UnitSpace_space
+- cpp: falcon_core::math::UnitSpace::shape
+  c: UnitSpace_shape
+- cpp: falcon_core::math::UnitSpace::dimension
+  c: UnitSpace_dimension
+- cpp: falcon_core::math::UnitSpace::compile
+  c: UnitSpace_compile
+- cpp: falcon_core::math::UnitSpace::create_array
+  c: UnitSpace_create_array

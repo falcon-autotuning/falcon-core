@@ -1,52 +1,54 @@
-# Makefile to simplify the CMake build process for falcon-core
+# Additional makefile(s)..
 
-.PHONY: all build build-part install test clean
+# Include doc pipeline rules (ignore if missing)
+-include ./code_docs/capi_docs/capi_docs.mk
 
-# Variables
-BUILD_DIR := build
-OUT_PYTHON_DIR := src/falcon_core
+# --------------------------------------------------------------------
+# Top-level build/test/clean rules for cpp and c-api
+# --------------------------------------------------------------------
+CC ?= clang
+CCX ?= clang++
+USE_VCPKG ?= 0
 
-# Default target: build the project
+.PHONY: all build build-dev build-devl test test-cpp test-c-api clean clean-all prepare-release
+
+build:
+	$(MAKE) -C cpp build USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
+	$(MAKE) -C c-api build USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
+	$(MAKE) -C cpp build USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
+
+build-dev:
+	$(MAKE) -C cpp build-dev USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
+	$(MAKE) -C c-api build-dev USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
+
+build-devl: build-dev
+
+test: test-cpp test-c-api
+
+test-cpp:
+	echo "Beginning testing the cpp"
+	( $(MAKE) -C cpp coverage-overview ) > cpp-coverage-report.txt 2>&1
+
+test-c-api:
+	echo "Beginning testing the c-api"
+	( $(MAKE) -C c-api coverage-overview ) > c-api-coverage-report.txt 2>&1
+
+clean:
+	$(MAKE) -C cpp clean
+	$(MAKE) -C c-api clean
+	rm cpp-coverage-report.txt c-api-coverage-report.txt
+	rm -r out
+
+clean-all: clean
+	$(MAKE) -C cpp clean-all
+	$(MAKE) -C c-api clean-all
+
 all: build
 
-# Configure and build the project using CMake
-# This compiles the C++ code and places the Python extension in src/falcon_core
-build:
-	@echo "--- Configuring and Building C++ Extension ---"
-	@mkdir -p $(BUILD_DIR)
-	@mkdir -p $(OUT_PYTHON_DIR)
-	@cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_CXX_FLAGS="-g -O0" . -S . -B $(BUILD_DIR)
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
-	@ninja -C $(BUILD_DIR) -d stats
-	@echo "--- Build complete. Python extension is now in src/falcon_core/ ---"
-
-# Build only selected sources and tests
-# Example:
-# make build-part DIRS="src/physics;src/utils" TESTS="tests/test_unit.cpp;tests/test_song.cpp"
-build-part:
-	@echo "--- Configuring and Building Selected Parts: $(DIRS), Tests: $(TESTS) ---"
-	@mkdir -p $(BUILD_DIR)
-	@mkdir -p $(OUT_PYTHON_DIR)
-	@cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_CXX_FLAGS="-g -O0" -DFALCON_CORE_DIRS="$(DIRS)" -DFALCON_CORE_TESTS="$(TESTS)" . -S . -B $(BUILD_DIR)
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
-	@ninja -C $(BUILD_DIR) -d stats
-	@echo "--- Partial build complete." 
-
-# Install the Python package using pip
-install:
-	@echo "--- Installing Python package ---"
-	@uv pip install .
-
-# Run tests using CTest
-test: build
-	@echo "--- Running C++ Tests ---"
-	@cd $(BUILD_DIR) && ctest -V
-
-# Clean up build artifacts
-clean:
-	@echo "--- Cleaning build directory and compiled extension ---"
-	@rm -rf $(BUILD_DIR)
-	@rm -rf $(OUT_PYTHON_DIR)
-
-test-make-cpp:
-	@gcc
+prepare-release:
+	rm -rf out && mkdir -p out
+	cp cpp/build/libfalcon_core_cpp.so out/
+	cp c-api/build/libfalcon_core_c_api.so out/
+	zip -r out/falcon-core.zip . -x "cpp/build/*" "c-api/build/*" ".git/*" ".venv/*" "dist/*" ".cache/*" "pybind/*" "go/*" "packaging/*" "cpp/vcpkg_installed/*" "vcpkg_installed/*"
+	cd c-api && zip -r ../out/falcon-core-c-api-headers.zip include
+	cd cpp && zip -r ../out/falcon-core-cpp-headers.zip include

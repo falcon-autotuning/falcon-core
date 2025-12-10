@@ -1,0 +1,2279 @@
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/communications/HDF5Data_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/communications/HDF5Data_c_api.h
+[meta] matched stem 'HDF5Data' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/communications/HDF5Data_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/communications/HDF5Data_metadata.yml
+[meta] total units loaded: 13
+[map] matched by name: falcon_core::communications::HDF5Data::to_file
+[capi] inserted doc above: HDF5Data_to_file
+[map] matched by name: falcon_core::communications::HDF5Data::to_communications
+[capi] inserted doc above: HDF5Data_to_communications
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/communications/HDF5Data_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/communications/Time_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/communications/Time_c_api.h
+[meta] matched stem 'Time' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/communications/Time_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/communications/Time_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::communications::Time::micro_seconds_since_epoch
+[capi] inserted doc above: Time_micro_seconds_since_epoch
+[map] matched by name: falcon_core::communications::Time::time
+[capi] inserted doc above: Time_time
+[map] matched by name: falcon_core::communications::Time::to_string
+[capi] inserted doc above: Time_to_string
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/communications/Time_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/FArrayDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/FArrayDouble_c_api.h
+[meta] matched stem 'FArray' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/FArray_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/FArray_metadata.yml
+[meta] total units loaded: 9
+[map] matched by name: falcon_core::generic::FArray::reshape
+[capi] inserted doc above: FArrayDouble_reshape
+[map] matched by name: falcon_core::generic::FArray::flip
+[capi] inserted doc above: FArrayDouble_flip
+[map] matched by name: falcon_core::generic::FArray::gradient
+[capi] inserted doc above: FArrayDouble_gradient
+[map] matched by name: falcon_core::generic::FArray::gradient
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: FArrayDouble_gradient
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/FArrayDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/FArrayInt_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/FArrayInt_c_api.h
+[meta] matched stem 'FArray' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/FArray_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/FArray_metadata.yml
+[meta] total units loaded: 9
+[map] matched by name: falcon_core::generic::FArray::reshape
+[capi] inserted doc above: FArrayInt_reshape
+[map] matched by name: falcon_core::generic::FArray::flip
+[capi] inserted doc above: FArrayInt_flip
+[map] matched by name: falcon_core::generic::FArray::gradient
+[capi] inserted doc above: FArrayInt_gradient
+[map] matched by name: falcon_core::generic::FArray::gradient
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: FArrayInt_gradient
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/FArrayInt_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListAcquisitionContext_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListAcquisitionContext_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListAcquisitionContext_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListBool_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListBool_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListBool_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListBool_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListBool_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListBool_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListChannel_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListChannel_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListChannel_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListChannel_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListChannel_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListChannel_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListConnection_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListConnection_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListConnection_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListConnection_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListConnection_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListConnection_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListConnections_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListConnections_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListConnections_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListConnections_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListConnections_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListConnections_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListControlArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListControlArray1D_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListControlArray1D_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListControlArray1D_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListControlArray1D_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListControlArray1D_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListControlArray_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListControlArray_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListControlArray_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListControlArray_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListControlArray_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListControlArray_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListCoupledLabelledDomain_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListCoupledLabelledDomain_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListCoupledLabelledDomain_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListCoupledLabelledDomain_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListCoupledLabelledDomain_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListCoupledLabelledDomain_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDeviceVoltageState_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDeviceVoltageState_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListDeviceVoltageState_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListDeviceVoltageState_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListDeviceVoltageState_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDeviceVoltageState_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDiscretizer_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDiscretizer_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListDiscretizer_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListDiscretizer_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListDiscretizer_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDiscretizer_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDotGateWithNeighbors_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDotGateWithNeighbors_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListDotGateWithNeighbors_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListDotGateWithNeighbors_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListDotGateWithNeighbors_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDotGateWithNeighbors_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDouble_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListDouble_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListDouble_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListDouble_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListFArrayDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListFArrayDouble_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListFArrayDouble_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListFArrayDouble_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListFArrayDouble_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListFArrayDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListFloat_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListFloat_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListFloat_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListFloat_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListFloat_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListFloat_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListGname_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListGname_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListGname_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListGname_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListGname_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListGname_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListGroup_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListGroup_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListGroup_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListGroup_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListGroup_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListGroup_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListImpedance_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListImpedance_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListImpedance_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListImpedance_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListImpedance_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListImpedance_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListInstrumentPort_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListInstrumentPort_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListInstrumentPort_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListInstrumentPort_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListInstrumentPort_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListInstrumentPort_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListInt_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListInt_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListInt_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListInt_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListInt_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListInt_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListInterpretationContext_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListInterpretationContext_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListInterpretationContext_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListInterpretationContext_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListInterpretationContext_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListInterpretationContext_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray1D_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledControlArray1D_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledControlArray1D_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledControlArray1D_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray1D_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledControlArray_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledControlArray_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledControlArray_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledControlArray_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledDomain_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledDomain_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledDomain_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledDomain_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledDomain_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledDomain_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledMeasuredArray1D_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledMeasuredArray1D_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledMeasuredArray1D_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListLabelledMeasuredArray_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListLabelledMeasuredArray_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListLabelledMeasuredArray_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListLabelledMeasuredArray_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListListSizeT_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListListSizeT_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListListSizeT_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListListSizeT_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListListSizeT_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListListSizeT_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListMapStringBool_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListMapStringBool_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListMapStringBool_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListMapStringBool_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListMapStringBool_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListMapStringBool_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListMeasurementContext_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListMeasurementContext_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListMeasurementContext_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListMeasurementContext_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListMeasurementContext_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListMeasurementContext_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairChannelConnections_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairChannelConnections_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairChannelConnections_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairChannelConnections_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairChannelConnections_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairChannelConnections_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionConnections_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionConnections_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionConnections_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionDouble_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionDouble_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionDouble_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionFloat_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionFloat_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionFloat_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionFloat_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionFloat_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionFloat_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionPairQuantityQuantity_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionPairQuantityQuantity_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionPairQuantityQuantity_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionQuantity_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairConnectionQuantity_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairConnectionQuantity_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairConnectionQuantity_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairConnectionQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairFloatFloat_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairFloatFloat_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairFloatFloat_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairFloatFloat_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairFloatFloat_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairFloatFloat_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairGnameGroup_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairGnameGroup_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairGnameGroup_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairInstrumentPortPortTransform_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairInstrumentPortPortTransform_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairInstrumentPortPortTransform_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairIntFloat_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairIntFloat_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairIntFloat_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairIntFloat_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairIntFloat_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairIntFloat_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairIntInt_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairIntInt_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairIntInt_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairIntInt_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairIntInt_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairIntInt_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairInterpretationContextDouble_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairInterpretationContextDouble_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairInterpretationContextDouble_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairInterpretationContextQuantity_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairInterpretationContextQuantity_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairInterpretationContextQuantity_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextString_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextString_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairInterpretationContextString_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairInterpretationContextString_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairInterpretationContextString_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairInterpretationContextString_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairQuantityQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairQuantityQuantity_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairQuantityQuantity_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairQuantityQuantity_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairQuantityQuantity_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairQuantityQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairSizeTSizeT_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairSizeTSizeT_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairSizeTSizeT_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairSizeTSizeT_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairSizeTSizeT_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairSizeTSizeT_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairStringBool_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairStringBool_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairStringBool_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairStringBool_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairStringBool_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairStringBool_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairStringDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairStringDouble_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairStringDouble_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairStringDouble_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairStringDouble_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairStringDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairStringString_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairStringString_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPairStringString_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPairStringString_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPairStringString_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPairStringString_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPortTransform_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPortTransform_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListPortTransform_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListPortTransform_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListPortTransform_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListPortTransform_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListQuantity_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListQuantity_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListQuantity_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListQuantity_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListSizeT_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListSizeT_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListSizeT_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListSizeT_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListSizeT_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListSizeT_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListString_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListString_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListString_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListString_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListString_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListString_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListWaveform_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListWaveform_c_api.h
+[meta] matched stem 'List' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/List_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::List::intersection
+[capi] inserted doc above: ListWaveform_intersection
+[map] matched by name: falcon_core::generic::List::clear
+[capi] inserted doc above: ListWaveform_clear
+[map] matched by name: falcon_core::generic::List::erase_at
+[capi] inserted doc above: ListWaveform_erase_at
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/ListWaveform_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapChannelConnections_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapChannelConnections_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapChannelConnections_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapChannelConnections_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapChannelConnections_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapConnectionDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapConnectionDouble_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapConnectionDouble_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapConnectionDouble_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapConnectionDouble_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapConnectionFloat_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapConnectionFloat_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapConnectionFloat_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapConnectionFloat_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapConnectionFloat_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapConnectionQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapConnectionQuantity_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapConnectionQuantity_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapConnectionQuantity_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapConnectionQuantity_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapFloatFloat_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapFloatFloat_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapFloatFloat_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapFloatFloat_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapFloatFloat_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapGnameGroup_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapGnameGroup_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapGnameGroup_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapGnameGroup_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapGnameGroup_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapInstrumentPortPortTransform_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapInstrumentPortPortTransform_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapIntInt_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapIntInt_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapIntInt_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapIntInt_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapIntInt_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapInterpretationContextDouble_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapInterpretationContextDouble_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapInterpretationContextQuantity_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapInterpretationContextQuantity_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapInterpretationContextString_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapInterpretationContextString_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapStringBool_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapStringBool_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapStringBool_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapStringBool_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapStringBool_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapStringDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapStringDouble_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapStringDouble_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapStringDouble_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapStringDouble_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapStringString_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapStringString_c_api.h
+[meta] matched stem 'Map' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Map_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::generic::Map::keys
+[capi] inserted doc above: MapStringString_keys
+[map] matched by name: falcon_core::generic::Map::values
+[capi] inserted doc above: MapStringString_values
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/MapStringString_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairChannelConnections_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairChannelConnections_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairChannelConnections_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairChannelConnections_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairChannelConnections_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairChannelConnections_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairChannelConnections_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairChannelConnections_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnection_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnection_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionConnection_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionConnection_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionConnection_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionConnection_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionConnection_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnection_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnections_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnections_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionConnections_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionConnections_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionConnections_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionConnections_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionConnections_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionConnections_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionDouble_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionDouble_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionDouble_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionDouble_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionDouble_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionDouble_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionFloat_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionFloat_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionFloat_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionFloat_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionFloat_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionFloat_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionPairQuantityQuantity_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionPairQuantityQuantity_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionPairQuantityQuantity_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionPairQuantityQuantity_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionPairQuantityQuantity_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionQuantity_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairConnectionQuantity_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairConnectionQuantity_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairConnectionQuantity_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionQuantity_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairConnectionQuantity_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairConnectionQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairDoubleDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairDoubleDouble_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairDoubleDouble_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairDoubleDouble_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairDoubleDouble_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairDoubleDouble_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairDoubleDouble_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairDoubleDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairFloatFloat_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairFloatFloat_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairFloatFloat_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairFloatFloat_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairFloatFloat_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairFloatFloat_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairFloatFloat_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairFloatFloat_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairGnameGroup_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairGnameGroup_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairGnameGroup_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairGnameGroup_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairGnameGroup_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairGnameGroup_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairGnameGroup_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairGnameGroup_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairInstrumentPortPortTransform_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairInstrumentPortPortTransform_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairInstrumentPortPortTransform_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairInstrumentPortPortTransform_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairInstrumentPortPortTransform_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairIntFloat_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairIntFloat_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairIntFloat_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairIntFloat_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairIntFloat_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairIntFloat_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairIntFloat_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairIntFloat_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairIntInt_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairIntInt_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairIntInt_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairIntInt_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairIntInt_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairIntInt_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairIntInt_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairIntInt_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextDouble_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairInterpretationContextDouble_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairInterpretationContextDouble_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairInterpretationContextDouble_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairInterpretationContextDouble_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairInterpretationContextDouble_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairInterpretationContextQuantity_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairInterpretationContextQuantity_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairInterpretationContextQuantity_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairInterpretationContextQuantity_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairInterpretationContextQuantity_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextString_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextString_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairInterpretationContextString_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairInterpretationContextString_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairInterpretationContextString_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairInterpretationContextString_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairInterpretationContextString_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairInterpretationContextString_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairMeasurementResponseMeasurementRequest_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairMeasurementResponseMeasurementRequest_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairMeasurementResponseMeasurementRequest_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairMeasurementResponseMeasurementRequest_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairMeasurementResponseMeasurementRequest_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairQuantityQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairQuantityQuantity_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairQuantityQuantity_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairQuantityQuantity_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairQuantityQuantity_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairQuantityQuantity_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairQuantityQuantity_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairQuantityQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairSizeTSizeT_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairSizeTSizeT_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairSizeTSizeT_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairSizeTSizeT_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairSizeTSizeT_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairStringBool_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairStringBool_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairStringBool_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairStringBool_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairStringBool_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairStringBool_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairStringBool_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairStringBool_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairStringDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairStringDouble_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairStringDouble_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairStringDouble_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairStringDouble_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairStringDouble_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairStringDouble_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairStringDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairStringString_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairStringString_c_api.h
+[meta] matched stem 'Pair' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/generic/Pair_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::generic::Pair::create
+[capi] inserted doc above: PairStringString_create
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] inserted doc above: PairStringString_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] inserted doc above: PairStringString_second
+[map] matched by name: falcon_core::generic::Pair::first
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairStringString_first
+[map] matched by name: falcon_core::generic::Pair::second
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: PairStringString_second
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/generic/PairStringString_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h
+[meta] matched stem 'Waveform' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/instrument_interfaces/Waveform_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/instrument_interfaces/Waveform_metadata.yml
+[meta] total units loaded: 10
+[map] matched by name: falcon_core::instrument_interfaces::Waveform::space
+[capi] inserted doc above: Waveform_space
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h (inserted=1)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/AnalyticFunction_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/AnalyticFunction_c_api.h
+[meta] matched stem 'AnalyticFunction' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/AnalyticFunction_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/AnalyticFunction_metadata.yml
+[meta] total units loaded: 8
+[map] matched by name: falcon_core::math::AnalyticFunction::labels
+[capi] inserted doc above: AnalyticFunction_labels
+[map] matched by name: falcon_core::math::AnalyticFunction::evaluate
+[capi] inserted doc above: AnalyticFunction_evaluate
+[map] matched by name: falcon_core::math::AnalyticFunction::evaluate
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: AnalyticFunction_evaluate
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/AnalyticFunction_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Point_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Point_c_api.h
+[meta] matched stem 'Point' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/Point_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/Point_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::math::Point::insert_or_assign
+[capi] inserted doc above: Point_insert_or_assign
+[map] matched by name: falcon_core::math::Point::insert
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: Point_insert
+[map] matched by name: falcon_core::math::Point::unit
+[capi] inserted doc above: Point_unit
+[map] matched by name: falcon_core::math::Point::coordinates
+[capi] inserted doc above: Point_coordinates
+[map] matched by name: falcon_core::math::Point::connections
+[capi] inserted doc above: Point_connections
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Point_c_api.h (inserted=4)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Quantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Quantity_c_api.h
+[meta] matched stem 'Quantity' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/Quantity_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/Quantity_metadata.yml
+[meta] total units loaded: 5
+[map] matched by name: falcon_core::math::Quantity::value
+[capi] inserted doc above: Quantity_value
+[map] matched by name: falcon_core::math::Quantity::unit
+[capi] inserted doc above: Quantity_unit
+[map] matched by name: falcon_core::math::Quantity::convert_to
+[capi] inserted doc above: Quantity_convert_to
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Quantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/UnitSpace_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/UnitSpace_c_api.h
+[meta] matched stem 'UnitSpace' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/UnitSpace_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/UnitSpace_metadata.yml
+[meta] total units loaded: 14
+[map] matched by name: falcon_core::math::UnitSpace::axes
+[capi] inserted doc above: UnitSpace_axes
+[map] matched by name: falcon_core::math::UnitSpace::domain
+[capi] inserted doc above: UnitSpace_domain
+[map] matched by name: falcon_core::math::UnitSpace::space
+[capi] inserted doc above: UnitSpace_space
+[map] matched by name: falcon_core::math::UnitSpace::shape
+[capi] inserted doc above: UnitSpace_shape
+[map] matched by name: falcon_core::math::UnitSpace::dimension
+[capi] inserted doc above: UnitSpace_dimension
+[map] matched by name: falcon_core::math::UnitSpace::compile
+[capi] inserted doc above: UnitSpace_compile
+[map] matched by name: falcon_core::math::UnitSpace::create_array
+[capi] inserted doc above: UnitSpace_create_array
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/UnitSpace_c_api.h (inserted=7)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Vector_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Vector_c_api.h
+[meta] matched stem 'Vector' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/Vector_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/Vector_metadata.yml
+[meta] total units loaded: 24
+[map] matched by name: falcon_core::math::Vector::end_quantities
+[capi] inserted doc above: Vector_end_quantities
+[map] matched by name: falcon_core::math::Vector::start_quantities
+[capi] inserted doc above: Vector_start_quantities
+[map] matched by name: falcon_core::math::Vector::end_map
+[capi] inserted doc above: Vector_end_map
+[map] matched by name: falcon_core::math::Vector::start_map
+[capi] inserted doc above: Vector_start_map
+[map] matched by name: falcon_core::math::Vector::connections
+[capi] inserted doc above: Vector_connections
+[map] matched by name: falcon_core::math::Vector::unit
+[capi] inserted doc above: Vector_unit
+[map] matched by name: falcon_core::math::Vector::principle_connection
+[capi] inserted doc above: Vector_principle_connection
+[map] matched by name: falcon_core::math::Vector::magnitude
+[capi] inserted doc above: Vector_magnitude
+[map] matched by name: falcon_core::math::Vector::update_start_from_states
+[capi] inserted doc above: Vector_update_start_from_states
+[map] matched by name: falcon_core::math::Vector::translate
+[capi] inserted doc above: Vector_translate
+[map] matched by name: falcon_core::math::Vector::translate
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: Vector_translate
+[map] matched by name: falcon_core::math::Vector::translate
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: Vector_translate
+[map] matched by name: falcon_core::math::Vector::translate_to_origin
+[capi] inserted doc above: Vector_translate_to_origin
+[map] matched by name: falcon_core::math::Vector::unit_vector
+[capi] inserted doc above: Vector_unit_vector
+[map] matched by name: falcon_core::math::Vector::normalize
+[capi] inserted doc above: Vector_normalize
+[map] matched by name: falcon_core::math::Vector::project
+[capi] inserted doc above: Vector_project
+[map] matched by name: falcon_core::math::Vector::update_unit
+[capi] inserted doc above: Vector_update_unit
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Vector_c_api.h (inserted=15)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/Loader_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/Loader_c_api.h
+[meta] matched stem 'Loader' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/Loader_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/Loader_metadata.yml
+[meta] total units loaded: 4
+[map] matched by name: falcon_core::physics::config::Loader::config
+[capi] inserted doc above: Loader_config
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/Loader_c_api.h (inserted=1)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/Connection_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/Connection_c_api.h
+[meta] matched stem 'Connection' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/device_structures/Connection_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/device_structures/Connection_metadata.yml
+[meta] total units loaded: 16
+[map] matched by name: falcon_core::physics::device_structures::Connection::name
+[capi] inserted doc above: Connection_name
+[map] matched by name: falcon_core::physics::device_structures::Connection::type
+[capi] inserted doc above: Connection_type
+[map] matched by name: falcon_core::physics::device_structures::Connection::is_dot_gate
+[capi] inserted doc above: Connection_is_dot_gate
+[map] matched by name: falcon_core::physics::device_structures::Connection::is_barrier_gate
+[capi] inserted doc above: Connection_is_barrier_gate
+[map] matched by name: falcon_core::physics::device_structures::Connection::is_plunger_gate
+[capi] inserted doc above: Connection_is_plunger_gate
+[map] matched by name: falcon_core::physics::device_structures::Connection::is_reservoir_gate
+[capi] inserted doc above: Connection_is_reservoir_gate
+[map] matched by name: falcon_core::physics::device_structures::Connection::is_screening_gate
+[capi] inserted doc above: Connection_is_screening_gate
+[map] matched by name: falcon_core::physics::device_structures::Connection::is_ohmic
+[capi] inserted doc above: Connection_is_ohmic
+[map] matched by name: falcon_core::physics::device_structures::Connection::is_gate
+[capi] inserted doc above: Connection_is_gate
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/Connection_c_api.h (inserted=9)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/Connections_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/Connections_c_api.h
+[meta] matched stem 'Connections' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/device_structures/Connections_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/device_structures/Connections_metadata.yml
+[meta] total units loaded: 13
+[map] matched by name: falcon_core::physics::device_structures::Connections::is_gates
+[capi] inserted doc above: Connections_is_gates
+[map] matched by name: falcon_core::physics::device_structures::Connections::is_ohmics
+[capi] inserted doc above: Connections_is_ohmics
+[map] matched by name: falcon_core::physics::device_structures::Connections::is_dot_gates
+[capi] inserted doc above: Connections_is_dot_gates
+[map] matched by name: falcon_core::physics::device_structures::Connections::is_plunger_gates
+[capi] inserted doc above: Connections_is_plunger_gates
+[map] matched by name: falcon_core::physics::device_structures::Connections::is_barrier_gates
+[capi] inserted doc above: Connections_is_barrier_gates
+[map] matched by name: falcon_core::physics::device_structures::Connections::is_reservoir_gates
+[capi] inserted doc above: Connections_is_reservoir_gates
+[map] matched by name: falcon_core::physics::device_structures::Connections::is_screening_gates
+[capi] inserted doc above: Connections_is_screening_gates
+[map] matched by name: falcon_core::physics::device_structures::Connections::intersection
+[capi] inserted doc above: Connections_intersection
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/Connections_c_api.h (inserted=8)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/GateRelations_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/GateRelations_c_api.h
+[meta] matched stem 'GateRelations' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/device_structures/GateRelations_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/device_structures/GateRelations_metadata.yml
+[meta] total units loaded: 3
+[map] matched by name: falcon_core::physics::device_structures::GateRelations::insert_or_assign
+[capi] inserted doc above: GateRelations_insert_or_assign
+[map] matched by name: falcon_core::physics::device_structures::GateRelations::insert
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: GateRelations_insert
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/GateRelations_c_api.h (inserted=1)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/Impedance_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/Impedance_c_api.h
+[meta] matched stem 'Impedance' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/device_structures/Impedance_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/device_structures/Impedance_metadata.yml
+[meta] total units loaded: 3
+[map] matched by name: falcon_core::physics::device_structures::Impedance::connection
+[capi] inserted doc above: Impedance_connection
+[map] matched by name: falcon_core::physics::device_structures::Impedance::resistance
+[capi] inserted doc above: Impedance_resistance
+[map] matched by name: falcon_core::physics::device_structures::Impedance::capacitance
+[capi] inserted doc above: Impedance_capacitance
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/device_structures/Impedance_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/units/SymbolUnit_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/units/SymbolUnit_c_api.h
+[meta] matched stem 'SymbolUnit' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/units/SymbolUnit_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/units/SymbolUnit_metadata.yml
+[meta] total units loaded: 66
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Meter
+[capi] inserted doc above: SymbolUnit_create_meter
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Kilogram
+[capi] inserted doc above: SymbolUnit_create_kilogram
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Second
+[capi] inserted doc above: SymbolUnit_create_second
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Ampere
+[capi] inserted doc above: SymbolUnit_create_ampere
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Kelvin
+[capi] inserted doc above: SymbolUnit_create_kelvin
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Mole
+[capi] inserted doc above: SymbolUnit_create_mole
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Candela
+[capi] inserted doc above: SymbolUnit_create_candela
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Hertz
+[capi] inserted doc above: SymbolUnit_create_hertz
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Newton
+[capi] inserted doc above: SymbolUnit_create_newton
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Pascal
+[capi] inserted doc above: SymbolUnit_create_pascal
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Joule
+[capi] inserted doc above: SymbolUnit_create_joule
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Watt
+[capi] inserted doc above: SymbolUnit_create_watt
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Coulomb
+[capi] inserted doc above: SymbolUnit_create_coulomb
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Volt
+[capi] inserted doc above: SymbolUnit_create_volt
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Farad
+[capi] inserted doc above: SymbolUnit_create_farad
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Ohm
+[capi] inserted doc above: SymbolUnit_create_ohm
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Siemens
+[capi] inserted doc above: SymbolUnit_create_siemens
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Weber
+[capi] inserted doc above: SymbolUnit_create_weber
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Tesla
+[capi] inserted doc above: SymbolUnit_create_tesla
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Henry
+[capi] inserted doc above: SymbolUnit_create_henry
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Minute
+[capi] inserted doc above: SymbolUnit_create_minute
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Hour
+[capi] inserted doc above: SymbolUnit_create_hour
+[map] matched by name: falcon_core::physics::units::SymbolUnit::ElectronVolt
+[capi] inserted doc above: SymbolUnit_create_electronvolt
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Celsius
+[capi] inserted doc above: SymbolUnit_create_celsius
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Fahrenheit
+[capi] inserted doc above: SymbolUnit_create_fahrenheit
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Dimensionless
+[capi] inserted doc above: SymbolUnit_create_dimensionless
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Percent
+[capi] inserted doc above: SymbolUnit_create_percent
+[map] matched by name: falcon_core::physics::units::SymbolUnit::Radian
+[capi] inserted doc above: SymbolUnit_create_radian
+[map] matched by name: falcon_core::physics::units::SymbolUnit::KiloMeter
+[capi] inserted doc above: SymbolUnit_create_kilometer
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MilliMeter
+[capi] inserted doc above: SymbolUnit_create_millimeter
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MilliVolt
+[capi] inserted doc above: SymbolUnit_create_millivolt
+[map] matched by name: falcon_core::physics::units::SymbolUnit::KiloVolt
+[capi] inserted doc above: SymbolUnit_create_kilovolt
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MilliAmpere
+[capi] inserted doc above: SymbolUnit_create_milliampere
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MicroAmpere
+[capi] inserted doc above: SymbolUnit_create_microampere
+[map] matched by name: falcon_core::physics::units::SymbolUnit::NanoAmpere
+[capi] inserted doc above: SymbolUnit_create_nanoampere
+[map] matched by name: falcon_core::physics::units::SymbolUnit::PicoAmpere
+[capi] inserted doc above: SymbolUnit_create_picoampere
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MilliSecond
+[capi] inserted doc above: SymbolUnit_create_millisecond
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MicroSecond
+[capi] inserted doc above: SymbolUnit_create_microsecond
+[map] matched by name: falcon_core::physics::units::SymbolUnit::NanoSecond
+[capi] inserted doc above: SymbolUnit_create_nanosecond
+[map] matched by name: falcon_core::physics::units::SymbolUnit::PicoSecond
+[capi] inserted doc above: SymbolUnit_create_picosecond
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MilliOhm
+[capi] inserted doc above: SymbolUnit_create_milliohm
+[map] matched by name: falcon_core::physics::units::SymbolUnit::KiloOhm
+[capi] inserted doc above: SymbolUnit_create_kiloohm
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MegaOhm
+[capi] inserted doc above: SymbolUnit_create_megaohm
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MilliHertz
+[capi] inserted doc above: SymbolUnit_create_millihertz
+[map] matched by name: falcon_core::physics::units::SymbolUnit::KiloHertz
+[capi] inserted doc above: SymbolUnit_create_kilohertz
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MegaHertz
+[capi] inserted doc above: SymbolUnit_create_megahertz
+[map] matched by name: falcon_core::physics::units::SymbolUnit::GigaHertz
+[capi] inserted doc above: SymbolUnit_create_gigahertz
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MetersPerSecond
+[capi] inserted doc above: SymbolUnit_create_meters_per_second
+[map] matched by name: falcon_core::physics::units::SymbolUnit::MetersPerSecondSquared
+[capi] inserted doc above: SymbolUnit_create_meters_per_second_squared
+[map] matched by name: falcon_core::physics::units::SymbolUnit::NewtonMeter
+[capi] inserted doc above: SymbolUnit_create_newton_meter
+[map] matched by name: falcon_core::physics::units::SymbolUnit::NewtonPerMeter
+[capi] inserted doc above: SymbolUnit_create_newtons_per_meter
+[map] matched by name: falcon_core::physics::units::SymbolUnit::VoltsPerMeter
+[capi] inserted doc above: SymbolUnit_create_volts_per_meter
+[map] matched by name: falcon_core::physics::units::SymbolUnit::VoltsPerSecond
+[capi] inserted doc above: SymbolUnit_create_volts_per_second
+[map] matched by name: falcon_core::physics::units::SymbolUnit::AmperesPerMeter
+[capi] inserted doc above: SymbolUnit_create_amperes_per_meter
+[map] matched by name: falcon_core::physics::units::SymbolUnit::VoltsPerAmpere
+[capi] inserted doc above: SymbolUnit_create_volts_per_ampere
+[map] matched by name: falcon_core::physics::units::SymbolUnit::WattsPerMeterKelvin
+[capi] inserted doc above: SymbolUnit_create_watts_per_meter_kelvin
+[map] matched by name: falcon_core::physics::units::SymbolUnit::symbol
+[capi] inserted doc above: SymbolUnit_symbol
+[map] matched by name: falcon_core::physics::units::SymbolUnit::name
+[capi] inserted doc above: SymbolUnit_name
+[map] matched by name: falcon_core::physics::units::SymbolUnit::convert_value_to
+[capi] inserted doc above: SymbolUnit_convert_value_to
+[map] matched by name: falcon_core::physics::units::SymbolUnit::is_compatible_with
+[capi] inserted doc above: SymbolUnit_is_compatible_with
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/units/SymbolUnit_c_api.h (inserted=60)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/Adjacency_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h
+[meta] matched stem 'Adjacency' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/core/Adjacency_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/core/Adjacency_metadata.yml
+[meta] total units loaded: 3
+[map] matched by name: falcon_core::physics::config::core::Adjacency::indexes
+[capi] inserted doc above: Adjacency_indexes
+[map] matched by name: falcon_core::physics::config::core::Adjacency::get_true_pairs
+[capi] inserted doc above: Adjacency_get_true_pairs
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/Config_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/Config_c_api.h
+[meta] matched stem 'Config' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/core/Config_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/core/Config_metadata.yml
+[meta] total units loaded: 78
+[map] matched by name: falcon_core::physics::config::core::Config::num_unique_channels
+[capi] inserted doc above: Config_num_unique_channels
+[map] matched by name: falcon_core::physics::config::core::Config::voltage_constraints
+[capi] inserted doc above: Config_voltage_constraints
+[map] matched by name: falcon_core::physics::config::core::Config::groups
+[capi] inserted doc above: Config_groups
+[map] matched by name: falcon_core::physics::config::core::Config::channels
+[capi] inserted doc above: Config_channels
+[map] matched by name: falcon_core::physics::config::core::Config::get_impedance
+[capi] inserted doc above: Config_get_impedance
+[map] matched by name: falcon_core::physics::config::core::Config::get_all_gnames
+[capi] inserted doc above: Config_get_all_gnames
+[map] matched by name: falcon_core::physics::config::core::Config::get_all_groups
+[capi] inserted doc above: Config_get_all_groups
+[map] matched by name: falcon_core::physics::config::core::Config::has_channel
+[capi] inserted doc above: Config_has_channel
+[map] matched by name: falcon_core::physics::config::core::Config::has_gname
+[capi] inserted doc above: Config_has_gname
+[map] matched by name: falcon_core::physics::config::core::Config::select_group
+[capi] inserted doc above: Config_select_group
+[map] matched by name: falcon_core::physics::config::core::Config::get_dot_number
+[capi] inserted doc above: Config_get_dot_number
+[map] matched by name: falcon_core::physics::config::core::Config::get_charge_sense_groups
+[capi] inserted doc above: Config_get_charge_sense_groups
+[map] matched by name: falcon_core::physics::config::core::Config::ohmic_in_charge_sensor
+[capi] inserted doc above: Config_ohmic_in_charge_sensor
+[map] matched by name: falcon_core::physics::config::core::Config::get_associated_ohmic
+[capi] inserted doc above: Config_get_associated_ohmic
+[map] matched by name: falcon_core::physics::config::core::Config::get_current_channels
+[capi] inserted doc above: Config_get_current_channels
+[map] matched by name: falcon_core::physics::config::core::Config::get_gname
+[capi] inserted doc above: Config_get_gname
+[map] matched by name: falcon_core::physics::config::core::Config::get_group_barrier_gates
+[capi] inserted doc above: Config_get_group_barrier_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_group_plunger_gates
+[capi] inserted doc above: Config_get_group_plunger_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_group_reservoir_gates
+[capi] inserted doc above: Config_get_group_reservoir_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_group_screening_gates
+[capi] inserted doc above: Config_get_group_screening_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_group_dot_gates
+[capi] inserted doc above: Config_get_group_dot_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_group_gates
+[capi] inserted doc above: Config_get_group_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_channel_barrier_gates
+[capi] inserted doc above: Config_get_channel_barrier_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_channel_plunger_gates
+[capi] inserted doc above: Config_get_channel_plunger_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_channel_reservoir_gates
+[capi] inserted doc above: Config_get_channel_reservoir_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_channel_screening_gates
+[capi] inserted doc above: Config_get_channel_screening_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_channel_dot_gates
+[capi] inserted doc above: Config_get_channel_dot_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_channel_gates
+[capi] inserted doc above: Config_get_channel_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_channel_ohmics
+[capi] inserted doc above: Config_get_channel_ohmics
+[map] matched by name: falcon_core::physics::config::core::Config::get_channel_order_no_ohmics
+[capi] inserted doc above: Config_get_channel_order_no_ohmics
+[map] matched by name: falcon_core::physics::config::core::Config::get_num_unique_channels
+[capi] inserted doc above: Config_get_num_unique_channels
+[map] matched by name: falcon_core::physics::config::core::Config::return_channels_from_gate
+[capi] inserted doc above: Config_return_channels_from_gate
+[map] matched by name: falcon_core::physics::config::core::Config::return_channel_from_gate
+[capi] inserted doc above: Config_return_channel_from_gate
+[map] matched by name: falcon_core::physics::config::core::Config::ohmic_in_channel
+[capi] inserted doc above: Config_ohmic_in_channel
+[map] matched by name: falcon_core::physics::config::core::Config::get_dot_channel_neighbors
+[capi] inserted doc above: Config_get_dot_channel_neighbors
+[map] matched by name: falcon_core::physics::config::core::Config::get_barrier_gate_dict
+[capi] inserted doc above: Config_get_barrier_gate_dict
+[map] matched by name: falcon_core::physics::config::core::Config::get_plunger_gate_dict
+[capi] inserted doc above: Config_get_plunger_gate_dict
+[map] matched by name: falcon_core::physics::config::core::Config::get_reservoir_gate_dict
+[capi] inserted doc above: Config_get_reservoir_gate_dict
+[map] matched by name: falcon_core::physics::config::core::Config::get_screening_gate_dict
+[capi] inserted doc above: Config_get_screening_gate_dict
+[map] matched by name: falcon_core::physics::config::core::Config::get_dot_gate_dict
+[capi] inserted doc above: Config_get_dot_gate_dict
+[map] matched by name: falcon_core::physics::config::core::Config::get_gate_dict
+[capi] inserted doc above: Config_get_gate_dict
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_barrier_gates
+[capi] inserted doc above: Config_get_isolated_barrier_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_plunger_gates
+[capi] inserted doc above: Config_get_isolated_plunger_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_reservoir_gates
+[capi] inserted doc above: Config_get_isolated_reservoir_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_screening_gates
+[capi] inserted doc above: Config_get_isolated_screening_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_dot_gates
+[capi] inserted doc above: Config_get_isolated_dot_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_gates
+[capi] inserted doc above: Config_get_isolated_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_barrier_gates
+[capi] inserted doc above: Config_get_shared_barrier_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_plunger_gates
+[capi] inserted doc above: Config_get_shared_plunger_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_reservoir_gates
+[capi] inserted doc above: Config_get_shared_reservoir_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_screening_gates
+[capi] inserted doc above: Config_get_shared_screening_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_dot_gates
+[capi] inserted doc above: Config_get_shared_dot_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_gates
+[capi] inserted doc above: Config_get_shared_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_channel_barrier_gates
+[capi] inserted doc above: Config_get_shared_channel_barrier_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_channel_plunger_gates
+[capi] inserted doc above: Config_get_shared_channel_plunger_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_channel_reservoir_gates
+[capi] inserted doc above: Config_get_shared_channel_reservoir_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_channel_screening_gates
+[capi] inserted doc above: Config_get_shared_channel_screening_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_channel_dot_gates
+[capi] inserted doc above: Config_get_shared_channel_dot_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_shared_channel_gates
+[capi] inserted doc above: Config_get_shared_channel_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_channel_barrier_gates
+[capi] inserted doc above: Config_get_isolated_channel_barrier_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_channel_plunger_gates
+[capi] inserted doc above: Config_get_isolated_channel_plunger_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_channel_reservoir_gates
+[capi] inserted doc above: Config_get_isolated_channel_reservoir_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_channel_screening_gates
+[capi] inserted doc above: Config_get_isolated_channel_screening_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_channel_dot_gates
+[capi] inserted doc above: Config_get_isolated_channel_dot_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_channel_gates
+[capi] inserted doc above: Config_get_isolated_channel_gates
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_barrier_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_barrier_gates_by_channel
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_plunger_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_plunger_gates_by_channel
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_reservoir_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_reservoir_gates_by_channel
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_screening_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_screening_gates_by_channel
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_dot_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_dot_gates_by_channel
+[map] matched by name: falcon_core::physics::config::core::Config::get_isolated_gates_by_channel
+[capi] inserted doc above: Config_get_isolated_gates_by_channel
+[map] matched by name: falcon_core::physics::config::core::Config::generate_gate_relations
+[capi] inserted doc above: Config_generate_gate_relations
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/Config_c_api.h (inserted=72)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/Group_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/Group_c_api.h
+[meta] matched stem 'Group' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/core/Group_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/core/Group_metadata.yml
+[meta] total units loaded: 9
+[map] matched by name: falcon_core::physics::config::core::Group::ohmics
+[capi] inserted doc above: Group_ohmics
+[map] matched by name: falcon_core::physics::config::core::Group::name
+[capi] inserted doc above: Group_name
+[map] matched by name: falcon_core::physics::config::core::Group::num_dots
+[capi] inserted doc above: Group_num_dots
+[map] matched by name: falcon_core::physics::config::core::Group::order
+[capi] inserted doc above: Group_order
+[map] matched by name: falcon_core::physics::config::core::Group::has_channel
+[capi] inserted doc above: Group_has_channel
+[map] matched by name: falcon_core::physics::config::core::Group::is_charge_sensor
+[capi] inserted doc above: Group_is_charge_sensor
+[map] matched by name: falcon_core::physics::config::core::Group::get_all_channel_gates
+[capi] inserted doc above: Group_get_all_channel_gates
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/Group_c_api.h (inserted=7)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h
+[meta] matched stem 'VoltageConstraints' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/core/VoltageConstraints_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/core/VoltageConstraints_metadata.yml
+[meta] total units loaded: 5
+[map] matched by name: falcon_core::physics::config::core::VoltageConstraints::matrix
+[capi] inserted doc above: VoltageConstraints_matrix
+[map] matched by name: falcon_core::physics::config::core::VoltageConstraints::matrix
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: VoltageConstraints_matrix
+[map] matched by name: falcon_core::physics::config::core::VoltageConstraints::adjacency
+[capi] inserted doc above: VoltageConstraints_adjacency
+[map] matched by name: falcon_core::physics::config::core::VoltageConstraints::limits
+[capi] inserted doc above: VoltageConstraints_limits
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h
+[meta] matched stem 'DotGatesWithNeighbors' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_metadata.yml
+[meta] total units loaded: 4
+[map] matched by name: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates
+[capi] inserted doc above: DotGatesWithNeighbors_is_plunger_gates
+[map] matched by name: falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates
+[capi] inserted doc above: DotGatesWithNeighbors_is_barrier_gates
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h
+[meta] matched stem 'GateGeometryArray1D' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/geometries/GateGeometryArray1D_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/physics/config/geometries/GateGeometryArray1D_metadata.yml
+[meta] total units loaded: 14
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::append_central_gate
+[capi] inserted doc above: GateGeometryArray1D_append_central_gate
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::all_dot_gates
+[capi] inserted doc above: GateGeometryArray1D_all_dot_gates
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::query_neighbors
+[capi] inserted doc above: GateGeometryArray1D_query_neighbors
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::left_reservoir
+[capi] inserted doc above: GateGeometryArray1D_left_reservoir
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir
+[capi] inserted doc above: GateGeometryArray1D_right_reservoir
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier
+[capi] inserted doc above: GateGeometryArray1D_left_barrier
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier
+[capi] inserted doc above: GateGeometryArray1D_right_barrier
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates
+[capi] inserted doc above: GateGeometryArray1D_screening_gates
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates
+[capi] inserted doc above: GateGeometryArray1D_raw_central_gates
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates
+[capi] inserted doc above: GateGeometryArray1D_central_dot_gates
+[map] matched by name: falcon_core::physics::config::geometries::GateGeometryArray1D::ohmics
+[capi] inserted doc above: GateGeometryArray1D_ohmics
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h (inserted=11)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray1D_c_api.h
+[meta] matched stem 'ControlArray1D' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/ControlArray1D_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/ControlArray1D_metadata.yml
+[meta] total units loaded: 7
+[map] matched by name: falcon_core::math::arrays::ControlArray1D::min
+[capi] inserted doc above: ControlArray1D_min
+[map] matched by name: falcon_core::math::arrays::ControlArray1D::max
+[capi] inserted doc above: ControlArray1D_max
+[map] matched by name: falcon_core::math::arrays::ControlArray1D::flip
+[capi] inserted doc above: ControlArray1D_flip
+[map] matched by name: falcon_core::math::arrays::ControlArray1D::gradient
+[capi] inserted doc above: ControlArray1D_gradient
+[map] matched by name: falcon_core::math::arrays::ControlArray1D::gradient
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: ControlArray1D_gradient
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray1D_c_api.h (inserted=4)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray_c_api.h
+[meta] matched stem 'ControlArray' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/ControlArray_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/ControlArray_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::math::arrays::ControlArray::min
+[capi] inserted doc above: ControlArray_min
+[map] matched by name: falcon_core::math::arrays::ControlArray::max
+[capi] inserted doc above: ControlArray_max
+[map] matched by name: falcon_core::math::arrays::ControlArray::flip
+[capi] inserted doc above: ControlArray_flip
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/ControlArray_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/IncreasingAlignment_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/IncreasingAlignment_c_api.h
+[meta] matched stem 'IncreasingAlignment' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/IncreasingAlignment_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/IncreasingAlignment_metadata.yml
+[meta] total units loaded: 2
+[map] matched by name: falcon_core::math::arrays::IncreasingAlignment::alignment
+[capi] inserted doc above: IncreasingAlignment_alignment
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/IncreasingAlignment_c_api.h (inserted=1)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h
+[meta] matched stem 'LabelledArrays' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] total units loaded: 8
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::arrays
+[capi] inserted doc above: LabelledArraysLabelledControlArray1D_arrays
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::labels
+[capi] inserted doc above: LabelledArraysLabelledControlArray1D_labels
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::is_control_arrays
+[capi] inserted doc above: LabelledArraysLabelledControlArray1D_is_control_arrays
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::is_measured_arrays
+[capi] inserted doc above: LabelledArraysLabelledControlArray1D_is_measured_arrays
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h (inserted=4)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h
+[meta] matched stem 'LabelledArrays' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] total units loaded: 8
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::arrays
+[capi] inserted doc above: LabelledArraysLabelledControlArray_arrays
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::labels
+[capi] inserted doc above: LabelledArraysLabelledControlArray_labels
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::is_control_arrays
+[capi] inserted doc above: LabelledArraysLabelledControlArray_is_control_arrays
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::is_measured_arrays
+[capi] inserted doc above: LabelledArraysLabelledControlArray_is_measured_arrays
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h (inserted=4)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h
+[meta] matched stem 'LabelledArrays' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] total units loaded: 8
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::arrays
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray1D_arrays
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::labels
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray1D_labels
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::is_control_arrays
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray1D_is_control_arrays
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::is_measured_arrays
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray1D_is_measured_arrays
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h (inserted=4)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h
+[meta] matched stem 'LabelledArrays' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledArrays_metadata.yml
+[meta] total units loaded: 8
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::arrays
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray_arrays
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::labels
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray_labels
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::is_control_arrays
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray_is_control_arrays
+[map] matched by name: falcon_core::math::arrays::LabelledArrays::is_measured_arrays
+[capi] inserted doc above: LabelledArraysLabelledMeasuredArray_is_measured_arrays
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h (inserted=4)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.h
+[meta] matched stem 'LabelledControlArray1D' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledControlArray1D_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledControlArray1D_metadata.yml
+[meta] total units loaded: 10
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray1D::min
+[capi] inserted doc above: LabelledControlArray1D_min
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray1D::max
+[capi] inserted doc above: LabelledControlArray1D_max
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray1D::flip
+[capi] inserted doc above: LabelledControlArray1D_flip
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray1D::gradient
+[capi] inserted doc above: LabelledControlArray1D_gradient
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray1D::gradient
+[capi] inserted doc above: LabelledControlArray1D_gradient
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.h (inserted=5)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.h
+[meta] matched stem 'LabelledControlArray' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledControlArray_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledControlArray_metadata.yml
+[meta] total units loaded: 10
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray::min
+[capi] inserted doc above: LabelledControlArray_min
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray::max
+[capi] inserted doc above: LabelledControlArray_max
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray::flip
+[capi] inserted doc above: LabelledControlArray_flip
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray::gradient
+[capi] inserted doc above: LabelledControlArray_gradient
+[map] matched by name: falcon_core::math::arrays::LabelledControlArray::gradient
+[capi] inserted doc above: LabelledControlArray_gradient
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.h (inserted=5)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h
+[meta] matched stem 'LabelledMeasuredArray1D' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledMeasuredArray1D_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledMeasuredArray1D_metadata.yml
+[meta] total units loaded: 10
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray1D::min
+[capi] inserted doc above: LabelledMeasuredArray1D_min
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray1D::max
+[capi] inserted doc above: LabelledMeasuredArray1D_max
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray1D::reshape
+[capi] inserted doc above: LabelledMeasuredArray1D_reshape
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray1D::flip
+[capi] inserted doc above: LabelledMeasuredArray1D_flip
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray1D::gradient
+[capi] inserted doc above: LabelledMeasuredArray1D_gradient
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray1D::gradient
+[capi] inserted doc above: LabelledMeasuredArray1D_gradient
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h (inserted=6)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h
+[meta] matched stem 'LabelledMeasuredArray' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledMeasuredArray_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/LabelledMeasuredArray_metadata.yml
+[meta] total units loaded: 10
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray::min
+[capi] inserted doc above: LabelledMeasuredArray_min
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray::max
+[capi] inserted doc above: LabelledMeasuredArray_max
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray::reshape
+[capi] inserted doc above: LabelledMeasuredArray_reshape
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray::flip
+[capi] inserted doc above: LabelledMeasuredArray_flip
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray::gradient
+[capi] inserted doc above: LabelledMeasuredArray_gradient
+[map] matched by name: falcon_core::math::arrays::LabelledMeasuredArray::gradient
+[capi] inserted doc above: LabelledMeasuredArray_gradient
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h (inserted=6)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray1D_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray1D_c_api.h
+[meta] matched stem 'MeasuredArray1D' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/MeasuredArray1D_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/MeasuredArray1D_metadata.yml
+[meta] total units loaded: 7
+[map] matched by name: falcon_core::math::arrays::MeasuredArray1D::min
+[capi] inserted doc above: MeasuredArray1D_min
+[map] matched by name: falcon_core::math::arrays::MeasuredArray1D::max
+[capi] inserted doc above: MeasuredArray1D_max
+[map] matched by name: falcon_core::math::arrays::MeasuredArray1D::reshape
+[capi] inserted doc above: MeasuredArray1D_reshape
+[map] matched by name: falcon_core::math::arrays::MeasuredArray1D::flip
+[capi] inserted doc above: MeasuredArray1D_flip
+[map] matched by name: falcon_core::math::arrays::MeasuredArray1D::gradient
+[capi] inserted doc above: MeasuredArray1D_gradient
+[map] matched by name: falcon_core::math::arrays::MeasuredArray1D::gradient
+[capi] inserted doc above: MeasuredArray1D_gradient
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray1D_c_api.h (inserted=6)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray_c_api.h
+[meta] matched stem 'MeasuredArray' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/MeasuredArray_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/arrays/MeasuredArray_metadata.yml
+[meta] total units loaded: 7
+[map] matched by name: falcon_core::math::arrays::MeasuredArray::min
+[capi] inserted doc above: MeasuredArray_min
+[map] matched by name: falcon_core::math::arrays::MeasuredArray::max
+[capi] inserted doc above: MeasuredArray_max
+[map] matched by name: falcon_core::math::arrays::MeasuredArray::reshape
+[capi] inserted doc above: MeasuredArray_reshape
+[map] matched by name: falcon_core::math::arrays::MeasuredArray::flip
+[capi] inserted doc above: MeasuredArray_flip
+[map] matched by name: falcon_core::math::arrays::MeasuredArray::gradient
+[capi] inserted doc above: MeasuredArray_gradient
+[map] matched by name: falcon_core::math::arrays::MeasuredArray::gradient
+[capi] existing AUTO-DOC/MAN-DOC found, skipping: MeasuredArray_gradient
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/arrays/MeasuredArray_c_api.h (inserted=5)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h
+[meta] matched stem 'DiscreteSpace' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/discrete_spaces/DiscreteSpace_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/discrete_spaces/DiscreteSpace_metadata.yml
+[meta] total units loaded: 12
+[map] matched by name: falcon_core::math::discrete_spaces::DiscreteSpace::space
+[capi] inserted doc above: DiscreteSpace_space
+[map] matched by name: falcon_core::math::discrete_spaces::DiscreteSpace::axes
+[capi] inserted doc above: DiscreteSpace_axes
+[map] matched by name: falcon_core::math::discrete_spaces::DiscreteSpace::increasing
+[capi] inserted doc above: DiscreteSpace_increasing
+[map] matched by name: falcon_core::math::discrete_spaces::DiscreteSpace::knobs
+[capi] inserted doc above: DiscreteSpace_knobs
+[map] matched by name: falcon_core::math::discrete_spaces::DiscreteSpace::validate_unit_space_dimensionality_matches_knobs
+[capi] inserted doc above: DiscreteSpace_validate_unit_space_dimensionality_matches_knobs
+[map] matched by name: falcon_core::math::discrete_spaces::DiscreteSpace::validate_knob_uniqueness
+[capi] inserted doc above: DiscreteSpace_validate_knob_uniqueness
+[map] matched by name: falcon_core::math::discrete_spaces::DiscreteSpace::get_axis
+[capi] inserted doc above: DiscreteSpace_get_axis
+[map] matched by name: falcon_core::math::discrete_spaces::DiscreteSpace::get_domain
+[capi] inserted doc above: DiscreteSpace_get_domain
+[map] matched by name: falcon_core::math::discrete_spaces::DiscreteSpace::get_projection
+[capi] inserted doc above: DiscreteSpace_get_projection
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h (inserted=9)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h
+[meta] matched stem 'Discretizer' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/discrete_spaces/Discretizer_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/discrete_spaces/Discretizer_metadata.yml
+[meta] total units loaded: 7
+[map] matched by name: falcon_core::math::discrete_spaces::Discretizer::is_cartesian
+[capi] inserted doc above: Discretizer_is_cartesian
+[map] matched by name: falcon_core::math::discrete_spaces::Discretizer::is_polar
+[capi] inserted doc above: Discretizer_is_polar
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h (inserted=2)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.h
+[meta] matched stem 'CoupledLabelledDomain' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/domains/CoupledLabelledDomain_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/domains/CoupledLabelledDomain_metadata.yml
+[meta] total units loaded: 5
+[map] matched by name: falcon_core::math::domains::CoupledLabelledDomain::domains
+[capi] inserted doc above: CoupledLabelledDomain_domains
+[map] matched by name: falcon_core::math::domains::CoupledLabelledDomain::labels
+[capi] inserted doc above: CoupledLabelledDomain_labels
+[map] matched by name: falcon_core::math::domains::CoupledLabelledDomain::get_domain
+[capi] inserted doc above: CoupledLabelledDomain_get_domain
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/domains/Domain_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/domains/Domain_c_api.h
+[meta] matched stem 'Domain' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/domains/Domain_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/domains/Domain_metadata.yml
+[meta] total units loaded: 17
+[map] matched by name: falcon_core::math::domains::Domain::lesser_bound
+[capi] inserted doc above: Domain_lesser_bound
+[map] matched by name: falcon_core::math::domains::Domain::greater_bound
+[capi] inserted doc above: Domain_greater_bound
+[map] matched by name: falcon_core::math::domains::Domain::lesser_bound_contained
+[capi] inserted doc above: Domain_lesser_bound_contained
+[map] matched by name: falcon_core::math::domains::Domain::greater_bound_contained
+[capi] inserted doc above: Domain_greater_bound_contained
+[map] matched by name: falcon_core::math::domains::Domain::in
+[capi] inserted doc above: Domain_in
+[map] matched by name: falcon_core::math::domains::Domain::range
+[capi] inserted doc above: Domain_range
+[map] matched by name: falcon_core::math::domains::Domain::is_empty
+[capi] inserted doc above: Domain_is_empty
+[map] matched by name: falcon_core::math::domains::Domain::contains_domain
+[capi] inserted doc above: Domain_contains_domain
+[map] matched by name: falcon_core::math::domains::Domain::shift
+[capi] inserted doc above: Domain_shift
+[map] matched by name: falcon_core::math::domains::Domain::scale
+[capi] inserted doc above: Domain_scale
+[map] matched by name: falcon_core::math::domains::Domain::transform
+[capi] inserted doc above: Domain_transform
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/domains/Domain_c_api.h (inserted=11)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/domains/LabelledDomain_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/domains/LabelledDomain_c_api.h
+[meta] matched stem 'LabelledDomain' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/domains/LabelledDomain_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/domains/LabelledDomain_metadata.yml
+[meta] total units loaded: 8
+[map] matched by name: falcon_core::math::domains::LabelledDomain::port
+[capi] inserted doc above: LabelledDomain_port
+[map] matched by name: falcon_core::math::domains::LabelledDomain::domain
+[capi] inserted doc above: LabelledDomain_domain
+[map] matched by name: falcon_core::math::domains::LabelledDomain::matching_port
+[capi] inserted doc above: LabelledDomain_matching_port
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/domains/LabelledDomain_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h
+[meta] matched stem 'InstrumentPort' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/instrument_interfaces/names/InstrumentPort_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/instrument_interfaces/names/InstrumentPort_metadata.yml
+[meta] total units loaded: 14
+[map] matched by name: falcon_core::instrument_interfaces::names::InstrumentPort::default_name
+[capi] inserted doc above: InstrumentPort_default_name
+[map] matched by name: falcon_core::instrument_interfaces::names::InstrumentPort::instrument_type
+[capi] inserted doc above: InstrumentPort_instrument_type
+[map] matched by name: falcon_core::instrument_interfaces::names::InstrumentPort::units
+[capi] inserted doc above: InstrumentPort_units
+[map] matched by name: falcon_core::instrument_interfaces::names::InstrumentPort::description
+[capi] inserted doc above: InstrumentPort_description
+[map] matched by name: falcon_core::instrument_interfaces::names::InstrumentPort::instrument_facing_name
+[capi] inserted doc above: InstrumentPort_instrument_facing_name
+[map] matched by name: falcon_core::instrument_interfaces::names::InstrumentPort::is_knob
+[capi] inserted doc above: InstrumentPort_is_knob
+[map] matched by name: falcon_core::instrument_interfaces::names::InstrumentPort::is_meter
+[capi] inserted doc above: InstrumentPort_is_meter
+[map] matched by name: falcon_core::instrument_interfaces::names::InstrumentPort::is_port
+[capi] inserted doc above: InstrumentPort_is_port
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h (inserted=8)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h
+[meta] matched stem 'Ports' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/instrument_interfaces/names/Ports_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/instrument_interfaces/names/Ports_metadata.yml
+[meta] total units loaded: 11
+[map] matched by name: falcon_core::instrument_interfaces::names::Ports::ports
+[capi] inserted doc above: Ports_ports
+[map] matched by name: falcon_core::instrument_interfaces::names::Ports::_get_raw_names
+[capi] inserted doc above: Ports__get_raw_names
+[map] matched by name: falcon_core::instrument_interfaces::names::Ports::_get_instrument_facing_names
+[capi] inserted doc above: Ports__get_instrument_facing_names
+[map] matched by name: falcon_core::instrument_interfaces::names::Ports::_get_psuedoname_matching_port
+[capi] inserted doc above: Ports__get_psuedoname_matching_port
+[map] matched by name: falcon_core::instrument_interfaces::names::Ports::_get_instrument_type_matching_port
+[capi] inserted doc above: Ports__get_instrument_type_matching_port
+[map] matched by name: falcon_core::instrument_interfaces::names::Ports::is_knobs
+[capi] inserted doc above: Ports_is_knobs
+[map] matched by name: falcon_core::instrument_interfaces::names::Ports::is_meters
+[capi] inserted doc above: Ports_is_meters
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h (inserted=7)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h
+[meta] matched stem 'PortTransform' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/instrument_interfaces/port_transforms/PortTransform_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/instrument_interfaces/port_transforms/PortTransform_metadata.yml
+[meta] total units loaded: 5
+[map] matched by name: falcon_core::instrument_interfaces::port_transforms::PortTransform::port
+[capi] inserted doc above: PortTransform_port
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h (inserted=1)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h
+[meta] matched stem 'DeviceVoltageStates' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/communications/voltage_states/DeviceVoltageStates_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/communications/voltage_states/DeviceVoltageStates_metadata.yml
+[meta] total units loaded: 5
+[map] matched by name: falcon_core::communications::voltage_states::DeviceVoltageStates::states
+[capi] inserted doc above: DeviceVoltageStates_states
+[map] matched by name: falcon_core::communications::voltage_states::DeviceVoltageStates::add_state
+[capi] inserted doc above: DeviceVoltageStates_add_state
+[map] matched by name: falcon_core::communications::voltage_states::DeviceVoltageStates::find_state
+[capi] inserted doc above: DeviceVoltageStates_find_state
+[map] matched by name: falcon_core::communications::voltage_states::DeviceVoltageStates::to_point
+[capi] inserted doc above: DeviceVoltageStates_to_point
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h (inserted=4)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h
+[meta] matched stem 'AcquisitionContext' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_metadata.yml
+[meta] total units loaded: 6
+[map] matched by name: falcon_core::autotuner_interfaces::contexts::AcquisitionContext::units
+[capi] inserted doc above: AcquisitionContext_units
+[map] matched by name: falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_connection
+[capi] inserted doc above: AcquisitionContext_match_connection
+[map] matched by name: falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_instrument_type
+[capi] inserted doc above: AcquisitionContext_match_instrument_type
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h
+[meta] matched stem 'InterpretationContainer' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] total units loaded: 4
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit
+[capi] inserted doc above: InterpretationContainerDouble_unit
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection
+[capi] inserted doc above: InterpretationContainerDouble_select_by_connection
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections
+[capi] inserted doc above: InterpretationContainerDouble_select_by_connections
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h
+[meta] matched stem 'InterpretationContainer' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] total units loaded: 4
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit
+[capi] inserted doc above: InterpretationContainerQuantity_unit
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection
+[capi] inserted doc above: InterpretationContainerQuantity_select_by_connection
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections
+[capi] inserted doc above: InterpretationContainerQuantity_select_by_connections
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h
+[meta] matched stem 'InterpretationContainer' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer_metadata.yml
+[meta] total units loaded: 4
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit
+[capi] inserted doc above: InterpretationContainerString_unit
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection
+[capi] inserted doc above: InterpretationContainerString_select_by_connection
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections
+[capi] inserted doc above: InterpretationContainerString_select_by_connections
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h (inserted=3)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h
+[meta] matched stem 'InterpretationContext' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_metadata.yml
+[meta] total units loaded: 10
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::independent_variables
+[capi] inserted doc above: InterpretationContext_independent_variables
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dependent_variables
+[capi] inserted doc above: InterpretationContext_dependent_variables
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::unit
+[capi] inserted doc above: InterpretationContext_unit
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dimension
+[capi] inserted doc above: InterpretationContext_dimension
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::add_dependent_variable
+[capi] inserted doc above: InterpretationContext_add_dependent_variable
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::replace_dependent_variable
+[capi] inserted doc above: InterpretationContext_replace_dependent_variable
+[map] matched by name: falcon_core::autotuner_interfaces::interpretations::InterpretationContext::with_unit
+[capi] inserted doc above: InterpretationContext_with_unit
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h (inserted=7)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/names/Gname_c_api.auto_map.yml
+[map] C header (map-dir): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/names/Gname_c_api.h
+[meta] matched stem 'Gname' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/names/Gname_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/autotuner_interfaces/names/Gname_metadata.yml
+[meta] total units loaded: 1
+[map] matched by name: falcon_core::autotuner_interfaces::names::Gname::gname
+[capi] inserted doc above: Gname_gname
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/autotuner_interfaces/names/Gname_c_api.h (inserted=1)
+
+[map] processing: /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/c-api_user_maps/include/falcon_core/math/Vector_c_api.man_map.yml
+[map] C header (search): /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Vector_c_api.h
+[meta] matched stem 'Vector' -> /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/Vector_metadata.yml
+[meta] loading /home/tylerk/falcon-dev/falcon-core/code_docs/capi_docs/cpp_metadata /include/falcon_core/math/Vector_metadata.yml
+[meta] total units loaded: 24
+[map] matched by name: falcon_core::math::Vector::endPoint
+[capi] merged C++ docs into existing user block for: Vector_end_point
+[map] matched by name: falcon_core::math::Vector::startPoint
+[capi] inserted doc above: Vector_start_point
+[ok] wrote /home/tylerk/falcon-dev/falcon-core/c-api/include/falcon_core/math/Vector_c_api.h (inserted=2)

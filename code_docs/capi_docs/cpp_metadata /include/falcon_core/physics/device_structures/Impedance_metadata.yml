@@ -1,0 +1,24 @@
+- comment_raw: "/**\n   * @brief Gets the connection leading to the fridge with this\
+    \ impedance\n   * @return A shared pointer to the BaseConnection\n   */"
+  comment: '@brief Gets the connection leading to the fridge with this impedance
+
+    @return A shared pointer to the BaseConnection'
+  declaration: ConnectionSP connection() const;
+  kind: function
+  name: falcon_core::physics::device_structures::Impedance::connection
+- comment_raw: "/**\n   * @brief Gets the resistance of the impedance\n   * @return\
+    \ The resistance in ohms\n   */"
+  comment: '@brief Gets the resistance of the impedance
+
+    @return The resistance in ohms'
+  declaration: double resistance() const;
+  kind: function
+  name: falcon_core::physics::device_structures::Impedance::resistance
+- comment_raw: "/**\n   * @brief Gets the capacitance of the impedance\n   * @return\
+    \ The capacitance in farads\n   */"
+  comment: '@brief Gets the capacitance of the impedance
+
+    @return The capacitance in farads'
+  declaration: double capacitance() const;
+  kind: function
+  name: falcon_core::physics::device_structures::Impedance::capacitance

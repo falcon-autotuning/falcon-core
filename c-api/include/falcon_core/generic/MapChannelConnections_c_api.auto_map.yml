@@ -1,0 +1,8 @@
+c_header: MapChannelConnections_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/Map.hpp
+mappings:
+- cpp: falcon_core::generic::Map::keys
+  c: MapChannelConnections_keys
+- cpp: falcon_core::generic::Map::values
+  c: MapChannelConnections_values

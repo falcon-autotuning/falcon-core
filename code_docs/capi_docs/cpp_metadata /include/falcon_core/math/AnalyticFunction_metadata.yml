@@ -1,0 +1,113 @@
+- comment_raw: "/**\n * @file AnalyticFunction.hpp\n * @brief A class for a gunction\
+    \ that can be used to describe analytic time\n * domain shaped.\n *\n * This supports\
+    \ functions of the form x[0]*t^2 + x[1] where the values that can\n * be set are\
+    \ elements of the x vector, and it can be evaluated as a function of\n * time\
+    \ at a later date. For time evaluation, it is assumed that this function\n * should\
+    \ be evaluated at t=0.\n *\n * Not that this vector should always start from 0,\
+    \ and you should not skip any\n * indexes.\n *\n * There are builtin labels, such\
+    \ that the arbitrary vector indexes can be\n * turned into human readable labels.\n\
+    \ */"
+  comment: '@file AnalyticFunction.hpp
+
+    @brief A class for a gunction that can be used to describe analytic time
+
+    domain shaped.
+
+    This supports functions of the form x[0]*t^2 + x[1] where the values that can
+
+    be set are elements of the x vector, and it can be evaluated as a function of
+
+    time at a later date. For time evaluation, it is assumed that this function
+
+    should be evaluated at t=0.
+
+    Not that this vector should always start from 0, and you should not skip any
+
+    indexes.
+
+    There are builtin labels, such that the arbitrary vector indexes can be
+
+    turned into human readable labels.'
+  declaration: using VariableName = std::string;
+  kind: alias
+  name: null
+- comment_raw: "/**\n   * @brief Checks that it is safe to evaluate the args that\
+    \ the user passed in.\n   * @param args The user args from the evaluate function\n\
+    \   * @throw invalid_argument if the args are improper.\n   */"
+  comment: '@brief Checks that it is safe to evaluate the args that the user passed
+    in.
+
+    @param args The user args from the evaluate function
+
+    @throw invalid_argument if the args are improper.'
+  declaration: "void checkSafeEvaluateArgs(\n      const generic::MapSP<VariableName,\
+    \ double>& args) const;"
+  kind: function
+  name: falcon_core::math::AnalyticFunction::checkSafeEvaluateArgs
+- comment_raw: "/**\n   * @brief Construct an AnalyticFunction with a mapping of the\
+    \ function's\n   * arguments to their names.\n   * @param labels The label for\
+    \ each element of the vector\n   * @param expression The mathematical expression\
+    \ to be evaluated\n   */"
+  comment: '@brief Construct an AnalyticFunction with a mapping of the function''s
+
+    arguments to their names.
+
+    @param labels The label for each element of the vector
+
+    @param expression The mathematical expression to be evaluated'
+  declaration: "AnalyticFunction(const generic::ListSP<VariableName>& labels,\n  \
+    \                 const std::string&                   expression);"
+  kind: function
+  name: falcon_core::math::AnalyticFunction
+- comment_raw: "/**\n   * @brief Construct an identity.\n   * The equation is : x[0]\
+    \ where x[0] is some supplied quantity.\n   */"
+  comment: '@brief Construct an identity.
+
+    The equation is : x[0] where x[0] is some supplied quantity.'
+  declaration: static std::shared_ptr<AnalyticFunction> Identity();
+  kind: function
+  name: falcon_core::math::AnalyticFunction::Identity
+- comment_raw: "/**\n   * @brief Construct an constant function.\n   * The equation\
+    \ is : const where const is supplied here on construction.\n   */"
+  comment: '@brief Construct an constant function.
+
+    The equation is : const where const is supplied here on construction.'
+  declaration: static std::shared_ptr<AnalyticFunction> Constant(const double& value);
+  kind: function
+  name: falcon_core::math::AnalyticFunction::Constant
+- comment_raw: "/**\n   * @brief Return the set of labels in proper order of the function's\
+    \ arguments\n   * to their names.\n   */"
+  comment: '@brief Return the set of labels in proper order of the function''s arguments
+
+    to their names.'
+  declaration: const generic::ListSP<VariableName> labels() const;
+  kind: function
+  name: falcon_core::math::AnalyticFunction::labels
+- comment_raw: "/**\n   * @brief Returns the evaluated analytic function.\n   * @param\
+    \ args The vector arguments supplied with human readable names\n   * @param time\
+    \ The time to evaluate the function at..\n   */"
+  comment: '@brief Returns the evaluated analytic function.
+
+    @param args The vector arguments supplied with human readable names
+
+    @param time The time to evaluate the function at..'
+  declaration: "double evaluate(const generic::MapSP<VariableName, double>& args,\n\
+    \                  const double&                               time) const;"
+  kind: function
+  name: falcon_core::math::AnalyticFunction::evaluate
+- comment_raw: "/**\n   * @brief Returns the evaluated analytic function.\n   * @param\
+    \ args The vector arguments supplied with human readable names\n   * @param deltaT\
+    \ The different between calculated datapoints\n   * @param maxTime The total time\
+    \ to expend running the calculation.\n   */"
+  comment: '@brief Returns the evaluated analytic function.
+
+    @param args The vector arguments supplied with human readable names
+
+    @param deltaT The different between calculated datapoints
+
+    @param maxTime The total time to expend running the calculation.'
+  declaration: "generic::FArraySP<double> evaluate(\n      const generic::MapSP<VariableName,\
+    \ double>& args,\n      const double&                               deltaT,\n\
+    \      const double&                               maxTime) const;"
+  kind: function
+  name: falcon_core::math::AnalyticFunction::evaluate

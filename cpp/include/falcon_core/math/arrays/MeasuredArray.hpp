@@ -1,0 +1,140 @@
+/**
+ * @file MeasuredArray.hpp
+ * @brief Defines the MeasuredArray template for FalconCore.
+ */
+
+#pragma once
+
+#include "falcon_core/generic/FArray.hpp"
+namespace falcon_core {
+namespace math {
+namespace arrays {
+
+/**
+ * @brief Array type for measured data, derived from BaseArray.
+ */
+class MeasuredArray : public generic::FArray<double> {
+ protected:
+  friend class cereal::access;
+  MeasuredArray();
+  template <class Archive>
+  void serialize(Archive& ar) {
+    ar(cereal::base_class<FArray<double>>(this));
+  }
+
+ public:
+  MeasuredArray(const MeasuredArray& other);
+  MeasuredArray& operator=(const MeasuredArray& other);
+  MeasuredArray(const generic::FArraySP<double>& arr);
+  MeasuredArray(const xt::xarray<double>& arr);
+  MeasuredArray(xt::xarray<double>&& arr) noexcept;
+  // Arithmetic operators
+  std::shared_ptr<MeasuredArray> operator+(const double other) const;
+
+  std::shared_ptr<MeasuredArray> operator+(const int other) const;
+
+  std::shared_ptr<MeasuredArray> operator+(
+      const std::shared_ptr<MeasuredArray>& other) const;
+
+  std::shared_ptr<MeasuredArray> operator+(
+      const std::shared_ptr<FArray>& other) const;
+
+  std::shared_ptr<MeasuredArray> operator-(const double other) const;
+
+  std::shared_ptr<MeasuredArray> operator-(const int other) const;
+
+  std::shared_ptr<MeasuredArray> operator-(
+      const std::shared_ptr<MeasuredArray>& other) const;
+
+  std::shared_ptr<MeasuredArray> operator-(
+      const std::shared_ptr<FArray<double>>& other) const;
+
+  std::shared_ptr<MeasuredArray> operator-() const;
+
+  std::shared_ptr<MeasuredArray> operator*(const double other) const;
+
+  std::shared_ptr<MeasuredArray> operator*(const int other) const;
+
+  std::shared_ptr<MeasuredArray> operator*(
+      const std::shared_ptr<MeasuredArray>& other) const;
+
+  std::shared_ptr<MeasuredArray> operator*(
+      const std::shared_ptr<FArray<double>>& other) const;
+
+  std::shared_ptr<MeasuredArray> operator/(const double other) const;
+
+  std::shared_ptr<MeasuredArray> operator/(const int other) const;
+
+  std::shared_ptr<MeasuredArray> operator/(
+      const std::shared_ptr<MeasuredArray>& other) const;
+
+  std::shared_ptr<MeasuredArray> operator/(
+      const std::shared_ptr<FArray<double>>& other) const;
+
+  std::shared_ptr<MeasuredArray> operator^(const double other) const;
+
+  std::shared_ptr<MeasuredArray> abs() const;
+  /**
+   * @brief Return the minimum value of the array.
+   */
+  double min() const override;
+
+  std::shared_ptr<MeasuredArray> min(
+      const std::shared_ptr<MeasuredArray>& other) const;
+
+  std::shared_ptr<MeasuredArray> min(
+      const std::shared_ptr<FArray<double>>& other) const;
+  /**
+   * @brief Return the maximum value of the array.
+   */
+  double max() const override;
+
+  std::shared_ptr<MeasuredArray> max(
+      const std::shared_ptr<MeasuredArray>& other) const;
+
+  std::shared_ptr<MeasuredArray> max(
+      const std::shared_ptr<FArray<double>>& other) const;
+
+  /**
+   * @brief Return a new Array with the given shape.
+   * @param shape The new shape.
+   * @return A reshaped MeasuredArray.
+   */
+  std::shared_ptr<MeasuredArray> reshape(
+      const std::vector<size_t>& shape) const;
+  /**
+   * @brief Flip the data along the given axis.
+   * @param axis The axis to flip.
+   * @return A flipped MeasuredArray.
+   */
+  std::shared_ptr<MeasuredArray> flip(size_t axis) const;
+  /**
+   * @brief Return the gradient of the data along a given axis.
+   *
+   * Computes the gradient along the specified axis using finite differences:
+   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+   * - For boundary points, uses forward (first element) or backward (last
+   * element) difference.
+   *
+   * @param axis The axis to compute the gradient.
+   * @return The gradient FArray.
+   */
+  generic::FArraySP<double> gradient(size_t axis) const;
+  /**
+   * @brief Return the gradient of the data along all axes.
+   *
+   * Computes the gradient for each axis of the array using finite differences:
+   * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+   * - For boundary points, uses forward (first element) or backward (last
+   * element) difference.
+   *
+   * @return A vector of FArray gradients (one for each axis).
+   */
+  generic::ListSP<generic::FArray<double>> gradient() const;
+  bool operator==(const MeasuredArray& other) const;
+  bool operator!=(const MeasuredArray& other) const;
+};
+using MeasuredArraySP = std::shared_ptr<MeasuredArray>;
+}  // namespace arrays
+}  // namespace math
+}  // namespace falcon_core

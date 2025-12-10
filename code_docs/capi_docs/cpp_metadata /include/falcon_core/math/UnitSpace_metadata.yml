@@ -1,0 +1,126 @@
+- comment_raw: "/**\n * @file UnitSpace.hpp\n * @brief Defines the UnitSpace class\
+    \ for FalconCore.\n */"
+  comment: '@file UnitSpace.hpp
+
+    @brief Defines the UnitSpace class for FalconCore.'
+  declaration: "class for spaces with axes and a domain.\n */\nclass UnitSpace : public\
+    \ math::Axes<discrete_spaces::Discretizer> {"
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Store the computed discrete ranges.\n   * @throws\
+    \ std::runtime_error if the discretizer is not supported.\n   */"
+  comment: '@brief Store the computed discrete ranges.
+
+    @throws std::runtime_error if the discretizer is not supported.'
+  declaration: void make_discrete_axes();
+  kind: function
+  name: falcon_core::math::UnitSpace::make_discrete_axes
+- comment_raw: "/**\n   * @brief Initialize a UnitSpace.\n   * @param axes The axes\
+    \ defining the space.\n   * @param domain The domain of the space.\n   */"
+  comment: '@brief Initialize a UnitSpace.
+
+    @param axes The axes defining the space.
+
+    @param domain The domain of the space.'
+  declaration: "UnitSpace(const AxesSP<discrete_spaces::Discretizer>& axes,\n    \
+    \        const domains::DomainSP&                    domain);"
+  kind: function
+  name: falcon_core::math::UnitSpace
+- comment_raw: "/**\n   * @brief Create a ray space with radial and angular discretization.\n\
+    \   * @param dr the radial delta.\n   * @param dtheta the angular delta.\n   *\
+    \ @param domain The domain of the space.\n   */"
+  comment: '@brief Create a ray space with radial and angular discretization.
+
+    @param dr the radial delta.
+
+    @param dtheta the angular delta.
+
+    @param domain The domain of the space.'
+  declaration: "static std::shared_ptr<UnitSpace> RaySpace(const double&         \
+    \   dr,\n                                             const double&          \
+    \  dtheta,\n                                             const domains::DomainSP&\
+    \ domain);"
+  kind: function
+  name: falcon_core::math::UnitSpace::RaySpace
+- comment_raw: "/**\n   * @brief Create a ND cartesian space.\n   * @param deltas\
+    \ The discretizations for each axis.\n   * @param domain The domain of the space.\n\
+    \   */"
+  comment: '@brief Create a ND cartesian space.
+
+    @param deltas The discretizations for each axis.
+
+    @param domain The domain of the space.'
+  declaration: "static std::shared_ptr<UnitSpace> CartesianSpace(\n      const AxesSP<double>&\
+    \ deltas, const domains::DomainSP& domain);"
+  kind: function
+  name: falcon_core::math::UnitSpace::CartesianSpace
+- comment_raw: "/**\n   * @brief Create a 1D cartesian space.\n   * @param delta The\
+    \ discretization for the main axis.\n   * @param domain The domain of the space.\n\
+    \   */"
+  comment: '@brief Create a 1D cartesian space.
+
+    @param delta The discretization for the main axis.
+
+    @param domain The domain of the space.'
+  declaration: "static std::shared_ptr<UnitSpace> Cartesian1DSpace(\n      const double&\
+    \ delta, const domains::DomainSP& domain);"
+  kind: function
+  name: falcon_core::math::UnitSpace::Cartesian1DSpace
+- comment_raw: "/**\n   * @brief Create a 2D cartesian space.\n   * @param deltas\
+    \ The discretizations for each axis.\n   * @param domain The domain of the space.\n\
+    \   */"
+  comment: '@brief Create a 2D cartesian space.
+
+    @param deltas The discretizations for each axis.
+
+    @param domain The domain of the space.'
+  declaration: "static std::shared_ptr<UnitSpace> Cartesian2DSpace(\n      const AxesSP<double>&\
+    \ deltas, const domains::DomainSP& domain);"
+  kind: function
+  name: falcon_core::math::UnitSpace::Cartesian2DSpace
+- comment_raw: "/**\n   * @brief Return the axes of the space.\n   */"
+  comment: '@brief Return the axes of the space.'
+  declaration: const AxesSP<discrete_spaces::Discretizer> axes() const;
+  kind: function
+  name: falcon_core::math::UnitSpace::axes
+- comment_raw: "/**\n   * @brief Return the domain of the space\n   */"
+  comment: '@brief Return the domain of the space'
+  declaration: const domains::DomainSP& domain() const;
+  kind: function
+  name: falcon_core::math::UnitSpace::domain
+- comment_raw: "/**\n   * @brief Return the stored space.\n   */"
+  comment: '@brief Return the stored space.'
+  declaration: const generic::FArraySP<double>& space() const;
+  kind: function
+  name: falcon_core::math::UnitSpace::space
+- comment_raw: "/**\n   * @brief Return the shape of the unit space.\n   */"
+  comment: '@brief Return the shape of the unit space.'
+  declaration: const generic::ListSP<int> shape() const;
+  kind: function
+  name: falcon_core::math::UnitSpace::shape
+- comment_raw: "/**\n   * @brief Return the number of dimensions in the space.\n \
+    \  */"
+  comment: '@brief Return the number of dimensions in the space.'
+  declaration: const int dimension() const;
+  kind: function
+  name: falcon_core::math::UnitSpace::dimension
+- comment_raw: "/**\n   * @brief Compile the unit space into a space.\n   */"
+  comment: '@brief Compile the unit space into a space.'
+  declaration: void compile();
+  kind: function
+  name: falcon_core::math::UnitSpace::compile
+- comment_raw: "/**\n   * @brief Return the projection of the space onto the given\
+    \ axes.\n   * The projection contains the indexes of the axes to project onto.\n\
+    \   * @param axes The axes to project onto.\n   * @return A set of proper Control\
+    \ Arrays\n   */"
+  comment: '@brief Return the projection of the space onto the given axes.
+
+    The projection contains the indexes of the axes to project onto.
+
+    @param axes The axes to project onto.
+
+    @return A set of proper Control Arrays'
+  declaration: "const AxesSP<arrays::ControlArray> create_array(\n      const AxesSP<int>&\
+    \ axes) const;"
+  kind: function
+  name: falcon_core::math::UnitSpace::create_array

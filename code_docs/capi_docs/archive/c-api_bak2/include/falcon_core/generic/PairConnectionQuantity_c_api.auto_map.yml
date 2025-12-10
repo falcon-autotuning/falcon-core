@@ -1,0 +1,14 @@
+c_header: PairConnectionQuantity_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/Pair.hpp
+mappings:
+- cpp: falcon_core::generic::Pair::create
+  c: PairConnectionQuantity_create
+- cpp: falcon_core::generic::Pair::first
+  c: PairConnectionQuantity_first
+- cpp: falcon_core::generic::Pair::second
+  c: PairConnectionQuantity_second
+- cpp: falcon_core::generic::Pair::first
+  c: PairConnectionQuantity_first
+- cpp: falcon_core::generic::Pair::second
+  c: PairConnectionQuantity_second

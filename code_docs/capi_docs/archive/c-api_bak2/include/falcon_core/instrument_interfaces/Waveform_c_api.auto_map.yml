@@ -1,0 +1,6 @@
+c_header: Waveform_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/instrument_interfaces/Waveform.hpp
+mappings:
+- cpp: falcon_core::instrument_interfaces::Waveform::space
+  c: Waveform_space

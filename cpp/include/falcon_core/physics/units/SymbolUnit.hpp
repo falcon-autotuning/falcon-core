@@ -1,0 +1,359 @@
+#pragma once
+
+#include <memory>
+#include <mutex>
+#include <shared_mutex>
+#include <string>
+
+#include "falcon_core/generic/Song.hpp"
+#include "falcon_core/physics/units/Unit.hpp"
+namespace falcon_core {
+namespace physics {
+namespace units {
+
+class SymbolUnit : public generic::Song {
+  UnitSP                          _unit;
+  std::string                     _symbol;
+  std::string                     _name;
+  mutable std::shared_timed_mutex _mu_unit;
+  mutable std::shared_timed_mutex _mu_symbol;
+  mutable std::shared_timed_mutex _mu_name;
+  /**
+   * @brief Find a matching common unit for the given unit.
+   * @return A pair containing the matching common unit's symbol and name.
+   */
+  const std::pair<std::string, std::string> _find_matching_common_unit() const;
+  /**
+   * @brief Generate a symbol for the unit based on its dimensions.
+   * @return A string representing the generated symbol.
+   */
+  const std::string _generate_symbol() const;
+  /**
+   * @brief Get the symbol for a given dimension.
+   * @param dimension The dimension to get the symbol for.
+   * @return A string representing the symbol for the dimension.
+   */
+  const std::string _get_dimension_symbol(std::string dimension) const;
+
+ public:
+  SymbolUnit(const SymbolUnit& other);
+  SymbolUnit& operator=(const SymbolUnit& other);
+  /**
+   * @brief Construct a SymbolUnit with a specific symbol and associated Unit.
+   * @param unit The Unit object associated with this symbol.
+   */
+  SymbolUnit(UnitSP unit);
+  /**
+   * @brief Construct a Meter
+   */
+  static std::shared_ptr<SymbolUnit> Meter();
+  /**
+   * @brief Construct a Kilogram
+   */
+  static std::shared_ptr<SymbolUnit> Kilogram();
+  /**
+   * @brief Construct a Second
+   */
+  static std::shared_ptr<SymbolUnit> Second();
+  /**
+   * @brief Construct an Ampere
+   */
+  static std::shared_ptr<SymbolUnit> Ampere();
+  /**
+   * @brief Construct a Kelvin
+   */
+  static std::shared_ptr<SymbolUnit> Kelvin();
+  /**
+   * @brief Construct a Mole
+   */
+  static std::shared_ptr<SymbolUnit> Mole();
+  /**
+   * @brief Construct a Candela
+   */
+  static std::shared_ptr<SymbolUnit> Candela();
+  /**
+   * @brief Construct a Hertz
+   */
+  static std::shared_ptr<SymbolUnit> Hertz();
+  /**
+   * @brief Construct a Newton
+   */
+  static std::shared_ptr<SymbolUnit> Newton();
+  /**
+   * @brief Construct a Pascal
+   */
+  static std::shared_ptr<SymbolUnit> Pascal();
+  /**
+   * @brief Construct a Joule
+   */
+  static std::shared_ptr<SymbolUnit> Joule();
+  /**
+   * @brief Construct a Watt
+   */
+  static std::shared_ptr<SymbolUnit> Watt();
+  /**
+   * @brief Construct a Coulomb
+   */
+  static std::shared_ptr<SymbolUnit> Coulomb();
+  /**
+   * @brief Construct a Volt
+   */
+  static std::shared_ptr<SymbolUnit> Volt();
+  /**
+   * @brief Construct a Farad
+   */
+  static std::shared_ptr<SymbolUnit> Farad();
+  /**
+   * @brief Construct an Ohm
+   */
+  static std::shared_ptr<SymbolUnit> Ohm();
+  /**
+   * @brief Construct a Seimens
+   */
+  static std::shared_ptr<SymbolUnit> Siemens();
+  /**
+   * @brief Construct a Weber
+   */
+  static std::shared_ptr<SymbolUnit> Weber();
+  /**
+   * @brief Construct a Tesla
+   */
+  static std::shared_ptr<SymbolUnit> Tesla();
+  /**
+   * @brief Construct a Henry
+   */
+  static std::shared_ptr<SymbolUnit> Henry();
+  /**
+   * @brief Construct a Minute
+   */
+  static std::shared_ptr<SymbolUnit> Minute();
+  /**
+   * @brief Construct an Hour
+   */
+  static std::shared_ptr<SymbolUnit> Hour();
+  /**
+   * @brief Construct an ElectronVolt
+   */
+  static std::shared_ptr<SymbolUnit> ElectronVolt();
+  /**
+   * @brief Construct a Celsius
+   */
+  static std::shared_ptr<SymbolUnit> Celsius();
+  /**
+   * @brief Construct a Fahrenheit
+   */
+  static std::shared_ptr<SymbolUnit> Fahrenheit();
+  /**
+   * @brief Construct a Dimensionless
+   */
+  static std::shared_ptr<SymbolUnit> Dimensionless();
+  /**
+   * @brief Construct a Percent
+   */
+  static std::shared_ptr<SymbolUnit> Percent();
+  /**
+   * @brief Construct a Radian
+   */
+  static std::shared_ptr<SymbolUnit> Radian();
+  /**
+   * @brief Construct a KiloMeter
+   */
+  static std::shared_ptr<SymbolUnit> KiloMeter();
+  /**
+   * @brief Construct a MilliMeter
+   */
+  static std::shared_ptr<SymbolUnit> MilliMeter();
+  /**
+   * @brief Construct a MilliVolt
+   */
+  static std::shared_ptr<SymbolUnit> MilliVolt();
+  /**
+   * @brief Construct a KiloVolt
+   */
+  static std::shared_ptr<SymbolUnit> KiloVolt();
+  /**
+   * @brief Construct a MilliAmpere
+   */
+  static std::shared_ptr<SymbolUnit> MilliAmpere();
+  /**
+   * @brief Construct a MicroAmpere
+   */
+  static std::shared_ptr<SymbolUnit> MicroAmpere();
+  /**
+   * @brief Construct a NanoAmpere
+   */
+  static std::shared_ptr<SymbolUnit> NanoAmpere();
+  /**
+   * @brief Construct a PicoAmpere
+   */
+  static std::shared_ptr<SymbolUnit> PicoAmpere();
+  /**
+   * @brief Construct a MilliSecond
+   */
+  static std::shared_ptr<SymbolUnit> MilliSecond();
+  /**
+   * @brief Construct a MicroSecond
+   */
+  static std::shared_ptr<SymbolUnit> MicroSecond();
+  /**
+   * @brief Construct a NanoSecond
+   */
+  static std::shared_ptr<SymbolUnit> NanoSecond();
+  /**
+   * @brief Construct a PicoSecond
+   */
+  static std::shared_ptr<SymbolUnit> PicoSecond();
+  /**
+   * @brief Construct a MilliOhm
+   */
+  static std::shared_ptr<SymbolUnit> MilliOhm();
+  /**
+   * @brief Construct a KiloOhm
+   */
+  static std::shared_ptr<SymbolUnit> KiloOhm();
+  /**
+   * @brief Construct a MegaOhm
+   */
+  static std::shared_ptr<SymbolUnit> MegaOhm();
+  /**
+   * @brief Construct a MilliHertz
+   */
+  static std::shared_ptr<SymbolUnit> MilliHertz();
+  /**
+   * @brief Construct a KiloHertz
+   */
+  static std::shared_ptr<SymbolUnit> KiloHertz();
+  /**
+   * @brief Construct a MegaHertz
+   */
+  static std::shared_ptr<SymbolUnit> MegaHertz();
+  /**
+   * @brief Construct a GigaHertz
+   */
+  static std::shared_ptr<SymbolUnit> GigaHertz();
+  /**
+   * @brief Construct a MetersPerSecond
+   */
+  static std::shared_ptr<SymbolUnit> MetersPerSecond();
+  /**
+   * @brief Construct a MetersPerSecondSquared
+   */
+  static std::shared_ptr<SymbolUnit> MetersPerSecondSquared();
+  /**
+   * @brief Construct a NewtonMeter
+   */
+  static std::shared_ptr<SymbolUnit> NewtonMeter();
+  /**
+   * @brief Construct a NewtonPerMeter
+   */
+  static std::shared_ptr<SymbolUnit> NewtonPerMeter();
+  /**
+   * @brief Construct a VoltsPerMeter
+   */
+  static std::shared_ptr<SymbolUnit> VoltsPerMeter();
+  /**
+   * @brief Construct a VoltsPerSecond
+   */
+  static std::shared_ptr<SymbolUnit> VoltsPerSecond();
+  /**
+   * @brief Construct an AmperesPerMeter
+   */
+  static std::shared_ptr<SymbolUnit> AmperesPerMeter();
+  /**
+   * @brief Construct a VoltsPerAmpere
+   */
+  static std::shared_ptr<SymbolUnit> VoltsPerAmpere();
+  /**
+   * @brief Construct a WattsPerMeterKelvin
+   */
+  static std::shared_ptr<SymbolUnit> WattsPerMeterKelvin();
+  /**
+   * @brief Get the symbol of the unit.
+   * @return The symbol as a string.
+   */
+  const UnitSP unit() const;
+  /**
+   * @brief Get the name of the unit.
+   * @return The name as a string.
+   */
+  const std::string symbol() const;
+  /**
+   * @brief Get the name of the unit.
+   * @return The name as a string.
+   */
+  const std::string name() const;
+  /**
+   * @brief Multiply this symbol unit by another symbol unit.
+   * @param other The symbol unit to multiply by.
+   * @return A new SymbolUnit representing the product of this symbol unit and
+   * the other.
+   */
+  const std::shared_ptr<SymbolUnit> operator*(
+      const std::shared_ptr<SymbolUnit>& other) const;
+  const std::shared_ptr<SymbolUnit> operator*(const UnitSP& other) const;
+  /**
+   * @brief Divide this symbol unit by another symbol unit.
+   * @param other The symbol unit to divide by.
+   * @return A new SymbolUnit representing the division of this symbol unit by
+   * the other.
+   */
+  const std::shared_ptr<SymbolUnit> operator/(
+      const std::shared_ptr<SymbolUnit>& other) const;
+  const std::shared_ptr<SymbolUnit> operator/(const UnitSP& other) const;
+  /**
+   * @brief Raise the symbol unit to a power.
+   * @param power The exponent to raise the symbol unit to.
+   * @return A new SymbolUnit raised to the specified power.
+   */
+  const std::shared_ptr<SymbolUnit> operator^(const int power) const;
+  /**
+   * @brief Apply a prefix to this symbol unit.
+   * @param prefix The prefix symbol to apply (e.g. "k" for kilo
+   * @return A new SymbolUnit with the specified prefix applied.
+   * @throws std::invalid_argument if the prefix is not valid.
+   */
+  const std::shared_ptr<SymbolUnit> with_prefix(const std::string prefix) const;
+  /**
+   * @brief Convert a value from this symbol unit to a target symbol unit.
+   * @param value The value in this symbol unit to convert.
+   * @param target_unit The symbol unit to convert the value to.
+   * @return The converted value in the target symbol unit.
+   * @throws std::invalid_argument if the units are not compatible.
+   */
+  const double convert_value_to(
+      const double value, const std::shared_ptr<SymbolUnit>& target_unit) const;
+  /**
+   * @brief Check if this symbol unit is compatible with another symbol unit.
+   * @param other The symbol unit to check compatibility with.
+   * @return True if the symbol units are compatible (same dimensions), false
+   * otherwise.
+   */
+  const bool is_compatible_with(const std::shared_ptr<SymbolUnit>& other) const;
+
+  const std::vector<std::tuple<UnitSP, const char*, const char*>>
+  get_unit_symbols() const;
+
+  const std::map<std::string, std::string> get_dimension_symbols() const;
+
+  bool operator==(const SymbolUnit& other) const;
+  bool operator!=(const SymbolUnit& other) const;
+
+ protected:
+  SymbolUnit();
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
+                                                        std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_symbol(_mu_symbol,
+                                                          std::defer_lock);
+    std::shared_lock<std::shared_timed_mutex> lock_name(_mu_name,
+                                                        std::defer_lock);
+    std::lock(lock_unit, lock_symbol, lock_name);
+    ar(cereal::base_class<Song>(this), _unit, _symbol, _name);
+  }
+};
+using SymbolUnitSP = std::shared_ptr<SymbolUnit>;
+}  // namespace units
+}  // namespace physics
+}  // namespace falcon_core

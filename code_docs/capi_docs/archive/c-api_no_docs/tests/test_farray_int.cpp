@@ -1,0 +1,384 @@
+#include <gtest/gtest.h>
+
+#include "falcon_core/generic/ErrorHandling_c_api.h"
+#include "falcon_core/generic/FArrayInt_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
+
+class FArrayIntTest : public ::testing::Test {
+ protected:
+  void SetUp() override {
+    shape[0]    = 2;
+    shape[1]    = 2;
+    arr1        = FArrayInt_create_zeros(shape, 2);
+    arr2        = FArrayInt_from_shape(shape, 2);
+    int data[4] = {1, 2, 3, 4};
+    arr3        = FArrayInt_from_data(data, shape, 2);
+  }
+  void TearDown() override {
+    FArrayInt_destroy(arr1);
+    FArrayInt_destroy(arr2);
+    FArrayInt_destroy(arr3);
+  }
+  size_t          shape[2];
+  FArrayIntHandle arr1 = nullptr, arr2 = nullptr, arr3 = nullptr;
+};
+
+TEST_F(FArrayIntTest, CreateDestroy) {
+  FArrayIntHandle empty = FArrayInt_create_empty(shape, 2);
+  FArrayInt_destroy(empty);
+
+  FArrayIntHandle zeros = FArrayInt_create_zeros(shape, 2);
+  FArrayInt_destroy(zeros);
+
+  FArrayIntHandle from_shape = FArrayInt_from_shape(shape, 2);
+  FArrayInt_destroy(from_shape);
+
+  int             data[4]   = {1, 2, 3, 4};
+  FArrayIntHandle from_data = FArrayInt_from_data(data, shape, 2);
+  FArrayInt_destroy(from_data);
+
+  set_last_error(0, nullptr);
+  FArrayInt_destroy(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+
+TEST_F(FArrayIntTest, NullptrCoverage) {
+  int data[4] = {1, 2, 3, 4};
+  set_last_error(0, nullptr);
+  FArrayInt_create_zeros(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_from_shape(nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_from_data(nullptr, shape, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_from_data(data, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_size(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_dimension(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_shape(nullptr, shape, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_shape(arr1, nullptr, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_data(nullptr, data, 4);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_equals_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_equals_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_equals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_equals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_plus_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_equals_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_equals_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_equals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_equals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_minus_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_negation(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_equals_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_equals_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_equals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_equals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_times_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_equals_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_equals_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_equals_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_equals_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_farray(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_farray(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_double(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_divides_int(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_pow(nullptr, 2.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_abs(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_min(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_min_arraywise(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_min_arraywise(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_max(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_max_arraywise(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_max_arraywise(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_equal(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_equal(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_not_equal(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_not_equal(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_greater_than(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_less_than(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_remove_offset(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_sum(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_reshape(nullptr, shape, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_where(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_flip(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_full_gradient(nullptr, nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_full_gradient(arr1, nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_gradient(nullptr, 0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_sum_of_squares(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_summed_diff_int_of_squares(nullptr, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_summed_diff_double_of_squares(nullptr, 1.0);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_summed_diff_array_of_squares(nullptr, arr1);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_get_summed_diff_array_of_squares(arr1, nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_to_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
+  FArrayInt_from_json_string(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+
+TEST_F(FArrayIntTest, BasicProperties) {
+  EXPECT_EQ(FArrayInt_size(arr1), 4);
+  EXPECT_EQ(FArrayInt_dimension(arr1), 2);
+  size_t out_shape[2] = {0, 0};
+  EXPECT_EQ(FArrayInt_shape(arr1, out_shape, 2), 2);
+  EXPECT_EQ(out_shape[0], 2);
+  EXPECT_EQ(out_shape[1], 2);
+
+  int out_data[4] = {0};
+  EXPECT_EQ(FArrayInt_data(arr1, out_data, 4), 4);
+}
+
+TEST_F(FArrayIntTest, ArithmeticAndComparison) {
+  FArrayIntHandle arr4 = FArrayInt_create_zeros(shape, 2);
+  EXPECT_TRUE(FArrayInt_equal(arr1, arr1));
+  EXPECT_FALSE(FArrayInt_not_equal(arr1, arr4));
+  EXPECT_TRUE(FArrayInt_greater_than(arr1, -1000.0));
+  EXPECT_FALSE(FArrayInt_less_than(arr1, -1000.0));
+  FArrayInt_plus_equals_farray(arr1, arr4);
+  FArrayInt_plus_equals_double(arr1, 1.0);
+  FArrayInt_plus_equals_int(arr1, 1);
+  FArrayInt_minus_equals_farray(arr1, arr4);
+  FArrayInt_minus_equals_double(arr1, 1.0);
+  FArrayInt_minus_equals_int(arr1, 1);
+  FArrayInt_times_equals_farray(arr1, arr4);
+  FArrayInt_times_equals_double(arr1, 2.0);
+  FArrayInt_times_equals_int(arr1, 2);
+  FArrayInt_divides_equals_farray(arr1, arr3);
+  FArrayInt_divides_equals_double(arr1, 2.0);
+  FArrayInt_divides_equals_int(arr1, 2);
+
+  FArrayIntHandle arr5  = FArrayInt_plus_farray(arr1, arr4);
+  FArrayIntHandle arr6  = FArrayInt_plus_double(arr1, 1.0);
+  FArrayIntHandle arr7  = FArrayInt_plus_int(arr1, 1);
+  FArrayIntHandle arr8  = FArrayInt_minus_farray(arr1, arr4);
+  FArrayIntHandle arr9  = FArrayInt_minus_double(arr1, 1.0);
+  FArrayIntHandle arr10 = FArrayInt_minus_int(arr1, 1);
+  FArrayIntHandle arr11 = FArrayInt_times_farray(arr1, arr4);
+  FArrayIntHandle arr12 = FArrayInt_times_double(arr1, 2.0);
+  FArrayIntHandle arr13 = FArrayInt_times_int(arr1, 2);
+  FArrayIntHandle arr14 = FArrayInt_divides_farray(arr1, arr3);
+  FArrayIntHandle arr15 = FArrayInt_divides_double(arr1, 2.0);
+  FArrayIntHandle arr16 = FArrayInt_divides_int(arr1, 2);
+  FArrayIntHandle arr17 = FArrayInt_pow(arr1, 2.0);
+  FArrayIntHandle arr18 = FArrayInt_abs(arr1);
+  int             num1  = FArrayInt_min(arr1);
+  FArrayIntHandle arr19 = FArrayInt_min_arraywise(arr1, arr4);
+  int             num2  = FArrayInt_max(arr1);
+  FArrayIntHandle arr20 = FArrayInt_max_arraywise(arr1, arr4);
+  FArrayIntHandle arr21 = FArrayInt_negation(arr1);
+  FArrayIntHandle arr22 = FArrayInt_reshape(arr1, shape, 2);
+  FArrayIntHandle arr23 = FArrayInt_gradient(arr1, 0);
+  FArrayIntHandle arr24 = FArrayInt_flip(arr1, 0);
+
+  FArrayInt_destroy(arr4);
+  FArrayInt_destroy(arr5);
+  FArrayInt_destroy(arr6);
+  FArrayInt_destroy(arr7);
+  FArrayInt_destroy(arr8);
+  FArrayInt_destroy(arr9);
+  FArrayInt_destroy(arr10);
+  FArrayInt_destroy(arr11);
+  FArrayInt_destroy(arr12);
+  FArrayInt_destroy(arr13);
+  FArrayInt_destroy(arr14);
+  FArrayInt_destroy(arr15);
+  FArrayInt_destroy(arr16);
+  FArrayInt_destroy(arr17);
+  FArrayInt_destroy(arr18);
+  FArrayInt_destroy(arr20);
+  FArrayInt_destroy(arr21);
+  FArrayInt_destroy(arr22);
+  FArrayInt_destroy(arr23);
+  FArrayInt_destroy(arr24);
+}
+
+TEST_F(FArrayIntTest, Miscellaneous) {
+  FArrayInt_remove_offset(arr3, 1.0);
+  EXPECT_GE(FArrayInt_sum(arr3), 0.0);
+  int sumsq = FArrayInt_get_sum_of_squares(arr3);
+  EXPECT_GE(sumsq, 0.0);
+  EXPECT_NO_THROW(FArrayInt_get_summed_diff_int_of_squares(arr3, 1));
+  EXPECT_NO_THROW(FArrayInt_get_summed_diff_double_of_squares(arr3, 1.0));
+  EXPECT_NO_THROW(FArrayInt_get_summed_diff_array_of_squares(arr3, arr2));
+  ListListSizeTHandle where = FArrayInt_where(arr3, 0.0);
+  EXPECT_NO_THROW({
+    FArrayIntHandle grads[2];
+    size_t          n = FArrayInt_full_gradient(arr3, grads, 2);
+    for (size_t i = 0; i < n; ++i) FArrayInt_destroy(grads[i]);
+  });
+  StringHandle    json          = FArrayInt_to_json_string(arr3);
+  FArrayIntHandle arr_from_json = FArrayInt_from_json_string(json);
+  FArrayInt_destroy(arr_from_json);
+  String_destroy(json);
+}
+
+TEST_F(FArrayIntTest, ShapeBufferTooSmall) {
+  size_t out_shape[1] = {0};  // buffer smaller than needed (should be 2)
+  // Should only fill one element, return 1
+  EXPECT_EQ(FArrayInt_shape(arr1, out_shape, 1), 1);
+  EXPECT_EQ(out_shape[0], 2);
+}
+
+TEST_F(FArrayIntTest, FullGradientBufferTooSmall) {
+  FArrayIntHandle grads[1];  // buffer smaller than needed
+  // Should throw or error if more gradients than buffer
+  set_last_error(0, nullptr);
+  FArrayInt_full_gradient(arr1, grads, 1);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+
+TEST_F(FArrayIntTest, DataBufferTooSmall) {
+  int out_data[2] = {0, 0};  // buffer smaller than needed (should be 4)
+  set_last_error(0, nullptr);
+  FArrayInt_data(arr1, out_data, 2);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+
+TEST_F(FArrayIntTest, DataNullBuffer) {
+  set_last_error(0, nullptr);
+  FArrayInt_data(arr1, nullptr, 4);
+  EXPECT_EQ(get_last_error_code(), 1);
+}

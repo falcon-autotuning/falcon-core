@@ -1,0 +1,10 @@
+c_header: ListDouble_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/List.hpp
+mappings:
+- cpp: falcon_core::generic::List::intersection
+  c: ListDouble_intersection
+- cpp: falcon_core::generic::List::clear
+  c: ListDouble_clear
+- cpp: falcon_core::generic::List::erase_at
+  c: ListDouble_erase_at

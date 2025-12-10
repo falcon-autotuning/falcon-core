@@ -1,0 +1,22 @@
+c_header: DiscreteSpace_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/discrete_spaces/DiscreteSpace.hpp
+mappings:
+- cpp: falcon_core::math::discrete_spaces::DiscreteSpace::space
+  c: DiscreteSpace_space
+- cpp: falcon_core::math::discrete_spaces::DiscreteSpace::axes
+  c: DiscreteSpace_axes
+- cpp: falcon_core::math::discrete_spaces::DiscreteSpace::increasing
+  c: DiscreteSpace_increasing
+- cpp: falcon_core::math::discrete_spaces::DiscreteSpace::knobs
+  c: DiscreteSpace_knobs
+- cpp: falcon_core::math::discrete_spaces::DiscreteSpace::validate_unit_space_dimensionality_matches_knobs
+  c: DiscreteSpace_validate_unit_space_dimensionality_matches_knobs
+- cpp: falcon_core::math::discrete_spaces::DiscreteSpace::validate_knob_uniqueness
+  c: DiscreteSpace_validate_knob_uniqueness
+- cpp: falcon_core::math::discrete_spaces::DiscreteSpace::get_axis
+  c: DiscreteSpace_get_axis
+- cpp: falcon_core::math::discrete_spaces::DiscreteSpace::get_domain
+  c: DiscreteSpace_get_domain
+- cpp: falcon_core::math::discrete_spaces::DiscreteSpace::get_projection
+  c: DiscreteSpace_get_projection

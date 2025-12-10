@@ -1,0 +1,10 @@
+c_header: ControlArray_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/math/arrays/ControlArray.hpp
+mappings:
+- cpp: falcon_core::math::arrays::ControlArray::min
+  c: ControlArray_min
+- cpp: falcon_core::math::arrays::ControlArray::max
+  c: ControlArray_max
+- cpp: falcon_core::math::arrays::ControlArray::flip
+  c: ControlArray_flip

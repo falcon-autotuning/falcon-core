@@ -1,0 +1,10 @@
+c_header: InterpretationContainerString_c_api.h
+cpp_headers:
+- ../../../../../cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp
+mappings:
+- cpp: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit
+  c: InterpretationContainerString_unit
+- cpp: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection
+  c: InterpretationContainerString_select_by_connection
+- cpp: falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections
+  c: InterpretationContainerString_select_by_connections

@@ -1,0 +1,18 @@
+c_header: Group_c_api.h
+cpp_headers:
+- ../../../../../../cpp/include/falcon_core/physics/config/core/Group.hpp
+mappings:
+- cpp: falcon_core::physics::config::core::Group::ohmics
+  c: Group_ohmics
+- cpp: falcon_core::physics::config::core::Group::name
+  c: Group_name
+- cpp: falcon_core::physics::config::core::Group::num_dots
+  c: Group_num_dots
+- cpp: falcon_core::physics::config::core::Group::order
+  c: Group_order
+- cpp: falcon_core::physics::config::core::Group::has_channel
+  c: Group_has_channel
+- cpp: falcon_core::physics::config::core::Group::is_charge_sensor
+  c: Group_is_charge_sensor
+- cpp: falcon_core::physics::config::core::Group::get_all_channel_gates
+  c: Group_get_all_channel_gates

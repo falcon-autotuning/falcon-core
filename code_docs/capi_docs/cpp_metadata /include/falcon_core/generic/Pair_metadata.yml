@@ -1,0 +1,42 @@
+- comment_raw: "/**\n   * @brief Store a pair of values.\n   * @param first The first\
+    \ value.\n   * @param second The second value.\n   */"
+  comment: '@brief Store a pair of values.
+
+    @param first The first value.
+
+    @param second The second value.'
+  declaration: "Pair(const StoredT1& first, const StoredT2& second)\n      : _first(first),\
+    \ _second(second) {"
+  kind: function
+  name: falcon_core::generic::Pair
+- comment_raw: "/**\n   * @brief Store a pair of values.\n   * @param first The first\
+    \ value.\n   * @param second The second value.\n   */"
+  comment: '@brief Store a pair of values.
+
+    @param first The first value.
+
+    @param second The second value.'
+  declaration: std::shared_ptr<Pair> create(const StoredT1& first, const StoredT2&
+    second) {
+  kind: function
+  name: falcon_core::generic::Pair::create
+- comment_raw: "/**\n   * @brief Get the stored first value.\n   */"
+  comment: '@brief Get the stored first value.'
+  declaration: const StoredT1& first() const {
+  kind: function
+  name: falcon_core::generic::Pair::first
+- comment_raw: "/**\n   * @brief Get the stored second value.\n   */"
+  comment: '@brief Get the stored second value.'
+  declaration: const StoredT2& second() const {
+  kind: function
+  name: falcon_core::generic::Pair::second
+- comment_raw: "/**\n   * @brief Get the stored first value.\n   */"
+  comment: '@brief Get the stored first value.'
+  declaration: StoredT1& first() {
+  kind: function
+  name: falcon_core::generic::Pair::first
+- comment_raw: "/**\n   * @brief Get the stored second value.\n   */"
+  comment: '@brief Get the stored second value.'
+  declaration: StoredT2& second() {
+  kind: function
+  name: falcon_core::generic::Pair::second

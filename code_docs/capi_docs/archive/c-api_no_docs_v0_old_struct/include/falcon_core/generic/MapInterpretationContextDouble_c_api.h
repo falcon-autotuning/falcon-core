@@ -1,0 +1,37 @@
+#pragma once
+#ifdef __cplusplus
+    extern "C" {
+#endif
+#include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
+#include "falcon_core/generic/ListDouble_c_api.h"
+#include "falcon_core/generic/ListInterpretationContext_c_api.h"
+#include "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"
+#include "falcon_core/generic/String_c_api.h"
+
+// Forward declarations for opaque handles
+typedef void* MapInterpretationContextDoubleHandle;
+// Function declarations
+
+MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create_empty();
+MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create(const PairInterpretationContextDoubleHandle* data, size_t count);
+void MapInterpretationContextDouble_destroy(MapInterpretationContextDoubleHandle handle);
+void MapInterpretationContextDouble_insert_or_assign(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key, const double value);
+void MapInterpretationContextDouble_insert(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key, const double value);
+double MapInterpretationContextDouble_at(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key);
+void MapInterpretationContextDouble_erase(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key);
+size_t MapInterpretationContextDouble_size(MapInterpretationContextDoubleHandle handle);
+bool MapInterpretationContextDouble_empty(MapInterpretationContextDoubleHandle handle);
+void MapInterpretationContextDouble_clear(MapInterpretationContextDoubleHandle handle);
+bool MapInterpretationContextDouble_contains(MapInterpretationContextDoubleHandle handle, const InterpretationContextHandle key);
+ListInterpretationContextHandle MapInterpretationContextDouble_keys(MapInterpretationContextDoubleHandle handle);
+ListDoubleHandle MapInterpretationContextDouble_values(MapInterpretationContextDoubleHandle handle);
+ListPairInterpretationContextDoubleHandle MapInterpretationContextDouble_items(MapInterpretationContextDoubleHandle handle);
+bool MapInterpretationContextDouble_equal(MapInterpretationContextDoubleHandle a, MapInterpretationContextDoubleHandle b);
+bool MapInterpretationContextDouble_not_equal(MapInterpretationContextDoubleHandle a, MapInterpretationContextDoubleHandle b);
+// Serialization (from Song)
+StringHandle      MapInterpretationContextDouble_to_json_string(MapInterpretationContextDoubleHandle handle);
+MapInterpretationContextDoubleHandle MapInterpretationContextDouble_from_json_string(StringHandle json);
+
+#ifdef __cplusplus
+}
+#endif

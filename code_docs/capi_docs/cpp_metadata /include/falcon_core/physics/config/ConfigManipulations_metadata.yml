@@ -1,0 +1,135 @@
+- comment_raw: "/**\n * @brief A utility class for manipulating and extracting information\
+    \ from\n * device configurations.\n */"
+  comment: '@brief A utility class for manipulating and extracting information from
+
+    device configurations.'
+  declaration: class ConfigManipulations {
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Unpacks a mapping into a Config object.\n   * @param\
+    \ config A mapping containing configuration details.\n   * @return A Config object\
+    \ populated with the provided details.\n   */"
+  comment: '@brief Unpacks a mapping into a Config object.
+
+    @param config A mapping containing configuration details.
+
+    @return A Config object populated with the provided details.'
+  declaration: core::ConfigSP unpack_device_config(const YAML::Node& config) const;
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::unpack_device_config
+- comment_raw: "/**\n   * @brief given the available gates loaded from the config,\
+    \ lets generate the\n   * adjacency matrix for this device.\n   */"
+  comment: '@brief given the available gates loaded from the config, lets generate
+    the
+
+    adjacency matrix for this device.'
+  declaration: "core::AdjacencySP _extract_adjacency(\n      const YAML::Node&   \
+    \                    map,\n      const device_structures::ConnectionsSP& total_gates)\
+    \ const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_adjacency
+- comment_raw: "/**\n   * @brief Given the available gates and the config lets produce\
+    \ a voltage\n   * constraints.\n   */"
+  comment: '@brief Given the available gates and the config lets produce a voltage
+
+    constraints.'
+  declaration: "core::VoltageConstraintsSP _extract_voltage_constraints(\n      const\
+    \ YAML::Node&                       map,\n      const device_structures::ConnectionsSP&\
+    \ total_gates) const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_voltage_constraints
+- comment_raw: "/**\n   * @brief Extracts a dcwiring from a config dictionary.\n \
+    \  * @param dict A mapping containing dcwiring details.\n   * @param ohmics The\
+    \ list of ohmics in the device.\n   * @param connections The configuration of\
+    \ the device connections.\n   * @returns An impedances object representing the\
+    \ dcwiring.\n   * @throws std::runtime_error if the dcwiring extraction fails.\n\
+    \   */"
+  comment: '@brief Extracts a dcwiring from a config dictionary.
+
+    @param dict A mapping containing dcwiring details.
+
+    @param ohmics The list of ohmics in the device.
+
+    @param connections The configuration of the device connections.
+
+    @returns An impedances object representing the dcwiring.
+
+    @throws std::runtime_error if the dcwiring extraction fails.'
+  declaration: "device_structures::ImpedancesSP _extract_dcwiring(\n      const YAML::Node&\
+    \                        map,\n      const device_structures::ConnectionsSP& \
+    \ ohmics,\n      const core::StandardConfigConnectionsSP& connections) const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_dcwiring
+- comment_raw: "/**\n   * @brief Extract the barrier gates from the compressed \"\
+    ;\" delimited string\n   */"
+  comment: '@brief Extract the barrier gates from the compressed ";" delimited string'
+  declaration: "device_structures::ConnectionsSP _extract_barrier_gates(\n      const\
+    \ std::string raw) const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_barrier_gates
+- comment_raw: "/**\n   * @brief Extract the plunger gates from the compressed \"\
+    ;\" delimited string\n   */"
+  comment: '@brief Extract the plunger gates from the compressed ";" delimited string'
+  declaration: "device_structures::ConnectionsSP _extract_plunger_gates(\n      const\
+    \ std::string raw) const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_plunger_gates
+- comment_raw: "/**\n   * @brief Extract the reservoir gates from the compressed \"\
+    ;\" delimited string\n   */"
+  comment: '@brief Extract the reservoir gates from the compressed ";" delimited string'
+  declaration: "device_structures::ConnectionsSP _extract_reservoir_gates(\n     \
+    \ const std::string raw) const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_reservoir_gates
+- comment_raw: "/**\n   * @brief Extract the screening gates from the compressed \"\
+    ;\" delimited string\n   */"
+  comment: '@brief Extract the screening gates from the compressed ";" delimited string'
+  declaration: "device_structures::ConnectionsSP _extract_screening_gates(\n     \
+    \ const std::string raw) const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_screening_gates
+- comment_raw: "/**\n   * @brief Extracts the standard connections from a config dictonary\n\
+    \   * @param config The dictionary with keys that are gate types and values which\n\
+    \   * are \";\" delimtted strings of gates.\n   * @returns a collection of standard\
+    \ connections.\n   */"
+  comment: '@brief Extracts the standard connections from a config dictonary
+
+    @param config The dictionary with keys that are gate types and values which
+
+    are ";" delimtted strings of gates.
+
+    @returns a collection of standard connections.'
+  declaration: "core::StandardConfigConnectionsSP _extract_standard_config_connections(\n\
+    \      const YAML::Node& config) const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_standard_config_connections
+- comment_raw: "/**\n   * @brief Extracts the standard connections from a config dictonary\n\
+    \   * @param config The dictionary with keys that are gate types and values which\n\
+    \   * are \";\" delimtted strings of gates. This version does not include ohmics.\n\
+    \   * @returns a collection of standard connections.\n   */"
+  comment: '@brief Extracts the standard connections from a config dictonary
+
+    @param config The dictionary with keys that are gate types and values which
+
+    are ";" delimtted strings of gates. This version does not include ohmics.
+
+    @returns a collection of standard connections.'
+  declaration: "core::StandardConfigConnectionsSP _extract_standard_group_config_connections(\n\
+    \      const YAML::Node& config) const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_standard_group_config_connections
+- comment_raw: "/**\n   * @brief Extract the ohmics from the compressed \";\" delimited\
+    \ string\n   */"
+  comment: '@brief Extract the ohmics from the compressed ";" delimited string'
+  declaration: device_structures::ConnectionsSP _extract_ohmics(const std::string
+    raw) const;
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_ohmics
+- comment_raw: "/**\n   * @brief Extracts the order from the compressed \";\" delimited\
+    \ string\n   */"
+  comment: '@brief Extracts the order from the compressed ";" delimited string'
+  declaration: "device_structures::ConnectionsSP _extract_order(\n      const std::string\
+    \                        raw,\n      const core::StandardConfigConnectionsSP&\
+    \ connections) const;"
+  kind: function
+  name: falcon_core::physics::config::ConfigManipulations::_extract_order

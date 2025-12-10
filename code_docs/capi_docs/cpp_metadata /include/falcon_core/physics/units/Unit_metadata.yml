@@ -1,0 +1,264 @@
+- comment_raw: "/**\n   * @brief A special constructor to build a meter unit.\n  \
+    \ */"
+  comment: '@brief A special constructor to build a meter unit.'
+  declaration: static std::shared_ptr<Unit> Meter();
+  kind: function
+  name: falcon_core::physics::units::Unit::Meter
+- comment_raw: "/**\n   * @brief A special constructor to build a kilogram unit.\n\
+    \   */"
+  comment: '@brief A special constructor to build a kilogram unit.'
+  declaration: static std::shared_ptr<Unit> Kilogram();
+  kind: function
+  name: falcon_core::physics::units::Unit::Kilogram
+- comment_raw: "/**\n   * @brief A special constructor to build a second unit.\n \
+    \  */"
+  comment: '@brief A special constructor to build a second unit.'
+  declaration: static std::shared_ptr<Unit> Second();
+  kind: function
+  name: falcon_core::physics::units::Unit::Second
+- comment_raw: "/**\n   * @brief A special constructor to build a ampere unit.\n \
+    \  */"
+  comment: '@brief A special constructor to build a ampere unit.'
+  declaration: static std::shared_ptr<Unit> Ampere();
+  kind: function
+  name: falcon_core::physics::units::Unit::Ampere
+- comment_raw: "/**\n   * @brief A special constructor to build a kelvin unit.\n \
+    \  */"
+  comment: '@brief A special constructor to build a kelvin unit.'
+  declaration: static std::shared_ptr<Unit> Kelvin();
+  kind: function
+  name: falcon_core::physics::units::Unit::Kelvin
+- comment_raw: "/**\n   * @brief A special constructor to build a mole unit.\n   */"
+  comment: '@brief A special constructor to build a mole unit.'
+  declaration: static std::shared_ptr<Unit> Mole();
+  kind: function
+  name: falcon_core::physics::units::Unit::Mole
+- comment_raw: "/**\n   * @brief A special constructor to build a candela unit.\n\
+    \   */"
+  comment: '@brief A special constructor to build a candela unit.'
+  declaration: static std::shared_ptr<Unit> Candela();
+  kind: function
+  name: falcon_core::physics::units::Unit::Candela
+- comment_raw: "/**\n   * @brief A special constructor to build a hertz unit.\n  \
+    \ */"
+  comment: '@brief A special constructor to build a hertz unit.'
+  declaration: static std::shared_ptr<Unit> Hertz();
+  kind: function
+  name: falcon_core::physics::units::Unit::Hertz
+- comment_raw: "/**\n   * @brief A special constructor to build a newton unit.\n \
+    \  */"
+  comment: '@brief A special constructor to build a newton unit.'
+  declaration: static std::shared_ptr<Unit> Newton();
+  kind: function
+  name: falcon_core::physics::units::Unit::Newton
+- comment_raw: "/**\n   * @brief A special constructor to build a pascal unit.\n \
+    \  */"
+  comment: '@brief A special constructor to build a pascal unit.'
+  declaration: static std::shared_ptr<Unit> Pascal();
+  kind: function
+  name: falcon_core::physics::units::Unit::Pascal
+- comment_raw: "/**\n   * @brief A special constructor to build a joule unit.\n  \
+    \ */"
+  comment: '@brief A special constructor to build a joule unit.'
+  declaration: static std::shared_ptr<Unit> Joule();
+  kind: function
+  name: falcon_core::physics::units::Unit::Joule
+- comment_raw: "/**\n   * @brief A special constructor to build a watt unit.\n   */"
+  comment: '@brief A special constructor to build a watt unit.'
+  declaration: static std::shared_ptr<Unit> Watt();
+  kind: function
+  name: falcon_core::physics::units::Unit::Watt
+- comment_raw: "/**\n   * @brief A special constructor to build a coulomb unit.\n\
+    \   */"
+  comment: '@brief A special constructor to build a coulomb unit.'
+  declaration: static std::shared_ptr<Unit> Coulomb();
+  kind: function
+  name: falcon_core::physics::units::Unit::Coulomb
+- comment_raw: "/**\n   * @brief A special constructor to build a volt unit.\n   */"
+  comment: '@brief A special constructor to build a volt unit.'
+  declaration: static std::shared_ptr<Unit> Volt();
+  kind: function
+  name: falcon_core::physics::units::Unit::Volt
+- comment_raw: "/**\n   * @brief A special constructor to build a farad unit.\n  \
+    \ */"
+  comment: '@brief A special constructor to build a farad unit.'
+  declaration: static std::shared_ptr<Unit> Farad();
+  kind: function
+  name: falcon_core::physics::units::Unit::Farad
+- comment_raw: "/**\n   * @brief A special constructor to build a ohm unit.\n   */"
+  comment: '@brief A special constructor to build a ohm unit.'
+  declaration: static std::shared_ptr<Unit> Ohm();
+  kind: function
+  name: falcon_core::physics::units::Unit::Ohm
+- comment_raw: "/**\n   * @brief A special constructor to build a seimen unit.\n \
+    \  */"
+  comment: '@brief A special constructor to build a seimen unit.'
+  declaration: static std::shared_ptr<Unit> Siemens();
+  kind: function
+  name: falcon_core::physics::units::Unit::Siemens
+- comment_raw: "/**\n   * @brief A special constructor to build a weber unit.\n  \
+    \ */"
+  comment: '@brief A special constructor to build a weber unit.'
+  declaration: static std::shared_ptr<Unit> Weber();
+  kind: function
+  name: falcon_core::physics::units::Unit::Weber
+- comment_raw: "/**\n   * @brief A special constructor to build a tesla unit.\n  \
+    \ */"
+  comment: '@brief A special constructor to build a tesla unit.'
+  declaration: static std::shared_ptr<Unit> Tesla();
+  kind: function
+  name: falcon_core::physics::units::Unit::Tesla
+- comment_raw: "/**\n   * @brief A special constructor to build a henry unit.\n  \
+    \ */"
+  comment: '@brief A special constructor to build a henry unit.'
+  declaration: static std::shared_ptr<Unit> Henry();
+  kind: function
+  name: falcon_core::physics::units::Unit::Henry
+- comment_raw: "/**\n   * @brief A special constructor to build a minute unit.\n \
+    \  */"
+  comment: '@brief A special constructor to build a minute unit.'
+  declaration: static std::shared_ptr<Unit> Minute();
+  kind: function
+  name: falcon_core::physics::units::Unit::Minute
+- comment_raw: "/**\n   * @brief A special constructor to build a hour unit.\n   */"
+  comment: '@brief A special constructor to build a hour unit.'
+  declaration: static std::shared_ptr<Unit> Hour();
+  kind: function
+  name: falcon_core::physics::units::Unit::Hour
+- comment_raw: "/**\n   * @brief A special constructor to build a electronvolt unit.\n\
+    \   */"
+  comment: '@brief A special constructor to build a electronvolt unit.'
+  declaration: static std::shared_ptr<Unit> ElectronVolt();
+  kind: function
+  name: falcon_core::physics::units::Unit::ElectronVolt
+- comment_raw: "/**\n   * @brief A special constructor to build a celsius unit.\n\
+    \   */"
+  comment: '@brief A special constructor to build a celsius unit.'
+  declaration: static std::shared_ptr<Unit> Celsius();
+  kind: function
+  name: falcon_core::physics::units::Unit::Celsius
+- comment_raw: "/**\n   * @brief A special constructor to build a fahrenheit unit.\n\
+    \   */"
+  comment: '@brief A special constructor to build a fahrenheit unit.'
+  declaration: static std::shared_ptr<Unit> Fahrenheit();
+  kind: function
+  name: falcon_core::physics::units::Unit::Fahrenheit
+- comment_raw: "/**\n   * @brief A special constructor to build a dimensionless unit.\n\
+    \   */"
+  comment: '@brief A special constructor to build a dimensionless unit.'
+  declaration: static std::shared_ptr<Unit> Dimensionless();
+  kind: function
+  name: falcon_core::physics::units::Unit::Dimensionless
+- comment_raw: "/**\n   * @brief A special constructor to build a percent unit.\n\
+    \   */"
+  comment: '@brief A special constructor to build a percent unit.'
+  declaration: static std::shared_ptr<Unit> Percent();
+  kind: function
+  name: falcon_core::physics::units::Unit::Percent
+- comment_raw: "/**\n   * @brief A special constructor to build a radian unit.\n \
+    \  */"
+  comment: '@brief A special constructor to build a radian unit.'
+  declaration: static std::shared_ptr<Unit> Radian();
+  kind: function
+  name: falcon_core::physics::units::Unit::Radian
+- comment_raw: "/**\n   * @brief The prefix applied to this unit.\n   */"
+  comment: '@brief The prefix applied to this unit.'
+  declaration: std::string prefix() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::prefix
+- comment_raw: "/**\n   * @brief Dimensions of this unit.\n   */"
+  comment: '@brief Dimensions of this unit.'
+  declaration: TotalDimensions dimensions() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::dimensions
+- comment_raw: "/**\n   * @brief Scale factor relatice to SI base units.\n   */"
+  comment: '@brief Scale factor relatice to SI base units.'
+  declaration: double scale_factor() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::scale_factor
+- comment_raw: "/**\n   * @brief Offset from base unit.\n   */"
+  comment: '@brief Offset from base unit.'
+  declaration: double offset() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::offset
+- comment_raw: "/**\n   * @brief Multiply this unit by another unit.\n   * @param\
+    \ other The unit to multiply by.\n   * @return A new Unit representing the product\
+    \ of this unit and the other.\n   */"
+  comment: '@brief Multiply this unit by another unit.
+
+    @param other The unit to multiply by.
+
+    @return A new Unit representing the product of this unit and the other.'
+  declaration: "/**\n   * @brief Apply a prefix to this unit.\n   * @param prefix\
+    \ The prefix symbol to apply (e.g. \"k\" for kilo\n   * @return A new Unit with\
+    \ the specified prefix applied.\n   * @throws std::invalid_argument if the prefix\
+    \ is not valid.\n   */\n  std::shared_ptr<Unit> with_prefix(const std::string\
+    \ prefix) const;"
+  kind: function
+  name: falcon_core::physics::units::Unit::apply
+- comment_raw: "/**\n   * @brief Apply a milli prefix to this unit.\n   */"
+  comment: '@brief Apply a milli prefix to this unit.'
+  declaration: std::shared_ptr<Unit> get_milli() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::get_milli
+- comment_raw: "/**\n   * @brief Apply a micro prefix to this unit.\n   */"
+  comment: '@brief Apply a micro prefix to this unit.'
+  declaration: std::shared_ptr<Unit> get_micro() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::get_micro
+- comment_raw: "/**\n   * @brief Apply a nano prefix to this unit.\n   */"
+  comment: '@brief Apply a nano prefix to this unit.'
+  declaration: std::shared_ptr<Unit> get_nano() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::get_nano
+- comment_raw: "/**\n   * @brief Apply a pico prefix to this unit.\n   */"
+  comment: '@brief Apply a pico prefix to this unit.'
+  declaration: std::shared_ptr<Unit> get_pico() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::get_pico
+- comment_raw: "/**\n   * @brief Apply a kilo prefix to this unit.\n   */"
+  comment: '@brief Apply a kilo prefix to this unit.'
+  declaration: std::shared_ptr<Unit> get_kilo() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::get_kilo
+- comment_raw: "/**\n   * @brief Apply a mega prefix to this unit.\n   */"
+  comment: '@brief Apply a mega prefix to this unit.'
+  declaration: std::shared_ptr<Unit> get_mega() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::get_mega
+- comment_raw: "/**\n   * @brief Apply a giga prefix to this unit.\n   */"
+  comment: '@brief Apply a giga prefix to this unit.'
+  declaration: std::shared_ptr<Unit> get_giga() const;
+  kind: function
+  name: falcon_core::physics::units::Unit::get_giga
+- comment_raw: "/**\n   * @brief Convert a value from this unit to a target unit.\n\
+    \   * @param value The value in this unit to convert.\n   * @param target_unit\
+    \ The unit to convert the value to.\n   * @return The converted value in the target\
+    \ unit.\n   * @throws std::invalid_argument if the units are not compatible.\n\
+    \   */"
+  comment: '@brief Convert a value from this unit to a target unit.
+
+    @param value The value in this unit to convert.
+
+    @param target_unit The unit to convert the value to.
+
+    @return The converted value in the target unit.
+
+    @throws std::invalid_argument if the units are not compatible.'
+  declaration: "double convert_value_to(const double                 value,\n    \
+    \                      const std::shared_ptr<Unit>& target_unit) const;"
+  kind: function
+  name: falcon_core::physics::units::Unit::convert_value_to
+- comment_raw: "/**\n   * @brief Check if this unit is compatible with another unit.\n\
+    \   * @param other The unit to check compatibility with.\n   * @return True if\
+    \ the units are compatible (same dimensions), false\n   * otherwise.\n   */"
+  comment: '@brief Check if this unit is compatible with another unit.
+
+    @param other The unit to check compatibility with.
+
+    @return True if the units are compatible (same dimensions), false
+
+    otherwise.'
+  declaration: bool is_compatible_with(const std::shared_ptr<Unit>& other) const;
+  kind: function
+  name: falcon_core::physics::units::Unit::is_compatible_with

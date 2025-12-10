@@ -1,0 +1,185 @@
+- comment_raw: "/**\n * @brief Base class for a measurement waveform, consisting of\
+    \ a measurement\n * domain and any time-dependent phenomena.\n * @tparam T The\
+    \ discrete space type.\n */"
+  comment: '@brief Base class for a measurement waveform, consisting of a measurement
+
+    domain and any time-dependent phenomena.
+
+    @tparam T The discrete space type.'
+  declaration: 'class Waveform : public port_transforms::PortTransforms {'
+  kind: class
+  name: null
+- comment_raw: "/**\n   * @brief Construct a Waveform.\n   * @param space The measurement\
+    \ space.\n   * @param transforms The port transforms.\n   */"
+  comment: '@brief Construct a Waveform.
+
+    @param space The measurement space.
+
+    @param transforms The port transforms.'
+  declaration: "Waveform(\n      const math::discrete_spaces::DiscreteSpaceSP&   \
+    \       space,\n      const generic::ListSP<port_transforms::PortTransform>& transforms\
+    \ =\n          std::make_shared<generic::List<port_transforms::PortTransform>>());"
+  kind: function
+  name: falcon_core::instrument_interfaces::Waveform
+- comment_raw: "/**\n   * @brief Create a ND CartesianWaveform from raw deltas.\n\
+    \   * @param divisions The number of divisions along each axis.\n   * @param axes\
+    \ The axes defining the cartesian space.\n   * @param domain The base domain of\
+    \ the cartesian space.\n   * @param transforms the transforms to apply to the\
+    \ waveform.\n   * @param increasing if the array should increase following the\
+    \ domain or not.\n   */"
+  comment: '@brief Create a ND CartesianWaveform from raw deltas.
+
+    @param divisions The number of divisions along each axis.
+
+    @param axes The axes defining the cartesian space.
+
+    @param domain The base domain of the cartesian space.
+
+    @param transforms the transforms to apply to the waveform.
+
+    @param increasing if the array should increase following the domain or not.'
+  declaration: "static const std::shared_ptr<Waveform> CartesianWaveform(\n      const\
+    \ math::AxesSP<int>&                                  divisions,\n      const\
+    \ math::AxesSP<math::domains::CoupledLabelledDomain>& axes,\n      const math::AxesSP<generic::Map<std::string,\
+    \ bool>>&      increasing,\n      const generic::ListSP<port_transforms::PortTransform>&\
+    \    transforms =\n          std::make_shared<generic::List<port_transforms::PortTransform>>(),\n\
+    \      const math::domains::DomainSP& domain =\n          std::make_shared<math::domains::Domain>(0,\
+    \ 1));"
+  kind: function
+  name: falcon_core::instrument_interfaces::Waveform::CartesianWaveform
+- comment_raw: "/**\n   * @brief Create a ND CartesianWaveform with identity transforms.\n\
+    \   * @param divisions The number of divisions along each axis.\n   * @param axes\
+    \ The axes defining the cartesian space.\n   * @param domain The base domain of\
+    \ the cartesian space.\n   * @param increasing if the array should increase following\
+    \ the domain or not.\n   */"
+  comment: '@brief Create a ND CartesianWaveform with identity transforms.
+
+    @param divisions The number of divisions along each axis.
+
+    @param axes The axes defining the cartesian space.
+
+    @param domain The base domain of the cartesian space.
+
+    @param increasing if the array should increase following the domain or not.'
+  declaration: "static const std::shared_ptr<Waveform> CartesianIdentityWaveform(\n\
+    \      const math::AxesSP<int>&                                  divisions,\n\
+    \      const math::AxesSP<math::domains::CoupledLabelledDomain>& axes,\n     \
+    \ const math::AxesSP<generic::Map<std::string, bool>>&      increasing,\n    \
+    \  const math::domains::DomainSP&                            domain =\n      \
+    \    std::make_shared<math::domains::Domain>(0, 1));"
+  kind: function
+  name: falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform
+- comment_raw: "/**\n   * @brief Create a 2D CartesianWaveform from raw deltas.\n\
+    \   * @param divisions The number of divisions along each axis.\n   * @param axes\
+    \ The axes defining the cartesian space.\n   * @param domain The base domain of\
+    \ the cartesian space.\n   * @param transforms the transforms to apply to the\
+    \ waveform.\n   * @param increasing if the array should increase following the\
+    \ domain or not.\n   */"
+  comment: '@brief Create a 2D CartesianWaveform from raw deltas.
+
+    @param divisions The number of divisions along each axis.
+
+    @param axes The axes defining the cartesian space.
+
+    @param domain The base domain of the cartesian space.
+
+    @param transforms the transforms to apply to the waveform.
+
+    @param increasing if the array should increase following the domain or not.'
+  declaration: "static const std::shared_ptr<Waveform> CartesianWaveform2D(\n    \
+    \  const math::AxesSP<int>&                                  divisions,\n    \
+    \  const math::AxesSP<math::domains::CoupledLabelledDomain>& axes,\n      const\
+    \ math::AxesSP<generic::Map<std::string, bool>>&      increasing,\n      const\
+    \ generic::ListSP<port_transforms::PortTransform>&    transforms =\n         \
+    \ std::make_shared<generic::List<port_transforms::PortTransform>>(),\n      const\
+    \ math::domains::DomainSP& domain =\n          std::make_shared<math::domains::Domain>(0,\
+    \ 1));"
+  kind: function
+  name: falcon_core::instrument_interfaces::Waveform::CartesianWaveform2D
+- comment_raw: "/**\n   * @brief Create a 2D CartesianWaveform with identity transforms.\n\
+    \   * @param divisions The number of divisions along each axis.\n   * @param axes\
+    \ The axes defining the cartesian space.\n   * @param domain The base domain of\
+    \ the cartesian space.\n   * @param increasing if the array should increase following\
+    \ the domain or not.\n   */"
+  comment: '@brief Create a 2D CartesianWaveform with identity transforms.
+
+    @param divisions The number of divisions along each axis.
+
+    @param axes The axes defining the cartesian space.
+
+    @param domain The base domain of the cartesian space.
+
+    @param increasing if the array should increase following the domain or not.'
+  declaration: "static const std::shared_ptr<Waveform> CartesianIdentityWaveform2D(\n\
+    \      const math::AxesSP<int>&                                  divisions,\n\
+    \      const math::AxesSP<math::domains::CoupledLabelledDomain>& axes,\n     \
+    \ const math::AxesSP<generic::Map<std::string, bool>>&      increasing,\n    \
+    \  const math::domains::DomainSP&                            domain =\n      \
+    \    std::make_shared<math::domains::Domain>(0, 1));"
+  kind: function
+  name: falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform2D
+- comment_raw: "/**\n   * @brief Create a 1D CartesianWaveform from raw deltas.\n\
+    \   * @param divisions The number of divisions along each axis.\n   * @param axes\
+    \ The axes defining the cartesian space.\n   * @param domain The base domain of\
+    \ the cartesian space.\n   * @param transforms the transforms to apply to the\
+    \ waveform.\n   * @param increasing if the array should increase following the\
+    \ domain or not.\n   */"
+  comment: '@brief Create a 1D CartesianWaveform from raw deltas.
+
+    @param divisions The number of divisions along each axis.
+
+    @param axes The axes defining the cartesian space.
+
+    @param domain The base domain of the cartesian space.
+
+    @param transforms the transforms to apply to the waveform.
+
+    @param increasing if the array should increase following the domain or not.'
+  declaration: "static const std::shared_ptr<Waveform> CartesianWaveform1D(\n    \
+    \  const int&                                                 division,\n    \
+    \  const falcon_core::math::domains::CoupledLabelledDomainSP& shared_domain,\n\
+    \      const generic::MapSP<std::string, bool>&                   increasing,\n\
+    \      const generic::ListSP<port_transforms::PortTransform>&     transforms =\n\
+    \          std::make_shared<generic::List<port_transforms::PortTransform>>(),\n\
+    \      const falcon_core::math::domains::DomainSP& domain =\n          std::make_shared<falcon_core::math::domains::Domain>(0,\
+    \ 1));"
+  kind: function
+  name: falcon_core::instrument_interfaces::Waveform::CartesianWaveform1D
+- comment_raw: "/**\n   * @brief Create a 1D CartesianWaveform with identity transforms.\n\
+    \   * @param divisions The number of divisions along each axis.\n   * @param axes\
+    \ The axes defining the cartesian space.\n   * @param domain The base domain of\
+    \ the cartesian space.\n   * @param increasing if the array should increase following\
+    \ the domain or not.\n   */"
+  comment: '@brief Create a 1D CartesianWaveform with identity transforms.
+
+    @param divisions The number of divisions along each axis.
+
+    @param axes The axes defining the cartesian space.
+
+    @param domain The base domain of the cartesian space.
+
+    @param increasing if the array should increase following the domain or not.'
+  declaration: "static const std::shared_ptr<Waveform> CartesianIdentityWaveform1D(\n\
+    \      const int&                                                 division,\n\
+    \      const falcon_core::math::domains::CoupledLabelledDomainSP& shared_domain,\n\
+    \      const generic::MapSP<std::string, bool>&                   increasing,\n\
+    \      const falcon_core::math::domains::DomainSP&                domain =\n \
+    \         std::make_shared<falcon_core::math::domains::Domain>(0, 1));"
+  kind: function
+  name: falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform1D
+- comment_raw: "/**\n   * @brief Get the measurement space.\n   */"
+  comment: '@brief Get the measurement space.'
+  declaration: const math::discrete_spaces::DiscreteSpaceSP& space() const;
+  kind: function
+  name: falcon_core::instrument_interfaces::Waveform::space
+- comment_raw: "/**\n   * @brief Confirm that all function knobs are in the discrete\
+    \ space.\n   * @throws std::runtime_error if any function knob is not in the discrete\n\
+    \   * space.\n   */"
+  comment: '@brief Confirm that all function knobs are in the discrete space.
+
+    @throws std::runtime_error if any function knob is not in the discrete
+
+    space.'
+  declaration: void confirm_knobs_match() const;
+  kind: function
+  name: falcon_core::instrument_interfaces::Waveform::confirm_knobs_match

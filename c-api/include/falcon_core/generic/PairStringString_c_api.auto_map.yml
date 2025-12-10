@@ -1,0 +1,14 @@
+c_header: PairStringString_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/Pair.hpp
+mappings:
+- cpp: falcon_core::generic::Pair::create
+  c: PairStringString_create
+- cpp: falcon_core::generic::Pair::first
+  c: PairStringString_first
+- cpp: falcon_core::generic::Pair::second
+  c: PairStringString_second
+- cpp: falcon_core::generic::Pair::first
+  c: PairStringString_first
+- cpp: falcon_core::generic::Pair::second
+  c: PairStringString_second
