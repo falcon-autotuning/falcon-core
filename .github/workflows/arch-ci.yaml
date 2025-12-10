@@ -123,6 +123,19 @@ jobs:
             cd ../xtensor-io
             makepkg -si --noconfirm --syncdeps --cleanbuild
           "
+      - name: Debug CMake pthread detection
+        run: |
+          cd cpp
+          rm -rf CMakeCache.txt CMakeFiles/
+          cmake -DCMAKE_VERBOSE_MAKEFILE=ON \
+                -DCMAKE_CXX_COMPILER=clang++ \
+                -DCMAKE_C_COMPILER=clang \
+                -DCMAKE_CXX_FLAGS="-pthread" \
+                -DCMAKE_C_FLAGS="-pthread" \
+                -DUSE_VCPKG=OFF \
+                -B build-debug -S .
+          cat build-debug/CMakeFiles/CMakeError.log || true
+          cat build-debug/CMakeFiles/CMakeOutput.log || true
       - name: Build falcon-core-cpp-dev
         run: |
           cd cpp
