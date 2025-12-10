@@ -1,9 +1,11 @@
+
 # Makefile to simplify the CMake build process for falcon-core-cpp 
 
 .PHONY: all build build-part install test clean setup-vcpkg clean-all
 
 # Variables
-BUILD_DIR := build
+CPP_DIR := $(abspath $(CURDIR))
+BUILD_DIR := $(CPP_DIR)/build
 CC ?= clang
 CXX ?= clang++
 
@@ -77,23 +79,23 @@ PROFDATA_TOOL = $(shell [ -f $(BUILD_DIR)/compiler.env ] && . $(BUILD_DIR)/compi
 
 run-all-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests
+	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(BUILD_DIR)/falcon_core_cpp_run_tests
 	@llvm-profdata merge -sparse $(BUILD_DIR)/falcon_core_cpp_run_tests.profraw -o $(BUILD_DIR)/falcon_core_cpp_run_tests.profdata
 else
-	@GCOV_PREFIX="$(BUILD_DIR)" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests
+	@GCOV_PREFIX="$(BUILD_DIR)" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(BUILD_DIR)/falcon_core_cpp_run_tests
 endif
 
 run-subset-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(BUILD_DIR)/falcon_core_cpp_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
 	@llvm-profdata merge -sparse $(BUILD_DIR)/falcon_core_cpp_run_tests.profraw -o $(BUILD_DIR)/falcon_core_cpp_run_tests.profdata
 else
-	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(BUILD_DIR)/falcon_core_cpp_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
 endif
 
 cov-html:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov show ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
+	@llvm-cov show $(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
 	  -format=html -output-dir=coverage_html \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 	  -Xdemangler c++filt -Xdemangler -n
@@ -105,7 +107,7 @@ endif
 
 cov-term:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov show ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata $(FILE) \
+	@llvm-cov show $(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata $(FILE) \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 	  -Xdemangler c++filt -Xdemangler -n
 else
@@ -123,7 +125,7 @@ coverage: run-all-tests cov-term
 
 subset-coverage-overview: subset-coverage
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov report ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
+	@llvm-cov report $(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/|List\.cpp|Map\.cpp|Pair\.cpp)' \
 		-Xdemangler c++filt -Xdemangler -n
 else
@@ -132,7 +134,7 @@ endif
 
 coverage-overview: coverage
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov report ./$(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
+	@llvm-cov report $(BUILD_DIR)/libfalcon_core_cpp.so -instr-profile=$(BUILD_DIR)/falcon_core_cpp_run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/|List\.cpp|Map\.cpp|Pair\.cpp)' \
 		-Xdemangler c++filt -Xdemangler -n
 else

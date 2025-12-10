@@ -1,0 +1,10 @@
+c_header: ListPairConnectionQuantity_c_api.h
+cpp_headers:
+- ../../../../cpp/include/falcon_core/generic/List.hpp
+mappings:
+- cpp: falcon_core::generic::List::intersection
+  c: ListPairConnectionQuantity_intersection
+- cpp: falcon_core::generic::List::clear
+  c: ListPairConnectionQuantity_clear
+- cpp: falcon_core::generic::List::erase_at
+  c: ListPairConnectionQuantity_erase_at

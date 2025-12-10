@@ -1,14 +1,15 @@
 # Makefile to simplify the CMake build process for falcon-core-c-api
 .PHONY: all build clean clean-all
-C_API_BUILD_DIR := build
+C_API_DIR := $(abspath $(CURDIR))
+C_API_BUILD_DIR := $(C_API_DIR)/build
 CC ?= clang
 CXX ?= clang++
 
 VCPKG_TOOLCHAIN := $(shell vcpkg integrate install --triplet=x64-linux-dynamic | grep -o '/.*\.cmake' | head -n1)
-CORE_ROOT := $(PWD)/../cpp
+CORE_ROOT := $(C_API_DIR)/../cpp
 CORE_BUILD_DIR := $(CORE_ROOT)/build
 VCPKG_INSTALLED := vcpkg_installed
-VCPKG_DEBUG_LIB := $(PWD)/build/vcpkg_installed/x64-linux-dynamic/debug/lib
+VCPKG_DEBUG_LIB := $(C_API_DIR)/build/vcpkg_installed/x64-linux-dynamic/debug/lib
 GENERATED_MANIFEST := generated_template_manifest.txt
 
 USE_VCPKG ?= 1
@@ -38,7 +39,6 @@ setup-vcpkg:
 generate_types:
 	@test -f ${GENERATED_MANIFEST} || touch ${GENERATED_MANIFEST} 
 	@python3 ./generate_templated_types.py --manifest $(GENERATED_MANIFEST)
-
 
 build: generate_types 
 	@if [ ! -d "$(CORE_BUILD_DIR)" ]; then \
@@ -82,7 +82,7 @@ build-dev: generate_types
 	@echo "--- Build complete. C API library is now in $(C_API_BUILD_DIR) ---"
 
 define LOAD_COMPILER_ENV
-  if [ -f $(C_API_BUILD_DIR)/compiler.env ]; then . $(BUILD_DIR)/compiler.env; fi
+  if [ -f $(C_API_BUILD_DIR)/compiler.env ]; then . $(C_API_BUILD_DIR)/compiler.env; fi
 endef
 # Detect compiler for coverage tools
 COVERAGE_TOOL = $(shell [ -f $(C_API_BUILD_DIR)/compiler.env ] && . $(C_API_BUILD_DIR)/compiler.env; \
@@ -94,25 +94,25 @@ PROFDATA_TOOL = $(shell [ -f $(C_API_BUILD_DIR)/compiler.env ] && . $(C_API_BUIL
 # check coverage of entire module
 run-all-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@LLVM_PROFILE_FILE="$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests
+	@LLVM_PROFILE_FILE="$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests
 	@llvm-profdata merge -sparse $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw -o $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata
 else
-	@GCOV_PREFIX="$(BUILD_DIR)" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests
+	@GCOV_PREFIX="$(C_API_BUILD_DIR)" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests
 endif
 
 #check coverage of all the modles listed in the test_filter.txt
 run-subset-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@LLVM_PROFILE_FILE="$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)" --gtest_break_on_failure
+	@LLVM_PROFILE_FILE="$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(BUILD_DIR)/falcon_core_c_api_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
 	@llvm-profdata merge -sparse $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw -o $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata
 else
-	@GCOV_PREFIX="$(BUILD_DIR)" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@GCOV_PREFIX="$(C_API_BUILD_DIR)" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
 endif
 
 # launches the interactive html for the entire coverage run
 cov-html:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov show ./$(C_API_BUILD_DIR)/libfalcon_core_c_api.so -instr-profile=$(C_APIBUILD_DIR)/falcon_core_c_api_run_tests.profdata \
+	@llvm-cov show $(C_API_BUILD_DIR)/libfalcon_core_c_api.so -instr-profile=$(C_APIBUILD_DIR)/falcon_core_c_api_run_tests.profdata \
 	  -format=html -output-dir=coverage_html \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 	  -Xdemangler c++filt -Xdemangler -n
@@ -125,7 +125,7 @@ endif
 # Usage: make coverage-term FILE=/path/to/source.cpp
 cov-term:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov show ./$(C_API_BUILD_DIR)/libfalcon_core_c_api.so -instr-profile=$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata $(FILE) \
+	@llvm-cov show $(C_API_BUILD_DIR)/libfalcon_core_c_api.so -instr-profile=$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata $(FILE) \
 	  -ignore-filename-regex='(vcpkg_installed|tests/)' \
 	  -Xdemangler c++filt -Xdemangler -n
 else
@@ -143,7 +143,7 @@ coverage: run-all-tests cov-term
 
 subset-coverage-overview: subset-coverage
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov report ./$(C_API_BUILD_DIR)/libfalcon_core_c_api.so -instr-profile=$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata \
+	@llvm-cov report $(C_API_BUILD_DIR)/libfalcon_core_c_api.so -instr-profile=$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/)' \
 		-Xdemangler c++filt -Xdemangler -n
 else
@@ -152,7 +152,7 @@ endif
 
 coverage-overview: coverage
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@llvm-cov report ./$(C_API_BUILD_DIR)/libfalcon_core_c_api.so -instr-profile=$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata \
+	@llvm-cov report $(C_API_BUILD_DIR)/libfalcon_core_c_api.so -instr-profile=$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata \
 		-ignore-filename-regex='(vcpkg_installed|tests/|cpp/)' \
 		-Xdemangler c++filt -Xdemangler -n
 else

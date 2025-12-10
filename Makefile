@@ -6,41 +6,41 @@
 # --------------------------------------------------------------------
 # Top-level build/test/clean rules for cpp and c-api
 # --------------------------------------------------------------------
-.PHONY: all build build-dev test test-cpp test-c-api clean clean-all
+CC ?= clang
+CCX ?= clang++
+USE_VCPKG ?= 0
 
-# Build both C++ and C API (release)
+.PHONY: all build build-dev build-devl test test-cpp test-c-api clean clean-all prepare-release
+
 build:
-	$(MAKE) -C cpp build USE_VCPKG=$(USE_VCPKG)
-	$(MAKE) -C c-api build USE_VCPKG=$(USE_VCPKG)
+	$(MAKE) -C cpp build USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
+	$(MAKE) -C c-api build USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
 
-# Build both C++ and C API (dev/tests/coverage)
 build-dev:
-	$(MAKE) -C cpp build-dev USE_VCPKG=$(USE_VCPKG)
-	$(MAKE) -C c-api build-dev USE_VCPKG=$(USE_VCPKG)
+	$(MAKE) -C cpp build-dev USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
+	$(MAKE) -C c-api build-dev USE_VCPKG=$(USE_VCPKG) CC=$(CC) CCX=$(CCX)
 
-# Run all tests in both cpp and c-api
+build-devl: build-dev
+
 test: test-cpp test-c-api
 
 test-cpp:
 	echo "Beginning testing the cpp"
-	$(MAKE) -C cpp run-all-tests
-	$(MAKE) -C cpp coverage-overview > cpp-coverage-report.txt
+	( $(MAKE) -C cpp coverage-overview ) > cpp-coverage-report.txt 2>&1
 
 test-c-api:
 	echo "Beginning testing the c-api"
-	$(MAKE) -C c-api run-all-tests
-	$(MAKE) -C c-api coverage-overview > c-api-coverage-report.txt
+	( $(MAKE) -C c-api coverage-overview ) > c-api-coverage-report.txt 2>&1
 
-# Clean both
 clean:
 	$(MAKE) -C cpp clean
 	$(MAKE) -C c-api clean
+	rm cpp-coverage-report.txt c-api-coverage-report.txt
 
-clean-all:
+clean-all: clean
 	$(MAKE) -C cpp clean-all
 	$(MAKE) -C c-api clean-all
 
-# Default target
 all: build
 
 prepare-release:
@@ -50,4 +50,3 @@ prepare-release:
 	zip -r out/falcon-core.zip . -x "cpp/build/*" "c-api/build/*" ".git/*" ".venv/*" "dist/*" ".cache/*" "pybind/*" "go/*" "packaging/*" "cpp/vcpkg_installed/*" "vcpkg_installed/*"
 	cd c-api && zip -r ../out/falcon-core-c-api-headers.zip include
 	cd cpp && zip -r ../out/falcon-core-cpp-headers.zip include
-
