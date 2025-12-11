@@ -954,7 +954,7 @@ if (!handle) {{
 throw std::invalid_argument("Null handle passed to {self.mangled_name()}_at");
 }}
     auto obj = (*static_cast<falcon_core::math::arrays::LabelledArraysSP<{cpp_type}>*>(handle))->at(idx);
-    return new {cpp_type}(*obj);
+    return new std::shared_ptr<{cpp_type}>(obj);
     FALCON_C_API_END({self.error_type_handling(c_type)})
 }}
 
