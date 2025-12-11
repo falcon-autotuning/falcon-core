@@ -7,21 +7,21 @@ namespace physics {
 namespace config {
 namespace core {
 Adjacency::Adjacency(const Adjacency& other) : generic::FArray<int>(other) {
-  std::unique_lock<std::shared_timed_mutex> lock_indexes(_mu_indexes);
-  if (!other.indexes()) {
+  auto inds = other.indexes();
+  if (!inds) {
     throw std::invalid_argument("Adjacency: The indexes cannot be null.");
   }
-  _indexes = std::make_shared<device_structures::Connections>(*other.indexes());
+  _indexes = std::make_shared<device_structures::Connections>(*inds);
 }
 Adjacency& Adjacency::operator=(const Adjacency& other) {
   if (this != &other) {
     generic::FArray<int>::operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_indexes(_mu_indexes);
-    if (!other.indexes()) {
+    auto                                      inds = other.indexes();
+    if (!inds) {
       throw std::invalid_argument("Adjacency: The indexes cannot be null.");
     }
-    _indexes =
-        std::make_shared<device_structures::Connections>(*other.indexes());
+    _indexes = std::make_shared<device_structures::Connections>(*inds);
   }
   return *this;
 }
