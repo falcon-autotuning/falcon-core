@@ -1,6 +1,7 @@
 #include "falcon_core/math/Quantity.hpp"
 
 #include <cmath>
+#include <mutex>
 #include <stdexcept>
 
 namespace falcon_core {
@@ -94,8 +95,16 @@ Quantity& Quantity::operator*=(const QuantitySP& other) {
         "Quantity: The other quantity must not be null.");
   }
   convert_to(other->unit());
-  std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value);
-  _value *= other->value();
+  std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value,
+                                                       std::defer_lock);
+  if (this != &*other) {
+    std::shared_lock<std::shared_timed_mutex> other_lock_value(other->_mu_value,
+                                                               std::defer_lock);
+    std::lock(lock_value, other_lock_value);
+  } else {
+    lock_value.lock();
+  }
+  _value *= other->_value;
   return *this;
 }
 
@@ -129,8 +138,16 @@ Quantity& Quantity::operator/=(const QuantitySP& other) {
         "Quantity: The other quantity must not be null.");
   }
   convert_to(other->unit());
-  std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value);
-  _value /= other->value();
+  std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value,
+                                                       std::defer_lock);
+  if (this != &*other) {
+    std::shared_lock<std::shared_timed_mutex> other_lock_value(other->_mu_value,
+                                                               std::defer_lock);
+    std::lock(lock_value, other_lock_value);
+  } else {
+    lock_value.lock();
+  }
+  _value /= other->_value;
   return *this;
 }
 
@@ -168,8 +185,16 @@ Quantity& Quantity::operator+=(const QuantitySP& other) {
         "Quantity: The other quantity must not be null.");
   }
   convert_to(other->unit());
-  std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value);
-  _value += other->value();
+  std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value,
+                                                       std::defer_lock);
+  if (this != &*other) {
+    std::shared_lock<std::shared_timed_mutex> other_lock_value(other->_mu_value,
+                                                               std::defer_lock);
+    std::lock(lock_value, other_lock_value);
+  } else {
+    lock_value.lock();
+  }
+  _value += other->_value;
   return *this;
 }
 
@@ -211,8 +236,16 @@ Quantity& Quantity::operator-=(const QuantitySP& other) {
         "Quantity: The other quantity must not be null.");
   }
   convert_to(other->unit());
-  std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value);
-  _value -= other->value();
+  std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value,
+                                                       std::defer_lock);
+  if (this != &*other) {
+    std::shared_lock<std::shared_timed_mutex> other_lock_value(other->_mu_value,
+                                                               std::defer_lock);
+    std::lock(lock_value, other_lock_value);
+  } else {
+    lock_value.lock();
+  }
+  _value -= other->_value;
   return *this;
 }
 
