@@ -1274,6 +1274,7 @@ device_structures::ConnectionsSP Config::get_shared_channel_gates(
 }
 
 bool Config::operator==(const Config& other) const {
+  if (this == &other) return true;
   return StandardConfigConnections::operator==(other) &&
          (*_groups == *other._groups) && (*_wiring_DC == *other._wiring_DC) &&
          (*_voltage_constraints == *other._voltage_constraints) &&

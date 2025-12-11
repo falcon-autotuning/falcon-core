@@ -9,6 +9,7 @@ Impedances::Impedances() : generic::List<Impedance>() {}
 Impedances::Impedances(const std::vector<ImpedanceSP>& vec)
     : List<Impedance>(vec) {}
 bool Impedances::operator==(const Impedances& other) const {
+  if (this == &other) return true;
   return static_cast<const List<Impedance>&>(*this) ==
          static_cast<const List<Impedance>&>(other);
 }

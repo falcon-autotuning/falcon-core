@@ -71,6 +71,7 @@ bool Connection::operator<(const Connection& other) const {
   return name() < other.name();  // Compare based on name
 }
 bool Connection::operator==(const Connection& other) const {
+  if (this == &other) return true;
   return (name() == other.name()) && (type() == other.type());
 }
 bool Connection::operator!=(const Connection& other) const {

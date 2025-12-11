@@ -571,6 +571,7 @@ HDF5Data::to_communications() const {
   return std::make_pair(response, request);
 }
 bool HDF5Data::operator==(const HDF5Data& other) {
+  if (this == &other) return true;
   return (*shape() == *other.shape() &&
           *unit_domain() == *other.unit_domain() &&
           *domain_labels() == *other.domain_labels() &&

@@ -52,6 +52,7 @@ const physics::device_structures::ConnectionSP& DeviceVoltageState::connection()
 
 double DeviceVoltageState::voltage() const { return value(); }
 bool   DeviceVoltageState::operator==(const DeviceVoltageState& other) const {
+  if (this == &other) return true;
   return (*connection() == *other.connection()) &&
          math::Quantity::operator==(other);
 }

@@ -223,6 +223,7 @@ QuantitySP Quantity::abs() const {
 Quantity::Quantity()
     : _value(0.0), _unit(physics::units::SymbolUnit::Dimensionless()) {}
 bool Quantity::operator==(const Quantity& other) const {
+  if (this == &other) return true;
   return (value() == other.value()) && (*unit() == *other.unit());
 }
 bool Quantity::operator!=(const Quantity& other) const {

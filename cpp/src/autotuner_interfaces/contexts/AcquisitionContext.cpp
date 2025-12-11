@@ -110,6 +110,7 @@ const bool AcquisitionContext::match_instrument_type(
 }
 
 bool AcquisitionContext::operator==(const AcquisitionContext& other) const {
+  if (this == &other) return true;
   return BaseContext::operator==(other) && *units() == *(other.units());
 }
 

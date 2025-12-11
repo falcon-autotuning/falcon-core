@@ -103,6 +103,7 @@ class Pair : public generic::Song {
   }
 
   bool operator==(const Pair<T1, T2>& other) const {
+    if (this == &other) return true;
     return operator_equal_impl(other,
                                typename category::determine_tag<T1>::type{},
                                typename category::determine_tag<T2>::type{});

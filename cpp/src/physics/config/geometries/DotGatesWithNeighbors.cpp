@@ -24,6 +24,7 @@ bool DotGatesWithNeighbors::is_barrier_gates() const {
 }
 bool DotGatesWithNeighbors::operator==(
     const DotGatesWithNeighbors& other) const {
+  if (this == &other) return true;
   if (size() != other.size()) {
     return false;
   }

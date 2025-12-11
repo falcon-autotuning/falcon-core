@@ -72,6 +72,7 @@ double Impedance::capacitance() const {
   return _capacitance;
 }
 bool Impedance::operator==(const Impedance& other) const {
+  if (this == &other) return true;
   return (*connection() == *other.connection()) &&
          (resistance() == other.resistance()) &&
          (capacitance() == other.capacitance());

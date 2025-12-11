@@ -169,6 +169,7 @@ class Map : public virtual generic::Song {
     return std::make_shared<generic::List<Value>>(out);
   }
   bool operator==(const Map<Key, Value>& other) const {
+    if (this == &other) return true;
     if (size() != other.size()) return false;
     std::vector<size_t> unmatched_indexes(size());
     std::iota(
