@@ -25,6 +25,7 @@ const std::string& BaseMessage::message() const {
   return _message;
 }
 bool BaseMessage::operator==(const BaseMessage& other) const {
+  if (this == &other) return true;
   return (message() == other.message());
 }
 bool BaseMessage::operator!=(const BaseMessage& other) const {

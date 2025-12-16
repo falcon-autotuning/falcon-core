@@ -41,6 +41,7 @@ const std::string Time::to_string() const {
   return std::string(buf);
 }
 bool Time::operator==(const Time& other) {
+  if (this == &other) return true;
   return micro_seconds_since_epoch() == other.micro_seconds_since_epoch();
 }
 bool Time::operator!=(const Time& other) { return !(*this == other); }

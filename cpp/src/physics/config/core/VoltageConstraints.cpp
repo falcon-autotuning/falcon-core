@@ -109,6 +109,7 @@ const generic::FArray<double>& VoltageConstraints::limits() const {
 }
 
 bool VoltageConstraints::operator==(const VoltageConstraints& other) const {
+  if (this == &other) return true;
   return (limits() == other.limits()) && (*adjacency() == *other.adjacency()) &&
          (matrix() == other.matrix());
 }

@@ -52,6 +52,7 @@ VoltageStatesResponse::states() const {
 }
 bool VoltageStatesResponse::operator==(
     const VoltageStatesResponse& other) const {
+  if (this == &other) return true;
   return (*states() == *other.states()) && BaseMessage::operator==(other);
 }
 bool VoltageStatesResponse::operator!=(

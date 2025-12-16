@@ -305,6 +305,7 @@ generic::ListSP<generic::FArray<double>> LabelledMeasuredArray::gradient()
 }
 bool LabelledMeasuredArray::operator==(
     const LabelledMeasuredArray& other) const {
+  if (this == &other) return true;
   return (*label() == *other.label()) && MeasuredArray::operator==(other);
 }
 bool LabelledMeasuredArray::operator!=(

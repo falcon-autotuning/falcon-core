@@ -45,6 +45,7 @@ LabelledDomainSP CoupledLabelledDomain::get_domain(
 }
 bool CoupledLabelledDomain::operator==(
     const CoupledLabelledDomain& other) const {
+  if (this == &other) return true;
   if (size() != other.size()) {
     return false;
   }

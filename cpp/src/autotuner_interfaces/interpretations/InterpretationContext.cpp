@@ -141,6 +141,7 @@ const InterpretationContextSP InterpretationContext::with_unit(
 }
 bool InterpretationContext::operator==(
     const InterpretationContext& other) const {
+  if (this == &other) return true;
   if (dimension() != other.dimension()) {
     return false;
   }

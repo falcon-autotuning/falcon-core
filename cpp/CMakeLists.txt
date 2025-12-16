@@ -14,10 +14,10 @@ endif()
 if(CMAKE_C_COMPILER_ID MATCHES "Clang")
   if(FALCON_CORE_DEV)
     message("Clang detected. In dev mode so coverage will be built.")
-    set(C_FLAGS "-O0 -fprofile-instr-generate -fcoverage-mapping -pthread")
+    set(C_FLAGS "-O0 -fprofile-instr-generate -fcoverage-mapping")
   else()
     message("Clang detected.")
-    set(C_FLAGS "-Oz -pthread")
+    set(C_FLAGS "-Oz")
   endif()
 elseif(CMAKE_C_COMPILER_ID MATCHES "GNU")
   message("GNU detected. In dev mode so coverage will be built.")
@@ -28,9 +28,9 @@ else()
 endif()
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   if(FALCON_CORE_DEV)
-    set(CPP_FLAGS "-g -O0 -fprofile-instr-generate -fcoverage-mapping -pthread")
+    set(CPP_FLAGS "-g -O0 -fprofile-instr-generate -fcoverage-mapping")
   else()
-    set(CPP_FLAGS "-g -Oz -pthread")
+    set(CPP_FLAGS "-g -Oz")
   endif()
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
   set(CPP_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
@@ -100,7 +100,6 @@ get_target_property(BOOST_INCLUDE_DIR ${BOOST_FILESYSTEM_TARGET}
                     INTERFACE_INCLUDE_DIRECTORIES)
 
 find_package(Threads REQUIRED)
-target_link_libraries(${CPP_LIB_NAME} PUBLIC Threads::Threads)
 message(STATUS "Boost filesystem include dir: ${BOOST_INCLUDE_DIR}")
 if(USE_VCPKG)
   find_package(Boost REQUIRED COMPONENTS system uuid)
@@ -132,7 +131,8 @@ target_link_libraries(
          yaml-cpp::yaml-cpp
          ${HDF5_TARGET}
          ${HDF5_CPP_TARGET}
-         cereal::cereal)
+         cereal::cereal
+         Threads::Threads)
 target_link_libraries(${CPP_LIB_NAME} PUBLIC yaml-cpp::yaml-cpp)
 
 # ---- Optional test build ----

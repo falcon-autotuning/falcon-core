@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache clang gtest glibc
+          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache clang gtest glibc cmake lld
       - name: Debug pthread and toolchain
         run: |
           echo "== glibc and pthread files =="
@@ -91,6 +91,35 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ccache-${{ github.ref }}-
             ${{ runner.os }}-ccache-
+      - name: Minimal pthread CMake test
+        run: |
+          mkdir cmake-pthread-test
+          cd cmake-pthread-test
+          # Write CMakeLists.txt
+          cat > CMakeLists.txt <<EOF
+          cmake_minimum_required(VERSION 3.20)
+          project(PthreadTest LANGUAGES CXX)
+          find_package(Threads REQUIRED)
+          add_executable(pthread_test main.cpp)
+          target_link_libraries(pthread_test PRIVATE Threads::Threads)
+          EOF
+          # Write main.cpp
+          cat > main.cpp <<EOF
+          #include <pthread.h>
+          #include <iostream>
+          void* f(void*) { return nullptr; }
+          int main() {
+              pthread_t t;
+              pthread_create(&t, 0, f, 0);
+              pthread_join(t, 0);
+              std::cout << "Pthread test ran\\n";
+              return 0;
+          }
+          EOF
+          # Build and run
+          cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang
+          cmake --build build
+          ./build/pthread_test
       - name: Install AUR packages
         run: |
           mkdir -p packaging
@@ -123,19 +152,6 @@ jobs:
             cd ../xtensor-io
             makepkg -si --noconfirm --syncdeps --cleanbuild
           "
-      - name: Debug CMake pthread detection
-        run: |
-          cd cpp
-          rm -rf CMakeCache.txt CMakeFiles/
-          cmake -DCMAKE_VERBOSE_MAKEFILE=ON \
-                -DCMAKE_CXX_COMPILER=clang++ \
-                -DCMAKE_C_COMPILER=clang \
-                -DCMAKE_CXX_FLAGS="-pthread" \
-                -DCMAKE_C_FLAGS="-pthread" \
-                -DUSE_VCPKG=OFF \
-                -B build-debug -S .
-          cat build-debug/CMakeFiles/CMakeError.log || true
-          cat build-debug/CMakeFiles/CMakeOutput.log || true
       - name: Build falcon-core-cpp-dev
         run: |
           cd cpp

@@ -233,6 +233,7 @@ const AxesSP<arrays::LabelledControlArray> DiscreteSpace::get_projection(
   return std::make_shared<Axes<arrays::LabelledControlArray>>(container);
 }
 bool DiscreteSpace::operator==(const DiscreteSpace& other) const {
+  if (this == &other) return true;
   return (*space() == *other.space()) && (*axes() == *other.axes()) &&
          (*increasing() == *other.increasing());
 }

@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 
 class PointTest : public ::testing::Test {
  protected:
@@ -223,7 +223,10 @@ TEST_F(PointTest, Arithmetic) {
 }
 
 TEST_F(PointTest, SetUnit) {
-  Point_set_unit(point, unit);
+  auto otherunit = SymbolUnit_create_ampere();
+  Point_set_unit(point, otherunit);
+  auto fromunit = Point_unit(point);
+  EXPECT_TRUE(SymbolUnit_equal(otherunit, fromunit));
   set_last_error(0, nullptr);
   Point_set_unit(nullptr, unit);
   EXPECT_EQ(get_last_error_code(), 1);

@@ -66,6 +66,7 @@ const instrument_interfaces::names::Instrument BaseContext::instrument_type()
   return _instrument_type;
 }
 bool BaseContext::operator==(const BaseContext& other) const {
+  if (this == &other) return true;
   return (*connection() == *other.connection()) &&
          (instrument_type() == other.instrument_type());
 }

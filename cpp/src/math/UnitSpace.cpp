@@ -224,6 +224,7 @@ void UnitSpace::compile() {
   _space = std::make_shared<generic::FArray<double>>(reversed);
 }
 bool UnitSpace::operator==(const UnitSpace& other) const {
+  if (this == &other) return true;
   std::shared_lock<std::shared_timed_mutex> lock_ranges(_mu_ranges,
                                                         std::defer_lock);
   std::shared_lock<std::shared_timed_mutex> lock_other_ranges(other._mu_ranges,

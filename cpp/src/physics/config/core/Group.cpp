@@ -119,6 +119,7 @@ device_structures::ConnectionsSP Group::get_all_channel_gates(
   return std::make_shared<device_structures::Connections>();
 }
 bool Group::operator==(const Group& other) const {
+  if (this == &other) return true;
   return (*name() == *other.name()) && (num_dots() == other.num_dots()) &&
          (*order() == *other.order()) &&
          (*screening_gates() == *other.screening_gates()) &&

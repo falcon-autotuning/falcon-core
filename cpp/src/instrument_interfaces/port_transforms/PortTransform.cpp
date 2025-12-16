@@ -63,6 +63,7 @@ const names::InstrumentPortSP PortTransform::port() const {
   return _port;
 }
 bool PortTransform::operator==(const PortTransform& other) const {
+  if (this == &other) return true;
   return (*port() == *other.port()) &&
          math::AnalyticFunction::operator==(other);
 }

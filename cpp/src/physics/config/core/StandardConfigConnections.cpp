@@ -324,6 +324,7 @@ bool StandardConfigConnections::has_screening_gate(
 }
 bool StandardConfigConnections::operator==(
     const StandardConfigConnections& other) const {
+  if (this == &other) return true;
   return (*screening_gates() == *other.screening_gates()) &&
          (*reservoir_gates() == *other.reservoir_gates()) &&
          (*plunger_gates() == *other.plunger_gates()) &&

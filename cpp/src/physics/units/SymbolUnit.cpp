@@ -444,6 +444,7 @@ const std::string SymbolUnit::_get_dimension_symbol(
       "fix Constants.");
 }
 bool SymbolUnit::operator==(const SymbolUnit& other) const {
+  if (this == &other) return true;
   return (*unit() == *other.unit()) && (symbol() == other.symbol()) &&
          (name() == other.name());
 }

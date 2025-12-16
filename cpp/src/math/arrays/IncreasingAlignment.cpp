@@ -25,6 +25,7 @@ int IncreasingAlignment::alignment() const {
   return _alignment;
 }
 bool IncreasingAlignment::operator==(const IncreasingAlignment& other) const {
+  if (this == &other) return true;
   return alignment() == other.alignment();
 }
 bool IncreasingAlignment::operator!=(const IncreasingAlignment& other) const {

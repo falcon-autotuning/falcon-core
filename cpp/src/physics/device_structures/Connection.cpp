@@ -4,13 +4,7 @@ namespace falcon_core {
 namespace physics {
 namespace device_structures {
 Connection::Connection(const Connection& other) {
-  std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
-                                                      std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_type(_mu_type,
-                                                      std::defer_lock);
-  std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
-                                                            std::defer_lock);
-  std::lock(lock_name, lock_type, lock_other_type);
+  std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type);
   _name = other.name();
   _type = other._type;
 }
@@ -77,6 +71,7 @@ bool Connection::operator<(const Connection& other) const {
   return name() < other.name();  // Compare based on name
 }
 bool Connection::operator==(const Connection& other) const {
+  if (this == &other) return true;
   return (name() == other.name()) && (type() == other.type());
 }
 bool Connection::operator!=(const Connection& other) const {

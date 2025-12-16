@@ -261,6 +261,7 @@ class List : public generic::Song {
     ar(cereal::base_class<generic::Song>(this), _items);
   }
   bool operator==(const List<Value>& other) const {
+    if (this == &other) return true;
     return operator_equal_impl(other,
                                typename category::determine_tag<Value>::type{});
   }

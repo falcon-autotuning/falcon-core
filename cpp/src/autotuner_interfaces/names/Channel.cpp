@@ -24,6 +24,7 @@ std::string Channel::name() const {
 
 Channel::Channel() : _name("") {};
 bool Channel::operator==(const Channel& other) const {
+  if (this == &other) return true;
   return name() == other.name();
 }
 bool Channel::operator!=(const Channel& other) const {

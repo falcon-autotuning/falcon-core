@@ -194,6 +194,7 @@ void Waveform::confirm_knobs_match() const {
   }
 }
 bool Waveform::operator==(const Waveform& other) const {
+  if (this == &other) return true;
   return (*space() == *other.space()) &&
          port_transforms::PortTransforms::operator==(other);
 }

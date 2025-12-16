@@ -340,6 +340,7 @@ const VectorSP Vector::project(const VectorSP& other) const {
   return result->translate(startPoint());
 }
 bool Vector::operator==(const Vector& other) const {
+  if (this == &other) return true;
   bool unit_equal = (*unit() == *other.unit());
   bool conn_equal = (*connections() == *other.connections());
   bool map_equal =
