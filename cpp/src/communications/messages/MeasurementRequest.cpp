@@ -132,6 +132,19 @@ const math::domains::LabelledDomainSP& MeasurementRequest::time_domain() const {
   std::shared_lock<std::shared_timed_mutex> lock(_mu_time_domain);
   return _time_domain;
 }
+bool MeasurementRequest::operator==(const MeasurementRequest& other) const {
+  if (this == &other) return true;
+  return (measurement_name() == other.measurement_name()) &&
+         (*waveforms() == *other.waveforms()) &&
+         (*getters() == *other.getters()) &&
+         (*meter_transforms() == *other.meter_transforms()) &&
+         (*time_domain() == *other.time_domain()) &&
+         BaseMessage::operator==(other);
+}
+
+bool MeasurementRequest::operator!=(const MeasurementRequest& other) const {
+  return !(*this == other);
+}
 
 }  // namespace messages
 }  // namespace communications

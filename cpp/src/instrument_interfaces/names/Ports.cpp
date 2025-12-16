@@ -101,6 +101,7 @@ const bool Ports::is_meters() const {
   return true;
 }
 bool Ports::operator==(const Ports& other) const {
+  if (this == &other) return true;
   if (size() != other.size()) {
     return false;
   }

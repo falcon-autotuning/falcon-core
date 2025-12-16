@@ -35,6 +35,7 @@ GateRelations::insert(const ConnectionSP& key, const ConnectionsSP& value) {
   return Map::insert(key, value);
 }
 bool GateRelations::operator==(const GateRelations& other) const {
+  if (this == &other) return true;
   return static_cast<const Map<Connection, Connections>&>(*this) ==
          static_cast<const Map<Connection, Connections>&>(other);
 }

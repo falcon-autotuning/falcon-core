@@ -76,7 +76,7 @@ if (!handle) {
 throw std::invalid_argument("Null handle passed to LabelledArraysLabelledControlArray_at");
 }
     auto obj = (*static_cast<falcon_core::math::arrays::LabelledArraysSP<falcon_core::math::arrays::LabelledControlArray>*>(handle))->at(idx);
-    return new falcon_core::math::arrays::LabelledControlArray(*obj);
+    return new std::shared_ptr<falcon_core::math::arrays::LabelledControlArray>(obj);
     FALCON_C_API_END(nullptr)
 }
 

@@ -231,6 +231,7 @@ generic::ListSP<generic::FArray<double>> LabelledControlArray::gradient()
   return generic::FArray<double>::gradient();
 }
 bool LabelledControlArray::operator==(const LabelledControlArray& other) const {
+  if (this == &other) return true;
   return (*label() == *other.label()) && ControlArray::operator==(other);
 }
 bool LabelledControlArray::operator!=(const LabelledControlArray& other) const {

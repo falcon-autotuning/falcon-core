@@ -162,6 +162,7 @@ generic::FArraySP<double> AnalyticFunction::evaluate(
   return std::make_shared<generic::FArray<double>>(rawArray);
 }
 bool AnalyticFunction::operator==(const AnalyticFunction& other) const {
+  if (this == &other) return true;
   return (_expression == other._expression) &&
          generic::List<VariableName>::operator==(other);
 }

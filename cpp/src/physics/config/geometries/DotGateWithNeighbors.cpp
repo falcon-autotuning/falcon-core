@@ -81,6 +81,7 @@ DotGateWithNeighborsSP DotGateWithNeighbors::PlungerGateWithNeighbors(
                            right_neighbor));
 }
 bool DotGateWithNeighbors::operator==(const DotGateWithNeighbors& other) const {
+  if (this == &other) return true;
   return Connection::operator==(other) &&
          (*left_neighbor() == *other.left_neighbor()) &&
          (*right_neighbor() == *other.right_neighbor());

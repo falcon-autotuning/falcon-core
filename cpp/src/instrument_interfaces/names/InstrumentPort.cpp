@@ -208,6 +208,7 @@ const bool InstrumentPort::is_port() const {
   return _type == PortType::InstrumentPort;
 }
 bool InstrumentPort::operator==(const InstrumentPort& other) const {
+  if (this == &other) return true;
   return (default_name() == other.default_name()) &&
          (instrument_type() == other.instrument_type()) &&
          (*units() == *other.units()) &&

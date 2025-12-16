@@ -79,6 +79,7 @@ ConnectionsSP Connections::intersection(
       generic::List<Connection>::intersection(other_list));
 }
 bool Connections::operator==(const Connections& other) const {
+  if (this == &other) return true;
   return static_cast<const List<Connection>&>(*this) ==
          static_cast<const List<Connection>&>(other);
 }

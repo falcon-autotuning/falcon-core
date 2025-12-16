@@ -359,6 +359,7 @@ device_structures::ConnectionsSP GateGeometryArray1D::ohmics() const {
   return std::make_shared<device_structures::Connections>(tmp);
 }
 bool GateGeometryArray1D::operator==(const GateGeometryArray1D& other) const {
+  if (this == &other) return true;
   return (*this->lineararray() == *other.lineararray()) &&
          (*this->screening_gates() == *other.screening_gates());
 }

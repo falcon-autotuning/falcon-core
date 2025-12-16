@@ -195,9 +195,11 @@ void Point::set_unit(physics::units::SymbolUnitSP unit) {
   if (!unit) {
     throw std::invalid_argument("Point: The unit cannot be null.");
   }
+  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
   _unit = unit;
 }
 bool Point::operator==(const Point& other) const {
+  if (this == &other) return true;
   return (*unit() == *other.unit()) &&
          (Map<physics::device_structures::Connection, Quantity>::operator==(
              other));

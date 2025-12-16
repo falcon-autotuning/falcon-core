@@ -184,6 +184,7 @@ const double Domain::transform(const std::shared_ptr<Domain>& other,
   return value * scale + offset;
 }
 bool Domain::operator==(const Domain& other) const {
+  if (this == &other) return true;
   return (lesser_bound() == other.lesser_bound()) &&
          (greater_bound() == other.greater_bound()) &&
          (lesser_bound_contained() == other.lesser_bound_contained()) &&

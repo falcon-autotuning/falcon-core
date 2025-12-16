@@ -143,6 +143,7 @@ bool LabelledDomain::matching_port(
   return this->port() && *this->port() == *port;
 }
 bool LabelledDomain::operator==(const LabelledDomain& other) const {
+  if (this == &other) return true;
   return *this->domain() == *other.domain() &&
          *(this->port()) == *(other.port());
 }

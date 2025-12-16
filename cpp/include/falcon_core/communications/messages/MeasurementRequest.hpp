@@ -45,6 +45,8 @@ class MeasurementRequest : public BaseMessage {
                        instrument_interfaces::port_transforms::PortTransform>&
                                          meter_transforms() const;
   const math::domains::LabelledDomainSP& time_domain() const;
+  bool operator==(const MeasurementRequest& other) const;
+  bool operator!=(const MeasurementRequest& other) const;
 
  protected:
   MeasurementRequest();

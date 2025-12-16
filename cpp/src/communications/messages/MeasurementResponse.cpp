@@ -52,6 +52,7 @@ MeasurementResponse::arrays() const {
   return _arrays;
 }
 bool MeasurementResponse::operator==(const MeasurementResponse& other) const {
+  if (this == &other) return true;
   return (*arrays() == *other.arrays()) && BaseMessage::operator==(other);
 }
 bool MeasurementResponse::operator!=(const MeasurementResponse& other) const {

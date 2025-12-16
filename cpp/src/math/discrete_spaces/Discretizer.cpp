@@ -102,6 +102,7 @@ const bool Discretizer::is_polar() const {
 
 Discretizer::Discretizer() = default;
 bool Discretizer::operator==(const Discretizer& other) const {
+  if (this == &other) return true;
   std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type,
                                                             std::defer_lock);
   std::shared_lock<std::shared_timed_mutex> lock_type(_mu_type,

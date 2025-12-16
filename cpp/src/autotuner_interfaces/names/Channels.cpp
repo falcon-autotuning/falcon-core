@@ -9,6 +9,7 @@ Channels::Channels(const std::vector<std::shared_ptr<Channel>>& vec)
     : falcon_core::generic::List<Channel>(vec) {}
 
 bool Channels::operator==(const Channels& other) const {
+  if (this == &other) return true;
   return generic::List<Channel>::operator==(other);
 }
 

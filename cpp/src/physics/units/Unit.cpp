@@ -210,6 +210,7 @@ bool Unit::is_compatible_with(const UnitSP& other) const {
 }
 
 bool Unit::operator==(const Unit& other) const {
+  if (this == &other) return true;
   return (this->dimensions() == other.dimensions()) &&
          (std::abs(this->scale_factor() - other.scale_factor()) < 1e-12) &&
          (std::abs(this->offset() - other.offset()) < 1e-12) &&

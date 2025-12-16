@@ -123,7 +123,7 @@ DomainHandle Domain_union(DomainHandle handle, DomainHandle other) {
   DomainSP self       = *static_cast<DomainSP*>(handle);
   DomainSP real_other = *static_cast<DomainSP*>(other);
   DomainSP result     = *self | real_other;
-  return new Domain(*result);
+  return new DomainSP(result);
   FALCON_C_API_END(nullptr)
 }
 
