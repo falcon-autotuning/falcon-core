@@ -4,23 +4,12 @@
 
 Core utilities and datatypes for autotuning quantum devices. Falcon Core provides a robust, high-performance library for quantum device calibration and parameter optimization.
 
-## Overview
-
-Falcon Core is a multi-layered library designed for quantum device autotuning:
-
-- **C++ Core** (`cpp/`) - High-performance C++14 implementation with core datatypes and algorithms
-- **C API** (`c-api/`) - Stable C-compatible wrapper exposing the C++ functionality
-- **Python Bindings** (`src/`) - Pythonic interface for easy integration
-- **Automated Documentation** (`code_docs/`) - Pipeline for generating and synchronizing API documentation
-
-### Key Features
+## Key Features
 
 - 🚀 **High Performance**: Optimized C++ core with minimal overhead
-- 🔒 **Type Safety**: Strong typing with modern C++14 features
-- 🌐 **Multi-Language Support**: C++, C API, and Python interfaces
 - 📊 **Data Serialization**: Comprehensive support for HDF5, JSON, and YAML
 - 🧪 **Quantum Device Control**: Built for quantum hardware autotuning
-- 📚 **Well Documented**: Auto-generated documentation from source code
+- 🖥️ **Cross-Platform**: Supports Windows and Linux
 
 ## Quick Start
 
@@ -44,28 +33,19 @@ cd ../c-api
 make all
 ```
 
-### Python Usage
+### User-Facing Libraries
 
-```bash
-# Install Python bindings
-pip install -e src/
-```
-
-```python
-import falcon_core
-# Use the library
-```
+For Python and other high-level language bindings, see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs).
 
 ## Documentation
 
 📖 **[Full Documentation](docs/index.md)** - Comprehensive guides and API reference
 
-- [Repository Structure](docs/repository-structure.md) - Overview of the codebase organization
+- [Installation Guide](docs/installation.md) - Detailed installation instructions
+- [Developer Guide](docs/developer-guide.md) - Contributing and development workflow
 - [C++ Core Documentation](docs/cpp-core.md) - C++ API and implementation details
 - [C API Documentation](docs/c-api.md) - C API wrapper and usage
 - [Documentation Generation](docs/code-docs.md) - Automated documentation pipeline
-- [Installation Guide](docs/installation.md) - Detailed installation instructions
-- [Developer Guide](docs/developer-guide.md) - Contributing and development workflow
 
 ### Building Documentation Website
 
@@ -90,20 +70,14 @@ Visit http://localhost:8000 to view the documentation.
 falcon-core/
 ├── cpp/              # C++ core implementation (lowest level)
 ├── c-api/            # C API wrapper (exposed C-compatible interface)
-├── src/              # Python bindings
 ├── code_docs/        # Auto-generated documentation pipeline
 ├── packaging/        # Distribution packages
 └── docs/             # Documentation source files
 ```
 
-### Component Overview
+The C++ core provides the foundational layer, the C API provides a stable wrapper for language bindings, and the documentation pipeline automatically generates API docs from source code.
 
-- **C++ Core** (`cpp/`) - The foundational layer written in C++14, containing core datatypes, algorithms, and utilities for quantum device autotuning
-- **C API** (`c-api/`) - A stable C-compatible wrapper that exposes the C++ functionality, enabling language bindings and ensuring ABI stability
-- **Python Bindings** (`src/`) - Python interface providing Pythonic access to the library
-- **Documentation Generation** (`code_docs/`) - Automated pipeline that extracts documentation from C++ and generates C API documentation
-
-For a detailed breakdown, see [Repository Structure](docs/repository-structure.md).
+For user-facing libraries (Python, etc.), see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs).
 
 ## Dependencies
 
@@ -233,14 +207,12 @@ For more details, see the [Developer Guide](docs/developer-guide.md).
 
 - **C++**: C++14 standard, formatted with `.clang-format`
 - **C API**: C-compatible interface with `falcon_` prefix
-- **Python**: PEP 8 compliant with type hints
 
 ### Documentation
 
 All public APIs must have documentation:
 - **C++**: Doxygen comments
 - **C API**: Auto-generated from C++ documentation
-- **Python**: Google-style docstrings
 
 ### Testing
 
@@ -250,9 +222,6 @@ cd cpp && make test
 
 # C API tests
 cd c-api && make test
-
-# Python tests
-cd src && python -m pytest
 ```
 
 ### Documentation Pipeline
@@ -306,10 +275,10 @@ Copyright (c) 2023-2024 Tyler Kovach, Daniel Schug, Zachery Merino
 
 ## Links
 
-- [Repository Structure](docs/repository-structure.md)
 - [Installation Guide](docs/installation.md)
 - [Developer Guide](docs/developer-guide.md)
 - [C++ Core Documentation](docs/cpp-core.md)
 - [C API Documentation](docs/c-api.md)
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [License](LICENSE.txt)
+- [User-Facing Libraries](https://github.com/falcon-autotuning/falcon-core-libs)

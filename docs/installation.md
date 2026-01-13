@@ -7,7 +7,8 @@ This guide covers installation of Falcon Core for different use cases.
 Falcon Core can be installed in several ways:
 - From source (for development)
 - Via package manager (for users on Arch Linux)
-- As a Python package (for Python users)
+
+For Python and other high-level language bindings, see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs).
 
 ## Dependencies
 
@@ -150,22 +151,6 @@ The C API requires the C++ core to be built first.
 
 The compiled library will be at: `dist/c_api/libfalcon_core.so`
 
-### Method 3: Python Package
-
-For Python users, install the Python bindings:
-
-```bash
-# From the repository root
-pip install -e src/
-```
-
-Or for a specific Python version:
-```bash
-python3.12 -m pip install -e src/
-```
-
-This installs the `falcon_core` Python package with all submodules.
-
 ## Verification
 
 ### Verify C++ Build
@@ -183,15 +168,6 @@ All tests should pass.
 cd c-api
 make test
 ```
-
-### Verify Python Installation
-
-```python
-import falcon_core
-print(falcon_core.__file__)
-```
-
-Should print the installation path without errors.
 
 ## Troubleshooting
 
@@ -246,25 +222,6 @@ If you encounter runtime errors:
    export LD_LIBRARY_PATH=/path/to/falcon-core/dist/c_api:$LD_LIBRARY_PATH
    ```
 
-### Python Import Errors
-
-If Python can't find the module:
-
-1. **Verify installation**:
-   ```bash
-   pip list | grep falcon
-   ```
-
-2. **Install in development mode**:
-   ```bash
-   pip install -e src/
-   ```
-
-3. **Check PYTHONPATH**:
-   ```bash
-   export PYTHONPATH=/path/to/falcon-core/src:$PYTHONPATH
-   ```
-
 ## Platform-Specific Notes
 
 ### Linux
@@ -300,7 +257,6 @@ After installation:
 - Read the [Developer Guide](developer-guide.md) for development setup
 - Explore the [C++ Core Documentation](cpp-core.md)
 - Check out the [C API Documentation](c-api.md)
-- Review [Repository Structure](repository-structure.md)
 
 ## Getting Help
 

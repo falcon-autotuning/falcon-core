@@ -1,32 +1,34 @@
 # Falcon Core Documentation
 
-Welcome to the Falcon Core documentation. Falcon Core is a comprehensive library for autotuning quantum devices, providing core utilities and datatypes for serialization.
+Welcome to the Falcon Core documentation. Falcon Core is a high-performance library for autotuning quantum devices, providing core utilities and datatypes for serialization.
 
 ## Overview
 
-Falcon Core is structured as a multi-layered system:
+Falcon Core consists of:
 
 - **C++ Core** (`cpp/`) - The lowest-level implementation containing core datatypes and algorithms
 - **C API** (`c-api/`) - A C-compatible wrapper exposing the C++ functionality
-- **Python Bindings** (`src/`) - Python interface to the library
 - **Auto-generated Documentation** (`code_docs/`) - Automated documentation generation pipeline
 
 ## Quick Links
 
-- [Repository Structure](repository-structure.md)
 - [C++ Core Documentation](cpp-core.md)
 - [C API Documentation](c-api.md)
 - [Documentation Generation](code-docs.md)
 - [Installation Guide](installation.md)
 - [Developer Guide](developer-guide.md)
+- [API Documentation Setup](api-docs-setup.md) - How to add API reference to website
 
-## Features
+## Key Features
 
-- **Quantum Device Autotuning**: Core utilities for automated tuning of quantum devices
-- **Data Serialization**: Comprehensive datatypes for efficient data serialization
-- **Multi-Language Support**: C++, C API, and Python interfaces
-- **Type Safety**: Strong typing with C++14 features
 - **High Performance**: Optimized C++ core with minimal overhead
+- **Data Serialization**: Comprehensive support for HDF5, JSON, and YAML
+- **Quantum Device Control**: Built for quantum hardware autotuning
+- **Cross-Platform**: Supports Windows and Linux
+
+## User-Facing Libraries
+
+For Python and other high-level language bindings, visit [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs).
 
 ## Getting Started
 

@@ -137,9 +137,9 @@ Link against the shared library:
 gcc -o myapp myapp.c -L/path/to/dist/c_api -lfalcon_core
 ```
 
-### Python Bindings
+### Language Bindings
 
-The Python bindings in `src/falcon_core/` use the C API via ctypes or cffi to provide a Pythonic interface to the library.
+For Python and other high-level language bindings, see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs).
 
 ## API Conventions
 

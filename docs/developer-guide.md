@@ -12,7 +12,7 @@ This guide covers development workflows, coding standards, and best practices fo
    - ninja (build system)
    - ccache (recommended for faster builds)
 3. **Version Control**: git
-4. **Python**: Python 3.12+ (for Python bindings and scripts)
+4. **Python**: Python 3.12+ (for documentation generation scripts)
 
 ### Initial Setup
 
@@ -53,7 +53,6 @@ This guide covers development workflows, coding standards, and best practices fo
 2. **Make your changes** in the appropriate directory:
    - C++ core: `cpp/`
    - C API: `c-api/`
-   - Python: `src/falcon_core/`
    - Documentation: `docs/`
 
 3. **Build and test frequently**:
@@ -85,13 +84,6 @@ make build-and-sanitize      # Build with sanitizers
 ```bash
 cd c-api
 make test
-```
-
-#### Python Tests
-
-```bash
-cd src
-python -m pytest
 ```
 
 ### Code Coverage
@@ -208,33 +200,6 @@ For special cases, add manual mappings in:
 code_docs/capi_docs/c-api_user_maps/
 ```
 
-#### Python Documentation
-
-Use Python docstrings (Google style):
-
-```python
-def my_function(param1: int, param2: str) -> bool:
-    """Brief description of function.
-    
-    Detailed description of what the function does.
-    
-    Args:
-        param1: Description of param1
-        param2: Description of param2
-        
-    Returns:
-        Description of return value
-        
-    Raises:
-        ValueError: When this error is raised
-        
-    Example:
-        >>> my_function(10, "test")
-        True
-    """
-    pass
-```
-
 ## Documentation Generation
 
 ### Generate C API Documentation
@@ -306,18 +271,6 @@ Visit http://localhost:8000 to view the documentation.
    cd c-api
    make build
    make test
-   ```
-
-### Adding Python Bindings
-
-1. Create Python module in `src/falcon_core/`
-2. Use C API via ctypes or cffi
-3. Add docstrings
-4. Add tests
-5. Install and test:
-   ```bash
-   pip install -e src/
-   python -m pytest src/tests/
    ```
 
 ## Git Workflow
