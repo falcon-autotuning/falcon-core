@@ -273,10 +273,22 @@ Falcon Core is primarily developed and tested on Linux. Both Arch Linux and Ubun
 
 ### macOS
 
-macOS support is experimental. Some dependencies may need to be installed via Homebrew:
+macOS support is experimental. You will need to install dependencies via Homebrew:
+
 ```bash
-brew install boost hdf5 yaml-cpp
+# Install Homebrew if not already installed
+# See https://brew.sh
+
+# Install dependencies
+brew install boost hdf5 yaml-cpp nlohmann-json cmake ninja ccache
+
+# Install vcpkg following the instructions at:
+# https://learn.microsoft.com/en-us/vcpkg/get_started/overview
+
+# Then follow the "Build from Source" instructions above
 ```
+
+Note: Some dependencies may need to be installed via vcpkg if not available in Homebrew.
 
 ### Windows
 

@@ -64,11 +64,13 @@ markdown_extensions:
 
 plugins:
   - search
-  - autorefs
+
+# Note: Install additional plugins with:
+# pip install mkdocs-material
 
 extra:
   social:
-    - icon: fontawesome/brands/github
+    - icon: material/github
       link: https://github.com/falcon-autotuning/falcon-core
   version:
     provider: mike

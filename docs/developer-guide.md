@@ -115,10 +115,17 @@ cd cpp
 make build-and-sanitize
 ```
 
-This enables:
-- AddressSanitizer (memory errors)
-- UndefinedBehaviorSanitizer (UB detection)
-- LeakSanitizer (memory leaks)
+This enables multiple sanitizers:
+- **AddressSanitizer**: Detects memory errors (buffer overflows, use-after-free, etc.)
+- **UndefinedBehaviorSanitizer**: Detects undefined behavior (null pointer dereference, integer overflow, etc.)
+- **LeakSanitizer**: Detects memory leaks
+
+When a sanitizer detects an issue, it will:
+1. Print a detailed error report to stderr
+2. Exit the program with a non-zero status
+3. Provide a stack trace showing where the issue occurred
+
+Review the sanitizer output carefully to identify and fix the issues.
 
 #### Using GDB
 
