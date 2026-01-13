@@ -9,8 +9,7 @@ Falcon Core can be installed in several ways:
 - From source (for development)
 - Via package manager (for users on Arch Linux)
 
-For Python and other high-level language bindings, see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs)
-=======
+For Python and other high-level language bindings, see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs).
 
 ## Dependencies
 

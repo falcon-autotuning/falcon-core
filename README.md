@@ -169,9 +169,122 @@ With those 3 precursors setup, to build run in the cpp directory
 make clean-all; make all 
 ```
 
+### User-Facing Libraries
+
+For Python and other high-level language bindings, see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs).
+
 To build subsequent times you can use
 
 ```console
+📖 **[Full Documentation](docs/index.md)** - Comprehensive guides and API reference
+
+- [Installation Guide](docs/installation.md) - Detailed installation instructions
+- [Developer Guide](docs/developer-guide.md) - Contributing and development workflow
+- [C++ Core Documentation](docs/cpp-core.md) - C++ API and implementation details
+- [C API Documentation](docs/c-api.md) - C API wrapper and usage
+- [Documentation Generation](docs/code-docs.md) - Automated documentation pipeline
+
+### Building Documentation Website
+
+This project uses [MkDocs](https://www.mkdocs.org/) for documentation:
+
+```bash
+# Install MkDocs
+pip install mkdocs mkdocs-material
+
+# Serve documentation locally
+mkdocs serve
+
+# Build static site
+mkdocs build
+```
+
+Visit <http://localhost:8000> to view the documentation.
+
+## Repository Structure
+
+```
+falcon-core/
+├── cpp/              # C++ core implementation (lowest level)
+├── c-api/            # C API wrapper (exposed C-compatible interface)
+├── code_docs/        # Auto-generated documentation pipeline
+├── packaging/        # Distribution packages
+└── docs/             # Documentation source files
+```
+
+The C++ core provides the foundational layer, the C API provides a stable wrapper for language bindings, and the documentation pipeline automatically generates API docs from source code.
+
+For user-facing libraries (Python, etc.), see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs).
+
+## Dependencies
+
+### Core Dependencies
+
+Required for building the C++ core:
+
+- boost@1.88.0
+- bzip2@1.0.8
+- cereal@1.3.2 (serialization)
+- expat@2.7.1
+- exprtk@0.0.2
+- hdf5@1.14.6 (HDF5 support)
+- highfive@3.1.1 (C++ HDF5 interface)
+- nlohmann-json@3.12.0 (JSON support)
+- openssl@3.5.2
+- python3@3.12.9
+- sqlite3@3.50.4
+- xsimd@13.2.0 (SIMD operations)
+- xtensor@0.25.0 (multi-dimensional arrays)
+- xtensor-io@0.13.0 (array I/O)
+- xtl@0.7.5
+- yaml-cpp@0.8.0 (YAML support)
+- zlib@1.3.1
+
+### Development Dependencies
+
+Additional dependencies for development:
+
+- gtest@1.16.0 (unit testing)
+- clang or gcc (C++ compiler)
+- vcpkg (package manager)
+- ninja (build system)
+- ccache (recommended, for faster builds)
+
+### Packaged Dependencies
+
+Some dependencies are packaged in the `packaging/` folder for convenience:
+
+- xsimd@13.2.0
+- xtensor@0.25.0
+- xtensor-io@0.13.0
+- xtl@0.7.5
+
+Install these packages (on Arch Linux):
+
+```bash
+cd packaging/xtl && makepkg -si && cd ../..
+cd packaging/xsimd && makepkg -si && cd ../..
+cd packaging/xtensor && makepkg -si && cd ../..
+cd packaging/xtensor-io && makepkg -si && cd ../..
+```
+
+## Building from Source
+
+### Prerequisites
+
+1. **Install vcpkg**: Follow [vcpkg installation instructions](https://learn.microsoft.com/en-us/vcpkg/get_started/overview)
+2. **Install build tools**: clang/gcc, ninja, ccache (recommended)
+
+### Build C++ Core
+
+```bash
+cd cpp
+make clean-all && make all
+```
+
+For subsequent builds:
+
+```bash
 make build
 ```
 
@@ -215,6 +328,10 @@ make coverage-overview
 ```
 
 **In the `c-api/` directory:**
+
+- CI configuration files live in `.github/workflows/`. We run builds and tests for Linux and Windows; please make sure new tests run in both environments where applicable.
+- The build status badges at the top of this README use the workflow filenames `ci-linux.yml` and `ci-windows.yml` and show the `dev` branch status. If you use different workflow filenames, update the badge URLs accordingly.
+- To add the docs site, we use mkdocs with the configuration in `mkdocs.yml` and content in `docs/`.
 
 ```bash
 # Build C API

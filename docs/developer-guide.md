@@ -12,7 +12,7 @@ This guide covers development workflows, coding standards, and best practices fo
    - ninja (build system)
    - ccache (recommended for faster builds)
 3. **Version Control**: git
-4. **Python**: Python 3.12+ (for Python bindings and scripts)
+4. **Python**: Python 3.12+ (for documentation generation scripts)
 
 ### Initial Setup
 
@@ -58,6 +58,7 @@ This guide covers development workflows, coding standards, and best practices fo
 2. **Make your changes** in the appropriate directory:
    - C++ core: `cpp/`
    - C API: `c-api/`
+   - Documentation: `docs/`
 
 - Documentation: `docs/`
 
@@ -289,6 +290,39 @@ Visit <http://localhost:8000> to view the documentation.
    make build
    make test
    ```
+
+## Git Workflow
+
+### Commit Messages
+
+Follow conventional commits:
+
+```
+type(scope): brief description
+
+Detailed explanation of the changes.
+
+Fixes #123
+```
+
+Types:
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Code style changes (formatting)
+- `refactor`: Code refactoring
+- `test`: Adding or updating tests
+- `chore`: Maintenance tasks
+
+### Pull Request Process
+
+1. **Create PR** with clear description
+2. **Link issues** using "Fixes #123"
+3. **Ensure CI passes** (all tests, linting)
+4. **Request review** from maintainers
+5. **Address feedback**
+6. **Merge** when approved
 
 ## CI/CD
 
