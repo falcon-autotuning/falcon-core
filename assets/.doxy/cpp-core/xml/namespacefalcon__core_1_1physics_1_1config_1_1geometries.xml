@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1physics_1_1config_1_1geometries" kind="namespace" language="C++">
+    <compoundname>falcon_core::physics::config::geometries</compoundname>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1DotGatesWithNeighbors" prot="public">falcon_core::physics::config::geometries::DotGatesWithNeighbors</innerclass>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1DotGateWithNeighbors" prot="public">falcon_core::physics::config::geometries::DotGateWithNeighbors</innerclass>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D" prot="public">falcon_core::physics::config::geometries::GateGeometryArray1D</innerclass>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasImplantedOhmic" prot="public">falcon_core::physics::config::geometries::HasImplantedOhmic</innerclass>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor" prot="public">falcon_core::physics::config::geometries::HasLeftNeighbor</innerclass>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasRightNeighbor" prot="public">falcon_core::physics::config::geometries::HasRightNeighbor</innerclass>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1LeftReservoirWithImplantedOhmic" prot="public">falcon_core::physics::config::geometries::LeftReservoirWithImplantedOhmic</innerclass>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1RightReservoirWithImplantedOhmic" prot="public">falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmic</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="DotGatesWithNeighbors_8hpp_1ad180acc963204a85d416b71903c7770b" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1DotGatesWithNeighbors" kindref="compound">DotGatesWithNeighbors</ref> &gt;</type>
+        <definition>using falcon_core::physics::config::geometries::DotGatesWithNeighborsSP = typedef std::shared_ptr&lt;DotGatesWithNeighbors&gt;</definition>
+        <argsstring></argsstring>
+        <name>DotGatesWithNeighborsSP</name>
+        <qualifiedname>falcon_core::physics::config::geometries::DotGatesWithNeighborsSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp" line="70" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="DotGateWithNeighbors_8hpp_1a2e56e1a578806b2c76d35034ac73ce09" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1DotGateWithNeighbors" kindref="compound">DotGateWithNeighbors</ref> &gt;</type>
+        <definition>using falcon_core::physics::config::geometries::DotGateWithNeighborsSP = typedef std::shared_ptr&lt;DotGateWithNeighbors&gt;</definition>
+        <argsstring></argsstring>
+        <name>DotGateWithNeighborsSP</name>
+        <qualifiedname>falcon_core::physics::config::geometries::DotGateWithNeighborsSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp" line="43" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="GateGeometryArray1D_8hpp_1a735dbdd5439cf79ffed35dbb3e742b2d" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D" kindref="compound">GateGeometryArray1D</ref> &gt;</type>
+        <definition>using falcon_core::physics::config::geometries::GateGeometryArray1DSP = typedef std::shared_ptr&lt;GateGeometryArray1D&gt;</definition>
+        <argsstring></argsstring>
+        <name>GateGeometryArray1DSP</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1DSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="155" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="HasImplantedOhmic_8hpp_1a5c728b5db02a4db1751b8b7ebb77457a" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasImplantedOhmic" kindref="compound">HasImplantedOhmic</ref> &gt;</type>
+        <definition>using falcon_core::physics::config::geometries::HasImplantedOhmicSP = typedef std::shared_ptr&lt;HasImplantedOhmic&gt;</definition>
+        <argsstring></argsstring>
+        <name>HasImplantedOhmicSP</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasImplantedOhmicSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasImplantedOhmic.hpp" line="34" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/HasImplantedOhmic.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="HasLeftNeighbor_8hpp_1aef442c4cf3e3e89f087c388a4fbd8bdd" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor" kindref="compound">HasLeftNeighbor</ref> &gt;</type>
+        <definition>using falcon_core::physics::config::geometries::HasLeftNeighborSP = typedef std::shared_ptr&lt;HasLeftNeighbor&gt;</definition>
+        <argsstring></argsstring>
+        <name>HasLeftNeighborSP</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighborSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="38" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="HasRightNeighbor_8hpp_1adcf79acbc17ed56ce024794304c1f3f9" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasRightNeighbor" kindref="compound">HasRightNeighbor</ref> &gt;</type>
+        <definition>using falcon_core::physics::config::geometries::HasRightNeighborSP = typedef std::shared_ptr&lt;HasRightNeighbor&gt;</definition>
+        <argsstring></argsstring>
+        <name>HasRightNeighborSP</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasRightNeighborSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasRightNeighbor.hpp" line="38" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/HasRightNeighbor.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="LeftReservoirWithImplantedOhmic_8hpp_1a9bac94ce71db1b61a71f952568df4b32" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1LeftReservoirWithImplantedOhmic" kindref="compound">LeftReservoirWithImplantedOhmic</ref> &gt;</type>
+        <definition>using falcon_core::physics::config::geometries::LeftReservoirWithImplantedOhmicSP = typedef std::shared_ptr&lt;LeftReservoirWithImplantedOhmic&gt;</definition>
+        <argsstring></argsstring>
+        <name>LeftReservoirWithImplantedOhmicSP</name>
+        <qualifiedname>falcon_core::physics::config::geometries::LeftReservoirWithImplantedOhmicSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp" line="33" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="RightReservoirWithImplantedOhmic_8hpp_1a562c8c4375f9b5c0088aa121328832f3" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1RightReservoirWithImplantedOhmic" kindref="compound">RightReservoirWithImplantedOhmic</ref> &gt;</type>
+        <definition>using falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmicSP = typedef std::shared_ptr&lt;RightReservoirWithImplantedOhmic&gt;</definition>
+        <argsstring></argsstring>
+        <name>RightReservoirWithImplantedOhmicSP</name>
+        <qualifiedname>falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmicSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp" line="33" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp" line="8" column="1"/>
+  </compounddef>
+</doxygen>

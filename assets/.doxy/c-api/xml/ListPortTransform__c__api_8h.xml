@@ -1,0 +1,695 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ListPortTransform__c__api_8h" kind="file" language="C++">
+    <compoundname>ListPortTransform_c_api.h</compoundname>
+    <includes refid="PortTransform__c__api_8h" local="yes">falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="MapInstrumentPortPortTransform__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h</includedby>
+    <includedby refid="Waveform__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</includedby>
+    <includedby refid="PortTransforms__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms_c_api.h</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/ListPairStringDouble_c_api.h</label>
+        <link refid="ListPairStringDouble__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPortTransform_c_api.h</label>
+        <link refid="ListPortTransform__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/MapStringDouble_c_api.h</label>
+        <link refid="MapStringDouble__c__api_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/PairStringDouble_c_api.h</label>
+        <link refid="PairStringDouble__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
+        <link refid="PortTransform__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/math/AnalyticFunction_c_api.h</label>
+        <link refid="AnalyticFunction__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPortTransform_c_api.h</label>
+        <link refid="ListPortTransform__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h</label>
+        <link refid="MapInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms_c_api.h</label>
+        <link refid="PortTransforms__c__api_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ListPortTransform__c__api_8h_1ae36c26df810445854335d95525cb86b4" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ListPortTransformHandle</definition>
+        <argsstring></argsstring>
+        <name>ListPortTransformHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1ad021b7686c273adb4e4738bf22ecbb1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPortTransformHandle</type>
+        <definition>ListPortTransformHandle ListPortTransform_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>ListPortTransform_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="15" column="25" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="15" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a713f9eadeee8693fafa3a19241302291" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPortTransformHandle</type>
+        <definition>ListPortTransformHandle ListPortTransform_copy</definition>
+        <argsstring>(ListPortTransformHandle handle)</argsstring>
+        <name>ListPortTransform_copy</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="17" column="25" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="17" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a23d282231ebdcf9f673b4b984531d8f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPortTransformHandle</type>
+        <definition>ListPortTransformHandle ListPortTransform_fill_value</definition>
+        <argsstring>(size_t count, PortTransformHandle value)</argsstring>
+        <name>ListPortTransform_fill_value</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>PortTransformHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="20" column="25" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="20" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1add8065a387907b1872679ecd3170f887" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPortTransformHandle</type>
+        <definition>ListPortTransformHandle ListPortTransform_create</definition>
+        <argsstring>(PortTransformHandle *data, size_t count)</argsstring>
+        <name>ListPortTransform_create</name>
+        <param>
+          <type>PortTransformHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="22" column="25" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="22" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a6075e3b09a6b80241258cc994b4e9e23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPortTransform_destroy</definition>
+        <argsstring>(ListPortTransformHandle handle)</argsstring>
+        <name>ListPortTransform_destroy</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1abe11cf8d200a3178173ec7b9a22da0d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPortTransform_push_back</definition>
+        <argsstring>(ListPortTransformHandle handle, PortTransformHandle value)</argsstring>
+        <name>ListPortTransform_push_back</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortTransformHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1abd64223f3ce3c90a4df725655156c6ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPortTransform_size</definition>
+        <argsstring>(ListPortTransformHandle handle)</argsstring>
+        <name>ListPortTransform_size</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1aabd6ffec8ba30937df2a98610b986444" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPortTransform_empty</definition>
+        <argsstring>(ListPortTransformHandle handle)</argsstring>
+        <name>ListPortTransform_empty</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a4ddbd9b1bce4abf5e3fc96a9e9312202" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPortTransform_erase_at</definition>
+        <argsstring>(ListPortTransformHandle handle, size_t idx)</argsstring>
+        <name>ListPortTransform_erase_at</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a9072f1f5504af9d6346c152a48aed1c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPortTransform_clear</definition>
+        <argsstring>(ListPortTransformHandle handle)</argsstring>
+        <name>ListPortTransform_clear</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a9709a4bcee76f5647fe2be90dc1b2348" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PortTransformHandle</type>
+        <definition>PortTransformHandle ListPortTransform_at</definition>
+        <argsstring>(ListPortTransformHandle handle, size_t idx)</argsstring>
+        <name>ListPortTransform_at</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="36" column="21" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="36" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1ab319f7e28594d6378fa4bdfecb48c038" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPortTransform_items</definition>
+        <argsstring>(ListPortTransformHandle handle, PortTransformHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>ListPortTransform_items</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortTransformHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="38" column="8" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="38" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1adf296674c2acd2989e66833c297575f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPortTransform_contains</definition>
+        <argsstring>(ListPortTransformHandle handle, PortTransformHandle value)</argsstring>
+        <name>ListPortTransform_contains</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortTransformHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a943eee6183d76556fd1326abdb49e084" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPortTransform_index</definition>
+        <argsstring>(ListPortTransformHandle handle, PortTransformHandle value)</argsstring>
+        <name>ListPortTransform_index</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortTransformHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a3285447408018add64fef05a79dbe740" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPortTransformHandle</type>
+        <definition>ListPortTransformHandle ListPortTransform_intersection</definition>
+        <argsstring>(ListPortTransformHandle handle, ListPortTransformHandle other)</argsstring>
+        <name>ListPortTransform_intersection</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="44" column="25" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="44" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a12c4f67c63acd2f64e121855aa1555c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPortTransform_equal</definition>
+        <argsstring>(ListPortTransformHandle handle, ListPortTransformHandle other)</argsstring>
+        <name>ListPortTransform_equal</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a1e2b57bb8c7c5a9a6016ae502bd6ea16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPortTransform_not_equal</definition>
+        <argsstring>(ListPortTransformHandle handle, ListPortTransformHandle other)</argsstring>
+        <name>ListPortTransform_not_equal</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a200251c60ce6b938c3033fa44b82f5d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle ListPortTransform_to_json_string</definition>
+        <argsstring>(ListPortTransformHandle handle)</argsstring>
+        <name>ListPortTransform_to_json_string</name>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPortTransform__c__api_8h_1a3c10ace6420e1c6e44691cc29ef5f23e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPortTransformHandle</type>
+        <definition>ListPortTransformHandle ListPortTransform_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>ListPortTransform_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" line="53" column="25" declfile="c-api/include/falcon_core/generic/ListPortTransform_c_api.h" declline="53" declcolumn="25"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ListPortTransformHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">ListPortTransformHandle<sp/>ListPortTransform_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">ListPortTransformHandle<sp/>ListPortTransform_copy(ListPortTransformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ListPortTransformHandle<sp/>ListPortTransform_fill_value(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/>PortTransformHandle<sp/>value);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ListPortTransformHandle<sp/>ListPortTransform_create(PortTransformHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPortTransform_destroy(ListPortTransformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPortTransform_push_back(ListPortTransformHandle<sp/>handle,<sp/>PortTransformHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPortTransform_size(ListPortTransformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPortTransform_empty(ListPortTransformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPortTransform_erase_at(ListPortTransformHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPortTransform_clear(ListPortTransformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">PortTransformHandle<sp/>ListPortTransform_at(ListPortTransformHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPortTransform_items(ListPortTransformHandle<sp/>handle,<sp/>PortTransformHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPortTransform_contains(ListPortTransformHandle<sp/>handle,<sp/>PortTransformHandle<sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPortTransform_index(ListPortTransformHandle<sp/>handle,<sp/>PortTransformHandle<sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListPortTransformHandle<sp/>ListPortTransform_intersection(ListPortTransformHandle<sp/>handle,<sp/>ListPortTransformHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPortTransform_equal(ListPortTransformHandle<sp/>handle,<sp/>ListPortTransformHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPortTransform_not_equal(ListPortTransformHandle<sp/>handle,<sp/>ListPortTransformHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>ListPortTransform_to_json_string(ListPortTransformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListPortTransformHandle<sp/>ListPortTransform_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/ListPortTransform_c_api.h"/>
+  </compounddef>
+</doxygen>

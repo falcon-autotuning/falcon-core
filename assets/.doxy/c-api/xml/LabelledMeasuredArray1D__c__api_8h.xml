@@ -1,0 +1,2142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="LabelledMeasuredArray1D__c__api_8h" kind="file" language="C++">
+    <compoundname>LabelledMeasuredArray1D_c_api.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes refid="AcquisitionContext__c__api_8h" local="yes">falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</includes>
+    <includes refid="FArrayDouble__c__api_8h" local="yes">falcon_core/generic/FArrayDouble_c_api.h</includes>
+    <includes refid="ListFArrayDouble__c__api_8h" local="yes">falcon_core/generic/ListFArrayDouble_c_api.h</includes>
+    <includes refid="ListListSizeT__c__api_8h" local="yes">falcon_core/generic/ListListSizeT_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="MeasuredArray__c__api_8h" local="yes">falcon_core/math/arrays/MeasuredArray_c_api.h</includes>
+    <includedby refid="ListLabelledMeasuredArray1D__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h</includedby>
+    <includedby refid="AxesLabelledMeasuredArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/AxesLabelledMeasuredArray1D_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</label>
+        <link refid="AcquisitionContext__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/generic/ListFArrayDouble_c_api.h</label>
+        <link refid="ListFArrayDouble__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledMeasuredArray1D__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/math/arrays/MeasuredArray_c_api.h</label>
+        <link refid="MeasuredArray__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="ListLabelledMeasuredArray1D__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/math/AxesLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="AxesLabelledMeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledMeasuredArray1D__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="LabelledMeasuredArray1D__c__api_8h_1a8015a6c45191db1d47f4584678ebd89f" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* LabelledMeasuredArray1DHandle</definition>
+        <argsstring></argsstring>
+        <name>LabelledMeasuredArray1DHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="14" column="14" bodyfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ac8ecdda5dc98036ad8f400845a1fdf8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_copy</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_copy</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="17" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="17" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1aeff300b58032f2984918f04e9dd9c18a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_destroy</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_destroy</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="20" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a372f85102244fb44a0c470ecc53d944f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LabelledMeasuredArray1D_equal</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_equal</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="22" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="22" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ad24474bd780af6954eaccd6152790fc0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LabelledMeasuredArray1D_not_equal</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_not_equal</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="25" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="25" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a2ba805cab9a02043ba5e35c92025653b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle LabelledMeasuredArray1D_to_json_string</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_to_json_string</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="28" column="14" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="28" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a28be970b75b6fdd6e497526ee9fd9fd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>LabelledMeasuredArray1D_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="31" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="31" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1af6126185e42f1d1a8b29a2676b857433" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_from_farray</definition>
+        <argsstring>(FArrayDoubleHandle farray, AcquisitionContextHandle label)</argsstring>
+        <name>LabelledMeasuredArray1D_from_farray</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>farray</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>label</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="34" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="34" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a6100d2048e4b84f6fca06c7ef56fd11f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_from_measured_array</definition>
+        <argsstring>(MeasuredArrayHandle measuredarray, AcquisitionContextHandle label)</argsstring>
+        <name>LabelledMeasuredArray1D_from_measured_array</name>
+        <param>
+          <type>MeasuredArrayHandle</type>
+          <declname>measuredarray</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>label</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="37" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="37" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1acfe24c8a3506d35c23edc165cb77a71a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LabelledMeasuredArray1D_is_1D</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_is_1D</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1abfac72dfb3fce7a13e0b64b75fbd48bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle LabelledMeasuredArray1D_as_1D</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_as_1D</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="42" column="20" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="42" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a8266edf3aed87beaea3d6dad87b0ee3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_get_start</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_get_start</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="45" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="45" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a9bf7987ee7e5be9c5c2c71dc12d37e54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_get_end</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_get_end</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="47" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="47" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a75bb33a9bdece347d62338c8de7a5610" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LabelledMeasuredArray1D_is_decreasing</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_is_decreasing</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="49" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="49" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1adba02d9175a8bce5b0c5219e4c89b074" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LabelledMeasuredArray1D_is_increasing</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_is_increasing</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="52" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="52" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ad4fb6809090dfb354b10cf58a46f8098" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_get_distance</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_get_distance</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="55" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="55" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a215e561d4a9cc8a7794809d2f2c2f4b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_get_mean</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_get_mean</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="58" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="58" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ad688961adf8e8a3deb97a231f95ef31b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_get_std</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_get_std</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="60" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="60" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ab383e14f836da3391c8331efac84b5d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_reverse</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_reverse</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="62" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="62" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1aca551719a50003e3abf61a6094f213f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t LabelledMeasuredArray1D_get_closest_index</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double value)</argsstring>
+        <name>LabelledMeasuredArray1D_get_closest_index</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="64" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="64" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a3f2136c9702357d5713c6398fa810d99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListFArrayDoubleHandle</type>
+        <definition>ListFArrayDoubleHandle LabelledMeasuredArray1D_even_divisions</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, size_t divisions)</argsstring>
+        <name>LabelledMeasuredArray1D_even_divisions</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>divisions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="67" column="24" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="67" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a5c366297486f69f8ba30d20eecbc007e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AcquisitionContextHandle</type>
+        <definition>AcquisitionContextHandle LabelledMeasuredArray1D_label</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_label</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="70" column="26" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="70" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a6a1f36f2075b0b236c1a4e92d1ca6c2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle LabelledMeasuredArray1D_connection</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_connection</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="73" column="18" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="73" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a731a921fd89c2df4492340cd4e5b5629" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle LabelledMeasuredArray1D_instrument_type</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_instrument_type</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="76" column="14" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="76" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1aa2783f702b954346f78edc90b303842d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SymbolUnitHandle</type>
+        <definition>SymbolUnitHandle LabelledMeasuredArray1D_units</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_units</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="79" column="18" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="79" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a5b375739becba54ab0064ba04883110b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t LabelledMeasuredArray1D_size</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_size</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="82" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="82" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a7ec4c76d0cd441abbf65d74cdc75626b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t LabelledMeasuredArray1D_dimension</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_dimension</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="84" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="84" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a0d05b832302c653228790ac4cf3b9bff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t LabelledMeasuredArray1D_shape</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, size_t *out_buffer, size_t ndim)</argsstring>
+        <name>LabelledMeasuredArray1D_shape</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>ndim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="86" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="86" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1aedf708b69465564694ff8da0404a16e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t LabelledMeasuredArray1D_data</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double *out_buffer, size_t numdata)</argsstring>
+        <name>LabelledMeasuredArray1D_data</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>numdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="90" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="90" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1af7730fd24fa2a8382615a8b90cde6534" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_plus_equals_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_plus_equals_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="94" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="94" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a63ee069a02475848d1e434c8e5d51b6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_plus_equals_double</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_plus_equals_double</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="97" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="97" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a49d0e2c802b754edd2507f6fbbd7700a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_plus_equals_int</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, int other)</argsstring>
+        <name>LabelledMeasuredArray1D_plus_equals_int</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="100" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="100" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a7818b3c29144076691bb9b322296f411" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_plus_measured_array</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_plus_measured_array</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="103" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="103" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a9e90fcb5a0a6790b6cfb7b1d15ccf6c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_plus_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_plus_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="106" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="106" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a2ea2933b2b6a4148ae187ed6d5a48edc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_plus_double</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_plus_double</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="109" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="109" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1aedc7c7257952a5ccc76753a4b62c7d8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_plus_int</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, int other)</argsstring>
+        <name>LabelledMeasuredArray1D_plus_int</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="112" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="112" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ab9740f950babb09bf1b6452629961aa1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_minus_equals_measured_array</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_minus_equals_measured_array</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="115" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="115" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a59a8014ef6edaa75106a2e61f619dafc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_minus_equals_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_minus_equals_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="118" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="118" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1abf698ffa61d3aa01d3ae65ca05dd5692" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_minus_equals_double</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_minus_equals_double</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="121" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="121" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a93e256f659443db016ab8802c7cbbe68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_minus_equals_int</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, int other)</argsstring>
+        <name>LabelledMeasuredArray1D_minus_equals_int</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="124" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="124" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1aa33c87e16a8bdd9a397a2b8f60d98d1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_minus_measured_array</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, MeasuredArrayHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_minus_measured_array</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MeasuredArrayHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="127" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="127" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a2055345cd39fe89a2c4954181ae81644" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_minus_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_minus_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="130" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="130" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a8ced0982efb4082ba745abcd0c1ad187" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_minus_double</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_minus_double</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="133" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="133" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a0182a7e5339c84ebde8e9f4c1b332a9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_minus_int</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, int other)</argsstring>
+        <name>LabelledMeasuredArray1D_minus_int</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="136" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="136" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a0b5eb4f60c12ee5994851d46f05958be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_negation</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_negation</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="139" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="139" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a28f45581433822da1accdd6f04659d2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_equals_measured_array</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_times_equals_measured_array</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="143" column="1" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="143" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1aea534b59238f1164020dc3386d7d80e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_equals_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_times_equals_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="146" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="146" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a4715f760592b82101c8f0547f6915289" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_times_equals_double</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_times_equals_double</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="149" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="149" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a02ffa09dc75d06ba09c3e635ea938e90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_times_equals_int</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, int other)</argsstring>
+        <name>LabelledMeasuredArray1D_times_equals_int</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="152" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="152" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1af0204d21cb72c3bdaf819e57d005b82a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_measured_array</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_times_measured_array</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="155" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="155" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a1b3988c4f3178e9abc5018fb7e593710" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_times_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="158" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="158" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ad62e2aaf4f2fa68330d84dac1b408769" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_double</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_times_double</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="161" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="161" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a2fce9a6e9cb2f4434e908e2efac21f9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_times_int</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, int other)</argsstring>
+        <name>LabelledMeasuredArray1D_times_int</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="164" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="164" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a4863e5efb7749957671c2482a630b477" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_divides_equals_measured_array</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_divides_equals_measured_array</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="168" column="1" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="168" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ac56e88e997f197a7dd98e639d692f9c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_divides_equals_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_divides_equals_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="171" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="171" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ae36cdfb614439744f081a897e0e4e656" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_divides_equals_double</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_divides_equals_double</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="174" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="174" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a3aaba3060028a06586c09bd33e163c47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_divides_equals_int</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, int other)</argsstring>
+        <name>LabelledMeasuredArray1D_divides_equals_int</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="177" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="177" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1acf9c47a04ef51c8d52f6f0f8ad6b485b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_divides_measured_array</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_divides_measured_array</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="180" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="180" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a5ecf2f2fb7fe4b02ee7e79f352a960ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_divides_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_divides_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="183" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="183" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1abf17e394b3ccf7061f9c8bafb90dffd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_divides_double</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_divides_double</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="186" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="186" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a5f64c7a50056e5ac0a6277c315edb5fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_divides_int</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, int other)</argsstring>
+        <name>LabelledMeasuredArray1D_divides_int</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="189" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="189" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a91137aa531ecb89a72e9f28fcd2d3009" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_pow</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_pow</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="192" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="192" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a77ded25b368916d0f6d5a99d28bda7f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_abs</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_abs</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="195" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="195" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a202a0e009ec6d314d9ae81bc50dd3892" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_min</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_min</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the minimum value of the array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="203" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="203" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1afb09f0c821eb3a757946f5477a030615" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_min_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_min_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="205" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="205" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ac0af6bd9c6075c851a09d49b69312a13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_min_measured_array</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_min_measured_array</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="208" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="208" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ac3ec9684e5767418f265c9d2bb59e6b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_max</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_max</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the maximum value of the array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="216" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="216" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a373ebec94a407e38c16eee627334fddf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max_farray</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_max_farray</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="218" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="218" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ae5e77ef6ee5b8c3167fd72195df8f0af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_max_measured_array</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_max_measured_array</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="221" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="221" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a6f07ec1ffb2b4637acda60927d583b11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LabelledMeasuredArray1D_greater_than</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double value)</argsstring>
+        <name>LabelledMeasuredArray1D_greater_than</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="224" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="224" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a9abb408aa7fdb290fa74ea43f7382f82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LabelledMeasuredArray1D_less_than</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double value)</argsstring>
+        <name>LabelledMeasuredArray1D_less_than</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="227" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="227" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1acb743b528cb78697ba80e352d8e371f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LabelledMeasuredArray1D_remove_offset</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double offset)</argsstring>
+        <name>LabelledMeasuredArray1D_remove_offset</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="230" column="6" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="230" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1ad426748093ab9d7c757906522b51a157" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_sum</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_sum</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="233" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="233" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a3aa8c08e3717e655d7ce891310a227a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_reshape</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, const size_t *shape, size_t ndims)</argsstring>
+        <name>LabelledMeasuredArray1D_reshape</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>const size_t *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>ndims</declname>
+        </param>
+        <briefdescription>
+<para>Return a new Array with the given shape. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new shape. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A reshaped LabelledMeasuredArray1D. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="242" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="242" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a1efcc2e961dd5a70e036f41e9515a3c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListListSizeTHandle</type>
+        <definition>ListListSizeTHandle LabelledMeasuredArray1D_where</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double value)</argsstring>
+        <name>LabelledMeasuredArray1D_where</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="245" column="21" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="245" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a7a83deb7bcec1ba8d28bf13a9ceeddb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_flip</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, size_t axis)</argsstring>
+        <name>LabelledMeasuredArray1D_flip</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Flip the data along the given axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axis to flip. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A flipped LabelledMeasuredArray1D. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="255" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="255" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a27d141515934c880c7d76ca177a653fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t LabelledMeasuredArray1D_full_gradient</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>LabelledMeasuredArray1D_full_gradient</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="258" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="258" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a7aae4114f8205e39624c814c77e75a08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledMeasuredArray1DHandle</type>
+        <definition>LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_gradient</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, size_t axis)</argsstring>
+        <name>LabelledMeasuredArray1D_gradient</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Return the gradient of the data along a given axis. Computes the gradient along the specified axis using finite differences: </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>For interior points, uses central difference: (f(x+1) - f(x-1)) / 2</para>
+</listitem><listitem><para>For boundary points, uses forward (first element) or backward (last element) difference. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axis to compute the gradient. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The gradient FArray.</para>
+</simplesect>
+Return the gradient of the data along a given axis. Computes the gradient along the specified axis using finite differences:</para>
+</listitem><listitem><para>For interior points, uses central difference: (f(x+1) - f(x-1)) / 2</para>
+</listitem><listitem><para>For boundary points, uses forward (first element) or backward (last element) difference. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axis to compute the gradient. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The gradient FArray. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="285" column="31" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="285" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a22ee742cfc5e2e046f1fc295c39dd066" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_get_sum_of_squares</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle)</argsstring>
+        <name>LabelledMeasuredArray1D_get_sum_of_squares</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="288" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="288" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a531df6695ac05aa900b3bbbc28128fcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_get_summed_diff_int_of_squares</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, int other)</argsstring>
+        <name>LabelledMeasuredArray1D_get_summed_diff_int_of_squares</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="291" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="291" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1af017c9e9367b28fcc4d79ce6379d870f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_get_summed_diff_double_of_squares</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, double other)</argsstring>
+        <name>LabelledMeasuredArray1D_get_summed_diff_double_of_squares</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="294" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="294" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="LabelledMeasuredArray1D__c__api_8h_1a201a7e3ecb70be0f3b2b23ced6b86f12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LabelledMeasuredArray1D_get_summed_diff_array_of_squares</definition>
+        <argsstring>(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)</argsstring>
+        <name>LabelledMeasuredArray1D_get_summed_diff_array_of_squares</name>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>LabelledMeasuredArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" line="297" column="8" declfile="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h" declline="297" declcolumn="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/FArrayDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListFArrayDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListListSizeT_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/arrays/MeasuredArray_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>LabelledMeasuredArray1DHandle;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_copy(</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_destroy(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_equal(LabelledMeasuredArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_not_equal(LabelledMeasuredArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>LabelledMeasuredArray1D_to_json_string(</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_from_json_string(</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_from_farray(</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>FArrayDoubleHandle<sp/>farray,<sp/>AcquisitionContextHandle<sp/>label);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_from_measured_array(</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>MeasuredArrayHandle<sp/>measuredarray,<sp/>AcquisitionContextHandle<sp/>label);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_is_1D(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">FArrayDoubleHandle<sp/>LabelledMeasuredArray1D_as_1D(</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_start(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_end(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_is_decreasing(</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_is_increasing(</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_distance(</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_mean(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_std(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_reverse(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_closest_index(</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">ListFArrayDoubleHandle<sp/>LabelledMeasuredArray1D_even_divisions(</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>divisions);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">AcquisitionContextHandle<sp/>LabelledMeasuredArray1D_label(</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal">ConnectionHandle<sp/>LabelledMeasuredArray1D_connection(</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>LabelledMeasuredArray1D_instrument_type(</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">SymbolUnitHandle<sp/>LabelledMeasuredArray1D_units(</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_size(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_dimension(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_shape(LabelledMeasuredArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out_buffer,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ndim);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_data(LabelledMeasuredArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out_buffer,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numdata);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_plus_equals_farray(</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_plus_equals_double(</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_plus_equals_int(</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_plus_measured_array(</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_plus_farray(</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_plus_double(</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_plus_int(</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_minus_equals_measured_array(</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_minus_equals_farray(</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_minus_equals_double(</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_minus_equals_int(</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_minus_measured_array(</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>MeasuredArrayHandle<sp/>other);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_minus_farray(</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_minus_double(</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_minus_int(</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_negation(</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal">LabelledMeasuredArray1DHandle</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">LabelledMeasuredArray1D_times_equals_measured_array(</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_times_equals_farray(</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_times_equals_double(</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_times_equals_int(</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_times_measured_array(</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_times_farray(</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_times_double(</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_times_int(</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal">LabelledMeasuredArray1DHandle</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">LabelledMeasuredArray1D_divides_equals_measured_array(</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_divides_equals_farray(</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_divides_equals_double(</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_divides_equals_int(</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_divides_measured_array(</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_divides_farray(</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_divides_double(</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_divides_int(</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_pow(</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_abs(</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>LabelledMeasuredArray1D_min<sp/>|</highlight></codeline>
+<codeline lineno="199"><highlight class="comment"><sp/>*<sp/>falcon_core::math::arrays::LabelledMeasuredArray1D::min<sp/>*/</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_min(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_min_farray(</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_min_measured_array(</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>LabelledMeasuredArray1D_max<sp/>|</highlight></codeline>
+<codeline lineno="212"><highlight class="comment"><sp/>*<sp/>falcon_core::math::arrays::LabelledMeasuredArray1D::max<sp/>*/</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_max(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_max_farray(</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_max_measured_array(</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_greater_than(LabelledMeasuredArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_less_than(LabelledMeasuredArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value);</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_remove_offset(LabelledMeasuredArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>offset);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_sum(LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>LabelledMeasuredArray1D_reshape<sp/>|</highlight></codeline>
+<codeline lineno="236"><highlight class="comment"><sp/>*<sp/>falcon_core::math::arrays::LabelledMeasuredArray1D::reshape<sp/>*/</highlight></codeline>
+<codeline lineno="242"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_reshape(</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>shape,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ndims);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal">ListListSizeTHandle<sp/>LabelledMeasuredArray1D_where(</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>LabelledMeasuredArray1D_flip<sp/>|</highlight></codeline>
+<codeline lineno="249"><highlight class="comment"><sp/>*<sp/>falcon_core::math::arrays::LabelledMeasuredArray1D::flip<sp/>*/</highlight></codeline>
+<codeline lineno="255"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_flip(</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_full_gradient(</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/><sp/>handle,</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle*<sp/>out_buffer,</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>LabelledMeasuredArray1D_gradient<sp/>|</highlight></codeline>
+<codeline lineno="264"><highlight class="comment"><sp/>*<sp/>falcon_core::math::arrays::LabelledMeasuredArray1D::gradient<sp/>*/</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>LabelledMeasuredArray1D_gradient<sp/>|</highlight></codeline>
+<codeline lineno="275"><highlight class="comment"><sp/>*<sp/>falcon_core::math::arrays::LabelledMeasuredArray1D::gradient<sp/>*/</highlight></codeline>
+<codeline lineno="285"><highlight class="normal">LabelledMeasuredArray1DHandle<sp/>LabelledMeasuredArray1D_gradient(</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis);</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_sum_of_squares(</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_summed_diff_int_of_squares(</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_summed_diff_double_of_squares(</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LabelledMeasuredArray1D_get_summed_diff_array_of_squares(</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>LabelledMeasuredArray1DHandle<sp/>handle,<sp/>LabelledMeasuredArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h"/>
+  </compounddef>
+</doxygen>

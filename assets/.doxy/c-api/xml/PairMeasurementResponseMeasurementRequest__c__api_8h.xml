@@ -1,0 +1,1013 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="PairMeasurementResponseMeasurementRequest__c__api_8h" kind="file" language="C++">
+    <compoundname>PairMeasurementResponseMeasurementRequest_c_api.h</compoundname>
+    <includes refid="MeasurementResponse__c__api_8h" local="yes">falcon_core/communications/messages/MeasurementResponse_c_api.h</includes>
+    <includes refid="MeasurementRequest__c__api_8h" local="yes">falcon_core/communications/messages/MeasurementRequest_c_api.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="HDF5Data__c__api_8h" local="yes">c-api/include/falcon_core/communications/HDF5Data_c_api.h</includedby>
+    <incdepgraph>
+      <node id="9">
+        <label>falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</label>
+        <link refid="AcquisitionContext__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/communications/messages/MeasurementResponse_c_api.h</label>
+        <link refid="MeasurementResponse__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/generic/ListAcquisitionContext_c_api.h</label>
+        <link refid="ListAcquisitionContext__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>falcon_core/generic/ListBool_c_api.h</label>
+        <link refid="ListBool__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>falcon_core/generic/ListControlArray_c_api.h</label>
+        <link refid="ListControlArray__c__api_8h_source"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>falcon_core/generic/ListCoupledLabelledDomain_c_api.h</label>
+        <link refid="ListCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>falcon_core/generic/ListDiscretizer_c_api.h</label>
+        <link refid="ListDiscretizer__c__api_8h_source"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>falcon_core/generic/ListInstrumentPort_c_api.h</label>
+        <link refid="ListInstrumentPort__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>falcon_core/generic/ListInt_c_api.h</label>
+        <link refid="ListInt__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>falcon_core/generic/ListLabelledControlArray_c_api.h</label>
+        <link refid="ListLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>falcon_core/generic/ListLabelledDomain_c_api.h</label>
+        <link refid="ListLabelledDomain__c__api_8h_source"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/ListLabelledMeasuredArray_c_api.h</label>
+        <link refid="ListLabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>falcon_core/generic/ListMapStringBool_c_api.h</label>
+        <link refid="ListMapStringBool__c__api_8h_source"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="ListPairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>falcon_core/generic/ListPairStringBool_c_api.h</label>
+        <link refid="ListPairStringBool__c__api_8h_source"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>falcon_core/generic/ListPairStringDouble_c_api.h</label>
+        <link refid="ListPairStringDouble__c__api_8h_source"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>falcon_core/generic/ListPortTransform_c_api.h</label>
+        <link refid="ListPortTransform__c__api_8h_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>falcon_core/generic/MapInstrumentPortPortTransform_c_api.h</label>
+        <link refid="MapInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>falcon_core/generic/MapStringBool_c_api.h</label>
+        <link refid="MapStringBool__c__api_8h_source"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>falcon_core/generic/MapStringDouble_c_api.h</label>
+        <link refid="MapStringDouble__c__api_8h_source"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>falcon_core/generic/PairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="PairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>falcon_core/generic/PairStringBool_c_api.h</label>
+        <link refid="PairStringBool__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>falcon_core/generic/PairStringDouble_c_api.h</label>
+        <link refid="PairStringDouble__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>falcon_core/instrument_interfaces/names/Ports_c_api.h</label>
+        <link refid="Ports__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
+        <link refid="PortTransform__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>falcon_core/math/AnalyticFunction_c_api.h</label>
+        <link refid="AnalyticFunction__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>falcon_core/math/AxesControlArray_c_api.h</label>
+        <link refid="AxesControlArray__c__api_8h_source"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>falcon_core/math/AxesCoupledLabelledDomain_c_api.h</label>
+        <link refid="AxesCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>falcon_core/math/AxesDiscretizer_c_api.h</label>
+        <link refid="AxesDiscretizer__c__api_8h_source"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>falcon_core/math/AxesDouble_c_api.h</label>
+        <link refid="AxesDouble__c__api_8h_source"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>falcon_core/math/AxesInstrumentPort_c_api.h</label>
+        <link refid="AxesInstrumentPort__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>falcon_core/math/AxesInt_c_api.h</label>
+        <link refid="AxesInt__c__api_8h_source"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>falcon_core/math/AxesLabelledControlArray_c_api.h</label>
+        <link refid="AxesLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>falcon_core/math/AxesMapStringBool_c_api.h</label>
+        <link refid="AxesMapStringBool__c__api_8h_source"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>falcon_core/math/arrays/ControlArray_c_api.h</label>
+        <link refid="ControlArray__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>falcon_core/math/arrays/LabelledControlArray_c_api.h</label>
+        <link refid="LabelledControlArray__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/math/arrays/LabelledMeasuredArray_c_api.h</label>
+        <link refid="LabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/math/arrays/MeasuredArray_c_api.h</label>
+        <link refid="MeasuredArray__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>falcon_core/math/discrete_spaces/Discretizer_c_api.h</label>
+        <link refid="Discretizer__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>falcon_core/math/domains/CoupledLabelledDomain_c_api.h</label>
+        <link refid="CoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>falcon_core/math/domains/Domain_c_api.h</label>
+        <link refid="Domain__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>falcon_core/math/domains/LabelledDomain_c_api.h</label>
+        <link refid="LabelledDomain__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1a20a0d0fa33026dae5f3961fbbfb8018a" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* PairMeasurementResponseMeasurementRequestHandle</definition>
+        <argsstring></argsstring>
+        <name>PairMeasurementResponseMeasurementRequestHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1a8df38b4f5230a43ab82f9180b1345340" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairMeasurementResponseMeasurementRequestHandle</type>
+        <definition>PairMeasurementResponseMeasurementRequestHandle PairMeasurementResponseMeasurementRequest_create</definition>
+        <argsstring>(MeasurementResponseHandle first, MeasurementRequestHandle second)</argsstring>
+        <name>PairMeasurementResponseMeasurementRequest_create</name>
+        <param>
+          <type>MeasurementResponseHandle</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>MeasurementRequestHandle</type>
+          <declname>second</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="15" column="49" declfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" declline="15" declcolumn="49"/>
+      </memberdef>
+      <memberdef kind="function" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1a26cee71e6205742168039fa86febdb78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairMeasurementResponseMeasurementRequestHandle</type>
+        <definition>PairMeasurementResponseMeasurementRequestHandle PairMeasurementResponseMeasurementRequest_copy</definition>
+        <argsstring>(PairMeasurementResponseMeasurementRequestHandle handle)</argsstring>
+        <name>PairMeasurementResponseMeasurementRequest_copy</name>
+        <param>
+          <type>PairMeasurementResponseMeasurementRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="17" column="49" declfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" declline="17" declcolumn="49"/>
+      </memberdef>
+      <memberdef kind="function" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1adf9bdcd44ec21d7aaa614f20a7029f20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PairMeasurementResponseMeasurementRequest_destroy</definition>
+        <argsstring>(PairMeasurementResponseMeasurementRequestHandle handle)</argsstring>
+        <name>PairMeasurementResponseMeasurementRequest_destroy</name>
+        <param>
+          <type>PairMeasurementResponseMeasurementRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1a14c7ca8f413a53279131d155646c5e1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MeasurementResponseHandle</type>
+        <definition>MeasurementResponseHandle PairMeasurementResponseMeasurementRequest_first</definition>
+        <argsstring>(PairMeasurementResponseMeasurementRequestHandle handle)</argsstring>
+        <name>PairMeasurementResponseMeasurementRequest_first</name>
+        <param>
+          <type>PairMeasurementResponseMeasurementRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="21" column="27" declfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" declline="21" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1adab6eda7e336dbcd58e594daaebe658f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MeasurementRequestHandle</type>
+        <definition>MeasurementRequestHandle PairMeasurementResponseMeasurementRequest_second</definition>
+        <argsstring>(PairMeasurementResponseMeasurementRequestHandle handle)</argsstring>
+        <name>PairMeasurementResponseMeasurementRequest_second</name>
+        <param>
+          <type>PairMeasurementResponseMeasurementRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="23" column="26" declfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" declline="23" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1a5c3332e8b3bcbf950d2ab895c6b05ad2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PairMeasurementResponseMeasurementRequest_equal</definition>
+        <argsstring>(PairMeasurementResponseMeasurementRequestHandle handle, PairMeasurementResponseMeasurementRequestHandle other)</argsstring>
+        <name>PairMeasurementResponseMeasurementRequest_equal</name>
+        <param>
+          <type>PairMeasurementResponseMeasurementRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairMeasurementResponseMeasurementRequestHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="25" column="6" declfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" declline="25" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1ace139476b9c57fbc42990d69fc18362d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PairMeasurementResponseMeasurementRequest_not_equal</definition>
+        <argsstring>(PairMeasurementResponseMeasurementRequestHandle handle, PairMeasurementResponseMeasurementRequestHandle other)</argsstring>
+        <name>PairMeasurementResponseMeasurementRequest_not_equal</name>
+        <param>
+          <type>PairMeasurementResponseMeasurementRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairMeasurementResponseMeasurementRequestHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="27" column="6" declfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" declline="27" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1af9f1f35c7a6daecd9403ceb6b3f0fa53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle PairMeasurementResponseMeasurementRequest_to_json_string</definition>
+        <argsstring>(PairMeasurementResponseMeasurementRequestHandle handle)</argsstring>
+        <name>PairMeasurementResponseMeasurementRequest_to_json_string</name>
+        <param>
+          <type>PairMeasurementResponseMeasurementRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="29" column="19" declfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" declline="29" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="PairMeasurementResponseMeasurementRequest__c__api_8h_1ab2fbc6f30dc1fc0f47b8f2a6ef533cf1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairMeasurementResponseMeasurementRequestHandle</type>
+        <definition>PairMeasurementResponseMeasurementRequestHandle PairMeasurementResponseMeasurementRequest_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>PairMeasurementResponseMeasurementRequest_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" line="31" column="49" declfile="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h" declline="31" declcolumn="49"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/communications/messages/MeasurementResponse_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/communications/messages/MeasurementRequest_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>PairMeasurementResponseMeasurementRequestHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">PairMeasurementResponseMeasurementRequestHandle<sp/>PairMeasurementResponseMeasurementRequest_create(MeasurementResponseHandle<sp/>first,<sp/>MeasurementRequestHandle<sp/>second);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">PairMeasurementResponseMeasurementRequestHandle<sp/>PairMeasurementResponseMeasurementRequest_copy(PairMeasurementResponseMeasurementRequestHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>PairMeasurementResponseMeasurementRequest_destroy(PairMeasurementResponseMeasurementRequestHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">MeasurementResponseHandle<sp/>PairMeasurementResponseMeasurementRequest_first(PairMeasurementResponseMeasurementRequestHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">MeasurementRequestHandle<sp/>PairMeasurementResponseMeasurementRequest_second(PairMeasurementResponseMeasurementRequestHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>PairMeasurementResponseMeasurementRequest_equal(PairMeasurementResponseMeasurementRequestHandle<sp/>handle,<sp/>PairMeasurementResponseMeasurementRequestHandle<sp/>other);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>PairMeasurementResponseMeasurementRequest_not_equal(PairMeasurementResponseMeasurementRequestHandle<sp/>handle,<sp/>PairMeasurementResponseMeasurementRequestHandle<sp/>other);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>PairMeasurementResponseMeasurementRequest_to_json_string(PairMeasurementResponseMeasurementRequestHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">PairMeasurementResponseMeasurementRequestHandle<sp/>PairMeasurementResponseMeasurementRequest_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"/>
+  </compounddef>
+</doxygen>

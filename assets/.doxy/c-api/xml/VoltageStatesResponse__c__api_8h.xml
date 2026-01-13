@@ -1,0 +1,454 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="VoltageStatesResponse__c__api_8h" kind="file" language="C++">
+    <compoundname>VoltageStatesResponse_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="DeviceVoltageStates__c__api_8h" local="yes">falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h</label>
+        <link refid="VoltageStatesResponse__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h</label>
+        <link refid="DeviceVoltageState__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</label>
+        <link refid="DeviceVoltageStates__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/ListDeviceVoltageState_c_api.h</label>
+        <link refid="ListDeviceVoltageState__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/generic/ListPairConnectionDouble_c_api.h</label>
+        <link refid="ListPairConnectionDouble__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>falcon_core/generic/ListPairConnectionQuantity_c_api.h</label>
+        <link refid="ListPairConnectionQuantity__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/generic/ListQuantity_c_api.h</label>
+        <link refid="ListQuantity__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/MapConnectionDouble_c_api.h</label>
+        <link refid="MapConnectionDouble__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/generic/MapConnectionQuantity_c_api.h</label>
+        <link refid="MapConnectionQuantity__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/generic/PairConnectionDouble_c_api.h</label>
+        <link refid="PairConnectionDouble__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/generic/PairConnectionQuantity_c_api.h</label>
+        <link refid="PairConnectionQuantity__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/math/Point_c_api.h</label>
+        <link refid="Point__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/math/Quantity_c_api.h</label>
+        <link refid="Quantity__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="7">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="VoltageStatesResponse__c__api_8h_1aef64baa185b7e7a9485163fb83a93d92" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* VoltageStatesResponseHandle</definition>
+        <argsstring></argsstring>
+        <name>VoltageStatesResponseHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="VoltageStatesResponse__c__api_8h_1a4c37fd86aed7b0185dca22680a87ac20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VoltageStatesResponseHandle</type>
+        <definition>VoltageStatesResponseHandle VoltageStatesResponse_copy</definition>
+        <argsstring>(VoltageStatesResponseHandle handle)</argsstring>
+        <name>VoltageStatesResponse_copy</name>
+        <param>
+          <type>VoltageStatesResponseHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="13" column="29" declfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" declline="13" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageStatesResponse__c__api_8h_1ac8ee4ca32bd9a206f11a7c4fea2ff123" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoltageStatesResponse_destroy</definition>
+        <argsstring>(VoltageStatesResponseHandle handle)</argsstring>
+        <name>VoltageStatesResponse_destroy</name>
+        <param>
+          <type>VoltageStatesResponseHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="16" column="6" declfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" declline="16" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageStatesResponse__c__api_8h_1a9e79fbd91ae4a51c921fcae3e06a2553" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool VoltageStatesResponse_equal</definition>
+        <argsstring>(VoltageStatesResponseHandle handle, VoltageStatesResponseHandle other)</argsstring>
+        <name>VoltageStatesResponse_equal</name>
+        <param>
+          <type>VoltageStatesResponseHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>VoltageStatesResponseHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="18" column="6" declfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageStatesResponse__c__api_8h_1aa72f871a85dc229a2a707cd7dc597642" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool VoltageStatesResponse_not_equal</definition>
+        <argsstring>(VoltageStatesResponseHandle handle, VoltageStatesResponseHandle other)</argsstring>
+        <name>VoltageStatesResponse_not_equal</name>
+        <param>
+          <type>VoltageStatesResponseHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>VoltageStatesResponseHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageStatesResponse__c__api_8h_1a27e53a3405ea424bde9172586e8a6100" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle VoltageStatesResponse_to_json_string</definition>
+        <argsstring>(VoltageStatesResponseHandle handle)</argsstring>
+        <name>VoltageStatesResponse_to_json_string</name>
+        <param>
+          <type>VoltageStatesResponseHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="24" column="14" declfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" declline="24" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageStatesResponse__c__api_8h_1ae5c201cd0f741e896a003d685bc06080" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VoltageStatesResponseHandle</type>
+        <definition>VoltageStatesResponseHandle VoltageStatesResponse_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>VoltageStatesResponse_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="27" column="29" declfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" declline="27" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageStatesResponse__c__api_8h_1ac62f27190668202023db8044ca108a75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VoltageStatesResponseHandle</type>
+        <definition>VoltageStatesResponseHandle VoltageStatesResponse_create</definition>
+        <argsstring>(StringHandle message, DeviceVoltageStatesHandle states)</argsstring>
+        <name>VoltageStatesResponse_create</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStatesHandle</type>
+          <declname>states</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="30" column="29" declfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" declline="30" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageStatesResponse__c__api_8h_1a7d48421c96ec698421b055ee1711c690" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle VoltageStatesResponse_message</definition>
+        <argsstring>(VoltageStatesResponseHandle handle)</argsstring>
+        <name>VoltageStatesResponse_message</name>
+        <param>
+          <type>VoltageStatesResponseHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="33" column="14" declfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" declline="33" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageStatesResponse__c__api_8h_1a6cc91acd9473d8fff0f69d6dd574b9ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStatesHandle</type>
+        <definition>DeviceVoltageStatesHandle VoltageStatesResponse_states</definition>
+        <argsstring>(VoltageStatesResponseHandle handle)</argsstring>
+        <name>VoltageStatesResponse_states</name>
+        <param>
+          <type>VoltageStatesResponseHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" line="35" column="27" declfile="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h" declline="35" declcolumn="27"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>VoltageStatesResponseHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">VoltageStatesResponseHandle<sp/>VoltageStatesResponse_copy(</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>VoltageStatesResponseHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoltageStatesResponse_destroy(VoltageStatesResponseHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>VoltageStatesResponse_equal(VoltageStatesResponseHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VoltageStatesResponseHandle<sp/>other);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>VoltageStatesResponse_not_equal(VoltageStatesResponseHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VoltageStatesResponseHandle<sp/>other);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>VoltageStatesResponse_to_json_string(</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>VoltageStatesResponseHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">VoltageStatesResponseHandle<sp/>VoltageStatesResponse_from_json_string(</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">VoltageStatesResponseHandle<sp/>VoltageStatesResponse_create(</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>message,<sp/>DeviceVoltageStatesHandle<sp/>states);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>VoltageStatesResponse_message(VoltageStatesResponseHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">DeviceVoltageStatesHandle<sp/>VoltageStatesResponse_states(</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>VoltageStatesResponseHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h"/>
+  </compounddef>
+</doxygen>

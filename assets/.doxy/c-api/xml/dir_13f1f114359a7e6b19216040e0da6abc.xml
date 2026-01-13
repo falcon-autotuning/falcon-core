@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_13f1f114359a7e6b19216040e0da6abc" kind="dir">
+    <compoundname>c-api/include/falcon_core/autotuner_interfaces/interpretations</compoundname>
+    <innerfile refid="InterpretationContainerDouble__c__api_8h">InterpretationContainerDouble_c_api.h</innerfile>
+    <innerfile refid="InterpretationContainerQuantity__c__api_8h">InterpretationContainerQuantity_c_api.h</innerfile>
+    <innerfile refid="InterpretationContainerString__c__api_8h">InterpretationContainerString_c_api.h</innerfile>
+    <innerfile refid="InterpretationContext__c__api_8h">InterpretationContext_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/"/>
+  </compounddef>
+</doxygen>

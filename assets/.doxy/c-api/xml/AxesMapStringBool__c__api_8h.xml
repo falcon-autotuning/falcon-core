@@ -1,0 +1,572 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="AxesMapStringBool__c__api_8h" kind="file" language="C++">
+    <compoundname>AxesMapStringBool_c_api.h</compoundname>
+    <includes refid="ListMapStringBool__c__api_8h" local="yes">falcon_core/generic/ListMapStringBool_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="Waveform__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</includedby>
+    <includedby refid="DiscreteSpace__c__api_8h" local="yes">c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</includedby>
+    <incdepgraph>
+      <node id="10">
+        <label>falcon_core/generic/ListBool_c_api.h</label>
+        <link refid="ListBool__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/ListMapStringBool_c_api.h</label>
+        <link refid="ListMapStringBool__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/ListPairStringBool_c_api.h</label>
+        <link refid="ListPairStringBool__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/MapStringBool_c_api.h</label>
+        <link refid="MapStringBool__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/PairStringBool_c_api.h</label>
+        <link refid="PairStringBool__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/AxesMapStringBool_c_api.h</label>
+        <link refid="AxesMapStringBool__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>stdbool.h</label>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/AxesMapStringBool_c_api.h</label>
+        <link refid="AxesMapStringBool__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="AxesMapStringBool__c__api_8h_1affbac93cac00200fb130046d76275f97" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* AxesMapStringBoolHandle</definition>
+        <argsstring></argsstring>
+        <name>AxesMapStringBoolHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a7aa584261d2554f07088818b9575313b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesMapStringBoolHandle</type>
+        <definition>AxesMapStringBoolHandle AxesMapStringBool_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>AxesMapStringBool_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="15" column="25" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="15" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1adf2d0fe34531c7265de2ec1c0d44ff77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesMapStringBoolHandle</type>
+        <definition>AxesMapStringBoolHandle AxesMapStringBool_copy</definition>
+        <argsstring>(AxesMapStringBoolHandle handle)</argsstring>
+        <name>AxesMapStringBool_copy</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="17" column="25" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="17" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a37a76a93770e7ec64e87e8935ad8ac25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesMapStringBoolHandle</type>
+        <definition>AxesMapStringBoolHandle AxesMapStringBool_create</definition>
+        <argsstring>(ListMapStringBoolHandle data)</argsstring>
+        <name>AxesMapStringBool_create</name>
+        <param>
+          <type>ListMapStringBoolHandle</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="19" column="25" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="19" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1add17295075fb0c4ce6c2838e72cd5ab2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesMapStringBool_destroy</definition>
+        <argsstring>(AxesMapStringBoolHandle handle)</argsstring>
+        <name>AxesMapStringBool_destroy</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a2eda904c0b4a1264e22686d226db2c0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesMapStringBool_push_back</definition>
+        <argsstring>(AxesMapStringBoolHandle handle, MapStringBoolHandle value)</argsstring>
+        <name>AxesMapStringBool_push_back</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1adbb4d6635be6a00d44a517abc6b3d897" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t AxesMapStringBool_size</definition>
+        <argsstring>(AxesMapStringBoolHandle handle)</argsstring>
+        <name>AxesMapStringBool_size</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="25" column="8" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="25" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a0407e9af4e6f5f050b35dc7ae2532545" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesMapStringBool_empty</definition>
+        <argsstring>(AxesMapStringBoolHandle handle)</argsstring>
+        <name>AxesMapStringBool_empty</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="27" column="6" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="27" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a1fa6a5d6926fc5cae0aea2cca133c8ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesMapStringBool_erase_at</definition>
+        <argsstring>(AxesMapStringBoolHandle handle, size_t idx)</argsstring>
+        <name>AxesMapStringBool_erase_at</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="29" column="6" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="29" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a91b368108a533b118d8bdc091f9c832e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesMapStringBool_clear</definition>
+        <argsstring>(AxesMapStringBoolHandle handle)</argsstring>
+        <name>AxesMapStringBool_clear</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="31" column="6" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="31" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1ab7cadae9a539eab00a68a04fcd3fec0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapStringBoolHandle</type>
+        <definition>MapStringBoolHandle AxesMapStringBool_at</definition>
+        <argsstring>(AxesMapStringBoolHandle handle, size_t idx)</argsstring>
+        <name>AxesMapStringBool_at</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="33" column="21" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="33" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1af119ed98f4869ca5e302faede74ddf88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t AxesMapStringBool_items</definition>
+        <argsstring>(AxesMapStringBoolHandle handle, MapStringBoolHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>AxesMapStringBool_items</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapStringBoolHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="35" column="8" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="35" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1aa9afc274f9c2b8db4703f136ff8ab2e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesMapStringBool_contains</definition>
+        <argsstring>(AxesMapStringBoolHandle handle, MapStringBoolHandle value)</argsstring>
+        <name>AxesMapStringBool_contains</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="37" column="6" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="37" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1af337be68a6905eefd5d40798d7a3fdd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t AxesMapStringBool_index</definition>
+        <argsstring>(AxesMapStringBoolHandle handle, MapStringBoolHandle value)</argsstring>
+        <name>AxesMapStringBool_index</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="39" column="8" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="39" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1ace82d407b49dea2e953fbf33c559071a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesMapStringBoolHandle</type>
+        <definition>AxesMapStringBoolHandle AxesMapStringBool_intersection</definition>
+        <argsstring>(AxesMapStringBoolHandle handle, AxesMapStringBoolHandle other)</argsstring>
+        <name>AxesMapStringBool_intersection</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="41" column="25" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="41" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a06fbf7ce81398393641bff9fd720891f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesMapStringBool_equal</definition>
+        <argsstring>(AxesMapStringBoolHandle handle, AxesMapStringBoolHandle other)</argsstring>
+        <name>AxesMapStringBool_equal</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="43" column="6" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="43" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a47d77b4198fb6769a22925470527c40e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesMapStringBool_not_equal</definition>
+        <argsstring>(AxesMapStringBoolHandle handle, AxesMapStringBoolHandle other)</argsstring>
+        <name>AxesMapStringBool_not_equal</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="45" column="6" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="45" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a61f50204818354fc1e260edcb82e55cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle AxesMapStringBool_to_json_string</definition>
+        <argsstring>(AxesMapStringBoolHandle handle)</argsstring>
+        <name>AxesMapStringBool_to_json_string</name>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="48" column="19" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="48" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesMapStringBool__c__api_8h_1a427cef30b45cc406d8b710e920f20151" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesMapStringBoolHandle</type>
+        <definition>AxesMapStringBoolHandle AxesMapStringBool_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>AxesMapStringBool_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" line="50" column="25" declfile="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h" declline="50" declcolumn="25"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListMapStringBool_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>AxesMapStringBoolHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">AxesMapStringBoolHandle<sp/>AxesMapStringBool_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">AxesMapStringBoolHandle<sp/>AxesMapStringBool_copy(AxesMapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">AxesMapStringBoolHandle<sp/>AxesMapStringBool_create(ListMapStringBoolHandle<sp/>data);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesMapStringBool_destroy(AxesMapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesMapStringBool_push_back(AxesMapStringBoolHandle<sp/>handle,<sp/>MapStringBoolHandle<sp/>value);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>AxesMapStringBool_size(AxesMapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesMapStringBool_empty(AxesMapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesMapStringBool_erase_at(AxesMapStringBoolHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesMapStringBool_clear(AxesMapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">MapStringBoolHandle<sp/>AxesMapStringBool_at(AxesMapStringBoolHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>AxesMapStringBool_items(AxesMapStringBoolHandle<sp/>handle,<sp/>MapStringBoolHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesMapStringBool_contains(AxesMapStringBoolHandle<sp/>handle,<sp/>MapStringBoolHandle<sp/>value);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>AxesMapStringBool_index(AxesMapStringBoolHandle<sp/>handle,<sp/>MapStringBoolHandle<sp/>value);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">AxesMapStringBoolHandle<sp/>AxesMapStringBool_intersection(AxesMapStringBoolHandle<sp/>handle,<sp/>AxesMapStringBoolHandle<sp/>other);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesMapStringBool_equal(AxesMapStringBoolHandle<sp/>handle,<sp/>AxesMapStringBoolHandle<sp/>other);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesMapStringBool_not_equal(AxesMapStringBoolHandle<sp/>handle,<sp/>AxesMapStringBoolHandle<sp/>other);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>AxesMapStringBool_to_json_string(AxesMapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">AxesMapStringBoolHandle<sp/>AxesMapStringBool_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/AxesMapStringBool_c_api.h"/>
+  </compounddef>
+</doxygen>

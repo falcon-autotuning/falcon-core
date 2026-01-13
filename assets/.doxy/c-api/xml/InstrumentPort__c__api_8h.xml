@@ -1,0 +1,1024 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="InstrumentPort__c__api_8h" kind="file" language="C++">
+    <compoundname>InstrumentPort_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="InstrumentTypes__c__api_8h" local="yes">falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</includes>
+    <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
+    <includes refid="SymbolUnit__c__api_8h" local="yes">falcon_core/physics/units/SymbolUnit_c_api.h</includes>
+    <includedby refid="AcquisitionContext__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</includedby>
+    <includedby refid="MeasurementContext__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h</includedby>
+    <includedby refid="ListInstrumentPort__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListInstrumentPort_c_api.h</includedby>
+    <includedby refid="PairInstrumentPortPortTransform__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h</includedby>
+    <includedby refid="Ports__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h</includedby>
+    <includedby refid="PortTransform__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</includedby>
+    <includedby refid="AxesInstrumentPort__c__api_8h" local="yes">c-api/include/falcon_core/math/AxesInstrumentPort_c_api.h</includedby>
+    <includedby refid="DiscreteSpace__c__api_8h" local="yes">c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</includedby>
+    <includedby refid="LabelledDomain__c__api_8h" local="yes">c-api/include/falcon_core/math/domains/LabelledDomain_c_api.h</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</label>
+        <link refid="AcquisitionContext__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>c-api/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h</label>
+        <link refid="MeasurementContext__c__api_8h_source"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</label>
+        <link refid="InterpretationContainerDouble__c__api_8h_source"/>
+      </node>
+      <node id="30">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h</label>
+        <link refid="InterpretationContainerQuantity__c__api_8h_source"/>
+      </node>
+      <node id="31">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h</label>
+        <link refid="InterpretationContainerString__c__api_8h_source"/>
+      </node>
+      <node id="28">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h</label>
+        <link refid="InterpretationContext__c__api_8h_source"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="20">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementResponse_c_api.h</label>
+        <link refid="MeasurementResponse__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h</label>
+        <link refid="ListAcquisitionContext__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>c-api/include/falcon_core/generic/ListCoupledLabelledDomain_c_api.h</label>
+        <link refid="ListCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>c-api/include/falcon_core/generic/ListInstrumentPort_c_api.h</label>
+        <link refid="ListInstrumentPort__c__api_8h_source"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>c-api/include/falcon_core/generic/ListInterpretationContext_c_api.h</label>
+        <link refid="ListInterpretationContext__c__api_8h_source"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/generic/ListLabelledControlArray1D_c_api.h</label>
+        <link refid="ListLabelledControlArray1D__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>c-api/include/falcon_core/generic/ListLabelledControlArray_c_api.h</label>
+        <link refid="ListLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>c-api/include/falcon_core/generic/ListLabelledDomain_c_api.h</label>
+        <link refid="ListLabelledDomain__c__api_8h_source"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="ListLabelledMeasuredArray1D__c__api_8h_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>c-api/include/falcon_core/generic/ListLabelledMeasuredArray_c_api.h</label>
+        <link refid="ListLabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>c-api/include/falcon_core/generic/ListMeasurementContext_c_api.h</label>
+        <link refid="ListMeasurementContext__c__api_8h_source"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="ListPairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h</label>
+        <link refid="ListPairInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h</label>
+        <link refid="ListPairInterpretationContextQuantity__c__api_8h_source"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextString_c_api.h</label>
+        <link refid="ListPairInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>c-api/include/falcon_core/generic/ListPortTransform_c_api.h</label>
+        <link refid="ListPortTransform__c__api_8h_source"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h</label>
+        <link refid="MapInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h</label>
+        <link refid="MapInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.h</label>
+        <link refid="MapInterpretationContextQuantity__c__api_8h_source"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.h</label>
+        <link refid="MapInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="PairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>c-api/include/falcon_core/generic/PairInterpretationContextDouble_c_api.h</label>
+        <link refid="PairInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h</label>
+        <link refid="PairInterpretationContextQuantity__c__api_8h_source"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>c-api/include/falcon_core/generic/PairInterpretationContextString_c_api.h</label>
+        <link refid="PairInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h</label>
+        <link refid="Ports__c__api_8h_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
+        <link refid="PortTransform__c__api_8h_source"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms_c_api.h</label>
+        <link refid="PortTransforms__c__api_8h_source"/>
+      </node>
+      <node id="49">
+        <label>c-api/include/falcon_core/math/AxesCoupledLabelledDomain_c_api.h</label>
+        <link refid="AxesCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>c-api/include/falcon_core/math/AxesInstrumentPort_c_api.h</label>
+        <link refid="AxesInstrumentPort__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/math/AxesLabelledControlArray1D_c_api.h</label>
+        <link refid="AxesLabelledControlArray1D__c__api_8h_source"/>
+      </node>
+      <node id="16">
+        <label>c-api/include/falcon_core/math/AxesLabelledControlArray_c_api.h</label>
+        <link refid="AxesLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>c-api/include/falcon_core/math/AxesLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="AxesLabelledMeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="26">
+        <label>c-api/include/falcon_core/math/AxesLabelledMeasuredArray_c_api.h</label>
+        <link refid="AxesLabelledMeasuredArray__c__api_8h_source"/>
+      </node>
+      <node id="43">
+        <label>c-api/include/falcon_core/math/AxesMeasurementContext_c_api.h</label>
+        <link refid="AxesMeasurementContext__c__api_8h_source"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h</label>
+        <link refid="LabelledArraysLabelledControlArray1D__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h</label>
+        <link refid="LabelledArraysLabelledControlArray__c__api_8h_source"/>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.h</label>
+        <link refid="LabelledControlArray1D__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.h</label>
+        <link refid="LabelledControlArray__c__api_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledMeasuredArray1D__c__api_8h_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h</label>
+        <link refid="LabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.h</label>
+        <link refid="CoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>c-api/include/falcon_core/math/domains/LabelledDomain_c_api.h</label>
+        <link refid="LabelledDomain__c__api_8h_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="InstrumentPort__c__api_8h_1ae481e7763f9670c8477ee7c9072f6fe7" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* InstrumentPortHandle</definition>
+        <argsstring></argsstring>
+        <name>InstrumentPortHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="14" column="14" bodyfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a499c9f68de97f589186615d387a935e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle InstrumentPort_copy</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_copy</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="17" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="17" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a280abf7ce16a2ccfb24e27ad6528ff05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InstrumentPort_destroy</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_destroy</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a0666c3990f052c11a0ec24e8190454d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InstrumentPort_equal</definition>
+        <argsstring>(InstrumentPortHandle handle, InstrumentPortHandle other)</argsstring>
+        <name>InstrumentPort_equal</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1acd8897472a77600815394de96787e162" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InstrumentPort_not_equal</definition>
+        <argsstring>(InstrumentPortHandle handle, InstrumentPortHandle other)</argsstring>
+        <name>InstrumentPort_not_equal</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1ad2c93cb97712a0d2aabb7e867995c710" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle InstrumentPort_to_json_string</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_to_json_string</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="27" column="14" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="27" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a4f20cfe2b4217b338ef4eda3d1ca982d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle InstrumentPort_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>InstrumentPort_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="29" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="29" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1ade5628e11b1c13e6b7e2ea5fa7ec163c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle InstrumentPort_create_port</definition>
+        <argsstring>(StringHandle default_name, ConnectionHandle psuedo_name, StringHandle instrument_type, SymbolUnitHandle units, StringHandle description)</argsstring>
+        <name>InstrumentPort_create_port</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>default_name</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>psuedo_name</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>instrument_type</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>units</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="31" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="31" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a0b680fc73825ce5272844aa3af7f3e8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle InstrumentPort_create_knob</definition>
+        <argsstring>(StringHandle default_name, ConnectionHandle psuedo_name, StringHandle instrument_type, SymbolUnitHandle units, StringHandle description)</argsstring>
+        <name>InstrumentPort_create_knob</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>default_name</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>psuedo_name</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>instrument_type</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>units</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="37" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="37" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a328d445acd6beed245dbb7a3ac3e389a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle InstrumentPort_create_meter</definition>
+        <argsstring>(StringHandle default_name, ConnectionHandle psuedo_name, StringHandle instrument_type, SymbolUnitHandle units, StringHandle description)</argsstring>
+        <name>InstrumentPort_create_meter</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>default_name</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>psuedo_name</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>instrument_type</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>units</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="43" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="43" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a36af9f5b2ee769934847a56550356d2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle InstrumentPort_create_timer</definition>
+        <argsstring>()</argsstring>
+        <name>InstrumentPort_create_timer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="49" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="49" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a8c4b5e0764d828b7bca82668ad6ed8ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle InstrumentPort_create_execution_clock</definition>
+        <argsstring>()</argsstring>
+        <name>InstrumentPort_create_execution_clock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="51" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="51" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1ae84dba318808e26a5ed3fa2df8312da8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle InstrumentPort_default_name</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_default_name</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Rreturn the default name of the port. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="59" column="14" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="59" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a18db5ad2751a8254a4febb882e564674" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle InstrumentPort_psuedo_name</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_psuedo_name</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="61" column="18" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="61" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1afcffd97fa993366d5cdc70b1edb13dea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle InstrumentPort_instrument_type</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_instrument_type</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the type of the instrument that the port is connected to. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="68" column="14" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="68" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1af127e0f9ef7886fdaeeb378b56a4408e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SymbolUnitHandle</type>
+        <definition>SymbolUnitHandle InstrumentPort_units</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_units</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the untis of the port. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="75" column="18" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="75" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a1dc0a995ef698a9565409d43fd50e1dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle InstrumentPort_description</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_description</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the description of the port. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="82" column="14" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="82" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a6f30b2e28e9712e6df860a068be7e0a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle InstrumentPort_instrument_facing_name</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_instrument_facing_name</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the psuedo name if it exists, otherwise the instrument type as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="91" column="14" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="91" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1ab8e95dedaec7c6d94518eb6b39c164aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InstrumentPort_is_knob</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_is_knob</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Checks if this port is a knob. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="98" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="98" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1ae3fbd8588f169b424e32bd94517f9d95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InstrumentPort_is_meter</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_is_meter</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Checks if this port is a meter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="105" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="105" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InstrumentPort__c__api_8h_1a54b604df020045d8bbe0cfed8ad9c7c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InstrumentPort_is_port</definition>
+        <argsstring>(InstrumentPortHandle handle)</argsstring>
+        <name>InstrumentPort_is_port</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Checks if this port is a port. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" line="112" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h" declline="112" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/units/SymbolUnit_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>InstrumentPortHandle;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">InstrumentPortHandle<sp/>InstrumentPort_copy(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InstrumentPort_destroy(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InstrumentPort_equal(InstrumentPortHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InstrumentPortHandle<sp/>other);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InstrumentPort_not_equal(InstrumentPortHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InstrumentPortHandle<sp/>other);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>InstrumentPort_to_json_string(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">InstrumentPortHandle<sp/>InstrumentPort_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">InstrumentPortHandle<sp/>InstrumentPort_create_port(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/>default_name,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>psuedo_name,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>instrument_type,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SymbolUnitHandle<sp/>units,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/>description);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">InstrumentPortHandle<sp/>InstrumentPort_create_knob(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/>default_name,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>psuedo_name,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>instrument_type,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SymbolUnitHandle<sp/>units,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/>description);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">InstrumentPortHandle<sp/>InstrumentPort_create_meter(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/>default_name,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>psuedo_name,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>instrument_type,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SymbolUnitHandle<sp/>units,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/>description);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">InstrumentPortHandle<sp/>InstrumentPort_create_timer();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">InstrumentPortHandle<sp/>InstrumentPort_create_execution_clock();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InstrumentPort_default_name<sp/>|</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::InstrumentPort::default_name<sp/>*/</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>InstrumentPort_default_name(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">ConnectionHandle<sp/>InstrumentPort_psuedo_name(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InstrumentPort_instrument_type<sp/>|</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::InstrumentPort::instrument_type<sp/>*/</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>InstrumentPort_instrument_type(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InstrumentPort_units<sp/>|</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::InstrumentPort::units<sp/>*/</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">SymbolUnitHandle<sp/>InstrumentPort_units(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InstrumentPort_description<sp/>|</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::InstrumentPort::description<sp/>*/</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>InstrumentPort_description(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InstrumentPort_instrument_facing_name<sp/>|</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::InstrumentPort::instrument_facing_name</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/>*/</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>InstrumentPort_instrument_facing_name(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InstrumentPort_is_knob<sp/>|</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::InstrumentPort::is_knob<sp/>*/</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InstrumentPort_is_knob(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InstrumentPort_is_meter<sp/>|</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::InstrumentPort::is_meter<sp/>*/</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InstrumentPort_is_meter(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InstrumentPort_is_port<sp/>|</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::InstrumentPort::is_port<sp/>*/</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InstrumentPort_is_port(InstrumentPortHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"/>
+  </compounddef>
+</doxygen>

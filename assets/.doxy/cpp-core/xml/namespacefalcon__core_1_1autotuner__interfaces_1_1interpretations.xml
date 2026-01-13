@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1autotuner__interfaces_1_1interpretations" kind="namespace" language="C++">
+    <compoundname>falcon_core::autotuner_interfaces::interpretations</compoundname>
+    <innerclass refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer" prot="public">falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</innerclass>
+    <innerclass refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" prot="public">falcon_core::autotuner_interfaces::interpretations::InterpretationContext</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="InterpretationContainer_8hpp_1a3cf91bd119eb4c8077ffeef71dac557b" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename Value</type>
+          </param>
+        </templateparamlist>
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer" kindref="compound">InterpretationContainer</ref>&lt; Value &gt; &gt;</type>
+        <definition>using falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP = typedef std::shared_ptr&lt;InterpretationContainer&lt;Value&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>InterpretationContainerSP</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainerSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="334" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="335" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="InterpretationContext_8hpp_1a1c3e936cf8b9a3f8ebafd9dcd53e1c78" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kindref="compound">InterpretationContext</ref> &gt;</type>
+        <definition>using falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP = typedef std::shared_ptr&lt;InterpretationContext&gt;</definition>
+        <argsstring></argsstring>
+        <name>InterpretationContextSP</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContextSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="113" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="113" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="14" column="1"/>
+  </compounddef>
+</doxygen>

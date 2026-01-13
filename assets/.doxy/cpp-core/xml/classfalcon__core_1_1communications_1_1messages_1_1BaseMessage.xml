@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::communications::messages::BaseMessage</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementRequest" prot="public" virt="non-virtual">falcon_core::communications::messages::MeasurementRequest</derivedcompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse" prot="public" virt="non-virtual">falcon_core::communications::messages::MeasurementResponse</derivedcompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1communications_1_1messages_1_1StandardRequest" prot="public" virt="non-virtual">falcon_core::communications::messages::StandardRequest</derivedcompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1communications_1_1messages_1_1StandardResponse" prot="public" virt="non-virtual">falcon_core::communications::messages::StandardResponse</derivedcompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse" prot="public" virt="non-virtual">falcon_core::communications::messages::VoltageStatesResponse</derivedcompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a1f73b4a5b16ba923793ca2d72d183113" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string falcon_core::communications::messages::BaseMessage::_message</definition>
+        <argsstring></argsstring>
+        <name>_message</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::_message</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="11" column="35" bodyfile="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a0331b56efae8dd4ab5082edb226a085b" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::messages::BaseMessage::_mu_message</definition>
+        <argsstring></argsstring>
+        <name>_mu_message</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::_mu_message</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="12" column="35" bodyfile="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="24" column="16" bodyfile="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a47c1cbbda33f9acdd5020e7acbc3bc99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::messages::BaseMessage::BaseMessage</definition>
+        <argsstring>(const BaseMessage &amp;other)</argsstring>
+        <name>BaseMessage</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::BaseMessage</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" kindref="compound">BaseMessage</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="15" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1aa2badf7d661a759ebdf5b0236ee162ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" kindref="compound">BaseMessage</ref> &amp;</type>
+        <definition>BaseMessage &amp; falcon_core::communications::messages::BaseMessage::operator=</definition>
+        <argsstring>(const BaseMessage &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" kindref="compound">BaseMessage</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="16" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ad8c0ef44f042a78716f24157908e5533" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::messages::BaseMessage::BaseMessage</definition>
+        <argsstring>(const std::string &amp;message)</argsstring>
+        <name>BaseMessage</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::BaseMessage</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a346bf12aa4d5f59cadcc019db5e6bf58" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; falcon_core::communications::messages::BaseMessage::message</definition>
+        <argsstring>() const</argsstring>
+        <name>message</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::message</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="19" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a62327f14f2f38d1761012a193cdeb5f7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::messages::BaseMessage::operator==</definition>
+        <argsstring>(const BaseMessage &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" kindref="compound">BaseMessage</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="20" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ac81bb178c1a3afd260167d3cc3410101" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::messages::BaseMessage::operator!=</definition>
+        <argsstring>(const BaseMessage &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" kindref="compound">BaseMessage</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="21" column="22"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1aec19be3390cb8f5dccd07416b3df3e7b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::messages::BaseMessage::BaseMessage</definition>
+        <argsstring>()</argsstring>
+        <name>BaseMessage</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::BaseMessage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="25" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1acdd041659191293ddc7b2b7e987eab22" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::communications::messages::BaseMessage::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessage::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="27" column="8" bodyfile="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::communications::messages::BaseMessage</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::communications::messages::MeasurementRequest</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementRequest"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core::communications::messages::MeasurementResponse</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core::communications::messages::StandardRequest</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1StandardRequest"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core::communications::messages::StandardResponse</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1StandardResponse"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core::communications::messages::VoltageStatesResponse</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::communications::messages::BaseMessage</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="10" column="1" bodyfile="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" bodystart="10" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a1f73b4a5b16ba923793ca2d72d183113" prot="private" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>_message</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a0331b56efae8dd4ab5082edb226a085b" prot="private" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>_mu_message</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a47c1cbbda33f9acdd5020e7acbc3bc99" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>BaseMessage</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ad8c0ef44f042a78716f24157908e5533" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>BaseMessage</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1aec19be3390cb8f5dccd07416b3df3e7b" prot="protected" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>BaseMessage</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a346bf12aa4d5f59cadcc019db5e6bf58" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>message</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ac81bb178c1a3afd260167d3cc3410101" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1aa2badf7d661a759ebdf5b0236ee162ad" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a62327f14f2f38d1761012a193cdeb5f7" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1acdd041659191293ddc7b2b7e987eab22" prot="protected" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::communications::messages::BaseMessage</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

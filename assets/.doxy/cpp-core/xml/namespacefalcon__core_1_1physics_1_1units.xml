@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1physics_1_1units" kind="namespace" language="C++">
+    <compoundname>falcon_core::physics::units</compoundname>
+    <innerclass refid="classfalcon__core_1_1physics_1_1units_1_1Prefix" prot="public">falcon_core::physics::units::Prefix</innerclass>
+    <innerclass refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" prot="public">falcon_core::physics::units::SymbolUnit</innerclass>
+    <innerclass refid="classfalcon__core_1_1physics_1_1units_1_1Unit" prot="public">falcon_core::physics::units::Unit</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="SymbolUnit_8hpp_1a151fe0dc906e3780ec62d390bc4f5544" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">SymbolUnit</ref> &gt;</type>
+        <definition>using falcon_core::physics::units::SymbolUnitSP = typedef std::shared_ptr&lt;SymbolUnit&gt;</definition>
+        <argsstring></argsstring>
+        <name>SymbolUnitSP</name>
+        <qualifiedname>falcon_core::physics::units::SymbolUnitSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/SymbolUnit.hpp" line="356" column="1" bodyfile="cpp/include/falcon_core/physics/units/SymbolUnit.hpp" bodystart="356" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="TotalDimensions_8hpp_1a25d3e5f32bbb5ca0eec0d50810064c3b" prot="public" static="no">
+        <type>std::map&lt; std::string, int &gt;</type>
+        <definition>using falcon_core::physics::units::TotalDimensions = typedef std::map&lt;std::string, int&gt;</definition>
+        <argsstring></argsstring>
+        <name>TotalDimensions</name>
+        <qualifiedname>falcon_core::physics::units::TotalDimensions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/TotalDimensions.hpp" line="8" column="1" bodyfile="cpp/include/falcon_core/physics/units/TotalDimensions.hpp" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Unit_8hpp_1a4428a9849d4b400474c2ef8271417f0a" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1units_1_1Unit" kindref="compound">Unit</ref> &gt;</type>
+        <definition>using falcon_core::physics::units::UnitSP = typedef std::shared_ptr&lt;Unit&gt;</definition>
+        <argsstring></argsstring>
+        <name>UnitSP</name>
+        <qualifiedname>falcon_core::physics::units::UnitSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="240" column="1" bodyfile="cpp/include/falcon_core/physics/units/Unit.hpp" bodystart="240" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/physics/units/Prefix.hpp" line="8" column="1"/>
+  </compounddef>
+</doxygen>

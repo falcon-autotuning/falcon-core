@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1communications" kind="namespace" language="C++">
+    <compoundname>falcon_core::communications</compoundname>
+    <innerclass refid="classfalcon__core_1_1communications_1_1HDF5Data" prot="public">falcon_core::communications::HDF5Data</innerclass>
+    <innerclass refid="classfalcon__core_1_1communications_1_1Time" prot="public">falcon_core::communications::Time</innerclass>
+    <innernamespace refid="namespacefalcon__core_1_1communications_1_1messages">falcon_core::communications::messages</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1communications_1_1voltage__states">falcon_core::communications::voltage_states</innernamespace>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="HDF5Data_8hpp_1af37a9e23adf49c7543eeea3ca66686d7" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1communications_1_1HDF5Data" kindref="compound">HDF5Data</ref> &gt;</type>
+        <definition>using falcon_core::communications::HDF5DataSP = typedef std::shared_ptr&lt;HDF5Data&gt;</definition>
+        <argsstring></argsstring>
+        <name>HDF5DataSP</name>
+        <qualifiedname>falcon_core::communications::HDF5DataSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="178" column="1" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Time_8hpp_1acce5d1fdb0f316de1795a6d91bb16be1" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1communications_1_1Time" kindref="compound">Time</ref> &gt;</type>
+        <definition>using falcon_core::communications::TimeSP = typedef std::shared_ptr&lt;Time&gt;</definition>
+        <argsstring></argsstring>
+        <name>TimeSP</name>
+        <qualifiedname>falcon_core::communications::TimeSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="56" column="1" bodyfile="cpp/include/falcon_core/communications/Time.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="17" column="1"/>
+  </compounddef>
+</doxygen>

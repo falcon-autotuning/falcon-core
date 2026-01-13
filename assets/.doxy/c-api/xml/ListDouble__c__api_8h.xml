@@ -1,0 +1,667 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ListDouble__c__api_8h" kind="file" language="C++">
+    <compoundname>ListDouble_c_api.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="InterpretationContainerDouble__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</includedby>
+    <includedby refid="MapConnectionDouble__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapConnectionDouble_c_api.h</includedby>
+    <includedby refid="MapInterpretationContextDouble__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h</includedby>
+    <includedby refid="MapStringDouble__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapStringDouble_c_api.h</includedby>
+    <includedby refid="AxesDouble__c__api_8h" local="yes">c-api/include/falcon_core/math/AxesDouble_c_api.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</label>
+        <link refid="InterpretationContainerDouble__c__api_8h_source"/>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="14">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h</label>
+        <link refid="VoltageStatesResponse__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</label>
+        <link refid="DeviceVoltageStates__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="ListPairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/generic/ListPortTransform_c_api.h</label>
+        <link refid="ListPortTransform__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/MapConnectionDouble_c_api.h</label>
+        <link refid="MapConnectionDouble__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h</label>
+        <link refid="MapInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h</label>
+        <link refid="MapInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/generic/MapStringDouble_c_api.h</label>
+        <link refid="MapStringDouble__c__api_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="PairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
+        <link refid="PortTransform__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms_c_api.h</label>
+        <link refid="PortTransforms__c__api_8h_source"/>
+      </node>
+      <node id="21">
+        <label>c-api/include/falcon_core/math/AnalyticFunction_c_api.h</label>
+        <link refid="AnalyticFunction__c__api_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>c-api/include/falcon_core/math/AxesDouble_c_api.h</label>
+        <link refid="AxesDouble__c__api_8h_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/math/Point_c_api.h</label>
+        <link refid="Point__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>c-api/include/falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h_source"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/math/Vector_c_api.h</label>
+        <link refid="Vector__c__api_8h_source"/>
+      </node>
+      <node id="24">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ListDouble__c__api_8h_1a9eb1083978c47c60195245fcbcaf25d5" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ListDoubleHandle</definition>
+        <argsstring></argsstring>
+        <name>ListDoubleHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ListDouble__c__api_8h_1afc2d545a7b6e7fcc4cc5a67234b37e89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListDoubleHandle</type>
+        <definition>ListDoubleHandle ListDouble_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>ListDouble_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="14" column="18" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="14" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1ae9e1df1cdc790f646a8deefb42f47892" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListDoubleHandle</type>
+        <definition>ListDoubleHandle ListDouble_copy</definition>
+        <argsstring>(ListDoubleHandle handle)</argsstring>
+        <name>ListDouble_copy</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="16" column="18" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="16" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1aec64143a0029b5cfbc6983c0d450d8fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListDoubleHandle</type>
+        <definition>ListDoubleHandle ListDouble_allocate</definition>
+        <argsstring>(size_t count)</argsstring>
+        <name>ListDouble_allocate</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="18" column="18" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="18" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a812a9c419170f87842be7a569cf20746" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListDoubleHandle</type>
+        <definition>ListDoubleHandle ListDouble_fill_value</definition>
+        <argsstring>(size_t count, double value)</argsstring>
+        <name>ListDouble_fill_value</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="20" column="18" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="20" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1aa45fb98c41c1b50847e095a3bd9fcc4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListDoubleHandle</type>
+        <definition>ListDoubleHandle ListDouble_create</definition>
+        <argsstring>(double *data, size_t count)</argsstring>
+        <name>ListDouble_create</name>
+        <param>
+          <type>double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="22" column="18" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="22" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a9fd270ae9d411f214c0c47d920523582" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListDouble_destroy</definition>
+        <argsstring>(ListDoubleHandle handle)</argsstring>
+        <name>ListDouble_destroy</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1aafc6442f82ade5027bd340c28bbfc82d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListDouble_push_back</definition>
+        <argsstring>(ListDoubleHandle handle, double value)</argsstring>
+        <name>ListDouble_push_back</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a5227352d8c2d1014f3a9e0a35cd0c561" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListDouble_size</definition>
+        <argsstring>(ListDoubleHandle handle)</argsstring>
+        <name>ListDouble_size</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a061c22d04e5335b3b522f0b4919c1b95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListDouble_empty</definition>
+        <argsstring>(ListDoubleHandle handle)</argsstring>
+        <name>ListDouble_empty</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a2f373248cfebd1eaf351c3729afdb039" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListDouble_erase_at</definition>
+        <argsstring>(ListDoubleHandle handle, size_t idx)</argsstring>
+        <name>ListDouble_erase_at</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a1cf2d15722cefa35885bc81ff6f68d3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListDouble_clear</definition>
+        <argsstring>(ListDoubleHandle handle)</argsstring>
+        <name>ListDouble_clear</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1af2c5eb27466cfcd770123ae23f0b2db3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ListDouble_at</definition>
+        <argsstring>(ListDoubleHandle handle, size_t idx)</argsstring>
+        <name>ListDouble_at</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="36" column="8" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="36" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a1cf235766fc208f35b27990d2d500121" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListDouble_items</definition>
+        <argsstring>(ListDoubleHandle handle, double *out_buffer, size_t buffer_size)</argsstring>
+        <name>ListDouble_items</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="38" column="8" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="38" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a12cd06eba9b849ca2a7138094133c260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListDouble_contains</definition>
+        <argsstring>(ListDoubleHandle handle, double value)</argsstring>
+        <name>ListDouble_contains</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1af379fce43d6afb2c9d0bfa297a9538d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListDouble_index</definition>
+        <argsstring>(ListDoubleHandle handle, double value)</argsstring>
+        <name>ListDouble_index</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a28c54630a1c54002c2c8489cc047bddd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListDoubleHandle</type>
+        <definition>ListDoubleHandle ListDouble_intersection</definition>
+        <argsstring>(ListDoubleHandle handle, ListDoubleHandle other)</argsstring>
+        <name>ListDouble_intersection</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="44" column="18" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="44" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1ab9feea728e63ad6ba6c3b5b92733c9e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListDouble_equal</definition>
+        <argsstring>(ListDoubleHandle handle, ListDoubleHandle other)</argsstring>
+        <name>ListDouble_equal</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a4ac47e87ad8035c3b378fc00f62169af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListDouble_not_equal</definition>
+        <argsstring>(ListDoubleHandle handle, ListDoubleHandle other)</argsstring>
+        <name>ListDouble_not_equal</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1aceb4c0b94284fc77133b7997f05a2713" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle ListDouble_to_json_string</definition>
+        <argsstring>(ListDoubleHandle handle)</argsstring>
+        <name>ListDouble_to_json_string</name>
+        <param>
+          <type>ListDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="ListDouble__c__api_8h_1a31d23a5d47536bf692fe9609578fc7c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListDoubleHandle</type>
+        <definition>ListDoubleHandle ListDouble_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>ListDouble_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h" line="53" column="18" declfile="c-api/include/falcon_core/generic/ListDouble_c_api.h" declline="53" declcolumn="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ListDoubleHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">ListDoubleHandle<sp/>ListDouble_create_empty();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">ListDoubleHandle<sp/>ListDouble_copy(ListDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">ListDoubleHandle<sp/>ListDouble_allocate(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ListDoubleHandle<sp/>ListDouble_fill_value(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ListDoubleHandle<sp/>ListDouble_create(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListDouble_destroy(ListDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListDouble_push_back(ListDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListDouble_size(ListDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListDouble_empty(ListDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListDouble_erase_at(ListDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListDouble_clear(ListDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ListDouble_at(ListDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListDouble_items(ListDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListDouble_contains(ListDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListDouble_index(ListDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListDoubleHandle<sp/>ListDouble_intersection(ListDoubleHandle<sp/>handle,<sp/>ListDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListDouble_equal(ListDoubleHandle<sp/>handle,<sp/>ListDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListDouble_not_equal(ListDoubleHandle<sp/>handle,<sp/>ListDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>ListDouble_to_json_string(ListDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListDoubleHandle<sp/>ListDouble_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/ListDouble_c_api.h"/>
+  </compounddef>
+</doxygen>

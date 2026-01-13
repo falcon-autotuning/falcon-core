@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Time__c__api_8h" kind="file" language="C++">
+    <compoundname>Time_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/communications/Time_c_api.h</label>
+        <link refid="Time__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Time__c__api_8h_1a9106d0252f066df3e4492f2584a9166d" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* TimeHandle</definition>
+        <argsstring></argsstring>
+        <name>TimeHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="9" column="14" bodyfile="c-api/include/falcon_core/communications/Time_c_api.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Time__c__api_8h_1a9ea4e7b456ff38200d1a9b6a1ce89dbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TimeHandle</type>
+        <definition>TimeHandle Time_copy</definition>
+        <argsstring>(TimeHandle handle)</argsstring>
+        <name>Time_copy</name>
+        <param>
+          <type>TimeHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="12" column="12" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="12" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1afca998c9c21089e569dad28f1c5ae6b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Time_destroy</definition>
+        <argsstring>(TimeHandle handle)</argsstring>
+        <name>Time_destroy</name>
+        <param>
+          <type>TimeHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="14" column="6" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="14" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1a63589c2916f6b49bf9d77be9a8208242" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Time_equal</definition>
+        <argsstring>(TimeHandle handle, TimeHandle other)</argsstring>
+        <name>Time_equal</name>
+        <param>
+          <type>TimeHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>TimeHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="16" column="6" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="16" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1a87104170fbe5d8754fbe0de441b214d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Time_not_equal</definition>
+        <argsstring>(TimeHandle handle, TimeHandle other)</argsstring>
+        <name>Time_not_equal</name>
+        <param>
+          <type>TimeHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>TimeHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="18" column="6" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1a45a0364eb946e05a98c0e090ae6941ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle Time_to_json_string</definition>
+        <argsstring>(TimeHandle handle)</argsstring>
+        <name>Time_to_json_string</name>
+        <param>
+          <type>TimeHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="20" column="14" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="20" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1a395bac1efe1ec106135625cfa6228c75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TimeHandle</type>
+        <definition>TimeHandle Time_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Time_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="22" column="12" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="22" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1a243bcd2bc252a8f51919b9e89d1d8bb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TimeHandle</type>
+        <definition>TimeHandle Time_create_now</definition>
+        <argsstring>()</argsstring>
+        <name>Time_create_now</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="24" column="12" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="24" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1a23b42023cea7ce3d7eb47bd6ddc5b32d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TimeHandle</type>
+        <definition>TimeHandle Time_create_at</definition>
+        <argsstring>(long long micro_seconds_since_epoch)</argsstring>
+        <name>Time_create_at</name>
+        <param>
+          <type>long long</type>
+          <declname>micro_seconds_since_epoch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="26" column="12" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="26" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1af7310119c5d9f8afef9cc3a81177cb80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long long</type>
+        <definition>long long Time_micro_seconds_since_epoch</definition>
+        <argsstring>(TimeHandle handle)</argsstring>
+        <name>Time_micro_seconds_since_epoch</name>
+        <param>
+          <type>TimeHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Get the time in microseconds since epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The time in microseconds since epoch. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="34" column="11" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="34" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1a2f9dba170ad4c04bfaf5d329381cc7fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long long</type>
+        <definition>long long Time_time</definition>
+        <argsstring>(TimeHandle handle)</argsstring>
+        <name>Time_time</name>
+        <param>
+          <type>TimeHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Get the time in seconds since epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The time in seconds since epoch. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="41" column="11" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="41" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="Time__c__api_8h_1aa672e3003fb05b7fbed8f40f5db71a5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle Time_to_string</definition>
+        <argsstring>(TimeHandle handle)</argsstring>
+        <name>Time_to_string</name>
+        <param>
+          <type>TimeHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Convert the Time to a human-readable string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A string representation of the Time. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/Time_c_api.h" line="49" column="14" declfile="c-api/include/falcon_core/communications/Time_c_api.h" declline="49" declcolumn="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>TimeHandle;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">TimeHandle<sp/>Time_copy(TimeHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Time_destroy(TimeHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Time_equal(TimeHandle<sp/>handle,<sp/>TimeHandle<sp/>other);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Time_not_equal(TimeHandle<sp/>handle,<sp/>TimeHandle<sp/>other);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>Time_to_json_string(TimeHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">TimeHandle<sp/>Time_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">TimeHandle<sp/>Time_create_now();</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">TimeHandle<sp/>Time_create_at(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>micro_seconds_since_epoch);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Time_micro_seconds_since_epoch<sp/>|</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>falcon_core::communications::Time::micro_seconds_since_epoch<sp/>*/</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>Time_micro_seconds_since_epoch(TimeHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Time_time<sp/>|<sp/>falcon_core::communications::Time::time<sp/>*/</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>Time_time(TimeHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Time_to_string<sp/>|</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>falcon_core::communications::Time::to_string<sp/>*/</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>Time_to_string(TimeHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/communications/Time_c_api.h"/>
+  </compounddef>
+</doxygen>

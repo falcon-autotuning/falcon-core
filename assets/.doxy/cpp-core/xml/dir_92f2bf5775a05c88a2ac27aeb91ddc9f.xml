@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_92f2bf5775a05c88a2ac27aeb91ddc9f" kind="dir">
+    <compoundname>cpp/include/falcon_core/autotuner_interfaces/interpretations</compoundname>
+    <innerfile refid="InterpretationContainer_8hpp">InterpretationContainer.hpp</innerfile>
+    <innerfile refid="InterpretationContext_8hpp">InterpretationContext.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/"/>
+  </compounddef>
+</doxygen>

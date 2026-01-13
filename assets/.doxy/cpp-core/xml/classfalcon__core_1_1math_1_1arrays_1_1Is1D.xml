@@ -1,0 +1,341 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1math_1_1arrays_1_1Is1D" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::math::arrays::Is1D</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1IFArray" prot="public" virt="virtual">falcon_core::generic::IFArray&lt; T &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a203d6474b9908eb6530be17eb12fa9af" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::arrays::Is1D&lt; T &gt;::is_1D</definition>
+        <argsstring>() const</argsstring>
+        <name>is_1D</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::is_1D</qualifiedname>
+        <briefdescription>
+<para>Check if the array is 1D. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the array is 1D, False otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="14" column="8" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a8f9e9ba9a5ce48122608e0840b58784c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>generic::FArraySP&lt; T &gt;</type>
+        <definition>generic::FArraySP&lt; T &gt; falcon_core::math::arrays::Is1D&lt; T &gt;::as_1D</definition>
+        <argsstring>() const</argsstring>
+        <name>as_1D</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::as_1D</qualifiedname>
+        <briefdescription>
+<para>Return the data as a 1D array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The data as a 1D array. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if not 1D. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="20" column="21" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a9d599a0257cad0f6c9ce78d4f261be52" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T falcon_core::math::arrays::Is1D&lt; T &gt;::get_start</definition>
+        <argsstring>() const</argsstring>
+        <name>get_start</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::get_start</qualifiedname>
+        <briefdescription>
+<para>Get the first element of the 1D array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The first element of the 1D array. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="28" column="5" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a765e4cbc4b0d4ae33f078c5516868cec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T falcon_core::math::arrays::Is1D&lt; T &gt;::get_end</definition>
+        <argsstring>() const</argsstring>
+        <name>get_end</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::get_end</qualifiedname>
+        <briefdescription>
+<para>Get the last element of the 1D array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The last element of the 1D array. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="33" column="5" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a1097ceae46c6d033886ee5c7bef3e73b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::arrays::Is1D&lt; T &gt;::is_decreasing</definition>
+        <argsstring>() const</argsstring>
+        <name>is_decreasing</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::is_decreasing</qualifiedname>
+        <briefdescription>
+<para>Check if the array is decreasing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the array is decreasing, False otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="38" column="8" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1aea47df95fda7c810f54b80cd7f991638" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::arrays::Is1D&lt; T &gt;::is_increasing</definition>
+        <argsstring>() const</argsstring>
+        <name>is_increasing</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::is_increasing</qualifiedname>
+        <briefdescription>
+<para>Check if the array is increasing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the array is increasing, False otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="43" column="8" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a5596386fd6aeaaf548534c983aaba2be" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T falcon_core::math::arrays::Is1D&lt; T &gt;::get_distance</definition>
+        <argsstring>() const</argsstring>
+        <name>get_distance</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::get_distance</qualifiedname>
+        <briefdescription>
+<para>Get the distance between the first and last element of the 1D array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The distance between the first and last element of the 1D array. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="49" column="5" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1ad8e25c9a0e4ca9b9b896ff42c2f59707" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double falcon_core::math::arrays::Is1D&lt; T &gt;::get_mean</definition>
+        <argsstring>() const</argsstring>
+        <name>get_mean</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::get_mean</qualifiedname>
+        <briefdescription>
+<para>Get the mean of the 1D array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The mean value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="54" column="10" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a7e4798a872008552fc84bdd97cd64152" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double falcon_core::math::arrays::Is1D&lt; T &gt;::get_std</definition>
+        <argsstring>() const</argsstring>
+        <name>get_std</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::get_std</qualifiedname>
+        <briefdescription>
+<para>Get the standard deviation of the 1D array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The standard deviation value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="60" column="10" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1aab7161afa25be1c551f3cdada2b46e34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::math::arrays::Is1D&lt; T &gt;::reverse</definition>
+        <argsstring>()</argsstring>
+        <name>reverse</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::reverse</qualifiedname>
+        <briefdescription>
+<para>Reverse the 1D array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="65" column="8" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a18679600b0d36886bfb248895b0ca6a7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t falcon_core::math::arrays::Is1D&lt; T &gt;::get_closest_index</definition>
+        <argsstring>(double value) const</argsstring>
+        <name>get_closest_index</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::get_closest_index</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Get the index of the closest element to the given value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value to find the closest index to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The index of the closest element. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="72" column="10" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="72" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1afbcedc61ece45338317f8736704d8141" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>generic::ListSP&lt; <ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">generic::FArray</ref>&lt; T &gt; &gt;</type>
+        <definition>generic::ListSP&lt; generic::FArray&lt; T &gt; &gt; falcon_core::math::arrays::Is1D&lt; T &gt;::even_divisions</definition>
+        <argsstring>(size_t divisions) const</argsstring>
+        <name>even_divisions</name>
+        <qualifiedname>falcon_core::math::arrays::Is1D::even_divisions</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>divisions</declname>
+        </param>
+        <briefdescription>
+<para>Splits the array into even divisions if possible. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of divisions to split the array into. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The divisions as a ListSP of BaseArray segments. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if array cannot be evenly divided. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="87" column="19" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="87" bodyend="99"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::IFArray&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1IFArray"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::arrays::Is1D&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::IFArray&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1IFArray"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::arrays::Is1D&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/math/arrays/Is1D.hpp" line="8" column="1" bodyfile="cpp/include/falcon_core/math/arrays/Is1D.hpp" bodystart="8" bodyend="100"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a09c9a9893229b976032765f70aa818a1" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>array_type</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a8f9e9ba9a5ce48122608e0840b58784c" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>as_1D</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a0f3f5db91ae2010d171bdfa5ca312ed0" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a07f44536871b2971eaedd85f1866c6e4" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>cbegin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a50163d6b71e155106921efc2965b417b" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>cend</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a6f3535fb8e16377a42fb17652ddc06e8" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>const_reference</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a41d4ac35a8ca9e991b99807c1ccd5dbd" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a1de5f60ef98c44b8f48981020f246adb" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aee90b4e861f478743fa025a88a9a8fd6" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>dimension</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1acd9aec51caa0620e31299c476b4c31d7" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1afbcedc61ece45338317f8736704d8141" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>even_divisions</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a18679600b0d36886bfb248895b0ca6a7" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>get_closest_index</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a5596386fd6aeaaf548534c983aaba2be" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>get_distance</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a765e4cbc4b0d4ae33f078c5516868cec" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>get_end</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1ad8e25c9a0e4ca9b9b896ff42c2f59707" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>get_mean</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a9d599a0257cad0f6c9ce78d4f261be52" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>get_start</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a7e4798a872008552fc84bdd97cd64152" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>get_std</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a203d6474b9908eb6530be17eb12fa9af" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>is_1D</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1a1097ceae46c6d033886ee5c7bef3e73b" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>is_decreasing</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1aea47df95fda7c810f54b80cd7f991638" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>is_increasing</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1acaf07d9d2513fb31eef7b6bb04594b7a" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>max</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a3c9418699feee13302673aaaf26170f6" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>min</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a774031e743d6041cd444f97e9e1a1654" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>operator array_type &amp;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1ac92a53df9a6609cca5c49a579bae29e4" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>operator const array_type &amp;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a841a7acf644d1cb7028cd893456fe2f3" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>operator()</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a166c92b447e549de7c264608c2adceb6" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>operator()</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a29689afd6c5d60f6d1a7666d50507dd7" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>operator&lt;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a8edd0d840bb6d198096e0d589373f326" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>operator&gt;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aec2f2dc372d880230b43b63e760cb88c" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>raw_data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a71fd0f2313bb55409bf7d50007d7b321" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>raw_data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a59a361d72ff63edf2aebf0dde2ae4b55" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>reference</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a71d578ab512bcca49e424b9dddc2c375" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>remove_offset</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D_1aab7161afa25be1c551f3cdada2b46e34" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>reverse</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a3ae14c8ecd7d2aed60cf31ecb0a8810e" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>shape</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a53fbc1dad98728229de8add662b2d24e" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a5890ecbfc58b7ca64783121f3bb9d061" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>sum</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1afbcadca4952a23c0c46d69b5fd12fc09" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>value_type</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a89e1b99be80d48ebe4cf780cb5d4ee99" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>where</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aa5e84ced0ef5ff58d3c81513d72bae88" prot="public" virt="virtual"><scope>falcon_core::math::arrays::Is1D</scope><name>~IFArray</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

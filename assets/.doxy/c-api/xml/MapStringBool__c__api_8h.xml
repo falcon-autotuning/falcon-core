@@ -1,0 +1,581 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="MapStringBool__c__api_8h" kind="file" language="C++">
+    <compoundname>MapStringBool_c_api.h</compoundname>
+    <includes refid="ListPairStringBool__c__api_8h" local="yes">falcon_core/generic/ListPairStringBool_c_api.h</includes>
+    <includes refid="ListString__c__api_8h" local="yes">falcon_core/generic/ListString_c_api.h</includes>
+    <includes refid="ListBool__c__api_8h" local="yes">falcon_core/generic/ListBool_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="ListMapStringBool__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListMapStringBool_c_api.h</includedby>
+    <incdepgraph>
+      <node id="8">
+        <label>falcon_core/generic/ListBool_c_api.h</label>
+        <link refid="ListBool__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/ListPairStringBool_c_api.h</label>
+        <link refid="ListPairStringBool__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapStringBool_c_api.h</label>
+        <link refid="MapStringBool__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/PairStringBool_c_api.h</label>
+        <link refid="PairStringBool__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="8">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListMapStringBool_c_api.h</label>
+        <link refid="ListMapStringBool__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapStringBool_c_api.h</label>
+        <link refid="MapStringBool__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/math/AxesMapStringBool_c_api.h</label>
+        <link refid="AxesMapStringBool__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="MapStringBool__c__api_8h_1ae0a4a7b88743b5f0591cf95ea35a5413" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* MapStringBoolHandle</definition>
+        <argsstring></argsstring>
+        <name>MapStringBoolHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="13" column="14" bodyfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1afebb59b22ae327d6b2c669714e26afcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapStringBoolHandle</type>
+        <definition>MapStringBoolHandle MapStringBool_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>MapStringBool_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="17" column="21" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="17" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a7c49adef0ec30ecb60b0780b7a6cbe62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapStringBoolHandle</type>
+        <definition>MapStringBoolHandle MapStringBool_copy</definition>
+        <argsstring>(MapStringBoolHandle handle)</argsstring>
+        <name>MapStringBool_copy</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="19" column="21" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="19" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a7186cd7cc01adf7cd71f0f9833358466" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapStringBoolHandle</type>
+        <definition>MapStringBoolHandle MapStringBool_create</definition>
+        <argsstring>(PairStringBoolHandle *data, size_t count)</argsstring>
+        <name>MapStringBool_create</name>
+        <param>
+          <type>PairStringBoolHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="21" column="21" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="21" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1aeb4f599d222f2fbbb5af2ed7725c299c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringBool_destroy</definition>
+        <argsstring>(MapStringBoolHandle handle)</argsstring>
+        <name>MapStringBool_destroy</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1adc9949c7ac89d48c312c5d3b6f158ae9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringBool_insert_or_assign</definition>
+        <argsstring>(MapStringBoolHandle handle, StringHandle key, bool value)</argsstring>
+        <name>MapStringBool_insert_or_assign</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="25" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="25" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a8a1fc74f7bb695a31f475bfc6feee436" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringBool_insert</definition>
+        <argsstring>(MapStringBoolHandle handle, StringHandle key, bool value)</argsstring>
+        <name>MapStringBool_insert</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="27" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="27" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a18bd3dc5f95d9780acbf834b4d40476a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapStringBool_at</definition>
+        <argsstring>(MapStringBoolHandle handle, StringHandle key)</argsstring>
+        <name>MapStringBool_at</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="29" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="29" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a260a3b03c0643b1c57f904850a495058" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringBool_erase</definition>
+        <argsstring>(MapStringBoolHandle handle, StringHandle key)</argsstring>
+        <name>MapStringBool_erase</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="31" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="31" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a3c3085620574a8642d4350fc125f56e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t MapStringBool_size</definition>
+        <argsstring>(MapStringBoolHandle handle)</argsstring>
+        <name>MapStringBool_size</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="33" column="8" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="33" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a9bba2ead1ca67d9f458d90bbf96d202b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapStringBool_empty</definition>
+        <argsstring>(MapStringBoolHandle handle)</argsstring>
+        <name>MapStringBool_empty</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="35" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="35" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a9fb3240c33a030635868bb36c87b8ded" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringBool_clear</definition>
+        <argsstring>(MapStringBoolHandle handle)</argsstring>
+        <name>MapStringBool_clear</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="37" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="37" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a2acc52662670091c6cf10651cf013598" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapStringBool_contains</definition>
+        <argsstring>(MapStringBoolHandle handle, StringHandle key)</argsstring>
+        <name>MapStringBool_contains</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="39" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="39" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a8a6ebfb8f7ad3549ec31dd6b4e41ec18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle MapStringBool_keys</definition>
+        <argsstring>(MapStringBoolHandle handle)</argsstring>
+        <name>MapStringBool_keys</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="41" column="18" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="41" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a40e033e510bd66d4defa6eb3e580cd6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListBoolHandle</type>
+        <definition>ListBoolHandle MapStringBool_values</definition>
+        <argsstring>(MapStringBoolHandle handle)</argsstring>
+        <name>MapStringBool_values</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="43" column="16" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="43" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a4ff946ff020194bc874f4e375da299ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairStringBoolHandle</type>
+        <definition>ListPairStringBoolHandle MapStringBool_items</definition>
+        <argsstring>(MapStringBoolHandle handle)</argsstring>
+        <name>MapStringBool_items</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="45" column="26" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="45" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a212acc17876e13a7f72589d34b00ddd3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapStringBool_equal</definition>
+        <argsstring>(MapStringBoolHandle handle, MapStringBoolHandle other)</argsstring>
+        <name>MapStringBool_equal</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="47" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="47" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a7338891fe196c7afcbc4398b7ab30f1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapStringBool_not_equal</definition>
+        <argsstring>(MapStringBoolHandle handle, MapStringBoolHandle other)</argsstring>
+        <name>MapStringBool_not_equal</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="49" column="6" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="49" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1aff36bc8364a95841e06d001aebe63c4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle MapStringBool_to_json_string</definition>
+        <argsstring>(MapStringBoolHandle handle)</argsstring>
+        <name>MapStringBool_to_json_string</name>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringBool__c__api_8h_1a4de8a6db2ed2c7dc6fbd06b6bafb187c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapStringBoolHandle</type>
+        <definition>MapStringBoolHandle MapStringBool_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>MapStringBool_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h" line="53" column="21" declfile="c-api/include/falcon_core/generic/MapStringBool_c_api.h" declline="53" declcolumn="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListPairStringBool_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListString_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListBool_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>MapStringBoolHandle;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">MapStringBoolHandle<sp/>MapStringBool_create_empty();</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">MapStringBoolHandle<sp/>MapStringBool_copy(MapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">MapStringBoolHandle<sp/>MapStringBool_create(PairStringBoolHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringBool_destroy(MapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringBool_insert_or_assign(MapStringBoolHandle<sp/>handle,<sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>key,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringBool_insert(MapStringBoolHandle<sp/>handle,<sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>key,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapStringBool_at(MapStringBoolHandle<sp/>handle,<sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>key);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringBool_erase(MapStringBoolHandle<sp/>handle,<sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>key);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>MapStringBool_size(MapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapStringBool_empty(MapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringBool_clear(MapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapStringBool_contains(MapStringBoolHandle<sp/>handle,<sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>key);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">ListStringHandle<sp/>MapStringBool_keys(MapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">ListBoolHandle<sp/>MapStringBool_values(MapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">ListPairStringBoolHandle<sp/>MapStringBool_items(MapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapStringBool_equal(MapStringBoolHandle<sp/>handle,<sp/>MapStringBoolHandle<sp/>other);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapStringBool_not_equal(MapStringBoolHandle<sp/>handle,<sp/>MapStringBoolHandle<sp/>other);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>MapStringBool_to_json_string(MapStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">MapStringBoolHandle<sp/>MapStringBool_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/MapStringBool_c_api.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structfalcon__core_1_1generic_1_1is__primitive" kind="struct" language="C++" prot="public">
+    <compoundname>falcon_core::generic::is_primitive</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::integral_constant&lt; bool, std::is_arithmetic&lt; T &gt;::value||std::is_same&lt; T, std::string &gt;::value||std::is_same&lt; T, char &gt;::value||std::is_same&lt; T, bool &gt;::value &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::generic::is_primitive&lt; T &gt;</label>
+        <link refid="structfalcon__core_1_1generic_1_1is__primitive"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::integral_constant&lt; bool, std::is_arithmetic&lt; T &gt;::value||std::is_same&lt; T, std::string &gt;::value||std::is_same&lt; T, char &gt;::value||std::is_same&lt; T, bool &gt;::value &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::generic::is_primitive&lt; T &gt;</label>
+        <link refid="structfalcon__core_1_1generic_1_1is__primitive"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::integral_constant&lt; bool, std::is_arithmetic&lt; T &gt;::value||std::is_same&lt; T, std::string &gt;::value||std::is_same&lt; T, char &gt;::value||std::is_same&lt; T, bool &gt;::value &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/generic/IsPrimitive.hpp" line="10" column="1" bodyfile="cpp/include/falcon_core/generic/IsPrimitive.hpp" bodystart="14" bodyend="14"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

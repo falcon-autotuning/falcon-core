@@ -1,0 +1,583 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="MapChannelConnections__c__api_8h" kind="file" language="C++">
+    <compoundname>MapChannelConnections_c_api.h</compoundname>
+    <includes refid="PairChannelConnections__c__api_8h" local="yes">falcon_core/generic/PairChannelConnections_c_api.h</includes>
+    <includes refid="ListChannel__c__api_8h" local="yes">falcon_core/generic/ListChannel_c_api.h</includes>
+    <includes refid="ListConnections__c__api_8h" local="yes">falcon_core/generic/ListConnections_c_api.h</includes>
+    <includes refid="ListPairChannelConnections__c__api_8h" local="yes">falcon_core/generic/ListPairChannelConnections_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/autotuner_interfaces/names/Channel_c_api.h</label>
+        <link refid="Channel__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/ListChannel_c_api.h</label>
+        <link refid="ListChannel__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/ListConnections_c_api.h</label>
+        <link refid="ListConnections__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/ListPairChannelConnections_c_api.h</label>
+        <link refid="ListPairChannelConnections__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapChannelConnections_c_api.h</label>
+        <link refid="MapChannelConnections__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/PairChannelConnections_c_api.h</label>
+        <link refid="PairChannelConnections__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapChannelConnections_c_api.h</label>
+        <link refid="MapChannelConnections__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="MapChannelConnections__c__api_8h_1a37eac5b147df90e49c6356bf80a43c60" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* MapChannelConnectionsHandle</definition>
+        <argsstring></argsstring>
+        <name>MapChannelConnectionsHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="12" column="14" bodyfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a75c43b3b14bef4a09bbe7676634dcc86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapChannelConnectionsHandle</type>
+        <definition>MapChannelConnectionsHandle MapChannelConnections_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>MapChannelConnections_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="16" column="29" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="16" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a59d5b44066f219ca780ad8b90f0f1afe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapChannelConnectionsHandle</type>
+        <definition>MapChannelConnectionsHandle MapChannelConnections_copy</definition>
+        <argsstring>(MapChannelConnectionsHandle handle)</argsstring>
+        <name>MapChannelConnections_copy</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="18" column="29" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="18" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1ae1237ff19476a15aa4c1048a0e45952d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapChannelConnectionsHandle</type>
+        <definition>MapChannelConnectionsHandle MapChannelConnections_create</definition>
+        <argsstring>(PairChannelConnectionsHandle *data, size_t count)</argsstring>
+        <name>MapChannelConnections_create</name>
+        <param>
+          <type>PairChannelConnectionsHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="20" column="29" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="20" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1ac06c11c1116e5263a3da9ccbcd78d221" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapChannelConnections_destroy</definition>
+        <argsstring>(MapChannelConnectionsHandle handle)</argsstring>
+        <name>MapChannelConnections_destroy</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="22" column="6" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="22" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a0064eb2208975209a47f93faddb35949" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapChannelConnections_insert_or_assign</definition>
+        <argsstring>(MapChannelConnectionsHandle handle, ChannelHandle key, ConnectionsHandle value)</argsstring>
+        <name>MapChannelConnections_insert_or_assign</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1af8d1ca089121eb42e06dc99a51d82cc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapChannelConnections_insert</definition>
+        <argsstring>(MapChannelConnectionsHandle handle, ChannelHandle key, ConnectionsHandle value)</argsstring>
+        <name>MapChannelConnections_insert</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a2e9693b5d09bb23109ad96d6b9b88295" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle MapChannelConnections_at</definition>
+        <argsstring>(MapChannelConnectionsHandle handle, ChannelHandle key)</argsstring>
+        <name>MapChannelConnections_at</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="28" column="19" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="28" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1ae50864bcf41d42ae97bc0bc745b877a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapChannelConnections_erase</definition>
+        <argsstring>(MapChannelConnectionsHandle handle, ChannelHandle key)</argsstring>
+        <name>MapChannelConnections_erase</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a15b3ab824d60092687fb1108f43e6843" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t MapChannelConnections_size</definition>
+        <argsstring>(MapChannelConnectionsHandle handle)</argsstring>
+        <name>MapChannelConnections_size</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="32" column="8" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="32" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a687ee9e62d998243bcde8646c8ebd3c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapChannelConnections_empty</definition>
+        <argsstring>(MapChannelConnectionsHandle handle)</argsstring>
+        <name>MapChannelConnections_empty</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1aa7421373f82a072f3fae0ead1905770b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapChannelConnections_clear</definition>
+        <argsstring>(MapChannelConnectionsHandle handle)</argsstring>
+        <name>MapChannelConnections_clear</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="36" column="6" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="36" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a11e2918f787d683dee0dea6795cfdec0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapChannelConnections_contains</definition>
+        <argsstring>(MapChannelConnectionsHandle handle, ChannelHandle key)</argsstring>
+        <name>MapChannelConnections_contains</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="38" column="6" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="38" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a932e201727dfb79bf84d3f06bdfb7cdd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListChannelHandle</type>
+        <definition>ListChannelHandle MapChannelConnections_keys</definition>
+        <argsstring>(MapChannelConnectionsHandle handle)</argsstring>
+        <name>MapChannelConnections_keys</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="40" column="19" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="40" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1ad43cda65811923fc7c4b8ab90169f102" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListConnectionsHandle</type>
+        <definition>ListConnectionsHandle MapChannelConnections_values</definition>
+        <argsstring>(MapChannelConnectionsHandle handle)</argsstring>
+        <name>MapChannelConnections_values</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="42" column="23" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="42" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1aef11169edd2f3eeba6e9db5138ed0f7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairChannelConnectionsHandle</type>
+        <definition>ListPairChannelConnectionsHandle MapChannelConnections_items</definition>
+        <argsstring>(MapChannelConnectionsHandle handle)</argsstring>
+        <name>MapChannelConnections_items</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="44" column="34" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="44" declcolumn="34"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a11c62aac5d92ad93fc20e3feea396fca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapChannelConnections_equal</definition>
+        <argsstring>(MapChannelConnectionsHandle handle, MapChannelConnectionsHandle other)</argsstring>
+        <name>MapChannelConnections_equal</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a36665f788d9d65c5da48f42abdd869dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapChannelConnections_not_equal</definition>
+        <argsstring>(MapChannelConnectionsHandle handle, MapChannelConnectionsHandle other)</argsstring>
+        <name>MapChannelConnections_not_equal</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a203074d6c95c1c1cb47e5254f2d8c102" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle MapChannelConnections_to_json_string</definition>
+        <argsstring>(MapChannelConnectionsHandle handle)</argsstring>
+        <name>MapChannelConnections_to_json_string</name>
+        <param>
+          <type>MapChannelConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="50" column="19" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="50" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="MapChannelConnections__c__api_8h_1a8df1fed7d3e422ae70383e8a675a5072" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapChannelConnectionsHandle</type>
+        <definition>MapChannelConnectionsHandle MapChannelConnections_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>MapChannelConnections_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" line="52" column="29" declfile="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h" declline="52" declcolumn="29"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/PairChannelConnections_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListChannel_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListConnections_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListPairChannelConnections_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>MapChannelConnectionsHandle;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">MapChannelConnectionsHandle<sp/>MapChannelConnections_create_empty();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">MapChannelConnectionsHandle<sp/>MapChannelConnections_copy(MapChannelConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">MapChannelConnectionsHandle<sp/>MapChannelConnections_create(PairChannelConnectionsHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapChannelConnections_destroy(MapChannelConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapChannelConnections_insert_or_assign(MapChannelConnectionsHandle<sp/>handle,<sp/>ChannelHandle<sp/>key,<sp/>ConnectionsHandle<sp/>value);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapChannelConnections_insert(MapChannelConnectionsHandle<sp/>handle,<sp/>ChannelHandle<sp/>key,<sp/>ConnectionsHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">ConnectionsHandle<sp/>MapChannelConnections_at(MapChannelConnectionsHandle<sp/>handle,<sp/>ChannelHandle<sp/>key);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapChannelConnections_erase(MapChannelConnectionsHandle<sp/>handle,<sp/>ChannelHandle<sp/>key);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>MapChannelConnections_size(MapChannelConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapChannelConnections_empty(MapChannelConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapChannelConnections_clear(MapChannelConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapChannelConnections_contains(MapChannelConnectionsHandle<sp/>handle,<sp/>ChannelHandle<sp/>key);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">ListChannelHandle<sp/>MapChannelConnections_keys(MapChannelConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">ListConnectionsHandle<sp/>MapChannelConnections_values(MapChannelConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListPairChannelConnectionsHandle<sp/>MapChannelConnections_items(MapChannelConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapChannelConnections_equal(MapChannelConnectionsHandle<sp/>handle,<sp/>MapChannelConnectionsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapChannelConnections_not_equal(MapChannelConnectionsHandle<sp/>handle,<sp/>MapChannelConnectionsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>MapChannelConnections_to_json_string(MapChannelConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">MapChannelConnectionsHandle<sp/>MapChannelConnections_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/MapChannelConnections_c_api.h"/>
+  </compounddef>
+</doxygen>

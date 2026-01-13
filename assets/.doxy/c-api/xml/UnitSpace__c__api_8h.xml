@@ -1,0 +1,934 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="UnitSpace__c__api_8h" kind="file" language="C++">
+    <compoundname>UnitSpace_c_api.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes refid="FArrayDouble__c__api_8h" local="yes">falcon_core/generic/FArrayDouble_c_api.h</includes>
+    <includes refid="ListInt__c__api_8h" local="yes">falcon_core/generic/ListInt_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="AxesControlArray__c__api_8h" local="yes">falcon_core/math/AxesControlArray_c_api.h</includes>
+    <includes refid="AxesDiscretizer__c__api_8h" local="yes">falcon_core/math/AxesDiscretizer_c_api.h</includes>
+    <includes refid="AxesDouble__c__api_8h" local="yes">falcon_core/math/AxesDouble_c_api.h</includes>
+    <includes refid="AxesInt__c__api_8h" local="yes">falcon_core/math/AxesInt_c_api.h</includes>
+    <includes refid="Discretizer__c__api_8h" local="yes">falcon_core/math/discrete_spaces/Discretizer_c_api.h</includes>
+    <includedby refid="DiscreteSpace__c__api_8h" local="yes">c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/ListControlArray_c_api.h</label>
+        <link refid="ListControlArray__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/generic/ListDiscretizer_c_api.h</label>
+        <link refid="ListDiscretizer__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/ListInt_c_api.h</label>
+        <link refid="ListInt__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/math/AxesControlArray_c_api.h</label>
+        <link refid="AxesControlArray__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/math/AxesDiscretizer_c_api.h</label>
+        <link refid="AxesDiscretizer__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/math/AxesDouble_c_api.h</label>
+        <link refid="AxesDouble__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/math/AxesInt_c_api.h</label>
+        <link refid="AxesInt__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/math/arrays/ControlArray_c_api.h</label>
+        <link refid="ControlArray__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/math/discrete_spaces/Discretizer_c_api.h</label>
+        <link refid="Discretizer__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/math/domains/Domain_c_api.h</label>
+        <link refid="Domain__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="7">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="UnitSpace__c__api_8h_1ab9e51cdb4c3176cde4f54ab67b559a09" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* UnitSpaceHandle</definition>
+        <argsstring></argsstring>
+        <name>UnitSpaceHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="16" column="14" bodyfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a2ad178bb06492bbac25743ee4017c667" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpaceHandle</type>
+        <definition>UnitSpaceHandle UnitSpace_copy</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_copy</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="19" column="17" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="19" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1ad69e19019e6633dece8c348a46ce8f1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitSpace_destroy</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_destroy</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1acfbbff1f8e93106f7c31fb88f55db61d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool UnitSpace_equal</definition>
+        <argsstring>(UnitSpaceHandle handle, UnitSpaceHandle other)</argsstring>
+        <name>UnitSpace_equal</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a2230c15d6e278c4ee616a29399d70866" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool UnitSpace_not_equal</definition>
+        <argsstring>(UnitSpaceHandle handle, UnitSpaceHandle other)</argsstring>
+        <name>UnitSpace_not_equal</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="25" column="6" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="25" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a826a4358153c88d0c1046d75a1c0d25d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle UnitSpace_to_json_string</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_to_json_string</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="27" column="14" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="27" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a49bcf6b2e55385bc884a50a571522a06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpaceHandle</type>
+        <definition>UnitSpaceHandle UnitSpace_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>UnitSpace_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="29" column="17" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="29" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a80fbb4289f3b1727f5725dc246450f98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpaceHandle</type>
+        <definition>UnitSpaceHandle UnitSpace_create</definition>
+        <argsstring>(AxesDiscretizerHandle axes, DomainHandle domain)</argsstring>
+        <name>UnitSpace_create</name>
+        <param>
+          <type>AxesDiscretizerHandle</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="31" column="17" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="31" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1abaecce96590afbcad4f0814f4156eb85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpaceHandle</type>
+        <definition>UnitSpaceHandle UnitSpace_create_ray_space</definition>
+        <argsstring>(double dr, double dtheta, DomainHandle domain)</argsstring>
+        <name>UnitSpace_create_ray_space</name>
+        <param>
+          <type>double</type>
+          <declname>dr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dtheta</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="34" column="17" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="34" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1abefe32497e596fed95c26cacb0f96f95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpaceHandle</type>
+        <definition>UnitSpaceHandle UnitSpace_create_cartesian_space</definition>
+        <argsstring>(AxesDoubleHandle deltas, DomainHandle domain)</argsstring>
+        <name>UnitSpace_create_cartesian_space</name>
+        <param>
+          <type>AxesDoubleHandle</type>
+          <declname>deltas</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="38" column="17" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="38" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a0164ba6e2a046c0bd236e5e9c7217162" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpaceHandle</type>
+        <definition>UnitSpaceHandle UnitSpace_create_cartesian_1D_space</definition>
+        <argsstring>(double delta, DomainHandle domain)</argsstring>
+        <name>UnitSpace_create_cartesian_1D_space</name>
+        <param>
+          <type>double</type>
+          <declname>delta</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="41" column="17" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="41" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a583999013293e3f198a65f7b110174c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpaceHandle</type>
+        <definition>UnitSpaceHandle UnitSpace_create_cartesian_2D_space</definition>
+        <argsstring>(AxesDoubleHandle deltas, DomainHandle domain)</argsstring>
+        <name>UnitSpace_create_cartesian_2D_space</name>
+        <param>
+          <type>AxesDoubleHandle</type>
+          <declname>deltas</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="44" column="17" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="44" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a002657a38cf528821d1c67cb6be4e196" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesDiscretizerHandle</type>
+        <definition>AxesDiscretizerHandle UnitSpace_axes</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_axes</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the axes of the space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="51" column="23" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="51" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a8d1c7e3ced379a025cb9f5716d70387e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle UnitSpace_domain</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_domain</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the domain of the space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="57" column="14" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="57" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a3402af154230723f171588640f4ea742" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle UnitSpace_space</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_space</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the stored space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="63" column="20" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="63" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a68703edecc8c0c47c06212c89c345f02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListIntHandle</type>
+        <definition>ListIntHandle UnitSpace_shape</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_shape</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the shape of the unit space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="69" column="15" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="69" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1adcaf76679438f6d9224c0c1298c9bd18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t UnitSpace_dimension</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_dimension</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the number of dimensions in the space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="76" column="8" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="76" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a9018948fbda9cba8818e1c60223df11f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitSpace_compile</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_compile</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Compile the unit space into a space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="83" column="6" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="83" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a2f217a95ce25ae335e23428ce9162f64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesControlArrayHandle</type>
+        <definition>AxesControlArrayHandle UnitSpace_create_array</definition>
+        <argsstring>(UnitSpaceHandle handle, AxesIntHandle axes)</argsstring>
+        <name>UnitSpace_create_array</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>axes</declname>
+        </param>
+        <briefdescription>
+<para>Return the projection of the space onto the given axes. The projection contains the indexes of the axes to project onto. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes to project onto. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A set of proper Control Arrays </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="93" column="24" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="93" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a68985f2e72dbf0b99569717acf0b576b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitSpace_push_back</definition>
+        <argsstring>(UnitSpaceHandle handle, DiscretizerHandle value)</argsstring>
+        <name>UnitSpace_push_back</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="96" column="6" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="96" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1aedc93df1b9845cf028d18ca303ad1243" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t UnitSpace_size</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_size</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="98" column="8" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="98" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a5e4adbe99303b6ee43a54da5590d1c38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool UnitSpace_empty</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_empty</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="100" column="6" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="100" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a512541689bcba547d9c483ee3bb84252" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitSpace_erase_at</definition>
+        <argsstring>(UnitSpaceHandle handle, size_t idx)</argsstring>
+        <name>UnitSpace_erase_at</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="102" column="6" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="102" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1ab3276614d56d40e279903c1120d3aba0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitSpace_clear</definition>
+        <argsstring>(UnitSpaceHandle handle)</argsstring>
+        <name>UnitSpace_clear</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="104" column="6" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="104" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a54ccd7495fa0d621d1ade95bd16a780e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscretizerHandle</type>
+        <definition>DiscretizerHandle UnitSpace_at</definition>
+        <argsstring>(UnitSpaceHandle handle, size_t idx)</argsstring>
+        <name>UnitSpace_at</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="106" column="19" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="106" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a94b8ed78e8fcf2389084c53115d972bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t UnitSpace_items</definition>
+        <argsstring>(UnitSpaceHandle handle, DiscretizerHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>UnitSpace_items</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DiscretizerHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="108" column="8" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="108" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a3689ef51ae62791a537486b1a0894829" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool UnitSpace_contains</definition>
+        <argsstring>(UnitSpaceHandle handle, DiscretizerHandle value)</argsstring>
+        <name>UnitSpace_contains</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="112" column="6" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="112" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1add65f45fd9b9e6f90a3ed0d01729ac31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t UnitSpace_index</definition>
+        <argsstring>(UnitSpaceHandle handle, DiscretizerHandle value)</argsstring>
+        <name>UnitSpace_index</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="114" column="8" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="114" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="UnitSpace__c__api_8h_1a5384e9a8573c1cc07964560ac2bf44eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpaceHandle</type>
+        <definition>UnitSpaceHandle UnitSpace_intersection</definition>
+        <argsstring>(UnitSpaceHandle handle, UnitSpaceHandle other)</argsstring>
+        <name>UnitSpace_intersection</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h" line="116" column="17" declfile="c-api/include/falcon_core/math/UnitSpace_c_api.h" declline="116" declcolumn="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/FArrayDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListInt_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesControlArray_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesDiscretizer_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesInt_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/discrete_spaces/Discretizer_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>UnitSpaceHandle;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">UnitSpaceHandle<sp/>UnitSpace_copy(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>UnitSpace_destroy(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>UnitSpace_equal(UnitSpaceHandle<sp/>handle,<sp/>UnitSpaceHandle<sp/>other);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>UnitSpace_not_equal(UnitSpaceHandle<sp/>handle,<sp/>UnitSpaceHandle<sp/>other);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>UnitSpace_to_json_string(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">UnitSpaceHandle<sp/>UnitSpace_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">UnitSpaceHandle<sp/>UnitSpace_create(AxesDiscretizerHandle<sp/>axes,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">UnitSpaceHandle<sp/>UnitSpace_create_ray_space(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dr,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dtheta,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DomainHandle<sp/>domain);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">UnitSpaceHandle<sp/>UnitSpace_create_cartesian_space(AxesDoubleHandle<sp/>deltas,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">UnitSpaceHandle<sp/>UnitSpace_create_cartesian_1D_space(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delta,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DomainHandle<sp/>domain);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">UnitSpaceHandle<sp/>UnitSpace_create_cartesian_2D_space(AxesDoubleHandle<sp/>deltas,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>UnitSpace_axes<sp/>|<sp/>falcon_core::math::UnitSpace::axes<sp/>*/</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">AxesDiscretizerHandle<sp/>UnitSpace_axes(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>UnitSpace_domain<sp/>|<sp/>falcon_core::math::UnitSpace::domain<sp/>*/</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">DomainHandle<sp/>UnitSpace_domain(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>UnitSpace_space<sp/>|<sp/>falcon_core::math::UnitSpace::space<sp/>*/</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">FArrayDoubleHandle<sp/>UnitSpace_space(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>UnitSpace_shape<sp/>|<sp/>falcon_core::math::UnitSpace::shape<sp/>*/</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">ListIntHandle<sp/>UnitSpace_shape(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>UnitSpace_dimension<sp/>|</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>falcon_core::math::UnitSpace::dimension<sp/>*/</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>UnitSpace_dimension(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>UnitSpace_compile<sp/>|<sp/>falcon_core::math::UnitSpace::compile</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*/</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>UnitSpace_compile(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>UnitSpace_create_array<sp/>|</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/>*<sp/>falcon_core::math::UnitSpace::create_array<sp/>*/</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">AxesControlArrayHandle<sp/>UnitSpace_create_array(UnitSpaceHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AxesIntHandle<sp/><sp/><sp/>axes);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>UnitSpace_push_back(UnitSpaceHandle<sp/>handle,<sp/>DiscretizerHandle<sp/>value);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>UnitSpace_size(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>UnitSpace_empty(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>UnitSpace_erase_at(UnitSpaceHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>UnitSpace_clear(UnitSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">DiscretizerHandle<sp/>UnitSpace_at(UnitSpaceHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>UnitSpace_items(UnitSpaceHandle<sp/><sp/><sp/><sp/>handle,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DiscretizerHandle*<sp/>out_buffer,</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>UnitSpace_contains(UnitSpaceHandle<sp/>handle,<sp/>DiscretizerHandle<sp/>value);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>UnitSpace_index(UnitSpaceHandle<sp/>handle,<sp/>DiscretizerHandle<sp/>value);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">UnitSpaceHandle<sp/>UnitSpace_intersection(UnitSpaceHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UnitSpaceHandle<sp/>other);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/UnitSpace_c_api.h"/>
+  </compounddef>
+</doxygen>

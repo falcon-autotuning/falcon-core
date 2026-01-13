@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1instrument__interfaces_1_1port__transforms" kind="namespace" language="C++">
+    <compoundname>falcon_core::instrument_interfaces::port_transforms</compoundname>
+    <innerclass refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" prot="public">falcon_core::instrument_interfaces::port_transforms::PortTransform</innerclass>
+    <innerclass refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms" prot="public">falcon_core::instrument_interfaces::port_transforms::PortTransforms</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="PortTransform_8hpp_1a974327d4b6524073c9732292cf4bdcb2" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" kindref="compound">PortTransform</ref> &gt;</type>
+        <definition>using falcon_core::instrument_interfaces::port_transforms::PortTransformSP = typedef std::shared_ptr&lt;PortTransform&gt;</definition>
+        <argsstring></argsstring>
+        <name>PortTransformSP</name>
+        <qualifiedname>falcon_core::instrument_interfaces::port_transforms::PortTransformSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp" line="55" column="1" bodyfile="cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="PortTransforms_8hpp_1a4dfad5db02d62c1cf4a509b88bcf9249" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms" kindref="compound">PortTransforms</ref> &gt;</type>
+        <definition>using falcon_core::instrument_interfaces::port_transforms::PortTransformsSP = typedef std::shared_ptr&lt;PortTransforms&gt;</definition>
+        <argsstring></argsstring>
+        <name>PortTransformsSP</name>
+        <qualifiedname>falcon_core::instrument_interfaces::port_transforms::PortTransformsSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp" line="28" column="1" bodyfile="cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp" line="11" column="1"/>
+  </compounddef>
+</doxygen>

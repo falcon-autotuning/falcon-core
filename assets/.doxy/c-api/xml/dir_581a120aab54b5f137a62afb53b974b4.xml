@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_581a120aab54b5f137a62afb53b974b4" kind="dir">
+    <compoundname>c-api/include/falcon_core/physics/config</compoundname>
+    <innerdir refid="dir_2d9342c5d4579911ee06a50b57a946ed">c-api/include/falcon_core/physics/config/core</innerdir>
+    <innerdir refid="dir_1d88f50ca6512fed7187c162c771cfa6">c-api/include/falcon_core/physics/config/geometries</innerdir>
+    <innerfile refid="Loader__c__api_8h">Loader_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/physics/config/"/>
+  </compounddef>
+</doxygen>

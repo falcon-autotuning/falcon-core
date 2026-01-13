@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Precompiled__c__api_8h" kind="file" language="C++">
+    <compoundname>Precompiled_c_api.h</compoundname>
+    <includes refid="CerealMacro__c__api_8h" local="yes">falcon_core/CerealMacro_c_api.h</includes>
+    <includes refid="CopyMacro__c__api_8h" local="yes">falcon_core/CopyMacro_c_api.h</includes>
+    <includes refid="DestroyMacro__c__api_8h" local="yes">falcon_core/DestroyMacro_c_api.h</includes>
+    <includes refid="EqualityMacro__c__api_8h" local="yes">falcon_core/EqualityMacro_c_api.h</includes>
+    <includes refid="ErrorHandling__c__api_8h" local="yes">falcon_core/generic/ErrorHandling_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>falcon_core/CerealMacro_c_api.h</label>
+        <link refid="CerealMacro__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>falcon_core/CopyMacro_c_api.h</label>
+        <link refid="CopyMacro__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>falcon_core/DestroyMacro_c_api.h</label>
+        <link refid="DestroyMacro__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>falcon_core/EqualityMacro_c_api.h</label>
+        <link refid="EqualityMacro__c__api_8h_source"/>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/Precompiled_c_api.h</label>
+        <link refid="Precompiled__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/ErrorHandling_c_api.h</label>
+        <link refid="ErrorHandling__c__api_8h_source"/>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/CerealMacro_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/CopyMacro_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/DestroyMacro_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/EqualityMacro_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ErrorHandling_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/Precompiled_c_api.h"/>
+  </compounddef>
+</doxygen>

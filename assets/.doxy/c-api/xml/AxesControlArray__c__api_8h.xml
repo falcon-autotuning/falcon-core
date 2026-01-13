@@ -1,0 +1,566 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="AxesControlArray__c__api_8h" kind="file" language="C++">
+    <compoundname>AxesControlArray_c_api.h</compoundname>
+    <includes refid="ControlArray__c__api_8h" local="yes">falcon_core/math/arrays/ControlArray_c_api.h</includes>
+    <includes refid="ListControlArray__c__api_8h" local="yes">falcon_core/generic/ListControlArray_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="HDF5Data__c__api_8h" local="yes">c-api/include/falcon_core/communications/HDF5Data_c_api.h</includedby>
+    <includedby refid="UnitSpace__c__api_8h" local="yes">c-api/include/falcon_core/math/UnitSpace_c_api.h</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/generic/ListControlArray_c_api.h</label>
+        <link refid="ListControlArray__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/AxesControlArray_c_api.h</label>
+        <link refid="AxesControlArray__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/math/arrays/ControlArray_c_api.h</label>
+        <link refid="ControlArray__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/AxesControlArray_c_api.h</label>
+        <link refid="AxesControlArray__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="AxesControlArray__c__api_8h_1a25c72b83c00eda055f0c928a173ff153" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* AxesControlArrayHandle</definition>
+        <argsstring></argsstring>
+        <name>AxesControlArrayHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="12" column="14" bodyfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a4f8b27ff777093e4856d80d2f1661f61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesControlArrayHandle</type>
+        <definition>AxesControlArrayHandle AxesControlArray_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>AxesControlArray_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="16" column="24" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="16" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a193dab8922845da9e65181da500b89b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesControlArrayHandle</type>
+        <definition>AxesControlArrayHandle AxesControlArray_copy</definition>
+        <argsstring>(AxesControlArrayHandle handle)</argsstring>
+        <name>AxesControlArray_copy</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="18" column="24" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="18" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a685ce0d82c6d17277a2e925b2ad280ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesControlArrayHandle</type>
+        <definition>AxesControlArrayHandle AxesControlArray_create</definition>
+        <argsstring>(ListControlArrayHandle data)</argsstring>
+        <name>AxesControlArray_create</name>
+        <param>
+          <type>ListControlArrayHandle</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="20" column="24" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="20" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1aa4325da4fd5de76105ceeedf8dd446bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesControlArray_destroy</definition>
+        <argsstring>(AxesControlArrayHandle handle)</argsstring>
+        <name>AxesControlArray_destroy</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="22" column="6" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="22" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1aad5677b8ee051050f91cb7393e0751ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesControlArray_push_back</definition>
+        <argsstring>(AxesControlArrayHandle handle, ControlArrayHandle value)</argsstring>
+        <name>AxesControlArray_push_back</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ControlArrayHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a189d507c931ad9ce24803e7f71f88f7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t AxesControlArray_size</definition>
+        <argsstring>(AxesControlArrayHandle handle)</argsstring>
+        <name>AxesControlArray_size</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="26" column="8" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="26" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1ad3ff67354985cae8de1ae7f2a9bac5fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesControlArray_empty</definition>
+        <argsstring>(AxesControlArrayHandle handle)</argsstring>
+        <name>AxesControlArray_empty</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="28" column="6" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="28" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a5ccb79f30f841b058d70eb27ba60d7bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesControlArray_erase_at</definition>
+        <argsstring>(AxesControlArrayHandle handle, size_t idx)</argsstring>
+        <name>AxesControlArray_erase_at</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1abaf2a9826ea6bcb431662cfa4e6e9144" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesControlArray_clear</definition>
+        <argsstring>(AxesControlArrayHandle handle)</argsstring>
+        <name>AxesControlArray_clear</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a65316f46e18fd8d0baaee7d820a2afb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ControlArrayHandle</type>
+        <definition>ControlArrayHandle AxesControlArray_at</definition>
+        <argsstring>(AxesControlArrayHandle handle, size_t idx)</argsstring>
+        <name>AxesControlArray_at</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="34" column="20" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="34" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a12b6b130259341ad4d97c27554ac82a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t AxesControlArray_items</definition>
+        <argsstring>(AxesControlArrayHandle handle, ControlArrayHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>AxesControlArray_items</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ControlArrayHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="36" column="8" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="36" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1ae7169e6330bd4509197287a009c61604" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesControlArray_contains</definition>
+        <argsstring>(AxesControlArrayHandle handle, ControlArrayHandle value)</argsstring>
+        <name>AxesControlArray_contains</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ControlArrayHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="38" column="6" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="38" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a93721e5f2b61890e07723feaeccf6988" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t AxesControlArray_index</definition>
+        <argsstring>(AxesControlArrayHandle handle, ControlArrayHandle value)</argsstring>
+        <name>AxesControlArray_index</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ControlArrayHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="40" column="8" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="40" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a807e7f0f4dbad8758a2c2105e095bd90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesControlArrayHandle</type>
+        <definition>AxesControlArrayHandle AxesControlArray_intersection</definition>
+        <argsstring>(AxesControlArrayHandle handle, AxesControlArrayHandle other)</argsstring>
+        <name>AxesControlArray_intersection</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="42" column="24" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="42" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1afc42d2d9bd0152987d32eebcf5438bee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesControlArray_equal</definition>
+        <argsstring>(AxesControlArrayHandle handle, AxesControlArrayHandle other)</argsstring>
+        <name>AxesControlArray_equal</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="44" column="6" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="44" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1ac345b7891c94f69514518902ade34a42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesControlArray_not_equal</definition>
+        <argsstring>(AxesControlArrayHandle handle, AxesControlArrayHandle other)</argsstring>
+        <name>AxesControlArray_not_equal</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1ae04be54862219bf346f96863527f6dac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle AxesControlArray_to_json_string</definition>
+        <argsstring>(AxesControlArrayHandle handle)</argsstring>
+        <name>AxesControlArray_to_json_string</name>
+        <param>
+          <type>AxesControlArrayHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="49" column="19" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="49" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesControlArray__c__api_8h_1a31e3b2a6fd4ebcbc197c772c7d890020" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesControlArrayHandle</type>
+        <definition>AxesControlArrayHandle AxesControlArray_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>AxesControlArray_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h" line="51" column="24" declfile="c-api/include/falcon_core/math/AxesControlArray_c_api.h" declline="51" declcolumn="24"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/arrays/ControlArray_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListControlArray_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>AxesControlArrayHandle;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">AxesControlArrayHandle<sp/>AxesControlArray_create_empty();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">AxesControlArrayHandle<sp/>AxesControlArray_copy(AxesControlArrayHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">AxesControlArrayHandle<sp/>AxesControlArray_create(ListControlArrayHandle<sp/>data);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesControlArray_destroy(AxesControlArrayHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesControlArray_push_back(AxesControlArrayHandle<sp/>handle,<sp/>ControlArrayHandle<sp/>value);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>AxesControlArray_size(AxesControlArrayHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesControlArray_empty(AxesControlArrayHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesControlArray_erase_at(AxesControlArrayHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesControlArray_clear(AxesControlArrayHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">ControlArrayHandle<sp/>AxesControlArray_at(AxesControlArrayHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>AxesControlArray_items(AxesControlArrayHandle<sp/>handle,<sp/>ControlArrayHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesControlArray_contains(AxesControlArrayHandle<sp/>handle,<sp/>ControlArrayHandle<sp/>value);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>AxesControlArray_index(AxesControlArrayHandle<sp/>handle,<sp/>ControlArrayHandle<sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">AxesControlArrayHandle<sp/>AxesControlArray_intersection(AxesControlArrayHandle<sp/>handle,<sp/>AxesControlArrayHandle<sp/>other);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesControlArray_equal(AxesControlArrayHandle<sp/>handle,<sp/>AxesControlArrayHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesControlArray_not_equal(AxesControlArrayHandle<sp/>handle,<sp/>AxesControlArrayHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>AxesControlArray_to_json_string(AxesControlArrayHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">AxesControlArrayHandle<sp/>AxesControlArray_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/AxesControlArray_c_api.h"/>
+  </compounddef>
+</doxygen>

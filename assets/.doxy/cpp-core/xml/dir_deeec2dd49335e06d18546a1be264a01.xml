@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_deeec2dd49335e06d18546a1be264a01" kind="dir">
+    <compoundname>cpp/include/falcon_core/math</compoundname>
+    <innerdir refid="dir_1ba4fdf981bee86d96b3ddb48a8d8b03">cpp/include/falcon_core/math/arrays</innerdir>
+    <innerdir refid="dir_71966f80191a0917307a068cf22a319b">cpp/include/falcon_core/math/discrete_spaces</innerdir>
+    <innerdir refid="dir_0f4cd819bc4c9a3cbf40e528a3341d04">cpp/include/falcon_core/math/domains</innerdir>
+    <innerfile refid="AnalyticFunction_8hpp">AnalyticFunction.hpp</innerfile>
+    <innerfile refid="Axes_8hpp">Axes.hpp</innerfile>
+    <innerfile refid="Point_8hpp">Point.hpp</innerfile>
+    <innerfile refid="Quantity_8hpp">Quantity.hpp</innerfile>
+    <innerfile refid="Sign_8hpp">Sign.hpp</innerfile>
+    <innerfile refid="UnitSpace_8hpp">UnitSpace.hpp</innerfile>
+    <innerfile refid="Vector_8hpp">Vector.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/math/"/>
+  </compounddef>
+</doxygen>

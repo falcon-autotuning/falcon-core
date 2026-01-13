@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1communications_1_1messages" kind="namespace" language="C++">
+    <compoundname>falcon_core::communications::messages</compoundname>
+    <innerclass refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" prot="public">falcon_core::communications::messages::BaseMessage</innerclass>
+    <innerclass refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementRequest" prot="public">falcon_core::communications::messages::MeasurementRequest</innerclass>
+    <innerclass refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse" prot="public">falcon_core::communications::messages::MeasurementResponse</innerclass>
+    <innerclass refid="classfalcon__core_1_1communications_1_1messages_1_1StandardRequest" prot="public">falcon_core::communications::messages::StandardRequest</innerclass>
+    <innerclass refid="classfalcon__core_1_1communications_1_1messages_1_1StandardResponse" prot="public">falcon_core::communications::messages::StandardResponse</innerclass>
+    <innerclass refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse" prot="public">falcon_core::communications::messages::VoltageStatesResponse</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="BaseMessage_8hpp_1ad639d489104b4f1a13f124b41096078d" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" kindref="compound">BaseMessage</ref> &gt;</type>
+        <definition>using falcon_core::communications::messages::BaseMessageSP = typedef std::shared_ptr&lt;BaseMessage&gt;</definition>
+        <argsstring></argsstring>
+        <name>BaseMessageSP</name>
+        <qualifiedname>falcon_core::communications::messages::BaseMessageSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="32" column="1" bodyfile="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="MeasurementRequest_8hpp_1a4e89b17cc33a20f9d406df69d8fea9ae" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementRequest" kindref="compound">MeasurementRequest</ref> &gt;</type>
+        <definition>using falcon_core::communications::messages::MeasurementRequestSP = typedef std::shared_ptr&lt;MeasurementRequest&gt;</definition>
+        <argsstring></argsstring>
+        <name>MeasurementRequestSP</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementRequestSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementRequest.hpp" line="75" column="1" bodyfile="cpp/include/falcon_core/communications/messages/MeasurementRequest.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="MeasurementResponse_8hpp_1a35884b799052f050eabb8dcb0e21ee9a" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse" kindref="compound">MeasurementResponse</ref> &gt;</type>
+        <definition>using falcon_core::communications::messages::MeasurementResponseSP = typedef std::shared_ptr&lt;MeasurementResponse&gt;</definition>
+        <argsstring></argsstring>
+        <name>MeasurementResponseSP</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponseSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="37" column="1" bodyfile="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="StandardRequest_8hpp_1ae1363ef6c8df98af3f41424deca72bbe" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1communications_1_1messages_1_1StandardRequest" kindref="compound">StandardRequest</ref> &gt;</type>
+        <definition>using falcon_core::communications::messages::StandardRequestSP = typedef std::shared_ptr&lt;StandardRequest&gt;</definition>
+        <argsstring></argsstring>
+        <name>StandardRequestSP</name>
+        <qualifiedname>falcon_core::communications::messages::StandardRequestSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/StandardRequest.hpp" line="21" column="1" bodyfile="cpp/include/falcon_core/communications/messages/StandardRequest.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="StandardResponse_8hpp_1a7081844237a9ababb26a27de1c9347e5" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1communications_1_1messages_1_1StandardResponse" kindref="compound">StandardResponse</ref> &gt;</type>
+        <definition>using falcon_core::communications::messages::StandardResponseSP = typedef std::shared_ptr&lt;StandardResponse&gt;</definition>
+        <argsstring></argsstring>
+        <name>StandardResponseSP</name>
+        <qualifiedname>falcon_core::communications::messages::StandardResponseSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/StandardResponse.hpp" line="21" column="1" bodyfile="cpp/include/falcon_core/communications/messages/StandardResponse.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="VoltageStatesResponse_8hpp_1a16f2818f21d5107f4b1dbd9eb482e0a7" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse" kindref="compound">VoltageStatesResponse</ref> &gt;</type>
+        <definition>using falcon_core::communications::messages::VoltageStatesResponseSP = typedef std::shared_ptr&lt;VoltageStatesResponse&gt;</definition>
+        <argsstring></argsstring>
+        <name>VoltageStatesResponseSP</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponseSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="34" column="1" bodyfile="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/communications/messages/BaseMessage.hpp" line="8" column="1"/>
+  </compounddef>
+</doxygen>

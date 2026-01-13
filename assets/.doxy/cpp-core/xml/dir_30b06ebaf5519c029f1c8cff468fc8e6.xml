@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_30b06ebaf5519c029f1c8cff468fc8e6" kind="dir">
+    <compoundname>cpp/include/falcon_core/physics/device_structures</compoundname>
+    <innerfile refid="Connection_8hpp">Connection.hpp</innerfile>
+    <innerfile refid="Connections_8hpp">Connections.hpp</innerfile>
+    <innerfile refid="GateRelations_8hpp">GateRelations.hpp</innerfile>
+    <innerfile refid="Impedance_8hpp">Impedance.hpp</innerfile>
+    <innerfile refid="Impedances_8hpp">Impedances.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/physics/device_structures/"/>
+  </compounddef>
+</doxygen>

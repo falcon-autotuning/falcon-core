@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_2d9342c5d4579911ee06a50b57a946ed" kind="dir">
+    <compoundname>c-api/include/falcon_core/physics/config/core</compoundname>
+    <innerfile refid="Adjacency__c__api_8h">Adjacency_c_api.h</innerfile>
+    <innerfile refid="Config__c__api_8h">Config_c_api.h</innerfile>
+    <innerfile refid="Group__c__api_8h">Group_c_api.h</innerfile>
+    <innerfile refid="VoltageConstraints__c__api_8h">VoltageConstraints_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/physics/config/core/"/>
+  </compounddef>
+</doxygen>

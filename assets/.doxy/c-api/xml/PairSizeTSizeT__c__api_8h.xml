@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="PairSizeTSizeT__c__api_8h" kind="file" language="C++">
+    <compoundname>PairSizeTSizeT_c_api.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="ListPairSizeTSizeT__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListPairSizeTSizeT_c_api.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h</label>
+        <link refid="PairSizeTSizeT__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListPairSizeTSizeT_c_api.h</label>
+        <link refid="ListPairSizeTSizeT__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h</label>
+        <link refid="PairSizeTSizeT__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h</label>
+        <link refid="Adjacency__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h</label>
+        <link refid="VoltageConstraints__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="PairSizeTSizeT__c__api_8h_1a25417963fba9b3243da353ce27134e2c" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* PairSizeTSizeTHandle</definition>
+        <argsstring></argsstring>
+        <name>PairSizeTSizeTHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="PairSizeTSizeT__c__api_8h_1a7493cc24ebf952884e149e39e0787438" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairSizeTSizeTHandle</type>
+        <definition>PairSizeTSizeTHandle PairSizeTSizeT_create</definition>
+        <argsstring>(size_t first, size_t second)</argsstring>
+        <name>PairSizeTSizeT_create</name>
+        <param>
+          <type>size_t</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>second</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="14" column="22" declfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" declline="14" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="PairSizeTSizeT__c__api_8h_1a154ba7720542d8fcf62f0a26a880bea5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairSizeTSizeTHandle</type>
+        <definition>PairSizeTSizeTHandle PairSizeTSizeT_copy</definition>
+        <argsstring>(PairSizeTSizeTHandle handle)</argsstring>
+        <name>PairSizeTSizeT_copy</name>
+        <param>
+          <type>PairSizeTSizeTHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="16" column="22" declfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" declline="16" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="PairSizeTSizeT__c__api_8h_1af23124a654c3a6baad3de19960fc2218" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PairSizeTSizeT_destroy</definition>
+        <argsstring>(PairSizeTSizeTHandle handle)</argsstring>
+        <name>PairSizeTSizeT_destroy</name>
+        <param>
+          <type>PairSizeTSizeTHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="18" column="6" declfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="PairSizeTSizeT__c__api_8h_1a4ba09230834a73b07f714460b417c7c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t PairSizeTSizeT_first</definition>
+        <argsstring>(PairSizeTSizeTHandle handle)</argsstring>
+        <name>PairSizeTSizeT_first</name>
+        <param>
+          <type>PairSizeTSizeTHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="20" column="8" declfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" declline="20" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="PairSizeTSizeT__c__api_8h_1a08a4fb21617da6005ffda706b44a7afc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t PairSizeTSizeT_second</definition>
+        <argsstring>(PairSizeTSizeTHandle handle)</argsstring>
+        <name>PairSizeTSizeT_second</name>
+        <param>
+          <type>PairSizeTSizeTHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="22" column="8" declfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" declline="22" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="PairSizeTSizeT__c__api_8h_1a8d4523df46b881e92a314e9627c71ad8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PairSizeTSizeT_equal</definition>
+        <argsstring>(PairSizeTSizeTHandle handle, PairSizeTSizeTHandle other)</argsstring>
+        <name>PairSizeTSizeT_equal</name>
+        <param>
+          <type>PairSizeTSizeTHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairSizeTSizeTHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="PairSizeTSizeT__c__api_8h_1a2c0e002a2d8f4c18cdc3da5b06ec90c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PairSizeTSizeT_not_equal</definition>
+        <argsstring>(PairSizeTSizeTHandle handle, PairSizeTSizeTHandle other)</argsstring>
+        <name>PairSizeTSizeT_not_equal</name>
+        <param>
+          <type>PairSizeTSizeTHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairSizeTSizeTHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="PairSizeTSizeT__c__api_8h_1a21c09bec43e7765d158b1ae37bd3cd50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle PairSizeTSizeT_to_json_string</definition>
+        <argsstring>(PairSizeTSizeTHandle handle)</argsstring>
+        <name>PairSizeTSizeT_to_json_string</name>
+        <param>
+          <type>PairSizeTSizeTHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="28" column="19" declfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" declline="28" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="PairSizeTSizeT__c__api_8h_1a275c473c44ff9f6f3b73eff517014bb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairSizeTSizeTHandle</type>
+        <definition>PairSizeTSizeTHandle PairSizeTSizeT_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>PairSizeTSizeT_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" line="30" column="22" declfile="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h" declline="30" declcolumn="22"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>PairSizeTSizeTHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">PairSizeTSizeTHandle<sp/>PairSizeTSizeT_create(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>first,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>second);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">PairSizeTSizeTHandle<sp/>PairSizeTSizeT_copy(PairSizeTSizeTHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>PairSizeTSizeT_destroy(PairSizeTSizeTHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>PairSizeTSizeT_first(PairSizeTSizeTHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>PairSizeTSizeT_second(PairSizeTSizeTHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>PairSizeTSizeT_equal(PairSizeTSizeTHandle<sp/>handle,<sp/>PairSizeTSizeTHandle<sp/>other);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>PairSizeTSizeT_not_equal(PairSizeTSizeTHandle<sp/>handle,<sp/>PairSizeTSizeTHandle<sp/>other);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>PairSizeTSizeT_to_json_string(PairSizeTSizeTHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">PairSizeTSizeTHandle<sp/>PairSizeTSizeT_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/PairSizeTSizeT_c_api.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,549 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ListPairConnectionConnections__c__api_8h" kind="file" language="C++">
+    <compoundname>ListPairConnectionConnections_c_api.h</compoundname>
+    <includes refid="PairConnectionConnections__c__api_8h" local="yes">falcon_core/generic/PairConnectionConnections_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="GateRelations__c__api_8h" local="yes">c-api/include/falcon_core/physics/device_structures/GateRelations_c_api.h</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h</label>
+        <link refid="ListPairConnectionConnections__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/PairConnectionConnections_c_api.h</label>
+        <link refid="PairConnectionConnections__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="8">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h</label>
+        <link refid="ListPairConnectionConnections__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/physics/device_structures/GateRelations_c_api.h</label>
+        <link refid="GateRelations__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ListPairConnectionConnections__c__api_8h_1a833155fa186c0d5aa1ba5d7abd1aa936" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ListPairConnectionConnectionsHandle</definition>
+        <argsstring></argsstring>
+        <name>ListPairConnectionConnectionsHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a1ae687f1cc5ad1882c445c4210425604" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionConnectionsHandle</type>
+        <definition>ListPairConnectionConnectionsHandle ListPairConnectionConnections_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>ListPairConnectionConnections_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="15" column="37" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="15" declcolumn="37"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a25167eecbbf07d6e114ba5d62775dec5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionConnectionsHandle</type>
+        <definition>ListPairConnectionConnectionsHandle ListPairConnectionConnections_copy</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle)</argsstring>
+        <name>ListPairConnectionConnections_copy</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="17" column="37" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="17" declcolumn="37"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a423f35b3506ddfcbf1c291e2eb657bb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionConnectionsHandle</type>
+        <definition>ListPairConnectionConnectionsHandle ListPairConnectionConnections_fill_value</definition>
+        <argsstring>(size_t count, PairConnectionConnectionsHandle value)</argsstring>
+        <name>ListPairConnectionConnections_fill_value</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>PairConnectionConnectionsHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="20" column="37" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="20" declcolumn="37"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1ae6705de2414da1530c8bce80c32afa90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionConnectionsHandle</type>
+        <definition>ListPairConnectionConnectionsHandle ListPairConnectionConnections_create</definition>
+        <argsstring>(PairConnectionConnectionsHandle *data, size_t count)</argsstring>
+        <name>ListPairConnectionConnections_create</name>
+        <param>
+          <type>PairConnectionConnectionsHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="22" column="37" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="22" declcolumn="37"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a72baa59eef2d8208ec0d97e609d17259" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairConnectionConnections_destroy</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle)</argsstring>
+        <name>ListPairConnectionConnections_destroy</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a9bd9e25d17ce590fcd8931616ac41635" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairConnectionConnections_push_back</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value)</argsstring>
+        <name>ListPairConnectionConnections_push_back</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionConnectionsHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a557cc803c32a432ab1cc693d7750cffe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairConnectionConnections_size</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle)</argsstring>
+        <name>ListPairConnectionConnections_size</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1ae4a7e69875a1f9d21a1e00203f024d4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairConnectionConnections_empty</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle)</argsstring>
+        <name>ListPairConnectionConnections_empty</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1af038f229ac1c61d467227f8440209b02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairConnectionConnections_erase_at</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle, size_t idx)</argsstring>
+        <name>ListPairConnectionConnections_erase_at</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a05d8dee84012938eaf11134ffc53a589" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairConnectionConnections_clear</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle)</argsstring>
+        <name>ListPairConnectionConnections_clear</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1af66a5c0a70bc0819ef20d09e37366117" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairConnectionConnectionsHandle</type>
+        <definition>PairConnectionConnectionsHandle ListPairConnectionConnections_at</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle, size_t idx)</argsstring>
+        <name>ListPairConnectionConnections_at</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="36" column="33" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="36" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1ad9cec8d601a1a3c010d4d68826cf748f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairConnectionConnections_items</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>ListPairConnectionConnections_items</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionConnectionsHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="38" column="8" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="38" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a107e65f09680d7a4ea06cf533f4fef73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairConnectionConnections_contains</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value)</argsstring>
+        <name>ListPairConnectionConnections_contains</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionConnectionsHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a99b695edfc5690780bc0eea71ea64a62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairConnectionConnections_index</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value)</argsstring>
+        <name>ListPairConnectionConnections_index</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionConnectionsHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a6799184e99aed34fa7866b4524be27e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionConnectionsHandle</type>
+        <definition>ListPairConnectionConnectionsHandle ListPairConnectionConnections_intersection</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other)</argsstring>
+        <name>ListPairConnectionConnections_intersection</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="44" column="37" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="44" declcolumn="37"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a9534c09cd66cf53a146325d64f0e675e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairConnectionConnections_equal</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other)</argsstring>
+        <name>ListPairConnectionConnections_equal</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a262cb0a741b99008c1b9273e48c8c749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairConnectionConnections_not_equal</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other)</argsstring>
+        <name>ListPairConnectionConnections_not_equal</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a29db4c3087cbf7d286960e754b9539dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle ListPairConnectionConnections_to_json_string</definition>
+        <argsstring>(ListPairConnectionConnectionsHandle handle)</argsstring>
+        <name>ListPairConnectionConnections_to_json_string</name>
+        <param>
+          <type>ListPairConnectionConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionConnections__c__api_8h_1a5746b46395e8d770556116e00d887e76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionConnectionsHandle</type>
+        <definition>ListPairConnectionConnectionsHandle ListPairConnectionConnections_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>ListPairConnectionConnections_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" line="53" column="37" declfile="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h" declline="53" declcolumn="37"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/PairConnectionConnections_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ListPairConnectionConnectionsHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">ListPairConnectionConnectionsHandle<sp/>ListPairConnectionConnections_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">ListPairConnectionConnectionsHandle<sp/>ListPairConnectionConnections_copy(ListPairConnectionConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ListPairConnectionConnectionsHandle<sp/>ListPairConnectionConnections_fill_value(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/>PairConnectionConnectionsHandle<sp/>value);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ListPairConnectionConnectionsHandle<sp/>ListPairConnectionConnections_create(PairConnectionConnectionsHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_destroy(ListPairConnectionConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_push_back(ListPairConnectionConnectionsHandle<sp/>handle,<sp/>PairConnectionConnectionsHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_size(ListPairConnectionConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_empty(ListPairConnectionConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_erase_at(ListPairConnectionConnectionsHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_clear(ListPairConnectionConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">PairConnectionConnectionsHandle<sp/>ListPairConnectionConnections_at(ListPairConnectionConnectionsHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_items(ListPairConnectionConnectionsHandle<sp/>handle,<sp/>PairConnectionConnectionsHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_contains(ListPairConnectionConnectionsHandle<sp/>handle,<sp/>PairConnectionConnectionsHandle<sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_index(ListPairConnectionConnectionsHandle<sp/>handle,<sp/>PairConnectionConnectionsHandle<sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListPairConnectionConnectionsHandle<sp/>ListPairConnectionConnections_intersection(ListPairConnectionConnectionsHandle<sp/>handle,<sp/>ListPairConnectionConnectionsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_equal(ListPairConnectionConnectionsHandle<sp/>handle,<sp/>ListPairConnectionConnectionsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairConnectionConnections_not_equal(ListPairConnectionConnectionsHandle<sp/>handle,<sp/>ListPairConnectionConnectionsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>ListPairConnectionConnections_to_json_string(ListPairConnectionConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListPairConnectionConnectionsHandle<sp/>ListPairConnectionConnections_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h"/>
+  </compounddef>
+</doxygen>

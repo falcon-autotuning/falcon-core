@@ -1,0 +1,460 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="DotGateWithNeighbors__c__api_8h" kind="file" language="C++">
+    <compoundname>DotGateWithNeighbors_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
+    <includedby refid="ListDotGateWithNeighbors__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListDotGateWithNeighbors_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h</label>
+        <link refid="DotGateWithNeighbors__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListDotGateWithNeighbors_c_api.h</label>
+        <link refid="ListDotGateWithNeighbors__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/ListGroup_c_api.h</label>
+        <link refid="ListGroup__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h</label>
+        <link refid="ListPairGnameGroup__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
+        <link refid="MapGnameGroup__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/generic/PairGnameGroup_c_api.h</label>
+        <link refid="PairGnameGroup__c__api_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/physics/config/core/Group_c_api.h</label>
+        <link refid="Group__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h</label>
+        <link refid="DotGateWithNeighbors__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h</label>
+        <link refid="DotGatesWithNeighbors__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</label>
+        <link refid="GateGeometryArray1D__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="DotGateWithNeighbors__c__api_8h_1adbe6666edb7489814b282c6a0a37bc00" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* DotGateWithNeighborsHandle</definition>
+        <argsstring></argsstring>
+        <name>DotGateWithNeighborsHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1a2e1c6d6658ac8abb804daad45ed4df30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGateWithNeighborsHandle</type>
+        <definition>DotGateWithNeighborsHandle DotGateWithNeighbors_copy</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle)</argsstring>
+        <name>DotGateWithNeighbors_copy</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="13" column="28" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="13" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1aec7059b6afacf870c0d8408bfb7ed749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DotGateWithNeighbors_destroy</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle)</argsstring>
+        <name>DotGateWithNeighbors_destroy</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="16" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="16" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1a7838e5b90abd05e0ee5e875fa9e11aeb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DotGateWithNeighbors_equal</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle other)</argsstring>
+        <name>DotGateWithNeighbors_equal</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="18" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1a7c97dd33c55881f8e8f46d0bf7f3203e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DotGateWithNeighbors_not_equal</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle other)</argsstring>
+        <name>DotGateWithNeighbors_not_equal</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1ab98f8ca3db61f134a81e730e2899188a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle DotGateWithNeighbors_to_json_string</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle)</argsstring>
+        <name>DotGateWithNeighbors_to_json_string</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="24" column="14" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="24" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1a66abbe226d711be3a3bdb7b9128cc899" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGateWithNeighborsHandle</type>
+        <definition>DotGateWithNeighborsHandle DotGateWithNeighbors_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>DotGateWithNeighbors_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="27" column="28" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="27" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1ae15de7007084f155385ed5a4fb57f863" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGateWithNeighborsHandle</type>
+        <definition>DotGateWithNeighborsHandle DotGateWithNeighbors_create_plunger_gate_with_neighbors</definition>
+        <argsstring>(StringHandle name, ConnectionHandle left_neighbor, ConnectionHandle right_neighbor)</argsstring>
+        <name>DotGateWithNeighbors_create_plunger_gate_with_neighbors</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>left_neighbor</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>right_neighbor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="31" column="1" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="31" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1adcbdc6a760668fee75e436057d09be20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGateWithNeighborsHandle</type>
+        <definition>DotGateWithNeighborsHandle DotGateWithNeighbors_create_barrier_gate_with_neighbors</definition>
+        <argsstring>(StringHandle name, ConnectionHandle left_neighbor, ConnectionHandle right_neighbor)</argsstring>
+        <name>DotGateWithNeighbors_create_barrier_gate_with_neighbors</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>left_neighbor</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>right_neighbor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="37" column="1" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="37" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1a6978f7d44703461944c7a7afd1475391" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle DotGateWithNeighbors_name</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle)</argsstring>
+        <name>DotGateWithNeighbors_name</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="42" column="14" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="42" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1ad3d82e8c9095921e15262ab74a7bed24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle DotGateWithNeighbors_type</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle)</argsstring>
+        <name>DotGateWithNeighbors_type</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="44" column="14" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="44" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1a0a55816ad74aa7a3439c986d74f227dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle DotGateWithNeighbors_left_neighbor</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle)</argsstring>
+        <name>DotGateWithNeighbors_left_neighbor</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="46" column="18" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="46" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1a513a59cd577b2c5d790b1d580bbbc7b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle DotGateWithNeighbors_right_neighbor</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle)</argsstring>
+        <name>DotGateWithNeighbors_right_neighbor</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="49" column="18" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="49" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1a378e3f58de95f50e8a65e8aa84c9735e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DotGateWithNeighbors_is_barrier_gate</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle)</argsstring>
+        <name>DotGateWithNeighbors_is_barrier_gate</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="52" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="52" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DotGateWithNeighbors__c__api_8h_1a00d618d98a2d4291cfd9f9a687c34c48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DotGateWithNeighbors_is_plunger_gate</definition>
+        <argsstring>(DotGateWithNeighborsHandle handle)</argsstring>
+        <name>DotGateWithNeighbors_is_plunger_gate</name>
+        <param>
+          <type>DotGateWithNeighborsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" line="54" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h" declline="54" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>DotGateWithNeighborsHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">DotGateWithNeighborsHandle<sp/>DotGateWithNeighbors_copy(</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>DotGateWithNeighborsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DotGateWithNeighbors_destroy(DotGateWithNeighborsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DotGateWithNeighbors_equal(DotGateWithNeighborsHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DotGateWithNeighborsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DotGateWithNeighbors_not_equal(DotGateWithNeighborsHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DotGateWithNeighborsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>DotGateWithNeighbors_to_json_string(</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>DotGateWithNeighborsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">DotGateWithNeighborsHandle<sp/>DotGateWithNeighbors_from_json_string(</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">DotGateWithNeighborsHandle</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">DotGateWithNeighbors_create_plunger_gate_with_neighbors(</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/>name,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>left_neighbor,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>right_neighbor);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">DotGateWithNeighborsHandle</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">DotGateWithNeighbors_create_barrier_gate_with_neighbors(</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/>name,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>left_neighbor,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>right_neighbor);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>DotGateWithNeighbors_name(DotGateWithNeighborsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>DotGateWithNeighbors_type(DotGateWithNeighborsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">ConnectionHandle<sp/>DotGateWithNeighbors_left_neighbor(</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>DotGateWithNeighborsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">ConnectionHandle<sp/>DotGateWithNeighbors_right_neighbor(</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>DotGateWithNeighborsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DotGateWithNeighbors_is_barrier_gate(DotGateWithNeighborsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DotGateWithNeighbors_is_plunger_gate(DotGateWithNeighborsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"/>
+  </compounddef>
+</doxygen>

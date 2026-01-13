@@ -1,0 +1,787 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1generic_1_1Map" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::generic::Map</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="virtual">falcon_core::generic::Song</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename Key</type>
+      </param>
+      <param>
+        <type>typename Value</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classfalcon__core_1_1generic_1_1Map_1afd1f5cacf028a506113ac1c4f2da6c8d" prot="private" static="no">
+        <type><ref refid="classfalcon__core_1_1generic_1_1Pair" kindref="compound">generic::Pair</ref>&lt; Key, Value &gt;</type>
+        <definition>using falcon_core::generic::Map&lt; Key, Value &gt;::ContainerItem =  generic::Pair&lt;Key, Value&gt;</definition>
+        <argsstring></argsstring>
+        <name>ContainerItem</name>
+        <qualifiedname>falcon_core::generic::Map::ContainerItem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="16" column="3" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classfalcon__core_1_1generic_1_1Map_1a1b1941ce21c1a5d6ce1840d723f48257" prot="private" static="no">
+        <type>std::shared_ptr&lt; ContainerItem &gt;</type>
+        <definition>using falcon_core::generic::Map&lt; Key, Value &gt;::ContainerItemSP =  std::shared_ptr&lt;ContainerItem&gt;</definition>
+        <argsstring></argsstring>
+        <name>ContainerItemSP</name>
+        <qualifiedname>falcon_core::generic::Map::ContainerItemSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="17" column="3" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classfalcon__core_1_1generic_1_1Map_1aecc4c813daab278c9c1e6161d1d3c4ef" prot="private" static="no">
+        <type><ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">generic::List</ref>&lt; ContainerItem &gt;</type>
+        <definition>using falcon_core::generic::Map&lt; Key, Value &gt;::Container =  generic::List&lt;ContainerItem&gt;</definition>
+        <argsstring></argsstring>
+        <name>Container</name>
+        <qualifiedname>falcon_core::generic::Map::Container</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="18" column="3" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classfalcon__core_1_1generic_1_1Map_1ac43d28b18acf543882a79b230d3ffeff" prot="protected" static="no">
+        <type>typename Container::iterator</type>
+        <definition>using falcon_core::generic::Map&lt; Key, Value &gt;::iterator =  typename Container::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>falcon_core::generic::Map::iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="23" column="3" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classfalcon__core_1_1generic_1_1Map_1afc58b04fd9f846e6f8430084fe5943e4" prot="protected" static="no">
+        <type>typename Container::const_iterator</type>
+        <definition>using falcon_core::generic::Map&lt; Key, Value &gt;::const_iterator =  typename Container::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>falcon_core::generic::Map::const_iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="24" column="3" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1generic_1_1Map_1a6107f7cc0a2d1639c9d42809e1d13557" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; Container &gt;</type>
+        <definition>std::shared_ptr&lt;Container&gt; falcon_core::generic::Map&lt; Key, Value &gt;::_items</definition>
+        <argsstring></argsstring>
+        <name>_items</name>
+        <qualifiedname>falcon_core::generic::Map::_items</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="19" column="24" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1generic_1_1Map_1ad6ca00c9d0c4024c192015ed7fbd434a" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::generic::Map&lt; Key, Value &gt;::_mu_items</definition>
+        <argsstring></argsstring>
+        <name>_mu_items</name>
+        <qualifiedname>falcon_core::generic::Map::_mu_items</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="20" column="35" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1generic_1_1Map_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::generic::Map::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="197" column="16" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="197" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a8685ea03075adb4a2bda29bdb9c9b203" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::Map&lt; Key, Value &gt;::Map</definition>
+        <argsstring>(const Map&lt; Key, Value &gt; &amp;other)</argsstring>
+        <name>Map</name>
+        <qualifiedname>falcon_core::generic::Map::Map</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>&lt; Key, Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="20" column="35" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="27" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1abba87cdd6da19288ae9ee095f184d7fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>&lt; Key, Value &gt; &amp;</type>
+        <definition>Map&lt; Key, Value &gt; &amp; falcon_core::generic::Map&lt; Key, Value &gt;::operator=</definition>
+        <argsstring>(const Map&lt; Key, Value &gt; &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::generic::Map::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>&lt; Key, Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="30" column="7" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="30" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a67a824ee6931236b00dcd9f4a2e86a07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::Map&lt; Key, Value &gt;::Map</definition>
+        <argsstring>()</argsstring>
+        <name>Map</name>
+        <qualifiedname>falcon_core::generic::Map::Map</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="37" column="3" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1abac0909a58a274b298e621196a179d1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::Map&lt; Key, Value &gt;::Map</definition>
+        <argsstring>(const std::vector&lt; std::pair&lt; typename ContainerItem::StoredT1, typename ContainerItem::StoredT2 &gt; &gt; &amp;init)</argsstring>
+        <name>Map</name>
+        <qualifiedname>falcon_core::generic::Map::Map</qualifiedname>
+        <param>
+          <type>const std::vector&lt; std::pair&lt; typename ContainerItem::StoredT1, typename ContainerItem::StoredT2 &gt; &gt; &amp;</type>
+          <declname>init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="41" column="3" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="41" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a37f45a2c4066d647d4cb17085ea6e2af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::Map&lt; Key, Value &gt;::Map</definition>
+        <argsstring>(const Container &amp;init)</argsstring>
+        <name>Map</name>
+        <qualifiedname>falcon_core::generic::Map::Map</qualifiedname>
+        <param>
+          <type>const Container &amp;</type>
+          <declname>init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="48" column="3" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="48" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a8b02ebb498173597ab0884f4b4e467bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>&lt; Key, Value &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; Map&lt; Key, Value &gt; &gt; falcon_core::generic::Map&lt; Key, Value &gt;::create</definition>
+        <argsstring>(const Container &amp;init)</argsstring>
+        <name>create</name>
+        <qualifiedname>falcon_core::generic::Map::create</qualifiedname>
+        <param>
+          <type>const Container &amp;</type>
+          <declname>init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="53" column="19" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="53" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a6773d17be8c4424b2f1d7c2d3620adeb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::shared_ptr&lt; Container &gt;</type>
+        <definition>const std::shared_ptr&lt; Container &gt; falcon_core::generic::Map&lt; Key, Value &gt;::items</definition>
+        <argsstring>() const</argsstring>
+        <name>items</name>
+        <qualifiedname>falcon_core::generic::Map::items</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="56" column="25" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="56" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a9b42f0942a63220ae2b9969d5cc42e6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; Container &gt;</type>
+        <definition>std::shared_ptr&lt; Container &gt; falcon_core::generic::Map&lt; Key, Value &gt;::items</definition>
+        <argsstring>()</argsstring>
+        <name>items</name>
+        <qualifiedname>falcon_core::generic::Map::items</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="60" column="19" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="60" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1ad60e80705672767a50518049f7dab5ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::Map&lt; Key, Value &gt;::insert_or_assign</definition>
+        <argsstring>(const typename ContainerItem::StoredT1 &amp;key, const typename ContainerItem::StoredT2 &amp;value)</argsstring>
+        <name>insert_or_assign</name>
+        <qualifiedname>falcon_core::generic::Map::insert_or_assign</qualifiedname>
+        <param>
+          <type>const typename ContainerItem::StoredT1 &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const typename ContainerItem::StoredT2 &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="65" column="8" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="65" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a4d17123ecc0f4e792f22d10ec0a79341" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt; iterator, bool &gt; falcon_core::generic::Map&lt; Key, Value &gt;::insert</definition>
+        <argsstring>(const typename ContainerItem::StoredT1 &amp;key, const typename ContainerItem::StoredT2 &amp;value)</argsstring>
+        <name>insert</name>
+        <qualifiedname>falcon_core::generic::Map::insert</qualifiedname>
+        <param>
+          <type>const typename ContainerItem::StoredT1 &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const typename ContainerItem::StoredT2 &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="72" column="13" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="72" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a2095e2a5a1c88f31e41934b73d467e8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ContainerItem::StoredT2</type>
+        <definition>ContainerItem::StoredT2 falcon_core::generic::Map&lt; Key, Value &gt;::at</definition>
+        <argsstring>(const typename ContainerItem::StoredT1 &amp;key)</argsstring>
+        <name>at</name>
+        <qualifiedname>falcon_core::generic::Map::at</qualifiedname>
+        <param>
+          <type>const typename ContainerItem::StoredT1 &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="85" column="36" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="85" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a659349defc8d0585eaae08315adfacfe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const ContainerItem::StoredT2</type>
+        <definition>const ContainerItem::StoredT2 falcon_core::generic::Map&lt; Key, Value &gt;::at</definition>
+        <argsstring>(const typename ContainerItem::StoredT1 &amp;key) const</argsstring>
+        <name>at</name>
+        <qualifiedname>falcon_core::generic::Map::at</qualifiedname>
+        <param>
+          <type>const typename ContainerItem::StoredT1 &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="92" column="42" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="92" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a73ec82ac43c448c292313d33cfb0079e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ContainerItem::StoredT2</type>
+        <definition>ContainerItem::StoredT2 falcon_core::generic::Map&lt; Key, Value &gt;::operator[]</definition>
+        <argsstring>(const typename ContainerItem::StoredT1 &amp;key)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>falcon_core::generic::Map::operator[]</qualifiedname>
+        <param>
+          <type>const typename ContainerItem::StoredT1 &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="100" column="36" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="100" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a6c6a509731f529f2cb06e8d1d37bb35c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::Map&lt; Key, Value &gt;::erase</definition>
+        <argsstring>(const typename ContainerItem::StoredT1 &amp;key)</argsstring>
+        <name>erase</name>
+        <qualifiedname>falcon_core::generic::Map::erase</qualifiedname>
+        <param>
+          <type>const typename ContainerItem::StoredT1 &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="113" column="8" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="113" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a4ec45ddf012f933fc356ee0ea8ba1ec4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t falcon_core::generic::Map&lt; Key, Value &gt;::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>falcon_core::generic::Map::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="123" column="15" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="123" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1aeb55a1fb30f030c23c99e9bc5c675e25" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::Map&lt; Key, Value &gt;::empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <qualifiedname>falcon_core::generic::Map::empty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="126" column="8" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="126" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a4a766530efafc51c3e23625d7af9fd9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::Map&lt; Key, Value &gt;::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>falcon_core::generic::Map::clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="129" column="8" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="129" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a7acf6a4d1d2171d8c859808ae7539d3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator falcon_core::generic::Map&lt; Key, Value &gt;::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>falcon_core::generic::Map::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="135" column="18" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="135" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a219754647f38dde6357f9f21346b06a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator falcon_core::generic::Map&lt; Key, Value &gt;::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>falcon_core::generic::Map::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="136" column="18" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="136" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a34728afcc54cda703a15f7ea78c568fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::generic::Map&lt; Key, Value &gt;::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>falcon_core::generic::Map::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="137" column="18" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="137" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1ad58a936ef5eb3d9c164dbd57accc4ca0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::generic::Map&lt; Key, Value &gt;::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>falcon_core::generic::Map::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="138" column="18" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="138" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1ac7e8789dc6af1c32e902c5567a55d184" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::generic::Map&lt; Key, Value &gt;::cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <qualifiedname>falcon_core::generic::Map::cbegin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="139" column="18" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="139" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a6b18ee5985ff5bc951a68aab5d78b50e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::generic::Map&lt; Key, Value &gt;::cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <qualifiedname>falcon_core::generic::Map::cend</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="140" column="18" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="140" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1ab0de81e4e92c0d3c51d89b7c4ec855d7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::Map&lt; Key, Value &gt;::contains</definition>
+        <argsstring>(const typename ContainerItem::StoredT1 &amp;key) const</argsstring>
+        <name>contains</name>
+        <qualifiedname>falcon_core::generic::Map::contains</qualifiedname>
+        <param>
+          <type>const typename ContainerItem::StoredT1 &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="143" column="8" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="143" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a3191fa21526b1d21396dc9bd014ff5d4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const generic::ListSP&lt; Key &gt;</type>
+        <definition>const generic::ListSP&lt; Key &gt; falcon_core::generic::Map&lt; Key, Value &gt;::keys</definition>
+        <argsstring>() const</argsstring>
+        <name>keys</name>
+        <qualifiedname>falcon_core::generic::Map::keys</qualifiedname>
+        <briefdescription>
+<para>Return the keys of the <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="151" column="25" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="151" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a0868d998dec5ad8d09e809fce98aa294" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const generic::ListSP&lt; Value &gt;</type>
+        <definition>const generic::ListSP&lt; Value &gt; falcon_core::generic::Map&lt; Key, Value &gt;::values</definition>
+        <argsstring>() const</argsstring>
+        <name>values</name>
+        <qualifiedname>falcon_core::generic::Map::values</qualifiedname>
+        <briefdescription>
+<para>Return the values of the <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="163" column="25" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="163" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1abebc000b88ed7bbfba0b64c81a15b811" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::Map&lt; Key, Value &gt;::operator==</definition>
+        <argsstring>(const Map&lt; Key, Value &gt; &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::generic::Map::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>&lt; Key, Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="171" column="8" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="171" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1ac5c4d437d8d168e336390af2c136a849" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::Map&lt; Key, Value &gt;::operator!=</definition>
+        <argsstring>(const Map&lt; Key, Value &gt; &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::generic::Map::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>&lt; Key, Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="192" column="8" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="192" bodyend="194"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1aaef974888aa75ee071b5a3552233ee85" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>&lt; Key, Value &gt; &gt;</type>
+        <definition>static std::shared_ptr&lt; Map&lt; Key, Value &gt; &gt; falcon_core::generic::Map&lt; Key, Value &gt;::create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>create_empty</name>
+        <qualifiedname>falcon_core::generic::Map::create_empty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="38" column="26" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="38" bodyend="40"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1abb9719963e73201beac148c285025c9a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::generic::Map&lt; Key, Value &gt;::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::generic::Map::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="199" column="8" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="199" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1ab5459580d4f80ec7313b9d94a00286c6" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator falcon_core::generic::Map&lt; Key, Value &gt;::find</definition>
+        <argsstring>(const Key &amp;key)</argsstring>
+        <name>find</name>
+        <qualifiedname>falcon_core::generic::Map::find</qualifiedname>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="204" column="12" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="204" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1aad7bc52759ccf1a28c4e9edcc076e301" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator falcon_core::generic::Map&lt; Key, Value &gt;::find</definition>
+        <argsstring>(const std::shared_ptr&lt; Key &gt; &amp;key)</argsstring>
+        <name>find</name>
+        <qualifiedname>falcon_core::generic::Map::find</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Key &gt; &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="210" column="12" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="210" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1a72dde85668e1cffc989c94ccd262c2e7" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::generic::Map&lt; Key, Value &gt;::find</definition>
+        <argsstring>(const Key &amp;key) const</argsstring>
+        <name>find</name>
+        <qualifiedname>falcon_core::generic::Map::find</qualifiedname>
+        <param>
+          <type>const Key &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="217" column="18" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="217" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1Map_1ad03c47041ff9b1dc2e1dfdf1756e03e9" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::generic::Map&lt; Key, Value &gt;::find</definition>
+        <argsstring>(const std::shared_ptr&lt; Key &gt; &amp;key) const</argsstring>
+        <name>find</name>
+        <qualifiedname>falcon_core::generic::Map::find</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Key &gt; &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="223" column="18" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="223" bodyend="229"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::generic::Map&lt; Key, Value &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1Map"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::generic::Map&lt; Key, Value &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1Map"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/generic/Map.hpp" line="11" column="1" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="11" bodyend="230"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6107f7cc0a2d1639c9d42809e1d13557" prot="private" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>_items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ad6ca00c9d0c4024c192015ed7fbd434a" prot="private" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>_mu_items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a2095e2a5a1c88f31e41934b73d467e8e" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a659349defc8d0585eaae08315adfacfe" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a7acf6a4d1d2171d8c859808ae7539d3f" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a34728afcc54cda703a15f7ea78c568fb" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac7e8789dc6af1c32e902c5567a55d184" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>cbegin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6b18ee5985ff5bc951a68aab5d78b50e" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>cend</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4a766530efafc51c3e23625d7af9fd9d" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>clear</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1afc58b04fd9f846e6f8430084fe5943e4" prot="protected" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aecc4c813daab278c9c1e6161d1d3c4ef" prot="private" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>Container</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1afd1f5cacf028a506113ac1c4f2da6c8d" prot="private" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>ContainerItem</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a1b1941ce21c1a5d6ce1840d723f48257" prot="private" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>ContainerItemSP</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ab0de81e4e92c0d3c51d89b7c4ec855d7" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>contains</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a8b02ebb498173597ab0884f4b4e467bf" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>create</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aaef974888aa75ee071b5a3552233ee85" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>create_empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aeb55a1fb30f030c23c99e9bc5c675e25" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a219754647f38dde6357f9f21346b06a2" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ad58a936ef5eb3d9c164dbd57accc4ca0" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6c6a509731f529f2cb06e8d1d37bb35c" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>erase</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ab5459580d4f80ec7313b9d94a00286c6" prot="protected" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>find</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aad7bc52759ccf1a28c4e9edcc076e301" prot="protected" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>find</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a72dde85668e1cffc989c94ccd262c2e7" prot="protected" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>find</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ad03c47041ff9b1dc2e1dfdf1756e03e9" prot="protected" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>find</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4d17123ecc0f4e792f22d10ec0a79341" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ad60e80705672767a50518049f7dab5ab" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>insert_or_assign</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6773d17be8c4424b2f1d7c2d3620adeb" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a9b42f0942a63220ae2b9969d5cc42e6a" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac43d28b18acf543882a79b230d3ffeff" prot="protected" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a3191fa21526b1d21396dc9bd014ff5d4" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>keys</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a8685ea03075adb4a2bda29bdb9c9b203" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>Map</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a67a824ee6931236b00dcd9f4a2e86a07" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>Map</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abac0909a58a274b298e621196a179d1d" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>Map</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a37f45a2c4066d647d4cb17085ea6e2af" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>Map</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac5c4d437d8d168e336390af2c136a849" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abba87cdd6da19288ae9ee095f184d7fe" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abebc000b88ed7bbfba0b64c81a15b811" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a73ec82ac43c448c292313d33cfb0079e" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abb9719963e73201beac148c285025c9a" prot="protected" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4ec45ddf012f933fc356ee0ea8ba1ec4" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a0868d998dec5ad8d09e809fce98aa294" prot="public" virt="non-virtual"><scope>falcon_core::generic::Map</scope><name>values</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::generic::Map</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

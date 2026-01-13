@@ -1,0 +1,48 @@
+
+
+# File PairConnectionQuantity\_c\_api.h
+
+[**File List**](files.md) **>** [**c-api**](dir_b95515f962db252ab24400aa771598a6.md) **>** [**include**](dir_e8b86741b2c2c43e24b257446086386c.md) **>** [**falcon\_core**](dir_320c7f873cf8bb1c06309e978e7d7eca.md) **>** [**generic**](dir_496d41daa888fe924b07cec1e014cccd.md) **>** [**PairConnectionQuantity\_c\_api.h**](PairConnectionQuantity__c__api_8h.md)
+
+[Go to the documentation of this file](PairConnectionQuantity__c__api_8h.md)
+
+
+```C++
+#pragma once
+#ifdef __cplusplus
+    extern "C" {
+#endif
+#include "falcon_core/math/Quantity_c_api.h"
+#include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include <stdbool.h>
+#include "falcon_core/generic/String_c_api.h"
+
+// Forward declarations for opaque handles
+typedef void* PairConnectionQuantityHandle;
+// Function declarations
+
+// @category:allocation
+PairConnectionQuantityHandle PairConnectionQuantity_create(ConnectionHandle first, QuantityHandle second);
+// @category:allocation
+PairConnectionQuantityHandle PairConnectionQuantity_copy(PairConnectionQuantityHandle handle);
+// @category:deallocation
+void PairConnectionQuantity_destroy(PairConnectionQuantityHandle handle);
+// @category:read
+ConnectionHandle PairConnectionQuantity_first(PairConnectionQuantityHandle handle);
+// @category:read
+QuantityHandle PairConnectionQuantity_second(PairConnectionQuantityHandle handle);
+// @category:read
+bool PairConnectionQuantity_equal(PairConnectionQuantityHandle handle, PairConnectionQuantityHandle other);
+// @category:read
+bool PairConnectionQuantity_not_equal(PairConnectionQuantityHandle handle, PairConnectionQuantityHandle other);
+// @category:read
+StringHandle      PairConnectionQuantity_to_json_string(PairConnectionQuantityHandle handle);
+// @category:allocation
+PairConnectionQuantityHandle PairConnectionQuantity_from_json_string(StringHandle json);
+
+#ifdef __cplusplus
+}
+#endif
+```
+
+

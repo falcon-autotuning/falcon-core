@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="StandardConfigConnections_8hpp" kind="file" language="C++">
+    <compoundname>StandardConfigConnections.hpp</compoundname>
+    <includes refid="Song_8hpp" local="yes">falcon_core/generic/Song.hpp</includes>
+    <includes refid="Connection_8hpp" local="yes">falcon_core/physics/device_structures/Connection.hpp</includes>
+    <includes refid="Connections_8hpp" local="yes">falcon_core/physics/device_structures/Connections.hpp</includes>
+    <includedby refid="ConfigManipulations_8hpp" local="yes">cpp/include/falcon_core/physics/config/ConfigManipulations.hpp</includedby>
+    <includedby refid="Config_8hpp" local="yes">cpp/include/falcon_core/physics/config/core/Config.hpp</includedby>
+    <includedby refid="Group_8hpp" local="yes">cpp/include/falcon_core/physics/config/core/Group.hpp</includedby>
+    <incdepgraph>
+      <node id="22">
+        <label>falcon_core/generic/CategoryTags.hpp</label>
+        <link refid="CategoryTags_8hpp_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>falcon_core/generic/IsPrimitive.hpp</label>
+        <link refid="IsPrimitive_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/generic/List.hpp</label>
+        <link refid="List_8hpp_source"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/Song.hpp</label>
+        <link refid="Song_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/physics/config/core/StandardConfigConnections.hpp</label>
+        <link refid="StandardConfigConnections_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/physics/device_structures/Connection.hpp</label>
+        <link refid="Connection_8hpp_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/physics/device_structures/Connections.hpp</label>
+        <link refid="Connections_8hpp_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>algorithm</label>
+      </node>
+      <node id="3">
+        <label>cereal/archives/json.hpp</label>
+      </node>
+      <node id="4">
+        <label>cereal/types/map.hpp</label>
+      </node>
+      <node id="5">
+        <label>cereal/types/memory.hpp</label>
+      </node>
+      <node id="6">
+        <label>cereal/types/polymorphic.hpp</label>
+      </node>
+      <node id="7">
+        <label>cereal/types/string.hpp</label>
+      </node>
+      <node id="8">
+        <label>cereal/types/unordered_map.hpp</label>
+      </node>
+      <node id="9">
+        <label>cereal/types/utility.hpp</label>
+      </node>
+      <node id="10">
+        <label>cereal/types/vector.hpp</label>
+      </node>
+      <node id="11">
+        <label>memory</label>
+      </node>
+      <node id="15">
+        <label>mutex</label>
+      </node>
+      <node id="16">
+        <label>shared_mutex</label>
+      </node>
+      <node id="12">
+        <label>sstream</label>
+      </node>
+      <node id="20">
+        <label>stdexcept</label>
+      </node>
+      <node id="13">
+        <label>string</label>
+      </node>
+      <node id="21">
+        <label>type_traits</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>cpp/include/falcon_core/physics/config/ConfigManipulations.hpp</label>
+        <link refid="ConfigManipulations_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cpp/include/falcon_core/physics/config/Loader.hpp</label>
+        <link refid="Loader_8hpp_source"/>
+      </node>
+      <node id="4">
+        <label>cpp/include/falcon_core/physics/config/core/Config.hpp</label>
+        <link refid="Config_8hpp_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cpp/include/falcon_core/physics/config/core/Group.hpp</label>
+        <link refid="Group_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/physics/config/core/StandardConfigConnections.hpp</label>
+        <link refid="StandardConfigConnections_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" prot="public">falcon_core::physics::config::core::StandardConfigConnections</innerclass>
+    <innernamespace refid="namespacefalcon__core">falcon_core</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics">falcon_core::physics</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics_1_1config">falcon_core::physics::config</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics_1_1config_1_1core">falcon_core::physics::config::core</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/Song.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connection.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connections.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacefalcon__core" kindref="compound">falcon_core</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">physics<sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">config<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">core<sp/>{</highlight></codeline>
+<codeline lineno="14" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" kindref="compound">StandardConfigConnections</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1generic_1_1Song" kindref="compound">generic::Song</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>device_structures::ConnectionsSP<sp/>_screening_gates;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>device_structures::ConnectionsSP<sp/>_reservoir_gates;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>device_structures::ConnectionsSP<sp/>_plunger_gates;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>device_structures::ConnectionsSP<sp/>_barrier_gates;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/>device_structures::ConnectionsSP<sp/>_ohmics;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/>_mu_screening_gates;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/>_mu_reservoir_gates;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/>_mu_plunger_gates;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/>_mu_barrier_gates;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/>_mu_ohmics;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" kindref="compound">StandardConfigConnections</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" kindref="compound">StandardConfigConnections</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" kindref="compound">StandardConfigConnections</ref>&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" kindref="compound">StandardConfigConnections</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="37" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a25d609a42d196dde57558348cd86d215" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a25d609a42d196dde57558348cd86d215" kindref="member">StandardConfigConnections</ref>(</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad0074cb634422205d138a28e85e86c5b" kindref="member">screening_gates</ref>,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a728d66f124942846c9db4aaf91624966" kindref="member">reservoir_gates</ref>,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a7e629c8752f7bf7b7a5c9f1c06ab522b" kindref="member">plunger_gates</ref>,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a926c880392c2460bb6e6fe1569c8306e" kindref="member">barrier_gates</ref>,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1af4f3f299408be0462aa6747187d23269" kindref="member">ohmics</ref>);</highlight></codeline>
+<codeline lineno="47" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad0074cb634422205d138a28e85e86c5b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad0074cb634422205d138a28e85e86c5b" kindref="member">screening_gates</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a728d66f124942846c9db4aaf91624966" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a728d66f124942846c9db4aaf91624966" kindref="member">reservoir_gates</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a7e629c8752f7bf7b7a5c9f1c06ab522b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a7e629c8752f7bf7b7a5c9f1c06ab522b" kindref="member">plunger_gates</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a926c880392c2460bb6e6fe1569c8306e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a926c880392c2460bb6e6fe1569c8306e" kindref="member">barrier_gates</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1af4f3f299408be0462aa6747187d23269" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1af4f3f299408be0462aa6747187d23269" kindref="member">ohmics</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a691023025d5b848e645a4331c3707341" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a691023025d5b848e645a4331c3707341" kindref="member">dot_gates</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1af68937d3a71a3273e439c4100ff0b1a2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1af68937d3a71a3273e439c4100ff0b1a2" kindref="member">get_ohmic</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a926bb49abf210ef2ca1ed29c17c64037" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a926bb49abf210ef2ca1ed29c17c64037" kindref="member">get_barrier_gate</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a33f405ddf8579ae3f55d5576c9435a5e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a33f405ddf8579ae3f55d5576c9435a5e" kindref="member">get_plunger_gate</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a1447dc4b99196953ea549697474e62fd" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a1447dc4b99196953ea549697474e62fd" kindref="member">get_reservoir_gate</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad9388aa004cd19ca3398dc82b547c95b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad9388aa004cd19ca3398dc82b547c95b" kindref="member">get_screening_gate</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a9dd10116ebda7ac205197b02d872f416" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a9dd10116ebda7ac205197b02d872f416" kindref="member">get_dot_gate</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a991dae9156fe34b7494f80451382d123" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a991dae9156fe34b7494f80451382d123" kindref="member">get_gate</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a4333d18e9d2371b9d88e7030b2e4ac2d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a4333d18e9d2371b9d88e7030b2e4ac2d" kindref="member">get_all_gates</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a77adac25e767cc46cae5f355d6b803c4" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a77adac25e767cc46cae5f355d6b803c4" kindref="member">get_all_connections</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a7a4a62a70c020e41a1e9d751f009ca60" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a7a4a62a70c020e41a1e9d751f009ca60" kindref="member">has_ohmic</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP&amp;<sp/>ohmic)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="120" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a239f5125b838e180a3f9e088641d48ce" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a239f5125b838e180a3f9e088641d48ce" kindref="member">has_gate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP&amp;<sp/>gate)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad50cf6c99d7e348b585fdf4cc73632b3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad50cf6c99d7e348b585fdf4cc73632b3" kindref="member">has_barrier_gate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP&amp;<sp/>gate)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="128" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1aabe9204f4efd78665242e0030d8c7357" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1aabe9204f4efd78665242e0030d8c7357" kindref="member">has_plunger_gate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP&amp;<sp/>gate)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="132" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ac4356ec844f3ccb17cc77fb6b3e2d4cc" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ac4356ec844f3ccb17cc77fb6b3e2d4cc" kindref="member">has_reservoir_gate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP&amp;<sp/>gate)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="136" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a6a1d1c9a78f8e36383a43d70154d71a1" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a6a1d1c9a78f8e36383a43d70154d71a1" kindref="member">has_screening_gate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionSP&amp;<sp/>gate)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" kindref="compound">StandardConfigConnections</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator!=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" kindref="compound">StandardConfigConnections</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" kindref="compound">StandardConfigConnections</ref>();</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">cereal::access;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Archive&gt;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>serialize(Archive&amp;<sp/>ar)<sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_screening_gates(</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_screening_gates,<sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_reservoir_gates(</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_reservoir_gates,<sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_plunger_gates(</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_plunger_gates,<sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_barrier_gates(</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_barrier_gates,<sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_ohmics(_mu_ohmics,</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock(lock_screening_gates,</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lock_reservoir_gates,</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lock_plunger_gates,</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lock_barrier_gates,</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lock_ohmics);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>ar(cereal::base_class&lt;generic::Song&gt;(</highlight><highlight class="keyword">this</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_screening_gates,</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_reservoir_gates,</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_plunger_gates,</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_barrier_gates,</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_ohmics);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">StandardConfigConnectionsSP<sp/>=<sp/>std::shared_ptr&lt;StandardConfigConnections&gt;;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>config</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>physics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>falcon_core</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="cpp/include/falcon_core/physics/config/core/StandardConfigConnections.hpp"/>
+  </compounddef>
+</doxygen>

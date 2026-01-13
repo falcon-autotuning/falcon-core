@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_a97a284a51e1fae1832044fe1b75b0a4" kind="dir">
+    <compoundname>c-api/include/falcon_core/autotuner_interfaces</compoundname>
+    <innerdir refid="dir_ab40c3cabb8cb545690339f76b9d4949">c-api/include/falcon_core/autotuner_interfaces/contexts</innerdir>
+    <innerdir refid="dir_13f1f114359a7e6b19216040e0da6abc">c-api/include/falcon_core/autotuner_interfaces/interpretations</innerdir>
+    <innerdir refid="dir_ad3a832d6f582aa08d8da369374ec299">c-api/include/falcon_core/autotuner_interfaces/names</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/autotuner_interfaces/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,504 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="MapIntInt__c__api_8h" kind="file" language="C++">
+    <compoundname>MapIntInt_c_api.h</compoundname>
+    <includes refid="PairIntInt__c__api_8h" local="yes">falcon_core/generic/PairIntInt_c_api.h</includes>
+    <includes refid="ListInt__c__api_8h" local="yes">falcon_core/generic/ListInt_c_api.h</includes>
+    <includes refid="ListPairIntInt__c__api_8h" local="yes">falcon_core/generic/ListPairIntInt_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>falcon_core/generic/ListInt_c_api.h</label>
+        <link refid="ListInt__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/ListPairIntInt_c_api.h</label>
+        <link refid="ListPairIntInt__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapIntInt_c_api.h</label>
+        <link refid="MapIntInt__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/PairIntInt_c_api.h</label>
+        <link refid="PairIntInt__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="MapIntInt__c__api_8h_1a048c326df873b0699a6190e59222ba9d" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* MapIntIntHandle</definition>
+        <argsstring></argsstring>
+        <name>MapIntIntHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a36745d24d943721069c374acdb69e8a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapIntIntHandle</type>
+        <definition>MapIntIntHandle MapIntInt_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>MapIntInt_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="15" column="17" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="15" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a67520561a3380c06b14d2190bf2b4cb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapIntIntHandle</type>
+        <definition>MapIntIntHandle MapIntInt_copy</definition>
+        <argsstring>(MapIntIntHandle handle)</argsstring>
+        <name>MapIntInt_copy</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="17" column="17" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="17" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a9c65022c201acab3c4c36812e835963c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapIntIntHandle</type>
+        <definition>MapIntIntHandle MapIntInt_create</definition>
+        <argsstring>(PairIntIntHandle *data, size_t count)</argsstring>
+        <name>MapIntInt_create</name>
+        <param>
+          <type>PairIntIntHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="19" column="17" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="19" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a32d6bb09772928f704d1846f58a34ca8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapIntInt_destroy</definition>
+        <argsstring>(MapIntIntHandle handle)</argsstring>
+        <name>MapIntInt_destroy</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1af6e4643dbd92073f734807c267aeb0e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapIntInt_insert_or_assign</definition>
+        <argsstring>(MapIntIntHandle handle, int key, int value)</argsstring>
+        <name>MapIntInt_insert_or_assign</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1ace62f0905d7732a88201242674139063" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapIntInt_insert</definition>
+        <argsstring>(MapIntIntHandle handle, int key, int value)</argsstring>
+        <name>MapIntInt_insert</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="25" column="6" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="25" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a714eb8760b4ed247437afb8ee61de4d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int MapIntInt_at</definition>
+        <argsstring>(MapIntIntHandle handle, int key)</argsstring>
+        <name>MapIntInt_at</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="27" column="5" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="27" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1ada8b4345cb9facf38d2fc5dde89944bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapIntInt_erase</definition>
+        <argsstring>(MapIntIntHandle handle, int key)</argsstring>
+        <name>MapIntInt_erase</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="29" column="6" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="29" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a13941908f2373039a29f3cdabd785a6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t MapIntInt_size</definition>
+        <argsstring>(MapIntIntHandle handle)</argsstring>
+        <name>MapIntInt_size</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="31" column="8" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="31" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a6358238985944726b31ef2bc8aba1ae1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapIntInt_empty</definition>
+        <argsstring>(MapIntIntHandle handle)</argsstring>
+        <name>MapIntInt_empty</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="33" column="6" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="33" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a2720f088e8abaf1566d68f48ec1a4668" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapIntInt_clear</definition>
+        <argsstring>(MapIntIntHandle handle)</argsstring>
+        <name>MapIntInt_clear</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="35" column="6" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="35" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a3225b9f231339eeb143b799c99428f13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapIntInt_contains</definition>
+        <argsstring>(MapIntIntHandle handle, int key)</argsstring>
+        <name>MapIntInt_contains</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="37" column="6" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="37" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a9a1b95c6cd52a32bf4048aabff171f4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListIntHandle</type>
+        <definition>ListIntHandle MapIntInt_keys</definition>
+        <argsstring>(MapIntIntHandle handle)</argsstring>
+        <name>MapIntInt_keys</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="39" column="15" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="39" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1ad9d9c7ce5c1a73765a3ee06806279b04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListIntHandle</type>
+        <definition>ListIntHandle MapIntInt_values</definition>
+        <argsstring>(MapIntIntHandle handle)</argsstring>
+        <name>MapIntInt_values</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="41" column="15" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="41" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1aefd0c0ab7a3c2cd68529645af9121bc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairIntIntHandle</type>
+        <definition>ListPairIntIntHandle MapIntInt_items</definition>
+        <argsstring>(MapIntIntHandle handle)</argsstring>
+        <name>MapIntInt_items</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="43" column="22" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="43" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1aea477d5829769721ba261f4c7febc7e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapIntInt_equal</definition>
+        <argsstring>(MapIntIntHandle handle, MapIntIntHandle other)</argsstring>
+        <name>MapIntInt_equal</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="45" column="6" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="45" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1ac5325785178e18dda44ed5a84a8edbf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapIntInt_not_equal</definition>
+        <argsstring>(MapIntIntHandle handle, MapIntIntHandle other)</argsstring>
+        <name>MapIntInt_not_equal</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="47" column="6" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="47" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1af2eb5dba60ab7eb2619626960a787964" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle MapIntInt_to_json_string</definition>
+        <argsstring>(MapIntIntHandle handle)</argsstring>
+        <name>MapIntInt_to_json_string</name>
+        <param>
+          <type>MapIntIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="49" column="19" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="49" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="MapIntInt__c__api_8h_1a865e9c2a7fdad909f25f29391bc65474" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapIntIntHandle</type>
+        <definition>MapIntIntHandle MapIntInt_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>MapIntInt_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h" line="51" column="17" declfile="c-api/include/falcon_core/generic/MapIntInt_c_api.h" declline="51" declcolumn="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/PairIntInt_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListInt_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListPairIntInt_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>MapIntIntHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">MapIntIntHandle<sp/>MapIntInt_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">MapIntIntHandle<sp/>MapIntInt_copy(MapIntIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">MapIntIntHandle<sp/>MapIntInt_create(PairIntIntHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapIntInt_destroy(MapIntIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapIntInt_insert_or_assign(MapIntIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapIntInt_insert(MapIntIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>MapIntInt_at(MapIntIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapIntInt_erase(MapIntIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>MapIntInt_size(MapIntIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapIntInt_empty(MapIntIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapIntInt_clear(MapIntIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapIntInt_contains(MapIntIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">ListIntHandle<sp/>MapIntInt_keys(MapIntIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">ListIntHandle<sp/>MapIntInt_values(MapIntIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">ListPairIntIntHandle<sp/>MapIntInt_items(MapIntIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapIntInt_equal(MapIntIntHandle<sp/>handle,<sp/>MapIntIntHandle<sp/>other);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapIntInt_not_equal(MapIntIntHandle<sp/>handle,<sp/>MapIntIntHandle<sp/>other);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>MapIntInt_to_json_string(MapIntIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">MapIntIntHandle<sp/>MapIntInt_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/MapIntInt_c_api.h"/>
+  </compounddef>
+</doxygen>

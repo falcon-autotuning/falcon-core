@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_666a9a136551104f62f39018fd37905b" kind="dir">
+    <compoundname>cpp/include/falcon_core/physics/units</compoundname>
+    <innerfile refid="Prefix_8hpp">Prefix.hpp</innerfile>
+    <innerfile refid="SymbolUnit_8hpp">SymbolUnit.hpp</innerfile>
+    <innerfile refid="TotalDimensions_8hpp">TotalDimensions.hpp</innerfile>
+    <innerfile refid="Unit_8hpp">Unit.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/physics/units/"/>
+  </compounddef>
+</doxygen>

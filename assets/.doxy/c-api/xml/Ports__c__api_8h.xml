@@ -1,0 +1,847 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Ports__c__api_8h" kind="file" language="C++">
+    <compoundname>Ports_c_api.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes refid="ListConnection__c__api_8h" local="yes">falcon_core/generic/ListConnection_c_api.h</includes>
+    <includes refid="ListInstrumentPort__c__api_8h" local="yes">falcon_core/generic/ListInstrumentPort_c_api.h</includes>
+    <includes refid="ListString__c__api_8h" local="yes">falcon_core/generic/ListString_c_api.h</includes>
+    <includes refid="InstrumentPort__c__api_8h" local="yes">falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</includes>
+    <includedby refid="MeasurementRequest__c__api_8h" local="yes">c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</includedby>
+    <includedby refid="CoupledLabelledDomain__c__api_8h" local="yes">c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/ListInstrumentPort_c_api.h</label>
+        <link refid="ListInstrumentPort__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h</label>
+        <link refid="Ports__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/ListCoupledLabelledDomain_c_api.h</label>
+        <link refid="ListCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h</label>
+        <link refid="Ports__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/math/AxesCoupledLabelledDomain_c_api.h</label>
+        <link refid="AxesCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.h</label>
+        <link refid="CoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Ports__c__api_8h_1a4f4b188c456fc9155261c7db0b2543da" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* PortsHandle</definition>
+        <argsstring></argsstring>
+        <name>PortsHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="12" column="14" bodyfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Ports__c__api_8h_1a0f4f283737c43bcadcac00cf0c4a02e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PortsHandle</type>
+        <definition>PortsHandle Ports_copy</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_copy</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="15" column="13" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="15" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1ac48f583a9bcf8579e20a2e706904e1f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Ports_destroy</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_destroy</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="17" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a14279029ed9f00b3bb7bc739e4c03a43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Ports_equal</definition>
+        <argsstring>(PortsHandle handle, PortsHandle other)</argsstring>
+        <name>Ports_equal</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a822c78b692420a9c97ba651c2f665d2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Ports_not_equal</definition>
+        <argsstring>(PortsHandle handle, PortsHandle other)</argsstring>
+        <name>Ports_not_equal</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a0ecc469c0c4cecf425b6c8f823777955" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle Ports_to_json_string</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_to_json_string</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="23" column="14" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="23" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a4978ec9ea7fad4dddf8ce83b6de4614d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PortsHandle</type>
+        <definition>PortsHandle Ports_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Ports_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="25" column="13" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="25" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1af75869f4a08f038943fed04ff84b060b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PortsHandle</type>
+        <definition>PortsHandle Ports_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>Ports_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="27" column="13" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="27" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1abec5c166057a109419d36328f402398a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PortsHandle</type>
+        <definition>PortsHandle Ports_create</definition>
+        <argsstring>(ListInstrumentPortHandle items)</argsstring>
+        <name>Ports_create</name>
+        <param>
+          <type>ListInstrumentPortHandle</type>
+          <declname>items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="29" column="13" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="29" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a1829fc2b2489480a6936198db96cc771" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListInstrumentPortHandle</type>
+        <definition>ListInstrumentPortHandle Ports_ports</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_ports</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>return the collection of ports. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="36" column="26" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="36" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a2ff81cf336d93c224345dab780874cfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle Ports_default_names</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_default_names</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="38" column="18" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="38" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a281f6c9861ade85bf6bb628f67254016" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListConnectionHandle</type>
+        <definition>ListConnectionHandle Ports_get_psuedo_names</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_get_psuedo_names</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="40" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="40" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a4cf91a6df72ef71a1c5c9759b1d8fe96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle Ports__get_raw_names</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports__get_raw_names</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the raw string names of the ports. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="47" column="18" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="47" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1acb6e9c636cdf5641580d1478aaf8d98d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle Ports__get_instrument_facing_names</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports__get_instrument_facing_names</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets a llist of names to satisfy an instrument interface. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="55" column="18" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="55" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1af2a69fd09cc8cd37215b65d39b83f490" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle Ports__get_psuedoname_matching_port</definition>
+        <argsstring>(PortsHandle handle, ConnectionHandle name)</argsstring>
+        <name>Ports__get_psuedoname_matching_port</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Check if any port has the given pseudo name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pseudo name to check for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The port with the given name </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if no port has the given name. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="66" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="66" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a5121b09a3d425f8f57fa0285c3e32ec1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle Ports__get_instrument_type_matching_port</definition>
+        <argsstring>(PortsHandle handle, StringHandle insttype)</argsstring>
+        <name>Ports__get_instrument_type_matching_port</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>insttype</declname>
+        </param>
+        <briefdescription>
+<para>Check if any port has the given instrument type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instrument type to check for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The port with the given instrument type. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if no port has the given type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="78" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="78" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1aea3e0d13d5a2e6569b50c4d1ad39af90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Ports_is_knobs</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_is_knobs</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if the ports contains only knobs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the ports only contain knobs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="87" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="87" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a767c74d724174c54e9816f75dc136ee8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Ports_is_meters</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_is_meters</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if the ports contains only meters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the ports only contain meters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="95" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="95" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1ac44917eae0f94a9f77eb8eb82eeddde0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PortsHandle</type>
+        <definition>PortsHandle Ports_intersection</definition>
+        <argsstring>(PortsHandle handle, PortsHandle other)</argsstring>
+        <name>Ports_intersection</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="97" column="13" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="97" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a4b93adb48d4087aa954547f62c0121b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Ports_push_back</definition>
+        <argsstring>(PortsHandle handle, InstrumentPortHandle value)</argsstring>
+        <name>Ports_push_back</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="99" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="99" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a9212c2ee703c1133648223a28ccee3ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Ports_size</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_size</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="101" column="8" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="101" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a6bd7e88542975dcd580710a00ea0e361" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Ports_empty</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_empty</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="103" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="103" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1aad232933aa01a3b28aa629c783c97f4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Ports_erase_at</definition>
+        <argsstring>(PortsHandle handle, size_t idx)</argsstring>
+        <name>Ports_erase_at</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="105" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="105" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a3d3324de04022c330d5261ff73119213" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Ports_clear</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_clear</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="107" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="107" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a02d99473ffe8afc3b6b5eb9d77a9c13e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InstrumentPortHandle</type>
+        <definition>InstrumentPortHandle Ports_at</definition>
+        <argsstring>(PortsHandle handle, size_t idx)</argsstring>
+        <name>Ports_at</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="109" column="22" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="109" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a13b3b73671ff1dad208747e9294fb523" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle Ports_items</definition>
+        <argsstring>(PortsHandle handle)</argsstring>
+        <name>Ports_items</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="111" column="18" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="111" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1ac2c9ebbf2a6e4bcc062cc462ce81c0e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Ports_contains</definition>
+        <argsstring>(PortsHandle handle, InstrumentPortHandle value)</argsstring>
+        <name>Ports_contains</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="113" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="113" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Ports__c__api_8h_1a060ae5cebd112678dc9f82d811956569" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Ports_index</definition>
+        <argsstring>(PortsHandle handle, InstrumentPortHandle value)</argsstring>
+        <name>Ports_index</name>
+        <param>
+          <type>PortsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" line="115" column="8" declfile="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h" declline="115" declcolumn="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListConnection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListInstrumentPort_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListString_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>PortsHandle;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">PortsHandle<sp/>Ports_copy(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Ports_destroy(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Ports_equal(PortsHandle<sp/>handle,<sp/>PortsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Ports_not_equal(PortsHandle<sp/>handle,<sp/>PortsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>Ports_to_json_string(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">PortsHandle<sp/>Ports_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">PortsHandle<sp/>Ports_create_empty();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">PortsHandle<sp/>Ports_create(ListInstrumentPortHandle<sp/>items);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Ports_ports<sp/>|</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::Ports::ports<sp/>*/</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">ListInstrumentPortHandle<sp/>Ports_ports(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">ListStringHandle<sp/>Ports_default_names(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">ListConnectionHandle<sp/>Ports_get_psuedo_names(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Ports__get_raw_names<sp/>|</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::Ports::_get_raw_names<sp/>*/</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">ListStringHandle<sp/>Ports__get_raw_names(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Ports__get_instrument_facing_names<sp/>|</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::Ports::_get_instrument_facing_names</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*/</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">ListStringHandle<sp/>Ports__get_instrument_facing_names(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Ports__get_psuedoname_matching_port<sp/>|</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::Ports::_get_psuedoname_matching_port</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*/</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">InstrumentPortHandle<sp/>Ports__get_psuedoname_matching_port(PortsHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>name);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Ports__get_instrument_type_matching_port<sp/>|</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::Ports::_get_instrument_type_matching_port</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*/</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">InstrumentPortHandle<sp/>Ports__get_instrument_type_matching_port(</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>PortsHandle<sp/>handle,<sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>insttype);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Ports_is_knobs<sp/>|</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::Ports::is_knobs<sp/>*/</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Ports_is_knobs(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Ports_is_meters<sp/>|</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::names::Ports::is_meters<sp/>*/</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Ports_is_meters(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">PortsHandle<sp/>Ports_intersection(PortsHandle<sp/>handle,<sp/>PortsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Ports_push_back(PortsHandle<sp/>handle,<sp/>InstrumentPortHandle<sp/>value);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Ports_size(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Ports_empty(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Ports_erase_at(PortsHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Ports_clear(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">InstrumentPortHandle<sp/>Ports_at(PortsHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">ListStringHandle<sp/>Ports_items(PortsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Ports_contains(PortsHandle<sp/>handle,<sp/>InstrumentPortHandle<sp/>value);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Ports_index(PortsHandle<sp/>handle,<sp/>InstrumentPortHandle<sp/>value);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h"/>
+  </compounddef>
+</doxygen>

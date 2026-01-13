@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_1d88f50ca6512fed7187c162c771cfa6" kind="dir">
+    <compoundname>c-api/include/falcon_core/physics/config/geometries</compoundname>
+    <innerfile refid="DotGatesWithNeighbors__c__api_8h">DotGatesWithNeighbors_c_api.h</innerfile>
+    <innerfile refid="DotGateWithNeighbors__c__api_8h">DotGateWithNeighbors_c_api.h</innerfile>
+    <innerfile refid="GateGeometryArray1D__c__api_8h">GateGeometryArray1D_c_api.h</innerfile>
+    <innerfile refid="LeftReservoirWithImplantedOhmic__c__api_8h">LeftReservoirWithImplantedOhmic_c_api.h</innerfile>
+    <innerfile refid="RightReservoirWithImplantedOhmic__c__api_8h">RightReservoirWithImplantedOhmic_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/physics/config/geometries/"/>
+  </compounddef>
+</doxygen>

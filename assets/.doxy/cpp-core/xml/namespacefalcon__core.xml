@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core" kind="namespace" language="C++">
+    <compoundname>falcon_core</compoundname>
+    <innernamespace refid="namespacefalcon__core_1_1autotuner__interfaces">falcon_core::autotuner_interfaces</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1communications">falcon_core::communications</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1generic">falcon_core::generic</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1instrument__interfaces">falcon_core::instrument_interfaces</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1INSTRUMENT__TYPES">falcon_core::INSTRUMENT_TYPES</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1math">falcon_core::math</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics">falcon_core::physics</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1SI">falcon_core::SI</innernamespace>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacefalcon__core_1a33fe118c3ec0d131b4d8fb473aa9dfd5" prot="public" static="no" extern="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double falcon_core::PI</definition>
+        <argsstring></argsstring>
+        <name>PI</name>
+        <qualifiedname>falcon_core::PI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="9" column="21" declfile="cpp/include/falcon_core/Constants.hpp" declline="9" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacefalcon__core_1ad13c35124d88f0cd8419b367bfd878b9" prot="public" static="no" extern="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double falcon_core::ELECTRON_CHARGE</definition>
+        <argsstring></argsstring>
+        <name>ELECTRON_CHARGE</name>
+        <qualifiedname>falcon_core::ELECTRON_CHARGE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="10" column="21" declfile="cpp/include/falcon_core/Constants.hpp" declline="10" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacefalcon__core_1a99b591a7999df7803e473581ecfc88dc" prot="public" static="no" extern="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double falcon_core::CELSIUS_OFFSET</definition>
+        <argsstring></argsstring>
+        <name>CELSIUS_OFFSET</name>
+        <qualifiedname>falcon_core::CELSIUS_OFFSET</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="11" column="21" declfile="cpp/include/falcon_core/Constants.hpp" declline="11" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacefalcon__core_1ad3484fadf61e7bade360d540386ce009" prot="public" static="no" extern="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double falcon_core::FAHRENHEIT_OFFSET</definition>
+        <argsstring></argsstring>
+        <name>FAHRENHEIT_OFFSET</name>
+        <qualifiedname>falcon_core::FAHRENHEIT_OFFSET</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="12" column="21" declfile="cpp/include/falcon_core/Constants.hpp" declline="12" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacefalcon__core_1a0ab1e9b02ce75a1a526d10bda34f0cea" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SECONDS_PER_MINUTE</definition>
+        <argsstring></argsstring>
+        <name>SECONDS_PER_MINUTE</name>
+        <qualifiedname>falcon_core::SECONDS_PER_MINUTE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="13" column="21" declfile="cpp/include/falcon_core/Constants.hpp" declline="13" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacefalcon__core_1a60750159f0e6d145f09075c5b1d038fc" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::MINUTES_PER_HOUR</definition>
+        <argsstring></argsstring>
+        <name>MINUTES_PER_HOUR</name>
+        <qualifiedname>falcon_core::MINUTES_PER_HOUR</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="14" column="21" declfile="cpp/include/falcon_core/Constants.hpp" declline="14" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacefalcon__core_1a3c28e6aabe3aa37fc8ed614630293b0e" prot="public" static="no" extern="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double falcon_core::UNIT_SCALE_FAHRENHEIT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SCALE_FAHRENHEIT</name>
+        <qualifiedname>falcon_core::UNIT_SCALE_FAHRENHEIT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="15" column="21" declfile="cpp/include/falcon_core/Constants.hpp" declline="15" declcolumn="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A transform that maps a port to a time domain analytic function. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Base class for a measurement waveform, consisting of a measurement domain and any time-dependent phenomena.</para>
+<para>Container for multiple PortTransform objects.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The discrete space type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp" line="6" column="1"/>
+  </compounddef>
+</doxygen>

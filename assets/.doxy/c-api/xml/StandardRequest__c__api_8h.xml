@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="StandardRequest__c__api_8h" kind="file" language="C++">
+    <compoundname>StandardRequest_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h</label>
+        <link refid="StandardRequest__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="StandardRequest__c__api_8h_1a9505d33c864d2f7d8891efe1b39a3891" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* StandardRequestHandle</definition>
+        <argsstring></argsstring>
+        <name>StandardRequestHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" line="9" column="14" bodyfile="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="StandardRequest__c__api_8h_1a19777d1a1a1e42030677c53f1b7e1a4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StandardRequestHandle</type>
+        <definition>StandardRequestHandle StandardRequest_copy</definition>
+        <argsstring>(StandardRequestHandle handle)</argsstring>
+        <name>StandardRequest_copy</name>
+        <param>
+          <type>StandardRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" line="12" column="23" declfile="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" declline="12" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="StandardRequest__c__api_8h_1af6e925bb610ac27518de8cd6e13c15b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void StandardRequest_destroy</definition>
+        <argsstring>(StandardRequestHandle handle)</argsstring>
+        <name>StandardRequest_destroy</name>
+        <param>
+          <type>StandardRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" line="14" column="6" declfile="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" declline="14" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="StandardRequest__c__api_8h_1a5359e3db0e08913a9d92961a3878811d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool StandardRequest_equal</definition>
+        <argsstring>(StandardRequestHandle handle, StandardRequestHandle other)</argsstring>
+        <name>StandardRequest_equal</name>
+        <param>
+          <type>StandardRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StandardRequestHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" line="16" column="6" declfile="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" declline="16" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="StandardRequest__c__api_8h_1a3817e1e104ebde7edcee1af29404503e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool StandardRequest_not_equal</definition>
+        <argsstring>(StandardRequestHandle handle, StandardRequestHandle other)</argsstring>
+        <name>StandardRequest_not_equal</name>
+        <param>
+          <type>StandardRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StandardRequestHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="StandardRequest__c__api_8h_1ab1ae895cf22e18796558d00877c074ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle StandardRequest_to_json_string</definition>
+        <argsstring>(StandardRequestHandle handle)</argsstring>
+        <name>StandardRequest_to_json_string</name>
+        <param>
+          <type>StandardRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" line="22" column="14" declfile="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" declline="22" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="StandardRequest__c__api_8h_1aee29f027b342aca94b5aa32569ef5b4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StandardRequestHandle</type>
+        <definition>StandardRequestHandle StandardRequest_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>StandardRequest_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" line="24" column="23" declfile="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" declline="24" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="StandardRequest__c__api_8h_1a3f32a364226c0404cee63c0c9fd6a5a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StandardRequestHandle</type>
+        <definition>StandardRequestHandle StandardRequest_create</definition>
+        <argsstring>(StringHandle message)</argsstring>
+        <name>StandardRequest_create</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" line="26" column="23" declfile="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" declline="26" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="StandardRequest__c__api_8h_1a5b5458baac41886d1534dbf266355d19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle StandardRequest_message</definition>
+        <argsstring>(StandardRequestHandle handle)</argsstring>
+        <name>StandardRequest_message</name>
+        <param>
+          <type>StandardRequestHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" line="28" column="14" declfile="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h" declline="28" declcolumn="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>StandardRequestHandle;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">StandardRequestHandle<sp/>StandardRequest_copy(StandardRequestHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>StandardRequest_destroy(StandardRequestHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>StandardRequest_equal(StandardRequestHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StandardRequestHandle<sp/>other);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>StandardRequest_not_equal(StandardRequestHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StandardRequestHandle<sp/>other);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>StandardRequest_to_json_string(StandardRequestHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">StandardRequestHandle<sp/>StandardRequest_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">StandardRequestHandle<sp/>StandardRequest_create(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>message);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>StandardRequest_message(StandardRequestHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/communications/messages/StandardRequest_c_api.h"/>
+  </compounddef>
+</doxygen>

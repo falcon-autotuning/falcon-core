@@ -1,0 +1,492 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="SymbolUnit_8hpp" kind="file" language="C++">
+    <compoundname>SymbolUnit.hpp</compoundname>
+    <includes local="no">memory</includes>
+    <includes local="no">mutex</includes>
+    <includes local="no">shared_mutex</includes>
+    <includes local="no">string</includes>
+    <includes refid="Song_8hpp" local="yes">falcon_core/generic/Song.hpp</includes>
+    <includes refid="Unit_8hpp" local="yes">falcon_core/physics/units/Unit.hpp</includes>
+    <includedby refid="InterpretationContext_8hpp" local="yes">cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp</includedby>
+    <includedby refid="InstrumentPort_8hpp" local="yes">cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp</includedby>
+    <includedby refid="Point_8hpp" local="yes">cpp/include/falcon_core/math/Point.hpp</includedby>
+    <includedby refid="Quantity_8hpp" local="yes">cpp/include/falcon_core/math/Quantity.hpp</includedby>
+    <includedby refid="Vector_8hpp" local="yes">cpp/include/falcon_core/math/Vector.hpp</includedby>
+    <incdepgraph>
+      <node id="17">
+        <label>falcon_core/Constants.hpp</label>
+        <link refid="Constants_8hpp_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/Song.hpp</label>
+        <link refid="Song_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/physics/units/SymbolUnit.hpp</label>
+        <link refid="SymbolUnit_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/physics/units/TotalDimensions.hpp</label>
+        <link refid="TotalDimensions_8hpp_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/physics/units/Unit.hpp</label>
+        <link refid="Unit_8hpp_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cereal/archives/json.hpp</label>
+      </node>
+      <node id="8">
+        <label>cereal/types/map.hpp</label>
+      </node>
+      <node id="9">
+        <label>cereal/types/memory.hpp</label>
+      </node>
+      <node id="10">
+        <label>cereal/types/polymorphic.hpp</label>
+      </node>
+      <node id="11">
+        <label>cereal/types/string.hpp</label>
+      </node>
+      <node id="12">
+        <label>cereal/types/unordered_map.hpp</label>
+      </node>
+      <node id="13">
+        <label>cereal/types/utility.hpp</label>
+      </node>
+      <node id="14">
+        <label>cereal/types/vector.hpp</label>
+      </node>
+      <node id="18">
+        <label>map</label>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+      <node id="3">
+        <label>mutex</label>
+      </node>
+      <node id="4">
+        <label>shared_mutex</label>
+      </node>
+      <node id="15">
+        <label>sstream</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>cpp/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp</label>
+        <link refid="AcquisitionContext_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp</label>
+        <link refid="BaseContext_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp</label>
+        <link refid="MeasurementContext_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp</label>
+        <link refid="InterpretationContainer_8hpp_source"/>
+      </node>
+      <node id="2">
+        <label>cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp</label>
+        <link refid="InterpretationContext_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>cpp/include/falcon_core/communications/HDF5Data.hpp</label>
+        <link refid="HDF5Data_8hpp_source"/>
+      </node>
+      <node id="14">
+        <label>cpp/include/falcon_core/communications/messages/MeasurementRequest.hpp</label>
+        <link refid="MeasurementRequest_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp</label>
+        <link refid="MeasurementResponse_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp</label>
+        <link refid="VoltageStatesResponse_8hpp_source"/>
+      </node>
+      <node id="29">
+        <label>cpp/include/falcon_core/communications/voltage_states/DeviceVoltageState.hpp</label>
+        <link refid="DeviceVoltageState_8hpp_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp</label>
+        <link refid="DeviceVoltageStates_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>cpp/include/falcon_core/instrument_interfaces/Waveform.hpp</label>
+        <link refid="Waveform_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp</label>
+        <link refid="InstrumentPort_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>cpp/include/falcon_core/instrument_interfaces/names/Ports.hpp</label>
+        <link refid="Ports_8hpp_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp</label>
+        <link refid="PortTransform_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>cpp/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp</label>
+        <link refid="PortTransforms_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>cpp/include/falcon_core/math/Point.hpp</label>
+        <link refid="Point_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>cpp/include/falcon_core/math/Quantity.hpp</label>
+        <link refid="Quantity_8hpp"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>cpp/include/falcon_core/math/Vector.hpp</label>
+        <link refid="Vector_8hpp"/>
+      </node>
+      <node id="6">
+        <label>cpp/include/falcon_core/math/arrays/IsLabelled.hpp</label>
+        <link refid="IsLabelled_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cpp/include/falcon_core/math/arrays/LabelledArrays.hpp</label>
+        <link refid="LabelledArrays_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>cpp/include/falcon_core/math/arrays/LabelledControlArray.hpp</label>
+        <link refid="LabelledControlArray_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>cpp/include/falcon_core/math/arrays/LabelledControlArray1D.hpp</label>
+        <link refid="LabelledControlArray1D_8hpp"/>
+      </node>
+      <node id="15">
+        <label>cpp/include/falcon_core/math/arrays/LabelledMeasuredArray.hpp</label>
+        <link refid="LabelledMeasuredArray_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>cpp/include/falcon_core/math/arrays/LabelledMeasuredArray1D.hpp</label>
+        <link refid="LabelledMeasuredArray1D_8hpp"/>
+      </node>
+      <node id="12">
+        <label>cpp/include/falcon_core/math/discrete_spaces/DiscreteSpace.hpp</label>
+        <link refid="DiscreteSpace_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>cpp/include/falcon_core/math/domains/CoupledLabelledDomain.hpp</label>
+        <link refid="CoupledLabelledDomain_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>cpp/include/falcon_core/math/domains/LabelledDomain.hpp</label>
+        <link refid="LabelledDomain_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/physics/units/SymbolUnit.hpp</label>
+        <link refid="SymbolUnit_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" prot="public">falcon_core::physics::units::SymbolUnit</innerclass>
+    <innernamespace refid="namespacefalcon__core">falcon_core</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics">falcon_core::physics</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics_1_1units">falcon_core::physics::units</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;shared_mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/Song.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/units/Unit.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacefalcon__core" kindref="compound">falcon_core</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">physics<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">units<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">SymbolUnit</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1generic_1_1Song" kindref="compound">generic::Song</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>UnitSP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_unit;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>std::string<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_symbol;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>std::string<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_name;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/>_mu_unit;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/>_mu_symbol;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/>_mu_name;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::pair&lt;std::string,<sp/>std::string&gt;<sp/>_find_matching_common_unit()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>_generate_symbol()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>_get_dimension_symbol(std::string<sp/>dimension)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">SymbolUnit</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">SymbolUnit</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">SymbolUnit</ref>&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">SymbolUnit</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="45" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a84686749ea19631f6bc02096026b18ae" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a84686749ea19631f6bc02096026b18ae" kindref="member">SymbolUnit</ref>(UnitSP<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ae07deec81b42ee091954f06aadbf9bbb" kindref="member">unit</ref>);</highlight></codeline>
+<codeline lineno="49" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a23bff7cb44501f2e3dd1edfcbf8add93" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a23bff7cb44501f2e3dd1edfcbf8add93" kindref="member">Meter</ref>();</highlight></codeline>
+<codeline lineno="53" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1afd99d28b2043b611c42aee255b805a07" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1afd99d28b2043b611c42aee255b805a07" kindref="member">Kilogram</ref>();</highlight></codeline>
+<codeline lineno="57" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a645c9a9ecd9a0e3e143b27ea5080bba4" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a645c9a9ecd9a0e3e143b27ea5080bba4" kindref="member">Second</ref>();</highlight></codeline>
+<codeline lineno="61" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1afa609052e34d2f1cccf11c7ddcd8c21e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1afa609052e34d2f1cccf11c7ddcd8c21e" kindref="member">Ampere</ref>();</highlight></codeline>
+<codeline lineno="65" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a63f61239fbed08718cc7ecc2c5665de2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a63f61239fbed08718cc7ecc2c5665de2" kindref="member">Kelvin</ref>();</highlight></codeline>
+<codeline lineno="69" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a052bc23075c39a1c3c38f91f1a7bd2a8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a052bc23075c39a1c3c38f91f1a7bd2a8" kindref="member">Mole</ref>();</highlight></codeline>
+<codeline lineno="73" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab991bf57717ce530129ba719fa42d9c3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab991bf57717ce530129ba719fa42d9c3" kindref="member">Candela</ref>();</highlight></codeline>
+<codeline lineno="77" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a1e56acc183a150ba35dcb813a01f0e08" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a1e56acc183a150ba35dcb813a01f0e08" kindref="member">Hertz</ref>();</highlight></codeline>
+<codeline lineno="81" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a918f9ae173622caeae25ba93fd172a17" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a918f9ae173622caeae25ba93fd172a17" kindref="member">Newton</ref>();</highlight></codeline>
+<codeline lineno="85" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a860247296cf0b45bc58ed910305af7ea" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a860247296cf0b45bc58ed910305af7ea" kindref="member">Pascal</ref>();</highlight></codeline>
+<codeline lineno="89" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a0218a5fa71f4eda70f7ea77a4d69a6d9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a0218a5fa71f4eda70f7ea77a4d69a6d9" kindref="member">Joule</ref>();</highlight></codeline>
+<codeline lineno="93" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a5ecc8ca0c18fd870df8fd66df40601a6" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a5ecc8ca0c18fd870df8fd66df40601a6" kindref="member">Watt</ref>();</highlight></codeline>
+<codeline lineno="97" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a9afa697eea65189481b6767ab16d8a28" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a9afa697eea65189481b6767ab16d8a28" kindref="member">Coulomb</ref>();</highlight></codeline>
+<codeline lineno="101" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab18074c5750e6e964385e75d3c5340c6" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab18074c5750e6e964385e75d3c5340c6" kindref="member">Volt</ref>();</highlight></codeline>
+<codeline lineno="105" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a6c4a5ba09926bf1831def9b0ba86d6c0" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a6c4a5ba09926bf1831def9b0ba86d6c0" kindref="member">Farad</ref>();</highlight></codeline>
+<codeline lineno="109" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a8a99b1d303c93a0f3572c4e86e23c72f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a8a99b1d303c93a0f3572c4e86e23c72f" kindref="member">Ohm</ref>();</highlight></codeline>
+<codeline lineno="113" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a0e839c910e507b702467f9ca3ef25e9b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a0e839c910e507b702467f9ca3ef25e9b" kindref="member">Siemens</ref>();</highlight></codeline>
+<codeline lineno="117" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a3a0ab399eee5bd33dfd3ac3288188027" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a3a0ab399eee5bd33dfd3ac3288188027" kindref="member">Weber</ref>();</highlight></codeline>
+<codeline lineno="121" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ac57ed258ba9886d4e67a72e6e7e13541" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ac57ed258ba9886d4e67a72e6e7e13541" kindref="member">Tesla</ref>();</highlight></codeline>
+<codeline lineno="125" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ad64783db783278a89a632116d3744899" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ad64783db783278a89a632116d3744899" kindref="member">Henry</ref>();</highlight></codeline>
+<codeline lineno="129" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a76188a2e3eaca9f16f3364f6fbe4b012" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a76188a2e3eaca9f16f3364f6fbe4b012" kindref="member">Minute</ref>();</highlight></codeline>
+<codeline lineno="133" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1abd9d0275ad28d0e8d64f0f6d512ce6a6" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1abd9d0275ad28d0e8d64f0f6d512ce6a6" kindref="member">Hour</ref>();</highlight></codeline>
+<codeline lineno="137" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a16ce0b9eb7a545cf0bbcf2aeff648859" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a16ce0b9eb7a545cf0bbcf2aeff648859" kindref="member">ElectronVolt</ref>();</highlight></codeline>
+<codeline lineno="141" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1af8e1274597b19ca6083151476a685aba" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1af8e1274597b19ca6083151476a685aba" kindref="member">Celsius</ref>();</highlight></codeline>
+<codeline lineno="145" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a786766faab61f7e944ec3e6e78968351" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a786766faab61f7e944ec3e6e78968351" kindref="member">Fahrenheit</ref>();</highlight></codeline>
+<codeline lineno="149" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a3f8b414f1f95e903c903db61351ecd42" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a3f8b414f1f95e903c903db61351ecd42" kindref="member">Dimensionless</ref>();</highlight></codeline>
+<codeline lineno="153" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a397e1d18b0827139367acd6b3b7b225a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a397e1d18b0827139367acd6b3b7b225a" kindref="member">Percent</ref>();</highlight></codeline>
+<codeline lineno="157" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ac6bcd0c990cc1b57e7e7366d7f432333" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ac6bcd0c990cc1b57e7e7366d7f432333" kindref="member">Radian</ref>();</highlight></codeline>
+<codeline lineno="161" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ac1ec876a65965ce5af7f9a19ac912abe" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ac1ec876a65965ce5af7f9a19ac912abe" kindref="member">KiloMeter</ref>();</highlight></codeline>
+<codeline lineno="165" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a941f079bc5f45433a0a9385a544bd80e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a941f079bc5f45433a0a9385a544bd80e" kindref="member">MilliMeter</ref>();</highlight></codeline>
+<codeline lineno="169" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a0a3f76d8f5915a3a69c4c28e9dbe981d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a0a3f76d8f5915a3a69c4c28e9dbe981d" kindref="member">MilliVolt</ref>();</highlight></codeline>
+<codeline lineno="173" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a867d32b88c1934d7a76d1fa662914bab" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a867d32b88c1934d7a76d1fa662914bab" kindref="member">KiloVolt</ref>();</highlight></codeline>
+<codeline lineno="177" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a9ad53c344ab65379693882416d985c51" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a9ad53c344ab65379693882416d985c51" kindref="member">MilliAmpere</ref>();</highlight></codeline>
+<codeline lineno="181" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a3bafecd6a7390072eb02d53afc22d982" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a3bafecd6a7390072eb02d53afc22d982" kindref="member">MicroAmpere</ref>();</highlight></codeline>
+<codeline lineno="185" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a007ffb0f1fa6c533ae300eb74be906c5" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a007ffb0f1fa6c533ae300eb74be906c5" kindref="member">NanoAmpere</ref>();</highlight></codeline>
+<codeline lineno="189" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a02b746973f9ae8a5f2e041e92b39fa03" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a02b746973f9ae8a5f2e041e92b39fa03" kindref="member">PicoAmpere</ref>();</highlight></codeline>
+<codeline lineno="193" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1aa5265ce0f264caf213c713e2221a26c6" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1aa5265ce0f264caf213c713e2221a26c6" kindref="member">MilliSecond</ref>();</highlight></codeline>
+<codeline lineno="197" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a57812722bc2206bbe6b67068bc8ecd72" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a57812722bc2206bbe6b67068bc8ecd72" kindref="member">MicroSecond</ref>();</highlight></codeline>
+<codeline lineno="201" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a2c7b92df7ac419d35056c1eaa73a747f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a2c7b92df7ac419d35056c1eaa73a747f" kindref="member">NanoSecond</ref>();</highlight></codeline>
+<codeline lineno="205" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ac21098f5b444aa745ea840605b3e2e85" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ac21098f5b444aa745ea840605b3e2e85" kindref="member">PicoSecond</ref>();</highlight></codeline>
+<codeline lineno="209" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a9f61589c6ec0310cdf67235c9e83a4f4" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a9f61589c6ec0310cdf67235c9e83a4f4" kindref="member">MilliOhm</ref>();</highlight></codeline>
+<codeline lineno="213" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a7ecb90b58c52bc7eab50af20da78765d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a7ecb90b58c52bc7eab50af20da78765d" kindref="member">KiloOhm</ref>();</highlight></codeline>
+<codeline lineno="217" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1afd0aa9a72e4ee805ad87f157b6684e5e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1afd0aa9a72e4ee805ad87f157b6684e5e" kindref="member">MegaOhm</ref>();</highlight></codeline>
+<codeline lineno="221" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a43cc22169264cf8db2ae46bcf0d178d9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a43cc22169264cf8db2ae46bcf0d178d9" kindref="member">MilliHertz</ref>();</highlight></codeline>
+<codeline lineno="225" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a2bfdbd416c65d4a442acdf70f765ef02" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a2bfdbd416c65d4a442acdf70f765ef02" kindref="member">KiloHertz</ref>();</highlight></codeline>
+<codeline lineno="229" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a19f74275eb13eb93376bc6bb574f6965" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a19f74275eb13eb93376bc6bb574f6965" kindref="member">MegaHertz</ref>();</highlight></codeline>
+<codeline lineno="233" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1aabe8bf219d610b5c2816617c482d0b88" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1aabe8bf219d610b5c2816617c482d0b88" kindref="member">GigaHertz</ref>();</highlight></codeline>
+<codeline lineno="237" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a85b2f4dd3f754069c81d7efb0fec050c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a85b2f4dd3f754069c81d7efb0fec050c" kindref="member">MetersPerSecond</ref>();</highlight></codeline>
+<codeline lineno="241" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a67b50b4250199440cdcacd3eeb4babac" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a67b50b4250199440cdcacd3eeb4babac" kindref="member">MetersPerSecondSquared</ref>();</highlight></codeline>
+<codeline lineno="245" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab6810cf66469ac487f84539180b46822" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab6810cf66469ac487f84539180b46822" kindref="member">NewtonMeter</ref>();</highlight></codeline>
+<codeline lineno="249" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a6ff663bb74320e133a2db69f59c52a62" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a6ff663bb74320e133a2db69f59c52a62" kindref="member">NewtonPerMeter</ref>();</highlight></codeline>
+<codeline lineno="253" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab1927d50541b2d8d43dadb3a1bdeff49" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab1927d50541b2d8d43dadb3a1bdeff49" kindref="member">VoltsPerMeter</ref>();</highlight></codeline>
+<codeline lineno="257" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a6b3ca57e5196a16a46969b9d18887629" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a6b3ca57e5196a16a46969b9d18887629" kindref="member">VoltsPerSecond</ref>();</highlight></codeline>
+<codeline lineno="261" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1aa6b4832a1b0432b7069637c0eefb8532" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1aa6b4832a1b0432b7069637c0eefb8532" kindref="member">AmperesPerMeter</ref>();</highlight></codeline>
+<codeline lineno="265" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ad35dab5dba2bc4571b96ac712cc14c2d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ad35dab5dba2bc4571b96ac712cc14c2d" kindref="member">VoltsPerAmpere</ref>();</highlight></codeline>
+<codeline lineno="269" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1afbdcf2559255c223408ae173c084a1d3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1afbdcf2559255c223408ae173c084a1d3" kindref="member">WattsPerMeterKelvin</ref>();</highlight></codeline>
+<codeline lineno="274" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ae07deec81b42ee091954f06aadbf9bbb" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>UnitSP<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ae07deec81b42ee091954f06aadbf9bbb" kindref="member">unit</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="279" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1af2d7f68d75c4039b98a82c3aa1cd276d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1af2d7f68d75c4039b98a82c3aa1cd276d" kindref="member">symbol</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="284" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a9ad6d7e4ce9bb427891b2380324a3da3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a9ad6d7e4ce9bb427891b2380324a3da3" kindref="member">name</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="291" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1aac86845b3e15352c789f8885417a0db8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1aac86845b3e15352c789f8885417a0db8" kindref="member">operator*</ref>(</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1aac86845b3e15352c789f8885417a0db8" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>UnitSP&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="300" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1af2f0772f463e41f4e552c42693f44f26" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1af2f0772f463e41f4e552c42693f44f26" kindref="member">operator/</ref>(</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1af2f0772f463e41f4e552c42693f44f26" kindref="member">operator/</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>UnitSP&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="308" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ad7d488e76eef6164c1dff610a08f50a2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ad7d488e76eef6164c1dff610a08f50a2" kindref="member">operator^</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>power)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="315" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a214d8701ff6a943ef4f3926c8126318a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a214d8701ff6a943ef4f3926c8126318a" kindref="member">with_prefix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>prefix)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="323" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a5ee5a70944d1e126b66a7f1a5f82c9bc" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a5ee5a70944d1e126b66a7f1a5f82c9bc" kindref="member">convert_value_to</ref>(</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;&amp;<sp/>target_unit)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="331" refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a6eb3e63cd874786e1415886f6e33641c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a6eb3e63cd874786e1415886f6e33641c" kindref="member">is_compatible_with</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;SymbolUnit&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::tuple&lt;UnitSP,<sp/>const<sp/>char*,<sp/>const<sp/>char*&gt;&gt;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/>get_unit_symbols()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::map&lt;std::string,<sp/>std::string&gt;<sp/>get_dimension_symbols()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">SymbolUnit</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator!=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">SymbolUnit</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">SymbolUnit</ref>();</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">cereal::access;</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Archive&gt;</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>serialize(Archive&amp;<sp/>ar)<sp/>{</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_unit(_mu_unit,</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_symbol(_mu_symbol,</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_name(_mu_name,</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock(lock_unit,<sp/>lock_symbol,<sp/>lock_name);</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/>ar(cereal::base_class&lt;Song&gt;(</highlight><highlight class="keyword">this</highlight><highlight class="normal">),<sp/>_unit,<sp/>_symbol,<sp/>_name);</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="355"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">SymbolUnitSP<sp/>=<sp/>std::shared_ptr&lt;SymbolUnit&gt;;</highlight></codeline>
+<codeline lineno="357"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>units</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>physics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="359"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>falcon_core</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="cpp/include/falcon_core/physics/units/SymbolUnit.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,380 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="RightReservoirWithImplantedOhmic__c__api_8h" kind="file" language="C++">
+    <compoundname>RightReservoirWithImplantedOhmic_c_api.h</compoundname>
+    <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="GateGeometryArray1D__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h</label>
+        <link refid="RightReservoirWithImplantedOhmic__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>c-api/include/falcon_core/generic/ListGroup_c_api.h</label>
+        <link refid="ListGroup__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h</label>
+        <link refid="ListPairGnameGroup__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
+        <link refid="MapGnameGroup__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/generic/PairGnameGroup_c_api.h</label>
+        <link refid="PairGnameGroup__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/core/Group_c_api.h</label>
+        <link refid="Group__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</label>
+        <link refid="GateGeometryArray1D__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h</label>
+        <link refid="RightReservoirWithImplantedOhmic__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="RightReservoirWithImplantedOhmic__c__api_8h_1a7ce1d66979d273726ffe8bb57b4df488" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* RightReservoirWithImplantedOhmicHandle</definition>
+        <argsstring></argsstring>
+        <name>RightReservoirWithImplantedOhmicHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1a93d929e839544073c998e074b820c05b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RightReservoirWithImplantedOhmicHandle</type>
+        <definition>RightReservoirWithImplantedOhmicHandle RightReservoirWithImplantedOhmic_copy</definition>
+        <argsstring>(RightReservoirWithImplantedOhmicHandle handle)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_copy</name>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="13" column="40" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="13" declcolumn="40"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1acadb9bc1d56110452f1cc9197a925383" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RightReservoirWithImplantedOhmic_destroy</definition>
+        <argsstring>(RightReservoirWithImplantedOhmicHandle handle)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_destroy</name>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="16" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="16" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1a777ec4a73e4dfd9385a632f7c9e19693" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool RightReservoirWithImplantedOhmic_equal</definition>
+        <argsstring>(RightReservoirWithImplantedOhmicHandle handle, RightReservoirWithImplantedOhmicHandle other)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_equal</name>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1ad0902239be351c3f42ee94ee62b8fe33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool RightReservoirWithImplantedOhmic_not_equal</definition>
+        <argsstring>(RightReservoirWithImplantedOhmicHandle handle, RightReservoirWithImplantedOhmicHandle other)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_not_equal</name>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1a660d6a404c99f6536384dd6da2c7097f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle RightReservoirWithImplantedOhmic_to_json_string</definition>
+        <argsstring>(RightReservoirWithImplantedOhmicHandle handle)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_to_json_string</name>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="27" column="14" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="27" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1ab0e4672c350292d9fff21dc41295795e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RightReservoirWithImplantedOhmicHandle</type>
+        <definition>RightReservoirWithImplantedOhmicHandle RightReservoirWithImplantedOhmic_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="31" column="1" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="31" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1a938115d7da9939d042859bf4ac39b014" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RightReservoirWithImplantedOhmicHandle</type>
+        <definition>RightReservoirWithImplantedOhmicHandle RightReservoirWithImplantedOhmic_create</definition>
+        <argsstring>(StringHandle name, ConnectionHandle left_neighbor, ConnectionHandle ohmic)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_create</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>left_neighbor</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>ohmic</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="33" column="40" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="33" declcolumn="40"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1ab26492547b72e60a549f9d98d042e3f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle RightReservoirWithImplantedOhmic_name</definition>
+        <argsstring>(RightReservoirWithImplantedOhmicHandle handle)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_name</name>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="36" column="14" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="36" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1a0ddcfba3acb7f9edd6443dcf8b32ea8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle RightReservoirWithImplantedOhmic_type</definition>
+        <argsstring>(RightReservoirWithImplantedOhmicHandle handle)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_type</name>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="39" column="14" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="39" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1a55c2c512a0b92caf7554363d5cdca9b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle RightReservoirWithImplantedOhmic_ohmic</definition>
+        <argsstring>(RightReservoirWithImplantedOhmicHandle handle)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_ohmic</name>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="42" column="18" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="42" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="RightReservoirWithImplantedOhmic__c__api_8h_1a4437f0ae5c41ae67d32fa39c4e1bf6b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle RightReservoirWithImplantedOhmic_left_neighbor</definition>
+        <argsstring>(RightReservoirWithImplantedOhmicHandle handle)</argsstring>
+        <name>RightReservoirWithImplantedOhmic_left_neighbor</name>
+        <param>
+          <type>RightReservoirWithImplantedOhmicHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" line="45" column="18" declfile="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h" declline="45" declcolumn="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>RightReservoirWithImplantedOhmicHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">RightReservoirWithImplantedOhmicHandle<sp/>RightReservoirWithImplantedOhmic_copy(</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>RightReservoirWithImplantedOhmic_destroy(</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>RightReservoirWithImplantedOhmic_equal(</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>other);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>RightReservoirWithImplantedOhmic_not_equal(</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>other);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>RightReservoirWithImplantedOhmic_to_json_string(</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">RightReservoirWithImplantedOhmicHandle</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">RightReservoirWithImplantedOhmic_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">RightReservoirWithImplantedOhmicHandle<sp/>RightReservoirWithImplantedOhmic_create(</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>name,<sp/>ConnectionHandle<sp/>left_neighbor,<sp/>ConnectionHandle<sp/>ohmic);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>RightReservoirWithImplantedOhmic_name(</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>RightReservoirWithImplantedOhmic_type(</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">ConnectionHandle<sp/>RightReservoirWithImplantedOhmic_ohmic(</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">ConnectionHandle<sp/>RightReservoirWithImplantedOhmic_left_neighbor(</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>RightReservoirWithImplantedOhmicHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"/>
+  </compounddef>
+</doxygen>

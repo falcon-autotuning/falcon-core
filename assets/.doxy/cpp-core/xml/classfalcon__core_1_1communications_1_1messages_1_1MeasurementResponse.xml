@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::communications::messages::MeasurementResponse</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" prot="public" virt="non-virtual">falcon_core::communications::messages::BaseMessage</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a1d4fb275a4d9218976410d564b986940" prot="private" static="no" mutable="no">
+        <type>math::arrays::LabelledArraysSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray" kindref="compound">math::arrays::LabelledMeasuredArray</ref> &gt;</type>
+        <definition>math::arrays::LabelledArraysSP&lt;math::arrays::LabelledMeasuredArray&gt; falcon_core::communications::messages::MeasurementResponse::_arrays</definition>
+        <argsstring></argsstring>
+        <name>_arrays</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::_arrays</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="13" column="34" bodyfile="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a194e042d805e4ee5097d3f4c46fd4447" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::messages::MeasurementResponse::_mu_arrays</definition>
+        <argsstring></argsstring>
+        <name>_mu_arrays</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::_mu_arrays</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="14" column="35" bodyfile="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="30" column="16" bodyfile="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a8262b48c6f7571e878688a2e342be28c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::messages::MeasurementResponse::MeasurementResponse</definition>
+        <argsstring>(const MeasurementResponse &amp;other)</argsstring>
+        <name>MeasurementResponse</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::MeasurementResponse</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse" kindref="compound">MeasurementResponse</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a03ee5066ce023fbd554a4e68ceb31533" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse" kindref="compound">MeasurementResponse</ref> &amp;</type>
+        <definition>MeasurementResponse &amp; falcon_core::communications::messages::MeasurementResponse::operator=</definition>
+        <argsstring>(const MeasurementResponse &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse" kindref="compound">MeasurementResponse</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="18" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a15f192ddb2df118bc28085ebeca09070" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::messages::MeasurementResponse::MeasurementResponse</definition>
+        <argsstring>(const math::arrays::LabelledArraysSP&lt; math::arrays::LabelledMeasuredArray &gt; &amp;arrays)</argsstring>
+        <name>MeasurementResponse</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::MeasurementResponse</qualifiedname>
+        <param>
+          <type>const math::arrays::LabelledArraysSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray" kindref="compound">math::arrays::LabelledMeasuredArray</ref> &gt; &amp;</type>
+          <declname>arrays</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="19" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1af7504b701c3d2918360b91512af37cdd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const math::arrays::LabelledArraysSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray" kindref="compound">math::arrays::LabelledMeasuredArray</ref> &gt; &amp;</type>
+        <definition>const math::arrays::LabelledArraysSP&lt; math::arrays::LabelledMeasuredArray &gt; &amp; falcon_core::communications::messages::MeasurementResponse::arrays</definition>
+        <argsstring>() const</argsstring>
+        <name>arrays</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::arrays</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="24" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a9fbfa25604d7e92081e042681c238790" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::messages::MeasurementResponse::operator==</definition>
+        <argsstring>(const MeasurementResponse &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse" kindref="compound">MeasurementResponse</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="25" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a3436ef0cb53905ee972225c5a9faa710" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::messages::MeasurementResponse::operator!=</definition>
+        <argsstring>(const MeasurementResponse &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse" kindref="compound">MeasurementResponse</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="26" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a2b1bf3744728ca624aa4f0d226ba42da" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::messages::MeasurementResponse::MeasurementResponse</definition>
+        <argsstring>()</argsstring>
+        <name>MeasurementResponse</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::MeasurementResponse</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="29" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a0a5da65562342757a8fd2de636f3460d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::communications::messages::MeasurementResponse::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::communications::messages::MeasurementResponse::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="32" column="8" bodyfile="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" bodystart="32" bodyend="35"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::communications::messages::BaseMessage</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::communications::messages::MeasurementResponse</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::communications::messages::BaseMessage</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::communications::messages::MeasurementResponse</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" line="12" column="1" bodyfile="cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp" bodystart="12" bodyend="36"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a1d4fb275a4d9218976410d564b986940" prot="private" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>_arrays</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a194e042d805e4ee5097d3f4c46fd4447" prot="private" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>_mu_arrays</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1af7504b701c3d2918360b91512af37cdd" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>arrays</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a47c1cbbda33f9acdd5020e7acbc3bc99" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>BaseMessage</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ad8c0ef44f042a78716f24157908e5533" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>BaseMessage</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1aec19be3390cb8f5dccd07416b3df3e7b" prot="protected" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>BaseMessage</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a8262b48c6f7571e878688a2e342be28c" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>MeasurementResponse</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a15f192ddb2df118bc28085ebeca09070" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>MeasurementResponse</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a2b1bf3744728ca624aa4f0d226ba42da" prot="protected" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>MeasurementResponse</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a346bf12aa4d5f59cadcc019db5e6bf58" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>message</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a3436ef0cb53905ee972225c5a9faa710" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ac81bb178c1a3afd260167d3cc3410101" prot="public" virt="non-virtual" ambiguityscope="falcon_core::communications::messages::BaseMessage::"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a03ee5066ce023fbd554a4e68ceb31533" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1aa2badf7d661a759ebdf5b0236ee162ad" prot="public" virt="non-virtual" ambiguityscope="falcon_core::communications::messages::BaseMessage::"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a9fbfa25604d7e92081e042681c238790" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a62327f14f2f38d1761012a193cdeb5f7" prot="public" virt="non-virtual" ambiguityscope="falcon_core::communications::messages::BaseMessage::"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse_1a0a5da65562342757a8fd2de636f3460d" prot="protected" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::communications::messages::MeasurementResponse</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

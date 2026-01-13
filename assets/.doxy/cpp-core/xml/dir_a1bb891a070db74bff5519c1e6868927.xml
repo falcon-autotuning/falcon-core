@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_a1bb891a070db74bff5519c1e6868927" kind="dir">
+    <compoundname>cpp/include/falcon_core/instrument_interfaces/names</compoundname>
+    <innerfile refid="Instrument_8hpp">Instrument.hpp</innerfile>
+    <innerfile refid="InstrumentPort_8hpp">InstrumentPort.hpp</innerfile>
+    <innerfile refid="InstrumentTypes_8hpp">InstrumentTypes.hpp</innerfile>
+    <innerfile refid="Ports_8hpp">Ports.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/instrument_interfaces/names/"/>
+  </compounddef>
+</doxygen>

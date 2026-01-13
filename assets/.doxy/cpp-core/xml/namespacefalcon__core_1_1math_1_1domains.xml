@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1math_1_1domains" kind="namespace" language="C++">
+    <compoundname>falcon_core::math::domains</compoundname>
+    <innerclass refid="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain" prot="public">falcon_core::math::domains::CoupledLabelledDomain</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1domains_1_1Domain" prot="public">falcon_core::math::domains::Domain</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain" prot="public">falcon_core::math::domains::LabelledDomain</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="CoupledLabelledDomain_8hpp_1aacb44db32bba5ec71c263910a0408d51" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain" kindref="compound">CoupledLabelledDomain</ref> &gt;</type>
+        <definition>using falcon_core::math::domains::CoupledLabelledDomainSP = typedef std::shared_ptr&lt;CoupledLabelledDomain&gt;</definition>
+        <argsstring></argsstring>
+        <name>CoupledLabelledDomainSP</name>
+        <qualifiedname>falcon_core::math::domains::CoupledLabelledDomainSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/CoupledLabelledDomain.hpp" line="48" column="1" bodyfile="cpp/include/falcon_core/math/domains/CoupledLabelledDomain.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Domain_8hpp_1a464dd1e6389dc3547b1169616c428d85" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1Domain" kindref="compound">Domain</ref> &gt;</type>
+        <definition>using falcon_core::math::domains::DomainSP = typedef std::shared_ptr&lt;Domain&gt;</definition>
+        <argsstring></argsstring>
+        <name>DomainSP</name>
+        <qualifiedname>falcon_core::math::domains::DomainSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/Domain.hpp" line="175" column="1" bodyfile="cpp/include/falcon_core/math/domains/Domain.hpp" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="LabelledDomain_8hpp_1a24efb8206560dd2bf3443b7c1d5a377a" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain" kindref="compound">LabelledDomain</ref> &gt;</type>
+        <definition>using falcon_core::math::domains::LabelledDomainSP = typedef std::shared_ptr&lt;LabelledDomain&gt;</definition>
+        <argsstring></argsstring>
+        <name>LabelledDomainSP</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomainSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="114" column="1" bodyfile="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/math/domains/CoupledLabelledDomain.hpp" line="14" column="1"/>
+  </compounddef>
+</doxygen>

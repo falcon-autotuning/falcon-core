@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::communications::messages::VoltageStatesResponse</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage" prot="public" virt="non-virtual">falcon_core::communications::messages::BaseMessage</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a9f1ce9125549e6bbdbfe42dfd155647c" prot="private" static="no" mutable="no">
+        <type>communications::voltage_states::DeviceVoltageStatesSP</type>
+        <definition>communications::voltage_states::DeviceVoltageStatesSP falcon_core::communications::messages::VoltageStatesResponse::_states</definition>
+        <argsstring></argsstring>
+        <name>_states</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::_states</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="11" column="57" bodyfile="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a9c2b6585385f2d407ac6772839c9c5cf" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::messages::VoltageStatesResponse::_mu_states</definition>
+        <argsstring></argsstring>
+        <name>_mu_states</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::_mu_states</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="12" column="57" bodyfile="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="27" column="16" bodyfile="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a07de9df4ff3939d7a0cb895a6e31149a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::messages::VoltageStatesResponse::VoltageStatesResponse</definition>
+        <argsstring>(const VoltageStatesResponse &amp;other)</argsstring>
+        <name>VoltageStatesResponse</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::VoltageStatesResponse</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse" kindref="compound">VoltageStatesResponse</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="15" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a4bc2348d0255fbca9981d7d1869b513d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse" kindref="compound">VoltageStatesResponse</ref> &amp;</type>
+        <definition>VoltageStatesResponse &amp; falcon_core::communications::messages::VoltageStatesResponse::operator=</definition>
+        <argsstring>(const VoltageStatesResponse &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse" kindref="compound">VoltageStatesResponse</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="16" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1afe8509935a499fd73df3ebec76c0556e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::messages::VoltageStatesResponse::VoltageStatesResponse</definition>
+        <argsstring>(const std::string &amp;message, const communications::voltage_states::DeviceVoltageStatesSP &amp;states)</argsstring>
+        <name>VoltageStatesResponse</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::VoltageStatesResponse</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>const communications::voltage_states::DeviceVoltageStatesSP &amp;</type>
+          <declname>states</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a1038a4e6469fa6be5c1adf7b48dd235f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const communications::voltage_states::DeviceVoltageStatesSP &amp;</type>
+        <definition>const communications::voltage_states::DeviceVoltageStatesSP &amp; falcon_core::communications::messages::VoltageStatesResponse::states</definition>
+        <argsstring>() const</argsstring>
+        <name>states</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::states</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="21" column="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a302b5182d1be8f4b0b0be879c4c1578e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::messages::VoltageStatesResponse::operator==</definition>
+        <argsstring>(const VoltageStatesResponse &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse" kindref="compound">VoltageStatesResponse</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="22" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a6d360044fd28fbc516734dadf15ce7a8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::messages::VoltageStatesResponse::operator!=</definition>
+        <argsstring>(const VoltageStatesResponse &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse" kindref="compound">VoltageStatesResponse</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="23" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1ae4ae5caa9e604bb66eced40bc26a254c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::messages::VoltageStatesResponse::VoltageStatesResponse</definition>
+        <argsstring>()</argsstring>
+        <name>VoltageStatesResponse</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::VoltageStatesResponse</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="26" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a2a96b660c0a0caf54c5e936bc4c8fa06" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::communications::messages::VoltageStatesResponse::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::communications::messages::VoltageStatesResponse::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="29" column="8" bodyfile="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" bodystart="29" bodyend="32"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::communications::messages::BaseMessage</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::communications::messages::VoltageStatesResponse</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::communications::messages::BaseMessage</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::communications::messages::VoltageStatesResponse</label>
+        <link refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" line="10" column="1" bodyfile="cpp/include/falcon_core/communications/messages/VoltageStatesResponse.hpp" bodystart="10" bodyend="33"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a9c2b6585385f2d407ac6772839c9c5cf" prot="private" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>_mu_states</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a9f1ce9125549e6bbdbfe42dfd155647c" prot="private" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>_states</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a47c1cbbda33f9acdd5020e7acbc3bc99" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>BaseMessage</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ad8c0ef44f042a78716f24157908e5533" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>BaseMessage</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1aec19be3390cb8f5dccd07416b3df3e7b" prot="protected" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>BaseMessage</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a346bf12aa4d5f59cadcc019db5e6bf58" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>message</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a6d360044fd28fbc516734dadf15ce7a8" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1ac81bb178c1a3afd260167d3cc3410101" prot="public" virt="non-virtual" ambiguityscope="falcon_core::communications::messages::BaseMessage::"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a4bc2348d0255fbca9981d7d1869b513d" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1aa2badf7d661a759ebdf5b0236ee162ad" prot="public" virt="non-virtual" ambiguityscope="falcon_core::communications::messages::BaseMessage::"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a302b5182d1be8f4b0b0be879c4c1578e" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1BaseMessage_1a62327f14f2f38d1761012a193cdeb5f7" prot="public" virt="non-virtual" ambiguityscope="falcon_core::communications::messages::BaseMessage::"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a2a96b660c0a0caf54c5e936bc4c8fa06" prot="protected" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a1038a4e6469fa6be5c1adf7b48dd235f" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>states</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1a07de9df4ff3939d7a0cb895a6e31149a" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>VoltageStatesResponse</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1afe8509935a499fd73df3ebec76c0556e" prot="public" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>VoltageStatesResponse</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1messages_1_1VoltageStatesResponse_1ae4ae5caa9e604bb66eced40bc26a254c" prot="protected" virt="non-virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>VoltageStatesResponse</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::communications::messages::VoltageStatesResponse</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

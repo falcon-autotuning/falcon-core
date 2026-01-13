@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_0f4cd819bc4c9a3cbf40e528a3341d04" kind="dir">
+    <compoundname>cpp/include/falcon_core/math/domains</compoundname>
+    <innerfile refid="CoupledLabelledDomain_8hpp">CoupledLabelledDomain.hpp</innerfile>
+    <innerfile refid="Domain_8hpp">Domain.hpp</innerfile>
+    <innerfile refid="LabelledDomain_8hpp">LabelledDomain.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/math/domains/"/>
+  </compounddef>
+</doxygen>

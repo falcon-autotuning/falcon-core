@@ -1,0 +1,792 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::instrument_interfaces::names::InstrumentPort</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a7d1b9385e661926ebb4766c263d8d56b" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string falcon_core::instrument_interfaces::names::InstrumentPort::_default_name</definition>
+        <argsstring></argsstring>
+        <name>_default_name</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_default_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="18" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a039e591fb2247d29efee0c5298b2922d" prot="private" static="no" mutable="no">
+        <type>physics::device_structures::ConnectionSP</type>
+        <definition>physics::device_structures::ConnectionSP falcon_core::instrument_interfaces::names::InstrumentPort::_pseudo_name</definition>
+        <argsstring></argsstring>
+        <name>_pseudo_name</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_pseudo_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="19" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a924028068b03dcf84fa90bdf9b0ebf81" prot="private" static="no" mutable="no">
+        <type>Instrument</type>
+        <definition>Instrument falcon_core::instrument_interfaces::names::InstrumentPort::_instrument_type</definition>
+        <argsstring></argsstring>
+        <name>_instrument_type</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_instrument_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="20" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1acf709590fed207f6b41c06118c7beb32" prot="private" static="no" mutable="no">
+        <type>physics::units::SymbolUnitSP</type>
+        <definition>physics::units::SymbolUnitSP falcon_core::instrument_interfaces::names::InstrumentPort::_units</definition>
+        <argsstring></argsstring>
+        <name>_units</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_units</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="21" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a30f554ea3aad8ce87ba800960e33b88a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string falcon_core::instrument_interfaces::names::InstrumentPort::_description</definition>
+        <argsstring></argsstring>
+        <name>_description</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_description</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="22" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1afa3da6c47d3a893891c843a88cf3a671" prot="private" static="no" mutable="no">
+        <type>PortType</type>
+        <definition>PortType falcon_core::instrument_interfaces::names::InstrumentPort::_type</definition>
+        <argsstring></argsstring>
+        <name>_type</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="23" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a482c3fdfdef1df30e5545af924129ca8" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::instrument_interfaces::names::InstrumentPort::_mu_default_name</definition>
+        <argsstring></argsstring>
+        <name>_mu_default_name</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_mu_default_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="24" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1aebef5b4a0fda74968529f3327e99f2a8" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::instrument_interfaces::names::InstrumentPort::_mu_pseudo_name</definition>
+        <argsstring></argsstring>
+        <name>_mu_pseudo_name</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_mu_pseudo_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="25" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a326f0a66819d0aee65de859ddccc3d44" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::instrument_interfaces::names::InstrumentPort::_mu_instrument_type</definition>
+        <argsstring></argsstring>
+        <name>_mu_instrument_type</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_mu_instrument_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="26" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ae719ce09bd3c2e56e8be7e1b51c9277d" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::instrument_interfaces::names::InstrumentPort::_mu_units</definition>
+        <argsstring></argsstring>
+        <name>_mu_units</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_mu_units</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="27" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ad70b402998a07b7f27e9ae336128a0e8" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::instrument_interfaces::names::InstrumentPort::_mu_description</definition>
+        <argsstring></argsstring>
+        <name>_mu_description</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_mu_description</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="28" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1aec2142e780781299435b881b8331958b" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::instrument_interfaces::names::InstrumentPort::_mu_type</definition>
+        <argsstring></argsstring>
+        <name>_mu_type</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::_mu_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="29" column="44" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="139" column="16" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="139" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a4198966da1e5d9fa74823227824c1cfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::instrument_interfaces::names::InstrumentPort::InstrumentPort</definition>
+        <argsstring>(const InstrumentPort &amp;other)</argsstring>
+        <name>InstrumentPort</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::InstrumentPort</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="32" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a0a2cfcd29ba539b3e37d443d3eabdc8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref> &amp;</type>
+        <definition>InstrumentPort &amp; falcon_core::instrument_interfaces::names::InstrumentPort::operator=</definition>
+        <argsstring>(const InstrumentPort &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="33" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a8dc9b7297921b0dbfc95df7c04befbd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::instrument_interfaces::names::InstrumentPort::InstrumentPort</definition>
+        <argsstring>(const std::string &amp;default_name, const physics::device_structures::ConnectionSP &amp;pseudo_name=nullptr, const Instrument &amp;instrument_type=INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE, const physics::units::SymbolUnitSP &amp;units=physics::units::SymbolUnit::Volt(), const std::string &amp;description=&quot;&quot;, const PortType &amp;type=PortType::InstrumentPort)</argsstring>
+        <name>InstrumentPort</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::InstrumentPort</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>default_name</declname>
+        </param>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>pseudo_name</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>const Instrument &amp;</type>
+          <declname>instrument_type</declname>
+          <defval>INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE</defval>
+        </param>
+        <param>
+          <type>const physics::units::SymbolUnitSP &amp;</type>
+          <declname>units</declname>
+          <defval><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab18074c5750e6e964385e75d3c5340c6" kindref="member">physics::units::SymbolUnit::Volt</ref>()</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>description</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>const PortType &amp;</type>
+          <declname>type</declname>
+          <defval>PortType::InstrumentPort</defval>
+        </param>
+        <briefdescription>
+<para>Initialize an <ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>default_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The default name of the port (e.g. &quot;Vg1&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pseudo_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pseudo name (e.g. &quot;plunger gate 1&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>instrument_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of instrument (e.g. DC_VOLTAGE_SOURCE). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>units</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The units of the instrument (e.g. Volt). @description A description of the port. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="42" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a19ab07f1d3f4dbce42e0b24a7563cce4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string</type>
+        <definition>const std::string falcon_core::instrument_interfaces::names::InstrumentPort::default_name</definition>
+        <argsstring>() const</argsstring>
+        <name>default_name</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::default_name</qualifiedname>
+        <briefdescription>
+<para>Rreturn the default name of the port. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="98" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a18c7140f7effa0d66bcf95b168466e17" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connection" kindref="compound">physics::device_structures::Connection</ref> &gt;</type>
+        <definition>const std::shared_ptr&lt; physics::device_structures::Connection &gt; falcon_core::instrument_interfaces::names::InstrumentPort::pseudo_name</definition>
+        <argsstring>() const</argsstring>
+        <name>pseudo_name</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::pseudo_name</qualifiedname>
+        <briefdescription>
+<para>Return the pseudo name of the port. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the pseudo name is not set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="103" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a0f05a37576b50670068cc3f489b47089" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const Instrument</type>
+        <definition>const Instrument falcon_core::instrument_interfaces::names::InstrumentPort::instrument_type</definition>
+        <argsstring>() const</argsstring>
+        <name>instrument_type</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::instrument_type</qualifiedname>
+        <briefdescription>
+<para>Returns the type of the instrument that the port is connected to. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="108" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ae843a489a86a738753e4f7969b9dc64c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; <ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit" kindref="compound">physics::units::SymbolUnit</ref> &gt;</type>
+        <definition>const std::shared_ptr&lt; physics::units::SymbolUnit &gt; falcon_core::instrument_interfaces::names::InstrumentPort::units</definition>
+        <argsstring>() const</argsstring>
+        <name>units</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::units</qualifiedname>
+        <briefdescription>
+<para>Returns the untis of the port. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="112" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a7b169370d479a75c9c0c4f3342bbe1f7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string</type>
+        <definition>const std::string falcon_core::instrument_interfaces::names::InstrumentPort::description</definition>
+        <argsstring>() const</argsstring>
+        <name>description</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::description</qualifiedname>
+        <briefdescription>
+<para>Returns the description of the port. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="116" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1aa509766e0dd0dbc32eb99b82627b2f9d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string</type>
+        <definition>const std::string falcon_core::instrument_interfaces::names::InstrumentPort::instrument_facing_name</definition>
+        <argsstring>() const</argsstring>
+        <name>instrument_facing_name</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::instrument_facing_name</qualifiedname>
+        <briefdescription>
+<para>Returns the psuedo name if it exists, otherwise the instrument type as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="121" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a6e81753d78b16e4086505a10aebdd1d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool falcon_core::instrument_interfaces::names::InstrumentPort::is_knob</definition>
+        <argsstring>() const</argsstring>
+        <name>is_knob</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::is_knob</qualifiedname>
+        <briefdescription>
+<para>Checks if this port is a knob. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="125" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a69b9e1e0d9a6cb97bf613da4f6698a06" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool falcon_core::instrument_interfaces::names::InstrumentPort::is_meter</definition>
+        <argsstring>() const</argsstring>
+        <name>is_meter</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::is_meter</qualifiedname>
+        <briefdescription>
+<para>Checks if this port is a meter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="129" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a1cd65d1373cde12af26bbde33c44d9ce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool falcon_core::instrument_interfaces::names::InstrumentPort::is_port</definition>
+        <argsstring>() const</argsstring>
+        <name>is_port</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::is_port</qualifiedname>
+        <briefdescription>
+<para>Checks if this port is a port. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="133" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a4fdf31f6d9270de590ecf0a9c4929f6b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::instrument_interfaces::names::InstrumentPort::operator==</definition>
+        <argsstring>(const InstrumentPort &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="134" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a410f323dcba72be8e85ac44ff06eb49a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::instrument_interfaces::names::InstrumentPort::operator!=</definition>
+        <argsstring>(const InstrumentPort &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="135" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a2d9693bb80ab60075d52f7ece3451f90" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const PortType</type>
+        <definition>const PortType falcon_core::instrument_interfaces::names::InstrumentPort::type</definition>
+        <argsstring>() const</argsstring>
+        <name>type</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="136" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ad23dfdf3c43657849ac009093ee5bde2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref> &gt;</type>
+        <definition>static std::shared_ptr&lt; InstrumentPort &gt; falcon_core::instrument_interfaces::names::InstrumentPort::Knob</definition>
+        <argsstring>(const std::string &amp;default_name, const physics::device_structures::ConnectionSP &amp;pseudo_name=nullptr, const Instrument &amp;instrument_type=INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE, const physics::units::SymbolUnitSP units=physics::units::SymbolUnit::MilliVolt(), const std::string &amp;description=&quot;A default voltage source&quot;)</argsstring>
+        <name>Knob</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::Knob</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>default_name</declname>
+        </param>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>pseudo_name</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>const Instrument &amp;</type>
+          <declname>instrument_type</declname>
+          <defval>INSTRUMENT_TYPES::DC_VOLTAGE_SOURCE</defval>
+        </param>
+        <param>
+          <type>const physics::units::SymbolUnitSP</type>
+          <declname>units</declname>
+          <defval><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a0a3f76d8f5915a3a69c4c28e9dbe981d" kindref="member">physics::units::SymbolUnit::MilliVolt</ref>()</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>description</declname>
+          <defval>&quot;A default voltage source&quot;</defval>
+        </param>
+        <briefdescription>
+<para>A constructor for a Instrument Knob. This is used as a setter interface. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>default_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The default name of the port (e.g. &quot;Vg1&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pseudo_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pseudo name (e.g. &quot;plunger gate 1&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>instrument_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of instrument (e.g. DC_VOLTAGE_SOURCE). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>units</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The units of the instrument (e.g. Volt). @description A description of the port. @type The type of the port. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="60" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a957c8e38d07ac8c34b9bf9f8911077af" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref> &gt;</type>
+        <definition>static std::shared_ptr&lt; InstrumentPort &gt; falcon_core::instrument_interfaces::names::InstrumentPort::Meter</definition>
+        <argsstring>(const std::string &amp;default_name, const physics::device_structures::ConnectionSP &amp;pseudo_name=nullptr, const Instrument &amp;instrument_type=INSTRUMENT_TYPES::AMNMETER, const physics::units::SymbolUnitSP units=physics::units::SymbolUnit::NanoAmpere(), const std::string &amp;description=&quot;A default current instrument_interface&quot;)</argsstring>
+        <name>Meter</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::Meter</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>default_name</declname>
+        </param>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>pseudo_name</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>const Instrument &amp;</type>
+          <declname>instrument_type</declname>
+          <defval>INSTRUMENT_TYPES::AMNMETER</defval>
+        </param>
+        <param>
+          <type>const physics::units::SymbolUnitSP</type>
+          <declname>units</declname>
+          <defval><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1a007ffb0f1fa6c533ae300eb74be906c5" kindref="member">physics::units::SymbolUnit::NanoAmpere</ref>()</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>description</declname>
+          <defval>&quot;A default current instrument_interface&quot;</defval>
+        </param>
+        <briefdescription>
+<para>A constructor for a Instrument Meter. This is used as a getter interface. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>default_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The default name of the port (e.g. &quot;Vg1&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pseudo_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pseudo name (e.g. &quot;plunger gate 1&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>instrument_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of instrument (e.g. DC_VOLTAGE_SOURCE). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>units</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The units of the instrument (e.g. Volt). @description A description of the port. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="76" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a00f12ee2c10504a4c6f0d748ca0efdef" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref> &gt;</type>
+        <definition>static std::shared_ptr&lt; InstrumentPort &gt; falcon_core::instrument_interfaces::names::InstrumentPort::Timer</definition>
+        <argsstring>()</argsstring>
+        <name>Timer</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::Timer</qualifiedname>
+        <briefdescription>
+<para>A constructor for a Timer. This is used a dependant variable for measurements. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="88" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1af61a9bdcc4a02de83c360528295cd664" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort" kindref="compound">InstrumentPort</ref> &gt;</type>
+        <definition>static std::shared_ptr&lt; InstrumentPort &gt; falcon_core::instrument_interfaces::names::InstrumentPort::ExecutionClock</definition>
+        <argsstring>()</argsstring>
+        <name>ExecutionClock</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::ExecutionClock</qualifiedname>
+        <briefdescription>
+<para>A constructor for a ExecutionClock. This is used a dependant variable for output measurements. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="93" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ab31714241543c90a08b5b565f80df729" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::instrument_interfaces::names::InstrumentPort::InstrumentPort</definition>
+        <argsstring>()</argsstring>
+        <name>InstrumentPort</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::InstrumentPort</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="140" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a627f3c308c9425d0c883894880c2550e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::instrument_interfaces::names::InstrumentPort::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::instrument_interfaces::names::InstrumentPort::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="142" column="8" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="142" bodyend="168"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::instrument_interfaces::names::InstrumentPort</label>
+        <link refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::instrument_interfaces::names::InstrumentPort</label>
+        <link refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" line="17" column="1" bodyfile="cpp/include/falcon_core/instrument_interfaces/names/InstrumentPort.hpp" bodystart="17" bodyend="169"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a7d1b9385e661926ebb4766c263d8d56b" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_default_name</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a30f554ea3aad8ce87ba800960e33b88a" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_description</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a924028068b03dcf84fa90bdf9b0ebf81" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_instrument_type</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a482c3fdfdef1df30e5545af924129ca8" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_mu_default_name</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ad70b402998a07b7f27e9ae336128a0e8" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_mu_description</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a326f0a66819d0aee65de859ddccc3d44" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_mu_instrument_type</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1aebef5b4a0fda74968529f3327e99f2a8" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_mu_pseudo_name</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1aec2142e780781299435b881b8331958b" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_mu_type</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ae719ce09bd3c2e56e8be7e1b51c9277d" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_mu_units</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a039e591fb2247d29efee0c5298b2922d" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_pseudo_name</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1afa3da6c47d3a893891c843a88cf3a671" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_type</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1acf709590fed207f6b41c06118c7beb32" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>_units</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a19ab07f1d3f4dbce42e0b24a7563cce4" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>default_name</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a7b169370d479a75c9c0c4f3342bbe1f7" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>description</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1af61a9bdcc4a02de83c360528295cd664" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>ExecutionClock</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1aa509766e0dd0dbc32eb99b82627b2f9d" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>instrument_facing_name</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a0f05a37576b50670068cc3f489b47089" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>instrument_type</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a4198966da1e5d9fa74823227824c1cfb" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>InstrumentPort</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a8dc9b7297921b0dbfc95df7c04befbd7" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>InstrumentPort</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ab31714241543c90a08b5b565f80df729" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>InstrumentPort</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a6e81753d78b16e4086505a10aebdd1d9" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>is_knob</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a69b9e1e0d9a6cb97bf613da4f6698a06" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>is_meter</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a1cd65d1373cde12af26bbde33c44d9ce" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>is_port</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ad23dfdf3c43657849ac009093ee5bde2" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>Knob</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a957c8e38d07ac8c34b9bf9f8911077af" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>Meter</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a410f323dcba72be8e85ac44ff06eb49a" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a0a2cfcd29ba539b3e37d443d3eabdc8f" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a4fdf31f6d9270de590ecf0a9c4929f6b" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a18c7140f7effa0d66bcf95b168466e17" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>pseudo_name</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a627f3c308c9425d0c883894880c2550e" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a00f12ee2c10504a4c6f0d748ca0efdef" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>Timer</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1a2d9693bb80ab60075d52f7ece3451f90" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>type</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort_1ae843a489a86a738753e4f7969b9dc64c" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>units</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::instrument_interfaces::names::InstrumentPort</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

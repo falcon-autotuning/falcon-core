@@ -1,0 +1,614 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Adjacency__c__api_8h" kind="file" language="C++">
+    <compoundname>Adjacency_c_api.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes refid="FArrayInt__c__api_8h" local="yes">falcon_core/generic/FArrayInt_c_api.h</includes>
+    <includes refid="ListListSizeT__c__api_8h" local="yes">falcon_core/generic/ListListSizeT_c_api.h</includes>
+    <includes refid="ListPairSizeTSizeT__c__api_8h" local="yes">falcon_core/generic/ListPairSizeTSizeT_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="Connections__c__api_8h" local="yes">falcon_core/physics/device_structures/Connections_c_api.h</includes>
+    <includedby refid="VoltageConstraints__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h</includedby>
+    <incdepgraph>
+      <node id="8">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/FArrayInt_c_api.h</label>
+        <link refid="FArrayInt__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/generic/ListPairSizeTSizeT_c_api.h</label>
+        <link refid="ListPairSizeTSizeT__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/PairSizeTSizeT_c_api.h</label>
+        <link refid="PairSizeTSizeT__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h</label>
+        <link refid="Adjacency__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h</label>
+        <link refid="Adjacency__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h</label>
+        <link refid="VoltageConstraints__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Adjacency__c__api_8h_1abd8ad6dda36497ddb35c098ef6daee6b" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* AdjacencyHandle</definition>
+        <argsstring></argsstring>
+        <name>AdjacencyHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="13" column="14" bodyfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Adjacency__c__api_8h_1ab1c58b9ce2cb09284e4b896b05793377" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AdjacencyHandle</type>
+        <definition>AdjacencyHandle Adjacency_copy</definition>
+        <argsstring>(AdjacencyHandle handle)</argsstring>
+        <name>Adjacency_copy</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="16" column="17" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="16" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a5f56ec998f1dff43231b61fe5fd4a10f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Adjacency_destroy</definition>
+        <argsstring>(AdjacencyHandle handle)</argsstring>
+        <name>Adjacency_destroy</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="18" column="6" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a8e9e3ba6b7a7eda91053d1eb49fd9b00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Adjacency_equal</definition>
+        <argsstring>(AdjacencyHandle handle, AdjacencyHandle other)</argsstring>
+        <name>Adjacency_equal</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="20" column="6" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a3b9bcfa75880fd33160755dc175144e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Adjacency_not_equal</definition>
+        <argsstring>(AdjacencyHandle handle, AdjacencyHandle other)</argsstring>
+        <name>Adjacency_not_equal</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="22" column="6" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="22" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1adee03e1621ce527a33ca8ae853860d9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle Adjacency_to_json_string</definition>
+        <argsstring>(AdjacencyHandle handle)</argsstring>
+        <name>Adjacency_to_json_string</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="24" column="14" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="24" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a302534871251234c6bca8efe566ea3e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AdjacencyHandle</type>
+        <definition>AdjacencyHandle Adjacency_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Adjacency_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="26" column="17" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="26" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1abb1d0124de15c501c9751a20ed6aea37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AdjacencyHandle</type>
+        <definition>AdjacencyHandle Adjacency_create</definition>
+        <argsstring>(const int *data, const size_t *shape, const size_t ndim, ConnectionsHandle indexes)</argsstring>
+        <name>Adjacency_create</name>
+        <param>
+          <type>const int *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const size_t *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>ndim</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>indexes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="28" column="17" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="28" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1aeab8bab3b40b5e6123a8f3e40fd9793e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Adjacency_indexes</definition>
+        <argsstring>(AdjacencyHandle handle)</argsstring>
+        <name>Adjacency_indexes</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<sect1 id="Adjacency__c__api_8h_1autotoc_md0">
+<title>@brief Returns the indexes of the gates in the order for the adjacency</title>
+<para>matrix </para>
+</sect1>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="38" column="19" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="38" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a1180ecc2d477cf7f3f051103aa5c56ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairSizeTSizeTHandle</type>
+        <definition>ListPairSizeTSizeTHandle Adjacency_get_true_pairs</definition>
+        <argsstring>(AdjacencyHandle handle)</argsstring>
+        <name>Adjacency_get_true_pairs</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the pairs of indexes where the adjacency matrix is true (1) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="47" column="26" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="47" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1aadd45823af16cfd60f7e30ad548b74ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Adjacency_size</definition>
+        <argsstring>(AdjacencyHandle handle)</argsstring>
+        <name>Adjacency_size</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="49" column="8" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="49" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a0ba0f6403256ac44f99d4fd5181f263e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Adjacency_dimension</definition>
+        <argsstring>(AdjacencyHandle handle)</argsstring>
+        <name>Adjacency_dimension</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="51" column="8" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="51" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1aba6c80caea92b890ea911416d3e5450e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Adjacency_shape</definition>
+        <argsstring>(AdjacencyHandle handle, size_t *out_buffer, size_t ndim)</argsstring>
+        <name>Adjacency_shape</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>ndim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="53" column="8" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="53" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a8a95f08499c94b831e49d2eb13180ef7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Adjacency_data</definition>
+        <argsstring>(AdjacencyHandle handle, int *out_buffer, size_t numdata)</argsstring>
+        <name>Adjacency_data</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>numdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="55" column="8" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="55" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a162d09149a786fdc8e27146cf3dc0a71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Adjacency_times_equals_farray</definition>
+        <argsstring>(AdjacencyHandle handle, FArrayIntHandle other)</argsstring>
+        <name>Adjacency_times_equals_farray</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayIntHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="57" column="6" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="57" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1aa0eb20ffe706813cfd2011d2082fc6f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AdjacencyHandle</type>
+        <definition>AdjacencyHandle Adjacency_times_farray</definition>
+        <argsstring>(AdjacencyHandle handle, FArrayIntHandle other)</argsstring>
+        <name>Adjacency_times_farray</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayIntHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="60" column="17" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="60" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a731d1ddf26880445b70bd90b941a2109" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Adjacency_sum</definition>
+        <argsstring>(AdjacencyHandle handle)</argsstring>
+        <name>Adjacency_sum</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="63" column="5" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="63" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1a893b7c6400cd9b839089f103bc06fc62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListListSizeTHandle</type>
+        <definition>ListListSizeTHandle Adjacency_where</definition>
+        <argsstring>(AdjacencyHandle handle, int value)</argsstring>
+        <name>Adjacency_where</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="65" column="21" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="65" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="Adjacency__c__api_8h_1af841990c1dd8dc2dcd300879f5898f86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AdjacencyHandle</type>
+        <definition>AdjacencyHandle Adjacency_flip</definition>
+        <argsstring>(AdjacencyHandle handle, size_t axis)</argsstring>
+        <name>Adjacency_flip</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" line="67" column="17" declfile="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h" declline="67" declcolumn="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/FArrayInt_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListListSizeT_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListPairSizeTSizeT_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connections_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>AdjacencyHandle;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">AdjacencyHandle<sp/>Adjacency_copy(AdjacencyHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Adjacency_destroy(AdjacencyHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Adjacency_equal(AdjacencyHandle<sp/>handle,<sp/>AdjacencyHandle<sp/>other);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Adjacency_not_equal(AdjacencyHandle<sp/>handle,<sp/>AdjacencyHandle<sp/>other);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>Adjacency_to_json_string(AdjacencyHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">AdjacencyHandle<sp/>Adjacency_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">AdjacencyHandle<sp/>Adjacency_create(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/><sp/><sp/><sp/><sp/>shape,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ndim,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionsHandle<sp/>indexes);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Adjacency_indexes<sp/>|</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::Adjacency::indexes<sp/>*/</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">ConnectionsHandle<sp/>Adjacency_indexes(AdjacencyHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">ConnectionsHandle<sp/>Adjacency_indexes(AdjacencyHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Adjacency_get_true_pairs<sp/>|</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::Adjacency::get_true_pairs<sp/>*/</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">ListPairSizeTSizeTHandle<sp/>Adjacency_get_true_pairs(AdjacencyHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Adjacency_size(AdjacencyHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Adjacency_dimension(AdjacencyHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Adjacency_shape(AdjacencyHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ndim);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Adjacency_data(AdjacencyHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numdata);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Adjacency_times_equals_farray(AdjacencyHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FArrayIntHandle<sp/>other);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">AdjacencyHandle<sp/>Adjacency_times_farray(AdjacencyHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FArrayIntHandle<sp/>other);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Adjacency_sum(AdjacencyHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">ListListSizeTHandle<sp/>Adjacency_where(AdjacencyHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">AdjacencyHandle<sp/>Adjacency_flip(AdjacencyHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::autotuner_interfaces::names::NameBase</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Gname" prot="public" virt="non-virtual">falcon_core::autotuner_interfaces::names::Gname</derivedcompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a0e2e881f70d72f3db23402bafb9de150" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string falcon_core::autotuner_interfaces::names::NameBase::_name</definition>
+        <argsstring></argsstring>
+        <name>_name</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="12" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a4bb7c3b3de33976a6b8d531452f8965f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int falcon_core::autotuner_interfaces::names::NameBase::_num</definition>
+        <argsstring></argsstring>
+        <name>_num</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::_num</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="13" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a5331b2228b92b869c76ed0dc5ef6e0b7" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string falcon_core::autotuner_interfaces::names::NameBase::_index_string</definition>
+        <argsstring></argsstring>
+        <name>_index_string</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::_index_string</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="14" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a38200965bea58ba4846c5b139c0debae" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::names::NameBase::_mu_name</definition>
+        <argsstring></argsstring>
+        <name>_mu_name</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::_mu_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="15" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a546b1c0bb761e1edcb6420907860579c" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::names::NameBase::_mu_num</definition>
+        <argsstring></argsstring>
+        <name>_mu_num</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::_mu_num</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="16" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a175439654ebb9c28bbb9d304c8e857ce" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::names::NameBase::_mu_index_string</definition>
+        <argsstring></argsstring>
+        <name>_mu_index_string</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::_mu_index_string</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="17" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="40" column="16" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a73bd72750af2e9e1d94e15c672125241" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::names::NameBase::NameBase</definition>
+        <argsstring>(const NameBase &amp;other)</argsstring>
+        <name>NameBase</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::NameBase</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" kindref="compound">NameBase</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="20" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a50f706d67b332b1b55a3c9816e0e995b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" kindref="compound">NameBase</ref> &amp;</type>
+        <definition>NameBase &amp; falcon_core::autotuner_interfaces::names::NameBase::operator=</definition>
+        <argsstring>(const NameBase &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" kindref="compound">NameBase</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="21" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1aeab5d2f52704fc02bf4f86f72e23c937" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::names::NameBase::NameBase</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>NameBase</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::NameBase</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="22" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a47a8f09e4b3153fb445bd65aa2159e8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::names::NameBase::NameBase</definition>
+        <argsstring>(const std::string &amp;name, const std::string &amp;index_string)</argsstring>
+        <name>NameBase</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::NameBase</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>index_string</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="23" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a9fc79abd6e5d0acb15af7e5a7d47e631" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::names::NameBase::NameBase</definition>
+        <argsstring>(const int &amp;num, const std::string &amp;index_string)</argsstring>
+        <name>NameBase</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::NameBase</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>num</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>index_string</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="24" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a60123dafa53a7c2c1070a463b2262ca7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string falcon_core::autotuner_interfaces::names::NameBase::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::name</qualifiedname>
+        <briefdescription>
+<para>The string form of the name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="28" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1aff8f56325945a0f2b7f62070e2db8d83" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int falcon_core::autotuner_interfaces::names::NameBase::num</definition>
+        <argsstring>() const</argsstring>
+        <name>num</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::num</qualifiedname>
+        <briefdescription>
+<para>The numeric form of the name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="32" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a8532693dc7cf5fea0aaab91f6f93b53b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" kindref="compound">NameBase</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; NameBase &gt; falcon_core::autotuner_interfaces::names::NameBase::operator+</definition>
+        <argsstring>(const std::shared_ptr&lt; NameBase &gt; &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::operator+</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" kindref="compound">NameBase</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="33" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a743e10ec05853e01956b416f7df987bb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" kindref="compound">NameBase</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; NameBase &gt; falcon_core::autotuner_interfaces::names::NameBase::operator-</definition>
+        <argsstring>(const std::shared_ptr&lt; NameBase &gt; &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::operator-</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" kindref="compound">NameBase</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="35" column="19"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1aaa69cb3d411b21d038759e45a351e071" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::names::NameBase::NameBase</definition>
+        <argsstring>()=default</argsstring>
+        <name>NameBase</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::NameBase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="39" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a585ae328a8cd188e41eceb428a1e27db" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::autotuner_interfaces::names::NameBase::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBase::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="42" column="8" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="42" bodyend="51"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>falcon_core::autotuner_interfaces::names::Gname</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Gname"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::names::NameBase</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::names::NameBase</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="11" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="11" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a5331b2228b92b869c76ed0dc5ef6e0b7" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>_index_string</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a175439654ebb9c28bbb9d304c8e857ce" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>_mu_index_string</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a38200965bea58ba4846c5b139c0debae" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>_mu_name</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a546b1c0bb761e1edcb6420907860579c" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>_mu_num</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a0e2e881f70d72f3db23402bafb9de150" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>_name</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a4bb7c3b3de33976a6b8d531452f8965f" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>_num</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a60123dafa53a7c2c1070a463b2262ca7" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>name</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a73bd72750af2e9e1d94e15c672125241" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>NameBase</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1aeab5d2f52704fc02bf4f86f72e23c937" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>NameBase</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a47a8f09e4b3153fb445bd65aa2159e8b" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>NameBase</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a9fc79abd6e5d0acb15af7e5a7d47e631" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>NameBase</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1aaa69cb3d411b21d038759e45a351e071" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>NameBase</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1aff8f56325945a0f2b7f62070e2db8d83" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>num</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a8532693dc7cf5fea0aaab91f6f93b53b" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>operator+</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a743e10ec05853e01956b416f7df987bb" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a50f706d67b332b1b55a3c9816e0e995b" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase_1a585ae328a8cd188e41eceb428a1e27db" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::autotuner_interfaces::names::NameBase</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

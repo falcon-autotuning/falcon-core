@@ -1,0 +1,496 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Channels__c__api_8h" kind="file" language="C++">
+    <compoundname>Channels_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="Channel__c__api_8h" local="yes">falcon_core/autotuner_interfaces/names/Channel_c_api.h</includes>
+    <includes refid="ListChannel__c__api_8h" local="yes">falcon_core/generic/ListChannel_c_api.h</includes>
+    <includes refid="ListString__c__api_8h" local="yes">falcon_core/generic/ListString_c_api.h</includes>
+    <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/autotuner_interfaces/names/Channel_c_api.h</label>
+        <link refid="Channel__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h</label>
+        <link refid="Channels__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/ListChannel_c_api.h</label>
+        <link refid="ListChannel__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h</label>
+        <link refid="Channels__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Channels__c__api_8h_1ad3987e13de842c080f1ced2ef0066baa" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ChannelsHandle</definition>
+        <argsstring></argsstring>
+        <name>ChannelsHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Channels__c__api_8h_1aa1fe84b3e83602a5adf0946f48f1d1c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ChannelsHandle</type>
+        <definition>ChannelsHandle Channels_copy</definition>
+        <argsstring>(ChannelsHandle handle)</argsstring>
+        <name>Channels_copy</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="14" column="16" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="14" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1ae3e03b67e06325df9bdeb71fc441452e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Channels_destroy</definition>
+        <argsstring>(ChannelsHandle handle)</argsstring>
+        <name>Channels_destroy</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="16" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="16" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1a7da54a4af1dd155d5a7c6d8289915288" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Channels_equal</definition>
+        <argsstring>(ChannelsHandle handle, ChannelsHandle other)</argsstring>
+        <name>Channels_equal</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="18" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1a1d87ecdc5da83842b55474a8d85db95e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Channels_not_equal</definition>
+        <argsstring>(ChannelsHandle handle, ChannelsHandle other)</argsstring>
+        <name>Channels_not_equal</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="20" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1aa11d14038c89eb4a15caff4b61ea7c88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle Channels_to_json_string</definition>
+        <argsstring>(ChannelsHandle handle)</argsstring>
+        <name>Channels_to_json_string</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="22" column="14" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="22" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1a341f4a3e9c8c2e6945be7947a7eb2d4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ChannelsHandle</type>
+        <definition>ChannelsHandle Channels_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Channels_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="24" column="16" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="24" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1a494819f403714c44c937abb496585099" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ChannelsHandle</type>
+        <definition>ChannelsHandle Channels_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>Channels_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="26" column="16" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="26" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1ab89e5390e7f5a1456a40492b1942aade" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ChannelsHandle</type>
+        <definition>ChannelsHandle Channels_create</definition>
+        <argsstring>(ListChannelHandle items)</argsstring>
+        <name>Channels_create</name>
+        <param>
+          <type>ListChannelHandle</type>
+          <declname>items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="28" column="16" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="28" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1a71b67f6e985c08ec9a0261f64984e82c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ChannelsHandle</type>
+        <definition>ChannelsHandle Channels_intersection</definition>
+        <argsstring>(ChannelsHandle handle, ChannelsHandle other)</argsstring>
+        <name>Channels_intersection</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="30" column="16" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="30" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1ac7eed30f26f2dee1dbf4625f28ddf270" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Channels_push_back</definition>
+        <argsstring>(ChannelsHandle handle, ChannelHandle value)</argsstring>
+        <name>Channels_push_back</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="33" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="33" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1a042de430dc710cd71a7a65ec7ba95e31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Channels_size</definition>
+        <argsstring>(ChannelsHandle handle)</argsstring>
+        <name>Channels_size</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="35" column="8" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="35" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1a97f74082caeda8a6914c3095d17aa5b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Channels_empty</definition>
+        <argsstring>(ChannelsHandle handle)</argsstring>
+        <name>Channels_empty</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="37" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="37" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1a600a453656847575bd348f4b6f46d029" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Channels_erase_at</definition>
+        <argsstring>(ChannelsHandle handle, size_t idx)</argsstring>
+        <name>Channels_erase_at</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="39" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="39" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1af1005c34f171529badb6f2a47e52f1c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Channels_clear</definition>
+        <argsstring>(ChannelsHandle handle)</argsstring>
+        <name>Channels_clear</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="41" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="41" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1aefe83c69a2c33c26db9881eb1616f440" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ChannelHandle</type>
+        <definition>ChannelHandle Channels_at</definition>
+        <argsstring>(ChannelsHandle handle, size_t idx)</argsstring>
+        <name>Channels_at</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="43" column="15" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="43" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1a2b2fafac05a9c2b588cf576cd89b0f62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle Channels_items</definition>
+        <argsstring>(ChannelsHandle handle)</argsstring>
+        <name>Channels_items</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="45" column="18" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="45" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1ad5d6fbaa129c478f7e44e18fd7b7010d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Channels_contains</definition>
+        <argsstring>(ChannelsHandle handle, ChannelHandle value)</argsstring>
+        <name>Channels_contains</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="47" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="47" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Channels__c__api_8h_1ac341da875649b83ff258b34dadde852d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Channels_index</definition>
+        <argsstring>(ChannelsHandle handle, ChannelHandle value)</argsstring>
+        <name>Channels_index</name>
+        <param>
+          <type>ChannelsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" line="49" column="8" declfile="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h" declline="49" declcolumn="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/autotuner_interfaces/names/Channel_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListChannel_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListString_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ChannelsHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">ChannelsHandle<sp/>Channels_copy(ChannelsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Channels_destroy(ChannelsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Channels_equal(ChannelsHandle<sp/>handle,<sp/>ChannelsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Channels_not_equal(ChannelsHandle<sp/>handle,<sp/>ChannelsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>Channels_to_json_string(ChannelsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">ChannelsHandle<sp/>Channels_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">ChannelsHandle<sp/>Channels_create_empty();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">ChannelsHandle<sp/>Channels_create(ListChannelHandle<sp/>items);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">ChannelsHandle<sp/>Channels_intersection(ChannelsHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChannelsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Channels_push_back(ChannelsHandle<sp/>handle,<sp/>ChannelHandle<sp/>value);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Channels_size(ChannelsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Channels_empty(ChannelsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Channels_erase_at(ChannelsHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Channels_clear(ChannelsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">ChannelHandle<sp/>Channels_at(ChannelsHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">ListStringHandle<sp/>Channels_items(ChannelsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Channels_contains(ChannelsHandle<sp/>handle,<sp/>ChannelHandle<sp/>value);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Channels_index(ChannelsHandle<sp/>handle,<sp/>ChannelHandle<sp/>value);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h"/>
+  </compounddef>
+</doxygen>

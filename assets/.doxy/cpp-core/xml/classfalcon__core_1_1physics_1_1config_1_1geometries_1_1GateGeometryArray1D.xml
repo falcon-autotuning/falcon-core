@@ -1,0 +1,737 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::physics::config::geometries::GateGeometryArray1D</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <includes refid="GateGeometryArray1D_8hpp" local="no">GateGeometryArray1D.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1abcd92291f8dbc0a89cb47487dc57e863" prot="public" static="no">
+        <type>typename device_structures::Connections::iterator</type>
+        <definition>using falcon_core::physics::config::geometries::GateGeometryArray1D::iterator =  typename device_structures::Connections::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="33" column="3" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a4b3bbadc9cea1560bc757e3aeb3b6278" prot="public" static="no">
+        <type>typename device_structures::Connections::const_iterator</type>
+        <definition>using falcon_core::physics::config::geometries::GateGeometryArray1D::const_iterator =  typename device_structures::Connections::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::const_iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="34" column="3" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1aa46735145a328773523847d2aec13304" prot="private" static="no" mutable="no">
+        <type>DotGatesWithNeighborsSP</type>
+        <definition>DotGatesWithNeighborsSP falcon_core::physics::config::geometries::GateGeometryArray1D::_central_dot_gates</definition>
+        <argsstring></argsstring>
+        <name>_central_dot_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_central_dot_gates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="20" column="36" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1acc0b59a564286cc599a9f314273eb626" prot="private" static="no" mutable="no">
+        <type><ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connections" kindref="compound">device_structures::Connections</ref></type>
+        <definition>device_structures::Connections falcon_core::physics::config::geometries::GateGeometryArray1D::_raw_central_gates</definition>
+        <argsstring></argsstring>
+        <name>_raw_central_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_raw_central_gates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="21" column="36" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a78ea3901dc93170624e193f84f89b132" prot="private" static="no" mutable="no">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::geometries::GateGeometryArray1D::_screening_gates</definition>
+        <argsstring></argsstring>
+        <name>_screening_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_screening_gates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="22" column="36" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1aa41df7d8b31d832d39885660d2d5c3c9" prot="private" static="no" mutable="no">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::geometries::GateGeometryArray1D::_linear_array</definition>
+        <argsstring></argsstring>
+        <name>_linear_array</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_linear_array</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="23" column="36" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ad7232fe9b328f8ee6fc28e75bc6ae676" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, device_structures::ConnectionSP &gt;</type>
+        <definition>std::unordered_map&lt;std::string, device_structures::ConnectionSP&gt; falcon_core::physics::config::geometries::GateGeometryArray1D::_gate_name_map</definition>
+        <argsstring></argsstring>
+        <name>_gate_name_map</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_gate_name_map</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="25" column="35" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ab57758b71f7f640898e4f1f2fa06cdfc" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_central_dot_gates</definition>
+        <argsstring></argsstring>
+        <name>_mu_central_dot_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_central_dot_gates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="26" column="35" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a642b90571633c0e8557326745d80fdc3" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_raw_central_gates</definition>
+        <argsstring></argsstring>
+        <name>_mu_raw_central_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_raw_central_gates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="27" column="35" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a9097ed3d49e62d791b069173c7ef0aec" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_screening_gates</definition>
+        <argsstring></argsstring>
+        <name>_mu_screening_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_screening_gates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="28" column="35" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a42de1b03e19e38ce96f83d2f827fc19c" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_linear_array</definition>
+        <argsstring></argsstring>
+        <name>_mu_linear_array</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_linear_array</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="29" column="35" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a6d4f2e4827cc178c134278cbccfd346f" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_gate_name_map</definition>
+        <argsstring></argsstring>
+        <name>_mu_gate_name_map</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::_mu_gate_name_map</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="30" column="35" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="129" column="16" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="129" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a2f08016d91b5c63d45daa2d35afa0234" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::geometries::GateGeometryArray1D::GateGeometryArray1D</definition>
+        <argsstring>(const GateGeometryArray1D &amp;other)</argsstring>
+        <name>GateGeometryArray1D</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::GateGeometryArray1D</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D" kindref="compound">GateGeometryArray1D</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="36" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a3bd9362fb82858c93eea20066c7505a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D" kindref="compound">GateGeometryArray1D</ref> &amp;</type>
+        <definition>GateGeometryArray1D &amp; falcon_core::physics::config::geometries::GateGeometryArray1D::operator=</definition>
+        <argsstring>(const GateGeometryArray1D &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D" kindref="compound">GateGeometryArray1D</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="37" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a181b7e8a03dd607ef6bcd8da6929bc68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::geometries::GateGeometryArray1D::GateGeometryArray1D</definition>
+        <argsstring>(device_structures::ConnectionsSP lineararray, device_structures::ConnectionsSP screening_gates)</argsstring>
+        <name>GateGeometryArray1D</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::GateGeometryArray1D</qualifiedname>
+        <param>
+          <type>device_structures::ConnectionsSP</type>
+          <declname>lineararray</declname>
+        </param>
+        <param>
+          <type>device_structures::ConnectionsSP</type>
+          <declname>screening_gates</declname>
+        </param>
+        <briefdescription>
+<para>Starts the geometry of the gates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lineararray</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A linear array of gates and ohmics in the order left to right in the channel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>screening_gates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A collection of two screening gates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the input does not conform to the expected structure. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="46" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a2916326e4afd4ecd5f7f6d4699376236" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator falcon_core::physics::config::geometries::GateGeometryArray1D::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="48" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ad2ae59a89f31a7b809e84be84aadd27d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator falcon_core::physics::config::geometries::GateGeometryArray1D::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="49" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a095d333fb0dd57e351c9685108de8c32" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::physics::config::geometries::GateGeometryArray1D::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="50" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a8b74bf11c523b439945a9e5a1d74e0f1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::physics::config::geometries::GateGeometryArray1D::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="51" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a5ac07e82bb859bf8ab754a8b2811384f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::physics::config::geometries::GateGeometryArray1D::append_central_gate</definition>
+        <argsstring>(const device_structures::ConnectionSP &amp;left_neighbor, const device_structures::ConnectionSP &amp;selected_gate, const device_structures::ConnectionSP &amp;right_neighbor)</argsstring>
+        <name>append_central_gate</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::append_central_gate</qualifiedname>
+        <param>
+          <type>const device_structures::ConnectionSP &amp;</type>
+          <declname>left_neighbor</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionSP &amp;</type>
+          <declname>selected_gate</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionSP &amp;</type>
+          <declname>right_neighbor</declname>
+        </param>
+        <briefdescription>
+<para>Appends a central gate to the geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gate to append. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="57" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a0f7843d51bb2735cd17e26f2de53f649" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGatesWithNeighborsSP</type>
+        <definition>DotGatesWithNeighborsSP falcon_core::physics::config::geometries::GateGeometryArray1D::all_dot_gates</definition>
+        <argsstring>() const</argsstring>
+        <name>all_dot_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::all_dot_gates</qualifiedname>
+        <briefdescription>
+<para>Gets all of the dot gates in the geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A collection of all dot gates in the array with localities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="66" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ac02638318d8af1a2812db93cc1884c3c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::geometries::GateGeometryArray1D::query_neighbors</definition>
+        <argsstring>(const device_structures::ConnectionSP &amp;gate) const</argsstring>
+        <name>query_neighbors</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::query_neighbors</qualifiedname>
+        <param>
+          <type>const device_structures::ConnectionSP &amp;</type>
+          <declname>gate</declname>
+        </param>
+        <briefdescription>
+<para>Queries the neighbors of a gate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gate to query neighbors for </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The collection of neighboring gates </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="73" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a9eafb933ec40b610f580434d1ad617a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>LeftReservoirWithImplantedOhmicSP</type>
+        <definition>LeftReservoirWithImplantedOhmicSP falcon_core::physics::config::geometries::GateGeometryArray1D::left_reservoir</definition>
+        <argsstring>() const</argsstring>
+        <name>left_reservoir</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::left_reservoir</qualifiedname>
+        <briefdescription>
+<para>Gets the left reservoir with implanted ohmic contact. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The left reservoir with implanted ohmic contact. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="80" column="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1afe6b74481dc028c2bf02e17bbe02b9f3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>RightReservoirWithImplantedOhmicSP</type>
+        <definition>RightReservoirWithImplantedOhmicSP falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir</definition>
+        <argsstring>() const</argsstring>
+        <name>right_reservoir</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir</qualifiedname>
+        <briefdescription>
+<para>Gets the right reservoir with implanted ohmic contact. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The right reservoir with implanted ohmic contact. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="86" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a0f43bd5cdbcaef22692ca8d871e7a47f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGateWithNeighborsSP</type>
+        <definition>DotGateWithNeighborsSP falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier</definition>
+        <argsstring>() const</argsstring>
+        <name>left_barrier</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier</qualifiedname>
+        <briefdescription>
+<para>Gets the leftmost barrier gate in the array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The leftmost barrier gate. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="92" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1abf38876f906b417dd04db0c9d2b116f0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGateWithNeighborsSP</type>
+        <definition>DotGateWithNeighborsSP falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier</definition>
+        <argsstring>() const</argsstring>
+        <name>right_barrier</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier</qualifiedname>
+        <briefdescription>
+<para>Gets the rightmost barrier gate in the array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The rightmost barrier gate. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="97" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a33bf15afa21caba7e2658ef27cf934f7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const device_structures::ConnectionsSP &amp;</type>
+        <definition>const device_structures::ConnectionsSP &amp; falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray</definition>
+        <argsstring>() const</argsstring>
+        <name>lineararray</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::lineararray</qualifiedname>
+        <briefdescription>
+<para>Gets the linear array of connections. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The linear array of connections. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="102" column="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a9721ef8a55828e8930e7fd9a686a42d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const device_structures::ConnectionsSP &amp;</type>
+        <definition>const device_structures::ConnectionsSP &amp; falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates</definition>
+        <argsstring>() const</argsstring>
+        <name>screening_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates</qualifiedname>
+        <briefdescription>
+<para>Gets the screening gates in the geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The screening gates in the geometry. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="107" column="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1af15098613c08c18ce1d154ce09a98f40" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates</definition>
+        <argsstring>() const</argsstring>
+        <name>raw_central_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates</qualifiedname>
+        <briefdescription>
+<para>Gets the central gates without localities. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The central gates without localities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="112" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1aa58d357767ba3a9bc5c2ec2137b16bf5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGatesWithNeighborsSP</type>
+        <definition>DotGatesWithNeighborsSP falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates</definition>
+        <argsstring>() const</argsstring>
+        <name>central_dot_gates</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates</qualifiedname>
+        <briefdescription>
+<para>Gets the central gates with localities. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The central gates with localities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="117" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1aa9d51bea70c8cce99b14b54c6023e84b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::geometries::GateGeometryArray1D::ohmics</definition>
+        <argsstring>() const</argsstring>
+        <name>ohmics</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::ohmics</qualifiedname>
+        <briefdescription>
+<para>Gets the ohmics attached the the quantum dot geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The ohmics attached to the quantum dot geometry. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="122" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a6e4f4f4e9309fb7159f82c7d2b762571" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::geometries::GateGeometryArray1D::operator==</definition>
+        <argsstring>(const GateGeometryArray1D &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D" kindref="compound">GateGeometryArray1D</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="124" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a69ce8b84d249b8947afae2859224a049" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::geometries::GateGeometryArray1D::operator!=</definition>
+        <argsstring>(const GateGeometryArray1D &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D" kindref="compound">GateGeometryArray1D</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="125" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a6a44463dd4554d1186cb7ba511208846" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::geometries::GateGeometryArray1D::GateGeometryArray1D</definition>
+        <argsstring>()</argsstring>
+        <name>GateGeometryArray1D</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::GateGeometryArray1D</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="128" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1abc4f92f8802fb15a2ca29e12ac2ac932" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::physics::config::geometries::GateGeometryArray1D::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::physics::config::geometries::GateGeometryArray1D::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="131" column="8" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="131" bodyend="153"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A 1D array of quantum dots with left and right reservoirs, barrier gates, plunger gates, ohmics, and screening gates. This contains the geometry of the 1D array. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::geometries::GateGeometryArray1D</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::geometries::GateGeometryArray1D</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" line="19" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/GateGeometryArray1D.hpp" bodystart="19" bodyend="154"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1aa46735145a328773523847d2aec13304" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_central_dot_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ad7232fe9b328f8ee6fc28e75bc6ae676" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_gate_name_map</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1aa41df7d8b31d832d39885660d2d5c3c9" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_linear_array</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ab57758b71f7f640898e4f1f2fa06cdfc" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_mu_central_dot_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a6d4f2e4827cc178c134278cbccfd346f" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_mu_gate_name_map</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a42de1b03e19e38ce96f83d2f827fc19c" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_mu_linear_array</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a642b90571633c0e8557326745d80fdc3" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_mu_raw_central_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a9097ed3d49e62d791b069173c7ef0aec" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_mu_screening_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1acc0b59a564286cc599a9f314273eb626" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_raw_central_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a78ea3901dc93170624e193f84f89b132" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>_screening_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a0f7843d51bb2735cd17e26f2de53f649" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>all_dot_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a5ac07e82bb859bf8ab754a8b2811384f" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>append_central_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a2916326e4afd4ecd5f7f6d4699376236" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a095d333fb0dd57e351c9685108de8c32" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1aa58d357767ba3a9bc5c2ec2137b16bf5" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>central_dot_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a4b3bbadc9cea1560bc757e3aeb3b6278" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ad2ae59a89f31a7b809e84be84aadd27d" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a8b74bf11c523b439945a9e5a1d74e0f1" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a2f08016d91b5c63d45daa2d35afa0234" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>GateGeometryArray1D</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a181b7e8a03dd607ef6bcd8da6929bc68" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>GateGeometryArray1D</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a6a44463dd4554d1186cb7ba511208846" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>GateGeometryArray1D</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1abcd92291f8dbc0a89cb47487dc57e863" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a0f43bd5cdbcaef22692ca8d871e7a47f" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>left_barrier</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a9eafb933ec40b610f580434d1ad617a5" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>left_reservoir</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a33bf15afa21caba7e2658ef27cf934f7" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>lineararray</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1aa9d51bea70c8cce99b14b54c6023e84b" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>ohmics</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a69ce8b84d249b8947afae2859224a049" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a3bd9362fb82858c93eea20066c7505a2" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a6e4f4f4e9309fb7159f82c7d2b762571" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1ac02638318d8af1a2812db93cc1884c3c" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>query_neighbors</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1af15098613c08c18ce1d154ce09a98f40" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>raw_central_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1abf38876f906b417dd04db0c9d2b116f0" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>right_barrier</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1afe6b74481dc028c2bf02e17bbe02b9f3" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>right_reservoir</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1a9721ef8a55828e8930e7fd9a686a42d9" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>screening_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D_1abc4f92f8802fb15a2ca29e12ac2ac932" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::physics::config::geometries::GateGeometryArray1D</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

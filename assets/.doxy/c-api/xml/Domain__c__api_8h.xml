@@ -1,0 +1,755 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Domain__c__api_8h" kind="file" language="C++">
+    <compoundname>Domain_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="Discretizer__c__api_8h" local="yes">c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h</includedby>
+    <includedby refid="LabelledDomain__c__api_8h" local="yes">c-api/include/falcon_core/math/domains/LabelledDomain_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/domains/Domain_c_api.h</label>
+        <link refid="Domain__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="11">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>c-api/include/falcon_core/generic/ListCoupledLabelledDomain_c_api.h</label>
+        <link refid="ListCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/ListDiscretizer_c_api.h</label>
+        <link refid="ListDiscretizer__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/generic/ListLabelledDomain_c_api.h</label>
+        <link refid="ListLabelledDomain__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>c-api/include/falcon_core/math/AxesCoupledLabelledDomain_c_api.h</label>
+        <link refid="AxesCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/math/AxesDiscretizer_c_api.h</label>
+        <link refid="AxesDiscretizer__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h</label>
+        <link refid="Discretizer__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.h</label>
+        <link refid="CoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/domains/Domain_c_api.h</label>
+        <link refid="Domain__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/math/domains/LabelledDomain_c_api.h</label>
+        <link refid="LabelledDomain__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Domain__c__api_8h_1ab7519a5811dc4fdf27bd6f9ef4eafb13" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* DomainHandle</definition>
+        <argsstring></argsstring>
+        <name>DomainHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="8" column="14" bodyfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Domain__c__api_8h_1a6e1c7094eb50f6ed296da9748aa945cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle Domain_copy</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_copy</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="11" column="14" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="11" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a636e5b4de353a1044aee6daffd6ec45d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domain_destroy</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_destroy</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="13" column="6" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="13" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a6747d9d055d88a4ea89165b4e784a3fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Domain_equal</definition>
+        <argsstring>(DomainHandle handle, DomainHandle other)</argsstring>
+        <name>Domain_equal</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="15" column="6" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="15" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a4a11885d25627e6deeb95cad981bbb95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Domain_not_equal</definition>
+        <argsstring>(DomainHandle handle, DomainHandle other)</argsstring>
+        <name>Domain_not_equal</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="17" column="6" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a4806db72cd633b34716968739de3a2c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle Domain_to_json_string</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_to_json_string</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="19" column="14" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="19" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a03e9edbd921c681f328debced6ced5b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle Domain_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Domain_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="21" column="14" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="21" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1ac3bd8a90ebb8a17d282ff3bdf5ee3106" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle Domain_create</definition>
+        <argsstring>(double min_val, double max_val, bool lesser_bound_contained, bool greater_bound_contained)</argsstring>
+        <name>Domain_create</name>
+        <param>
+          <type>double</type>
+          <declname>min_val</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max_val</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>lesser_bound_contained</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>greater_bound_contained</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="23" column="14" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="23" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1ad3b3e7fcc7507d45f8ebb8172e2f1985" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Domain_lesser_bound</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_lesser_bound</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Get the lesser bound of the domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The lesser bound. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="34" column="8" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="34" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1adbde04f30bab732e53bbd84c9444cd5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Domain_greater_bound</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_greater_bound</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Get the greater bound of the domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The greater bound. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a47087ff3dd4563bedfa513771b124802" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Domain_lesser_bound_contained</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_lesser_bound_contained</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if the lesser bound is contained in the domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the lesser bound is contained, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="50" column="6" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="50" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a14f6344d8defbfc63c9c97d6ce336a39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Domain_greater_bound_contained</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_greater_bound_contained</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if the greater bound is contained in the domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the greater bound is contained, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="58" column="6" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="58" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a811ea071f3951253a54c290a21418c6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Domain_in</definition>
+        <argsstring>(DomainHandle handle, double value)</argsstring>
+        <name>Domain_in</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Check if a value is in the domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the value is in the domain, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="66" column="6" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="66" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a480adee3a3ccc42a8f8dc1ad567e777c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Domain_range</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_range</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Get the size of the domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The size of the domain. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="74" column="8" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="74" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1acc42f4f7cab2c2f0b23a4fc2e4e98c5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Domain_center</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_center</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="76" column="8" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="76" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a4d5c3816b1ebcb346944c8e60bab5193" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle Domain_intersection</definition>
+        <argsstring>(DomainHandle handle, DomainHandle other)</argsstring>
+        <name>Domain_intersection</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="78" column="14" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="78" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a5e261ecc90007beaf0897b5b5a38292b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle Domain_union</definition>
+        <argsstring>(DomainHandle handle, DomainHandle other)</argsstring>
+        <name>Domain_union</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="80" column="14" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="80" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1aaf73b4cfec9feb197000be2b3fd07852" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Domain_is_empty</definition>
+        <argsstring>(DomainHandle handle)</argsstring>
+        <name>Domain_is_empty</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if the domain is empty. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the domain is empty, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="88" column="6" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="88" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a6b5dbc61fb1de446cafc56d2dafdc386" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Domain_contains_domain</definition>
+        <argsstring>(DomainHandle handle, DomainHandle other)</argsstring>
+        <name>Domain_contains_domain</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Check if this domain completely contains another domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other domain. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if this domain contains the other domain, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="97" column="6" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="97" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a73589623cfa8d470fffc95c2789f21a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle Domain_shift</definition>
+        <argsstring>(DomainHandle handle, double offset)</argsstring>
+        <name>Domain_shift</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+<para>Shift the domain by an offset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The offset to shift by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new domain representing the shifted domain. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="106" column="14" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="106" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a276ca02c3b41992ba882fc7fe4421bc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle Domain_scale</definition>
+        <argsstring>(DomainHandle handle, double scale)</argsstring>
+        <name>Domain_scale</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>scale</declname>
+        </param>
+        <briefdescription>
+<para>Scale the domain by a factor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>factor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The factor to scale by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new domain representing the scaled domain. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="115" column="14" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="115" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Domain__c__api_8h_1a8acd4a71841bab40aa947648d3436e52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Domain_transform</definition>
+        <argsstring>(DomainHandle handle, DomainHandle other, double value)</argsstring>
+        <name>Domain_transform</name>
+        <param>
+          <type>DomainHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Transform a value from this domain to another domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other domain to transform to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value to transform. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The transformed value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h" line="125" column="8" declfile="c-api/include/falcon_core/math/domains/Domain_c_api.h" declline="125" declcolumn="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>DomainHandle;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">DomainHandle<sp/>Domain_copy(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Domain_destroy(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Domain_equal(DomainHandle<sp/>handle,<sp/>DomainHandle<sp/>other);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Domain_not_equal(DomainHandle<sp/>handle,<sp/>DomainHandle<sp/>other);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>Domain_to_json_string(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">DomainHandle<sp/>Domain_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">DomainHandle<sp/>Domain_create(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>min_val,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>max_val,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/>lesser_bound_contained,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/>greater_bound_contained);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_lesser_bound<sp/>|</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>falcon_core::math::domains::Domain::lesser_bound<sp/>*/</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Domain_lesser_bound(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_greater_bound<sp/>|</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>falcon_core::math::domains::Domain::greater_bound<sp/>*/</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Domain_greater_bound(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_lesser_bound_contained<sp/>|</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>falcon_core::math::domains::Domain::lesser_bound_contained<sp/>*/</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Domain_lesser_bound_contained(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_greater_bound_contained<sp/>|</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>falcon_core::math::domains::Domain::greater_bound_contained<sp/>*/</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Domain_greater_bound_contained(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_in<sp/>|<sp/>falcon_core::math::domains::Domain::in<sp/>*/</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Domain_in(DomainHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_range<sp/>|<sp/>falcon_core::math::domains::Domain::range</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*/</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Domain_range(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Domain_center(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">DomainHandle<sp/>Domain_intersection(DomainHandle<sp/>handle,<sp/>DomainHandle<sp/>other);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal">DomainHandle<sp/>Domain_union(DomainHandle<sp/>handle,<sp/>DomainHandle<sp/>other);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_is_empty<sp/>|</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*<sp/>falcon_core::math::domains::Domain::is_empty<sp/>*/</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Domain_is_empty(DomainHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_contains_domain<sp/>|</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*<sp/>falcon_core::math::domains::Domain::contains_domain<sp/>*/</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Domain_contains_domain(DomainHandle<sp/>handle,<sp/>DomainHandle<sp/>other);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_shift<sp/>|<sp/>falcon_core::math::domains::Domain::shift</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*/</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">DomainHandle<sp/>Domain_shift(DomainHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>offset);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_scale<sp/>|<sp/>falcon_core::math::domains::Domain::scale</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/>*/</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">DomainHandle<sp/>Domain_scale(DomainHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scale);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Domain_transform<sp/>|</highlight></codeline>
+<codeline lineno="118"><highlight class="comment"><sp/>*<sp/>falcon_core::math::domains::Domain::transform<sp/>*/</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Domain_transform(DomainHandle<sp/>handle,<sp/>DomainHandle<sp/>other,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/domains/Domain_c_api.h"/>
+  </compounddef>
+</doxygen>

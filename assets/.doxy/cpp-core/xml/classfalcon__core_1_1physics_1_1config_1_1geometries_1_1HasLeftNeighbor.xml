@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::physics::config::geometries::HasLeftNeighbor</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="virtual">falcon_core::generic::Song</basecompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1DotGateWithNeighbors" prot="public" virt="non-virtual">falcon_core::physics::config::geometries::DotGateWithNeighbors</derivedcompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1RightReservoirWithImplantedOhmic" prot="public" virt="non-virtual">falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmic</derivedcompoundref>
+    <includes refid="HasLeftNeighbor_8hpp" local="no">HasLeftNeighbor.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a4a6cc181b2feb34fe176b6a2e5af786f" prot="private" static="no" mutable="no">
+        <type>device_structures::ConnectionSP</type>
+        <definition>device_structures::ConnectionSP falcon_core::physics::config::geometries::HasLeftNeighbor::_left_neighbor</definition>
+        <argsstring></argsstring>
+        <name>_left_neighbor</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighbor::_left_neighbor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="15" column="35" bodyfile="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a7a6788a612ada075b4a2ecbe0945cae3" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::geometries::HasLeftNeighbor::_mu_left_neighbor</definition>
+        <argsstring></argsstring>
+        <name>_mu_left_neighbor</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighbor::_mu_left_neighbor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="16" column="35" bodyfile="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighbor::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="30" column="16" bodyfile="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a5c59af93f09e4be513fbdbc196e38846" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::geometries::HasLeftNeighbor::HasLeftNeighbor</definition>
+        <argsstring>(const HasLeftNeighbor &amp;other)</argsstring>
+        <name>HasLeftNeighbor</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighbor::HasLeftNeighbor</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor" kindref="compound">HasLeftNeighbor</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="19" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1ade41912433e5bd1e1c7cd09c37a2c2a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor" kindref="compound">HasLeftNeighbor</ref> &amp;</type>
+        <definition>HasLeftNeighbor &amp; falcon_core::physics::config::geometries::HasLeftNeighbor::operator=</definition>
+        <argsstring>(const HasLeftNeighbor &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighbor::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor" kindref="compound">HasLeftNeighbor</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="20" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1aafc75a28248ea27b4fac3a54d41ddd76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::geometries::HasLeftNeighbor::HasLeftNeighbor</definition>
+        <argsstring>(device_structures::ConnectionSP left_neighbor)</argsstring>
+        <name>HasLeftNeighbor</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighbor::HasLeftNeighbor</qualifiedname>
+        <param>
+          <type>device_structures::ConnectionSP</type>
+          <declname>left_neighbor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="21" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a5593a5b4921d85718e9c39950d543788" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionSP</type>
+        <definition>device_structures::ConnectionSP falcon_core::physics::config::geometries::HasLeftNeighbor::left_neighbor</definition>
+        <argsstring>() const</argsstring>
+        <name>left_neighbor</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighbor::left_neighbor</qualifiedname>
+        <briefdescription>
+<para>Returns the left neighbor of the gate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="26" column="35"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a74cc4b096286f3222669ac066bea4f18" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::geometries::HasLeftNeighbor::HasLeftNeighbor</definition>
+        <argsstring>()</argsstring>
+        <name>HasLeftNeighbor</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighbor::HasLeftNeighbor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="29" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a5de7b716be6e31d294f0817c642661f8" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::physics::config::geometries::HasLeftNeighbor::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::physics::config::geometries::HasLeftNeighbor::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="32" column="8" bodyfile="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" bodystart="32" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A gate with a left neighbor. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="3">
+        <label>falcon_core::physics::config::geometries::DotGateWithNeighbors</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1DotGateWithNeighbors"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::geometries::HasLeftNeighbor</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmic</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1RightReservoirWithImplantedOhmic"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::geometries::HasLeftNeighbor</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" line="14" column="1" bodyfile="cpp/include/falcon_core/physics/config/geometries/HasLeftNeighbor.hpp" bodystart="14" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a4a6cc181b2feb34fe176b6a2e5af786f" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>_left_neighbor</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a7a6788a612ada075b4a2ecbe0945cae3" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>_mu_left_neighbor</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a5c59af93f09e4be513fbdbc196e38846" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>HasLeftNeighbor</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1aafc75a28248ea27b4fac3a54d41ddd76" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>HasLeftNeighbor</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a74cc4b096286f3222669ac066bea4f18" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>HasLeftNeighbor</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a5593a5b4921d85718e9c39950d543788" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>left_neighbor</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1ade41912433e5bd1e1c7cd09c37a2c2a5" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1HasLeftNeighbor_1a5de7b716be6e31d294f0817c642661f8" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::physics::config::geometries::HasLeftNeighbor</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

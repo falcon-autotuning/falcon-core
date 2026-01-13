@@ -1,0 +1,608 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ListPairInterpretationContextDouble__c__api_8h" kind="file" language="C++">
+    <compoundname>ListPairInterpretationContextDouble_c_api.h</compoundname>
+    <includes refid="PairInterpretationContextDouble__c__api_8h" local="yes">falcon_core/generic/PairInterpretationContextDouble_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="InterpretationContainerDouble__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</includedby>
+    <includedby refid="MapInterpretationContextDouble__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h</label>
+        <link refid="MeasurementContext__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h</label>
+        <link refid="InterpretationContext__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/ListMeasurementContext_c_api.h</label>
+        <link refid="ListMeasurementContext__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h</label>
+        <link refid="ListPairInterpretationContextDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/PairInterpretationContextDouble_c_api.h</label>
+        <link refid="PairInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/math/AxesMeasurementContext_c_api.h</label>
+        <link refid="AxesMeasurementContext__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="7">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</label>
+        <link refid="InterpretationContainerDouble__c__api_8h_source"/>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h</label>
+        <link refid="ListPairInterpretationContextDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h</label>
+        <link refid="MapInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ListPairInterpretationContextDouble__c__api_8h_1aac89eaf8e95ac5389894baf24e4a1d54" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ListPairInterpretationContextDoubleHandle</definition>
+        <argsstring></argsstring>
+        <name>ListPairInterpretationContextDoubleHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1aacd1fe002fda3a72b57b67db185841a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairInterpretationContextDoubleHandle</type>
+        <definition>ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>ListPairInterpretationContextDouble_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="15" column="43" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="15" declcolumn="43"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1afdfca7238e69c2c6b6011eb3b88d5911" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairInterpretationContextDoubleHandle</type>
+        <definition>ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_copy</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle)</argsstring>
+        <name>ListPairInterpretationContextDouble_copy</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="17" column="43" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="17" declcolumn="43"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a7f0af954000d0f10c4c653a129ad822e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairInterpretationContextDoubleHandle</type>
+        <definition>ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_fill_value</definition>
+        <argsstring>(size_t count, PairInterpretationContextDoubleHandle value)</argsstring>
+        <name>ListPairInterpretationContextDouble_fill_value</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>PairInterpretationContextDoubleHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="20" column="43" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="20" declcolumn="43"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1aca0aa0bf2a564b59a32ef20038bbd7e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairInterpretationContextDoubleHandle</type>
+        <definition>ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create</definition>
+        <argsstring>(PairInterpretationContextDoubleHandle *data, size_t count)</argsstring>
+        <name>ListPairInterpretationContextDouble_create</name>
+        <param>
+          <type>PairInterpretationContextDoubleHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="22" column="43" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="22" declcolumn="43"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a710fe28badfb6bf8f2fec7757e920a47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairInterpretationContextDouble_destroy</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle)</argsstring>
+        <name>ListPairInterpretationContextDouble_destroy</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a99e3405f8ae9a50d82c95797b6c3a546" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairInterpretationContextDouble_push_back</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle value)</argsstring>
+        <name>ListPairInterpretationContextDouble_push_back</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairInterpretationContextDoubleHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a2ca51d0c9d53992282c5304c9c3d9bc0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairInterpretationContextDouble_size</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle)</argsstring>
+        <name>ListPairInterpretationContextDouble_size</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a7724c4e4e66894cf2492c47194f88d4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairInterpretationContextDouble_empty</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle)</argsstring>
+        <name>ListPairInterpretationContextDouble_empty</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a610468756280499dc60991672b468560" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairInterpretationContextDouble_erase_at</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle, size_t idx)</argsstring>
+        <name>ListPairInterpretationContextDouble_erase_at</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a90e083f736497b39211692c48391fa10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairInterpretationContextDouble_clear</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle)</argsstring>
+        <name>ListPairInterpretationContextDouble_clear</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a0e268887cee9bf81c2e9bbcd954aaf52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairInterpretationContextDoubleHandle</type>
+        <definition>PairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_at</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle, size_t idx)</argsstring>
+        <name>ListPairInterpretationContextDouble_at</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="36" column="39" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="36" declcolumn="39"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a28f3fd7fd6b5292d7b2c3133a8a7169e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairInterpretationContextDouble_items</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>ListPairInterpretationContextDouble_items</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairInterpretationContextDoubleHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="38" column="8" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="38" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1aa19370d6cd4cfe01ad7433a2d39fcd99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairInterpretationContextDouble_contains</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle value)</argsstring>
+        <name>ListPairInterpretationContextDouble_contains</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairInterpretationContextDoubleHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a4acebfaf9e3cbb253de75fa86b2026cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairInterpretationContextDouble_index</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle value)</argsstring>
+        <name>ListPairInterpretationContextDouble_index</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairInterpretationContextDoubleHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1affec8c4c3c385497827f32d3d35a31eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairInterpretationContextDoubleHandle</type>
+        <definition>ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_intersection</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other)</argsstring>
+        <name>ListPairInterpretationContextDouble_intersection</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="44" column="43" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="44" declcolumn="43"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1ab2b8fe9e7e7f86c405bdf0ec12af0542" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairInterpretationContextDouble_equal</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other)</argsstring>
+        <name>ListPairInterpretationContextDouble_equal</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a4cc58775330b0ff119e93535215e25af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairInterpretationContextDouble_not_equal</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other)</argsstring>
+        <name>ListPairInterpretationContextDouble_not_equal</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a8bd60003bb3d604f176c7729403f35c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle ListPairInterpretationContextDouble_to_json_string</definition>
+        <argsstring>(ListPairInterpretationContextDoubleHandle handle)</argsstring>
+        <name>ListPairInterpretationContextDouble_to_json_string</name>
+        <param>
+          <type>ListPairInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairInterpretationContextDouble__c__api_8h_1a9a2a61e2d79faad12c483f27bf2dafa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairInterpretationContextDoubleHandle</type>
+        <definition>ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>ListPairInterpretationContextDouble_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" line="53" column="43" declfile="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h" declline="53" declcolumn="43"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/PairInterpretationContextDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ListPairInterpretationContextDoubleHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">ListPairInterpretationContextDoubleHandle<sp/>ListPairInterpretationContextDouble_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">ListPairInterpretationContextDoubleHandle<sp/>ListPairInterpretationContextDouble_copy(ListPairInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ListPairInterpretationContextDoubleHandle<sp/>ListPairInterpretationContextDouble_fill_value(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/>PairInterpretationContextDoubleHandle<sp/>value);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ListPairInterpretationContextDoubleHandle<sp/>ListPairInterpretationContextDouble_create(PairInterpretationContextDoubleHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_destroy(ListPairInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_push_back(ListPairInterpretationContextDoubleHandle<sp/>handle,<sp/>PairInterpretationContextDoubleHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_size(ListPairInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_empty(ListPairInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_erase_at(ListPairInterpretationContextDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_clear(ListPairInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">PairInterpretationContextDoubleHandle<sp/>ListPairInterpretationContextDouble_at(ListPairInterpretationContextDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_items(ListPairInterpretationContextDoubleHandle<sp/>handle,<sp/>PairInterpretationContextDoubleHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_contains(ListPairInterpretationContextDoubleHandle<sp/>handle,<sp/>PairInterpretationContextDoubleHandle<sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_index(ListPairInterpretationContextDoubleHandle<sp/>handle,<sp/>PairInterpretationContextDoubleHandle<sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListPairInterpretationContextDoubleHandle<sp/>ListPairInterpretationContextDouble_intersection(ListPairInterpretationContextDoubleHandle<sp/>handle,<sp/>ListPairInterpretationContextDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_equal(ListPairInterpretationContextDoubleHandle<sp/>handle,<sp/>ListPairInterpretationContextDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairInterpretationContextDouble_not_equal(ListPairInterpretationContextDoubleHandle<sp/>handle,<sp/>ListPairInterpretationContextDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>ListPairInterpretationContextDouble_to_json_string(ListPairInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListPairInterpretationContextDoubleHandle<sp/>ListPairInterpretationContextDouble_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"/>
+  </compounddef>
+</doxygen>

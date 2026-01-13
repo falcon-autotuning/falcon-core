@@ -1,0 +1,999 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Group__c__api_8h" kind="file" language="C++">
+    <compoundname>Group_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="Channel__c__api_8h" local="yes">falcon_core/autotuner_interfaces/names/Channel_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="GateGeometryArray1D__c__api_8h" local="yes">falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</includes>
+    <includes refid="Connections__c__api_8h" local="yes">falcon_core/physics/device_structures/Connections_c_api.h</includes>
+    <includedby refid="ListGroup__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListGroup_c_api.h</includedby>
+    <includedby refid="PairGnameGroup__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairGnameGroup_c_api.h</includedby>
+    <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/autotuner_interfaces/names/Channel_c_api.h</label>
+        <link refid="Channel__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/ListDotGateWithNeighbors_c_api.h</label>
+        <link refid="ListDotGateWithNeighbors__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/core/Group_c_api.h</label>
+        <link refid="Group__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h</label>
+        <link refid="DotGateWithNeighbors__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h</label>
+        <link refid="DotGatesWithNeighbors__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</label>
+        <link refid="GateGeometryArray1D__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h</label>
+        <link refid="LeftReservoirWithImplantedOhmic__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h</label>
+        <link refid="RightReservoirWithImplantedOhmic__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListGroup_c_api.h</label>
+        <link refid="ListGroup__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h</label>
+        <link refid="ListPairGnameGroup__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
+        <link refid="MapGnameGroup__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/PairGnameGroup_c_api.h</label>
+        <link refid="PairGnameGroup__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/core/Group_c_api.h</label>
+        <link refid="Group__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Group__c__api_8h_1a7d00efaefded27627329625b0ffaf9db" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* GroupHandle</definition>
+        <argsstring></argsstring>
+        <name>GroupHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="12" column="14" bodyfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Group__c__api_8h_1a9e0f741d10ff6a4cfcac7e81e03f6d41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GroupHandle</type>
+        <definition>GroupHandle Group_copy</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_copy</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="15" column="13" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="15" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a96f56c5a6269a2a430b763d0d071a848" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Group_destroy</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_destroy</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="17" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a34de4951f50c65571b605b7c44c5c177" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_equal</definition>
+        <argsstring>(GroupHandle handle, GroupHandle other)</argsstring>
+        <name>Group_equal</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GroupHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1aeda5137a3912f1932d1c5df38adc20d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_not_equal</definition>
+        <argsstring>(GroupHandle handle, GroupHandle other)</argsstring>
+        <name>Group_not_equal</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GroupHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a231bf6bfbe7e00da53bee62ed8d3e0c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle Group_to_json_string</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_to_json_string</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="23" column="14" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="23" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1aa1cb70819aef1d90af02b4cdccb901d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GroupHandle</type>
+        <definition>GroupHandle Group_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Group_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="25" column="13" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="25" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a9e554a0d6bf1b54e86a7cbe6cc482a22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GroupHandle</type>
+        <definition>GroupHandle Group_create</definition>
+        <argsstring>(ChannelHandle name, int num_dots, ConnectionsHandle screening_gates, ConnectionsHandle reservoir_gates, ConnectionsHandle plunger_gates, ConnectionsHandle barrier_gates, ConnectionsHandle order)</argsstring>
+        <name>Group_create</name>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_dots</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>screening_gates</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>reservoir_gates</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>plunger_gates</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>barrier_gates</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>order</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="27" column="13" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="27" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1afc27701cfb9c3bbcf855c30e1bae8d66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ChannelHandle</type>
+        <definition>ChannelHandle Group_name</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_name</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>collect the name of this group. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="40" column="15" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="40" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1ac3c58ba577346fbadf5d41c01fc4ce09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Group_num_dots</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_num_dots</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>collect the number of dots in this group. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="47" column="5" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="47" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a3c0331ee621de17c058babe3f2d65cff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GateGeometryArray1DHandle</type>
+        <definition>GateGeometryArray1DHandle Group_order</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_order</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>collect the order of the gates in this group. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="54" column="27" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="54" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1af7ed4fbe8f06067d77f07b87255b0f01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_has_channel</definition>
+        <argsstring>(GroupHandle handle, ChannelHandle channel)</argsstring>
+        <name>Group_has_channel</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ChannelHandle</type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+<para>Validates if this channel is present. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>channel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The channel to validate. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the channel is present. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="63" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="63" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1ab66b7d852d19d01702bf5e55e7ad0117" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_is_charge_sensor</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_is_charge_sensor</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Checks if this channel could be a charge sensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if the channel has a single dot. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="71" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="71" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a311ce2da8b7639230b1d90d38318fa03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Group_get_all_channel_gates</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_all_channel_gates</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets all of the gates assocciated with this channel from the config. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>channel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The channel to collect the gates for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The gates associated with this channel. If the channel is not correct then empty gates are returned. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="82" column="19" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="82" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a8f55d6d24167eae5a59a12a5275feff0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Group_screening_gates</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_screening_gates</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="84" column="19" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="84" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1aeb95d398500c6533f0b97bcc3f56250b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Group_reservoir_gates</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_reservoir_gates</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="86" column="19" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="86" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1ae41dd62a7ca55d576ac1f4208a69c923" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Group_plunger_gates</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_plunger_gates</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="88" column="19" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="88" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1ae3571b75ced525cc58b9053f219ffb2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Group_barrier_gates</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_barrier_gates</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="90" column="19" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="90" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a82852150917204de1a54a2b94c70d38c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Group_ohmics</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_ohmics</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>collect the ohmics pertaining to this group. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="97" column="19" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="97" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a5a41b339f3d6b867086c1aae5797aedf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Group_dot_gates</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_dot_gates</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="99" column="19" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="99" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a35b90a9776bd04e5a9cae36fcf101173" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle Group_get_ohmic</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_ohmic</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="101" column="18" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="101" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1aaf724f0fb4e8a08573128d2ad9e4e5b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle Group_get_barrier_gate</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_barrier_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="103" column="18" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="103" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1aeb03eb3c665fece3e0a3e4a430ba8873" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle Group_get_plunger_gate</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_plunger_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="105" column="18" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="105" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a5097a30dbf58eabc2fa89c9d3794adb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle Group_get_reservoir_gate</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_reservoir_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="107" column="18" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="107" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a372dd7b4f85e0dbf744b78e33cbc947e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle Group_get_screening_gate</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_screening_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="109" column="18" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="109" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a3a5f95042327cbb4fa1d29c2dcb6f9d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle Group_get_dot_gate</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_dot_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="111" column="18" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="111" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1acfaf0917e0ad2a7091e5eda3660e907f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle Group_get_gate</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="113" column="18" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="113" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a64a569e3470968120f52da06b0220485" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Group_get_all_gates</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_all_gates</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="115" column="19" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="115" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a971c65782118af94f6e995548a9fa9cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Group_get_all_connections</definition>
+        <argsstring>(GroupHandle handle)</argsstring>
+        <name>Group_get_all_connections</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="117" column="19" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="117" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1aa3e040fc0e127c724c09d5da61cfa3e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_has_ohmic</definition>
+        <argsstring>(GroupHandle handle, ConnectionHandle ohmic)</argsstring>
+        <name>Group_has_ohmic</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>ohmic</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="119" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="119" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a05bf979abd5ea53ad0987a57101d40bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_has_gate</definition>
+        <argsstring>(GroupHandle handle, ConnectionHandle gate)</argsstring>
+        <name>Group_has_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>gate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="121" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="121" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1aa9bdfed9c675a9376dd9a37da223c687" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_has_barrier_gate</definition>
+        <argsstring>(GroupHandle handle, ConnectionHandle barrier_gate)</argsstring>
+        <name>Group_has_barrier_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>barrier_gate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="123" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="123" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a6d634679858dca64d4f8ebe5d6972179" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_has_plunger_gate</definition>
+        <argsstring>(GroupHandle handle, ConnectionHandle plunger_gate)</argsstring>
+        <name>Group_has_plunger_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>plunger_gate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="125" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="125" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1adb6da6f9e80633853bc99ac1195e0c1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_has_reservoir_gate</definition>
+        <argsstring>(GroupHandle handle, ConnectionHandle reservoir_gate)</argsstring>
+        <name>Group_has_reservoir_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>reservoir_gate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="127" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="127" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Group__c__api_8h_1a7f3498091f601598564a7056575a32d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Group_has_screening_gate</definition>
+        <argsstring>(GroupHandle handle, ConnectionHandle screening_gate)</argsstring>
+        <name>Group_has_screening_gate</name>
+        <param>
+          <type>GroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>screening_gate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h" line="130" column="6" declfile="c-api/include/falcon_core/physics/config/core/Group_c_api.h" declline="130" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/autotuner_interfaces/names/Channel_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connections_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>GroupHandle;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">GroupHandle<sp/>Group_copy(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Group_destroy(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_equal(GroupHandle<sp/>handle,<sp/>GroupHandle<sp/>other);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_not_equal(GroupHandle<sp/>handle,<sp/>GroupHandle<sp/>other);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/>Group_to_json_string(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">GroupHandle<sp/>Group_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">GroupHandle<sp/>Group_create(ChannelHandle<sp/><sp/><sp/><sp/><sp/>name,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>num_dots,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionsHandle<sp/>screening_gates,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionsHandle<sp/>reservoir_gates,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionsHandle<sp/>plunger_gates,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionsHandle<sp/>barrier_gates,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionsHandle<sp/>order);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Group_name<sp/>|</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::Group::name<sp/>*/</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">ChannelHandle<sp/>Group_name(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Group_num_dots<sp/>|</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::Group::num_dots<sp/>*/</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Group_num_dots(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Group_order<sp/>|</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::Group::order<sp/>*/</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">GateGeometryArray1DHandle<sp/>Group_order(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Group_has_channel<sp/>|</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::Group::has_channel<sp/>*/</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_has_channel(GroupHandle<sp/>handle,<sp/>ChannelHandle<sp/>channel);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Group_is_charge_sensor<sp/>|</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::Group::is_charge_sensor<sp/>*/</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_is_charge_sensor(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Group_get_all_channel_gates<sp/>|</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::Group::get_all_channel_gates<sp/>*/</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">ConnectionsHandle<sp/>Group_get_all_channel_gates(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">ConnectionsHandle<sp/>Group_screening_gates(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">ConnectionsHandle<sp/>Group_reservoir_gates(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal">ConnectionsHandle<sp/>Group_plunger_gates(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal">ConnectionsHandle<sp/>Group_barrier_gates(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Group_ohmics<sp/>|</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::Group::ohmics<sp/>*/</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">ConnectionsHandle<sp/>Group_ohmics(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal">ConnectionsHandle<sp/>Group_dot_gates(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal">ConnectionHandle<sp/>Group_get_ohmic(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal">ConnectionHandle<sp/>Group_get_barrier_gate(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal">ConnectionHandle<sp/>Group_get_plunger_gate(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal">ConnectionHandle<sp/>Group_get_reservoir_gate(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">ConnectionHandle<sp/>Group_get_screening_gate(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">ConnectionHandle<sp/>Group_get_dot_gate(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal">ConnectionHandle<sp/>Group_get_gate(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">ConnectionsHandle<sp/>Group_get_all_gates(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal">ConnectionsHandle<sp/>Group_get_all_connections(GroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_has_ohmic(GroupHandle<sp/>handle,<sp/>ConnectionHandle<sp/>ohmic);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_has_gate(GroupHandle<sp/>handle,<sp/>ConnectionHandle<sp/>gate);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_has_barrier_gate(GroupHandle<sp/>handle,<sp/>ConnectionHandle<sp/>barrier_gate);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_has_plunger_gate(GroupHandle<sp/>handle,<sp/>ConnectionHandle<sp/>plunger_gate);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_has_reservoir_gate(GroupHandle<sp/><sp/><sp/><sp/><sp/><sp/>handle,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>reservoir_gate);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Group_has_screening_gate(GroupHandle<sp/><sp/><sp/><sp/><sp/><sp/>handle,</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>screening_gate);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/physics/config/core/Group_c_api.h"/>
+  </compounddef>
+</doxygen>

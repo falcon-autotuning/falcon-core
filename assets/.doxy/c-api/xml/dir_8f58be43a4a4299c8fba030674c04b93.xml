@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_8f58be43a4a4299c8fba030674c04b93" kind="dir">
+    <compoundname>c-api/include/falcon_core/physics/device_structures</compoundname>
+    <innerfile refid="Connection__c__api_8h">Connection_c_api.h</innerfile>
+    <innerfile refid="Connections__c__api_8h">Connections_c_api.h</innerfile>
+    <innerfile refid="GateRelations__c__api_8h">GateRelations_c_api.h</innerfile>
+    <innerfile refid="Impedance__c__api_8h">Impedance_c_api.h</innerfile>
+    <innerfile refid="Impedances__c__api_8h">Impedances_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/physics/device_structures/"/>
+  </compounddef>
+</doxygen>

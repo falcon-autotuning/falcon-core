@@ -1,0 +1,521 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="AxesInt__c__api_8h" kind="file" language="C++">
+    <compoundname>AxesInt_c_api.h</compoundname>
+    <includes refid="ListInt__c__api_8h" local="yes">falcon_core/generic/ListInt_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="HDF5Data__c__api_8h" local="yes">c-api/include/falcon_core/communications/HDF5Data_c_api.h</includedby>
+    <includedby refid="Waveform__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</includedby>
+    <includedby refid="UnitSpace__c__api_8h" local="yes">c-api/include/falcon_core/math/UnitSpace_c_api.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>falcon_core/generic/ListInt_c_api.h</label>
+        <link refid="ListInt__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/AxesInt_c_api.h</label>
+        <link refid="AxesInt__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/AxesInt_c_api.h</label>
+        <link refid="AxesInt__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="AxesInt__c__api_8h_1a76f2408809ccc524e4af226267f6918d" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* AxesIntHandle</definition>
+        <argsstring></argsstring>
+        <name>AxesIntHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/math/AxesInt_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a3503e44dbea044ace5a102c04d9ac8b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesIntHandle</type>
+        <definition>AxesIntHandle AxesInt_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>AxesInt_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="15" column="15" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="15" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a952a81ceb480dad95f6e937721ef8c49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesIntHandle</type>
+        <definition>AxesIntHandle AxesInt_copy</definition>
+        <argsstring>(AxesIntHandle handle)</argsstring>
+        <name>AxesInt_copy</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="17" column="15" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="17" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a7f2108e640dfb500a52d0735b52d84d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesIntHandle</type>
+        <definition>AxesIntHandle AxesInt_create</definition>
+        <argsstring>(ListIntHandle data)</argsstring>
+        <name>AxesInt_create</name>
+        <param>
+          <type>ListIntHandle</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="19" column="15" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="19" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a05882f4fd0bffb79661af6ef61a327bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesInt_destroy</definition>
+        <argsstring>(AxesIntHandle handle)</argsstring>
+        <name>AxesInt_destroy</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1ad1835f4402cb602ad2a722733a3a5137" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesInt_push_back</definition>
+        <argsstring>(AxesIntHandle handle, int value)</argsstring>
+        <name>AxesInt_push_back</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a208b6ca84b1d82422e6280e547989c25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t AxesInt_size</definition>
+        <argsstring>(AxesIntHandle handle)</argsstring>
+        <name>AxesInt_size</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="25" column="8" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="25" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1af59d5c0944e188134125aa7bf076adeb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesInt_empty</definition>
+        <argsstring>(AxesIntHandle handle)</argsstring>
+        <name>AxesInt_empty</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="27" column="6" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="27" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a60e7c0e26c77be90e20740cc76b94df2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesInt_erase_at</definition>
+        <argsstring>(AxesIntHandle handle, size_t idx)</argsstring>
+        <name>AxesInt_erase_at</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="29" column="6" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="29" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a7bf3742eeb33fb50f8ea73b5787acb7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AxesInt_clear</definition>
+        <argsstring>(AxesIntHandle handle)</argsstring>
+        <name>AxesInt_clear</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="31" column="6" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="31" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a7e1da3cf905d9669224ba3e198b7d3a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int AxesInt_at</definition>
+        <argsstring>(AxesIntHandle handle, size_t idx)</argsstring>
+        <name>AxesInt_at</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="33" column="5" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="33" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a44f05444d6827eddb0edf3a32d099d2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t AxesInt_items</definition>
+        <argsstring>(AxesIntHandle handle, int *out_buffer, size_t buffer_size)</argsstring>
+        <name>AxesInt_items</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="35" column="8" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="35" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a3efa164c71def1de9d7a36c884915098" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesInt_contains</definition>
+        <argsstring>(AxesIntHandle handle, int value)</argsstring>
+        <name>AxesInt_contains</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="37" column="6" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="37" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a3c52e17a8b8051ae04924bf4b3b59c34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t AxesInt_index</definition>
+        <argsstring>(AxesIntHandle handle, int value)</argsstring>
+        <name>AxesInt_index</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="39" column="8" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="39" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1ad4cf5f88337f3bbfd5e1e3aaa50b241d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesIntHandle</type>
+        <definition>AxesIntHandle AxesInt_intersection</definition>
+        <argsstring>(AxesIntHandle handle, AxesIntHandle other)</argsstring>
+        <name>AxesInt_intersection</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="41" column="15" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="41" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a5c95e31958470f37a69dbe24b8a1b621" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesInt_equal</definition>
+        <argsstring>(AxesIntHandle handle, AxesIntHandle other)</argsstring>
+        <name>AxesInt_equal</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="43" column="6" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="43" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1ae9f314c378a084ac753107c5df379377" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AxesInt_not_equal</definition>
+        <argsstring>(AxesIntHandle handle, AxesIntHandle other)</argsstring>
+        <name>AxesInt_not_equal</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="45" column="6" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="45" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1ad570dc344cc374a783195ea7aa6ed61a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle AxesInt_to_json_string</definition>
+        <argsstring>(AxesIntHandle handle)</argsstring>
+        <name>AxesInt_to_json_string</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="48" column="19" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="48" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="AxesInt__c__api_8h_1a75a076e1e07899c47683c55c79270062" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesIntHandle</type>
+        <definition>AxesIntHandle AxesInt_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>AxesInt_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/AxesInt_c_api.h" line="50" column="15" declfile="c-api/include/falcon_core/math/AxesInt_c_api.h" declline="50" declcolumn="15"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListInt_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>AxesIntHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">AxesIntHandle<sp/>AxesInt_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">AxesIntHandle<sp/>AxesInt_copy(AxesIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">AxesIntHandle<sp/>AxesInt_create(ListIntHandle<sp/>data);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesInt_destroy(AxesIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesInt_push_back(AxesIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>AxesInt_size(AxesIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesInt_empty(AxesIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesInt_erase_at(AxesIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxesInt_clear(AxesIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>AxesInt_at(AxesIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>AxesInt_items(AxesIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesInt_contains(AxesIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>AxesInt_index(AxesIntHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">AxesIntHandle<sp/>AxesInt_intersection(AxesIntHandle<sp/>handle,<sp/>AxesIntHandle<sp/>other);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesInt_equal(AxesIntHandle<sp/>handle,<sp/>AxesIntHandle<sp/>other);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AxesInt_not_equal(AxesIntHandle<sp/>handle,<sp/>AxesIntHandle<sp/>other);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>AxesInt_to_json_string(AxesIntHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">AxesIntHandle<sp/>AxesInt_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/AxesInt_c_api.h"/>
+  </compounddef>
+</doxygen>

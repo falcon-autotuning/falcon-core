@@ -1,0 +1,58 @@
+
+
+# File AnalyticFunction.hpp
+
+[**File List**](files.md) **>** [**cpp**](dir_df511e5bd85cec96854b39d5e1c27aa8.md) **>** [**include**](dir_07f37e320deb3031a60f4b23b9c60eb5.md) **>** [**falcon\_core**](dir_87508f5a35e9f3ffde0c0c6a5e60051b.md) **>** [**math**](dir_deeec2dd49335e06d18546a1be264a01.md) **>** [**AnalyticFunction.hpp**](AnalyticFunction_8hpp.md)
+
+[Go to the documentation of this file](AnalyticFunction_8hpp.md)
+
+
+```C++
+#pragma once
+
+#include "falcon_core/generic/FArray.hpp"
+#include "falcon_core/generic/List.hpp"
+#include "falcon_core/generic/Map.hpp"
+
+namespace falcon_core {
+namespace math {
+
+using VariableName = std::string;
+class AnalyticFunction : public generic::List<VariableName> {
+  std::string                     _expression;
+  mutable std::shared_timed_mutex _mu_expression;
+  void checkSafeEvaluateArgs(
+      const generic::MapSP<VariableName, double>& args) const;
+
+ public:
+  AnalyticFunction(const AnalyticFunction& other);
+  AnalyticFunction& operator=(const AnalyticFunction& other);
+  AnalyticFunction(const generic::ListSP<VariableName>& labels,
+                   const std::string&                   expression);
+  static std::shared_ptr<AnalyticFunction> Identity();
+  static std::shared_ptr<AnalyticFunction> Constant(const double& value);
+  const generic::ListSP<VariableName> labels() const;
+  double evaluate(const generic::MapSP<VariableName, double>& args,
+                  const double&                               time) const;
+  generic::FArraySP<double> evaluate(
+      const generic::MapSP<VariableName, double>& args,
+      const double&                               deltaT,
+      const double&                               maxTime) const;
+  bool operator==(const AnalyticFunction& other) const;
+  bool operator!=(const AnalyticFunction& other) const;
+
+ protected:
+  AnalyticFunction();
+  friend class cereal::access;
+  template <class Archive>
+  void serialize(Archive& ar) {
+    std::shared_lock<std::shared_timed_mutex> lock_expression(_mu_expression);
+    ar(cereal::base_class<generic::List<VariableName>>(this), _expression);
+  }
+};
+using AnalyticFunctionSP = std::shared_ptr<AnalyticFunction>;
+}  // namespace math
+}  // namespace falcon_core
+```
+
+

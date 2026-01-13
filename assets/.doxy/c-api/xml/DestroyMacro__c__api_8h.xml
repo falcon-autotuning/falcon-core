@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="DestroyMacro__c__api_8h" kind="file" language="C++">
+    <compoundname>DestroyMacro_c_api.h</compoundname>
+    <includedby refid="Precompiled__c__api_8h" local="yes">c-api/include/falcon_core/Precompiled_c_api.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/DestroyMacro_c_api.h</label>
+        <link refid="DestroyMacro__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/Precompiled_c_api.h</label>
+        <link refid="Precompiled__c__api_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="DestroyMacro__c__api_8h_1ab92d1c46c60992201a594807e8d606c8" prot="public" static="no">
+        <name>DEFINE_C_API_DESTROY_TEMPLATE</name>
+        <param><defname>CType</defname></param>
+        <param><defname>CPPType</defname></param>
+        <initializer>  void CType##_destroy(CType##Handle handle) {                               \
+    FALCON_C_API_BEGIN                                                       \
+    if (!handle) {                                                           \
+      throw std::invalid_argument(#CType &quot;_destroy: handle cannot be null&quot;); \
+    }                                                                        \
+    delete static_cast&lt;std::shared_ptr&lt;CPPType&gt;*&gt;(handle);                   \
+    FALCON_C_API_END()                                                       \
+  }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/DestroyMacro_c_api.h" line="3" column="9" bodyfile="c-api/include/falcon_core/DestroyMacro_c_api.h" bodystart="3" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="define" id="DestroyMacro__c__api_8h_1afebac28f4dff76c7086c19334d2f7ec4" prot="public" static="no">
+        <name>DEFINE_C_API_DESTROY</name>
+        <param><defname>Type</defname></param>
+        <initializer>DEFINE_C_API_DESTROY_TEMPLATE(Type, Type)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/DestroyMacro_c_api.h" line="13" column="9" bodyfile="c-api/include/falcon_core/DestroyMacro_c_api.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFINE_C_API_DESTROY_TEMPLATE(CType,<sp/>CPPType)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"><sp/><sp/>void<sp/>CType##_destroy(CType##Handle<sp/>handle)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="5"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>FALCON_C_API_BEGIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>if<sp/>(!handle)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::invalid_argument(#CType<sp/>&quot;_destroy:<sp/>handle<sp/>cannot<sp/>be<sp/>null&quot;);<sp/>\</highlight></codeline>
+<codeline lineno="8"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>delete<sp/>static_cast&lt;std::shared_ptr&lt;CPPType&gt;*&gt;(handle);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>FALCON_C_API_END()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFINE_C_API_DESTROY(Type)<sp/>DEFINE_C_API_DESTROY_TEMPLATE(Type,<sp/>Type)</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/DestroyMacro_c_api.h"/>
+  </compounddef>
+</doxygen>

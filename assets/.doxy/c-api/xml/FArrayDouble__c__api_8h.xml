@@ -1,0 +1,1791 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="FArrayDouble__c__api_8h" kind="file" language="C++">
+    <compoundname>FArrayDouble_c_api.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="ListListSizeT__c__api_8h" local="yes">falcon_core/generic/ListListSizeT_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="FArrayInt__c__api_8h" local="yes">c-api/include/falcon_core/generic/FArrayInt_c_api.h</includedby>
+    <includedby refid="ListFArrayDouble__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListFArrayDouble_c_api.h</includedby>
+    <includedby refid="PortTransform__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</includedby>
+    <includedby refid="AnalyticFunction__c__api_8h" local="yes">c-api/include/falcon_core/math/AnalyticFunction_c_api.h</includedby>
+    <includedby refid="UnitSpace__c__api_8h" local="yes">c-api/include/falcon_core/math/UnitSpace_c_api.h</includedby>
+    <includedby refid="ControlArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/ControlArray1D_c_api.h</includedby>
+    <includedby refid="ControlArray__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/ControlArray_c_api.h</includedby>
+    <includedby refid="LabelledControlArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.h</includedby>
+    <includedby refid="LabelledControlArray__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.h</includedby>
+    <includedby refid="LabelledMeasuredArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h</includedby>
+    <includedby refid="LabelledMeasuredArray__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h</includedby>
+    <includedby refid="MeasuredArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/MeasuredArray1D_c_api.h</includedby>
+    <includedby refid="MeasuredArray__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/MeasuredArray_c_api.h</includedby>
+    <includedby refid="VoltageConstraints__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="25">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="23">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementResponse_c_api.h</label>
+        <link refid="MeasurementResponse__c__api_8h_source"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/FArrayInt_c_api.h</label>
+        <link refid="FArrayInt__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/generic/ListControlArray1D_c_api.h</label>
+        <link refid="ListControlArray1D__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>c-api/include/falcon_core/generic/ListControlArray_c_api.h</label>
+        <link refid="ListControlArray__c__api_8h_source"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/generic/ListFArrayDouble_c_api.h</label>
+        <link refid="ListFArrayDouble__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/generic/ListLabelledControlArray1D_c_api.h</label>
+        <link refid="ListLabelledControlArray1D__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>c-api/include/falcon_core/generic/ListLabelledControlArray_c_api.h</label>
+        <link refid="ListLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="ListLabelledMeasuredArray1D__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>c-api/include/falcon_core/generic/ListLabelledMeasuredArray_c_api.h</label>
+        <link refid="ListLabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="ListPairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>c-api/include/falcon_core/generic/ListPortTransform_c_api.h</label>
+        <link refid="ListPortTransform__c__api_8h_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h</label>
+        <link refid="MapInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="PairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
+        <link refid="PortTransform__c__api_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms_c_api.h</label>
+        <link refid="PortTransforms__c__api_8h_source"/>
+      </node>
+      <node id="31">
+        <label>c-api/include/falcon_core/math/AnalyticFunction_c_api.h</label>
+        <link refid="AnalyticFunction__c__api_8h_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/math/AxesControlArray1D_c_api.h</label>
+        <link refid="AxesControlArray1D__c__api_8h_source"/>
+      </node>
+      <node id="36">
+        <label>c-api/include/falcon_core/math/AxesControlArray_c_api.h</label>
+        <link refid="AxesControlArray__c__api_8h_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/math/AxesLabelledControlArray1D_c_api.h</label>
+        <link refid="AxesLabelledControlArray1D__c__api_8h_source"/>
+      </node>
+      <node id="39">
+        <label>c-api/include/falcon_core/math/AxesLabelledControlArray_c_api.h</label>
+        <link refid="AxesLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>c-api/include/falcon_core/math/AxesLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="AxesLabelledMeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="43">
+        <label>c-api/include/falcon_core/math/AxesLabelledMeasuredArray_c_api.h</label>
+        <link refid="AxesLabelledMeasuredArray__c__api_8h_source"/>
+      </node>
+      <node id="32">
+        <label>c-api/include/falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h_source"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/math/arrays/ControlArray1D_c_api.h</label>
+        <link refid="ControlArray1D__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>c-api/include/falcon_core/math/arrays/ControlArray_c_api.h</label>
+        <link refid="ControlArray__c__api_8h_source"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h</label>
+        <link refid="LabelledArraysLabelledControlArray1D__c__api_8h_source"/>
+      </node>
+      <node id="40">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h</label>
+        <link refid="LabelledArraysLabelledControlArray__c__api_8h_source"/>
+      </node>
+      <node id="18">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="44">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.h</label>
+        <link refid="LabelledControlArray1D__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.h</label>
+        <link refid="LabelledControlArray__c__api_8h_source"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledMeasuredArray1D__c__api_8h_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h</label>
+        <link refid="LabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>c-api/include/falcon_core/math/arrays/MeasuredArray1D_c_api.h</label>
+        <link refid="MeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="46">
+        <label>c-api/include/falcon_core/math/arrays/MeasuredArray_c_api.h</label>
+        <link refid="MeasuredArray__c__api_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h</label>
+        <link refid="Adjacency__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h</label>
+        <link refid="VoltageConstraints__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="FArrayDouble__c__api_8h_1a4bbd8af38312f4118b07bf2bf5f68a4d" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* FArrayDoubleHandle</definition>
+        <argsstring></argsstring>
+        <name>FArrayDoubleHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1abe03642c9aa5fd71a44e404d6ada63dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_create_empty</definition>
+        <argsstring>(const size_t *shape, size_t ndim)</argsstring>
+        <name>FArrayDouble_create_empty</name>
+        <param>
+          <type>const size_t *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>ndim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="15" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="15" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1aca400ab90457aff25cd0a36aadf78197" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_copy</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_copy</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="17" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="17" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a54e3e72fa311c864692820a31bbd8383" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_create_zeros</definition>
+        <argsstring>(const size_t *shape, size_t ndim)</argsstring>
+        <name>FArrayDouble_create_zeros</name>
+        <param>
+          <type>const size_t *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>ndim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="19" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="19" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1ac68e070799e08bf758544f16d12354f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_from_shape</definition>
+        <argsstring>(const size_t *shape, size_t ndim)</argsstring>
+        <name>FArrayDouble_from_shape</name>
+        <param>
+          <type>const size_t *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>ndim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="21" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="21" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a0fe8915372b7bea68cb142f5847f6c86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_from_data</definition>
+        <argsstring>(const double *data, const size_t *shape, size_t ndim)</argsstring>
+        <name>FArrayDouble_from_data</name>
+        <param>
+          <type>const double *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>const size_t *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>ndim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="23" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="23" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a0bbd8a3c28b2965c0d9ab0639bec6a7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_destroy</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_destroy</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="25" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="25" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1ad63b8d21215151608b2cf472cbef1f56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t FArrayDouble_size</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_size</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="27" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="27" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1aebcd17eb9668464a0d792c1f2d2533cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t FArrayDouble_dimension</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_dimension</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="29" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="29" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a3c3b89e002fe88963c36e698c53842db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t FArrayDouble_shape</definition>
+        <argsstring>(FArrayDoubleHandle handle, size_t *out_buffer, size_t ndim)</argsstring>
+        <name>FArrayDouble_shape</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>ndim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="31" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="31" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a0e5c0f5fb8f2fd39f8e7c9e014a4caef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t FArrayDouble_data</definition>
+        <argsstring>(FArrayDoubleHandle handle, double *out_buffer, size_t numdata)</argsstring>
+        <name>FArrayDouble_data</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>numdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="33" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="33" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a8abf897f01cb97c9a3d1374c215efadc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_plus_equals_farray</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_plus_equals_farray</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="35" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="35" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a0c68e2f8ce00b0bdc6f4763b1237ddc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_plus_equals_double</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_plus_equals_double</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="37" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="37" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a411aa3de0b32f8f25d493cebd20637f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_plus_equals_int</definition>
+        <argsstring>(FArrayDoubleHandle handle, int other)</argsstring>
+        <name>FArrayDouble_plus_equals_int</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="39" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="39" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a9a7c35f357c2fa809b72760541c9cd64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_plus_farray</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_plus_farray</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="41" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="41" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1ad057976b16d528d3dc73039681930000" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_plus_double</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_plus_double</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="43" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="43" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a76bffb8a3af48c247a4bba77dbac25ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_plus_int</definition>
+        <argsstring>(FArrayDoubleHandle handle, int other)</argsstring>
+        <name>FArrayDouble_plus_int</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="45" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="45" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a08d26a2c8a5738e66b805c2842e68bce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_minus_equals_farray</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_minus_equals_farray</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="47" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="47" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a97034c82bc728b98138b7227864c8eb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_minus_equals_double</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_minus_equals_double</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="49" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="49" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1ae1ec92587b698625692f0fb9151e048e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_minus_equals_int</definition>
+        <argsstring>(FArrayDoubleHandle handle, int other)</argsstring>
+        <name>FArrayDouble_minus_equals_int</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="51" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="51" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1aad1f8e46b81d3885bfdf4229cf596745" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_minus_farray</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_minus_farray</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="53" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="53" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a1d4b3ccb8653010d007502207ffb91b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_minus_double</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_minus_double</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="55" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="55" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a7d5049f320e728857e48ed78d792dde9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_minus_int</definition>
+        <argsstring>(FArrayDoubleHandle handle, int other)</argsstring>
+        <name>FArrayDouble_minus_int</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="57" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="57" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a1e03e4cfa4fb93063ccdcf1b8f244da3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_negation</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_negation</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="59" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="59" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1aea11f41b940029c9704bf7d7c0755742" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_times_equals_farray</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_times_equals_farray</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="61" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="61" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a7e9877d1cdc08e1a5eee1d50114d5ac3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_times_equals_double</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_times_equals_double</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="63" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="63" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a120bd1eb8674af6e70c47f380b2441de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_times_equals_int</definition>
+        <argsstring>(FArrayDoubleHandle handle, int other)</argsstring>
+        <name>FArrayDouble_times_equals_int</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="65" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="65" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a02ed218ef06ae6a8dd97f1a259e6c068" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_times_farray</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_times_farray</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="67" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="67" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a35586008f9e6dad55e030c2d2c93fc06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_times_double</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_times_double</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="69" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="69" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1ace36d0432b74a470272dd973b2a472be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_times_int</definition>
+        <argsstring>(FArrayDoubleHandle handle, int other)</argsstring>
+        <name>FArrayDouble_times_int</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="71" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="71" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a38b6c81cd036ff5ebc8e11c0aa4359a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_divides_equals_farray</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_divides_equals_farray</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="73" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="73" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a98e32ce06385ff7aabd9446c37ca660a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_divides_equals_double</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_divides_equals_double</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="75" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="75" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a75d6d74630d48810c6a2f4272476ff47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_divides_equals_int</definition>
+        <argsstring>(FArrayDoubleHandle handle, int other)</argsstring>
+        <name>FArrayDouble_divides_equals_int</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="77" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="77" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1afb2b18ecf6d5ea6d9f2e4d0056666755" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_divides_farray</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_divides_farray</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="79" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="79" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a67c96bd84b7f9e2900550a3b5b27c653" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_divides_double</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_divides_double</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="81" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="81" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1aa4bbb9e598cc4de93e8c9e6f21cef3e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_divides_int</definition>
+        <argsstring>(FArrayDoubleHandle handle, int other)</argsstring>
+        <name>FArrayDouble_divides_int</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="83" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="83" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a719bae1cf691924bb0de1fe17556c214" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_pow</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_pow</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="85" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="85" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a8dbb26eb51b6f3dd34980f2f6ee1d76d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_double_pow</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_double_pow</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="87" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="87" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1abe3ad096a6c887ba51f227e2a421b600" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_pow_inplace</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_pow_inplace</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="89" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="89" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a41d27a446d37c2dea3ab3d1f4a13a592" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_abs</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_abs</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="91" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="91" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a1d6311388f9550ec1384c25d0133d418" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double FArrayDouble_min</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_min</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="93" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="93" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1aebe996a0fee70bb1dcbc4ecf014c3a97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_min_arraywise</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_min_arraywise</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="95" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="95" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a79abefe7c6a9e1c855a5a4483b1f332e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double FArrayDouble_max</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_max</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="97" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="97" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1af434d312a276dd1da3d62f9c41939849" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_max_arraywise</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_max_arraywise</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="99" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="99" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a4b6167f801f0b20e89d4c3c49ee5df45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool FArrayDouble_equal</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_equal</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="101" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="101" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a2ce990fb35bea2f85e021a3f0fc68929" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool FArrayDouble_not_equal</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_not_equal</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="103" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="103" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a4310cf5bbbbd4d5ebc0c30529c5c9045" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool FArrayDouble_greater_than</definition>
+        <argsstring>(FArrayDoubleHandle handle, double value)</argsstring>
+        <name>FArrayDouble_greater_than</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="105" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="105" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1aab0c0d28cfc16a7b165725f43f023c0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool FArrayDouble_less_than</definition>
+        <argsstring>(FArrayDoubleHandle handle, double value)</argsstring>
+        <name>FArrayDouble_less_than</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="107" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="107" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1aeea4ea38d96b92ffd5941911557e4eef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FArrayDouble_remove_offset</definition>
+        <argsstring>(FArrayDoubleHandle handle, double offset)</argsstring>
+        <name>FArrayDouble_remove_offset</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="109" column="6" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="109" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a9c8121e4b61f470dff3fba9fdf2c4ffc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double FArrayDouble_sum</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_sum</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="111" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="111" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a99f282ff290ae35fc56a409b9fa22b93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_reshape</definition>
+        <argsstring>(FArrayDoubleHandle handle, const size_t *shape, size_t ndims)</argsstring>
+        <name>FArrayDouble_reshape</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>const size_t *</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>ndims</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="113" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="113" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1abd6ae7cde9adcb2be44ebd9e37e58302" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListListSizeTHandle</type>
+        <definition>ListListSizeTHandle FArrayDouble_where</definition>
+        <argsstring>(FArrayDoubleHandle handle, double value)</argsstring>
+        <name>FArrayDouble_where</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="115" column="21" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="115" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a0c64368a9892b1ca62ac936882368038" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_flip</definition>
+        <argsstring>(FArrayDoubleHandle handle, size_t axis)</argsstring>
+        <name>FArrayDouble_flip</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="117" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="117" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a284bfc5bfc59323baf3c5adb3c4e7271" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t FArrayDouble_full_gradient</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>FArrayDouble_full_gradient</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="119" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="119" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a5bcb415d3de09e9451dc22f8dc4e7bdf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_gradient</definition>
+        <argsstring>(FArrayDoubleHandle handle, size_t axis)</argsstring>
+        <name>FArrayDouble_gradient</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="121" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="121" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a355ca02b9a3017560426e924cf4649ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double FArrayDouble_get_sum_of_squares</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_get_sum_of_squares</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="123" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="123" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a7467087173ed4fe8fbf5379e85be085b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double FArrayDouble_get_summed_diff_int_of_squares</definition>
+        <argsstring>(FArrayDoubleHandle handle, int other)</argsstring>
+        <name>FArrayDouble_get_summed_diff_int_of_squares</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="125" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="125" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a5e35c484266c1db4bc1e1d6c55366426" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double FArrayDouble_get_summed_diff_double_of_squares</definition>
+        <argsstring>(FArrayDoubleHandle handle, double other)</argsstring>
+        <name>FArrayDouble_get_summed_diff_double_of_squares</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="127" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="127" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1aed7d78554c897cd9ac0b3142ec3792fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double FArrayDouble_get_summed_diff_array_of_squares</definition>
+        <argsstring>(FArrayDoubleHandle handle, FArrayDoubleHandle other)</argsstring>
+        <name>FArrayDouble_get_summed_diff_array_of_squares</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="129" column="8" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="129" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a8d4564bc981b15b1ec7df768a1bb09b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+        <definition>StringHandle FArrayDouble_to_json_string</definition>
+        <argsstring>(FArrayDoubleHandle handle)</argsstring>
+        <name>FArrayDouble_to_json_string</name>
+        <param>
+          <type>FArrayDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="131" column="19" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="131" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="FArrayDouble__c__api_8h_1a8c160bb769cc9f9ef211339b0bd59e1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle FArrayDouble_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>FArrayDouble_from_json_string</name>
+        <param>
+          <type><ref refid="structstring" kindref="compound">StringHandle</ref></type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" line="133" column="20" declfile="c-api/include/falcon_core/generic/FArrayDouble_c_api.h" declline="133" declcolumn="20"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListListSizeT_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>FArrayDoubleHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_create_empty(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>shape,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ndim);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_copy(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_create_zeros(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>shape,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ndim);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_from_shape(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>shape,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ndim);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_from_data(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>shape,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ndim);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_destroy(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>FArrayDouble_size(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>FArrayDouble_dimension(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>FArrayDouble_shape(FArrayDoubleHandle<sp/>handle,</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ndim);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>FArrayDouble_data(FArrayDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numdata);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_plus_equals_farray(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_plus_equals_double(FArrayDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_plus_equals_int(FArrayDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_plus_farray(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_plus_double(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_plus_int(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_minus_equals_farray(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_minus_equals_double(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_minus_equals_int(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_minus_farray(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_minus_double(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_minus_int(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_negation(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_times_equals_farray(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_times_equals_double(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_times_equals_int(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_times_farray(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_times_double(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_times_int(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_divides_equals_farray(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_divides_equals_double(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_divides_equals_int(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_divides_farray(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_divides_double(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_divides_int(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_pow(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_double_pow(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_pow_inplace(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_abs(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FArrayDouble_min(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_min_arraywise(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FArrayDouble_max(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_max_arraywise(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>FArrayDouble_equal(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>FArrayDouble_not_equal(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>FArrayDouble_greater_than(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>FArrayDouble_less_than(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FArrayDouble_remove_offset(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>offset);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FArrayDouble_sum(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_reshape(FArrayDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">*<sp/>shape,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ndims);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">ListListSizeTHandle<sp/>FArrayDouble_where(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_flip(FArrayDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>FArrayDouble_full_gradient(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_gradient(FArrayDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FArrayDouble_get_sum_of_squares(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FArrayDouble_get_summed_diff_int_of_squares(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FArrayDouble_get_summed_diff_double_of_squares(FArrayDoubleHandle<sp/>handle,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FArrayDouble_get_summed_diff_array_of_squares(FArrayDoubleHandle<sp/>handle,<sp/>FArrayDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><ref refid="structstring" kindref="compound">StringHandle</ref><sp/><sp/><sp/><sp/><sp/><sp/>FArrayDouble_to_json_string(FArrayDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal">FArrayDoubleHandle<sp/>FArrayDouble_from_json_string(<ref refid="structstring" kindref="compound">StringHandle</ref><sp/>json);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/FArrayDouble_c_api.h"/>
+  </compounddef>
+</doxygen>

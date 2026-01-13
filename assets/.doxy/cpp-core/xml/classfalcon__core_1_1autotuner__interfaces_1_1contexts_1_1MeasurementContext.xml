@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::autotuner_interfaces::contexts::MeasurementContext</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext" prot="public" virt="non-virtual">falcon_core::autotuner_interfaces::contexts::BaseContext</basecompoundref>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::MeasurementContext::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" line="13" column="16" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1adab4021494828ea5147b4ff18653136a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::contexts::MeasurementContext::MeasurementContext</definition>
+        <argsstring>()</argsstring>
+        <name>MeasurementContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::MeasurementContext::MeasurementContext</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" line="14" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1a0b4ff2b64c50931e1c76c01cd6e8c4ca" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::autotuner_interfaces::contexts::MeasurementContext::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::MeasurementContext::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" line="16" column="8" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" bodystart="16" bodyend="18"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1ab96403e5ec3b2d5c8d71ab0006171ed0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::contexts::MeasurementContext::MeasurementContext</definition>
+        <argsstring>(const MeasurementContext &amp;other)</argsstring>
+        <name>MeasurementContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::MeasurementContext::MeasurementContext</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">MeasurementContext</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" line="21" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1ad16d1768a2bb8caebf1f6215caf42a04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">MeasurementContext</ref> &amp;</type>
+        <definition>MeasurementContext &amp; falcon_core::autotuner_interfaces::contexts::MeasurementContext::operator=</definition>
+        <argsstring>(const MeasurementContext &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::MeasurementContext::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">MeasurementContext</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" line="22" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1a09e48795e94ecab4a066c35eefc9eb3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::contexts::MeasurementContext::MeasurementContext</definition>
+        <argsstring>(const physics::device_structures::ConnectionSP &amp;connection, const instrument_interfaces::names::Instrument &amp;instrument_type)</argsstring>
+        <name>MeasurementContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::MeasurementContext::MeasurementContext</qualifiedname>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>connection</declname>
+        </param>
+        <param>
+          <type>const instrument_interfaces::names::Instrument &amp;</type>
+          <declname>instrument_type</declname>
+        </param>
+        <briefdescription>
+<para>Constructs the measurement context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>connection</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device connection. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>instrument_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of instrument. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" line="28" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1aa50da856907ef27106516aa4baa82de7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::contexts::MeasurementContext::MeasurementContext</definition>
+        <argsstring>(const contexts::BaseContextSP &amp;acquisition_context)</argsstring>
+        <name>MeasurementContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::MeasurementContext::MeasurementContext</qualifiedname>
+        <param>
+          <type>const contexts::BaseContextSP &amp;</type>
+          <declname>acquisition_context</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a MeasururementContext from an <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1AcquisitionContext" kindref="compound">AcquisitionContext</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>acquisition_context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The acquisition context. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" line="36" column="3"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::autotuner_interfaces::contexts::BaseContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::contexts::MeasurementContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::autotuner_interfaces::contexts::BaseContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::contexts::MeasurementContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" line="11" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" bodystart="11" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1adc9c4705469bc48dfc772d6cd5501091" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>BaseContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a58a394682cf210574e4fb0cf19d2b789" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>BaseContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a5fbbb9d3dc5abc9bac276b36d97e257e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>BaseContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1aff418c18e508b103febbf6e8c0447f66" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>BaseContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a9d0c9bc345d5ee95d6dee76634412809" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>connection</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a26782e81ceea6067763a9fafa846f192" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>instrument_type</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1adab4021494828ea5147b4ff18653136a" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>MeasurementContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1ab96403e5ec3b2d5c8d71ab0006171ed0" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>MeasurementContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1a09e48795e94ecab4a066c35eefc9eb3f" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>MeasurementContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1aa50da856907ef27106516aa4baa82de7" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>MeasurementContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a10df8d786f7df3e9a4ffc5ed63ae7a87" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1ad16d1768a2bb8caebf1f6215caf42a04" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a8ddc469146985fbc253bd56dab42294b" prot="public" virt="non-virtual" ambiguityscope="falcon_core::autotuner_interfaces::contexts::BaseContext::"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1adaa624a8f329adfe51d74552e1b99fea" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext_1a0b4ff2b64c50931e1c76c01cd6e8c4ca" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::autotuner_interfaces::contexts::MeasurementContext</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

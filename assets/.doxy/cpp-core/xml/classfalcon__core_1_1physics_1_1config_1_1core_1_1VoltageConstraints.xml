@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::physics::config::core::VoltageConstraints</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <includes refid="VoltageConstraints_8hpp" local="no">VoltageConstraints.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a75ef295252732e562382fa78226ec286" prot="private" static="no" mutable="no">
+        <type><ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">generic::FArray</ref>&lt; double &gt;</type>
+        <definition>generic::FArray&lt;double&gt; falcon_core::physics::config::core::VoltageConstraints::_matrix</definition>
+        <argsstring></argsstring>
+        <name>_matrix</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::_matrix</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="16" column="27" bodyfile="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1acf3e6cff3a17262f98341d1b6fccd1ef" prot="private" static="no" mutable="no">
+        <type>AdjacencySP</type>
+        <definition>AdjacencySP falcon_core::physics::config::core::VoltageConstraints::_adjacency</definition>
+        <argsstring></argsstring>
+        <name>_adjacency</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::_adjacency</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="17" column="35" bodyfile="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1af40e916918f56a7b1d53f22042dabae0" prot="private" static="no" mutable="no">
+        <type><ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">generic::FArray</ref>&lt; double &gt;</type>
+        <definition>generic::FArray&lt;double&gt; falcon_core::physics::config::core::VoltageConstraints::_limits</definition>
+        <argsstring></argsstring>
+        <name>_limits</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::_limits</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="18" column="27" bodyfile="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a07305fda1befe9689600c04cbb82b587" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::core::VoltageConstraints::_mu_matrix</definition>
+        <argsstring></argsstring>
+        <name>_mu_matrix</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::_mu_matrix</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="19" column="35" bodyfile="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a17d78bdbe5d8631e1269c00504e5534a" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::core::VoltageConstraints::_mu_adjacency</definition>
+        <argsstring></argsstring>
+        <name>_mu_adjacency</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::_mu_adjacency</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="20" column="35" bodyfile="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a17f333fe7a8586fa8ecf0fde3c4e9079" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::core::VoltageConstraints::_mu_limits</definition>
+        <argsstring></argsstring>
+        <name>_mu_limits</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::_mu_limits</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="21" column="35" bodyfile="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="50" column="16" bodyfile="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1af2832a7d8dd8ce871c8100bc2c42e3a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::core::VoltageConstraints::VoltageConstraints</definition>
+        <argsstring>(const VoltageConstraints &amp;other)</argsstring>
+        <name>VoltageConstraints</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::VoltageConstraints</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints" kindref="compound">VoltageConstraints</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="24" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a17618fd003938b9effec07421f5e1d0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints" kindref="compound">VoltageConstraints</ref> &amp;</type>
+        <definition>VoltageConstraints &amp; falcon_core::physics::config::core::VoltageConstraints::operator=</definition>
+        <argsstring>(const VoltageConstraints &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints" kindref="compound">VoltageConstraints</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="25" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a530cb7d6e4ceed361261e5913f474dff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::core::VoltageConstraints::VoltageConstraints</definition>
+        <argsstring>(const AdjacencySP adjacency, double max_safe_diff, std::pair&lt; double, double &gt; bounds)</argsstring>
+        <name>VoltageConstraints</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::VoltageConstraints</qualifiedname>
+        <param>
+          <type>const AdjacencySP</type>
+          <declname>adjacency</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max_safe_diff</declname>
+        </param>
+        <param>
+          <type>std::pair&lt; double, double &gt;</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="26" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a60848e2068a4d560a78e1850adb2a369" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">generic::FArray</ref>&lt; double &gt; &amp;</type>
+        <definition>const generic::FArray&lt; double &gt; &amp; falcon_core::physics::config::core::VoltageConstraints::matrix</definition>
+        <argsstring>() const</argsstring>
+        <name>matrix</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::matrix</qualifiedname>
+        <briefdescription>
+<para>The constraint matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="32" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a57c3dcb5ce39d7272a7d4131a7b7fbd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">generic::FArray</ref>&lt; double &gt; &amp;</type>
+        <definition>const generic::FArray&lt; double &gt; &amp; falcon_core::physics::config::core::VoltageConstraints::matrix</definition>
+        <argsstring>()</argsstring>
+        <name>matrix</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::matrix</qualifiedname>
+        <briefdescription>
+<para>The constraint matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="36" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a6d634e65692f6d034671e156725081f2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const AdjacencySP</type>
+        <definition>const AdjacencySP falcon_core::physics::config::core::VoltageConstraints::adjacency</definition>
+        <argsstring>() const</argsstring>
+        <name>adjacency</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::adjacency</qualifiedname>
+        <briefdescription>
+<para>The adjacency matrix used to understand the device layout. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="40" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a5650e0855d1d149c721af189da190f63" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">generic::FArray</ref>&lt; double &gt; &amp;</type>
+        <definition>const generic::FArray&lt; double &gt; &amp; falcon_core::physics::config::core::VoltageConstraints::limits</definition>
+        <argsstring>() const</argsstring>
+        <name>limits</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::limits</qualifiedname>
+        <briefdescription>
+<para>The y axis vector safe voltage limits for each constraint. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="44" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1aef83c16713afbf91d7f74b30e13b61b1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::core::VoltageConstraints::operator==</definition>
+        <argsstring>(const VoltageConstraints &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints" kindref="compound">VoltageConstraints</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="45" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a27fb6cb82d32fe4115b09b6511974f52" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::core::VoltageConstraints::operator!=</definition>
+        <argsstring>(const VoltageConstraints &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints" kindref="compound">VoltageConstraints</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="46" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a8401a1968aaa58f57cc08ac5c789b2ea" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::core::VoltageConstraints::VoltageConstraints</definition>
+        <argsstring>()</argsstring>
+        <name>VoltageConstraints</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::VoltageConstraints</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="49" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a65cbc10f95b62433751e737cf71128fa" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::physics::config::core::VoltageConstraints::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::physics::config::core::VoltageConstraints::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="52" column="8" bodyfile="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" bodystart="52" bodyend="61"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Contains a ready to use voltage constrains matrix and matching limits for each constraint. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::core::VoltageConstraints</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::core::VoltageConstraints</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" line="15" column="1" bodyfile="cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp" bodystart="15" bodyend="62"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1acf3e6cff3a17262f98341d1b6fccd1ef" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>_adjacency</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1af40e916918f56a7b1d53f22042dabae0" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>_limits</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a75ef295252732e562382fa78226ec286" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>_matrix</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a17d78bdbe5d8631e1269c00504e5534a" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>_mu_adjacency</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a17f333fe7a8586fa8ecf0fde3c4e9079" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>_mu_limits</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a07305fda1befe9689600c04cbb82b587" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>_mu_matrix</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a6d634e65692f6d034671e156725081f2" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>adjacency</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a5650e0855d1d149c721af189da190f63" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>limits</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a60848e2068a4d560a78e1850adb2a369" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>matrix</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a57c3dcb5ce39d7272a7d4131a7b7fbd2" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>matrix</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a27fb6cb82d32fe4115b09b6511974f52" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a17618fd003938b9effec07421f5e1d0c" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1aef83c16713afbf91d7f74b30e13b61b1" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a65cbc10f95b62433751e737cf71128fa" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1af2832a7d8dd8ce871c8100bc2c42e3a5" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>VoltageConstraints</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a530cb7d6e4ceed361261e5913f474dff" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>VoltageConstraints</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints_1a8401a1968aaa58f57cc08ac5c789b2ea" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>VoltageConstraints</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::VoltageConstraints</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
