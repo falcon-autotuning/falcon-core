@@ -7,29 +7,46 @@ repo_name: falcon-autotuning/falcon-core
 theme:
   name: material
   palette:
-    # Light mode
-    - scheme: default
-      primary: indigo
-      accent: indigo
+    - media: "(prefers-color-scheme)"
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/brightness-auto
+        name: "Switch to light mode"
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: pink
+      accent: pink
       toggle:
         icon: material/brightness-7
-        name: Switch to dark mode
-    # Dark mode
-    - scheme: slate
-      primary: indigo
-      accent: indigo
+        name: "Switch to dark mode"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: pink
+      accent: pink
       toggle:
         icon: material/brightness-4
-        name: Switch to light mode
+        name: "Switch to system preference"
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.preview
+    - navigation.instant.progress
+    - navigation.path
+    - navigation.tracking
     - search.suggest
     - search.highlight
     - content.code.copy
     - content.code.annotate
+    - content.tabs.link
+    - announce.dismiss
+    - toc.follow
+  logo: assets/icons/icon-256.png
+  favicon: assets/icons/icon-256.png
 
 nav:
   - Home: index.md
@@ -40,20 +57,10 @@ nav:
       - C++ Core: cpp-core.md
       - C API: c-api.md
       - Documentation Generation: code-docs.md
-      - API Docs Setup: api-docs-setup.md
-
-# Note: API Reference documentation will be generated via Doxygen
-# To integrate Doxygen-generated API docs:
-# 1. Install doxygen and doxypypy plugins for MkDocs:
-#    pip install mkdocs-material mkdoxy
-# 2. Add to plugins section:
-#    - mkdoxy:
-#        projects:
-#          cpp:
-#            src-dirs: cpp/include
-#          c-api:
-#            src-dirs: c-api/include
-# 3. Uncomment the API Reference section above
+  - API Reference:
+      # point explicitly to mkdoxy-generated index files
+      - C++ API: cpp-core/index.md
+      - C API: c-api/index.md
 
 markdown_extensions:
   - admonition
@@ -69,17 +76,20 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - attr_list
   - md_in_html
 
 plugins:
   - search
-
-# Note: Install additional plugins with:
-# pip install mkdocs-material
+  - mkdoxy:
+      projects:
+        # rename project key from `cpp` -> `cpp-core` so mkdoxy generates docs/cpp-core/
+        cpp-core:
+          src-dirs: cpp/include
+          full-doc: true
+        c-api:
+          src-dirs: c-api/include
+          full-doc: true
 
 extra:
   social:
@@ -87,5 +97,3 @@ extra:
       link: https://github.com/falcon-autotuning/falcon-core
   version:
     provider: mike
-
-copyright: Copyright &copy; 2023-2024 Tyler Kovach, Daniel Schug, Zachery Merino

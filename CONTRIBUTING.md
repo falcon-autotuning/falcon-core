@@ -1,222 +1,50 @@
 # Contributing to Falcon Core
 
-Thank you for your interest in contributing to Falcon Core! This document provides guidelines and instructions for contributing.
+Help wanted! We'd love your contributions to Falcon core.
+Please review the following guidelines before contributing.
+Also, feel free to propose changes to these guidelines by updating this file and submitting a pull request.
 
-## Code of Conduct
+- [I have a question...](#questions)
+- [I found a bug...](#bugs)
+- [I have a feature request...](#features)
+- [I have a contribution to share...](#process)
 
-We are committed to providing a welcoming and inclusive environment. Please be respectful and professional in all interactions.
+## <a id="questions"></a> Have a Question?
 
-## How to Contribute
+Please don't open a GitHub issue for questions about how to use `falcon-core`, as the goal is to use issues for managing bugs and feature requests. Issues that are related to general support will be closed and redirected to [discussions](https://github.com/falcon-autotuning/falcon-core/discussions).
 
-### Reporting Issues
+For all support related questions, please [open a discussion post](https://github.com/falcon-autotuning/falcon-core/discussions/new/choose).
 
-If you find a bug or have a feature request:
+## <a id="bugs"></a> Found a Bug?
 
-1. **Check existing issues** to avoid duplicates
-2. **Create a new issue** with a clear title and description
-3. **Include details**:
-   - Steps to reproduce (for bugs)
-   - Expected vs actual behavior
-   - Your environment (OS, compiler version, etc.)
-   - Relevant logs or error messages
+If you've identified a bug in `falcon-core`, please [submit an issue](#issue) to our GitHub repo: [falcon-autotuning/falcon-core](https://github.com/falcon-autotuning/falcon-core/issues/new). Please also feel free to submit a [Pull Request](#pr) with a fix for the bug!
 
-### Proposing Changes
+## <a id="features"></a> Have a Feature Request?
 
-For significant changes:
+All feature requests should start with [submitting an issue](#issue) documenting the user story and acceptance criteria. Again, feel free to submit a [Pull Request](#pr) with a proposed implementation of the feature.
 
-1. **Open an issue** to discuss the change before implementing
-2. **Get feedback** from maintainers
-3. **Implement** once the approach is agreed upon
+## <a id="process"></a> Ready to Contribute
 
-### Submitting Pull Requests
+### <a id="issue"></a> Create an issue
 
-1. **Fork the repository** and create a feature branch
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+Before submitting a new issue, please search the issues to make sure there isn't a similar issue doesn't already exist.
 
-2. **Make your changes** following our coding standards (see below)
+Assuming no existing issues exist, please ensure you include required information when submitting the issue to ensure we can quickly reproduce your issue.
 
-3. **Write tests** for your changes
+We may have additional questions and will communicate through the GitHub issue, so please respond back to our questions to help reproduce and resolve the issue as quickly as possible.
 
-4. **Update documentation** as needed
+New issues can be created with in our [GitHub repo](https://github.com/falcon-autotuning/falcon-core/issues/new).
 
-5. **Ensure all tests pass**:
-   ```bash
-   cd cpp && make test
-   cd ../c-api && make test
-   ```
+### <a id="pr"></a>Pull Requests
 
-6. **Run the documentation pipeline** if you changed APIs:
-   ```bash
-   make -f code_docs/capi_docs/capi_docs.mk docs-all
-   ```
+Pull requests should target the `main` branch. Please also reference the issue from the description of the pull request using [special keyword syntax](https://help.github.com/articles/closing-issues-via-commit-messages/) to auto close the issue when the PR is merged. For example, include the phrase `fixes #14` in the PR description to have issue #14 auto close.
 
-7. **Commit your changes** with clear, descriptive commit messages:
-   ```
-   type(scope): brief description
-   
-   Detailed explanation of changes
-   ```
+### <a id="style"></a> Styleguide
 
-8. **Push to your fork** and create a pull request
+When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible.
 
-9. **Respond to feedback** from reviewers
+### License
 
-## Development Setup
+By contributing your code, you agree to license your contribution under the terms of the [BSDv3](LICENSE.txt).
 
-See the [Developer Guide](docs/developer-guide.md) for detailed setup instructions.
-
-Quick start:
-```bash
-# Clone the repository
-git clone https://github.com/falcon-autotuning/falcon-core.git
-cd falcon-core
-
-# Build C++ core
-cd cpp
-make clean-all
-make all
-
-# Build C API
-cd ../c-api
-make all
-```
-
-## Coding Standards
-
-### C++ Code
-
-- **Standard**: C++14
-- **Formatting**: Use `.clang-format` configuration
-  ```bash
-  clang-format -i path/to/file.cpp
-  ```
-- **Naming Conventions**:
-  - Classes: `PascalCase`
-  - Functions/variables: `snake_case`
-  - Constants: `SCREAMING_SNAKE_CASE`
-  - Private members: `snake_case_` (trailing underscore)
-
-### C API Code
-
-- **Types**: `FalconTypeName` (PascalCase)
-- **Functions**: `falcon_module_action` (snake_case with prefix)
-- **Constants**: `FALCON_CONSTANT_NAME`
-
-### Python Code
-
-- **Standard**: PEP 8
-- **Type hints**: Use type annotations
-- **Docstrings**: Google style
-
-## Documentation
-
-All public APIs must be documented:
-
-### C++ (Doxygen)
-
-```cpp
-/**
- * @brief Brief description
- * 
- * Detailed description.
- * 
- * @param param Description
- * @return Description
- */
-```
-
-### Python (Docstrings)
-
-```python
-def function(param: int) -> bool:
-    """Brief description.
-    
-    Detailed description.
-    
-    Args:
-        param: Description
-        
-    Returns:
-        Description
-    """
-```
-
-## Testing
-
-- Write unit tests for all new functionality
-- Ensure existing tests still pass
-- Aim for high test coverage (>80%)
-
-Run tests:
-```bash
-# C++ tests
-cd cpp
-make test
-
-# C API tests
-cd c-api
-make test
-
-# Python tests
-cd src
-python -m pytest
-```
-
-## Documentation Changes
-
-When updating documentation:
-
-1. Edit markdown files in `docs/`
-2. Test locally with MkDocs:
-   ```bash
-   mkdocs serve
-   ```
-3. Verify formatting and links work correctly
-
-## Review Process
-
-1. **Automated checks** must pass (CI/CD)
-2. **Code review** by at least one maintainer
-3. **Address feedback** and update PR
-4. **Approval** required before merging
-5. **Squash merge** preferred to keep history clean
-
-## What to Contribute
-
-We welcome contributions in many forms:
-
-- **Bug fixes**
-- **New features** (discuss first via issue)
-- **Performance improvements**
-- **Documentation improvements**
-- **Test additions**
-- **Code refactoring**
-- **Examples and tutorials**
-
-## Getting Help
-
-- **Documentation**: Read the docs in `docs/`
-- **Issues**: Ask questions via GitHub issues
-- **Discussions**: Use GitHub Discussions for broader questions
-
-## License
-
-By contributing, you agree that your contributions will be licensed under the BSD 3-Clause License. See [LICENSE.txt](LICENSE.txt) for details.
-
-## Recognition
-
-Contributors will be recognized in:
-- Git commit history
-- Release notes (for significant contributions)
-- Project README (for major contributors)
-
-## Questions?
-
-If you have questions about contributing, feel free to:
-- Open an issue with the question
-- Ask in GitHub Discussions
-- Contact the maintainers
-
-Thank you for contributing to Falcon Core!
+All files are released with the BSDv3 license.
