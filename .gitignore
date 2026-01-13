@@ -74,6 +74,9 @@ docs/_notebooks
 docs/api/generated/
 docs/_auto
 
+# MkDocs build output
+site/
+
 # PyBuilder
 target/
 

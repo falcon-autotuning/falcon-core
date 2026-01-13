@@ -36,8 +36,8 @@ For development setup and guidelines, see the [Developer Guide](developer-guide.
 
 ## License
 
-This project is licensed under the BSD 3-Clause License. See [LICENSE.txt](../LICENSE.txt) for details.
+This project is licensed under the BSD 3-Clause License. See the LICENSE.txt file in the repository root for details.
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines on how to contribute to this project.
+We welcome contributions! Please see the CONTRIBUTING.md file in the repository root for guidelines on how to contribute to this project.
