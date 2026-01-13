@@ -5,10 +5,12 @@ This guide covers installation of Falcon Core for different use cases.
 ## Overview
 
 Falcon Core can be installed in several ways:
+
 - From source (for development)
 - Via package manager (for users on Arch Linux)
 
-For Python and other high-level language bindings, see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs).
+For Python and other high-level language bindings, see [falcon-core-libs](https://github.com/falcon-autotuning/falcon-core-libs)
+=======
 
 ## Dependencies
 
@@ -85,6 +87,7 @@ cd ../..
 ```
 
 For development version:
+
 ```bash
 cd packaging/falcon-core-cpp-dev
 makepkg -si
@@ -115,22 +118,26 @@ cd ../..
 #### Build C++ Core
 
 1. **Navigate to cpp directory**:
+
    ```bash
    cd cpp
    ```
 
 2. **Initial build** (first time or after major changes):
+
    ```bash
    make clean-all
    make all
    ```
 
 3. **Subsequent builds**:
+
    ```bash
    make build
    ```
 
 4. **Run tests**:
+
    ```bash
    make test
    ```
@@ -140,11 +147,13 @@ cd ../..
 The C API requires the C++ core to be built first.
 
 1. **Navigate to c-api directory**:
+
    ```bash
    cd c-api
    ```
 
 2. **Build**:
+
    ```bash
    make all
    ```
@@ -176,6 +185,7 @@ make test
 If vcpkg fails to install dependencies:
 
 1. **Update vcpkg**:
+
    ```bash
    cd /path/to/vcpkg
    git pull
@@ -183,6 +193,7 @@ If vcpkg fails to install dependencies:
    ```
 
 2. **Clear vcpkg cache**:
+
    ```bash
    vcpkg remove --outdated
    vcpkg install --clean-after-build
@@ -193,17 +204,20 @@ If vcpkg fails to install dependencies:
 If compilation fails:
 
 1. **Clean build artifacts**:
+
    ```bash
    make clean
    make clean-all
    ```
 
 2. **Check compiler version**:
+
    ```bash
    clang --version  # Should be reasonably recent
    ```
 
 3. **Verify dependencies**:
+
    ```bash
    vcpkg list
    ```
@@ -213,11 +227,13 @@ If compilation fails:
 If you encounter runtime errors:
 
 1. **Run with sanitizers**:
+
    ```bash
    make build-and-sanitize
    ```
 
 2. **Check library path**:
+
    ```bash
    export LD_LIBRARY_PATH=/path/to/falcon-core/dist/c_api:$LD_LIBRARY_PATH
    ```
@@ -226,7 +242,7 @@ If you encounter runtime errors:
 
 ### Linux
 
-Falcon Core is primarily developed and tested on Linux. Both Arch Linux and Ubuntu are supported.
+Falcon Core is primarily developed and tested on Arch Linux.
 
 ### macOS
 
@@ -254,6 +270,7 @@ Windows support is limited. Consider using WSL (Windows Subsystem for Linux) for
 ## Next Steps
 
 After installation:
+
 - Read the [Developer Guide](developer-guide.md) for development setup
 - Explore the [C++ Core Documentation](cpp-core.md)
 - Check out the [C API Documentation](c-api.md)
@@ -261,6 +278,7 @@ After installation:
 ## Getting Help
 
 If you encounter issues:
+
 1. Check the [troubleshooting section](#troubleshooting)
 2. Review the logs in `code_docs/capi_docs/logs/`
 3. Open an issue on GitHub with:

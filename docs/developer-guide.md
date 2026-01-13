@@ -12,23 +12,26 @@ This guide covers development workflows, coding standards, and best practices fo
    - ninja (build system)
    - ccache (recommended for faster builds)
 3. **Version Control**: git
-4. **Python**: Python 3.12+ (for documentation generation scripts)
+4. **Python**: Python 3.12+ (for Python bindings and scripts)
 
 ### Initial Setup
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/falcon-autotuning/falcon-core.git
    cd falcon-core
    ```
 
 2. **Install vcpkg** (if not already installed):
+
    ```bash
    # Follow instructions at:
    # https://learn.microsoft.com/en-us/vcpkg/get_started/overview
    ```
 
 3. **Build the C++ core**:
+
    ```bash
    cd cpp
    make clean-all
@@ -36,6 +39,7 @@ This guide covers development workflows, coding standards, and best practices fo
    ```
 
 4. **Build the C API**:
+
    ```bash
    cd ../c-api
    make all
@@ -46,6 +50,7 @@ This guide covers development workflows, coding standards, and best practices fo
 ### Making Changes
 
 1. **Create a feature branch**:
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -53,16 +58,19 @@ This guide covers development workflows, coding standards, and best practices fo
 2. **Make your changes** in the appropriate directory:
    - C++ core: `cpp/`
    - C API: `c-api/`
-   - Documentation: `docs/`
 
-3. **Build and test frequently**:
+- Documentation: `docs/`
+
+1. **Build and test frequently**:
+
    ```bash
    # In cpp/ or c-api/
    make build
    make test
    ```
 
-4. **Format your code**:
+2. **Format your code**:
+
    ```bash
    # Code is auto-formatted using .clang-format
    clang-format -i path/to/file.cpp
@@ -108,11 +116,13 @@ make build-and-sanitize
 ```
 
 This enables multiple sanitizers:
+
 - **AddressSanitizer**: Detects memory errors (buffer overflows, use-after-free, etc.)
 - **UndefinedBehaviorSanitizer**: Detects undefined behavior (null pointer dereference, integer overflow, etc.)
 - **LeakSanitizer**: Detects memory leaks
 
 When a sanitizer detects an issue, it will:
+
 1. Print a detailed error report to stderr
 2. Exit the program with a non-zero status
 3. Provide a stack trace showing where the issue occurred
@@ -127,6 +137,7 @@ gdb ./test_executable
 ```
 
 Common GDB commands:
+
 ```
 (gdb) break main
 (gdb) run
@@ -196,6 +207,7 @@ int my_function(int param_name, const char* another_param);
 C API documentation is auto-generated from C++ documentation. Ensure the C++ documentation is complete and accurate.
 
 For special cases, add manual mappings in:
+
 ```
 code_docs/capi_docs/c-api_user_maps/
 ```
@@ -210,6 +222,7 @@ make -f code_docs/capi_docs/capi_docs.mk docs-all
 ```
 
 This runs:
+
 1. Extract C++ documentation
 2. Generate mappings
 3. Inject documentation into C API
@@ -239,7 +252,7 @@ mkdocs serve
 mkdocs build
 ```
 
-Visit http://localhost:8000 to view the documentation.
+Visit <http://localhost:8000> to view the documentation.
 
 ## Common Tasks
 
@@ -250,6 +263,7 @@ Visit http://localhost:8000 to view the documentation.
 3. Implement in `cpp/src/`
 4. Add tests in `cpp/tests/`
 5. Build and test:
+
    ```bash
    cd cpp
    make build
@@ -263,53 +277,25 @@ Visit http://localhost:8000 to view the documentation.
 3. Implement wrapper in `c-api/src/`
 4. Add tests in `c-api/tests/`
 5. Run documentation pipeline:
+
    ```bash
    make -f code_docs/capi_docs/capi_docs.mk docs-all
    ```
+
 6. Build and test:
+
    ```bash
    cd c-api
    make build
    make test
    ```
 
-## Git Workflow
-
-### Commit Messages
-
-Follow conventional commits:
-
-```
-type(scope): brief description
-
-Detailed explanation of the changes.
-
-Fixes #123
-```
-
-Types:
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting)
-- `refactor`: Code refactoring
-- `test`: Adding or updating tests
-- `chore`: Maintenance tasks
-
-### Pull Request Process
-
-1. **Create PR** with clear description
-2. **Link issues** using "Fixes #123"
-3. **Ensure CI passes** (all tests, linting)
-4. **Request review** from maintainers
-5. **Address feedback**
-6. **Merge** when approved
-
 ## CI/CD
 
 ### GitHub Actions
 
 The repository uses GitHub Actions for:
+
 - Building C++ and C API
 - Running tests
 - Checking code coverage
