@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../developer-guide/">
+        <link rel="prev" href="../code-docs/">
       
       
         <link rel="next" href="../c-api/">
@@ -27,7 +27,7 @@
     
     
       
-        <title>C++ Core - Falcon Core Documentation</title>
+        <title>C++ API - Falcon Core Documentation</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#c-core-documentation" class="md-skip">
+        <a href="#c-core-api-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              C++ Core
+              C++ API
             
           </span>
         </div>
@@ -275,12 +275,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="./" class="md-tabs__link">
           
   
@@ -297,11 +295,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="index.md" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -505,31 +505,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -547,7 +544,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -562,37 +559,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C++ Core
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
         
   
   
@@ -608,192 +578,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#directory-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Directory Structure
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Features
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#data-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Types
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#algorithms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Algorithms
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dependencies
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#building" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Building
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Building">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prerequisites
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#build-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Build Commands
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#code-coverage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code Coverage
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Documentation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#design-principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Design Principles
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributing
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -866,28 +650,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -905,7 +692,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -920,10 +707,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="index.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -939,6 +753,148 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autotuner-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autotuner Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generic-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrument-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instrument Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -951,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../c-api/index.md" class="md-nav__link">
+      <a href="../c-api/" class="md-nav__link">
         
   
   
@@ -1006,10 +962,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#quick-navigation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Quick Navigation
       
     </span>
   </a>
@@ -1017,33 +973,34 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#directory-structure" class="md-nav__link">
+  <a href="#api-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Directory Structure
+        API Overview
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Features
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Key Features">
+    <nav class="md-nav" aria-label="API Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#data-types" class="md-nav__link">
+  <a href="#core-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Types
+        Core Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autotuner-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autotuner Interfaces
       
     </span>
   </a>
@@ -1051,10 +1008,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#algorithms" class="md-nav__link">
+  <a href="#communications" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Algorithms
+        Communications
       
     </span>
   </a>
@@ -1062,10 +1019,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dependencies" class="md-nav__link">
+  <a href="#generic-containers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dependencies
+        Generic Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrument-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instrument Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physics
       
     </span>
   </a>
@@ -1076,62 +1066,6 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#building" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Building
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Building">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prerequisites
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#build-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Build Commands
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#code-coverage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code Coverage
-      
-    </span>
-  </a>
-  
-</li>
         
       </ul>
     </nav>
@@ -1139,32 +1073,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-documentation" class="md-nav__link">
+  <a href="#additional-resources" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API Documentation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#design-principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Design Principles
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributing
+        Additional Resources
       
     </span>
   </a>
@@ -1217,7 +1129,7 @@
         <a href="./" class="md-path__link">
           
   <span class="md-ellipsis">
-    Architecture
+    API Reference
   </span>
 
         </a>
@@ -1239,98 +1151,164 @@
   
 
 
-<h1 id="c-core-documentation">C++ Core Documentation<a class="headerlink" href="#c-core-documentation" title="Permanent link">&para;</a></h1>
-<p>The C++ core is the lowest-level implementation of Falcon Core, providing the fundamental datatypes and algorithms for quantum device autotuning.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The C++ core is written in C++14 and leverages modern C++ features for type safety and performance. It provides the foundation upon which all other language interfaces are built.</p>
-<h2 id="directory-structure">Directory Structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cpp/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── include/           # Public C++ header files
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── src/               # C++ implementation files
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── tests/             # C++ unit tests
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── CMakeLists.txt     # CMake configuration
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── Makefile           # Build orchestration
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── vcpkg.json         # Dependency manifest
-</code></pre></div>
-<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
-<h3 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h3>
-<p>The C++ core defines fundamental datatypes for:
-- Quantum device parameters
-- Measurement results
-- Configuration structures
-- Serialization formats</p>
-<h3 id="algorithms">Algorithms<a class="headerlink" href="#algorithms" title="Permanent link">&para;</a></h3>
-<p>Core algorithms for:
-- Data processing
-- Parameter optimization
-- Device calibration
-- State management</p>
-<h3 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h3>
-<p>The C++ core depends on:</p>
+<h1 id="c-core-api-reference">C++ Core API Reference<a class="headerlink" href="#c-core-api-reference" title="Permanent link">&para;</a></h1>
+<p>This section contains the complete C++ API documentation for Falcon Core, automatically generated from the source code.</p>
+<h2 id="quick-navigation">Quick Navigation<a class="headerlink" href="#quick-navigation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>boost</strong> (1.88.0) - General utilities and algorithms</li>
-<li><strong>cereal</strong> (1.3.2) - Serialization framework</li>
-<li><strong>hdf5</strong> (1.14.6) - HDF5 file format support</li>
-<li><strong>highfive</strong> (3.1.1) - C++ HDF5 interface</li>
-<li><strong>nlohmann-json</strong> (3.12.0) - JSON parsing and serialization</li>
-<li><strong>xsimd</strong> (13.2.0) - SIMD operations</li>
-<li><strong>xtensor</strong> (0.25.0) - Multi-dimensional arrays</li>
-<li><strong>xtensor-io</strong> (0.13.0) - Array I/O operations</li>
-<li><strong>yaml-cpp</strong> (0.8.0) - YAML parsing</li>
+<li><strong><a href="classes/">Classes</a></strong> - List of all classes with brief descriptions</li>
+<li><strong><a href="hierarchy/">Class Hierarchy</a></strong> - Class inheritance diagrams</li>
+<li><strong><a href="namespaces/">Namespaces</a></strong> - List of all namespaces</li>
+<li><strong><a href="files/">Files</a></strong> - List of all header files</li>
 </ul>
-<p>For development:
-- <strong>gtest</strong> (1.16.0) - Unit testing framework</p>
-<h2 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h2>
-<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Compiler</strong>: clang (LLVM) or gcc with C++14 support</li>
-<li><strong>vcpkg</strong>: Package manager for C++ dependencies</li>
-<li><strong>ninja</strong>: Fast build system</li>
-<li><strong>ccache</strong>: (recommended) Compilation cache for faster builds</li>
-</ol>
-<h3 id="build-commands">Build Commands<a class="headerlink" href="#build-commands" title="Permanent link">&para;</a></h3>
-<p>Initial build:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>cpp
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>make<span class="w"> </span>clean-all
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>make<span class="w"> </span>all
-</code></pre></div></p>
-<p>Subsequent builds:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>make<span class="w"> </span>build
-</code></pre></div></p>
-<p>Partial builds (specific files):
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>make<span class="w"> </span>build-part<span class="w"> </span><span class="nv">DIRS</span><span class="o">=</span><span class="s2">&quot;file/path;targetted/file.cpp&quot;</span><span class="w"> </span><span class="nv">TESTS</span><span class="o">=</span><span class="s2">&quot;all/tests/here;this/specific/one.cpp&quot;</span>
-</code></pre></div></p>
-<p>Build with sanitizers (for debugging):
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>make<span class="w"> </span>build-and-sanitize
-</code></pre></div></p>
-<h3 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h3>
-<p>Run all tests:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>make<span class="w"> </span><span class="nb">test</span>
-</code></pre></div></p>
-<h3 id="code-coverage">Code Coverage<a class="headerlink" href="#code-coverage" title="Permanent link">&para;</a></h3>
-<p>View coverage report:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>make<span class="w"> </span>coverage-overview
-</code></pre></div></p>
-<h2 id="api-documentation">API Documentation<a class="headerlink" href="#api-documentation" title="Permanent link">&para;</a></h2>
-<p>Detailed API documentation is generated from Doxygen comments in the header files. The documentation extraction process is automated through the <code>code_docs</code> pipeline.</p>
-<h2 id="design-principles">Design Principles<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Performance</strong>: Optimize for speed and minimal memory overhead</li>
-<li><strong>Type Safety</strong>: Leverage C++ type system for compile-time checks</li>
-<li><strong>Modularity</strong>: Clean separation of concerns with well-defined interfaces</li>
-<li><strong>Documentation</strong>: Comprehensive Doxygen comments for all public APIs</li>
-<li><strong>Testing</strong>: Thorough unit test coverage for all functionality</li>
-</ol>
-<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
-<p>When contributing to the C++ core:</p>
-<ol>
-<li>Follow the existing code style (enforced by <code>.clang-format</code>)</li>
-<li>Add Doxygen comments to all public APIs</li>
-<li>Write unit tests for new functionality</li>
-<li>Ensure all tests pass before submitting</li>
-<li>Run sanitizers to catch memory issues</li>
-</ol>
-<p>For more details, see the <a href="../developer-guide/">Developer Guide</a>.</p>
+<h2 id="api-overview">API Overview<a class="headerlink" href="#api-overview" title="Permanent link">&para;</a></h2>
+<h3 id="core-components">Core Components<a class="headerlink" href="#core-components" title="Permanent link">&para;</a></h3>
+<h4 id="autotuner-interfaces">Autotuner Interfaces<a class="headerlink" href="#autotuner-interfaces" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="namespacefalcon__core_1_1autotuner__interfaces_1_1contexts/">Contexts</a></strong> - Acquisition and measurement contexts</li>
+<li><a href="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1AcquisitionContext/">AcquisitionContext</a></li>
+<li><a href="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext/">MeasurementContext</a></li>
+<li>
+<p><a href="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext/">BaseContext</a></p>
+</li>
+<li>
+<p><strong><a href="namespacefalcon__core_1_1autotuner__interfaces_1_1interpretations/">Interpretations</a></strong> - Data interpretation containers</p>
+</li>
+<li><a href="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer/">InterpretationContainer</a></li>
+<li>
+<p><a href="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext/">InterpretationContext</a></p>
+</li>
+<li>
+<p><strong><a href="namespacefalcon__core_1_1autotuner__interfaces_1_1names/">Names</a></strong> - Naming conventions and structures</p>
+</li>
+<li><a href="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel/">Channel</a></li>
+<li><a href="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channels/">Channels</a></li>
+<li><a href="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Gname/">Gname</a></li>
+</ul>
+<h4 id="communications">Communications<a class="headerlink" href="#communications" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="namespacefalcon__core_1_1communications_1_1messages/">Messages</a></strong> - Message types for communication</li>
+<li><a href="classfalcon__core_1_1communications_1_1messages_1_1MeasurementRequest/">MeasurementRequest</a></li>
+<li><a href="classfalcon__core_1_1communications_1_1messages_1_1MeasurementResponse/">MeasurementResponse</a></li>
+<li><a href="classfalcon__core_1_1communications_1_1messages_1_1StandardRequest/">StandardRequest</a></li>
+<li>
+<p><a href="classfalcon__core_1_1communications_1_1messages_1_1StandardResponse/">StandardResponse</a></p>
+</li>
+<li>
+<p><strong><a href="namespacefalcon__core_1_1communications_1_1voltage__states/">Voltage States</a></strong> - Device voltage state management</p>
+</li>
+<li><a href="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageState/">DeviceVoltageState</a></li>
+<li>
+<p><a href="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates/">DeviceVoltageStates</a></p>
+</li>
+<li>
+<p><strong><a href="classfalcon__core_1_1communications_1_1HDF5Data/">HDF5Data</a></strong> - HDF5 data handling</p>
+</li>
+<li><strong><a href="classfalcon__core_1_1communications_1_1Time/">Time</a></strong> - Time utilities</li>
+</ul>
+<h4 id="generic-containers">Generic Containers<a class="headerlink" href="#generic-containers" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="namespacefalcon__core_1_1generic/">Generic</a></strong> - Generic container types</li>
+<li><a href="classfalcon__core_1_1generic_1_1FArray/">FArray</a> - Fixed-size array</li>
+<li><a href="classfalcon__core_1_1generic_1_1IFArray/">IFArray</a> - Interface for arrays</li>
+<li><a href="classfalcon__core_1_1generic_1_1List/">List</a> - List container</li>
+<li><a href="classfalcon__core_1_1generic_1_1Map/">Map</a> - Map container</li>
+<li><a href="classfalcon__core_1_1generic_1_1Pair/">Pair</a> - Pair container</li>
+<li><a href="classfalcon__core_1_1generic_1_1Song/">Song</a> - Song data structure</li>
+</ul>
+<h4 id="instrument-interfaces">Instrument Interfaces<a class="headerlink" href="#instrument-interfaces" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="namespacefalcon__core_1_1instrument__interfaces/">Instrument Interfaces</a></strong> - Instrument communication interfaces</li>
+<li><a href="classfalcon__core_1_1instrument__interfaces_1_1Waveform/">Waveform</a></li>
+<li><a href="classfalcon__core_1_1instrument__interfaces_1_1names_1_1InstrumentPort/">InstrumentPort</a></li>
+<li><a href="classfalcon__core_1_1instrument__interfaces_1_1names_1_1Ports/">Ports</a></li>
+<li><a href="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform/">PortTransform</a></li>
+<li><a href="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms/">PortTransforms</a></li>
+</ul>
+<h4 id="mathematics">Mathematics<a class="headerlink" href="#mathematics" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="namespacefalcon__core_1_1math/">Math</a></strong> - Mathematical utilities</li>
+<li><a href="classfalcon__core_1_1math_1_1AnalyticFunction/">AnalyticFunction</a></li>
+<li><a href="classfalcon__core_1_1math_1_1Axes/">Axes</a></li>
+<li><a href="classfalcon__core_1_1math_1_1Point/">Point</a></li>
+<li><a href="classfalcon__core_1_1math_1_1Quantity/">Quantity</a></li>
+<li><a href="classfalcon__core_1_1math_1_1UnitSpace/">UnitSpace</a></li>
+<li>
+<p><a href="classfalcon__core_1_1math_1_1Vector/">Vector</a></p>
+</li>
+<li>
+<p><strong><a href="namespacefalcon__core_1_1math_1_1arrays/">Arrays</a></strong> - Array types for control and measurement</p>
+</li>
+<li><a href="classfalcon__core_1_1math_1_1arrays_1_1ControlArray/">ControlArray</a></li>
+<li><a href="classfalcon__core_1_1math_1_1arrays_1_1ControlArray1D/">ControlArray1D</a></li>
+<li><a href="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray/">LabelledControlArray</a></li>
+<li><a href="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray1D/">LabelledControlArray1D</a></li>
+<li><a href="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray/">MeasuredArray</a></li>
+<li><a href="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D/">MeasuredArray1D</a></li>
+<li><a href="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray/">LabelledMeasuredArray</a></li>
+<li>
+<p><a href="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray1D/">LabelledMeasuredArray1D</a></p>
+</li>
+<li>
+<p><strong><a href="namespacefalcon__core_1_1math_1_1discrete__spaces/">Discrete Spaces</a></strong> - Discrete space utilities</p>
+</li>
+<li><a href="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace/">DiscreteSpace</a></li>
+<li>
+<p><a href="classfalcon__core_1_1math_1_1discrete__spaces_1_1Discretizer/">Discretizer</a></p>
+</li>
+<li>
+<p><strong><a href="namespacefalcon__core_1_1math_1_1domains/">Domains</a></strong> - Domain definitions</p>
+</li>
+<li><a href="classfalcon__core_1_1math_1_1domains_1_1Domain/">Domain</a></li>
+<li><a href="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain/">LabelledDomain</a></li>
+<li><a href="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain/">CoupledLabelledDomain</a></li>
+</ul>
+<h4 id="physics">Physics<a class="headerlink" href="#physics" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="namespacefalcon__core_1_1physics_1_1config/">Config</a></strong> - Configuration management</li>
+<li><a href="classfalcon__core_1_1physics_1_1config_1_1core_1_1Config/">Config</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations/">ConfigManipulations</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1config_1_1Loader/">Loader</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group/">Group</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency/">Adjacency</a></li>
+<li>
+<p><a href="classfalcon__core_1_1physics_1_1config_1_1core_1_1VoltageConstraints/">VoltageConstraints</a></p>
+</li>
+<li>
+<p><strong><a href="namespacefalcon__core_1_1physics_1_1config_1_1geometries/">Geometries</a></strong> - Device geometry definitions</p>
+</li>
+<li><a href="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1GateGeometryArray1D/">GateGeometryArray1D</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1DotGateWithNeighbors/">DotGateWithNeighbors</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1DotGatesWithNeighbors/">DotGatesWithNeighbors</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1LeftReservoirWithImplantedOhmic/">LeftReservoirWithImplantedOhmic</a></li>
+<li>
+<p><a href="classfalcon__core_1_1physics_1_1config_1_1geometries_1_1RightReservoirWithImplantedOhmic/">RightReservoirWithImplantedOhmic</a></p>
+</li>
+<li>
+<p><strong><a href="namespacefalcon__core_1_1physics_1_1device__structures/">Device Structures</a></strong> - Physical device structures</p>
+</li>
+<li><a href="classfalcon__core_1_1physics_1_1device__structures_1_1Connection/">Connection</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1device__structures_1_1Connections/">Connections</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations/">GateRelations</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1device__structures_1_1Impedance/">Impedance</a></li>
+<li>
+<p><a href="classfalcon__core_1_1physics_1_1device__structures_1_1Impedances/">Impedances</a></p>
+</li>
+<li>
+<p><strong><a href="namespacefalcon__core_1_1physics_1_1units/">Units</a></strong> - Physical unit system</p>
+</li>
+<li><a href="classfalcon__core_1_1physics_1_1units_1_1Unit/">Unit</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit/">SymbolUnit</a></li>
+<li><a href="classfalcon__core_1_1physics_1_1units_1_1Prefix/">Prefix</a></li>
+</ul>
+<h2 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="annotated/">All Classes Index</a></strong> - Annotated class list</li>
+<li><strong><a href="namespace_members/">Namespace Members</a></strong> - All namespace-level functions, variables, and types</li>
+<li><strong><a href="class_members/">Class Members</a></strong> - All class member functions, variables, and types</li>
+<li><strong><a href="files/">File Documentation</a></strong> - Documentation organized by source file</li>
+</ul>
+<hr />
+<p><em>This documentation is automatically generated from the C++ source code using Doxygen.</em></p>
 
 
 

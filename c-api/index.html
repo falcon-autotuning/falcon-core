@@ -16,8 +16,6 @@
         <link rel="prev" href="../cpp-core/">
       
       
-        <link rel="next" href="../code-docs/">
-      
       
         
       
@@ -78,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#c-api-documentation" class="md-skip">
+        <a href="#c-api-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -275,12 +273,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../cpp-core/" class="md-tabs__link">
           
   
@@ -297,11 +293,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../cpp-core/index.md" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../cpp-core/" class="md-tabs__link">
           
   
   
@@ -505,31 +503,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -547,7 +542,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -573,6 +568,154 @@
     
   
     C++ Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp-core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API
   
 
     
@@ -653,10 +796,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#quick-navigation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Quick Navigation
       
     </span>
   </a>
@@ -664,44 +807,62 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#directory-structure" class="md-nav__link">
+  <a href="#api-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Directory Structure
+        API Overview
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation-generation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation Generation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Documentation Generation">
+    <nav class="md-nav" aria-label="API Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#documentation-pipeline" class="md-nav__link">
+  <a href="#core-data-types" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Pipeline
+        Core Data Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autotuner-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autotuner Interfaces
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autotuner Interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contexts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexts
       
     </span>
   </a>
@@ -709,10 +870,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#running-the-documentation-pipeline" class="md-nav__link">
+  <a href="#interpretations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Running the Documentation Pipeline
+        Interpretations
       
     </span>
   </a>
@@ -720,10 +881,220 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#coverage-reporting" class="md-nav__link">
+  <a href="#names" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Coverage Reporting
+        Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Communications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voltage-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voltage States
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrument-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instrument Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mathematics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-math-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Math Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axes-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axes Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discrete-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discrete Spaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Physics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geometries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Device Structures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#units" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Units
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utility-macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Macros
       
     </span>
   </a>
@@ -736,88 +1107,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#building-the-c-api" class="md-nav__link">
+  <a href="#usage-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Building the C API
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Building the C API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prerequisites
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Output
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-the-c-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using the C API
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Using the C API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#linking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Linking
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#language-bindings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Language Bindings
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-conventions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Conventions
+        Usage Guidelines
       
     </span>
   </a>
@@ -825,43 +1118,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
+  <a href="#additional-resources" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Error Handling
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#thread-safety" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Thread Safety
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation-on-website" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation on Website
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributing
+        Additional Resources
       
     </span>
   </a>
@@ -872,151 +1132,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../code-docs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Documentation Generation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    API Reference
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cpp-core/index.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C++ API
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="index.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    C API
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1056,10 +1171,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#quick-navigation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Quick Navigation
       
     </span>
   </a>
@@ -1067,44 +1182,62 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#directory-structure" class="md-nav__link">
+  <a href="#api-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Directory Structure
+        API Overview
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation-generation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation Generation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Documentation Generation">
+    <nav class="md-nav" aria-label="API Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#documentation-pipeline" class="md-nav__link">
+  <a href="#core-data-types" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation Pipeline
+        Core Data Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autotuner-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autotuner Interfaces
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autotuner Interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contexts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexts
       
     </span>
   </a>
@@ -1112,10 +1245,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#running-the-documentation-pipeline" class="md-nav__link">
+  <a href="#interpretations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Running the Documentation Pipeline
+        Interpretations
       
     </span>
   </a>
@@ -1123,10 +1256,220 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#coverage-reporting" class="md-nav__link">
+  <a href="#names" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Coverage Reporting
+        Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Communications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voltage-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voltage States
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrument-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instrument Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mathematics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mathematics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-math-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Math Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axes-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axes Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discrete-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discrete Spaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Physics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geometries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Device Structures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#units" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Units
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utility-macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utility Macros
       
     </span>
   </a>
@@ -1139,88 +1482,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#building-the-c-api" class="md-nav__link">
+  <a href="#usage-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Building the C API
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Building the C API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prerequisites
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Output
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-the-c-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using the C API
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Using the C API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#linking" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Linking
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#language-bindings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Language Bindings
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-conventions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Conventions
+        Usage Guidelines
       
     </span>
   </a>
@@ -1228,43 +1493,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
+  <a href="#additional-resources" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Error Handling
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#thread-safety" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Thread Safety
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documentation-on-website" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation on Website
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributing
+        Additional Resources
       
     </span>
   </a>
@@ -1317,7 +1549,7 @@
         <a href="../cpp-core/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Architecture
+    API Reference
   </span>
 
         </a>
@@ -1339,155 +1571,234 @@
   
 
 
-<h1 id="c-api-documentation">C API Documentation<a class="headerlink" href="#c-api-documentation" title="Permanent link">&para;</a></h1>
-<p>The C API provides a C-compatible wrapper around the C++ core, enabling language bindings and ensuring ABI stability.</p>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The C API layer serves as the exposed interface for the Falcon Core library. It wraps the underlying C++ implementation in a stable C interface, which allows:</p>
+<h1 id="c-api-reference">C API Reference<a class="headerlink" href="#c-api-reference" title="Permanent link">&para;</a></h1>
+<p>This section contains the complete C API documentation for Falcon Core, providing C bindings for the C++ core library.</p>
+<h2 id="quick-navigation">Quick Navigation<a class="headerlink" href="#quick-navigation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Language Bindings</strong>: Python, Go, and other languages can interface with the library</li>
-<li><strong>ABI Stability</strong>: C interfaces are more stable across compiler versions than C++</li>
-<li><strong>Cross-Language Compatibility</strong>: C is the lingua franca for system programming</li>
+<li><strong><a href="classes/">Classes</a></strong> - List of all C API structures and types</li>
+<li><strong><a href="hierarchy/">Class Hierarchy</a></strong> - Type hierarchy</li>
+<li><strong><a href="files/">Files</a></strong> - List of all C API header files</li>
 </ul>
-<h2 id="directory-structure">Directory Structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>c-api/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── include/           # Public C API header files
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   └── falcon_core/   # C API headers organized by module
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── src/               # C API implementation (wraps C++ core)
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── tests/             # C API tests
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── CMakeLists.txt     # CMake configuration
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── Makefile           # Build orchestration
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>└── vcpkg.json         # Dependency manifest
-</code></pre></div>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<p>The C API follows this pattern for each C++ class or function:</p>
-<ol>
-<li><strong>Opaque Pointers</strong>: C++ objects are wrapped in opaque C pointers</li>
-<li><strong>Constructor/Destructor</strong>: C functions to create and destroy objects</li>
-<li><strong>Methods</strong>: C functions that take the opaque pointer as the first argument</li>
-<li><strong>Error Handling</strong>: Return codes for error propagation</li>
-</ol>
-<p>Example pattern:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Opaque type</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">FalconObject</span><span class="w"> </span><span class="n">FalconObject</span><span class="p">;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// Constructor</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">FalconObject</span><span class="o">*</span><span class="w"> </span><span class="nf">falcon_object_create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1">// Method</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kt">int</span><span class="w"> </span><span class="nf">falcon_object_set_value</span><span class="p">(</span><span class="n">FalconObject</span><span class="o">*</span><span class="w"> </span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1">// Destructor</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="kt">void</span><span class="w"> </span><span class="nf">falcon_object_destroy</span><span class="p">(</span><span class="n">FalconObject</span><span class="o">*</span><span class="w"> </span><span class="n">obj</span><span class="p">);</span>
-</code></pre></div></p>
-<h2 id="documentation-generation">Documentation Generation<a class="headerlink" href="#documentation-generation" title="Permanent link">&para;</a></h2>
-<p>The C API documentation is <strong>automatically generated</strong> from the C++ core documentation through the <code>code_docs</code> pipeline. This ensures consistency between the C++ and C API documentation.</p>
-<h3 id="documentation-pipeline">Documentation Pipeline<a class="headerlink" href="#documentation-pipeline" title="Permanent link">&para;</a></h3>
-<p>The documentation generation process:</p>
-<ol>
-<li><strong>Extract</strong>: Doxygen comments are extracted from C++ headers</li>
-<li>Script: <code>code_docs/capi_docs/scripts/extract_cpp_docs.py</code></li>
-<li>
-<p>Output: Metadata stored in <code>code_docs/capi_docs/cpp_metadata/</code></p>
-</li>
-<li>
-<p><strong>Map</strong>: Mapping files link C++ symbols to their C API equivalents</p>
-</li>
-<li>Script: <code>code_docs/capi_docs/scripts/generate_c_api_maps.py</code></li>
-<li>Auto-generated maps: <code>c-api/include/falcon_core/*.map.yml</code></li>
-<li>
-<p>Manual maps: <code>code_docs/capi_docs/c-api_user_maps/</code></p>
-</li>
-<li>
-<p><strong>Inject</strong>: Documentation is injected into C API headers</p>
-</li>
-<li>Script: <code>code_docs/capi_docs/scripts/inject_c_docs.py</code></li>
-<li>Output: Updated C API headers with documentation</li>
-</ol>
-<h3 id="running-the-documentation-pipeline">Running the Documentation Pipeline<a class="headerlink" href="#running-the-documentation-pipeline" title="Permanent link">&para;</a></h3>
-<p>From the repository root:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Run the complete documentation pipeline</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>make<span class="w"> </span>-f<span class="w"> </span>code_docs/capi_docs/capi_docs.mk<span class="w"> </span>docs-all
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Or run individual steps:</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>make<span class="w"> </span>-f<span class="w"> </span>code_docs/capi_docs/capi_docs.mk<span class="w"> </span>docs-setup<span class="w">    </span><span class="c1"># Prepare clean environment</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>make<span class="w"> </span>-f<span class="w"> </span>code_docs/capi_docs/capi_docs.mk<span class="w"> </span>docs-run<span class="w">      </span><span class="c1"># Generate documentation</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>make<span class="w"> </span>-f<span class="w"> </span>code_docs/capi_docs/capi_docs.mk<span class="w"> </span>docs-coverage<span class="w"> </span><span class="c1"># Check coverage</span>
-</code></pre></div>
-<h3 id="coverage-reporting">Coverage Reporting<a class="headerlink" href="#coverage-reporting" title="Permanent link">&para;</a></h3>
-<p>To see documentation coverage statistics:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>make<span class="w"> </span>-f<span class="w"> </span>code_docs/capi_docs/capi_docs.mk<span class="w"> </span>docs-coverage
-</code></pre></div>
-<p>This reports:
-- Percentage of C++ documentation ported to C API
-- Functions/types with missing documentation
-- Documentation quality metrics</p>
-<h2 id="building-the-c-api">Building the C API<a class="headerlink" href="#building-the-c-api" title="Permanent link">&para;</a></h2>
-<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
-<p>The C API requires the C++ core to be built first.</p>
-<ol>
-<li>
-<p>Build the C++ core:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>cpp
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>make<span class="w"> </span>all
-</code></pre></div></p>
-</li>
-<li>
-<p>Build the C API:
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>c-api
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>make<span class="w"> </span>all
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
-<p>The compiled C API shared library (<code>.so</code> file) is located at:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>dist/c_api/libfalcon_core.so
-</code></pre></div></p>
-<h2 id="using-the-c-api">Using the C API<a class="headerlink" href="#using-the-c-api" title="Permanent link">&para;</a></h2>
-<h3 id="linking">Linking<a class="headerlink" href="#linking" title="Permanent link">&para;</a></h3>
-<p>To use the C API in your application:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;falcon_core/falcon_core.h&gt;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">// Your code here</span>
-</code></pre></div>
-<p>Link against the shared library:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gcc<span class="w"> </span>-o<span class="w"> </span>myapp<span class="w"> </span>myapp.c<span class="w"> </span>-L/path/to/dist/c_api<span class="w"> </span>-lfalcon_core
-</code></pre></div></p>
-<h3 id="language-bindings">Language Bindings<a class="headerlink" href="#language-bindings" title="Permanent link">&para;</a></h3>
-<p>For Python and other high-level language bindings, see <a href="https://github.com/falcon-autotuning/falcon-core-libs">falcon-core-libs</a>.</p>
-<h2 id="api-conventions">API Conventions<a class="headerlink" href="#api-conventions" title="Permanent link">&para;</a></h2>
-<p>The C API follows these naming conventions:</p>
+<h2 id="api-overview">API Overview<a class="headerlink" href="#api-overview" title="Permanent link">&para;</a></h2>
+<p>The C API provides C-compatible wrappers for the C++ core functionality, enabling integration with C-based applications and other language bindings.</p>
+<h3 id="core-data-types">Core Data Types<a class="headerlink" href="#core-data-types" title="Permanent link">&para;</a></h3>
+<h4 id="generic-containers">Generic Containers<a class="headerlink" href="#generic-containers" title="Permanent link">&para;</a></h4>
 <ul>
-<li><strong>Types</strong>: <code>FalconTypeName</code> (PascalCase)</li>
-<li><strong>Functions</strong>: <code>falcon_module_action</code> (snake_case with prefix)</li>
-<li><strong>Constants</strong>: <code>FALCON_CONSTANT_NAME</code> (SCREAMING_SNAKE_CASE)</li>
-<li><strong>Enums</strong>: <code>FalconEnumName</code> for the type, <code>FALCON_ENUM_VALUE</code> for values</li>
+<li><strong>Error Handling</strong> - <a href="ErrorHandling__c__api_8h/">ErrorHandling_c_api.h</a></li>
+<li><strong>String</strong> - <a href="String__c__api_8h/">String_c_api.h</a> / <a href="structstring/">string struct</a></li>
+<li><strong>Lists</strong> - Various list types for different data types:</li>
+<li><a href="ListDouble__c__api_8h/">ListDouble</a></li>
+<li><a href="ListInt__c__api_8h/">ListInt</a></li>
+<li><a href="ListString__c__api_8h/">ListString</a></li>
+<li><a href="ListBool__c__api_8h/">ListBool</a></li>
+<li><strong>Maps</strong> - Key-value map types:</li>
+<li><a href="MapStringString__c__api_8h/">MapStringString</a></li>
+<li><a href="MapStringDouble__c__api_8h/">MapStringDouble</a></li>
+<li><a href="MapStringBool__c__api_8h/">MapStringBool</a></li>
+<li><strong>Pairs</strong> - Pair types for various combinations:</li>
+<li><a href="PairStringString__c__api_8h/">PairStringString</a></li>
+<li><a href="PairDoubleDouble__c__api_8h/">PairDoubleDouble</a></li>
+<li><a href="PairIntInt__c__api_8h/">PairIntInt</a></li>
+<li><strong>Arrays</strong> - <a href="FArrayDouble__c__api_8h/">FArrayDouble</a>, <a href="FArrayInt__c__api_8h/">FArrayInt</a></li>
 </ul>
-<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
-<p>Functions return:
-- <code>0</code> or non-negative values for success
-- Negative values for errors
-- Error codes are defined in <code>falcon_core/errors.h</code> (if available)</p>
-<p>Always check return values and handle errors appropriately.</p>
-<h2 id="thread-safety">Thread Safety<a class="headerlink" href="#thread-safety" title="Permanent link">&para;</a></h2>
-<p>The C API provides thread-safe interfaces where applicable. Consult individual function documentation for thread-safety guarantees.</p>
-<h2 id="documentation-on-website">Documentation on Website<a class="headerlink" href="#documentation-on-website" title="Permanent link">&para;</a></h2>
-<p>The C API documentation will be exposed on the website through:</p>
+<h3 id="autotuner-interfaces">Autotuner Interfaces<a class="headerlink" href="#autotuner-interfaces" title="Permanent link">&para;</a></h3>
+<h4 id="contexts">Contexts<a class="headerlink" href="#contexts" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="AcquisitionContext__c__api_8h/">AcquisitionContext</a></strong> - Acquisition context C API</li>
+<li><a href="ListAcquisitionContext__c__api_8h/">ListAcquisitionContext</a></li>
+<li><strong><a href="MeasurementContext__c__api_8h/">MeasurementContext</a></strong> - Measurement context C API</li>
+<li><a href="ListMeasurementContext__c__api_8h/">ListMeasurementContext</a></li>
+<li><a href="AxesMeasurementContext__c__api_8h/">AxesMeasurementContext</a></li>
+</ul>
+<h4 id="interpretations">Interpretations<a class="headerlink" href="#interpretations" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="InterpretationContext__c__api_8h/">InterpretationContext</a></strong> - Interpretation context</li>
+<li><a href="ListInterpretationContext__c__api_8h/">ListInterpretationContext</a></li>
+<li><a href="PairInterpretationContextDouble__c__api_8h/">PairInterpretationContextDouble</a></li>
+<li><a href="PairInterpretationContextQuantity__c__api_8h/">PairInterpretationContextQuantity</a></li>
+<li><a href="PairInterpretationContextString__c__api_8h/">PairInterpretationContextString</a></li>
+<li><strong>Interpretation Containers</strong>:</li>
+<li><a href="InterpretationContainerDouble__c__api_8h/">InterpretationContainerDouble</a></li>
+<li><a href="InterpretationContainerQuantity__c__api_8h/">InterpretationContainerQuantity</a></li>
+<li><a href="InterpretationContainerString__c__api_8h/">InterpretationContainerString</a></li>
+</ul>
+<h4 id="names">Names<a class="headerlink" href="#names" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="Channel__c__api_8h/">Channel</a></strong> - Channel naming</li>
+<li><a href="ListChannel__c__api_8h/">ListChannel</a></li>
+<li><strong><a href="Channels__c__api_8h/">Channels</a></strong> - Channel collections</li>
+<li><strong><a href="Gname__c__api_8h/">Gname</a></strong> - Gate naming</li>
+<li><a href="ListGname__c__api_8h/">ListGname</a></li>
+</ul>
+<h3 id="communications">Communications<a class="headerlink" href="#communications" title="Permanent link">&para;</a></h3>
+<h4 id="messages">Messages<a class="headerlink" href="#messages" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="MeasurementRequest__c__api_8h/">MeasurementRequest</a></strong> - Measurement request messages</li>
+<li><strong><a href="MeasurementResponse__c__api_8h/">MeasurementResponse</a></strong> - Measurement response messages</li>
+<li><a href="PairMeasurementResponseMeasurementRequest__c__api_8h/">PairMeasurementResponseMeasurementRequest</a></li>
+<li><strong><a href="StandardRequest__c__api_8h/">StandardRequest</a></strong> - Standard request messages</li>
+<li><strong><a href="StandardResponse__c__api_8h/">StandardResponse</a></strong> - Standard response messages</li>
+<li><strong><a href="VoltageStatesResponse__c__api_8h/">VoltageStatesResponse</a></strong> - Voltage state responses</li>
+</ul>
+<h4 id="data-storage">Data Storage<a class="headerlink" href="#data-storage" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="HDF5Data__c__api_8h/">HDF5Data</a></strong> - HDF5 data handling C API</li>
+<li><strong><a href="Time__c__api_8h/">Time</a></strong> - Time utilities</li>
+</ul>
+<h4 id="voltage-states">Voltage States<a class="headerlink" href="#voltage-states" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="DeviceVoltageState__c__api_8h/">DeviceVoltageState</a></strong> - Single device voltage state</li>
+<li><a href="ListDeviceVoltageState__c__api_8h/">ListDeviceVoltageState</a></li>
+<li><strong><a href="DeviceVoltageStates__c__api_8h/">DeviceVoltageStates</a></strong> - Multiple device voltage states</li>
+</ul>
+<h3 id="instrument-interfaces">Instrument Interfaces<a class="headerlink" href="#instrument-interfaces" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><a href="Waveform__c__api_8h/">Waveform</a></strong> - Waveform data</li>
+<li><a href="ListWaveform__c__api_8h/">ListWaveform</a></li>
+<li><strong><a href="InstrumentPort__c__api_8h/">InstrumentPort</a></strong> - Instrument port definitions</li>
+<li><a href="ListInstrumentPort__c__api_8h/">ListInstrumentPort</a></li>
+<li><a href="AxesInstrumentPort__c__api_8h/">AxesInstrumentPort</a></li>
+<li><strong><a href="Ports__c__api_8h/">Ports</a></strong> - Port collections</li>
+<li><strong><a href="InstrumentTypes__c__api_8h/">InstrumentTypes</a></strong> - Instrument type definitions</li>
+<li><strong><a href="PortTransform__c__api_8h/">PortTransform</a></strong> - Port transformations</li>
+<li><a href="ListPortTransform__c__api_8h/">ListPortTransform</a></li>
+<li><strong><a href="PortTransforms__c__api_8h/">PortTransforms</a></strong> - Port transformation collections</li>
+</ul>
+<h3 id="mathematics">Mathematics<a class="headerlink" href="#mathematics" title="Permanent link">&para;</a></h3>
+<h4 id="core-math-types">Core Math Types<a class="headerlink" href="#core-math-types" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="Quantity__c__api_8h/">Quantity</a></strong> - Physical quantities with units</li>
+<li><a href="ListQuantity__c__api_8h/">ListQuantity</a></li>
+<li><a href="PairQuantityQuantity__c__api_8h/">PairQuantityQuantity</a></li>
+<li><strong><a href="Point__c__api_8h/">Point</a></strong> - Point in space</li>
+<li><strong><a href="Vector__c__api_8h/">Vector</a></strong> - Vector operations</li>
+<li><strong><a href="AnalyticFunction__c__api_8h/">AnalyticFunction</a></strong> - Analytic functions</li>
+<li><strong><a href="Sign__c__api_8h/">Sign</a></strong> - Sign utilities</li>
+<li><strong><a href="UnitSpace__c__api_8h/">UnitSpace</a></strong> - Unit space definitions</li>
+</ul>
+<h4 id="axes-types">Axes Types<a class="headerlink" href="#axes-types" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="AxesDouble__c__api_8h/">AxesDouble</a></strong> - Axes for double values</li>
+<li><strong><a href="AxesInt__c__api_8h/">AxesInt</a></strong> - Axes for integer values</li>
+<li><strong><a href="AxesControlArray__c__api_8h/">AxesControlArray</a></strong> - Axes for control arrays</li>
+<li><strong><a href="AxesControlArray1D__c__api_8h/">AxesControlArray1D</a></strong> - Axes for 1D control arrays</li>
+<li><strong><a href="AxesLabelledControlArray__c__api_8h/">AxesLabelledControlArray</a></strong> - Axes for labelled control arrays</li>
+<li><strong><a href="AxesLabelledControlArray1D__c__api_8h/">AxesLabelledControlArray1D</a></strong> - Axes for 1D labelled control arrays</li>
+<li><strong><a href="AxesLabelledMeasuredArray__c__api_8h/">AxesLabelledMeasuredArray</a></strong> - Axes for labelled measured arrays</li>
+<li><strong><a href="AxesLabelledMeasuredArray1D__c__api_8h/">AxesLabelledMeasuredArray1D</a></strong> - Axes for 1D labelled measured arrays</li>
+</ul>
+<h4 id="array-types">Array Types<a class="headerlink" href="#array-types" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Control Arrays</strong>:</li>
+<li><a href="ControlArray__c__api_8h/">ControlArray</a> - Multi-dimensional control arrays</li>
+<li><a href="ControlArray1D__c__api_8h/">ControlArray1D</a> - 1D control arrays</li>
+<li><a href="LabelledControlArray__c__api_8h/">LabelledControlArray</a> - Labelled control arrays</li>
+<li><a href="LabelledControlArray1D__c__api_8h/">LabelledControlArray1D</a> - 1D labelled control arrays</li>
+<li>
+<p>List types: <a href="ListControlArray__c__api_8h/">ListControlArray</a>, <a href="ListControlArray1D__c__api_8h/">ListControlArray1D</a>, etc.</p>
+</li>
+<li>
+<p><strong>Measured Arrays</strong>:</p>
+</li>
+<li><a href="MeasuredArray__c__api_8h/">MeasuredArray</a> - Multi-dimensional measured arrays</li>
+<li><a href="MeasuredArray1D__c__api_8h/">MeasuredArray1D</a> - 1D measured arrays</li>
+<li><a href="LabelledMeasuredArray__c__api_8h/">LabelledMeasuredArray</a> - Labelled measured arrays</li>
+<li><a href="LabelledMeasuredArray1D__c__api_8h/">LabelledMeasuredArray1D</a> - 1D labelled measured arrays</li>
+<li>
+<p>List types: <a href="ListLabelledMeasuredArray__c__api_8h/">ListLabelledMeasuredArray</a>, <a href="ListLabelledMeasuredArray1D__c__api_8h/">ListLabelledMeasuredArray1D</a></p>
+</li>
+<li>
+<p><strong>Labelled Arrays Utilities</strong>:</p>
+</li>
+<li><a href="LabelledArraysLabelledControlArray__c__api_8h/">LabelledArraysLabelledControlArray</a></li>
+<li><a href="LabelledArraysLabelledControlArray1D__c__api_8h/">LabelledArraysLabelledControlArray1D</a></li>
+<li><a href="LabelledArraysLabelledMeasuredArray__c__api_8h/">LabelledArraysLabelledMeasuredArray</a></li>
+<li>
+<p><a href="LabelledArraysLabelledMeasuredArray1D__c__api_8h/">LabelledArraysLabelledMeasuredArray1D</a></p>
+</li>
+<li>
+<p><strong><a href="IncreasingAlignment__c__api_8h/">IncreasingAlignment</a></strong> - Increasing alignment utilities</p>
+</li>
+</ul>
+<h4 id="discrete-spaces">Discrete Spaces<a class="headerlink" href="#discrete-spaces" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="DiscreteSpace__c__api_8h/">DiscreteSpace</a></strong> - Discrete space operations</li>
+<li><strong><a href="Discretizer__c__api_8h/">Discretizer</a></strong> - Space discretization</li>
+<li><a href="ListDiscretizer__c__api_8h/">ListDiscretizer</a></li>
+<li><a href="AxesDiscretizer__c__api_8h/">AxesDiscretizer</a></li>
+</ul>
+<h4 id="domains">Domains<a class="headerlink" href="#domains" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="Domain__c__api_8h/">Domain</a></strong> - Domain definitions</li>
+<li><strong><a href="LabelledDomain__c__api_8h/">LabelledDomain</a></strong> - Labelled domains</li>
+<li><a href="ListLabelledDomain__c__api_8h/">ListLabelledDomain</a></li>
+<li><strong><a href="CoupledLabelledDomain__c__api_8h/">CoupledLabelledDomain</a></strong> - Coupled labelled domains</li>
+<li><a href="ListCoupledLabelledDomain__c__api_8h/">ListCoupledLabelledDomain</a></li>
+<li><a href="AxesCoupledLabelledDomain__c__api_8h/">AxesCoupledLabelledDomain</a></li>
+</ul>
+<h3 id="physics">Physics<a class="headerlink" href="#physics" title="Permanent link">&para;</a></h3>
+<h4 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="Config__c__api_8h/">Config</a></strong> - Device configuration</li>
+<li><strong><a href="Loader__c__api_8h/">Loader</a></strong> - Configuration loader</li>
+<li><strong><a href="Group__c__api_8h/">Group</a></strong> - Gate groups</li>
+<li><a href="ListGroup__c__api_8h/">ListGroup</a></li>
+<li><strong><a href="Adjacency__c__api_8h/">Adjacency</a></strong> - Gate adjacency information</li>
+<li><strong><a href="VoltageConstraints__c__api_8h/">VoltageConstraints</a></strong> - Voltage constraints</li>
+</ul>
+<h4 id="geometries">Geometries<a class="headerlink" href="#geometries" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="GateGeometryArray1D__c__api_8h/">GateGeometryArray1D</a></strong> - 1D gate geometry arrays</li>
+<li><strong><a href="DotGateWithNeighbors__c__api_8h/">DotGateWithNeighbors</a></strong> - Dot gate with neighbor information</li>
+<li><a href="ListDotGateWithNeighbors__c__api_8h/">ListDotGateWithNeighbors</a></li>
+<li><strong><a href="DotGatesWithNeighbors__c__api_8h/">DotGatesWithNeighbors</a></strong> - Collection of dot gates with neighbors</li>
+<li><strong><a href="LeftReservoirWithImplantedOhmic__c__api_8h/">LeftReservoirWithImplantedOhmic</a></strong> - Left reservoir geometry</li>
+<li><strong><a href="RightReservoirWithImplantedOhmic__c__api_8h/">RightReservoirWithImplantedOhmic</a></strong> - Right reservoir geometry</li>
+</ul>
+<h4 id="device-structures">Device Structures<a class="headerlink" href="#device-structures" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="Connection__c__api_8h/">Connection</a></strong> - Device connections</li>
+<li><a href="ListConnection__c__api_8h/">ListConnection</a></li>
+<li><a href="PairConnectionDouble__c__api_8h/">PairConnectionDouble</a></li>
+<li><a href="PairConnectionQuantity__c__api_8h/">PairConnectionQuantity</a></li>
+<li><a href="PairConnectionConnections__c__api_8h/">PairConnectionConnections</a></li>
+<li><strong><a href="Connections__c__api_8h/">Connections</a></strong> - Connection collections</li>
+<li><a href="ListConnections__c__api_8h/">ListConnections</a></li>
+<li><a href="MapChannelConnections__c__api_8h/">MapChannelConnections</a></li>
+<li><a href="PairChannelConnections__c__api_8h/">PairChannelConnections</a></li>
+<li><strong><a href="GateRelations__c__api_8h/">GateRelations</a></strong> - Gate relationship definitions</li>
+<li><strong><a href="Impedance__c__api_8h/">Impedance</a></strong> - Impedance values</li>
+<li><a href="ListImpedance__c__api_8h/">ListImpedance</a></li>
+<li><strong><a href="Impedances__c__api_8h/">Impedances</a></strong> - Impedance collections</li>
+</ul>
+<h4 id="units">Units<a class="headerlink" href="#units" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><a href="SymbolUnit__c__api_8h/">SymbolUnit</a></strong> - Symbol-based unit system</li>
+</ul>
+<h3 id="utility-macros">Utility Macros<a class="headerlink" href="#utility-macros" title="Permanent link">&para;</a></h3>
+<p>The C API includes several utility macro headers for common operations:</p>
+<ul>
+<li><strong><a href="CerealMacro__c__api_8h/">CerealMacro_c_api.h</a></strong> - Serialization macros</li>
+<li><strong><a href="CopyMacro__c__api_8h/">CopyMacro_c_api.h</a></strong> - Copy operation macros</li>
+<li><strong><a href="DestroyMacro__c__api_8h/">DestroyMacro_c_api.h</a></strong> - Destruction/cleanup macros</li>
+<li><strong><a href="EqualityMacro__c__api_8h/">EqualityMacro_c_api.h</a></strong> - Equality comparison macros</li>
+<li><strong><a href="Precompiled__c__api_8h/">Precompiled_c_api.h</a></strong> - Precompiled header</li>
+</ul>
+<h2 id="usage-guidelines">Usage Guidelines<a class="headerlink" href="#usage-guidelines" title="Permanent link">&para;</a></h2>
+<p>The C API follows these conventions:</p>
 <ol>
-<li><strong>Doxygen HTML</strong>: Generated HTML documentation from C API headers</li>
-<li><strong>MkDocs Integration</strong>: C API reference integrated into the main documentation site</li>
-<li><strong>API Reference</strong>: Auto-generated API reference pages</li>
+<li><strong>Memory Management</strong>: All C API functions that allocate memory return pointers that must be freed using the corresponding <code>destroy</code> functions.</li>
+<li><strong>Error Handling</strong>: Use the error handling utilities provided in <code>ErrorHandling_c_api.h</code> to check return values.</li>
+<li><strong>String Handling</strong>: Strings are represented using the <code>string</code> struct and should be managed using the provided string utilities.</li>
+<li><strong>Type Naming</strong>: C API types follow the pattern <code>&lt;CppType&gt;_c_api</code> to distinguish them from C++ types.</li>
 </ol>
-<p>See <a href="../code-docs/">Documentation Generation</a> for more details on the documentation system.</p>
-<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
-<p>When contributing to the C API:</p>
-<ol>
-<li>Ensure all public functions have proper documentation comments</li>
-<li>Update mapping files if adding new C API functions</li>
-<li>Run the documentation pipeline to verify doc generation</li>
-<li>Test the C API independently from the C++ core</li>
-<li>Maintain ABI compatibility (don't break existing interfaces)</li>
-</ol>
-<p>For more details, see the <a href="../developer-guide/">Developer Guide</a>.</p>
+<h2 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><a href="annotated/">All Types</a></strong> - Complete list of all C API types</li>
+<li><strong><a href="files/">File Documentation</a></strong> - Documentation organized by header file</li>
+</ul>
+<hr />
+<p><em>This documentation is automatically generated from the C API header files using Doxygen.</em></p>
 
 
 
