@@ -3,146 +3,20 @@
   <compounddef id="UnitSpace__c__api_8h" kind="file" language="C++">
     <compoundname>UnitSpace_c_api.h</compoundname>
     <includes local="no">stddef.h</includes>
-    <includes refid="FArrayDouble__c__api_8h" local="yes">falcon_core/generic/FArrayDouble_c_api.h</includes>
-    <includes refid="ListInt__c__api_8h" local="yes">falcon_core/generic/ListInt_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/FArrayDouble_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/ListInt_c_api.h</includes>
     <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
-    <includes refid="AxesControlArray__c__api_8h" local="yes">falcon_core/math/AxesControlArray_c_api.h</includes>
-    <includes refid="AxesDiscretizer__c__api_8h" local="yes">falcon_core/math/AxesDiscretizer_c_api.h</includes>
-    <includes refid="AxesDouble__c__api_8h" local="yes">falcon_core/math/AxesDouble_c_api.h</includes>
-    <includes refid="AxesInt__c__api_8h" local="yes">falcon_core/math/AxesInt_c_api.h</includes>
+    <includes local="yes">falcon_core/math/AxesControlArray_c_api.h</includes>
+    <includes local="yes">falcon_core/math/AxesDiscretizer_c_api.h</includes>
+    <includes local="yes">falcon_core/math/AxesDouble_c_api.h</includes>
+    <includes local="yes">falcon_core/math/AxesInt_c_api.h</includes>
     <includes refid="Discretizer__c__api_8h" local="yes">falcon_core/math/discrete_spaces/Discretizer_c_api.h</includes>
     <includedby refid="DiscreteSpace__c__api_8h" local="yes">c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</includedby>
     <incdepgraph>
-      <node id="3">
-        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
-        <link refid="FArrayDouble__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>falcon_core/generic/ListControlArray_c_api.h</label>
-        <link refid="ListControlArray__c__api_8h_source"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>falcon_core/generic/ListDiscretizer_c_api.h</label>
-        <link refid="ListDiscretizer__c__api_8h_source"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>falcon_core/generic/ListDouble_c_api.h</label>
-        <link refid="ListDouble__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>falcon_core/generic/ListInt_c_api.h</label>
-        <link refid="ListInt__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
       <node id="5">
-        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
-        <link refid="ListListSizeT__c__api_8h_source"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>falcon_core/generic/ListSizeT_c_api.h</label>
-        <link refid="ListSizeT__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
         <label>falcon_core/generic/String_c_api.h</label>
         <link refid="String__c__api_8h_source"/>
         <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>falcon_core/math/AxesControlArray_c_api.h</label>
-        <link refid="AxesControlArray__c__api_8h_source"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>falcon_core/math/AxesDiscretizer_c_api.h</label>
-        <link refid="AxesDiscretizer__c__api_8h_source"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>falcon_core/math/AxesDouble_c_api.h</label>
-        <link refid="AxesDouble__c__api_8h_source"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>falcon_core/math/AxesInt_c_api.h</label>
-        <link refid="AxesInt__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -152,52 +26,58 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>falcon_core/math/arrays/ControlArray_c_api.h</label>
-        <link refid="ControlArray__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
       </node>
-      <node id="13">
+      <node id="10">
         <label>falcon_core/math/discrete_spaces/Discretizer_c_api.h</label>
         <link refid="Discretizer__c__api_8h_source"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="12">
         <label>falcon_core/math/domains/Domain_c_api.h</label>
         <link refid="Domain__c__api_8h_source"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
+      <node id="3">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+      </node>
       <node id="4">
+        <label>falcon_core/generic/ListInt_c_api.h</label>
+      </node>
+      <node id="6">
+        <label>falcon_core/math/AxesControlArray_c_api.h</label>
+      </node>
+      <node id="7">
+        <label>falcon_core/math/AxesDiscretizer_c_api.h</label>
+      </node>
+      <node id="8">
+        <label>falcon_core/math/AxesDouble_c_api.h</label>
+      </node>
+      <node id="9">
+        <label>falcon_core/math/AxesInt_c_api.h</label>
+      </node>
+      <node id="11">
         <label>stdbool.h</label>
       </node>
       <node id="2">
@@ -205,33 +85,9 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="7">
-        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
-        <link refid="HDF5Data__c__api_8h_source"/>
-      </node>
-      <node id="5">
-        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
-        <link refid="MeasurementRequest__c__api_8h_source"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
-        <link refid="ListWaveform__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
-        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
       <node id="3">
         <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
         <link refid="Waveform__c__api_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
       </node>
       <node id="1">
         <label>c-api/include/falcon_core/math/UnitSpace_c_api.h</label>

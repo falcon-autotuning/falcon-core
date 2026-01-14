@@ -5,8 +5,6 @@
     <includes local="no">stdbool.h</includes>
     <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
     <includedby refid="Channels__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h</includedby>
-    <includedby refid="ListChannel__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListChannel_c_api.h</includedby>
-    <includedby refid="PairChannelConnections__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairChannelConnections_c_api.h</includedby>
     <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
     <includedby refid="Group__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Group_c_api.h</includedby>
     <incdepgraph>
@@ -37,75 +35,15 @@
         <link refid="Channel__c__api_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="2">
         <label>c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h</label>
         <link refid="Channels__c__api_8h_source"/>
         <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>c-api/include/falcon_core/generic/ListChannel_c_api.h</label>
-        <link refid="ListChannel__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>c-api/include/falcon_core/generic/ListGroup_c_api.h</label>
-        <link refid="ListGroup__c__api_8h_source"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>c-api/include/falcon_core/generic/ListPairChannelConnections_c_api.h</label>
-        <link refid="ListPairChannelConnections__c__api_8h_source"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h</label>
-        <link refid="ListPairGnameGroup__c__api_8h_source"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>c-api/include/falcon_core/generic/MapChannelConnections_c_api.h</label>
-        <link refid="MapChannelConnections__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
-        <link refid="MapGnameGroup__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>c-api/include/falcon_core/generic/PairChannelConnections_c_api.h</label>
-        <link refid="PairChannelConnections__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>c-api/include/falcon_core/generic/PairGnameGroup_c_api.h</label>
-        <link refid="PairGnameGroup__c__api_8h_source"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -118,13 +56,9 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="9">
+      <node id="5">
         <label>c-api/include/falcon_core/physics/config/core/Group_c_api.h</label>
         <link refid="Group__c__api_8h_source"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>

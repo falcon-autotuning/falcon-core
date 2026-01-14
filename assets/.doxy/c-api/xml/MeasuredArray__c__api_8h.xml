@@ -3,43 +3,13 @@
   <compounddef id="MeasuredArray__c__api_8h" kind="file" language="C++">
     <compoundname>MeasuredArray_c_api.h</compoundname>
     <includes local="no">stddef.h</includes>
-    <includes refid="FArrayDouble__c__api_8h" local="yes">falcon_core/generic/FArrayDouble_c_api.h</includes>
-    <includes refid="ListListSizeT__c__api_8h" local="yes">falcon_core/generic/ListListSizeT_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/FArrayDouble_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/ListListSizeT_c_api.h</includes>
     <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
     <includedby refid="LabelledMeasuredArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h</includedby>
     <includedby refid="LabelledMeasuredArray__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h</includedby>
     <incdepgraph>
-      <node id="3">
-        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
-        <link refid="FArrayDouble__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
       <node id="5">
-        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
-        <link refid="ListListSizeT__c__api_8h_source"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>falcon_core/generic/ListSizeT_c_api.h</label>
-        <link refid="ListSizeT__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
         <label>falcon_core/generic/String_c_api.h</label>
         <link refid="String__c__api_8h_source"/>
         <childnode refid="2" relation="include">
@@ -52,93 +22,36 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
       </node>
       <node id="4">
-        <label>stdbool.h</label>
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
       </node>
       <node id="2">
         <label>stddef.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="10">
-        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
-        <link refid="HDF5Data__c__api_8h_source"/>
-      </node>
-      <node id="11">
-        <label>c-api/include/falcon_core/communications/messages/MeasurementResponse_c_api.h</label>
-        <link refid="MeasurementResponse__c__api_8h_source"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h</label>
-        <link refid="ListLabelledMeasuredArray1D__c__api_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>c-api/include/falcon_core/generic/ListLabelledMeasuredArray_c_api.h</label>
-        <link refid="ListLabelledMeasuredArray__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
-        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>c-api/include/falcon_core/math/AxesLabelledMeasuredArray1D_c_api.h</label>
-        <link refid="AxesLabelledMeasuredArray1D__c__api_8h_source"/>
-      </node>
-      <node id="8">
-        <label>c-api/include/falcon_core/math/AxesLabelledMeasuredArray_c_api.h</label>
-        <link refid="AxesLabelledMeasuredArray__c__api_8h_source"/>
-      </node>
-      <node id="5">
-        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h</label>
-        <link refid="LabelledArraysLabelledMeasuredArray1D__c__api_8h_source"/>
-      </node>
-      <node id="9">
-        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</label>
-        <link refid="LabelledArraysLabelledMeasuredArray__c__api_8h_source"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
       <node id="2">
         <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h</label>
         <link refid="LabelledMeasuredArray1D__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
       </node>
-      <node id="6">
+      <node id="3">
         <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h</label>
         <link refid="LabelledMeasuredArray__c__api_8h_source"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
       </node>
       <node id="1">
         <label>c-api/include/falcon_core/math/arrays/MeasuredArray_c_api.h</label>
         <link refid="MeasuredArray__c__api_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

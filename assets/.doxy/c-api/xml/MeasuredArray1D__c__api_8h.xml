@@ -3,54 +3,12 @@
   <compounddef id="MeasuredArray1D__c__api_8h" kind="file" language="C++">
     <compoundname>MeasuredArray1D_c_api.h</compoundname>
     <includes local="no">stddef.h</includes>
-    <includes refid="FArrayDouble__c__api_8h" local="yes">falcon_core/generic/FArrayDouble_c_api.h</includes>
-    <includes refid="ListFArrayDouble__c__api_8h" local="yes">falcon_core/generic/ListFArrayDouble_c_api.h</includes>
-    <includes refid="ListListSizeT__c__api_8h" local="yes">falcon_core/generic/ListListSizeT_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/FArrayDouble_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/ListFArrayDouble_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/ListListSizeT_c_api.h</includes>
     <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
     <incdepgraph>
-      <node id="3">
-        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
-        <link refid="FArrayDouble__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>falcon_core/generic/ListFArrayDouble_c_api.h</label>
-        <link refid="ListFArrayDouble__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
-        <link refid="ListListSizeT__c__api_8h_source"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
       <node id="6">
-        <label>falcon_core/generic/ListSizeT_c_api.h</label>
-        <link refid="ListSizeT__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
         <label>falcon_core/generic/String_c_api.h</label>
         <link refid="String__c__api_8h_source"/>
         <childnode refid="2" relation="include">
@@ -63,15 +21,21 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
+      <node id="3">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+      </node>
       <node id="4">
-        <label>stdbool.h</label>
+        <label>falcon_core/generic/ListFArrayDouble_c_api.h</label>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
       </node>
       <node id="2">
         <label>stddef.h</label>

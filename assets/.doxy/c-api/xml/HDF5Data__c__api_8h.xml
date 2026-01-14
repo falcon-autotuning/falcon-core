@@ -5,28 +5,14 @@
     <includes local="no">stdbool.h</includes>
     <includes local="no">stdint.h</includes>
     <includes refid="DeviceVoltageStates__c__api_8h" local="yes">falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</includes>
-    <includes refid="MapStringString__c__api_8h" local="yes">falcon_core/generic/MapStringString_c_api.h</includes>
-    <includes refid="PairMeasurementResponseMeasurementRequest__c__api_8h" local="yes">falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/MapStringString_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</includes>
     <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
-    <includes refid="AxesControlArray__c__api_8h" local="yes">falcon_core/math/AxesControlArray_c_api.h</includes>
-    <includes refid="AxesCoupledLabelledDomain__c__api_8h" local="yes">falcon_core/math/AxesCoupledLabelledDomain_c_api.h</includes>
-    <includes refid="AxesInt__c__api_8h" local="yes">falcon_core/math/AxesInt_c_api.h</includes>
-    <includes refid="LabelledArraysLabelledMeasuredArray__c__api_8h" local="yes">falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</includes>
+    <includes local="yes">falcon_core/math/AxesControlArray_c_api.h</includes>
+    <includes local="yes">falcon_core/math/AxesCoupledLabelledDomain_c_api.h</includes>
+    <includes local="yes">falcon_core/math/AxesInt_c_api.h</includes>
+    <includes local="yes">falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</includes>
     <incdepgraph>
-      <node id="31">
-        <label>falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</label>
-        <link refid="AcquisitionContext__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
       <node id="1">
         <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
         <link refid="HDF5Data__c__api_8h"/>
@@ -36,57 +22,19 @@
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="71" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="56" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-      </node>
-      <node id="39">
-        <label>falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
-        <link refid="MeasurementRequest__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>falcon_core/communications/messages/MeasurementResponse_c_api.h</label>
-        <link refid="MeasurementResponse__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h</label>
-        <link refid="DeviceVoltageState__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -96,899 +44,99 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="34">
-        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
-        <link refid="FArrayDouble__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="38">
-        <label>falcon_core/generic/ListAcquisitionContext_c_api.h</label>
-        <link refid="ListAcquisitionContext__c__api_8h_source"/>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="63">
-        <label>falcon_core/generic/ListBool_c_api.h</label>
-        <link refid="ListBool__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>falcon_core/generic/ListConnection_c_api.h</label>
-        <link refid="ListConnection__c__api_8h_source"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="72">
-        <label>falcon_core/generic/ListControlArray_c_api.h</label>
-        <link refid="ListControlArray__c__api_8h_source"/>
-        <childnode refid="68" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="55">
-        <label>falcon_core/generic/ListCoupledLabelledDomain_c_api.h</label>
-        <link refid="ListCoupledLabelledDomain__c__api_8h_source"/>
-        <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>falcon_core/generic/ListDeviceVoltageState_c_api.h</label>
-        <link refid="ListDeviceVoltageState__c__api_8h_source"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="75">
-        <label>falcon_core/generic/ListDiscretizer_c_api.h</label>
-        <link refid="ListDiscretizer__c__api_8h_source"/>
-        <childnode refid="74" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>falcon_core/generic/ListDouble_c_api.h</label>
-        <link refid="ListDouble__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="54">
-        <label>falcon_core/generic/ListInstrumentPort_c_api.h</label>
-        <link refid="ListInstrumentPort__c__api_8h_source"/>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="57">
-        <label>falcon_core/generic/ListInt_c_api.h</label>
-        <link refid="ListInt__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="69">
-        <label>falcon_core/generic/ListLabelledControlArray_c_api.h</label>
-        <link refid="ListLabelledControlArray__c__api_8h_source"/>
-        <childnode refid="67" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="50">
-        <label>falcon_core/generic/ListLabelledDomain_c_api.h</label>
-        <link refid="ListLabelledDomain__c__api_8h_source"/>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>falcon_core/generic/ListLabelledMeasuredArray_c_api.h</label>
-        <link refid="ListLabelledMeasuredArray__c__api_8h_source"/>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="35">
-        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
-        <link refid="ListListSizeT__c__api_8h_source"/>
-        <childnode refid="36" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
-        <label>falcon_core/generic/ListMapStringBool_c_api.h</label>
-        <link refid="ListMapStringBool__c__api_8h_source"/>
-        <childnode refid="60" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>falcon_core/generic/ListPairConnectionDouble_c_api.h</label>
-        <link refid="ListPairConnectionDouble__c__api_8h_source"/>
         <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>falcon_core/generic/ListPairConnectionQuantity_c_api.h</label>
-        <link refid="ListPairConnectionQuantity__c__api_8h_source"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="79">
-        <label>falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h</label>
-        <link refid="ListPairInstrumentPortPortTransform__c__api_8h_source"/>
-        <childnode refid="78" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="61">
-        <label>falcon_core/generic/ListPairStringBool_c_api.h</label>
-        <link refid="ListPairStringBool__c__api_8h_source"/>
-        <childnode refid="62" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="45">
-        <label>falcon_core/generic/ListPairStringDouble_c_api.h</label>
-        <link refid="ListPairStringDouble__c__api_8h_source"/>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>falcon_core/generic/ListPairStringString_c_api.h</label>
-        <link refid="ListPairStringString__c__api_8h_source"/>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="42">
-        <label>falcon_core/generic/ListPortTransform_c_api.h</label>
-        <link refid="ListPortTransform__c__api_8h_source"/>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>falcon_core/generic/ListQuantity_c_api.h</label>
-        <link refid="ListQuantity__c__api_8h_source"/>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="36">
-        <label>falcon_core/generic/ListSizeT_c_api.h</label>
-        <link refid="ListSizeT__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>falcon_core/generic/ListString_c_api.h</label>
-        <link refid="ListString__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="40">
-        <label>falcon_core/generic/ListWaveform_c_api.h</label>
-        <link refid="ListWaveform__c__api_8h_source"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>falcon_core/generic/MapConnectionDouble_c_api.h</label>
-        <link refid="MapConnectionDouble__c__api_8h_source"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>falcon_core/generic/MapConnectionQuantity_c_api.h</label>
-        <link refid="MapConnectionQuantity__c__api_8h_source"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="77">
-        <label>falcon_core/generic/MapInstrumentPortPortTransform_c_api.h</label>
-        <link refid="MapInstrumentPortPortTransform__c__api_8h_source"/>
-        <childnode refid="78" relation="include">
-        </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="60">
-        <label>falcon_core/generic/MapStringBool_c_api.h</label>
-        <link refid="MapStringBool__c__api_8h_source"/>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="44">
-        <label>falcon_core/generic/MapStringDouble_c_api.h</label>
-        <link refid="MapStringDouble__c__api_8h_source"/>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>falcon_core/generic/MapStringString_c_api.h</label>
-        <link refid="MapStringString__c__api_8h_source"/>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>falcon_core/generic/PairConnectionDouble_c_api.h</label>
-        <link refid="PairConnectionDouble__c__api_8h_source"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>falcon_core/generic/PairConnectionQuantity_c_api.h</label>
-        <link refid="PairConnectionQuantity__c__api_8h_source"/>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="78">
-        <label>falcon_core/generic/PairInstrumentPortPortTransform_c_api.h</label>
-        <link refid="PairInstrumentPortPortTransform__c__api_8h_source"/>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
-        <label>falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
-        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="62">
-        <label>falcon_core/generic/PairStringBool_c_api.h</label>
-        <link refid="PairStringBool__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="46">
-        <label>falcon_core/generic/PairStringDouble_c_api.h</label>
-        <link refid="PairStringDouble__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>falcon_core/generic/PairStringString_c_api.h</label>
-        <link refid="PairStringString__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>falcon_core/generic/String_c_api.h</label>
-        <link refid="String__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="41">
-        <label>falcon_core/instrument_interfaces/Waveform_c_api.h</label>
-        <link refid="Waveform__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
-        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
-        <link refid="InstrumentPort__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="33">
-        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
-        <link refid="InstrumentTypes__c__api_8h_source"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="53">
-        <label>falcon_core/instrument_interfaces/names/Ports_c_api.h</label>
-        <link refid="Ports__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-      </node>
-      <node id="43">
-        <label>falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
-        <link refid="PortTransform__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-      </node>
-      <node id="47">
-        <label>falcon_core/math/AnalyticFunction_c_api.h</label>
-        <link refid="AnalyticFunction__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="71">
-        <label>falcon_core/math/AxesControlArray_c_api.h</label>
-        <link refid="AxesControlArray__c__api_8h_source"/>
-        <childnode refid="68" relation="include">
-        </childnode>
-        <childnode refid="72" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="48">
-        <label>falcon_core/math/AxesCoupledLabelledDomain_c_api.h</label>
-        <link refid="AxesCoupledLabelledDomain__c__api_8h_source"/>
-        <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="73">
-        <label>falcon_core/math/AxesDiscretizer_c_api.h</label>
-        <link refid="AxesDiscretizer__c__api_8h_source"/>
-        <childnode refid="74" relation="include">
-        </childnode>
-        <childnode refid="75" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="76">
-        <label>falcon_core/math/AxesDouble_c_api.h</label>
-        <link refid="AxesDouble__c__api_8h_source"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="65">
-        <label>falcon_core/math/AxesInstrumentPort_c_api.h</label>
-        <link refid="AxesInstrumentPort__c__api_8h_source"/>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="56">
-        <label>falcon_core/math/AxesInt_c_api.h</label>
-        <link refid="AxesInt__c__api_8h_source"/>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="66">
-        <label>falcon_core/math/AxesLabelledControlArray_c_api.h</label>
-        <link refid="AxesLabelledControlArray__c__api_8h_source"/>
-        <childnode refid="67" relation="include">
-        </childnode>
-        <childnode refid="69" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="58">
-        <label>falcon_core/math/AxesMapStringBool_c_api.h</label>
-        <link refid="AxesMapStringBool__c__api_8h_source"/>
-        <childnode refid="59" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="11">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
         <label>falcon_core/math/Point_c_api.h</label>
         <link refid="Point__c__api_8h_source"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
-      <node id="19">
+      <node id="12">
         <label>falcon_core/math/Quantity_c_api.h</label>
         <link refid="Quantity__c__api_8h_source"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="70">
-        <label>falcon_core/math/UnitSpace_c_api.h</label>
-        <link refid="UnitSpace__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="71" relation="include">
-        </childnode>
-        <childnode refid="73" relation="include">
-        </childnode>
-        <childnode refid="76" relation="include">
-        </childnode>
-        <childnode refid="56" relation="include">
-        </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="68">
-        <label>falcon_core/math/arrays/ControlArray_c_api.h</label>
-        <link refid="ControlArray__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</label>
-        <link refid="LabelledArraysLabelledMeasuredArray__c__api_8h_source"/>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="67">
-        <label>falcon_core/math/arrays/LabelledControlArray_c_api.h</label>
-        <link refid="LabelledControlArray__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="68" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
-        <label>falcon_core/math/arrays/LabelledMeasuredArray_c_api.h</label>
-        <link refid="LabelledMeasuredArray__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-      </node>
-      <node id="37">
-        <label>falcon_core/math/arrays/MeasuredArray_c_api.h</label>
-        <link refid="MeasuredArray__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="64">
-        <label>falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
-        <link refid="DiscreteSpace__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
-        <childnode refid="58" relation="include">
-        </childnode>
-        <childnode refid="70" relation="include">
-        </childnode>
-        <childnode refid="49" relation="include">
-        </childnode>
-      </node>
-      <node id="74">
-        <label>falcon_core/math/discrete_spaces/Discretizer_c_api.h</label>
-        <link refid="Discretizer__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-      </node>
-      <node id="49">
-        <label>falcon_core/math/domains/CoupledLabelledDomain_c_api.h</label>
-        <link refid="CoupledLabelledDomain__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-      </node>
-      <node id="52">
-        <label>falcon_core/math/domains/Domain_c_api.h</label>
-        <link refid="Domain__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="51">
-        <label>falcon_core/math/domains/LabelledDomain_c_api.h</label>
-        <link refid="LabelledDomain__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
+      <node id="14">
         <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
         <link refid="Connection__c__api_8h_source"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="10">
+      <node id="13">
         <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
         <link refid="SymbolUnit__c__api_8h_source"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/ListDeviceVoltageState_c_api.h</label>
+      </node>
+      <node id="9">
+        <label>falcon_core/generic/MapConnectionDouble_c_api.h</label>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/MapConnectionQuantity_c_api.h</label>
+      </node>
+      <node id="15">
+        <label>falcon_core/generic/MapStringString_c_api.h</label>
+      </node>
+      <node id="16">
+        <label>falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+      </node>
+      <node id="17">
+        <label>falcon_core/math/AxesControlArray_c_api.h</label>
+      </node>
+      <node id="18">
+        <label>falcon_core/math/AxesCoupledLabelledDomain_c_api.h</label>
+      </node>
+      <node id="19">
+        <label>falcon_core/math/AxesInt_c_api.h</label>
+      </node>
+      <node id="20">
+        <label>falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</label>
       </node>
       <node id="2">
         <label>stdbool.h</label>
       </node>
-      <node id="8">
+      <node id="7">
         <label>stddef.h</label>
       </node>
       <node id="3">

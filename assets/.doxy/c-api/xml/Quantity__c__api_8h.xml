@@ -5,10 +5,6 @@
     <includes local="no">stdbool.h</includes>
     <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
     <includes refid="SymbolUnit__c__api_8h" local="yes">falcon_core/physics/units/SymbolUnit_c_api.h</includes>
-    <includedby refid="ListQuantity__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListQuantity_c_api.h</includedby>
-    <includedby refid="PairConnectionQuantity__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairConnectionQuantity_c_api.h</includedby>
-    <includedby refid="PairInterpretationContextQuantity__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h</includedby>
-    <includedby refid="PairQuantityQuantity__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairQuantityQuantity_c_api.h</includedby>
     <includedby refid="Point__c__api_8h" local="yes">c-api/include/falcon_core/math/Point_c_api.h</includedby>
     <incdepgraph>
       <node id="3">
@@ -43,114 +39,30 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3">
-        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h</label>
-        <link refid="InterpretationContainerQuantity__c__api_8h_source"/>
-      </node>
-      <node id="7">
+      <node id="4">
         <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
         <link refid="HDF5Data__c__api_8h_source"/>
       </node>
-      <node id="8">
+      <node id="5">
         <label>c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h</label>
         <link refid="VoltageStatesResponse__c__api_8h_source"/>
       </node>
-      <node id="6">
+      <node id="3">
         <label>c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</label>
         <link refid="DeviceVoltageStates__c__api_8h_source"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>c-api/include/falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.h</label>
-        <link refid="ListPairConnectionPairQuantityQuantity__c__api_8h_source"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>c-api/include/falcon_core/generic/ListPairConnectionQuantity_c_api.h</label>
-        <link refid="ListPairConnectionQuantity__c__api_8h_source"/>
         <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="14">
-        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h</label>
-        <link refid="ListPairInterpretationContextQuantity__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>c-api/include/falcon_core/generic/ListPairQuantityQuantity_c_api.h</label>
-        <link refid="ListPairQuantityQuantity__c__api_8h_source"/>
-        <childnode refid="9" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="2">
-        <label>c-api/include/falcon_core/generic/ListQuantity_c_api.h</label>
-        <link refid="ListQuantity__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>c-api/include/falcon_core/generic/MapConnectionQuantity_c_api.h</label>
-        <link refid="MapConnectionQuantity__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.h</label>
-        <link refid="MapInterpretationContextQuantity__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>c-api/include/falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h</label>
-        <link refid="PairConnectionPairQuantityQuantity__c__api_8h_source"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>c-api/include/falcon_core/generic/PairConnectionQuantity_c_api.h</label>
-        <link refid="PairConnectionQuantity__c__api_8h_source"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h</label>
-        <link refid="PairInterpretationContextQuantity__c__api_8h_source"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>c-api/include/falcon_core/generic/PairQuantityQuantity_c_api.h</label>
-        <link refid="PairQuantityQuantity__c__api_8h_source"/>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
         <label>c-api/include/falcon_core/math/Point_c_api.h</label>
         <link refid="Point__c__api_8h_source"/>
-        <childnode refid="6" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -158,16 +70,8 @@
         <link refid="Quantity__c__api_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
       </node>
-      <node id="9">
+      <node id="6">
         <label>c-api/include/falcon_core/math/Vector_c_api.h</label>
         <link refid="Vector__c__api_8h_source"/>
       </node>

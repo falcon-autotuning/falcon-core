@@ -7,8 +7,6 @@
     <includes refid="InstrumentPort__c__api_8h" local="yes">falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</includes>
     <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
     <includedby refid="InterpretationContext__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h</includedby>
-    <includedby refid="ListMeasurementContext__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListMeasurementContext_c_api.h</includedby>
-    <includedby refid="AxesMeasurementContext__c__api_8h" local="yes">c-api/include/falcon_core/math/AxesMeasurementContext_c_api.h</includedby>
     <incdepgraph>
       <node id="1">
         <label>c-api/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h</label>
@@ -79,136 +77,10 @@
         <link refid="MeasurementContext__c__api_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</label>
-        <link refid="InterpretationContainerDouble__c__api_8h_source"/>
-      </node>
-      <node id="4">
-        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h</label>
-        <link refid="InterpretationContainerQuantity__c__api_8h_source"/>
-      </node>
-      <node id="5">
-        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h</label>
-        <link refid="InterpretationContainerString__c__api_8h_source"/>
       </node>
       <node id="2">
         <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h</label>
         <link refid="InterpretationContext__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>c-api/include/falcon_core/generic/ListInterpretationContext_c_api.h</label>
-        <link refid="ListInterpretationContext__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>c-api/include/falcon_core/generic/ListMeasurementContext_c_api.h</label>
-        <link refid="ListMeasurementContext__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h</label>
-        <link refid="ListPairInterpretationContextDouble__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h</label>
-        <link refid="ListPairInterpretationContextQuantity__c__api_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextString_c_api.h</label>
-        <link refid="ListPairInterpretationContextString__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h</label>
-        <link refid="MapInterpretationContextDouble__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.h</label>
-        <link refid="MapInterpretationContextQuantity__c__api_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.h</label>
-        <link refid="MapInterpretationContextString__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>c-api/include/falcon_core/generic/PairInterpretationContextDouble_c_api.h</label>
-        <link refid="PairInterpretationContextDouble__c__api_8h_source"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h</label>
-        <link refid="PairInterpretationContextQuantity__c__api_8h_source"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>c-api/include/falcon_core/generic/PairInterpretationContextString_c_api.h</label>
-        <link refid="PairInterpretationContextString__c__api_8h_source"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>c-api/include/falcon_core/math/AxesMeasurementContext_c_api.h</label>
-        <link refid="AxesMeasurementContext__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
       </node>
     </invincdepgraph>
     <sectiondef kind="typedef">

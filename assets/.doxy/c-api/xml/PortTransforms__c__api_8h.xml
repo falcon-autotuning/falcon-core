@@ -3,154 +3,54 @@
   <compounddef id="PortTransforms__c__api_8h" kind="file" language="C++">
     <compoundname>PortTransforms_c_api.h</compoundname>
     <includes local="no">stddef.h</includes>
-    <includes refid="ListPortTransform__c__api_8h" local="yes">falcon_core/generic/ListPortTransform_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/ListPortTransform_c_api.h</includes>
     <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
     <includes refid="PortTransform__c__api_8h" local="yes">falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</includes>
     <incdepgraph>
-      <node id="6">
-        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
-        <link refid="FArrayDouble__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>falcon_core/generic/ListDouble_c_api.h</label>
-        <link refid="ListDouble__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
-        <link refid="ListListSizeT__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>falcon_core/generic/ListPairStringDouble_c_api.h</label>
-        <link refid="ListPairStringDouble__c__api_8h_source"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>falcon_core/generic/ListPortTransform_c_api.h</label>
-        <link refid="ListPortTransform__c__api_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>falcon_core/generic/ListSizeT_c_api.h</label>
-        <link refid="ListSizeT__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>falcon_core/generic/ListString_c_api.h</label>
-        <link refid="ListString__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>falcon_core/generic/MapStringDouble_c_api.h</label>
-        <link refid="MapStringDouble__c__api_8h_source"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>falcon_core/generic/PairStringDouble_c_api.h</label>
-        <link refid="PairStringDouble__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
+      <node id="4">
         <label>falcon_core/generic/String_c_api.h</label>
         <link refid="String__c__api_8h_source"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="10">
         <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
         <link refid="InstrumentPort__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
-        <link refid="InstrumentTypes__c__api_8h_source"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
-        <link refid="PortTransform__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
+        <link refid="PortTransform__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -160,42 +60,54 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/math/AnalyticFunction_c_api.h</label>
+        <link refid="AnalyticFunction__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
         <childnode refid="9" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="19">
-        <label>falcon_core/math/AnalyticFunction_c_api.h</label>
-        <link refid="AnalyticFunction__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
+      <node id="12">
         <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
         <link refid="Connection__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="13">
         <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
         <link refid="SymbolUnit__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="5">
+      <node id="7">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/ListPortTransform_c_api.h</label>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+      </node>
+      <node id="9">
+        <label>falcon_core/generic/MapStringDouble_c_api.h</label>
+      </node>
+      <node id="6">
         <label>stdbool.h</label>
       </node>
       <node id="2">

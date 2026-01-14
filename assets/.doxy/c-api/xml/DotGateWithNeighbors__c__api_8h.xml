@@ -5,7 +5,6 @@
     <includes local="no">stdbool.h</includes>
     <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
     <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
-    <includedby refid="ListDotGateWithNeighbors__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListDotGateWithNeighbors_c_api.h</includedby>
     <incdepgraph>
       <node id="3">
         <label>falcon_core/generic/String_c_api.h</label>
@@ -38,80 +37,6 @@
         <label>stddef.h</label>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="2">
-        <label>c-api/include/falcon_core/generic/ListDotGateWithNeighbors_c_api.h</label>
-        <link refid="ListDotGateWithNeighbors__c__api_8h_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>c-api/include/falcon_core/generic/ListGroup_c_api.h</label>
-        <link refid="ListGroup__c__api_8h_source"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h</label>
-        <link refid="ListPairGnameGroup__c__api_8h_source"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
-        <link refid="MapGnameGroup__c__api_8h_source"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>c-api/include/falcon_core/generic/PairGnameGroup_c_api.h</label>
-        <link refid="PairGnameGroup__c__api_8h_source"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
-        <link refid="Loader__c__api_8h_source"/>
-      </node>
-      <node id="8">
-        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
-        <link refid="Config__c__api_8h_source"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>c-api/include/falcon_core/physics/config/core/Group_c_api.h</label>
-        <link refid="Group__c__api_8h_source"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>c-api/include/falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h</label>
-        <link refid="DotGateWithNeighbors__c__api_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>c-api/include/falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h</label>
-        <link refid="DotGatesWithNeighbors__c__api_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</label>
-        <link refid="GateGeometryArray1D__c__api_8h_source"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <sectiondef kind="typedef">
       <memberdef kind="typedef" id="DotGateWithNeighbors__c__api_8h_1adbe6666edb7489814b282c6a0a37bc00" prot="public" static="no">
         <type>void *</type>

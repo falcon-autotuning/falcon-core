@@ -3,43 +3,9 @@
   <compounddef id="Impedances__c__api_8h" kind="file" language="C++">
     <compoundname>Impedances_c_api.h</compoundname>
     <includes local="no">stdbool.h</includes>
-    <includes refid="ListImpedance__c__api_8h" local="yes">falcon_core/generic/ListImpedance_c_api.h</includes>
+    <includes local="yes">falcon_core/generic/ListImpedance_c_api.h</includes>
     <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
     <incdepgraph>
-      <node id="3">
-        <label>falcon_core/generic/ListImpedance_c_api.h</label>
-        <link refid="ListImpedance__c__api_8h_source"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>falcon_core/generic/String_c_api.h</label>
-        <link refid="String__c__api_8h_source"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
-        <link refid="Connection__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>falcon_core/physics/device_structures/Impedance_c_api.h</label>
-        <link refid="Impedance__c__api_8h_source"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
       <node id="1">
         <label>c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h</label>
         <link refid="Impedances__c__api_8h"/>
@@ -48,11 +14,11 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
+      <node id="3">
+        <label>falcon_core/generic/ListImpedance_c_api.h</label>
+      </node>
       <node id="2">
         <label>stdbool.h</label>
-      </node>
-      <node id="7">
-        <label>stddef.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
