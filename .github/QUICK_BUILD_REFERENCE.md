@@ -108,10 +108,12 @@ Release workflow triggers on:
 - gtest (for testing)
 
 ### xtensor Stack
-- xtl
-- xsimd
-- xtensor
-- xtensor-io
+- xtl (0.7.5)
+- xsimd (10.0.0 - used in CI workflows and packaging)
+- xtensor (0.25.0)
+- xtensor-io (0.13.0)
+
+**Note**: The README.md lists xsimd@13.2.0 as a dependency, but the CI workflows and packaging currently use version 10.0.0, which is what these instructions reflect.
 
 ### Additional
 - highfive (HDF5 C++ wrapper)

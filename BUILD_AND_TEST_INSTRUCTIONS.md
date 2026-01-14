@@ -154,7 +154,10 @@ sudo cmake --build xtensor-io-build --target install
 
 ### Step 5: Build falcon-core C++
 
+Navigate to your falcon-core repository directory, then:
+
 ```bash
+# Replace with your actual path, e.g., cd ~/projects/falcon-core
 cd /path/to/falcon-core/cpp
 CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 ```
@@ -162,7 +165,7 @@ CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 ### Step 6: Test falcon-core C++
 
 ```bash
-cd /path/to/falcon-core/cpp
+# In the cpp directory
 make run-all-tests
 mkdir -p coverage
 make coverage-overview > coverage/falcon-core-cpp.txt
@@ -171,14 +174,15 @@ make coverage-overview > coverage/falcon-core-cpp.txt
 ### Step 7: Build falcon-core C-API
 
 ```bash
-cd /path/to/falcon-core/c-api
+# Navigate to c-api directory from repository root
+cd ../c-api
 CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 ```
 
 ### Step 8: Test falcon-core C-API
 
 ```bash
-cd /path/to/falcon-core/c-api
+# In the c-api directory
 make run-all-tests
 mkdir -p coverage
 make coverage-overview > coverage/falcon-core-c-api.txt
@@ -284,8 +288,11 @@ cd ..
 
 ### Step 3: Build and Install xtensor Stack PKGBUILDs
 
+Navigate to your cloned repository:
+
 ```bash
-cd /path/to/falcon-core/packaging
+# Example: cd ~/projects/falcon-core
+cd <falcon-core-repository>/packaging
 
 # Build and install xtl
 cd xtl
@@ -310,15 +317,18 @@ cd ..
 
 ### Step 4: Build falcon-core C++
 
+Navigate to your cloned repository:
+
 ```bash
-cd /path/to/falcon-core/cpp
+# Example: cd ~/projects/falcon-core
+cd <falcon-core-repository>/cpp
 CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=0 make build-dev
 ```
 
 ### Step 5: Test falcon-core C++
 
 ```bash
-cd /path/to/falcon-core/cpp
+# In the cpp directory
 make run-all-tests
 mkdir -p coverage
 make coverage-overview > coverage/falcon-core-cpp.txt
@@ -327,14 +337,15 @@ make coverage-overview > coverage/falcon-core-cpp.txt
 ### Step 6: Build falcon-core C-API
 
 ```bash
-cd /path/to/falcon-core/c-api
+# Navigate to c-api directory from repository root
+cd ../c-api
 CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=0 make build-dev
 ```
 
 ### Step 7: Test falcon-core C-API
 
 ```bash
-cd /path/to/falcon-core/c-api
+# In the c-api directory
 make run-all-tests
 mkdir -p coverage
 make coverage-overview > coverage/falcon-core-c-api.txt
@@ -383,8 +394,11 @@ mkdir -p ~/rpmbuild/SPECS ~/rpmbuild/SOURCES
 
 ### Step 3: Build and Install xtensor Stack via RPM
 
+Navigate to your cloned repository:
+
 ```bash
-cd /path/to/falcon-core/packaging/specs
+# Example: cd ~/projects/falcon-core
+cd <falcon-core-repository>/packaging/specs
 
 # Build and install xtl
 cp xtl.spec ~/rpmbuild/SPECS/
@@ -418,7 +432,8 @@ sudo dnf install -y ~/rpmbuild/RPMS/*/xtensor-io-*.rpm
 ### Step 4: Build and Install exprtk
 
 ```bash
-cp /path/to/falcon-core/packaging/specs/exprtk.spec ~/rpmbuild/SPECS/
+# From the repository root
+cp <falcon-core-repository>/packaging/specs/exprtk.spec ~/rpmbuild/SPECS/
 curl -L -o ~/rpmbuild/SOURCES/exprtk-0.0.2.tar.gz \
   https://github.com/ArashPartow/exprtk/archive/refs/tags/0.0.2.tar.gz
 rpmbuild -ba ~/rpmbuild/SPECS/exprtk.spec
@@ -429,7 +444,8 @@ sudo ln -s /usr/include/exprtk/exprtk.hpp /usr/include/exprtk.hpp
 ### Step 5: Build and Install highfive
 
 ```bash
-cp /path/to/falcon-core/packaging/specs/highfive.spec ~/rpmbuild/SPECS/
+# From the repository root
+cp <falcon-core-repository>/packaging/specs/highfive.spec ~/rpmbuild/SPECS/
 curl -L -o ~/rpmbuild/SOURCES/highfive-3.1.1.tar.gz \
   https://github.com/highfive-devs/highfive/archive/v3.1.1.tar.gz
 rpmbuild --define "_topdir $HOME/rpmbuild" -ba ~/rpmbuild/SPECS/highfive.spec
@@ -440,7 +456,8 @@ sudo dnf install -y "$rpmfile"
 ### Step 6: Build and Install Boost
 
 ```bash
-cp /path/to/falcon-core/packaging/specs/boost.spec ~/rpmbuild/SPECS/
+# From the repository root
+cp <falcon-core-repository>/packaging/specs/boost.spec ~/rpmbuild/SPECS/
 curl -L -o ~/rpmbuild/SOURCES/boost-1.88.0.tar.gz \
   https://github.com/boostorg/boost/releases/download/boost-1.88.0/boost-1.88.0-b2-nodocs.tar.gz
 rpmbuild --define "_topdir $HOME/rpmbuild" -ba ~/rpmbuild/SPECS/boost.spec
@@ -454,15 +471,15 @@ If using the RPM spec files for falcon-core:
 
 ```bash
 # Build falcon-core-cpp-dev
-cp /path/to/falcon-core/packaging/specs/falcon-core-cpp-dev.spec ~/rpmbuild/SPECS/
-cd /path/to/falcon-core
+cp <falcon-core-repository>/packaging/specs/falcon-core-cpp-dev.spec ~/rpmbuild/SPECS/
+cd <falcon-core-repository>
 tar czf ~/rpmbuild/SOURCES/falcon-core-cpp-dev-1.0.0.tar.gz \
   --transform 's,^.,falcon-core-cpp-dev-1.0.0,' .
 rpmbuild -ba ~/rpmbuild/SPECS/falcon-core-cpp-dev.spec
 sudo dnf install -y ~/rpmbuild/RPMS/*/falcon-core-cpp-dev-*.rpm
 
 # Build falcon-core-c-api-dev
-cp /path/to/falcon-core/packaging/specs/falcon-core-c-api-dev.spec ~/rpmbuild/SPECS/
+cp <falcon-core-repository>/packaging/specs/falcon-core-c-api-dev.spec ~/rpmbuild/SPECS/
 tar czf ~/rpmbuild/SOURCES/falcon-core-c-api-dev-1.0.0.tar.gz \
   --transform 's,^.,falcon-core-c-api-dev-1.0.0,' .
 rpmbuild -ba ~/rpmbuild/SPECS/falcon-core-c-api-dev.spec
@@ -474,8 +491,11 @@ sudo dnf install -y ~/rpmbuild/RPMS/*/falcon-core-c-api-dev-*.rpm
 Instead of using RPM, you can build directly:
 
 ```bash
+# Navigate to your repository
+# Example: cd ~/projects/falcon-core
+
 # Build C++
-cd /path/to/falcon-core/cpp
+cd <falcon-core-repository>/cpp
 CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 
 # Test C++
@@ -484,7 +504,7 @@ mkdir -p coverage
 make coverage-overview > coverage/falcon-core-cpp.txt
 
 # Build C-API
-cd /path/to/falcon-core/c-api
+cd ../c-api
 CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 
 # Test C-API
@@ -626,7 +646,10 @@ cmake --build build
 $buildDir = "build"
 $coverageDir = "coverage"
 New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
-$env:PATH = "$env:GITHUB_WORKSPACE\c-api\$buildDir;$env:PATH"
+
+# Add build directory to PATH so the test executable can find dependencies
+$env:PATH = "$PWD\$buildDir;$env:PATH"
+
 $env:LLVM_PROFILE_FILE = "$buildDir\falcon_core_c_api_run_tests.profraw"
 .\$buildDir\falcon_core_c_api_run_tests.exe
 llvm-profdata merge -sparse $buildDir\falcon_core_c_api_run_tests.profraw -o $buildDir\falcon_core_c_api_run_tests.profdata
@@ -764,11 +787,14 @@ If using `USE_VCPKG=0`, verify that all system packages are installed:
 **Solution**: Set `LD_LIBRARY_PATH` (Linux) or `PATH` (Windows) to include the build directory:
 
 ```bash
-# Linux
-export LD_LIBRARY_PATH=/path/to/falcon-core/cpp/build:$LD_LIBRARY_PATH
+# Linux - from repository root
+export LD_LIBRARY_PATH=$(pwd)/cpp/build:$LD_LIBRARY_PATH
+
+# Or with absolute path
+export LD_LIBRARY_PATH=$HOME/projects/falcon-core/cpp/build:$LD_LIBRARY_PATH
 
 # Windows
-$env:PATH = "C:\path\to\falcon-core\cpp\build;$env:PATH"
+$env:PATH = "$PWD\cpp\build;$env:PATH"
 ```
 
 ### Issue: Coverage data not generated
@@ -851,8 +877,8 @@ choco install ninja
 ### Minimal Build Commands (Linux with System Packages)
 
 ```bash
-# Navigate to repository
-cd /path/to/falcon-core
+# Navigate to repository (example path)
+cd ~/projects/falcon-core
 
 # Build C++
 cd cpp
@@ -872,7 +898,8 @@ make run-all-tests
 ### Minimal Build Commands (Using Root Makefile)
 
 ```bash
-cd /path/to/falcon-core
+# Navigate to repository root
+cd ~/projects/falcon-core
 make build-dev USE_VCPKG=0
 make test
 ```
