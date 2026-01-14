@@ -125,15 +125,8 @@ jobs:
           mkdir -p packaging
           chown builduser:builduser packaging
           runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
               if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
-              cd packaging/highfive
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                PKGDEST="$(pwd)" makepkg -si --noconfirm --needed
-              fi
-              cd ../exprtk
+              cd packaging/exprtk
               if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
                 sudo pacman -U --noconfirm ./*.pkg.tar.zst
               else
@@ -151,6 +144,8 @@ jobs:
             makepkg -si --noconfirm --syncdeps --cleanbuild
             cd ../xtensor-io
             makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../highfive
+            makepkg -si --noconfigm --syncdeps --cleanbuild
           "
       - name: Build falcon-core-cpp-dev
         run: |
