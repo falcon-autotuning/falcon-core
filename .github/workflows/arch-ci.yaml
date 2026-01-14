@@ -145,7 +145,7 @@ jobs:
             cd ../xtensor-io
             makepkg -si --noconfirm --syncdeps --cleanbuild
             cd ../highfive
-            makepkg -si --noconfigm --syncdeps --cleanbuild
+            makepkg -si --noconfirm --syncdeps --cleanbuild
           "
       - name: Build falcon-core-cpp-dev
         run: |
