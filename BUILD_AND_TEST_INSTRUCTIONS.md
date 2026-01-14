@@ -157,8 +157,9 @@ sudo cmake --build xtensor-io-build --target install
 Navigate to your falcon-core repository directory, then:
 
 ```bash
-# Replace with your actual path, e.g., cd ~/projects/falcon-core
-cd /path/to/falcon-core/cpp
+# Example: cd ~/projects/falcon-core/cpp
+# Replace <falcon-core-repository> with your actual path
+cd <falcon-core-repository>/cpp
 CC=clang CXX=clang++ USE_VCPKG=0 make build-dev
 ```
 
