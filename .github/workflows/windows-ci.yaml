@@ -1,9 +1,9 @@
 name: Windows CI
 on:
   push:
-    branches: [main, windows-support]
+    branches: [windows-support]
   pull_request:
-    branches: [main, windows-support]
+    branches: [windows-support]
 jobs:
   build-and-test-windows:
     runs-on: windows-latest
@@ -273,3 +273,10 @@ jobs:
           path: |
             cpp/coverage/*
             c-api/coverage/*
+
+      - name: Setup tmate session for debugging (on failure)
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30
+        with:
+          limit-access-to-actor: true
