@@ -264,3 +264,23 @@ jobs:
 
           echo "✅ All c-api coverage checks passed."
         shell: bash
+
+      - name: Start tmate session for debugging on failure
+        if: ${{ failure() }}
+        run: |
+          set -euo pipefail
+          # tmate should already be installed via pacman above; ensure it's present
+          if ! command -v tmate >/dev/null 2>&1; then
+            pacman -S --noconfirm tmate || true
+          fi
+          # Start a detached tmate session and print connection info
+          TMATE_SOCK=/tmp/tmate.sock
+          tmate -S "${TMATE_SOCK}" new-session -d
+          tmate -S "${TMATE_SOCK}" wait tmate-ready
+          echo "===== TMATE CONNECTION INFO ====="
+          tmate -S "${TMATE_SOCK}" display -p '#{tmate_ssh}'
+          tmate -S "${TMATE_SOCK}" display -p '#{tmate_web}'
+          echo "================================="
+          # Keep session alive so you can connect; job will time out eventually according to workflow/job timeout
+          # Sleep in a loop to be robust to signals
+          while true; do sleep 60; done
