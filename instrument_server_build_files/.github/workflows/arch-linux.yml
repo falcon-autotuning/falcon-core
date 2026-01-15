@@ -1,0 +1,83 @@
+name: Arch Linux Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    container:
+      image: archlinux:latest
+
+    steps:
+      - name: Update system and install dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm \
+            base-devel \
+            git \
+            cmake \
+            ninja \
+            clang \
+            lld \
+            llvm \
+            lua \
+            luajit \
+            spdlog \
+            nlohmann-json \
+            yaml-cpp \
+            gtest \
+            boost
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install sol2 (header-only library)
+        run: |
+          git clone --depth 1 --branch v3.5.0 https://github.com/ThePhD/sol2.git /tmp/sol2
+          mkdir -p /usr/local/include/sol
+          cp -r /tmp/sol2/include/sol/* /usr/local/include/sol/
+
+      - name: Cache Pacman packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/pacman/pkg
+          key: arch-packages-${{ hashFiles('.github/workflows/arch-linux.yml') }}
+          restore-keys: |
+            arch-packages-
+
+      - name: Clean build directory
+        run: make clean
+
+      - name: Build project
+        run: make build
+
+      - name: Run unit tests
+        run: |
+          make unit-test
+          echo "Unit tests completed"
+
+      - name: Run integration tests
+        run: |
+          make integration-tests
+          echo "Integration tests completed"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: arch-linux-binaries
+          path: |
+            build/instrument-server
+            build/instrument-worker
+            build/libinstrument-server-core.so
+            LICENSE
+          retention-days: 7

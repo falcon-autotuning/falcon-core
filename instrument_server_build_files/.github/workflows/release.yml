@@ -1,0 +1,128 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  # Trigger Arch Linux build
+  arch-build:
+    uses: ./.github/workflows/arch-linux.yml
+    permissions:
+      contents: read
+
+  # Trigger Windows build (grant packages: read so the called workflow can access GHCR)
+  windows-build:
+    uses: ./.github/workflows/windows-direct.yml
+    permissions:
+      contents: read
+      packages: read
+
+  create-release:
+    needs: [arch-build, windows-build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Arch Linux binaries
+        uses: actions/download-artifact@v4.1.3
+        with:
+          name: arch-linux-binaries
+          path: release/arch-linux
+
+      - name: Download Windows binaries
+        uses: actions/download-artifact@v4.1.3
+        with:
+          name: windows-binaries
+          path: release/windows
+
+      - name: Create release archives
+        run: |
+          cd release
+
+          # Create Arch Linux archive
+          tar -czf instrument-server-arch-linux-x64.tar.gz -C arch-linux .
+
+          # Create Windows archive
+          cd windows
+          zip -r ../instrument-server-windows-x64.zip .
+          cd ..
+
+      - name: Generate release notes
+        id: release-notes
+        run: |
+          cat > release-notes.md << 'EOF'
+          # Instrument Script Server Release
+
+          ## Platforms
+
+          This release includes binaries for the following platforms:
+
+          - **Arch Linux (x64)**: `instrument-server-arch-linux-x64.tar.gz`
+          - **Windows (x64)**: `instrument-server-windows-x64.zip`
+
+          ## Installation
+
+          ### Arch Linux
+          ```bash
+          tar -xzf instrument-server-arch-linux-x64.tar.gz
+          sudo install -m 755 instrument-server /usr/local/bin/
+          sudo install -m 755 instrument-worker /usr/local/bin/
+          sudo install -m 644 libinstrument-server-core.so /usr/local/lib/
+          ```
+
+          ### Windows
+          ```powershell
+          Expand-Archive instrument-server-windows-x64.zip -DestinationPath C:\instrument-server
+          # Add C:\instrument-server to your PATH
+          ```
+
+          ## License
+
+          See the included LICENSE file for license information.
+
+          ## Documentation
+
+          For usage instructions, see the [README](https://github.com/falcon-autotuning/instrument-script-server/blob/main/README.md).
+          EOF
+          echo "notes<<EOF" >> $GITHUB_OUTPUT
+          cat release-notes.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Determine release info
+        id: release-info
+        run: |
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "tag_name=release-${{ github.sha }}" >> $GITHUB_OUTPUT
+            echo "release_name=Release ${{ github.sha }}" >> $GITHUB_OUTPUT
+            echo "is_draft=true" >> $GITHUB_OUTPUT
+            echo "is_prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "tag_name=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+            echo "release_name=Release ${{ github.ref_name }}" >> $GITHUB_OUTPUT
+            echo "is_draft=false" >> $GITHUB_OUTPUT
+            echo "is_prerelease=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release-info.outputs.tag_name }}
+          name: ${{ steps.release-info.outputs.release_name }}
+          body: ${{ steps.release-notes.outputs.notes }}
+          files: |
+            release/instrument-server-arch-linux-x64.tar.gz
+            release/instrument-server-windows-x64.zip
+            LICENSE
+          draft: ${{ steps.release-info.outputs.is_draft }}
+          prerelease: ${{ steps.release-info.outputs.is_prerelease }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
