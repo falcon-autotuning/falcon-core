@@ -76,9 +76,74 @@ Builds and tests falcon-core C++ and C-API on Windows natively (without Docker).
 - vcpkg packages are cached in `vcpkg/` directory
 - The script uses Clang for compilation (matches CI environment)
 
+## Windows Cross-Compilation - `build-windows-mingw.sh`
+
+Cross-compiles falcon-core C++ and C-API for Windows using MinGW on Arch Linux (inside Docker).
+
+### Prerequisites
+
+- Docker with falcon-arch-ci image built
+- Arch Linux container with MinGW toolchain
+
+### Setup
+
+1. Build the Docker image if not already done:
+   ```bash
+   docker build -t falcon-arch-ci -f docker/arch-all.Dockerfile .
+   ```
+
+2. Install MinGW in the container (if not already in the Dockerfile):
+   ```bash
+   docker run --rm -t -v "$PWD":/workspace -w /workspace falcon-arch-ci \
+     bash -c "pacman -S --noconfirm mingw-w64-gcc clang lld"
+   ```
+
+3. Run the cross-compilation script from the repository root:
+   ```bash
+   docker run --rm -t -v "$PWD":/workspace -w /workspace falcon-arch-ci \
+     bash /workspace/scripts/build-windows-mingw.sh
+   ```
+
+### What it does
+
+- Detects MinGW cross-compilation toolchain (x86_64-w64-mingw32-gcc)
+- Generates CMake toolchain file from template
+- Cross-compiles falcon-core-cpp for Windows (x64)
+- Cross-compiles falcon-core-c-api for Windows (x64)
+- Produces Windows DLLs and executables (`.dll`, `.exe` files)
+- Output in `cpp/build-mingw/` and `c-api/build-mingw/`
+
+### Notes
+
+- Uses Clang with MinGW target for cross-compilation
+- Requires LLVM linker (lld) for linking
+- Binaries are Windows executables that must be run on Windows or with Wine
+- Does not run tests (cross-compiled binaries can't run on Linux)
+- Uses system MinGW packages, not vcpkg (USE_VCPKG=OFF)
+
+### Testing Cross-Compiled Binaries
+
+To test the Windows binaries:
+
+**Option 1: On Windows**
+- Copy binaries to a Windows machine
+- Ensure MinGW runtime DLLs are available (from MSYS2 or MinGW installation)
+- Run the executables
+
+**Option 2: With Wine on Linux**
+```bash
+# Install Wine
+sudo pacman -S wine
+
+# Run Windows executable through Wine
+wine cpp/build-mingw/falcon_core_cpp_run_tests.exe
+```
+
 ## Why No Windows Docker?
 
-Windows containers require a Windows host (Windows Server or Windows 10/11 with container support). They cannot run on Linux/macOS Docker hosts, which is why we use a native PowerShell script instead of Docker for Windows builds.
+Windows containers require a Windows host (Windows Server or Windows 10/11 with container support). They cannot run on Linux/macOS Docker hosts, which is why we use either:
+1. Native PowerShell script for Windows (`local_windows_ci.ps1`)
+2. Cross-compilation from Linux using MinGW (`build-windows-mingw.sh`)
 
 ## Coverage Reports
 

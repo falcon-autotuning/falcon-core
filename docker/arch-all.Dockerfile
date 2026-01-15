@@ -4,11 +4,13 @@ FROM archlinux:latest
 RUN sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 # Base deps from the GitHub workflow + a couple utilities it implicitly uses
+# Also includes MinGW for Windows cross-compilation
 RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm \
       base-devel git openssh sudo \
       cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib \
-      ninja llvm ccache clang gtest \
+      ninja llvm ccache clang gtest lld \
+      mingw-w64-gcc \
       bc && \
     pacman -Scc --noconfirm
 
