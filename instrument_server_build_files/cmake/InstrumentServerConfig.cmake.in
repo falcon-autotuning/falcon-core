@@ -1,0 +1,59 @@
+@PACKAGE_INIT@
+
+# Include the targets file
+include("${CMAKE_CURRENT_LIST_DIR}/InstrumentServerTargets.cmake")
+
+# Set include directories
+set(InstrumentServer_INCLUDE_DIRS "@PACKAGE_CMAKE_INSTALL_PREFIX@/include")
+
+# Helper function for external plugins to easily create plugins
+function(add_instrument_plugin TARGET_NAME)
+  set(options "")
+  set(oneValueArgs "")
+  set(multiValueArgs SOURCES LINK_LIBRARIES INCLUDE_DIRS)
+
+  cmake_parse_arguments(PLUGIN "${options}" "${oneValueArgs}"
+                        "${multiValueArgs}" ${ARGN})
+
+  if(NOT PLUGIN_SOURCES)
+    message(FATAL_ERROR "add_instrument_plugin:  SOURCES argument is required")
+  endif()
+
+  # Create MODULE library (for dlopen/LoadLibrary)
+  add_library(${TARGET_NAME} MODULE ${PLUGIN_SOURCES})
+
+  # Set properties for plugin
+  set_target_properties(
+    ${TARGET_NAME}
+    PROPERTIES PREFIX "" # No 'lib' prefix
+               POSITION_INDEPENDENT_CODE ON
+               C_VISIBILITY_PRESET default # Export all symbols
+               CXX_VISIBILITY_PRESET default)
+
+  # Platform-specific suffix
+  if(WIN32)
+    set_target_properties(${TARGET_NAME} PROPERTIES SUFFIX ".dll")
+  elseif(APPLE)
+    set_target_properties(${TARGET_NAME} PROPERTIES SUFFIX ".dylib")
+  else()
+    set_target_properties(${TARGET_NAME} PROPERTIES SUFFIX ".so")
+  endif()
+
+  # Include InstrumentServer headers
+  target_include_directories(
+    ${TARGET_NAME} PRIVATE ${InstrumentServer_INCLUDE_DIRS}
+                           ${PLUGIN_INCLUDE_DIRS})
+
+  # Link to core library (provides plugin interface)
+  target_link_libraries(${TARGET_NAME}
+                        PRIVATE InstrumentServer::instrument-server-core)
+
+  # Link additional libraries
+  if(PLUGIN_LINK_LIBRARIES)
+    target_link_libraries(${TARGET_NAME} PRIVATE ${PLUGIN_LINK_LIBRARIES})
+  endif()
+
+  message(STATUS "Configured instrument plugin:  ${TARGET_NAME}")
+endfunction()
+
+check_required_components(InstrumentServer)
