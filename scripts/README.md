@@ -104,6 +104,12 @@ Cross-compiles falcon-core C++ and C-API for Windows using MinGW on Arch Linux (
      bash /workspace/scripts/build-windows-mingw.sh
    ```
 
+4. (Optional) Build with tests and run them using Wine:
+   ```bash
+   docker run --rm -t -v "$PWD":/workspace -w /workspace falcon-arch-ci \
+     bash -c "FALCON_CORE_DEV=ON RUN_TESTS=1 bash /workspace/scripts/build-windows-mingw.sh"
+   ```
+
 ### What it does
 
 - Detects MinGW cross-compilation toolchain (x86_64-w64-mingw32-gcc)
@@ -112,32 +118,48 @@ Cross-compiles falcon-core C++ and C-API for Windows using MinGW on Arch Linux (
 - Cross-compiles falcon-core-c-api for Windows (x64)
 - Produces Windows DLLs and executables (`.dll`, `.exe` files)
 - Output in `cpp/build-mingw/` and `c-api/build-mingw/`
+- (Optional) Runs test binaries using Wine when `RUN_TESTS=1`
+
+### Environment Variables
+
+- `FALCON_CORE_DEV=ON` - Build test binaries (default: OFF)
+- `RUN_TESTS=1` - Run tests using Wine after building (default: 0)
+- `MINGW_SYSROOT` - MinGW sysroot path (default: /usr/x86_64-w64-mingw32)
+- `BUILD_DIR_CPP` - C++ build directory (default: ./cpp/build-mingw)
+- `BUILD_DIR_C_API` - C-API build directory (default: ./c-api/build-mingw)
 
 ### Notes
 
 - Uses Clang with MinGW target for cross-compilation
 - Requires LLVM linker (lld) for linking
 - Binaries are Windows executables that must be run on Windows or with Wine
-- Does not run tests (cross-compiled binaries can't run on Linux)
+- Wine is included in the Docker image for testing cross-compiled binaries
 - Uses system MinGW packages, not vcpkg (USE_VCPKG=OFF)
 
 ### Testing Cross-Compiled Binaries
 
-To test the Windows binaries:
+**Option 1: Automatic testing with Wine (recommended)**
+```bash
+# Build and test in one command
+docker run --rm -t -v "$PWD":/workspace -w /workspace falcon-arch-ci \
+  bash -c "FALCON_CORE_DEV=ON RUN_TESTS=1 bash /workspace/scripts/build-windows-mingw.sh"
+```
 
-**Option 1: On Windows**
+**Option 2: Manual testing with Wine**
+```bash
+# Build with tests
+docker run --rm -t -v "$PWD":/workspace -w /workspace falcon-arch-ci \
+  bash -c "FALCON_CORE_DEV=ON bash /workspace/scripts/build-windows-mingw.sh"
+
+# Run tests manually with Wine
+docker run --rm -t -v "$PWD":/workspace -w /workspace falcon-arch-ci \
+  bash -c "cd /workspace && wine cpp/build-mingw/falcon_core_cpp_run_tests.exe"
+```
+
+**Option 3: On Windows**
 - Copy binaries to a Windows machine
 - Ensure MinGW runtime DLLs are available (from MSYS2 or MinGW installation)
 - Run the executables
-
-**Option 2: With Wine on Linux**
-```bash
-# Install Wine
-sudo pacman -S wine
-
-# Run Windows executable through Wine
-wine cpp/build-mingw/falcon_core_cpp_run_tests.exe
-```
 
 ## Why No Windows Docker?
 

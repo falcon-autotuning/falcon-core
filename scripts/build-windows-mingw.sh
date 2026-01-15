@@ -13,6 +13,8 @@ BUILD_DIR_CPP="${BUILD_DIR_CPP:-./cpp/build-mingw}"
 BUILD_DIR_C_API="${BUILD_DIR_C_API:-./c-api/build-mingw}"
 CMAKE="${CMAKE:-cmake}"
 NINJA="${NINJA:-ninja}"
+RUN_TESTS="${RUN_TESTS:-0}"  # Set to 1 to run tests with Wine
+FALCON_CORE_DEV="${FALCON_CORE_DEV:-OFF}"  # Set to ON to build tests
 
 echo "=== Falcon-Core Windows Cross-Compilation with MinGW ==="
 echo ""
@@ -33,6 +35,8 @@ echo "Configuration:"
 echo "  MINGW_SYSROOT='${MINGW_SYSROOT}'"
 echo "  CROSS_GCC='${CROSS_GCC}'"
 echo "  CROSS_GPP='${CROSS_GPP}'"
+echo "  FALCON_CORE_DEV='${FALCON_CORE_DEV}'"
+echo "  RUN_TESTS='${RUN_TESTS}'"
 echo ""
 
 # Check for MinGW toolchain
@@ -134,7 +138,7 @@ echo "Running CMake for C++ core..."
   -DCMAKE_TOOLCHAIN_FILE="${TMP_TOOLCHAIN}" \
   -DCMAKE_BUILD_TYPE=Release \
   -DUSE_VCPKG=OFF \
-  -DFALCON_CORE_DEV=OFF \
+  -DFALCON_CORE_DEV="${FALCON_CORE_DEV}" \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 cmake_ret=$?
@@ -172,7 +176,7 @@ echo "Running CMake for C-API..."
   -DCMAKE_TOOLCHAIN_FILE="${TMP_TOOLCHAIN}" \
   -DCMAKE_BUILD_TYPE=Release \
   -DUSE_VCPKG=OFF \
-  -DFALCON_CORE_DEV=OFF \
+  -DFALCON_CORE_DEV="${FALCON_CORE_DEV}" \
   -DCORE_ROOT="../cpp" \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
@@ -233,5 +237,74 @@ fi
 echo ""
 echo "=== Done ==="
 echo ""
-echo "Note: These are Windows binaries. To test them, you'll need to run them on Windows"
-echo "or use Wine on Linux. Dependencies (DLLs from MinGW) will also be needed."
+
+if [ "${RUN_TESTS}" = "1" ] || [ "${RUN_TESTS}" = "true" ]; then
+  # Check if Wine is available
+  if ! command -v wine >/dev/null 2>&1; then
+    echo "ERROR: Wine not found. Install with: pacman -S wine wine-mono wine-gecko" >&2
+    exit 1
+  fi
+  
+  # Initialize wine prefix if needed (suppress first-run dialogs)
+  export WINEPREFIX="${HOME}/.wine-falcon-test"
+  export WINEDEBUG=-all  # Suppress wine debug output
+  
+  echo "=== Running Tests with Wine ==="
+  echo ""
+  
+  # Test C++ Core
+  CPP_TEST_EXE="cpp/${BUILD_DIR_CPP#./cpp/}/falcon_core_cpp_run_tests.exe"
+  if [ -f "${CPP_TEST_EXE}" ]; then
+    echo "Running C++ tests..."
+    echo "Test executable: ${CPP_TEST_EXE}"
+    
+    # Set up Wine environment
+    # Add MinGW DLLs to Wine's DLL search path
+    export WINEPATH="/usr/x86_64-w64-mingw32/bin;$(cd cpp && pwd)/${BUILD_DIR_CPP#./cpp/}"
+    
+    # Run tests
+    if wine "${CPP_TEST_EXE}"; then
+      echo "✓ C++ tests passed"
+    else
+      test_ret=$?
+      echo "✗ C++ tests failed with exit code ${test_ret}"
+      exit "${test_ret}"
+    fi
+  else
+    echo "Warning: C++ test executable not found at ${CPP_TEST_EXE}"
+    echo "Ensure FALCON_CORE_DEV=ON was set during build."
+  fi
+  
+  echo ""
+  
+  # Test C-API
+  C_API_TEST_EXE="c-api/${BUILD_DIR_C_API#./c-api/}/falcon_core_c_api_run_tests.exe"
+  if [ -f "${C_API_TEST_EXE}" ]; then
+    echo "Running C-API tests..."
+    echo "Test executable: ${C_API_TEST_EXE}"
+    
+    # Set up Wine environment with both C++ and C-API DLLs
+    export WINEPATH="/usr/x86_64-w64-mingw32/bin;$(cd cpp && pwd)/${BUILD_DIR_CPP#./cpp/};$(cd c-api && pwd)/${BUILD_DIR_C_API#./c-api/}"
+    
+    # Run tests
+    if wine "${C_API_TEST_EXE}"; then
+      echo "✓ C-API tests passed"
+    else
+      test_ret=$?
+      echo "✗ C-API tests failed with exit code ${test_ret}"
+      exit "${test_ret}"
+    fi
+  else
+    echo "Warning: C-API test executable not found at ${C_API_TEST_EXE}"
+    echo "Ensure FALCON_CORE_DEV=ON was set during build."
+  fi
+  
+  echo ""
+  echo "=== All Tests Passed ==="
+else
+  echo "Note: These are Windows binaries. To test them, you'll need to run them on Windows"
+  echo "or use Wine on Linux. Set RUN_TESTS=1 and FALCON_CORE_DEV=ON to run tests automatically."
+  echo ""
+  echo "Example:"
+  echo "  RUN_TESTS=1 FALCON_CORE_DEV=ON bash /workspace/scripts/build-windows-mingw.sh"
+fi

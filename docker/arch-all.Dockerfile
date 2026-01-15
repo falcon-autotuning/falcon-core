@@ -4,7 +4,7 @@ FROM archlinux:latest
 RUN sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 # Base deps from the GitHub workflow + a couple utilities it implicitly uses
-# Also includes MinGW for Windows cross-compilation
+# Also includes MinGW for Windows cross-compilation and Wine for testing
 RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm \
       base-devel git openssh sudo \
@@ -12,6 +12,7 @@ RUN pacman -Syu --noconfirm && \
       ninja llvm ccache clang gtest lld \
       cmake make \
       mingw-w64-gcc \
+      wine wine-mono wine-gecko \
       zip unzip tar \
       bc && \
     pacman -Scc --noconfirm
