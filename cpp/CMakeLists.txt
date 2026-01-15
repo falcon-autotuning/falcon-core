@@ -1,167 +1,112 @@
 cmake_minimum_required(VERSION 3.20)
 project(FalconCore LANGUAGES CXX C)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 set(CPP_TARGET "falcon_core_cpp")
-option(FALCON_CORE_DEV
-       "Dev mode generates coverage and testing" OFF)
+set(CPP_LIB_NAME "${CPP_TARGET}" CACHE STRING "ChangeMe")
+
+option(FALCON_CORE_DEV "Dev mode generates coverage and testing" OFF)
+option(USE_VCPKG "Use vcpkg for dependencies" ON)
+
 if(FALCON_CORE_DEV)
   set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 endif()
 
-# Detect compiler and set coverage flags
-if(CMAKE_C_COMPILER_ID MATCHES "Clang")
-  if(FALCON_CORE_DEV)
-    message("Clang detected. In dev mode so coverage will be built.")
-    set(C_FLAGS "-O0 -fprofile-instr-generate -fcoverage-mapping")
-  else()
-    message("Clang detected.")
-    set(C_FLAGS "-O2")
-  endif()
-elseif(CMAKE_C_COMPILER_ID MATCHES "GNU")
-  message("GNU detected. In dev mode so coverage will be built.")
-  set(C_FLAGS "-O0 -fprofile-arcs -ftest-coverage")
-else()
-  message("GNU detected.")
-  set(C_FLAGS "-O2")
-endif()
-if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  if(FALCON_CORE_DEV)
-    set(CPP_FLAGS "-g -O0 -fprofile-instr-generate -fcoverage-mapping")
-  else()
-    set(CPP_FLAGS "-g -O2")
-  endif()
-elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-  set(CPP_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
-else()
-  set(CPP_FLAGS "-g -O2")
-endif()
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_FLAGS}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g ${CPP_FLAGS}")
-find_program(CCACHE_PROGRAM ccache)
-if(CCACHE_PROGRAM)
-  message("Ccache was found. Making use of caching.")
-  set(CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
-  set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
-endif()
-set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
-
-# Handling VCPKG support
-option(USE_VCPKG "Use vcpkg for dependencies" ON)
-set(BOOST_FILESYSTEM_TARGET Boost::filesystem)
-if(USE_VCPKG)
-  set(HDF5_TARGET hdf5::hdf5-shared)
-  set(HDF5_CPP_TARGET hdf5::hdf5_cpp-shared)
-  set(BOOST_SYSTEM_TARGET Boost::system)
-  set(BOOST_UUID_TARGET Boost::uuid)
-else()
-  set(HDF5_TARGET hdf5-shared)
-  set(HDF5_CPP_TARGET hdf5_cpp-shared)
-endif()
-set(CPP_LIB_NAME
-    "${CPP_TARGET}"
-    CACHE STRING "ChangeMe")
+# ---- CMake policy: Boost FindBoost removal ----
 if(POLICY CMP0167)
   cmake_policy(SET CMP0167 NEW)
 endif()
 
+# ---- Dependencies ----
 find_package(cereal CONFIG REQUIRED)
-get_target_property(CEREAL_INCLUDE_DIR cereal::cereal
-                    INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "cereal include dir: ${CEREAL_INCLUDE_DIR}")
-
 find_package(xtl CONFIG REQUIRED)
-get_target_property(XTL_INCLUDE_DIR xtl INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "xtl include dir: ${XTL_INCLUDE_DIR}")
-
 find_package(xtensor CONFIG REQUIRED)
-get_target_property(XTENSOR_INCLUDE_DIR xtensor INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "xtensor include dir: ${XTENSOR_INCLUDE_DIR}")
-
 find_package(xsimd CONFIG REQUIRED)
-get_target_property(XSIMD_INCLUDE_DIR xsimd INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "xsimd include dir: ${XSIMD_INCLUDE_DIR}")
-
 find_package(yaml-cpp CONFIG REQUIRED)
-get_target_property(YAML_CPP_INCLUDE_DIR yaml-cpp::yaml-cpp
-                    INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "yaml-cpp include dir: ${YAML_CPP_INCLUDE_DIR}")
 
+# HDF5 (vcpkg target names differ for static vs shared triplets)
 find_package(hdf5 CONFIG REQUIRED)
-get_target_property(HDF5_INCLUDE_DIR ${HDF5_TARGET}
-                    INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "hdf5 include dir: ${HDF5_INCLUDE_DIR}")
 
-find_package(Boost REQUIRED COMPONENTS filesystem)
-get_target_property(BOOST_INCLUDE_DIR ${BOOST_FILESYSTEM_TARGET}
-                    INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "Boost filesystem include dir: ${BOOST_INCLUDE_DIR}")
-if(USE_VCPKG)
-  find_package(Boost REQUIRED COMPONENTS system uuid)
-  get_target_property(BOOST_INCLUDE_DIR ${BOOST_SYSTEM_TARGET}
-                      INTERFACE_INCLUDE_DIRECTORIES)
-  message(STATUS "Boost system include dir: ${BOOST_INCLUDE_DIR}")
-  get_target_property(BOOST_INCLUDE_DIR ${BOOST_UUID_TARGET}
-                      INTERFACE_INCLUDE_DIRECTORIES)
-  message(STATUS "Boost uuid include dir: ${BOOST_INCLUDE_DIR}")
+set(HDF5_TARGET "")
+set(HDF5_CPP_TARGET "")
+
+if(TARGET hdf5::hdf5-shared)
+  set(HDF5_TARGET hdf5::hdf5-shared)
+elseif(TARGET hdf5::hdf5-static)
+  set(HDF5_TARGET hdf5::hdf5-static)
+elseif(TARGET hdf5::hdf5)
+  set(HDF5_TARGET hdf5::hdf5)
+else()
+  message(FATAL_ERROR "No HDF5 CMake target found (expected hdf5::hdf5-static or hdf5::hdf5-shared).")
 endif()
 
+if(TARGET hdf5::hdf5_cpp-shared)
+  set(HDF5_CPP_TARGET hdf5::hdf5_cpp-shared)
+elseif(TARGET hdf5::hdf5_cpp-static)
+  set(HDF5_CPP_TARGET hdf5::hdf5_cpp-static)
+elseif(TARGET hdf5::hdf5_cpp)
+  set(HDF5_CPP_TARGET hdf5::hdf5_cpp)
+else()
+  # If you don't actually need HDF5 C++ API, you can omit linking it.
+  message(STATUS "No HDF5 C++ target found; proceeding without HDF5 C++ link target.")
+endif()
+
+# Boost (vcpkg provides BoostConfig.cmake)
+find_package(Boost REQUIRED COMPONENTS filesystem)
+
+# ---- Library ----
 file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
-if (WIN32)
-  # On Windows, avoid DLL export issues – build a static library
+
+if(WIN32)
   add_library(${CPP_LIB_NAME} STATIC ${FALCON_CORE_SOURCES})
 else()
   add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
+endif()
+
+if(MINGW)
+  target_compile_options(${CPP_LIB_NAME} PRIVATE -Wa,-mbig-obj)
 endif()
 
 target_include_directories(
   ${CPP_LIB_NAME}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
          $<INSTALL_INTERFACE:include>)
+
 target_link_libraries(
   ${CPP_LIB_NAME}
-  PUBLIC ${BOOST_FILESYSTEM_TARGET}
-         ${BOOST_SYSTEM_TARGET}
-         ${BOOST_UUID_TARGET}
+  PUBLIC Boost::filesystem
          xtl
          xtensor
          xsimd
          yaml-cpp::yaml-cpp
          ${HDF5_TARGET}
-         ${HDF5_CPP_TARGET}
          cereal::cereal)
-target_link_libraries(${CPP_LIB_NAME} PUBLIC yaml-cpp::yaml-cpp)
 
-# ---- Optional test build ----
+if(HDF5_CPP_TARGET)
+  target_link_libraries(${CPP_LIB_NAME} PUBLIC ${HDF5_CPP_TARGET})
+endif()
+
+# Optional extra Boost components you were using under USE_VCPKG
+# (Keep if actually needed by your code)
+if(USE_VCPKG)
+  find_package(Boost REQUIRED COMPONENTS system uuid)
+  target_link_libraries(${CPP_LIB_NAME} PUBLIC Boost::system Boost::uuid)
+endif()
+
+# ---- Optional tests ----
 if(FALCON_CORE_DEV)
   find_package(GTest CONFIG REQUIRED)
-  message(STATUS "Setting up C++ tests")
   enable_testing()
+
   file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
   add_executable(falcon_core_cpp_run_tests ${RUN_TESTS_SOURCES})
-  set_target_properties(
-    falcon_core_cpp_run_tests
-    PROPERTIES SKIP_BUILD_RPATH FALSE
-               SKIP_INSTALL_RPATH FALSE
-               BUILD_WITH_INSTALL_RPATH FALSE)
-  if(USE_VCPKG)
-    target_link_libraries(
-      falcon_core_cpp_run_tests
-      PRIVATE GTest::gtest_main Boost::filesystem Boost::system
-              yaml-cpp::yaml-cpp ${CPP_LIB_NAME})
-  else()
+  target_link_libraries(falcon_core_cpp_run_tests PRIVATE GTest::gtest_main ${CPP_LIB_NAME})
 
-    target_link_libraries(
-      falcon_core_cpp_run_tests PRIVATE GTest::gtest_main Boost::filesystem
-                                        yaml-cpp::yaml-cpp ${CPP_LIB_NAME})
-  endif()
-  target_link_libraries(falcon_core_cpp_run_tests PUBLIC yaml-cpp::yaml-cpp)
   if(WIN32)
-  # On Windows, don't use gtest_discover_tests (it runs the exe at build time
-  # and is currently crashing). Just register a simple CTest entry.
-  add_test(NAME falcon_core_cpp_run_tests
-            COMMAND falcon_core_cpp_run_tests)
+    add_test(NAME falcon_core_cpp_run_tests COMMAND falcon_core_cpp_run_tests)
   else()
     include(GoogleTest)
     gtest_discover_tests(falcon_core_cpp_run_tests)

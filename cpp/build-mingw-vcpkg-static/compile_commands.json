@@ -1,0 +1,878 @@
+[
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/Constants.cpp.obj -c /workspace/cpp/src/Constants.cpp",
+  "file": "/workspace/cpp/src/Constants.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/Constants.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/contexts/AcquisitionContext.cpp.obj -c /workspace/cpp/src/autotuner_interfaces/contexts/AcquisitionContext.cpp",
+  "file": "/workspace/cpp/src/autotuner_interfaces/contexts/AcquisitionContext.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/contexts/AcquisitionContext.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/contexts/BaseContext.cpp.obj -c /workspace/cpp/src/autotuner_interfaces/contexts/BaseContext.cpp",
+  "file": "/workspace/cpp/src/autotuner_interfaces/contexts/BaseContext.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/contexts/BaseContext.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/contexts/MeasurementContext.cpp.obj -c /workspace/cpp/src/autotuner_interfaces/contexts/MeasurementContext.cpp",
+  "file": "/workspace/cpp/src/autotuner_interfaces/contexts/MeasurementContext.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/contexts/MeasurementContext.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/interpretations/InterpretationContainer.cpp.obj -c /workspace/cpp/src/autotuner_interfaces/interpretations/InterpretationContainer.cpp",
+  "file": "/workspace/cpp/src/autotuner_interfaces/interpretations/InterpretationContainer.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/interpretations/InterpretationContainer.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/interpretations/InterpretationContext.cpp.obj -c /workspace/cpp/src/autotuner_interfaces/interpretations/InterpretationContext.cpp",
+  "file": "/workspace/cpp/src/autotuner_interfaces/interpretations/InterpretationContext.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/interpretations/InterpretationContext.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/names/Channel.cpp.obj -c /workspace/cpp/src/autotuner_interfaces/names/Channel.cpp",
+  "file": "/workspace/cpp/src/autotuner_interfaces/names/Channel.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/names/Channel.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/names/Channels.cpp.obj -c /workspace/cpp/src/autotuner_interfaces/names/Channels.cpp",
+  "file": "/workspace/cpp/src/autotuner_interfaces/names/Channels.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/names/Channels.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/names/Gname.cpp.obj -c /workspace/cpp/src/autotuner_interfaces/names/Gname.cpp",
+  "file": "/workspace/cpp/src/autotuner_interfaces/names/Gname.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/names/Gname.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/names/NameBase.cpp.obj -c /workspace/cpp/src/autotuner_interfaces/names/NameBase.cpp",
+  "file": "/workspace/cpp/src/autotuner_interfaces/names/NameBase.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/autotuner_interfaces/names/NameBase.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/HDF5Data.cpp.obj -c /workspace/cpp/src/communications/HDF5Data.cpp",
+  "file": "/workspace/cpp/src/communications/HDF5Data.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/HDF5Data.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/Time.cpp.obj -c /workspace/cpp/src/communications/Time.cpp",
+  "file": "/workspace/cpp/src/communications/Time.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/Time.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/messages/BaseMessage.cpp.obj -c /workspace/cpp/src/communications/messages/BaseMessage.cpp",
+  "file": "/workspace/cpp/src/communications/messages/BaseMessage.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/messages/BaseMessage.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/messages/MeasurementRequest.cpp.obj -c /workspace/cpp/src/communications/messages/MeasurementRequest.cpp",
+  "file": "/workspace/cpp/src/communications/messages/MeasurementRequest.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/messages/MeasurementRequest.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/messages/MeasurementResponse.cpp.obj -c /workspace/cpp/src/communications/messages/MeasurementResponse.cpp",
+  "file": "/workspace/cpp/src/communications/messages/MeasurementResponse.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/messages/MeasurementResponse.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/messages/StandardRequest.cpp.obj -c /workspace/cpp/src/communications/messages/StandardRequest.cpp",
+  "file": "/workspace/cpp/src/communications/messages/StandardRequest.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/messages/StandardRequest.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/messages/StandardResponse.cpp.obj -c /workspace/cpp/src/communications/messages/StandardResponse.cpp",
+  "file": "/workspace/cpp/src/communications/messages/StandardResponse.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/messages/StandardResponse.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/messages/VoltageStatesResponse.cpp.obj -c /workspace/cpp/src/communications/messages/VoltageStatesResponse.cpp",
+  "file": "/workspace/cpp/src/communications/messages/VoltageStatesResponse.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/messages/VoltageStatesResponse.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/voltage_states/DeviceVoltageState.cpp.obj -c /workspace/cpp/src/communications/voltage_states/DeviceVoltageState.cpp",
+  "file": "/workspace/cpp/src/communications/voltage_states/DeviceVoltageState.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/voltage_states/DeviceVoltageState.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/communications/voltage_states/DeviceVoltageStates.cpp.obj -c /workspace/cpp/src/communications/voltage_states/DeviceVoltageStates.cpp",
+  "file": "/workspace/cpp/src/communications/voltage_states/DeviceVoltageStates.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/communications/voltage_states/DeviceVoltageStates.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/generic/List.cpp.obj -c /workspace/cpp/src/generic/List.cpp",
+  "file": "/workspace/cpp/src/generic/List.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/generic/List.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/generic/Map.cpp.obj -c /workspace/cpp/src/generic/Map.cpp",
+  "file": "/workspace/cpp/src/generic/Map.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/generic/Map.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/generic/Pair.cpp.obj -c /workspace/cpp/src/generic/Pair.cpp",
+  "file": "/workspace/cpp/src/generic/Pair.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/generic/Pair.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/generic/Song.cpp.obj -c /workspace/cpp/src/generic/Song.cpp",
+  "file": "/workspace/cpp/src/generic/Song.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/generic/Song.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/Waveform.cpp.obj -c /workspace/cpp/src/instrument_interfaces/Waveform.cpp",
+  "file": "/workspace/cpp/src/instrument_interfaces/Waveform.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/Waveform.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/names/InstrumentPort.cpp.obj -c /workspace/cpp/src/instrument_interfaces/names/InstrumentPort.cpp",
+  "file": "/workspace/cpp/src/instrument_interfaces/names/InstrumentPort.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/names/InstrumentPort.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/names/InstrumentTypes.cpp.obj -c /workspace/cpp/src/instrument_interfaces/names/InstrumentTypes.cpp",
+  "file": "/workspace/cpp/src/instrument_interfaces/names/InstrumentTypes.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/names/InstrumentTypes.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/names/Ports.cpp.obj -c /workspace/cpp/src/instrument_interfaces/names/Ports.cpp",
+  "file": "/workspace/cpp/src/instrument_interfaces/names/Ports.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/names/Ports.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/port_transforms/PortTransform.cpp.obj -c /workspace/cpp/src/instrument_interfaces/port_transforms/PortTransform.cpp",
+  "file": "/workspace/cpp/src/instrument_interfaces/port_transforms/PortTransform.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/port_transforms/PortTransform.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/port_transforms/PortTransforms.cpp.obj -c /workspace/cpp/src/instrument_interfaces/port_transforms/PortTransforms.cpp",
+  "file": "/workspace/cpp/src/instrument_interfaces/port_transforms/PortTransforms.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/instrument_interfaces/port_transforms/PortTransforms.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/AnalyticFunction.cpp.obj -c /workspace/cpp/src/math/AnalyticFunction.cpp",
+  "file": "/workspace/cpp/src/math/AnalyticFunction.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/AnalyticFunction.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/Axes.cpp.obj -c /workspace/cpp/src/math/Axes.cpp",
+  "file": "/workspace/cpp/src/math/Axes.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/Axes.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/Point.cpp.obj -c /workspace/cpp/src/math/Point.cpp",
+  "file": "/workspace/cpp/src/math/Point.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/Point.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/Quantity.cpp.obj -c /workspace/cpp/src/math/Quantity.cpp",
+  "file": "/workspace/cpp/src/math/Quantity.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/Quantity.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/UnitSpace.cpp.obj -c /workspace/cpp/src/math/UnitSpace.cpp",
+  "file": "/workspace/cpp/src/math/UnitSpace.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/UnitSpace.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/Vector.cpp.obj -c /workspace/cpp/src/math/Vector.cpp",
+  "file": "/workspace/cpp/src/math/Vector.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/Vector.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/ControlArray.cpp.obj -c /workspace/cpp/src/math/arrays/ControlArray.cpp",
+  "file": "/workspace/cpp/src/math/arrays/ControlArray.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/ControlArray.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/ControlArray1D.cpp.obj -c /workspace/cpp/src/math/arrays/ControlArray1D.cpp",
+  "file": "/workspace/cpp/src/math/arrays/ControlArray1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/ControlArray1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/IncreasingAlignment.cpp.obj -c /workspace/cpp/src/math/arrays/IncreasingAlignment.cpp",
+  "file": "/workspace/cpp/src/math/arrays/IncreasingAlignment.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/IncreasingAlignment.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledArrays.cpp.obj -c /workspace/cpp/src/math/arrays/LabelledArrays.cpp",
+  "file": "/workspace/cpp/src/math/arrays/LabelledArrays.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledArrays.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledControlArray.cpp.obj -c /workspace/cpp/src/math/arrays/LabelledControlArray.cpp",
+  "file": "/workspace/cpp/src/math/arrays/LabelledControlArray.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledControlArray.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledControlArray1D.cpp.obj -c /workspace/cpp/src/math/arrays/LabelledControlArray1D.cpp",
+  "file": "/workspace/cpp/src/math/arrays/LabelledControlArray1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledControlArray1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledMeasuredArray.cpp.obj -c /workspace/cpp/src/math/arrays/LabelledMeasuredArray.cpp",
+  "file": "/workspace/cpp/src/math/arrays/LabelledMeasuredArray.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledMeasuredArray.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledMeasuredArray1D.cpp.obj -c /workspace/cpp/src/math/arrays/LabelledMeasuredArray1D.cpp",
+  "file": "/workspace/cpp/src/math/arrays/LabelledMeasuredArray1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/LabelledMeasuredArray1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/MeasuredArray.cpp.obj -c /workspace/cpp/src/math/arrays/MeasuredArray.cpp",
+  "file": "/workspace/cpp/src/math/arrays/MeasuredArray.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/MeasuredArray.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/arrays/MeasuredArray1D.cpp.obj -c /workspace/cpp/src/math/arrays/MeasuredArray1D.cpp",
+  "file": "/workspace/cpp/src/math/arrays/MeasuredArray1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/arrays/MeasuredArray1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/discrete_spaces/DiscreteSpace.cpp.obj -c /workspace/cpp/src/math/discrete_spaces/DiscreteSpace.cpp",
+  "file": "/workspace/cpp/src/math/discrete_spaces/DiscreteSpace.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/discrete_spaces/DiscreteSpace.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/discrete_spaces/Discretizer.cpp.obj -c /workspace/cpp/src/math/discrete_spaces/Discretizer.cpp",
+  "file": "/workspace/cpp/src/math/discrete_spaces/Discretizer.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/discrete_spaces/Discretizer.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/domains/CoupledLabelledDomain.cpp.obj -c /workspace/cpp/src/math/domains/CoupledLabelledDomain.cpp",
+  "file": "/workspace/cpp/src/math/domains/CoupledLabelledDomain.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/domains/CoupledLabelledDomain.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/domains/Domain.cpp.obj -c /workspace/cpp/src/math/domains/Domain.cpp",
+  "file": "/workspace/cpp/src/math/domains/Domain.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/domains/Domain.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/math/domains/LabelledDomain.cpp.obj -c /workspace/cpp/src/math/domains/LabelledDomain.cpp",
+  "file": "/workspace/cpp/src/math/domains/LabelledDomain.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/math/domains/LabelledDomain.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/ConfigManipulations.cpp.obj -c /workspace/cpp/src/physics/config/ConfigManipulations.cpp",
+  "file": "/workspace/cpp/src/physics/config/ConfigManipulations.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/ConfigManipulations.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/Loader.cpp.obj -c /workspace/cpp/src/physics/config/Loader.cpp",
+  "file": "/workspace/cpp/src/physics/config/Loader.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/Loader.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/Adjacency.cpp.obj -c /workspace/cpp/src/physics/config/core/Adjacency.cpp",
+  "file": "/workspace/cpp/src/physics/config/core/Adjacency.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/Adjacency.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/Config.cpp.obj -c /workspace/cpp/src/physics/config/core/Config.cpp",
+  "file": "/workspace/cpp/src/physics/config/core/Config.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/Config.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/Group.cpp.obj -c /workspace/cpp/src/physics/config/core/Group.cpp",
+  "file": "/workspace/cpp/src/physics/config/core/Group.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/Group.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/StandardConfigConnections.cpp.obj -c /workspace/cpp/src/physics/config/core/StandardConfigConnections.cpp",
+  "file": "/workspace/cpp/src/physics/config/core/StandardConfigConnections.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/StandardConfigConnections.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/VoltageConstraints.cpp.obj -c /workspace/cpp/src/physics/config/core/VoltageConstraints.cpp",
+  "file": "/workspace/cpp/src/physics/config/core/VoltageConstraints.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/core/VoltageConstraints.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/DotGateWithNeighbors.cpp.obj -c /workspace/cpp/src/physics/config/geometries/DotGateWithNeighbors.cpp",
+  "file": "/workspace/cpp/src/physics/config/geometries/DotGateWithNeighbors.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/DotGateWithNeighbors.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/DotGatesWithNeighbors.cpp.obj -c /workspace/cpp/src/physics/config/geometries/DotGatesWithNeighbors.cpp",
+  "file": "/workspace/cpp/src/physics/config/geometries/DotGatesWithNeighbors.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/DotGatesWithNeighbors.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/GateGeometryArray1D.cpp.obj -c /workspace/cpp/src/physics/config/geometries/GateGeometryArray1D.cpp",
+  "file": "/workspace/cpp/src/physics/config/geometries/GateGeometryArray1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/GateGeometryArray1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/HasImplantedOhmic.cpp.obj -c /workspace/cpp/src/physics/config/geometries/HasImplantedOhmic.cpp",
+  "file": "/workspace/cpp/src/physics/config/geometries/HasImplantedOhmic.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/HasImplantedOhmic.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/HasLeftNeigbor.cpp.obj -c /workspace/cpp/src/physics/config/geometries/HasLeftNeigbor.cpp",
+  "file": "/workspace/cpp/src/physics/config/geometries/HasLeftNeigbor.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/HasLeftNeigbor.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/HasRightNeighbor.cpp.obj -c /workspace/cpp/src/physics/config/geometries/HasRightNeighbor.cpp",
+  "file": "/workspace/cpp/src/physics/config/geometries/HasRightNeighbor.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/HasRightNeighbor.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/LeftReservoirWithImplantedOhmic.cpp.obj -c /workspace/cpp/src/physics/config/geometries/LeftReservoirWithImplantedOhmic.cpp",
+  "file": "/workspace/cpp/src/physics/config/geometries/LeftReservoirWithImplantedOhmic.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/LeftReservoirWithImplantedOhmic.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/RightReservoirWithImplantedOhmic.cpp.obj -c /workspace/cpp/src/physics/config/geometries/RightReservoirWithImplantedOhmic.cpp",
+  "file": "/workspace/cpp/src/physics/config/geometries/RightReservoirWithImplantedOhmic.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/config/geometries/RightReservoirWithImplantedOhmic.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/Connection.cpp.obj -c /workspace/cpp/src/physics/device_structures/Connection.cpp",
+  "file": "/workspace/cpp/src/physics/device_structures/Connection.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/Connection.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/Connections.cpp.obj -c /workspace/cpp/src/physics/device_structures/Connections.cpp",
+  "file": "/workspace/cpp/src/physics/device_structures/Connections.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/Connections.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/GateRelations.cpp.obj -c /workspace/cpp/src/physics/device_structures/GateRelations.cpp",
+  "file": "/workspace/cpp/src/physics/device_structures/GateRelations.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/GateRelations.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/Impedance.cpp.obj -c /workspace/cpp/src/physics/device_structures/Impedance.cpp",
+  "file": "/workspace/cpp/src/physics/device_structures/Impedance.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/Impedance.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/Impedances.cpp.obj -c /workspace/cpp/src/physics/device_structures/Impedances.cpp",
+  "file": "/workspace/cpp/src/physics/device_structures/Impedances.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/device_structures/Impedances.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/units/Prefix.cpp.obj -c /workspace/cpp/src/physics/units/Prefix.cpp",
+  "file": "/workspace/cpp/src/physics/units/Prefix.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/units/Prefix.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/units/SymbolUnit.cpp.obj -c /workspace/cpp/src/physics/units/SymbolUnit.cpp",
+  "file": "/workspace/cpp/src/physics/units/SymbolUnit.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/units/SymbolUnit.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++14 -Wa,-mbig-obj -o CMakeFiles/falcon_core_cpp.dir/src/physics/units/Unit.cpp.obj -c /workspace/cpp/src/physics/units/Unit.cpp",
+  "file": "/workspace/cpp/src/physics/units/Unit.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp.dir/src/physics/units/Unit.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_acquisition_context.cpp.obj -c /workspace/cpp/tests/test_acquisition_context.cpp",
+  "file": "/workspace/cpp/tests/test_acquisition_context.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_acquisition_context.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_adjacency.cpp.obj -c /workspace/cpp/tests/test_adjacency.cpp",
+  "file": "/workspace/cpp/tests/test_adjacency.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_adjacency.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_analytic_function.cpp.obj -c /workspace/cpp/tests/test_analytic_function.cpp",
+  "file": "/workspace/cpp/tests/test_analytic_function.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_analytic_function.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_axes.cpp.obj -c /workspace/cpp/tests/test_axes.cpp",
+  "file": "/workspace/cpp/tests/test_axes.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_axes.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_base_context.cpp.obj -c /workspace/cpp/tests/test_base_context.cpp",
+  "file": "/workspace/cpp/tests/test_base_context.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_base_context.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_base_message.cpp.obj -c /workspace/cpp/tests/test_base_message.cpp",
+  "file": "/workspace/cpp/tests/test_base_message.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_base_message.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_channel.cpp.obj -c /workspace/cpp/tests/test_channel.cpp",
+  "file": "/workspace/cpp/tests/test_channel.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_channel.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_channels.cpp.obj -c /workspace/cpp/tests/test_channels.cpp",
+  "file": "/workspace/cpp/tests/test_channels.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_channels.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_config.cpp.obj -c /workspace/cpp/tests/test_config.cpp",
+  "file": "/workspace/cpp/tests/test_config.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_config.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_config_manipulations.cpp.obj -c /workspace/cpp/tests/test_config_manipulations.cpp",
+  "file": "/workspace/cpp/tests/test_config_manipulations.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_config_manipulations.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_connection.cpp.obj -c /workspace/cpp/tests/test_connection.cpp",
+  "file": "/workspace/cpp/tests/test_connection.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_connection.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_connections.cpp.obj -c /workspace/cpp/tests/test_connections.cpp",
+  "file": "/workspace/cpp/tests/test_connections.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_connections.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_control_array.cpp.obj -c /workspace/cpp/tests/test_control_array.cpp",
+  "file": "/workspace/cpp/tests/test_control_array.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_control_array.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_control_array_1D.cpp.obj -c /workspace/cpp/tests/test_control_array_1D.cpp",
+  "file": "/workspace/cpp/tests/test_control_array_1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_control_array_1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_coupled_labelled_domain.cpp.obj -c /workspace/cpp/tests/test_coupled_labelled_domain.cpp",
+  "file": "/workspace/cpp/tests/test_coupled_labelled_domain.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_coupled_labelled_domain.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_device_voltage_state.cpp.obj -c /workspace/cpp/tests/test_device_voltage_state.cpp",
+  "file": "/workspace/cpp/tests/test_device_voltage_state.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_device_voltage_state.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_device_voltage_states.cpp.obj -c /workspace/cpp/tests/test_device_voltage_states.cpp",
+  "file": "/workspace/cpp/tests/test_device_voltage_states.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_device_voltage_states.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_discrete_space.cpp.obj -c /workspace/cpp/tests/test_discrete_space.cpp",
+  "file": "/workspace/cpp/tests/test_discrete_space.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_discrete_space.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_discretizer.cpp.obj -c /workspace/cpp/tests/test_discretizer.cpp",
+  "file": "/workspace/cpp/tests/test_discretizer.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_discretizer.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_domains.cpp.obj -c /workspace/cpp/tests/test_domains.cpp",
+  "file": "/workspace/cpp/tests/test_domains.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_domains.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_dot_gate_with_neighbors.cpp.obj -c /workspace/cpp/tests/test_dot_gate_with_neighbors.cpp",
+  "file": "/workspace/cpp/tests/test_dot_gate_with_neighbors.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_dot_gate_with_neighbors.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_dot_gates_with_neighbors.cpp.obj -c /workspace/cpp/tests/test_dot_gates_with_neighbors.cpp",
+  "file": "/workspace/cpp/tests/test_dot_gates_with_neighbors.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_dot_gates_with_neighbors.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_farray.cpp.obj -c /workspace/cpp/tests/test_farray.cpp",
+  "file": "/workspace/cpp/tests/test_farray.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_farray.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_gate_geometry_array_1D.cpp.obj -c /workspace/cpp/tests/test_gate_geometry_array_1D.cpp",
+  "file": "/workspace/cpp/tests/test_gate_geometry_array_1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_gate_geometry_array_1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_gate_relations.cpp.obj -c /workspace/cpp/tests/test_gate_relations.cpp",
+  "file": "/workspace/cpp/tests/test_gate_relations.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_gate_relations.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_gname.cpp.obj -c /workspace/cpp/tests/test_gname.cpp",
+  "file": "/workspace/cpp/tests/test_gname.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_gname.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_group.cpp.obj -c /workspace/cpp/tests/test_group.cpp",
+  "file": "/workspace/cpp/tests/test_group.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_group.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_has_left_neighbor.cpp.obj -c /workspace/cpp/tests/test_has_left_neighbor.cpp",
+  "file": "/workspace/cpp/tests/test_has_left_neighbor.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_has_left_neighbor.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_hdf5_data.cpp.obj -c /workspace/cpp/tests/test_hdf5_data.cpp",
+  "file": "/workspace/cpp/tests/test_hdf5_data.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_hdf5_data.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_impedance.cpp.obj -c /workspace/cpp/tests/test_impedance.cpp",
+  "file": "/workspace/cpp/tests/test_impedance.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_impedance.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_impedances.cpp.obj -c /workspace/cpp/tests/test_impedances.cpp",
+  "file": "/workspace/cpp/tests/test_impedances.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_impedances.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_increasing_alignment.cpp.obj -c /workspace/cpp/tests/test_increasing_alignment.cpp",
+  "file": "/workspace/cpp/tests/test_increasing_alignment.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_increasing_alignment.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_instrument_port.cpp.obj -c /workspace/cpp/tests/test_instrument_port.cpp",
+  "file": "/workspace/cpp/tests/test_instrument_port.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_instrument_port.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_interpretation_container.cpp.obj -c /workspace/cpp/tests/test_interpretation_container.cpp",
+  "file": "/workspace/cpp/tests/test_interpretation_container.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_interpretation_container.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_interpretation_context.cpp.obj -c /workspace/cpp/tests/test_interpretation_context.cpp",
+  "file": "/workspace/cpp/tests/test_interpretation_context.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_interpretation_context.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_arrays.cpp.obj -c /workspace/cpp/tests/test_labelled_arrays.cpp",
+  "file": "/workspace/cpp/tests/test_labelled_arrays.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_arrays.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_control_array.cpp.obj -c /workspace/cpp/tests/test_labelled_control_array.cpp",
+  "file": "/workspace/cpp/tests/test_labelled_control_array.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_control_array.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_control_array_1D.cpp.obj -c /workspace/cpp/tests/test_labelled_control_array_1D.cpp",
+  "file": "/workspace/cpp/tests/test_labelled_control_array_1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_control_array_1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_domain.cpp.obj -c /workspace/cpp/tests/test_labelled_domain.cpp",
+  "file": "/workspace/cpp/tests/test_labelled_domain.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_domain.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_measured_array.cpp.obj -c /workspace/cpp/tests/test_labelled_measured_array.cpp",
+  "file": "/workspace/cpp/tests/test_labelled_measured_array.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_measured_array.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_measured_array_1D.cpp.obj -c /workspace/cpp/tests/test_labelled_measured_array_1D.cpp",
+  "file": "/workspace/cpp/tests/test_labelled_measured_array_1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_labelled_measured_array_1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_left_reservoir_with_implanted_ohmic.cpp.obj -c /workspace/cpp/tests/test_left_reservoir_with_implanted_ohmic.cpp",
+  "file": "/workspace/cpp/tests/test_left_reservoir_with_implanted_ohmic.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_left_reservoir_with_implanted_ohmic.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_list.cpp.obj -c /workspace/cpp/tests/test_list.cpp",
+  "file": "/workspace/cpp/tests/test_list.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_list.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_loader.cpp.obj -c /workspace/cpp/tests/test_loader.cpp",
+  "file": "/workspace/cpp/tests/test_loader.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_loader.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_map.cpp.obj -c /workspace/cpp/tests/test_map.cpp",
+  "file": "/workspace/cpp/tests/test_map.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_map.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measured_array.cpp.obj -c /workspace/cpp/tests/test_measured_array.cpp",
+  "file": "/workspace/cpp/tests/test_measured_array.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measured_array.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measured_array_1D.cpp.obj -c /workspace/cpp/tests/test_measured_array_1D.cpp",
+  "file": "/workspace/cpp/tests/test_measured_array_1D.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measured_array_1D.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measurement_context.cpp.obj -c /workspace/cpp/tests/test_measurement_context.cpp",
+  "file": "/workspace/cpp/tests/test_measurement_context.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measurement_context.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measurement_request.cpp.obj -c /workspace/cpp/tests/test_measurement_request.cpp",
+  "file": "/workspace/cpp/tests/test_measurement_request.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measurement_request.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measurement_response.cpp.obj -c /workspace/cpp/tests/test_measurement_response.cpp",
+  "file": "/workspace/cpp/tests/test_measurement_response.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_measurement_response.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_name_base.cpp.obj -c /workspace/cpp/tests/test_name_base.cpp",
+  "file": "/workspace/cpp/tests/test_name_base.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_name_base.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_pair.cpp.obj -c /workspace/cpp/tests/test_pair.cpp",
+  "file": "/workspace/cpp/tests/test_pair.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_pair.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_point.cpp.obj -c /workspace/cpp/tests/test_point.cpp",
+  "file": "/workspace/cpp/tests/test_point.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_point.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_port_transform.cpp.obj -c /workspace/cpp/tests/test_port_transform.cpp",
+  "file": "/workspace/cpp/tests/test_port_transform.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_port_transform.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_port_transforms.cpp.obj -c /workspace/cpp/tests/test_port_transforms.cpp",
+  "file": "/workspace/cpp/tests/test_port_transforms.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_port_transforms.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_ports.cpp.obj -c /workspace/cpp/tests/test_ports.cpp",
+  "file": "/workspace/cpp/tests/test_ports.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_ports.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_prefix.cpp.obj -c /workspace/cpp/tests/test_prefix.cpp",
+  "file": "/workspace/cpp/tests/test_prefix.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_prefix.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_quantity.cpp.obj -c /workspace/cpp/tests/test_quantity.cpp",
+  "file": "/workspace/cpp/tests/test_quantity.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_quantity.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_right_reservoir_with_implanted_ohmic.cpp.obj -c /workspace/cpp/tests/test_right_reservoir_with_implanted_ohmic.cpp",
+  "file": "/workspace/cpp/tests/test_right_reservoir_with_implanted_ohmic.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_right_reservoir_with_implanted_ohmic.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_song.cpp.obj -c /workspace/cpp/tests/test_song.cpp",
+  "file": "/workspace/cpp/tests/test_song.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_song.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_spaces.cpp.obj -c /workspace/cpp/tests/test_spaces.cpp",
+  "file": "/workspace/cpp/tests/test_spaces.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_spaces.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_standard_config_connections.cpp.obj -c /workspace/cpp/tests/test_standard_config_connections.cpp",
+  "file": "/workspace/cpp/tests/test_standard_config_connections.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_standard_config_connections.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_standard_request.cpp.obj -c /workspace/cpp/tests/test_standard_request.cpp",
+  "file": "/workspace/cpp/tests/test_standard_request.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_standard_request.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_standard_response.cpp.obj -c /workspace/cpp/tests/test_standard_response.cpp",
+  "file": "/workspace/cpp/tests/test_standard_response.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_standard_response.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_symbol_unit.cpp.obj -c /workspace/cpp/tests/test_symbol_unit.cpp",
+  "file": "/workspace/cpp/tests/test_symbol_unit.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_symbol_unit.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_time.cpp.obj -c /workspace/cpp/tests/test_time.cpp",
+  "file": "/workspace/cpp/tests/test_time.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_time.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_unit.cpp.obj -c /workspace/cpp/tests/test_unit.cpp",
+  "file": "/workspace/cpp/tests/test_unit.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_unit.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_unit_space.cpp.obj -c /workspace/cpp/tests/test_unit_space.cpp",
+  "file": "/workspace/cpp/tests/test_unit_space.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_unit_space.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_vector.cpp.obj -c /workspace/cpp/tests/test_vector.cpp",
+  "file": "/workspace/cpp/tests/test_vector.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_vector.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_voltage_constraints.cpp.obj -c /workspace/cpp/tests/test_voltage_constraints.cpp",
+  "file": "/workspace/cpp/tests/test_voltage_constraints.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_voltage_constraints.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_voltage_states_response.cpp.obj -c /workspace/cpp/tests/test_voltage_states_response.cpp",
+  "file": "/workspace/cpp/tests/test_voltage_states_response.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_voltage_states_response.cpp.obj"
+},
+{
+  "directory": "/workspace/cpp/build-mingw-vcpkg-static",
+  "command": "/usr/sbin/x86_64-w64-mingw32-g++ -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DYAML_CPP_STATIC_DEFINE -I/workspace/cpp/include -isystem /workspace/cpp/build-mingw-vcpkg-static/vcpkg_installed/x64-mingw-static/include -O3 -DNDEBUG -std=gnu++17 -o CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_waveforms.cpp.obj -c /workspace/cpp/tests/test_waveforms.cpp",
+  "file": "/workspace/cpp/tests/test_waveforms.cpp",
+  "output": "/workspace/cpp/build-mingw-vcpkg-static/CMakeFiles/falcon_core_cpp_run_tests.dir/tests/test_waveforms.cpp.obj"
+}
+]

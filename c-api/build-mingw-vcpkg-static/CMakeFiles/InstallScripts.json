@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/workspace/c-api/build-mingw-vcpkg-static/cmake_install.cmake",
+		"/workspace/c-api/build-mingw-vcpkg-static/falcon_core_cpp_build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

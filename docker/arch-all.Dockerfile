@@ -10,9 +10,12 @@ RUN pacman -Syu --noconfirm && \
       base-devel git openssh sudo \
       cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib \
       ninja llvm ccache clang gtest lld \
+      cmake make \
       mingw-w64-gcc \
+      zip unzip tar \
       bc && \
     pacman -Scc --noconfirm
+
 
 # Create the same build user as CI
 RUN useradd -m builduser && \

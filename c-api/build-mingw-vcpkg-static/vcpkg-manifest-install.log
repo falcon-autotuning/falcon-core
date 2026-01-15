@@ -1,0 +1,330 @@
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/sbin/c++
+Detecting compiler hash for triplet x64-mingw-static...
+Compiler found: /usr/sbin/x86_64-w64-mingw32-g++
+The following packages will be built and installed:
+  * boost-align:x64-mingw-static@1.88.0
+  * boost-assert:x64-mingw-static@1.88.0
+  * boost-atomic:x64-mingw-static@1.88.0
+  * boost-bind:x64-mingw-static@1.88.0
+  * boost-cmake:x64-mingw-static@1.88.0
+  * boost-concept-check:x64-mingw-static@1.88.0
+  * boost-config:x64-mingw-static@1.88.0
+  * boost-container-hash:x64-mingw-static@1.88.0
+  * boost-core:x64-mingw-static@1.88.0
+  * boost-describe:x64-mingw-static@1.88.0
+  * boost-detail:x64-mingw-static@1.88.0
+    boost-filesystem:x64-mingw-static@1.88.0
+  * boost-function:x64-mingw-static@1.88.0
+  * boost-function-types:x64-mingw-static@1.88.0
+  * boost-functional:x64-mingw-static@1.88.0
+  * boost-fusion:x64-mingw-static@1.88.0
+  * boost-headers:x64-mingw-static@1.88.0
+  * boost-io:x64-mingw-static@1.88.0
+  * boost-iterator:x64-mingw-static@1.88.0
+  * boost-mp11:x64-mingw-static@1.88.0
+  * boost-mpl:x64-mingw-static@1.88.0
+  * boost-optional:x64-mingw-static@1.88.0
+  * boost-predef:x64-mingw-static@1.88.0
+  * boost-preprocessor:x64-mingw-static@1.88.0
+  * boost-scope:x64-mingw-static@1.88.0
+  * boost-smart-ptr:x64-mingw-static@1.88.0
+  * boost-static-assert:x64-mingw-static@1.88.0
+    boost-system:x64-mingw-static@1.88.0
+  * boost-throw-exception:x64-mingw-static@1.88.0
+  * boost-tuple:x64-mingw-static@1.88.0
+  * boost-type-traits:x64-mingw-static@1.88.0
+  * boost-typeof:x64-mingw-static@1.88.0
+  * boost-uninstall:x64-mingw-static@1.88.0
+  * boost-utility:x64-mingw-static@1.88.0
+    boost-uuid:x64-mingw-static@1.88.0
+  * boost-variant2:x64-mingw-static@1.88.0
+  * boost-winapi:x64-mingw-static@1.88.0
+    cereal:x64-mingw-static@1.3.2#1
+    exprtk:x64-mingw-static@0.0.3
+    gtest:x64-mingw-static@1.17.0#1
+    hdf5[core,cpp,szip,zlib]:x64-mingw-static@1.14.6
+    highfive:x64-mingw-static@3.1.1
+  * libaec:x64-mingw-static@1.1.3#1
+  * nlohmann-json:x64-mingw-static@3.12.0#1
+  * vcpkg-boost:x64-linux@2025-03-29
+  * vcpkg-cmake:x64-linux@2024-04-23
+  * vcpkg-cmake-config:x64-linux@2024-05-23
+    xsimd:x64-mingw-static@13.2.0
+    xtensor:x64-mingw-static@0.25.0
+    xtensor-io:x64-mingw-static@0.13.0#1
+    xtl:x64-mingw-static@0.7.5
+    yaml-cpp:x64-mingw-static@0.8.0#3
+  * zlib:x64-mingw-static@1.3.1
+Additional packages (*) will be modified to complete this operation.
+Restored 53 package(s) from /workspace/.cache/vcpkg-binary-cache in 371 ms. Use --debug to see more details.
+Installing 1/53 vcpkg-cmake-config:x64-linux@2024-05-23...
+Elapsed time to handle vcpkg-cmake-config:x64-linux: 766 us
+vcpkg-cmake-config:x64-linux package ABI: 0a99cf2f6397ebd30688fbdbd69604efe6292ee83c54d414b6a760e94431cc7c
+Installing 2/53 vcpkg-cmake:x64-linux@2024-04-23...
+Elapsed time to handle vcpkg-cmake:x64-linux: 407 us
+vcpkg-cmake:x64-linux package ABI: f76a62ef54129dcf7d3588ff1ade027c7ab438d978061e243de3a0984c15584b
+Installing 3/53 vcpkg-boost:x64-linux@2025-03-29...
+Elapsed time to handle vcpkg-boost:x64-linux: 372 us
+vcpkg-boost:x64-linux package ABI: 2658baba232837a4dd83b9084e6a9976228ecc0919bc4928dccb5235ec245566
+Installing 4/53 boost-uninstall:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-uninstall:x64-mingw-static: 287 us
+boost-uninstall:x64-mingw-static package ABI: 800d92d3ed00c13941583b554a8ed8cfc3e02f0f98aa4ffa81ca3f59e1bcd31d
+Installing 5/53 boost-cmake:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-cmake:x64-mingw-static: 632 us
+boost-cmake:x64-mingw-static package ABI: e63def977538d15e32f67a30e1134cb0e59b73f8e190e1876ae849d7369c8dd8
+Installing 6/53 boost-headers:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-headers:x64-mingw-static: 464 us
+boost-headers:x64-mingw-static package ABI: 75c43e49b35d3a728cc7ea7c9021a9da1c189216fd446fa61075864bb0f7c316
+Installing 7/53 boost-config:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-config:x64-mingw-static: 10.7 ms
+boost-config:x64-mingw-static package ABI: be9421c9b11d84400aab13c2b65dcaf50f97faa1f5031b442ed1b9b99be75531
+Installing 8/53 boost-predef:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-predef:x64-mingw-static: 6.9 ms
+boost-predef:x64-mingw-static package ABI: a7af7ac11effce49b4416de5d2512ea919639a34a0fdaecec1d29cd25f29ab81
+Installing 9/53 boost-winapi:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-winapi:x64-mingw-static: 5.3 ms
+boost-winapi:x64-mingw-static package ABI: 6127772b9edf3f75ce9d2c75ed5140bab57491c8a8b9c3d1e2038abb339a4380
+Installing 10/53 boost-static-assert:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-static-assert:x64-mingw-static: 918 us
+boost-static-assert:x64-mingw-static package ABI: 11467c01bfb9a09164c72f76432f7a503bf788cdc070d0a15d7667eb86798d45
+Installing 11/53 boost-type-traits:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-type-traits:x64-mingw-static: 8.84 ms
+boost-type-traits:x64-mingw-static package ABI: d3f7b4b91adc40692b583f6b8037ef461863af8139d1fdd4a6d38f622a88f5d7
+Installing 12/53 boost-mp11:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-mp11:x64-mingw-static: 2.71 ms
+boost-mp11:x64-mingw-static package ABI: 2fa24f913bd740f63557c82e34686cd8345f0771ba0e3e2c5345ba0b8ebbbedd
+Installing 13/53 boost-assert:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-assert:x64-mingw-static: 1.41 ms
+boost-assert:x64-mingw-static package ABI: 1999a7385db037dfb4045b946efba3445a49676e7111813c8752b880a15b3033
+Installing 14/53 boost-variant2:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-variant2:x64-mingw-static: 1.3 ms
+boost-variant2:x64-mingw-static package ABI: afba6d8f4d1221ad1e0cac4ea0ee6cb7d262f2de281f9d6fbe1ad3d128bc23e1
+Installing 15/53 boost-throw-exception:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-throw-exception:x64-mingw-static: 1.28 ms
+boost-throw-exception:x64-mingw-static package ABI: 5b2c881029e28c1a6ff7014fb6c29b49c8e74f6b3fb21c62d1f4fcfda4dd3ccb
+Installing 16/53 boost-system:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-system:x64-mingw-static: 2.81 ms
+boost-system:x64-mingw-static package ABI: 1b313cc969c11334988ad67fec5a0830b5d0ecb86288695bce6ed12d8de9cb6b
+Installing 17/53 boost-core:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-core:x64-mingw-static: 3.73 ms
+boost-core:x64-mingw-static package ABI: 350c094a621760789f4542ca679997a9959603fdde234800c5d8db84063b9aab
+Installing 18/53 boost-smart-ptr:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-smart-ptr:x64-mingw-static: 5 ms
+boost-smart-ptr:x64-mingw-static package ABI: a7908a900a48ecd4df2c4182cfa103b37c5366527fa3c7d31fd58abdd7502652
+Installing 19/53 boost-scope:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-scope:x64-mingw-static: 2.35 ms
+boost-scope:x64-mingw-static package ABI: 1d81a2cfceebdc962001d75a639b5e8c8c0153fe09680ac0124ee3471ab3998b
+Installing 20/53 boost-preprocessor:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-preprocessor:x64-mingw-static: 23.5 ms
+boost-preprocessor:x64-mingw-static package ABI: a91059d9929cc42435c35235a151905255e0a9330152267a284585b2b5bf9e58
+Installing 21/53 boost-io:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-io:x64-mingw-static: 2.16 ms
+boost-io:x64-mingw-static package ABI: 811dd9b069f7ed3afe69894410a3942029ce8d3b837195edd14f16a1e12f9648
+Installing 22/53 boost-utility:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-utility:x64-mingw-static: 2.95 ms
+boost-utility:x64-mingw-static package ABI: e05cd50daa28a8572407c4b0bc0d3fe3ccbc7d6259c4a43b806b7e9e4b7f0441
+Installing 23/53 boost-optional:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-optional:x64-mingw-static: 2.35 ms
+boost-optional:x64-mingw-static package ABI: a62ae9625144993a2075fc3dc59f084ba1b5d1b02ebbf101dee17fd06701dfa5
+Installing 24/53 boost-mpl:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-mpl:x64-mingw-static: 46 ms
+boost-mpl:x64-mingw-static package ABI: 96e034458b1e34d4f963ff6105607100ff41f5a4efee3173e170c9d09c600550
+Installing 25/53 boost-typeof:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-typeof:x64-mingw-static: 4.25 ms
+boost-typeof:x64-mingw-static package ABI: f9f608cae788a10954f036c58e58c75c05bf066874f2d45cfec8c96b9083627e
+Installing 26/53 boost-tuple:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-tuple:x64-mingw-static: 3.29 ms
+boost-tuple:x64-mingw-static package ABI: 7be95ed143e8f0e1035ed89e1fab151786362b3bde856ceb3cf522b59d877fa1
+Installing 27/53 boost-detail:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-detail:x64-mingw-static: 3.7 ms
+boost-detail:x64-mingw-static package ABI: 084da5ecc24fef5d426544045efbbb19521fb38ff21da6b6baba5d19b74af543
+Installing 28/53 boost-function-types:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-function-types:x64-mingw-static: 6.22 ms
+boost-function-types:x64-mingw-static package ABI: 50ffaf48da04e38086af71a8d9800ff53f958539158e746d7bd4374f822ba3da
+Installing 29/53 boost-bind:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-bind:x64-mingw-static: 4.01 ms
+boost-bind:x64-mingw-static package ABI: 9c4403bdc46820984126d5d01bc06ceb5fc45f5cfa8aa9583822a5c752d9f142
+Installing 30/53 boost-function:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-function:x64-mingw-static: 4.3 ms
+boost-function:x64-mingw-static package ABI: 08dcf1b78ace9c9d19e6d8057ef1f435355ef1131cffb4b41e581125e87a52f1
+Installing 31/53 boost-functional:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-functional:x64-mingw-static: 3.37 ms
+boost-functional:x64-mingw-static package ABI: 04740349646faf3a703870d3dbb52ced3d5d26ac0e269144ccc7eae94b3c3fab
+Installing 32/53 boost-describe:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-describe:x64-mingw-static: 3.74 ms
+boost-describe:x64-mingw-static package ABI: 6c33bd0c44a10d928e4475df56bffc2fddecb91e4aa7c0a8a31b473b141c3922
+Installing 33/53 boost-container-hash:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-container-hash:x64-mingw-static: 3.88 ms
+boost-container-hash:x64-mingw-static package ABI: 03e38aa0cc7e2f5742a3f243b1b87f6e4663f291adb2c203b3bcb9085b756a00
+Installing 34/53 boost-fusion:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-fusion:x64-mingw-static: 51.5 ms
+boost-fusion:x64-mingw-static package ABI: cdec31d00663dd7daad5bb101bf854568a3551891d3b359919212eabeb08d90f
+Installing 35/53 boost-concept-check:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-concept-check:x64-mingw-static: 4.96 ms
+boost-concept-check:x64-mingw-static package ABI: c70d7fc5a2bbfbe629a150fa63e11681251dadaae1eb42a6335c80f6ca9e7d13
+Installing 36/53 boost-iterator:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-iterator:x64-mingw-static: 6.17 ms
+boost-iterator:x64-mingw-static package ABI: 18927071740556f3b580a313b59b5b010c3024cad5655b7d522e94634fa4778c
+Installing 37/53 boost-align:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-align:x64-mingw-static: 5.52 ms
+boost-align:x64-mingw-static package ABI: 4bea7da84712df061b2c7a836441d344a113989de34f7b8f458eaa6e280e5214
+Installing 38/53 boost-atomic:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-atomic:x64-mingw-static: 9.97 ms
+boost-atomic:x64-mingw-static package ABI: 7cf337818b699a740dccd0836a8cc93e470d8eb08e476634a0630aaac814bb7b
+Installing 39/53 boost-filesystem:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-filesystem:x64-mingw-static: 10.7 ms
+boost-filesystem:x64-mingw-static package ABI: 2be6c69a78595d8bc9192936e358db791e2f3ea336fafe4c3ad4176930dfa6be
+Installing 40/53 boost-uuid:x64-mingw-static@1.88.0...
+Elapsed time to handle boost-uuid:x64-mingw-static: 5.79 ms
+boost-uuid:x64-mingw-static package ABI: d8461bc822697934c120a3964bf4c64e549ecbda35da2f08d6605f3b95995344
+Installing 41/53 cereal:x64-mingw-static@1.3.2#1...
+Elapsed time to handle cereal:x64-mingw-static: 8.61 ms
+cereal:x64-mingw-static package ABI: 77b43437cc6ed59234370725f00c2c259c55f61cdb20cf38ea846deb5e3deb85
+Installing 42/53 exprtk:x64-mingw-static@0.0.3...
+Elapsed time to handle exprtk:x64-mingw-static: 5.25 ms
+exprtk:x64-mingw-static package ABI: 9fb17059c3dd28b4e5f108cbd23bfb5cc0566266be983df90e466bded1b2d740
+Installing 43/53 gtest:x64-mingw-static@1.17.0#1...
+Elapsed time to handle gtest:x64-mingw-static: 14.9 ms
+gtest:x64-mingw-static package ABI: 974576288b5c3a67f2c59dc00fba6b89fedcadf5c2e2c4bc29395cbeec7e772a
+Installing 44/53 zlib:x64-mingw-static@1.3.1...
+Elapsed time to handle zlib:x64-mingw-static: 5.05 ms
+zlib:x64-mingw-static package ABI: 6ab8d2517e66acf89991cd83954738c33d88db10f54e22a347fe525b794660a9
+Installing 45/53 libaec:x64-mingw-static@1.1.3#1...
+Elapsed time to handle libaec:x64-mingw-static: 4.72 ms
+libaec:x64-mingw-static package ABI: 2a4e18108e62f05d6c184a861b14b808fa70b36a661e978253ae4d2e52b6c50f
+Installing 46/53 hdf5[core,cpp,szip,zlib]:x64-mingw-static@1.14.6...
+Elapsed time to handle hdf5:x64-mingw-static: 38.6 ms
+hdf5:x64-mingw-static package ABI: b6cc1d0fa5832bb0f5125c49bbb669cdb5bf86f116687cfda8df4caa3aa0e7de
+Installing 47/53 highfive:x64-mingw-static@3.1.1...
+Elapsed time to handle highfive:x64-mingw-static: 7.08 ms
+highfive:x64-mingw-static package ABI: 356419fde76564fe9ff22d875bacdb76a308f1981a80341428622174afacdecf
+Installing 48/53 xsimd:x64-mingw-static@13.2.0...
+Elapsed time to handle xsimd:x64-mingw-static: 8.52 ms
+xsimd:x64-mingw-static package ABI: a0f71f938b0f341aefd95d9f8c7f417c05d545f482afdbf7e0b9ab9ffd153b03
+Installing 49/53 nlohmann-json:x64-mingw-static@3.12.0#1...
+Elapsed time to handle nlohmann-json:x64-mingw-static: 6.85 ms
+nlohmann-json:x64-mingw-static package ABI: f1bcf8024a0db05802027f33e48ea9902f697827152f7f33e592733a6c167dfe
+Installing 50/53 xtl:x64-mingw-static@0.7.5...
+Elapsed time to handle xtl:x64-mingw-static: 6.23 ms
+xtl:x64-mingw-static package ABI: 7acc300cc2455e48d378f7ec3fe911c66152140407016d209123ece022cd63b6
+Installing 51/53 xtensor:x64-mingw-static@0.25.0...
+Elapsed time to handle xtensor:x64-mingw-static: 8.02 ms
+xtensor:x64-mingw-static package ABI: 28b366cdc2e50700070d1612fc7f51620e24013eb20ca9c680e80af6d6e0c246
+Installing 52/53 xtensor-io:x64-mingw-static@0.13.0#1...
+Elapsed time to handle xtensor-io:x64-mingw-static: 5.27 ms
+xtensor-io:x64-mingw-static package ABI: d4c09a99430f730c4262944438ff6bf7566c230de8728c549aea7d023711eb14
+Installing 53/53 yaml-cpp:x64-mingw-static@0.8.0#3...
+Elapsed time to handle yaml-cpp:x64-mingw-static: 14 ms
+yaml-cpp:x64-mingw-static package ABI: 114df14f54379bfa8564a625bfbb46bd05720a705986e9fed6c40f349e78709d
+Installed contents are licensed to you by owners. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
+Some packages did not declare an SPDX license. Check the `copyright` file for each package for more information about their licensing.
+Packages installed in this vcpkg installation declare the following licenses:
+BSD-2-Clause
+BSD-3-Clause
+BSL-1.0
+MIT
+Zlib
+boost-system provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(boost_system CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Boost::system)
+
+boost-filesystem provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(boost_filesystem CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Boost::filesystem)
+
+boost-uuid provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(boost_uuid CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Boost::uuid)
+
+cereal provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(cereal CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE cereal::cereal)
+
+exprtk is header-only and can be used from CMake via:
+
+  find_path(EXPRTK_INCLUDE_DIRS "exprtk.hpp")
+  target_include_directories(main PRIVATE ${EXPRTK_INCLUDE_DIRS})
+
+The package gtest is compatible with built-in CMake targets:
+
+    enable_testing()
+    
+    find_package(GTest CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+    
+    add_test(AllTestsInMain main)
+
+hdf5 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(hdf5 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE hdf5::hdf5-static hdf5::hdf5_hl-static hdf5::hdf5_cpp-static hdf5::hdf5_hl_cpp-static)
+
+hdf5 provides pkg-config modules:
+
+  # HDF5 (Hierarchical Data Format 5) Software Library
+  hdf5
+
+  # HDF5 (Hierarchical Data Format 5) Software Library
+  hdf5_cpp
+
+  # HDF5 (Hierarchical Data Format 5) Software Library
+  hdf5_hl
+
+  # HDF5 (Hierarchical Data Format 5) Software Library
+  hdf5_hl_cpp
+
+highfive provides CMake targets:
+
+  find_package(HighFive CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE HighFive)
+
+xsimd provides CMake targets:
+
+    find_package(xsimd CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE xsimd)
+
+xtl provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(xtl CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE xtl)
+
+xtl provides pkg-config modules:
+
+  # Basic tools (containers, algorithms) used by other quantstack packages.
+  xtl
+
+xtensor provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(xtensor CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE xtensor::use_TBB xtensor::optimize xtensor::use_xsimd)
+
+xtensor-io provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(xtensor-io CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE xtensor-io)
+
+yaml-cpp provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(yaml-cpp CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE yaml-cpp::yaml-cpp)
+
+yaml-cpp provides pkg-config modules:
+
+  # A YAML parser and emitter for C++
+  yaml-cpp
+
+All requested installations completed successfully in: 400 ms

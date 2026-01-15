@@ -1,0 +1,6 @@
+/workspace/c-api/build-mingw-vcpkg-static/CMakeFiles/falcon_core_c_api.dir
+/workspace/c-api/build-mingw-vcpkg-static/CMakeFiles/edit_cache.dir
+/workspace/c-api/build-mingw-vcpkg-static/CMakeFiles/rebuild_cache.dir
+/workspace/c-api/build-mingw-vcpkg-static/falcon_core_cpp_build/CMakeFiles/falcon_core_cpp.dir
+/workspace/c-api/build-mingw-vcpkg-static/falcon_core_cpp_build/CMakeFiles/edit_cache.dir
+/workspace/c-api/build-mingw-vcpkg-static/falcon_core_cpp_build/CMakeFiles/rebuild_cache.dir
