@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 
+# ignore natively built packages
+packaging/
 
 # ignore vcpkg since it is large
 vcpkg/*
