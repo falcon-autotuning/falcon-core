@@ -8,6 +8,10 @@ CC ?= clang
 CXX ?= clang++
 
 USE_VCPKG ?= 1
+EXE_EXT ?=
+TEST_EMULATOR ?=
+TEST_EXE := $(BUILD_DIR)/falcon_core_cpp_run_tests$(EXE_EXT)
+TEST_RUN := $(if $(TEST_EMULATOR),$(TEST_EMULATOR) $(TEST_EXE),$(TEST_EXE))
 
 ifeq ($(USE_VCPKG),1)
 	VCPKG_INSTALLED = vcpkg_installed
@@ -75,18 +79,18 @@ PROFDATA_TOOL = $(shell [ -f $(BUILD_DIR)/compiler.env ] && . $(BUILD_DIR)/compi
 
 run-all-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests
+	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(TEST_RUN)
 	@llvm-profdata merge -sparse $(BUILD_DIR)/falcon_core_cpp_run_tests.profraw -o $(BUILD_DIR)/falcon_core_cpp_run_tests.profdata
 else
-	@GCOV_PREFIX="$(BUILD_DIR)" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests
+	@GCOV_PREFIX="$(BUILD_DIR)" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(TEST_RUN)
 endif
 
 run-subset-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@LLVM_PROFILE_FILE="$(BUILD_DIR)/falcon_core_cpp_run_tests.profraw" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(TEST_RUN) --gtest_filter="$$(paste -sd: test_filter.txt)"
 	@llvm-profdata merge -sparse $(BUILD_DIR)/falcon_core_cpp_run_tests.profraw -o $(BUILD_DIR)/falcon_core_cpp_run_tests.profdata
 else
-	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH ./$(BUILD_DIR)/falcon_core_cpp_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(TEST_RUN) --gtest_filter="$$(paste -sd: test_filter.txt)"
 endif
 
 cov-html:

@@ -2,8 +2,13 @@
 __pycache__/
 *.py[cod]
 
+# unnecessary logs
+*_logs/
+
 # ignore natively built packages
 packaging/
+cpp/build*/
+c-api/build*/
 
 # ignore vcpkg since it is large
 vcpkg/*

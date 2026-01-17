@@ -273,8 +273,8 @@ jobs:
           path: |
             cpp/coverage/*
             c-api/coverage/*
-
-      - name: Setup tmate session for debugging (on failure)
+            
+      - name: Setup tmate (failure-only old build session)
         if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
         timeout-minutes: 30

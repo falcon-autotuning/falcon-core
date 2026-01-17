@@ -1,0 +1,97 @@
+name: Windows Build & Test (vcpkg + clang-cl + tmate)
+
+on:
+  push:
+    branches: [ none ]
+  pull_request:
+    branches: [ none ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test-windows:
+    runs-on: windows-latest
+    name: Build and Test on Windows (vcpkg + clang-cl)
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          # Pin if you want reproducibility; your uploaded workflow pins a commit already
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      - name: Install dependencies via vcpkg (manifest mode)
+        shell: pwsh
+        run: |
+          vcpkg install --triplet x64-windows
+
+      - name: Configure (CMake + VS 2022 + ClangCL)
+        shell: pwsh
+        run: |
+          cmake -B build `
+            -S . `
+            -G "Visual Studio 17 2022" `
+            -A x64 `
+            -T ClangCL `
+            -DCMAKE_C_COMPILER="C:/Program Files/LLVM/bin/clang-cl.exe" `
+            -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang-cl.exe" `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DBUILD_TESTS=ON
+
+      - name: Build (Release)
+        shell: pwsh
+        run: |
+          cmake --build build --config Release --verbose
+
+      - name: Run tests
+        shell: pwsh
+        run: |
+          # Ensure DLLs are found at runtime (your uploaded workflow does this)
+          $env:PATH = "$PWD/build/vcpkg_installed/x64-windows/bin;$PWD/build/Release;$env:PATH"
+
+          # Adjust these paths to match your actual produced test exe names/locations
+          $candidates = @(
+            "build/tests/Release/unit_tests.exe",
+            "build/tests/Release/integration_tests.exe",
+            "build/tests/Release/falcon_core_cpp_run_tests.exe"
+          )
+
+          foreach ($t in $candidates) {
+            if (Test-Path $t) {
+              Write-Host "Running: $t"
+              & $t
+              $code = $LASTEXITCODE
+              Write-Host "Exit: $code"
+              if ($code -ne 0) { exit $code }
+            }
+          }
+
+          # If none exist, fail loudly
+          if (-not ($candidates | Where-Object { Test-Path $_ })) {
+            Write-Error "No expected test executables found. Update paths in workflow."
+            exit 1
+          }
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: |
+            build/**/*.exe
+            build/**/*.dll
+          retention-days: 7
+
+      - name: Setup tmate (failure-only)
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30
+        with:
+          limit-access-to-actor: true

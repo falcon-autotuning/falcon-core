@@ -13,23 +13,6 @@ VCPKG_BINARY_CACHE="${VCPKG_BINARY_CACHE:-/workspace/.cache/vcpkg-binary-cache}"
 mkdir -p "$VCPKG_BINARY_CACHE"
 export VCPKG_DEFAULT_BINARY_CACHE="$VCPKG_BINARY_CACHE"
 
-WINE_BIN="${WINE_BIN:-wine}"
-WINEPREFIX="${WINEPREFIX:-/workspace/.cache/wine}"
-WINEDEBUG="${WINEDEBUG:--all}"
-
-if command -v "$WINE_BIN" >/dev/null 2>&1; then
-  mkdir -p "$WINEPREFIX"
-  export WINEPREFIX WINEDEBUG
-  if [[ ! -d "$WINEPREFIX/drive_c" ]]; then
-    "$WINE_BIN" wineboot -u >/dev/null 2>&1 || true
-  fi
-  CMAKE_CROSS_EMULATOR_ARG="-DCMAKE_CROSSCOMPILING_EMULATOR=$WINE_BIN"
-  CTEST_EMULATOR_ENV="CTEST_CROSSCOMPILING_EMULATOR=$WINE_BIN"
-else
-  CMAKE_CROSS_EMULATOR_ARG=""
-  CTEST_EMULATOR_ENV=""
-fi
-
 # Bootstrap vcpkg (once)
 if [[ ! -x "$VCPKG_ROOT/vcpkg" ]]; then
   echo "Bootstrapping vcpkg at $VCPKG_ROOT ..."
@@ -74,8 +57,7 @@ build_one () {
     -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
     -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++ \
     -DCMAKE_RC_COMPILER=x86_64-w64-mingw32-windres \
-    -DFALCON_CORE_DEV=ON \
-    ${CMAKE_CROSS_EMULATOR_ARG}
+    -DFALCON_CORE_DEV=ON
 
 
   echo "=== Build: ${proj} ==="
@@ -83,7 +65,7 @@ build_one () {
 
   echo "=== Test: ${proj} ==="
   # Static triplet: usually no PATH/DLL games needed
-  ${CTEST_EMULATOR_ENV} ctest --test-dir "$bdir" --output-on-failure || {
+  ctest --test-dir "$bdir" --output-on-failure || {
     echo "CTest failed for ${proj}."
     exit 1
   }

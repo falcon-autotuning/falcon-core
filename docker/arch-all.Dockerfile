@@ -12,7 +12,7 @@ RUN pacman -Syu --noconfirm && \
       ninja llvm ccache clang gtest lld \
       cmake make \
       mingw-w64-gcc \
-      wine wine-mono wine-gecko \
+      wine-staging wine-mono wine-gecko \
       zip unzip tar \
       bc && \
     pacman -Scc --noconfirm
@@ -23,4 +23,7 @@ RUN useradd -m builduser && \
     echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 WORKDIR /workspace
+ENV WINEARCH=win64
+ENV WINEDEBUG=-all
+ENV WINEPREFIX=/workspace/.cache/wine
 CMD ["/bin/bash"]

@@ -1,0 +1,72 @@
+name: Windows build + test (vcpkg) + tmate on failure
+
+on:
+  push:
+     branches: [windows-support]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # vcpkg cache + setup
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          # optional: pin to a commit for reproducibility
+          # vcpkgGitCommitId: "<pin>"
+          vcpkgDirectory: ${{ github.workspace }}/vcpkg
+
+      - name: Configure (CMake + vcpkg)
+        shell: pwsh
+        run: |
+          cmake -S . -B build `
+            -G "Visual Studio 17 2022" -A x64 `
+            -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" `
+            -DBUILD_TESTS=ON
+
+      - name: Build
+        shell: pwsh
+        run: |
+          cmake --build build --config Release --verbose
+
+      - name: Run tests
+        shell: pwsh
+        run: |
+          # Make sure runtime DLLs are discoverable (vcpkg DLLs + build output)
+          $env:PATH = "$PWD\build\vcpkg_installed\x64-windows\bin;$PWD\build\Release;$env:PATH"
+
+          # Adjust if your test exe lives elsewhere:
+          $testExe = "cpp\build\falcon_core_cpp_run_tests.exe"
+          if (!(Test-Path $testExe)) {
+            Write-Error "Test exe not found: $testExe (update path in workflow)"
+            Get-ChildItem -Recurse build -Filter *.exe | Select-Object FullName
+            exit 1
+          }
+
+          & $testExe --gtest_color=no --gtest_output=xml:"$PWD\gtest.xml"
+          exit $LASTEXITCODE
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-test-artifacts
+          path: |
+            gtest.xml
+            build/**/*.exe
+            build/**/*.dll
+
+      - name: tmate on failure
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30
+        with:
+          limit-access-to-actor: true
