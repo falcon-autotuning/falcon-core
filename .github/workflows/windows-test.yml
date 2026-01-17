@@ -16,13 +16,27 @@ jobs:
         with:
           submodules: recursive
 
-      # vcpkg cache + setup
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
+      - name: Cache vcpkg
+        uses: actions/cache@v4
         with:
-          # optional: pin to a commit for reproducibility
-          # vcpkgGitCommitId: "<pin>"
-          vcpkgDirectory: ${{ github.workspace }}/vcpkg
+          path: |
+            vcpkg/archives
+            vcpkg/downloads
+            vcpkg/buildtrees
+            vcpkg/packages
+          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json') }}
+
+      - name: Install vcpkg
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          cd vcpkg
+          git checkout 6f5c259
+          .\bootstrap-vcpkg.bat
+
+      # Install vcpkg dependencies for cpp
+      - name: Install vcpkg dependencies for cpp
+        run: ..\vcpkg\vcpkg.exe install --triplet x64-windows
+        working-directory: cpp
 
       - name: Configure (CMake + vcpkg)
         shell: pwsh
@@ -67,6 +81,13 @@ jobs:
       - name: tmate on failure
         if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 30
+        timeout-minutes: 45
         with:
           limit-access-to-actor: true
+
+      - name: Upload crash dumps
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crash-dumps
+          path: D:\a\falcon-core\falcon-core\cpp\build\dumps\*
