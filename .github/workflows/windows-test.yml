@@ -2,7 +2,9 @@ name: Windows build + test (vcpkg) + tmate on failure
 
 on:
   push:
+     branches: [none]
   pull_request:
+     branches: [none]
   workflow_dispatch:
 
 jobs:

@@ -2,7 +2,9 @@ name: Windows Build & Test (vcpkg + clang-cl + tmate)
 
 on:
   push:
+     branches: [none]
   pull_request:
+     branches: [none]
   workflow_dispatch:
 
 permissions:
