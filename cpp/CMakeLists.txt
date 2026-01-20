@@ -72,18 +72,11 @@ if(MINGW)
   target_compile_options(${CPP_LIB_NAME} PRIVATE -Wa,-mbig-obj)
 endif()
 
-if (MSVC)
-  message(STATUS "MSVC detected: enabling /Zc:__cplusplus and /bigobj")
-  add_compile_options(/Zc:__cplusplus /bigobj)
+# Handle large object files / MSVC __cplusplus correctness
+if(MSVC)
+  message(STATUS "MSVC detected: enabling /Zc:__cplusplus and /bigobj for ${CPP_LIB_NAME}")
+  target_compile_options(${CPP_LIB_NAME} PRIVATE /Zc:__cplusplus /bigobj)
 endif()
-
-# if (MSVC)
-#   set_source_files_properties(
-#     src/math/AnalyticFunction.cpp
-#     PROPERTIES COMPILE_OPTIONS "/bigobj"
-#   )
-#   add_compile_options(/Zc:__cplusplus)
-# endif()
 
 target_include_directories(
   ${CPP_LIB_NAME}

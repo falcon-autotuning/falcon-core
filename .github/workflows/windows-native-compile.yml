@@ -55,8 +55,11 @@ jobs:
             -A x64 `
             -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
             -DCMAKE_BUILD_TYPE=Release `
-            -DBUILD_TESTS=ON
+            -DBUILD_TESTS=ON `
+            -DCMAKE_CXX_FLAGS="/Zc:__cplusplus /bigobj"
         shell: pwsh
+
+        # REMOVE __cplusplus FLAG ABOVE AND ADD TO CMakeLists.txt
 
       - name: Build falcon-core-cpp
         working-directory: cpp
@@ -233,17 +236,37 @@ jobs:
 
       - name: Notify Discord on failure
         if: failure()
-        uses: Ilshidur/action-discord@0.4.0
+        shell: pwsh
         env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          DISCORD_MESSAGE: |
-            ❌ **Workflow failed**
-            Repo: **${{ github.repository }}**
-            Workflow: **${{ github.workflow }}**
-            Job: **${{ github.job }}**
-            Branch: **${{ github.ref_name }}**
-            Commit: `${{ github.sha }}`
-            Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+
+          url = os.environ["DISCORD_WEBHOOK_URL"]
+          run_url = f"{os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}"
+
+          payload = {
+              "content": (
+                  "❌ **Workflow failed**\n"
+                  f"Repo: **{os.environ['GITHUB_REPOSITORY']}**\n"
+                  f"Workflow: **{os.environ['GITHUB_WORKFLOW']}**\n"
+                  f"Job: **{os.environ['GITHUB_JOB']}**\n"
+                  f"Branch: **{os.environ.get('GITHUB_REF_NAME','')}**\n"
+                  f"Commit: `{os.environ['GITHUB_SHA']}`\n"
+                  f"Run: {run_url}"
+              )
+          }
+
+          req = urllib.request.Request(
+              url,
+              data=json.dumps(payload).encode("utf-8"),
+              headers={"Content-Type": "application/json"},
+              method="POST",
+          )
+          urllib.request.urlopen(req).read()
+          PY
+
 
       - name: Setup tmate session for debugging (on failure)
         if: ${{ failure() }}
