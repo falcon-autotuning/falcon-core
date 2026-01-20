@@ -276,7 +276,7 @@ jobs:
                     
       - name: Notify Discord on failure
         if: failure()
-        shell: pwsh
+        shell: bash
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |

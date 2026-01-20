@@ -55,8 +55,8 @@ jobs:
             -A x64 `
             -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
             -DCMAKE_BUILD_TYPE=Release `
-            -DBUILD_TESTS=ON `
-            -DCMAKE_CXX_FLAGS="/Zc:__cplusplus /bigobj"
+            -DCMAKE_CXX_FLAGS="/Zc:__cplusplus /bigobj" `
+            -DFALCON_CORE_DEV=ON
         shell: pwsh
 
         # REMOVE __cplusplus FLAG ABOVE AND ADD TO CMakeLists.txt
@@ -236,7 +236,7 @@ jobs:
 
       - name: Notify Discord on failure
         if: failure()
-        shell: pwsh
+        shell: bash
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
