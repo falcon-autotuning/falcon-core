@@ -76,9 +76,19 @@ else()
   add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
 endif()
 
+# Handle large object files on MinGW or using MSVC
 if(MINGW)
   target_compile_options(${C_API_LIB_NAME} PRIVATE -Wa,-mbig-obj)
 endif()
+
+if (MSVC)
+  set_source_files_properties(
+    src/math/AnalyticFunction.cpp
+    PROPERTIES COMPILE_OPTIONS "/bigobj"
+  )
+  add_compile_options(/Zc:__cplusplus)
+endif()
+
 
 
 target_include_directories(
