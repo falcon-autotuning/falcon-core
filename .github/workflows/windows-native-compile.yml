@@ -230,6 +230,21 @@ jobs:
       # ====================
       # Debugging
       # ====================
+
+      - name: Notify Discord on failure
+        if: failure()
+        uses: Ilshidur/action-discord@v2
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_MESSAGE: |
+            ❌ **Workflow failed**
+            Repo: **${{ github.repository }}**
+            Workflow: **${{ github.workflow }}**
+            Job: **${{ github.job }}**
+            Branch: **${{ github.ref_name }}**
+            Commit: `${{ github.sha }}`
+            Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
       - name: Setup tmate session for debugging (on failure)
         if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3

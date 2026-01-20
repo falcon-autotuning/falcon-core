@@ -73,12 +73,17 @@ if(MINGW)
 endif()
 
 if (MSVC)
-  set_source_files_properties(
-    src/math/AnalyticFunction.cpp
-    PROPERTIES COMPILE_OPTIONS "/bigobj"
-  )
-  add_compile_options(/Zc:__cplusplus)
+  message(STATUS "MSVC detected: enabling /Zc:__cplusplus and /bigobj")
+  add_compile_options(/Zc:__cplusplus /bigobj)
 endif()
+
+# if (MSVC)
+#   set_source_files_properties(
+#     src/math/AnalyticFunction.cpp
+#     PROPERTIES COMPILE_OPTIONS "/bigobj"
+#   )
+#   add_compile_options(/Zc:__cplusplus)
+# endif()
 
 target_include_directories(
   ${CPP_LIB_NAME}
