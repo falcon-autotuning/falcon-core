@@ -1,0 +1,238 @@
+name: Windows CI
+
+on:
+  push:
+    branches: [windows-support]
+  pull_request:
+    branches: [windows-support]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test-windows:
+    name: Build and Test on Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      - name: Cache vcpkg packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.VCPKG_ROOT }}/downloads
+            ${{ env.VCPKG_ROOT }}/packages
+            ${{ env.VCPKG_ROOT }}/buildtrees
+          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json', 'cpp/vcpkg.json', 'c-api/vcpkg.json') }}
+          restore-keys: |
+            ${{ runner.os }}-vcpkg-
+
+      # ====================
+      # Build falcon-core-cpp
+      # ====================
+      - name: Install vcpkg dependencies for cpp
+        working-directory: cpp
+        run: |
+          vcpkg install --triplet x64-windows
+        shell: pwsh
+
+      - name: Configure CMake for cpp
+        working-directory: cpp
+        run: |
+          cmake -B build `
+            -S . `
+            -G "Visual Studio 17 2022" `
+            -A x64 `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DBUILD_TESTS=ON
+        shell: pwsh
+
+      - name: Build falcon-core-cpp
+        working-directory: cpp
+        run: |
+          cmake --build build --config Release --verbose
+        shell: pwsh
+
+      - name: List cpp build outputs
+        working-directory: cpp
+        run: |
+          Write-Host "=== CPP Build Outputs ==="
+          Get-ChildItem -Path "build/Release" -Recurse | Select-Object FullName
+        shell: pwsh
+
+      - name: Test falcon-core-cpp
+        working-directory: cpp
+        run: |
+          # Add vcpkg DLLs and build output to PATH
+          $env:PATH = "$PWD/build/vcpkg_installed/x64-windows/bin;$PWD/build/Release;$env:PATH"
+
+          # Find the test executable (adjust name as needed)
+          $testExe = Get-ChildItem -Path "build" -Recurse -Filter "*test*.exe" | Select-Object -First 1
+
+          if ($null -eq $testExe) {
+            Write-Error "No test executable found in cpp/build"
+            Get-ChildItem -Path "build" -Recurse -Filter "*.exe" | Select-Object FullName
+            exit 1
+          }
+
+          Write-Host "Running CPP tests: $($testExe.FullName)"
+          
+          & $testExe.FullName --gtest_color=no --gtest_output=xml:test-results.xml 2>&1 | Tee-Object -Variable testOutput
+          $exitCode = $LASTEXITCODE
+
+          # Check for DLL errors
+          if ($exitCode -eq -1073741515 -or $exitCode -eq 3221225781) {
+            Write-Error "DLL NOT FOUND ERROR - Missing dependencies"
+            exit 1
+          }
+
+          if ($exitCode -ne 0) {
+            Write-Error "CPP tests failed with exit code $exitCode"
+            exit $exitCode
+          }
+
+          Write-Host "✅ CPP tests passed successfully"
+        shell: pwsh
+
+      - name: Generate cpp coverage report (placeholder)
+        working-directory: cpp
+        run: |
+          # Windows coverage generation would go here
+          # For now, create placeholder directory
+          New-Item -ItemType Directory -Force -Path coverage
+          Write-Host "Coverage report generation not yet implemented for Windows"
+        shell: pwsh
+
+      # ====================
+      # Build falcon-core-c-api
+      # ====================
+      - name: Install vcpkg dependencies for c-api
+        working-directory: c-api
+        run: |
+          vcpkg install --triplet x64-windows
+        shell: pwsh
+
+      - name: Configure CMake for c-api
+        working-directory: c-api
+        run: |
+          cmake -B build `
+            -S . `
+            -G "Visual Studio 17 2022" `
+            -A x64 `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DBUILD_TESTS=ON `
+            -DFALCON_CORE_CPP_DIR="${{ github.workspace }}/cpp/build/Release"
+        shell: pwsh
+
+      - name: Build falcon-core-c-api
+        working-directory: c-api
+        run: |
+          cmake --build build --config Release --verbose
+        shell: pwsh
+
+      - name: List c-api build outputs
+        working-directory: c-api
+        run: |
+          Write-Host "=== C-API Build Outputs ==="
+          Get-ChildItem -Path "build/Release" -Recurse | Select-Object FullName
+        shell: pwsh
+
+      - name: Test falcon-core-c-api
+        working-directory: c-api
+        run: |
+          # Add vcpkg DLLs, cpp DLLs, and c-api build output to PATH
+          $env:PATH = "$PWD/build/vcpkg_installed/x64-windows/bin;$PWD/build/Release;${{ github.workspace }}/cpp/build/Release;$env:PATH"
+
+          # Find the test executable
+          $testExe = Get-ChildItem -Path "build" -Recurse -Filter "*test*.exe" | Select-Object -First 1
+
+          if ($null -eq $testExe) {
+            Write-Error "No test executable found in c-api/build"
+            Get-ChildItem -Path "build" -Recurse -Filter "*.exe" | Select-Object FullName
+            exit 1
+          }
+
+          Write-Host "Running C-API tests: $($testExe.FullName)"
+          
+          & $testExe.FullName --gtest_color=no --gtest_output=xml:test-results.xml 2>&1 | Tee-Object -Variable testOutput
+          $exitCode = $LASTEXITCODE
+
+          # Check for DLL errors
+          if ($exitCode -eq -1073741515 -or $exitCode -eq 3221225781) {
+            Write-Error "DLL NOT FOUND ERROR - Missing dependencies"
+            exit 1
+          }
+
+          if ($exitCode -ne 0) {
+            Write-Error "C-API tests failed with exit code $exitCode"
+            exit $exitCode
+          }
+
+          Write-Host "✅ C-API tests passed successfully"
+        shell: pwsh
+
+      - name: Generate c-api coverage report (placeholder)
+        working-directory: c-api
+        run: |
+          # Windows coverage generation would go here
+          New-Item -ItemType Directory -Force -Path coverage
+          Write-Host "Coverage report generation not yet implemented for Windows"
+        shell: pwsh
+
+      # ====================
+      # Upload Artifacts
+      # ====================
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-test-results
+          path: |
+            cpp/test-results.xml
+            c-api/test-results.xml
+          retention-days: 7
+
+      - name: Upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-binaries
+          path: |
+            cpp/build/Release/*.dll
+            cpp/build/Release/*.lib
+            cpp/build/Release/*.exe
+            c-api/build/Release/*.dll
+            c-api/build/Release/*.lib
+            c-api/build/Release/*.exe
+          retention-days: 7
+
+      - name: Upload coverage reports (placeholder)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-coverage-reports
+          path: |
+            cpp/coverage/*
+            c-api/coverage/*
+          retention-days: 7
+
+      # ====================
+      # Debugging
+      # ====================
+      - name: Setup tmate session for debugging (on failure)
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 45
+        with:
+          limit-access-to-actor: true
