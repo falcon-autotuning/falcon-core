@@ -29,7 +29,7 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Cache vcpkg binary cache
+      - name: Attempt to restore vcpkg binary cache
         uses: actions/cache@v4
         with:
           path: |
@@ -49,6 +49,15 @@ jobs:
           # Manifest mode reads vcpkg.json from repository root
           vcpkg install --triplet x64-windows
         shell: pwsh
+
+      - name: Save vcpkg binary cache (early)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
 
       - name: Configure CMake with clang-cl (Visual Studio generator) for cpp
         working-directory: cpp
