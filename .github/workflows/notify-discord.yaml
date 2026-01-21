@@ -1,0 +1,68 @@
+name: Discord Notify Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fail-and-notify:
+    name: Force failure then notify Discord
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Print environment (sanity)
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.info(`OS: ${process.env.RUNNER_OS}`);
+            core.info(`Repo: ${process.env.GITHUB_REPOSITORY}`);
+            core.info(`Workflow: ${process.env.GITHUB_WORKFLOW}`);
+            core.info(`Run ID: ${process.env.GITHUB_RUN_ID}`);
+
+      - name: Force an error (intentionally fail)
+        run: |
+          echo "Forcing failure so the Discord notification step runs..."
+          exit 1
+
+      - name: Notify Discord on failure
+        if: failure()
+        uses: actions/github-script@v7
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        with:
+          script: |
+            const url = process.env.DISCORD_WEBHOOK_URL;
+            if (!url) throw new Error("DISCORD_WEBHOOK_URL is not set");
+
+            // Basic validation (helps catch common secret mistakes)
+            if (!url.startsWith("https://discord.com/api/webhooks/")) {
+              throw new Error("Webhook URL doesn't look like a Discord webhook (expected https://discord.com/api/webhooks/...)");
+            }
+
+            const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+
+            const payload = {
+              content:
+                `❌ **Workflow failed (test)**\n` +
+                `OS: **${process.env.RUNNER_OS}**\n` +
+                `Repo: **${process.env.GITHUB_REPOSITORY}**\n` +
+                `Workflow: **${process.env.GITHUB_WORKFLOW}**\n` +
+                `Job: **${process.env.GITHUB_JOB}**\n` +
+                `Branch: **${process.env.GITHUB_REF_NAME ?? ""}**\n` +
+                `Commit: \`${process.env.GITHUB_SHA}\`\n` +
+                `Run: ${runUrl}`
+            };
+
+            const res = await fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+
+            if (!res.ok) {
+              const text = await res.text().catch(() => "");
+              throw new Error(`Discord webhook failed: ${res.status} ${res.statusText}\n${text}`);
+            }

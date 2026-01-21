@@ -2,9 +2,9 @@ name: Cached Native Windows Build and Test
 
 on:
   push:
-    branches: [windows-support]
+    branches: [none]
   pull_request:
-    branches: [windows-support]
+    branches: [none]
   workflow_dispatch:
   workflow_call:
 

@@ -2,9 +2,9 @@ name: Native Windows Build and Test
 
 on:
   push:
-    branches: [windows-support]
+    branches: [none]
   pull_request:
-    branches: [windows-support]
+    branches: [none]
   workflow_dispatch:
   workflow_call:
 
@@ -27,7 +27,7 @@ jobs:
         with:
           vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
 
-      - name: Install dependencies via vcpkg (manifest or explicit)
+      - name: Install dependencies via vcpkg
         # If you use vcpkg.json manifest keep this step simple (manifest mode)
         run: |
           # manifest mode (recommended) -- installs packages for x64-windows

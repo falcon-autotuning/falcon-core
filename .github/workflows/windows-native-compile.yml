@@ -2,9 +2,9 @@ name: Windows Native Build & Test (vcpkg) + tmate on failure
 
 on:
   push:
-    branches: [windows-support]
+    branches: [none]
   pull_request:
-    branches: [windows-support]
+    branches: [none]
   workflow_dispatch:
 
 permissions:
