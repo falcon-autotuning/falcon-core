@@ -19,9 +19,9 @@ jobs:
     # vcpkg binary caching (manifest mode; vcpkg.json in repo root)
     env:
       # Store/restore built packages here (cached by actions/cache)
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}\.vcpkg\bincache,readwrite"
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
       # Optional: keep downloaded source archives too
-      VCPKG_DOWNLOADS: "${{ github.workspace }}\.vcpkg\downloads"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
 
     steps:
       - name: Checkout repository
