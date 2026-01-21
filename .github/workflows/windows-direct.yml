@@ -44,20 +44,12 @@ jobs:
         with:
           vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
 
-      - name: Install dependencies via vcpkg (manifest)
-        run: |
-          # Manifest mode reads vcpkg.json from repository root
-          vcpkg install --triplet x64-windows
-        shell: pwsh
-
-      - name: Save vcpkg binary cache (early)
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            .vcpkg/bincache
-            .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+      # Install dependencies once for both c++/c builds
+      # - name: Install dependencies via vcpkg (manifest)
+      #   run: |
+      #     # Manifest mode reads vcpkg.json from repository root
+      #     vcpkg install --triplet x64-windows
+      #   shell: pwsh
 
       - name: Configure CMake with Visual Studio generator for cpp
         working-directory: cpp
@@ -70,9 +62,19 @@ jobs:
             -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang-cl.exe" `
             -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
             -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}" `
+            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/cpp/build/vcpkg_installed" `
             -DCMAKE_BUILD_TYPE=Release `
             -DFALCON_CORE_DEV=ON
         shell: pwsh
+
+      - name: Save vcpkg binary cache (early)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
 
       - name: Build falcon-core-cpp
         working-directory: cpp
@@ -91,49 +93,40 @@ jobs:
         working-directory: cpp
         shell: pwsh
         run: |
+          $exe = (Resolve-Path "build/Release/falcon_core_cpp_run_tests.exe").Path
+
+          # Prefer DLLs copied next to the exe (best), but also pin vcpkg bin to avoid collisions
           $vcpkgBin = (Resolve-Path "build/vcpkg_installed/x64-windows/bin").Path
           Write-Host "Using vcpkg bin: $vcpkgBin"
+          Write-Host "Running: $exe"
+
+          # Force the DLL search path to vcpkg bin FIRST (prevents Git/MSYS2/Strawberry zlib collisions)
+          $cs = @'
+          using System;
+          using System.Runtime.InteropServices;
+          namespace Win32 {
+            public static class NativeMethods {
+              [DllImport("kernel32.dll", SetLastError=true)]
+              public static extern bool SetDllDirectory(string lpPathName);
+            }
+          }
+          '@
+          Add-Type -TypeDefinition $cs -Language CSharp
+          [Win32.NativeMethods]::SetDllDirectory($vcpkgBin) | Out-Null
+
+          # Also prepend PATH for child processes
           $env:PATH = "$vcpkgBin;$PWD\build\Release;$env:PATH"
 
-          $exe = "$PWD\build\Release\falcon_core_cpp_run_tests.exe"
-          Write-Host "Running CPP tests: $exe"
-          & $exe
-          if ($LASTEXITCODE -ne 0) { throw "CPP tests failed with exit code $LASTEXITCODE" }
+          # Useful debug: show conflicts
+          where.exe zlib1.dll
+          where.exe hdf5.dll
+          where.exe yaml-cpp.dll
 
-
-      - name: Test falcon-core-cpp
-        working-directory: cpp
-        run: |
-          # Add vcpkg DLLs and build output to PATH
-          $env:PATH = "$PWD/build/vcpkg_installed/x64-windows/bin;$PWD/build/Release;$env:PATH"
-
-          # Find the test executable (adjust name as needed)
-          $testExe = Get-ChildItem -Path "build" -Recurse -Filter "*test*.exe" | Select-Object -First 1
-
-          if ($null -eq $testExe) {
-            Write-Error "No test executable found in cpp/build"
-            Get-ChildItem -Path "build" -Recurse -Filter "*.exe" | Select-Object FullName
-            exit 1
-          }
-
-          Write-Host "Running CPP tests: $($testExe.FullName)"
-          
-          & $testExe.FullName --gtest_color=no --gtest_output=xml:test-results.xml 2>&1 | Tee-Object -Variable testOutput
-          $exitCode = $LASTEXITCODE
-
-          # Check for DLL errors
-          if ($exitCode -eq -1073741515 -or $exitCode -eq 3221225781) {
-            Write-Error "DLL NOT FOUND ERROR - Missing dependencies"
-            exit 1
-          }
-
-          if ($exitCode -ne 0) {
-            Write-Error "CPP tests failed with exit code $exitCode"
-            exit $exitCode
-          }
-
-          Write-Host "✅ CPP tests passed successfully"
-        shell: pwsh
+          # Run with gtest output so we can see where it dies
+          & $exe --gtest_color=no --gtest_output=xml:test-results.xml
+          $code = $LASTEXITCODE
+          Write-Host "Exit code: $code"
+          exit $code
 
       - name: Generate cpp coverage report (placeholder)
         working-directory: cpp
@@ -143,6 +136,56 @@ jobs:
           New-Item -ItemType Directory -Force -Path coverage
           Write-Host "Coverage report generation not yet implemented for Windows"
         shell: pwsh
+
+      # ------------------
+      # Error handling and debugging steps
+      # ------------------
+      - name: Run tests with ProcDump (capture crash dumps)
+        if: always()
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          # Install ProcDump (Chocolatey is available on windows-latest runners)
+          choco install procdump -y
+
+          # Paths
+          $exe = (Resolve-Path "build/Release/falcon_core_cpp_run_tests.exe").Path
+          $dumpDir = Join-Path $PWD "dumps"
+          New-Item -ItemType Directory -Force -Path $dumpDir | Out-Null
+
+          Write-Host "Exe: $exe"
+          Write-Host "Dump dir: $dumpDir"
+
+          # Run under ProcDump:
+          #  -ma : full dump
+          #  -e  : write dump on unhandled exception
+          #  -x  : dump directory
+          procdump -accepteula -ma -e -x $dumpDir $exe --gtest_color=no --gtest_output=xml:test-results.xml
+
+          $code = $LASTEXITCODE
+          Write-Host "Exit code: $code"
+
+          # List dumps (if any)
+          Get-ChildItem $dumpDir -Recurse -ErrorAction SilentlyContinue | Select-Object FullName, Length
+
+          exit $code
+
+      - name: Upload crash dumps
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-crash-dumps
+          path: cpp/dumps/**
+          if-no-files-found: ignore
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-test-results
+          path: cpp/test-results.xml
+          if-no-files-found: ignore
+
 
       # OS-agnostic, copy-pasteable into any workflow (no OS-specific shell)
       - name: Notify Discord on failure
