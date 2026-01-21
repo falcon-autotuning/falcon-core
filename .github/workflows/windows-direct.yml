@@ -59,7 +59,7 @@ jobs:
             .vcpkg/downloads
           key: vcpkg-${{ runner.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
 
-      - name: Configure CMake with clang-cl (Visual Studio generator) for cpp
+      - name: Configure CMake with Visual Studio generator for cpp
         working-directory: cpp
         run: |
           cmake -B build `
@@ -86,6 +86,20 @@ jobs:
           Write-Host "=== CPP Build Outputs ==="
           Get-ChildItem -Path "build/Release" -Recurse | Select-Object FullName
         shell: pwsh
+
+      - name: Run CPP tests (Release)
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          $vcpkgBin = (Resolve-Path "build/vcpkg_installed/x64-windows/bin").Path
+          Write-Host "Using vcpkg bin: $vcpkgBin"
+          $env:PATH = "$vcpkgBin;$PWD\build\Release;$env:PATH"
+
+          $exe = "$PWD\build\Release\falcon_core_cpp_run_tests.exe"
+          Write-Host "Running CPP tests: $exe"
+          & $exe
+          if ($LASTEXITCODE -ne 0) { throw "CPP tests failed with exit code $LASTEXITCODE" }
+
 
       - name: Test falcon-core-cpp
         working-directory: cpp

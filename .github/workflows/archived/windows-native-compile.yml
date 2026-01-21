@@ -41,12 +41,12 @@ jobs:
       # ====================
       # Build falcon-core-cpp
       # ====================
-      - name: Install vcpkg dependencies for cpp
-        if: steps.cache-vcpkg.outputs.cache-hit != 'true'
-        working-directory: cpp
-        run: |
-          vcpkg install --triplet x64-windows
-        shell: pwsh
+      # - name: Install vcpkg dependencies for cpp
+      #   if: steps.cache-vcpkg.outputs.cache-hit != 'true'
+      #   working-directory: cpp
+      #   run: |
+      #     vcpkg install --triplet x64-windows
+      #   shell: pwsh
 
       - name: Configure CMake for cpp
         working-directory: cpp
