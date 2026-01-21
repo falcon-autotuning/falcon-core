@@ -2,9 +2,9 @@ name: Discord Notify Test
 
 on:
   push:
-    branches: [windows-support]
+    branches: [none]
   pull_request:
-    branches: [windows-support]
+    branches: [none]
   workflow_dispatch:
 
 jobs:
