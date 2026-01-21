@@ -1,4 +1,4 @@
-name: Native Windows Build and Test
+name: Cached Native Windows Build and Test
 
 on:
   push:
@@ -16,20 +16,39 @@ jobs:
     name: Build and Test on Windows (vcpkg + clang-cl)
     runs-on: windows-latest
 
+
+    env:
+      VCPKG_DEFAULT_BINARY_CACHE: ${{ github.workspace }}\vcpkg-binary-cache
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Setup vcpkg
+      - name: Restore vcpkg binary cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ github.workspace }}\vcpkg-binary-cache
+          key: vcpkg-bincache-${{ runner.os }}-x64-windows-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json', '**/vcpkg-lock.json') }}
+          restore-keys: |
+            vcpkg-bincache-${{ runner.os }}-x64-windows-
+
+      - name: Setup vcpkg (cached)
         uses: lukka/run-vcpkg@v11
         with:
+          # Keep vcpkg inside the workspace so GitHub Cache can persist it between runs
+          vcpkgDirectory: "${{ github.workspace }}\\vcpkg"
           vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+          # Use your manifest(s) to key the cache
+          vcpkgJsonGlob: "**/vcpkg.json"
+          appendedCacheKey: "windows-clangcl-x64-windows"
 
       - name: Install dependencies via vcpkg (manifest or explicit)
+        # Uses VCPKG_DEFAULT_BINARY_CACHE for caching compiled packages
         # If you use vcpkg.json manifest keep this step simple (manifest mode)
         run: |
+          New-Item -ItemType Directory -Force -Path "$env:VCPKG_DEFAULT_BINARY_CACHE" | Out-Null
           # manifest mode (recommended) -- installs packages for x64-windows
           vcpkg install --triplet x64-windows
         shell: pwsh
