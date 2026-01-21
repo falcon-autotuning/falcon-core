@@ -61,6 +61,7 @@ jobs:
             -DCMAKE_C_COMPILER="C:/Program Files/LLVM/bin/clang-cl.exe" `
             -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang-cl.exe" `
             -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}" `
             -DCMAKE_BUILD_TYPE=Release `
             -DFALCON_CORE_DEV=ON
         shell: pwsh
