@@ -58,7 +58,6 @@ jobs:
             -S . `
             -G "Visual Studio 17 2022" `
             -A x64 `
-            -T ClangCL `
             -DCMAKE_C_COMPILER="C:/Program Files/LLVM/bin/clang-cl.exe" `
             -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang-cl.exe" `
             -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
@@ -90,59 +89,118 @@ jobs:
           Get-ChildItem -Path "build/Release" -Recurse | Select-Object FullName
         shell: pwsh
 
-      - name: Run CPP tests (Release)
+      - name: Stage runtime DLLs next to test exe
         working-directory: cpp
         shell: pwsh
         run: |
-          $exe = (Resolve-Path "build/Release/falcon_core_cpp_run_tests.exe").Path
-
-          # Prefer DLLs copied next to the exe (best), but also pin vcpkg bin to avoid collisions
+          $exeDir = (Resolve-Path "build/Release").Path
           $vcpkgBin = (Resolve-Path "build/vcpkg_installed/x64-windows/bin").Path
-          Write-Host "Using vcpkg bin: $vcpkgBin"
-          Write-Host "Running: $exe"
 
-          # Force the DLL search path to vcpkg bin FIRST (prevents Git/MSYS2/Strawberry zlib collisions)
+          Write-Host "ExeDir   : $exeDir"
+          Write-Host "VcpkgBin : $vcpkgBin"
+
+          # Copy vcpkg runtime dlls next to exe (best practice on CI)
+          Copy-Item "$vcpkgBin\*.dll" $exeDir -Force -ErrorAction SilentlyContinue
+
+          Write-Host "=== DLLs staged next to exe ==="
+          Get-ChildItem -Path $exeDir -Filter *.dll | Select-Object Name, FullName
+
+
+      - name: Run CPP tests (deterministic DLL loading)
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          $exeDir = (Resolve-Path "build/Release").Path
+          $exe = (Join-Path $exeDir "falcon_core_cpp_run_tests.exe")
+
+          Write-Host "ExeDir: $exeDir"
+          Write-Host "Exe   : $exe"
+
+          # HARDEN PATH: only Release + System32
+          $env:PATH = "$exeDir;$env:SystemRoot\System32"
+
+          # Harden DLL search (Win8+). Avoid PATH/cwd surprises.
           $cs = @'
           using System;
           using System.Runtime.InteropServices;
-          namespace Win32 {
-            public static class NativeMethods {
-              [DllImport("kernel32.dll", SetLastError=true)]
-              public static extern bool SetDllDirectory(string lpPathName);
-            }
+
+          public static class DllSearch {
+            [DllImport("kernel32.dll", SetLastError=true)]
+            public static extern bool SetDefaultDllDirectories(uint DirectoryFlags);
+
+            [DllImport("kernel32.dll", SetLastError=true)]
+            public static extern IntPtr AddDllDirectory(string NewDirectory);
+
+            public const uint LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = 0x00001000;
+            public const uint LOAD_LIBRARY_SEARCH_USER_DIRS    = 0x00000400;
           }
           '@
           Add-Type -TypeDefinition $cs -Language CSharp
-          [Win32.NativeMethods]::SetDllDirectory($vcpkgBin) | Out-Null
 
-          # Also prepend PATH for child processes
-          $env:PATH = "$vcpkgBin;$PWD\build\Release;$env:PATH"
+          [DllSearch]::SetDefaultDllDirectories(
+            [DllSearch]::LOAD_LIBRARY_SEARCH_DEFAULT_DIRS -bor [DllSearch]::LOAD_LIBRARY_SEARCH_USER_DIRS
+          ) | Out-Null
 
-          # Useful debug: show conflicts
-          where.exe zlib1.dll
-          where.exe hdf5.dll
-          where.exe yaml-cpp.dll
+          [DllSearch]::AddDllDirectory($exeDir) | Out-Null
 
-          # Run with gtest output so we can see where it dies
-          & $exe --gtest_color=no --gtest_output=xml:test-results.xml
+          Write-Host "=== where.exe zlib1.dll (should NOT show Git/MSYS/Strawberry now) ==="
+          where.exe zlib1.dll || $true
+          Write-Host "=== where.exe hdf5.dll ==="
+          where.exe hdf5.dll || $true
+          Write-Host "=== where.exe yaml-cpp.dll ==="
+          where.exe yaml-cpp.dll || $true
+
+          & $exe --gtest_color=no
           $code = $LASTEXITCODE
           Write-Host "Exit code: $code"
           exit $code
 
-      - name: Generate cpp coverage report (placeholder)
-        working-directory: cpp
-        run: |
-          # Windows coverage generation would go here
-          # For now, create placeholder directory
-          New-Item -ItemType Directory -Force -Path coverage
-          Write-Host "Coverage report generation not yet implemented for Windows"
-        shell: pwsh
+
+      # - name: Run CPP tests (Release)
+      #   working-directory: cpp
+      #   shell: pwsh
+      #   run: |
+      #     $exe = (Resolve-Path "build/Release/falcon_core_cpp_run_tests.exe").Path
+
+      #     # Prefer DLLs copied next to the exe (best), but also pin vcpkg bin to avoid collisions
+      #     $vcpkgBin = (Resolve-Path "build/vcpkg_installed/x64-windows/bin").Path
+      #     Write-Host "Using vcpkg bin: $vcpkgBin"
+      #     Write-Host "Running: $exe"
+
+      #     # Force the DLL search path to vcpkg bin FIRST (prevents Git/MSYS2/Strawberry zlib collisions)
+      #     $cs = @'
+      #     using System;
+      #     using System.Runtime.InteropServices;
+      #     namespace Win32 {
+      #       public static class NativeMethods {
+      #         [DllImport("kernel32.dll", SetLastError=true)]
+      #         public static extern bool SetDllDirectory(string lpPathName);
+      #       }
+      #     }
+      #     '@
+      #     Add-Type -TypeDefinition $cs -Language CSharp
+      #     [Win32.NativeMethods]::SetDllDirectory($vcpkgBin) | Out-Null
+
+      #     # Also prepend PATH for child processes
+      #     $env:PATH = "$vcpkgBin;$PWD\build\Release;$env:PATH"
+
+      #     # Useful debug: show conflicts
+      #     where.exe zlib1.dll
+      #     where.exe hdf5.dll
+      #     where.exe yaml-cpp.dll
+
+      #     # Run with gtest output so we can see where it dies
+      #     & $exe --gtest_color=no --gtest_output=xml:test-results.xml
+      #     $code = $LASTEXITCODE
+      #     Write-Host "Exit code: $code"
+      #     exit $code
+
 
       # ------------------
       # Error handling and debugging steps
       # ------------------
       - name: Run tests with ProcDump (capture crash dumps)
-        if: always()
+        if: failure()
         working-directory: cpp
         shell: pwsh
         run: |
@@ -172,7 +230,7 @@ jobs:
           exit $code
 
       - name: Upload crash dumps
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: windows-crash-dumps
@@ -180,7 +238,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Upload test results
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: windows-test-results
@@ -228,8 +286,8 @@ jobs:
             }
 
       - name: Setup tmate session for debugging (on failure)
-        if: ${{ failure() }}
+        if: failure()
         uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 30
+        timeout-minutes: 60
         with:
           limit-access-to-actor: true
