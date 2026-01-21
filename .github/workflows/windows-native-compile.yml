@@ -26,14 +26,15 @@ jobs:
         with:
           vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
 
-      - name: Cache vcpkg packages
+      - name: Cache vcpkg (downloads + installed)
+        id: cache-vcpkg
         uses: actions/cache@v4
         with:
           path: |
             ${{ env.VCPKG_ROOT }}/downloads
-            ${{ env.VCPKG_ROOT }}/packages
-            ${{ env.VCPKG_ROOT }}/buildtrees
-          key: ${{ runner.os }}-vcpkg-${{ hashFiles('**/vcpkg.json', 'cpp/vcpkg.json', 'c-api/vcpkg.json') }}
+            cpp/vcpkg_installed
+            c-api/vcpkg_installed
+          key: ${{ runner.os }}-vcpkg-${{ hashFiles('cpp/vcpkg.json', 'c-api/vcpkg.json', '**/vcpkg-configuration.json', 'vcpkg-configuration.json') }}-73af4de996897cb45dcf5034d16a551a3cf476f7-x64-windows
           restore-keys: |
             ${{ runner.os }}-vcpkg-
 
@@ -41,6 +42,7 @@ jobs:
       # Build falcon-core-cpp
       # ====================
       - name: Install vcpkg dependencies for cpp
+        if: steps.cache-vcpkg.outputs.cache-hit != 'true'
         working-directory: cpp
         run: |
           vcpkg install --triplet x64-windows
@@ -121,6 +123,7 @@ jobs:
       # Build falcon-core-c-api
       # ====================
       - name: Install vcpkg dependencies for c-api
+        if: steps.cache-vcpkg.outputs.cache-hit != 'true'
         working-directory: c-api
         run: |
           vcpkg install --triplet x64-windows

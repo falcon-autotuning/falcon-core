@@ -1,9 +1,9 @@
 name: Windows CI
 on:
   push:
-    branches: [windows-support]
+    branches: [ none]
   pull_request:
-    branches: [windows-support]
+    branches: [ none ]
 jobs:
   build-and-test-windows:
     runs-on: windows-latest
