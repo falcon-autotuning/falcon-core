@@ -267,6 +267,9 @@ jobs:
               headers={"Content-Type": "application/json"},
               method="POST",
           )
+          
+          assert webhook_url.startswith("https://discord.com/api/webhooks/"), webhook_url
+
           urllib.request.urlopen(req).read()
           PY
 

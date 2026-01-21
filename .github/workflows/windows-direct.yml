@@ -1,0 +1,165 @@
+name: Native Windows Build and Test
+
+on:
+  push:
+    branches: [windows-support]
+  pull_request:
+    branches: [windows-support]
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test-windows:
+    name: Build and Test on Windows (vcpkg + clang-cl)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      - name: Install dependencies via vcpkg (manifest or explicit)
+        # If you use vcpkg.json manifest keep this step simple (manifest mode)
+        run: |
+          # manifest mode (recommended) -- installs packages for x64-windows
+          vcpkg install --triplet x64-windows
+        shell: pwsh
+
+      - name: Configure CMake with clang-cl (Visual Studio generator)
+        run: |
+          cmake -B build `
+            -S . `
+            -G "Visual Studio 17 2022" `
+            -A x64 `
+            -T ClangCL `
+            -DCMAKE_C_COMPILER="C:/Program Files/LLVM/bin/clang-cl.exe" `
+            -DCMAKE_CXX_COMPILER="C:/Program Files/LLVM/bin/clang-cl.exe" `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DFALCON_CORE_DEV=ON
+        shell: pwsh
+
+      - name: Build project (MSBuild via CMake)
+        run: |
+          cmake --build build --config Release --verbose
+        shell: pwsh
+
+      - name: List build outputs (debug)
+        run: |
+          Write-Host "=== Test Executables ==="
+          Get-ChildItem -Path "build/tests/Release" -Filter *.exe | ForEach-Object { 
+            Write-Host "$($_. FullName) - $($_.Length) bytes"
+          }
+
+          Write-Host "`n=== Core DLLs ==="
+          Get-ChildItem -Path "build/Release" -Filter *.dll | ForEach-Object { 
+            Write-Host "$($_.Name)"
+          }
+
+          Write-Host "`n=== Vcpkg DLLs ==="
+          Get-ChildItem -Path "build/vcpkg_installed/x64-windows/bin" -Filter *.dll | Select-Object -First 20 | ForEach-Object { 
+            Write-Host "$($_.Name)"
+          }
+        shell: pwsh
+
+      - name: Run unit tests
+        run: |
+          # CRITICAL: Add DLL directories to PATH
+          $env:PATH = "$PWD/build/vcpkg_installed/x64-windows/bin;$PWD/build/Release;$env:PATH"
+
+          $testPath = "build/tests/Release/unit_tests.exe"
+
+          if (Test-Path $testPath) {
+            Write-Host "Running unit tests..."
+            Write-Host "Executable: $testPath"
+            Write-Host "Working Directory: $(Get-Location)"
+            
+            # Run test and capture output
+            & $testPath 2>&1 | Tee-Object -Variable testOutput
+            $exitCode = $LASTEXITCODE
+            
+            Write-Host "`nTest process exit code: $exitCode"
+            
+            # Check for common Windows DLL errors
+            if ($exitCode -eq -1073741515 -or $exitCode -eq 3221225781) {
+              Write-Error "DLL NOT FOUND ERROR (0xC0000135)"
+              Write-Host "The test executable cannot find required DLLs."
+              Write-Host "Check that these directories are in PATH:"
+              Write-Host "  - build/vcpkg_installed/x64-windows/bin"
+              Write-Host "  - build/Release"
+              exit 1
+            }
+            
+            if ($exitCode -ne 0) {
+              Write-Error "Unit tests failed with exit code $exitCode"
+              exit $exitCode
+            }
+            
+            Write-Host "✓ Unit tests passed successfully"
+          } else {
+            Write-Error "unit_tests.exe not found at: $testPath"
+            exit 1
+          }
+        shell: pwsh
+
+      - name: Run integration tests
+        run: |
+          # CRITICAL: Add DLL directories to PATH
+          $env:PATH = "$PWD/build/vcpkg_installed/x64-windows/bin;$PWD/build/Release;$env:PATH"
+
+          $testPath = "build/tests/Release/integration_tests.exe"
+
+          if (Test-Path $testPath) {
+            Write-Host "Running integration tests..."
+            
+            & $testPath 2>&1 | Tee-Object -Variable testOutput
+            $exitCode = $LASTEXITCODE
+            
+            Write-Host "`nTest process exit code: $exitCode"
+            
+            if ($exitCode -eq -1073741515 -or $exitCode -eq 3221225781) {
+              Write-Error "DLL NOT FOUND ERROR (0xC0000135)"
+              exit 1
+            }
+            
+            if ($exitCode -ne 0) {
+              Write-Error "Integration tests failed with exit code $exitCode"
+              exit $exitCode
+            }
+            
+            Write-Host "✓ Integration tests passed successfully"
+          } else {
+            Write-Error "integration_tests.exe not found at: $testPath"
+            exit 1
+          }
+        shell: pwsh
+      - name: Collect artifacts
+        run: |
+          New-Item -ItemType Directory -Force -Path windows-binaries
+          Copy-Item -Path "LICENSE" -Destination "windows-binaries/" -ErrorAction SilentlyContinue
+          Get-ChildItem -Path "build" -Recurse -Include *.exe,*.dll | Copy-Item -Destination "windows-binaries/" -ErrorAction SilentlyContinue
+          Get-ChildItem -Path "windows-binaries"
+        shell: pwsh
+
+      - name: Upload Windows binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-binaries
+          path: windows-binaries/
+          retention-days: 7
+
+      - name: Setup tmate session for debugging (on failure)
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30
+        with:
+          limit-access-to-actor: true
