@@ -16,16 +16,39 @@ jobs:
     name: Build and Test on Windows (vcpkg + clang-cl)
     runs-on: windows-latest
 
+    # vcpkg binary caching (manifest mode; vcpkg.json in repo root)
+    env:
+      # Store/restore built packages here (cached by actions/cache)
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}\.vcpkg\bincache,readwrite"
+      # Optional: keep downloaded source archives too
+      VCPKG_DOWNLOADS: "${{ github.workspace }}\.vcpkg\downloads"
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
+      - name: Cache vcpkg binary cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          restore-keys: |
+            vcpkg-${{ runner.os }}-
+
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      - name: Install dependencies via vcpkg (manifest)
+        run: |
+          # Manifest mode reads vcpkg.json from repository root
+          vcpkg install --triplet x64-windows
+        shell: pwsh
 
       - name: Configure CMake with clang-cl (Visual Studio generator) for cpp
         working-directory: cpp
@@ -48,19 +71,16 @@ jobs:
           cmake --build build --config Release --verbose
         shell: pwsh
 
-
-      # --- Add this step (OS-agnostic, copy-pasteable anywhere) ---
+      # OS-agnostic, copy-pasteable into any workflow (no OS-specific shell)
       - name: Notify Discord on failure
         if: failure()
         uses: actions/github-script@v7
         env:
-          # If desired, create a secret named DISCORD_WEBHOOK_URL in your repo settings and put your Discord webhook URL there
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         with:
           script: |
             const url = process.env.DISCORD_WEBHOOK_URL;
             if (!url) throw new Error("DISCORD_WEBHOOK_URL is not set");
-
             if (!url.startsWith("https://discord.com/api/webhooks/")) {
               throw new Error("Webhook URL doesn't look like a Discord webhook (expected https://discord.com/api/webhooks/...)");
             }
@@ -89,7 +109,6 @@ jobs:
               const text = await res.text().catch(() => "");
               throw new Error(`Discord webhook failed: ${res.status} ${res.statusText}\n${text}`);
             }
-      # --- End Discord step ---
 
       - name: Setup tmate session for debugging (on failure)
         if: ${{ failure() }}
