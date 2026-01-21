@@ -12,9 +12,9 @@ c-api/build*/
 
 # ignore vcpkg since it is large
 vcpkg/*
+vcpkg/
 vcpkg_installed/
 coverage_html/*
-/vcpkg*
 
 # .pyenv file
 .python-version
