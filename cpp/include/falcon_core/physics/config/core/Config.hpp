@@ -2,6 +2,7 @@
 
 #include "falcon_core/autotuner_interfaces/names/Channels.hpp"
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/physics/config/core/Group.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/core/VoltageConstraints.hpp"
@@ -15,7 +16,7 @@ namespace core {
 /**
  * @brief The imported config file for falcon use.
  */
-class Config : public StandardConfigConnections {
+class FALCON_CORE_CPP_API Config : public StandardConfigConnections {
   int                                     _num_unique_channels;
   device_structures::ImpedancesSP         _wiring_DC;
   autotuner_interfaces::names::ChannelsSP _channels;

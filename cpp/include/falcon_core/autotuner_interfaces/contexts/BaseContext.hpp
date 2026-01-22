@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
@@ -7,7 +8,7 @@
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
-class BaseContext : public generic::Song {
+class FALCON_CORE_CPP_API BaseContext : public generic::Song {
   physics::device_structures::ConnectionSP _connection;
   instrument_interfaces::names::Instrument _instrument_type;
   mutable std::shared_timed_mutex          _mu_connection;

@@ -1,0 +1,1329 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="Waveform__c__api_8h" kind="file" language="C++">
+    <compoundname>Waveform_c_api.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes refid="ListPortTransform__c__api_8h" local="yes">falcon_core/generic/ListPortTransform_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="PortTransform__c__api_8h" local="yes">falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</includes>
+    <includes refid="AxesCoupledLabelledDomain__c__api_8h" local="yes">falcon_core/math/AxesCoupledLabelledDomain_c_api.h</includes>
+    <includes refid="AxesInt__c__api_8h" local="yes">falcon_core/math/AxesInt_c_api.h</includes>
+    <includes refid="AxesMapStringBool__c__api_8h" local="yes">falcon_core/math/AxesMapStringBool_c_api.h</includes>
+    <includes refid="DiscreteSpace__c__api_8h" local="yes">falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</includes>
+    <includedby refid="ListWaveform__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListWaveform_c_api.h</includedby>
+    <incdepgraph>
+      <node id="41">
+        <label>falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</label>
+        <link refid="AcquisitionContext__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>falcon_core/generic/ListBool_c_api.h</label>
+        <link refid="ListBool__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>falcon_core/generic/ListControlArray_c_api.h</label>
+        <link refid="ListControlArray__c__api_8h_source"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>falcon_core/generic/ListCoupledLabelledDomain_c_api.h</label>
+        <link refid="ListCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>falcon_core/generic/ListDiscretizer_c_api.h</label>
+        <link refid="ListDiscretizer__c__api_8h_source"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>falcon_core/generic/ListInstrumentPort_c_api.h</label>
+        <link refid="ListInstrumentPort__c__api_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>falcon_core/generic/ListInt_c_api.h</label>
+        <link refid="ListInt__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>falcon_core/generic/ListLabelledControlArray_c_api.h</label>
+        <link refid="ListLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>falcon_core/generic/ListLabelledDomain_c_api.h</label>
+        <link refid="ListLabelledDomain__c__api_8h_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>falcon_core/generic/ListMapStringBool_c_api.h</label>
+        <link refid="ListMapStringBool__c__api_8h_source"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>falcon_core/generic/ListPairStringBool_c_api.h</label>
+        <link refid="ListPairStringBool__c__api_8h_source"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/ListPairStringDouble_c_api.h</label>
+        <link refid="ListPairStringDouble__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/ListPortTransform_c_api.h</label>
+        <link refid="ListPortTransform__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>falcon_core/generic/MapStringBool_c_api.h</label>
+        <link refid="MapStringBool__c__api_8h_source"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/MapStringDouble_c_api.h</label>
+        <link refid="MapStringDouble__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>falcon_core/generic/PairStringBool_c_api.h</label>
+        <link refid="PairStringBool__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/generic/PairStringDouble_c_api.h</label>
+        <link refid="PairStringDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>falcon_core/instrument_interfaces/names/Ports_c_api.h</label>
+        <link refid="Ports__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
+        <link refid="PortTransform__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/math/AnalyticFunction_c_api.h</label>
+        <link refid="AnalyticFunction__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>falcon_core/math/AxesControlArray_c_api.h</label>
+        <link refid="AxesControlArray__c__api_8h_source"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>falcon_core/math/AxesCoupledLabelledDomain_c_api.h</label>
+        <link refid="AxesCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>falcon_core/math/AxesDiscretizer_c_api.h</label>
+        <link refid="AxesDiscretizer__c__api_8h_source"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>falcon_core/math/AxesDouble_c_api.h</label>
+        <link refid="AxesDouble__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>falcon_core/math/AxesInstrumentPort_c_api.h</label>
+        <link refid="AxesInstrumentPort__c__api_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>falcon_core/math/AxesInt_c_api.h</label>
+        <link refid="AxesInt__c__api_8h_source"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>falcon_core/math/AxesLabelledControlArray_c_api.h</label>
+        <link refid="AxesLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>falcon_core/math/AxesMapStringBool_c_api.h</label>
+        <link refid="AxesMapStringBool__c__api_8h_source"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>falcon_core/math/arrays/ControlArray_c_api.h</label>
+        <link refid="ControlArray__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>falcon_core/math/arrays/LabelledControlArray_c_api.h</label>
+        <link refid="LabelledControlArray__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>falcon_core/math/discrete_spaces/Discretizer_c_api.h</label>
+        <link refid="Discretizer__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>falcon_core/math/domains/CoupledLabelledDomain_c_api.h</label>
+        <link refid="CoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>falcon_core/math/domains/Domain_c_api.h</label>
+        <link refid="Domain__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>falcon_core/math/domains/LabelledDomain_c_api.h</label>
+        <link refid="LabelledDomain__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Waveform__c__api_8h_1a953d2c24e5560db62f592bf7413e5852" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* WaveformHandle</definition>
+        <argsstring></argsstring>
+        <name>WaveformHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="16" column="14" bodyfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Waveform__c__api_8h_1a078dda49e8a3afffe1af97062339296f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_copy</definition>
+        <argsstring>(WaveformHandle handle)</argsstring>
+        <name>Waveform_copy</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="19" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="19" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1aca04a351d7371aa36974e3b971d0e5e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Waveform_destroy</definition>
+        <argsstring>(WaveformHandle handle)</argsstring>
+        <name>Waveform_destroy</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a3e6e351486fcdbc90d1a2bd47979aa2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Waveform_equal</definition>
+        <argsstring>(WaveformHandle handle, WaveformHandle other)</argsstring>
+        <name>Waveform_equal</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1ad7a498565ae5601622e4104a98c29573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Waveform_not_equal</definition>
+        <argsstring>(WaveformHandle handle, WaveformHandle other)</argsstring>
+        <name>Waveform_not_equal</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="25" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="25" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a3c9b2f6174a4ab682b40f17c3f9425c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle Waveform_to_json_string</definition>
+        <argsstring>(WaveformHandle handle)</argsstring>
+        <name>Waveform_to_json_string</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="27" column="14" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="27" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a8ab4064d08184e383abe108a873aa374" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Waveform_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="29" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="29" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1ad2160a3b45897cfac9851284da449ec4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_create</definition>
+        <argsstring>(DiscreteSpaceHandle space, ListPortTransformHandle transforms)</argsstring>
+        <name>Waveform_create</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>space</declname>
+        </param>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>transforms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="31" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="31" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a55601a6423ec2be0da1961fde0b31cd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_create_cartesian_waveform</definition>
+        <argsstring>(AxesIntHandle divisions, AxesCoupledLabelledDomainHandle axes, AxesMapStringBoolHandle increasing, ListPortTransformHandle transforms, DomainHandle domain)</argsstring>
+        <name>Waveform_create_cartesian_waveform</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>divisions</declname>
+        </param>
+        <param>
+          <type>AxesCoupledLabelledDomainHandle</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>transforms</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="34" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="34" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a2f347be0568c8e7dd2b6671cff6e6b8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_create_cartesian_identity_waveform</definition>
+        <argsstring>(AxesIntHandle divisions, AxesCoupledLabelledDomainHandle axes, AxesMapStringBoolHandle increasing, DomainHandle domain)</argsstring>
+        <name>Waveform_create_cartesian_identity_waveform</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>divisions</declname>
+        </param>
+        <param>
+          <type>AxesCoupledLabelledDomainHandle</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="41" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="41" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1ae4bfc372f97ed1bd4e56ee76feeb342c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_create_cartesian_waveform_2D</definition>
+        <argsstring>(AxesIntHandle divisions, AxesCoupledLabelledDomainHandle axes, AxesMapStringBoolHandle increasing, ListPortTransformHandle transforms, DomainHandle domain)</argsstring>
+        <name>Waveform_create_cartesian_waveform_2D</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>divisions</declname>
+        </param>
+        <param>
+          <type>AxesCoupledLabelledDomainHandle</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>transforms</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="47" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="47" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a672eb37a20f90a5f460292ecf6bf64a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_create_cartesian_identity_waveform_2D</definition>
+        <argsstring>(AxesIntHandle divisions, AxesCoupledLabelledDomainHandle axes, AxesMapStringBoolHandle increasing, DomainHandle domain)</argsstring>
+        <name>Waveform_create_cartesian_identity_waveform_2D</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>divisions</declname>
+        </param>
+        <param>
+          <type>AxesCoupledLabelledDomainHandle</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="54" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="54" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a65355cabf190266fb031d2960209bcf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_create_cartesian_waveform_1D</definition>
+        <argsstring>(int division, CoupledLabelledDomainHandle shared_domain, MapStringBoolHandle increasing, ListPortTransformHandle transforms, DomainHandle domain)</argsstring>
+        <name>Waveform_create_cartesian_waveform_1D</name>
+        <param>
+          <type>int</type>
+          <declname>division</declname>
+        </param>
+        <param>
+          <type>CoupledLabelledDomainHandle</type>
+          <declname>shared_domain</declname>
+        </param>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>ListPortTransformHandle</type>
+          <declname>transforms</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="60" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="60" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1adf24a5f382a8eb324cd5e1e66dda9f4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_create_cartesian_identity_waveform_1D</definition>
+        <argsstring>(int division, CoupledLabelledDomainHandle shared_domain, MapStringBoolHandle increasing, DomainHandle domain)</argsstring>
+        <name>Waveform_create_cartesian_identity_waveform_1D</name>
+        <param>
+          <type>int</type>
+          <declname>division</declname>
+        </param>
+        <param>
+          <type>CoupledLabelledDomainHandle</type>
+          <declname>shared_domain</declname>
+        </param>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="67" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="67" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a00564337401669bb87159562b98f26cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscreteSpaceHandle</type>
+        <definition>DiscreteSpaceHandle Waveform_space</definition>
+        <argsstring>(WaveformHandle handle)</argsstring>
+        <name>Waveform_space</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Get the measurement space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="78" column="21" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="78" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a40d30008a539738b0935eb6556b68a41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPortTransformHandle</type>
+        <definition>ListPortTransformHandle Waveform_transforms</definition>
+        <argsstring>(WaveformHandle handle)</argsstring>
+        <name>Waveform_transforms</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="80" column="25" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="80" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1ad6649135376c114418663dffee1679a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Waveform_push_back</definition>
+        <argsstring>(WaveformHandle handle, PortTransformHandle value)</argsstring>
+        <name>Waveform_push_back</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortTransformHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="82" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="82" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1af821d84e7352e6898519396b273141de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Waveform_size</definition>
+        <argsstring>(WaveformHandle handle)</argsstring>
+        <name>Waveform_size</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="84" column="8" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="84" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a7f5e7d2376dba46629f02b254b7d15cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Waveform_empty</definition>
+        <argsstring>(WaveformHandle handle)</argsstring>
+        <name>Waveform_empty</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="86" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="86" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a7ac0c0766963344e1fec480e5e22f512" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Waveform_erase_at</definition>
+        <argsstring>(WaveformHandle handle, size_t idx)</argsstring>
+        <name>Waveform_erase_at</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="88" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="88" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1af6ac9ec07d08c9737f8a2d014af78f6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Waveform_clear</definition>
+        <argsstring>(WaveformHandle handle)</argsstring>
+        <name>Waveform_clear</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="90" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="90" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a45d1d3493b543366a2444a3dffd5ecea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PortTransformHandle</type>
+        <definition>PortTransformHandle Waveform_at</definition>
+        <argsstring>(WaveformHandle handle, size_t idx)</argsstring>
+        <name>Waveform_at</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="92" column="21" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="92" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a303b9ffa790f6c0759e13c702783254d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPortTransformHandle</type>
+        <definition>ListPortTransformHandle Waveform_items</definition>
+        <argsstring>(WaveformHandle handle)</argsstring>
+        <name>Waveform_items</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="94" column="25" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="94" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a71f1803c7ce8fab4952a6b6f03281e90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Waveform_contains</definition>
+        <argsstring>(WaveformHandle handle, PortTransformHandle value)</argsstring>
+        <name>Waveform_contains</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortTransformHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="96" column="6" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="96" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1ad13de44defb072f1edb1509e25c19235" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Waveform_index</definition>
+        <argsstring>(WaveformHandle handle, PortTransformHandle value)</argsstring>
+        <name>Waveform_index</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PortTransformHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="98" column="8" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="98" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Waveform__c__api_8h_1a12c9f8b344923ee2c97f51020e17fb8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WaveformHandle</type>
+        <definition>WaveformHandle Waveform_intersection</definition>
+        <argsstring>(WaveformHandle handle, WaveformHandle other)</argsstring>
+        <name>Waveform_intersection</name>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>WaveformHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" line="100" column="16" declfile="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h" declline="100" declcolumn="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListPortTransform_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesCoupledLabelledDomain_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesInt_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesMapStringBool_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>WaveformHandle;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">WaveformHandle<sp/>Waveform_copy(WaveformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Waveform_destroy(WaveformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Waveform_equal(WaveformHandle<sp/>handle,<sp/>WaveformHandle<sp/>other);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Waveform_not_equal(WaveformHandle<sp/>handle,<sp/>WaveformHandle<sp/>other);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">StringHandle<sp/>Waveform_to_json_string(WaveformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">WaveformHandle<sp/>Waveform_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">WaveformHandle<sp/>Waveform_create(DiscreteSpaceHandle<sp/><sp/><sp/><sp/><sp/>space,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ListPortTransformHandle<sp/>transforms);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">WaveformHandle<sp/>Waveform_create_cartesian_waveform(</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesIntHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>divisions,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesCoupledLabelledDomainHandle<sp/>axes,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesMapStringBoolHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>increasing,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>ListPortTransformHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transforms,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">WaveformHandle<sp/>Waveform_create_cartesian_identity_waveform(</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesIntHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>divisions,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesCoupledLabelledDomainHandle<sp/>axes,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesMapStringBoolHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>increasing,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">WaveformHandle<sp/>Waveform_create_cartesian_waveform_2D(</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesIntHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>divisions,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesCoupledLabelledDomainHandle<sp/>axes,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesMapStringBoolHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>increasing,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>ListPortTransformHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transforms,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">WaveformHandle<sp/>Waveform_create_cartesian_identity_waveform_2D(</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesIntHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>divisions,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesCoupledLabelledDomainHandle<sp/>axes,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesMapStringBoolHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>increasing,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">WaveformHandle<sp/>Waveform_create_cartesian_waveform_1D(</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>division,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>CoupledLabelledDomainHandle<sp/>shared_domain,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>MapStringBoolHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>increasing,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>ListPortTransformHandle<sp/><sp/><sp/><sp/><sp/>transforms,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">WaveformHandle<sp/>Waveform_create_cartesian_identity_waveform_1D(</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>division,</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>CoupledLabelledDomainHandle<sp/>shared_domain,</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>MapStringBoolHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>increasing,</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Waveform_space<sp/>|</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>falcon_core::instrument_interfaces::Waveform::space<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">DiscreteSpaceHandle<sp/>Waveform_space(WaveformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal">ListPortTransformHandle<sp/>Waveform_transforms(WaveformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Waveform_push_back(WaveformHandle<sp/>handle,<sp/>PortTransformHandle<sp/>value);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Waveform_size(WaveformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Waveform_empty(WaveformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Waveform_erase_at(WaveformHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Waveform_clear(WaveformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal">PortTransformHandle<sp/>Waveform_at(WaveformHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">ListPortTransformHandle<sp/>Waveform_items(WaveformHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Waveform_contains(WaveformHandle<sp/>handle,<sp/>PortTransformHandle<sp/>value);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Waveform_index(WaveformHandle<sp/>handle,<sp/>PortTransformHandle<sp/>value);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal">WaveformHandle<sp/>Waveform_intersection(WaveformHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WaveformHandle<sp/>other);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h"/>
+  </compounddef>
+</doxygen>

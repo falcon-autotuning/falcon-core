@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
@@ -11,7 +12,7 @@ namespace falcon_core {
 namespace math {
 namespace discrete_spaces {
 
-class DiscreteSpace : public generic::Song {
+class FALCON_CORE_CPP_API DiscreteSpace : public generic::Song {
   UnitSpaceSP                             _space;
   AxesSP<domains::CoupledLabelledDomain>  _axes;
   AxesSP<generic::Map<std::string, bool>> _increasing;

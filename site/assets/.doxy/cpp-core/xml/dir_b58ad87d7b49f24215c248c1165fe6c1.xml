@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_b58ad87d7b49f24215c248c1165fe6c1" kind="dir">
+    <compoundname>cpp/include/falcon_core/generic</compoundname>
+    <innerfile refid="CategoryTags_8hpp">CategoryTags.hpp</innerfile>
+    <innerfile refid="FArray_8hpp">FArray.hpp</innerfile>
+    <innerfile refid="FArrayProtocol_8hpp">FArrayProtocol.hpp</innerfile>
+    <innerfile refid="IsPrimitive_8hpp">IsPrimitive.hpp</innerfile>
+    <innerfile refid="List_8hpp">List.hpp</innerfile>
+    <innerfile refid="Map_8hpp">Map.hpp</innerfile>
+    <innerfile refid="Pair_8hpp">Pair.hpp</innerfile>
+    <innerfile refid="Song_8hpp">Song.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/generic/"/>
+  </compounddef>
+</doxygen>

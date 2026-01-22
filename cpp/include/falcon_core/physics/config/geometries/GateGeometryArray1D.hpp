@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp"
@@ -16,7 +17,7 @@ namespace geometries {
  *gates, plunger gates, ohmics, and screening gates. This contains the geometry
  *of the 1D array.
  */
-class GateGeometryArray1D : public generic::Song {
+class FALCON_CORE_CPP_API GateGeometryArray1D : public generic::Song {
   DotGatesWithNeighborsSP          _central_dot_gates;
   device_structures::Connections   _raw_central_gates;
   device_structures::ConnectionsSP _screening_gates;

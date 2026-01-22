@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_496d41daa888fe924b07cec1e014cccd" kind="dir">
+    <compoundname>c-api/include/falcon_core/generic</compoundname>
+    <innerfile refid="ErrorHandling__c__api_8h">ErrorHandling_c_api.h</innerfile>
+    <innerfile refid="FArrayDouble__c__api_8h">FArrayDouble_c_api.h</innerfile>
+    <innerfile refid="FArrayInt__c__api_8h">FArrayInt_c_api.h</innerfile>
+    <innerfile refid="ListAcquisitionContext__c__api_8h">ListAcquisitionContext_c_api.h</innerfile>
+    <innerfile refid="ListBool__c__api_8h">ListBool_c_api.h</innerfile>
+    <innerfile refid="ListChannel__c__api_8h">ListChannel_c_api.h</innerfile>
+    <innerfile refid="ListConnection__c__api_8h">ListConnection_c_api.h</innerfile>
+    <innerfile refid="ListConnections__c__api_8h">ListConnections_c_api.h</innerfile>
+    <innerfile refid="ListControlArray1D__c__api_8h">ListControlArray1D_c_api.h</innerfile>
+    <innerfile refid="ListControlArray__c__api_8h">ListControlArray_c_api.h</innerfile>
+    <innerfile refid="ListCoupledLabelledDomain__c__api_8h">ListCoupledLabelledDomain_c_api.h</innerfile>
+    <innerfile refid="ListDeviceVoltageState__c__api_8h">ListDeviceVoltageState_c_api.h</innerfile>
+    <innerfile refid="ListDiscretizer__c__api_8h">ListDiscretizer_c_api.h</innerfile>
+    <innerfile refid="ListDotGateWithNeighbors__c__api_8h">ListDotGateWithNeighbors_c_api.h</innerfile>
+    <innerfile refid="ListDouble__c__api_8h">ListDouble_c_api.h</innerfile>
+    <innerfile refid="ListFArrayDouble__c__api_8h">ListFArrayDouble_c_api.h</innerfile>
+    <innerfile refid="ListFloat__c__api_8h">ListFloat_c_api.h</innerfile>
+    <innerfile refid="ListGname__c__api_8h">ListGname_c_api.h</innerfile>
+    <innerfile refid="ListGroup__c__api_8h">ListGroup_c_api.h</innerfile>
+    <innerfile refid="ListImpedance__c__api_8h">ListImpedance_c_api.h</innerfile>
+    <innerfile refid="ListInstrumentPort__c__api_8h">ListInstrumentPort_c_api.h</innerfile>
+    <innerfile refid="ListInt__c__api_8h">ListInt_c_api.h</innerfile>
+    <innerfile refid="ListInterpretationContext__c__api_8h">ListInterpretationContext_c_api.h</innerfile>
+    <innerfile refid="ListLabelledControlArray1D__c__api_8h">ListLabelledControlArray1D_c_api.h</innerfile>
+    <innerfile refid="ListLabelledControlArray__c__api_8h">ListLabelledControlArray_c_api.h</innerfile>
+    <innerfile refid="ListLabelledDomain__c__api_8h">ListLabelledDomain_c_api.h</innerfile>
+    <innerfile refid="ListLabelledMeasuredArray1D__c__api_8h">ListLabelledMeasuredArray1D_c_api.h</innerfile>
+    <innerfile refid="ListLabelledMeasuredArray__c__api_8h">ListLabelledMeasuredArray_c_api.h</innerfile>
+    <innerfile refid="ListListSizeT__c__api_8h">ListListSizeT_c_api.h</innerfile>
+    <innerfile refid="ListMapStringBool__c__api_8h">ListMapStringBool_c_api.h</innerfile>
+    <innerfile refid="ListMeasurementContext__c__api_8h">ListMeasurementContext_c_api.h</innerfile>
+    <innerfile refid="ListPairChannelConnections__c__api_8h">ListPairChannelConnections_c_api.h</innerfile>
+    <innerfile refid="ListPairConnectionConnections__c__api_8h">ListPairConnectionConnections_c_api.h</innerfile>
+    <innerfile refid="ListPairConnectionDouble__c__api_8h">ListPairConnectionDouble_c_api.h</innerfile>
+    <innerfile refid="ListPairConnectionFloat__c__api_8h">ListPairConnectionFloat_c_api.h</innerfile>
+    <innerfile refid="ListPairConnectionPairQuantityQuantity__c__api_8h">ListPairConnectionPairQuantityQuantity_c_api.h</innerfile>
+    <innerfile refid="ListPairConnectionQuantity__c__api_8h">ListPairConnectionQuantity_c_api.h</innerfile>
+    <innerfile refid="ListPairFloatFloat__c__api_8h">ListPairFloatFloat_c_api.h</innerfile>
+    <innerfile refid="ListPairGnameGroup__c__api_8h">ListPairGnameGroup_c_api.h</innerfile>
+    <innerfile refid="ListPairInstrumentPortPortTransform__c__api_8h">ListPairInstrumentPortPortTransform_c_api.h</innerfile>
+    <innerfile refid="ListPairInterpretationContextDouble__c__api_8h">ListPairInterpretationContextDouble_c_api.h</innerfile>
+    <innerfile refid="ListPairInterpretationContextQuantity__c__api_8h">ListPairInterpretationContextQuantity_c_api.h</innerfile>
+    <innerfile refid="ListPairInterpretationContextString__c__api_8h">ListPairInterpretationContextString_c_api.h</innerfile>
+    <innerfile refid="ListPairIntFloat__c__api_8h">ListPairIntFloat_c_api.h</innerfile>
+    <innerfile refid="ListPairIntInt__c__api_8h">ListPairIntInt_c_api.h</innerfile>
+    <innerfile refid="ListPairQuantityQuantity__c__api_8h">ListPairQuantityQuantity_c_api.h</innerfile>
+    <innerfile refid="ListPairSizeTSizeT__c__api_8h">ListPairSizeTSizeT_c_api.h</innerfile>
+    <innerfile refid="ListPairStringBool__c__api_8h">ListPairStringBool_c_api.h</innerfile>
+    <innerfile refid="ListPairStringDouble__c__api_8h">ListPairStringDouble_c_api.h</innerfile>
+    <innerfile refid="ListPairStringString__c__api_8h">ListPairStringString_c_api.h</innerfile>
+    <innerfile refid="ListPortTransform__c__api_8h">ListPortTransform_c_api.h</innerfile>
+    <innerfile refid="ListQuantity__c__api_8h">ListQuantity_c_api.h</innerfile>
+    <innerfile refid="ListSizeT__c__api_8h">ListSizeT_c_api.h</innerfile>
+    <innerfile refid="ListString__c__api_8h">ListString_c_api.h</innerfile>
+    <innerfile refid="ListWaveform__c__api_8h">ListWaveform_c_api.h</innerfile>
+    <innerfile refid="MapChannelConnections__c__api_8h">MapChannelConnections_c_api.h</innerfile>
+    <innerfile refid="MapConnectionDouble__c__api_8h">MapConnectionDouble_c_api.h</innerfile>
+    <innerfile refid="MapConnectionFloat__c__api_8h">MapConnectionFloat_c_api.h</innerfile>
+    <innerfile refid="MapConnectionQuantity__c__api_8h">MapConnectionQuantity_c_api.h</innerfile>
+    <innerfile refid="MapFloatFloat__c__api_8h">MapFloatFloat_c_api.h</innerfile>
+    <innerfile refid="MapGnameGroup__c__api_8h">MapGnameGroup_c_api.h</innerfile>
+    <innerfile refid="MapInstrumentPortPortTransform__c__api_8h">MapInstrumentPortPortTransform_c_api.h</innerfile>
+    <innerfile refid="MapInterpretationContextDouble__c__api_8h">MapInterpretationContextDouble_c_api.h</innerfile>
+    <innerfile refid="MapInterpretationContextQuantity__c__api_8h">MapInterpretationContextQuantity_c_api.h</innerfile>
+    <innerfile refid="MapInterpretationContextString__c__api_8h">MapInterpretationContextString_c_api.h</innerfile>
+    <innerfile refid="MapIntInt__c__api_8h">MapIntInt_c_api.h</innerfile>
+    <innerfile refid="MapStringBool__c__api_8h">MapStringBool_c_api.h</innerfile>
+    <innerfile refid="MapStringDouble__c__api_8h">MapStringDouble_c_api.h</innerfile>
+    <innerfile refid="MapStringString__c__api_8h">MapStringString_c_api.h</innerfile>
+    <innerfile refid="PairChannelConnections__c__api_8h">PairChannelConnections_c_api.h</innerfile>
+    <innerfile refid="PairConnectionConnection__c__api_8h">PairConnectionConnection_c_api.h</innerfile>
+    <innerfile refid="PairConnectionConnections__c__api_8h">PairConnectionConnections_c_api.h</innerfile>
+    <innerfile refid="PairConnectionDouble__c__api_8h">PairConnectionDouble_c_api.h</innerfile>
+    <innerfile refid="PairConnectionFloat__c__api_8h">PairConnectionFloat_c_api.h</innerfile>
+    <innerfile refid="PairConnectionPairQuantityQuantity__c__api_8h">PairConnectionPairQuantityQuantity_c_api.h</innerfile>
+    <innerfile refid="PairConnectionQuantity__c__api_8h">PairConnectionQuantity_c_api.h</innerfile>
+    <innerfile refid="PairDoubleDouble__c__api_8h">PairDoubleDouble_c_api.h</innerfile>
+    <innerfile refid="PairFloatFloat__c__api_8h">PairFloatFloat_c_api.h</innerfile>
+    <innerfile refid="PairGnameGroup__c__api_8h">PairGnameGroup_c_api.h</innerfile>
+    <innerfile refid="PairInstrumentPortPortTransform__c__api_8h">PairInstrumentPortPortTransform_c_api.h</innerfile>
+    <innerfile refid="PairInterpretationContextDouble__c__api_8h">PairInterpretationContextDouble_c_api.h</innerfile>
+    <innerfile refid="PairInterpretationContextQuantity__c__api_8h">PairInterpretationContextQuantity_c_api.h</innerfile>
+    <innerfile refid="PairInterpretationContextString__c__api_8h">PairInterpretationContextString_c_api.h</innerfile>
+    <innerfile refid="PairIntFloat__c__api_8h">PairIntFloat_c_api.h</innerfile>
+    <innerfile refid="PairIntInt__c__api_8h">PairIntInt_c_api.h</innerfile>
+    <innerfile refid="PairMeasurementResponseMeasurementRequest__c__api_8h">PairMeasurementResponseMeasurementRequest_c_api.h</innerfile>
+    <innerfile refid="PairQuantityQuantity__c__api_8h">PairQuantityQuantity_c_api.h</innerfile>
+    <innerfile refid="PairSizeTSizeT__c__api_8h">PairSizeTSizeT_c_api.h</innerfile>
+    <innerfile refid="PairStringBool__c__api_8h">PairStringBool_c_api.h</innerfile>
+    <innerfile refid="PairStringDouble__c__api_8h">PairStringDouble_c_api.h</innerfile>
+    <innerfile refid="PairStringString__c__api_8h">PairStringString_c_api.h</innerfile>
+    <innerfile refid="String__c__api_8h">String_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/generic/"/>
+  </compounddef>
+</doxygen>

@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
@@ -16,7 +17,8 @@ namespace domains {
 /**
  * @brief A collection of coupled domains to be attached together.
  */
-class CoupledLabelledDomain : public generic::List<LabelledDomain> {
+class FALCON_CORE_CPP_API CoupledLabelledDomain
+    : public generic::List<LabelledDomain> {
  public:
   CoupledLabelledDomain();
   /**

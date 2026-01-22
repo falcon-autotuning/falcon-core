@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
@@ -11,7 +12,7 @@ namespace core {
 /**
  * @brief Base config functionality for core config classes.
  */
-class StandardConfigConnections : public generic::Song {
+class FALCON_CORE_CPP_API StandardConfigConnections : public generic::Song {
   device_structures::ConnectionsSP _screening_gates;
   device_structures::ConnectionsSP _reservoir_gates;
   device_structures::ConnectionsSP _plunger_gates;

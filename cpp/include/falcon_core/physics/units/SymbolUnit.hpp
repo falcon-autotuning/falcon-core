@@ -5,13 +5,14 @@
 #include <shared_mutex>
 #include <string>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/units/Unit.hpp"
 namespace falcon_core {
 namespace physics {
 namespace units {
 
-class SymbolUnit : public generic::Song {
+class FALCON_CORE_CPP_API SymbolUnit : public generic::Song {
   UnitSP                          _unit;
   std::string                     _symbol;
   std::string                     _name;

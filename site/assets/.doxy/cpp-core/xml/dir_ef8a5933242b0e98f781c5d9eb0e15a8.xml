@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_ef8a5933242b0e98f781c5d9eb0e15a8" kind="dir">
+    <compoundname>cpp/include/falcon_core/physics</compoundname>
+    <innerdir refid="dir_69d97931c0a02cb6e53f9a12d673b99f">cpp/include/falcon_core/physics/config</innerdir>
+    <innerdir refid="dir_30b06ebaf5519c029f1c8cff468fc8e6">cpp/include/falcon_core/physics/device_structures</innerdir>
+    <innerdir refid="dir_666a9a136551104f62f39018fd37905b">cpp/include/falcon_core/physics/units</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/physics/"/>
+  </compounddef>
+</doxygen>

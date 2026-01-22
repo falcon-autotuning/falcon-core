@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/config/core/Adjacency.hpp"
 
@@ -12,7 +13,7 @@ namespace core {
  * @brief Contains a ready to use voltage constrains matrix and matching limits
  * for each constraint.
  */
-class VoltageConstraints : public generic::Song {
+class FALCON_CORE_CPP_API VoltageConstraints : public generic::Song {
   generic::FArray<double>         _matrix;
   AdjacencySP                     _adjacency;
   generic::FArray<double>         _limits;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
@@ -7,7 +8,7 @@ namespace falcon_core {
 namespace physics {
 namespace device_structures {
 
-class Impedance : public generic::Song {
+class FALCON_CORE_CPP_API Impedance : public generic::Song {
   std::shared_ptr<Connection>     _connection;
   double                          _resistance;
   double                          _capacitance;

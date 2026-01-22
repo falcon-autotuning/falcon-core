@@ -1,0 +1,434 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Map" prot="public" virt="non-virtual">falcon_core::generic::Map&lt; InterpretationContext, Value &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename Value</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a0736bd9d8baa3082aece9867d2d0d368" prot="private" static="no" mutable="no">
+        <type>physics::units::SymbolUnitSP</type>
+        <definition>physics::units::SymbolUnitSP falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::_unit</definition>
+        <argsstring></argsstring>
+        <name>_unit</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::_unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="19" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1ac03c24c5b8d995a34079f095a615355b" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::_mu_unit</definition>
+        <argsstring></argsstring>
+        <name>_mu_unit</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::_mu_unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="20" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="24" column="16" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a73ddf149378fd88c7a03de2ce651e906" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::InterpretationContainer</definition>
+        <argsstring>()=default</argsstring>
+        <name>InterpretationContainer</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::InterpretationContainer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="23" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1aad6d0a457a7f12d4a7823fe8c5ef6233" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="26" column="8" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="26" bodyend="30"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a8b14fbc6aa41db4cf8a4020ce78572f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::InterpretationContainer</definition>
+        <argsstring>(const InterpretationContainer&lt; Value &gt; &amp;other)</argsstring>
+        <name>InterpretationContainer</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::InterpretationContainer</qualifiedname>
+        <param>
+          <type>const InterpretationContainer&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="33" column="3" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="33" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1ad650eedf24acf02e2c674e5b9db644bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kindref="compound">InterpretationContext</ref> &amp;</type>
+        <definition>InterpretationContext &amp; falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::operator=</definition>
+        <argsstring>(const InterpretationContainer&lt; Value &gt; &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::operator=</qualifiedname>
+        <param>
+          <type>const InterpretationContainer&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="47" column="25" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="47" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a0210172a4500725297535f08c71e8e0c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::InterpretationContainer</definition>
+        <argsstring>(const generic::MapSP&lt; InterpretationContext, Value &gt; &amp;map)</argsstring>
+        <name>InterpretationContainer</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::InterpretationContainer</qualifiedname>
+        <param>
+          <type>const generic::MapSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kindref="compound">InterpretationContext</ref>, Value &gt; &amp;</type>
+          <declname>map</declname>
+        </param>
+        <briefdescription>
+<para>A container for interpretations of the contents. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>contexts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list of contexts. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if contexts have different units. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="71" column="3" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="71" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a422bdb25c10ed68deb81bba6cc55a2bc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const physics::units::SymbolUnitSP</type>
+        <definition>const physics::units::SymbolUnitSP falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::unit</definition>
+        <argsstring>() const</argsstring>
+        <name>unit</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::unit</qualifiedname>
+        <briefdescription>
+<para>Returns the unit that all contexts in this constainer must have. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="91" column="38" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="91" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a0f29679d22141a015dedd1a92b88328d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kindref="compound">InterpretationContext</ref> &gt;</type>
+        <definition>const generic::ListSP&lt; InterpretationContext &gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::select_by_connection</definition>
+        <argsstring>(const physics::device_structures::ConnectionSP &amp;connection) const</argsstring>
+        <name>select_by_connection</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connection</qualifiedname>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>connection</declname>
+        </param>
+        <briefdescription>
+<para>Select contexts that involve a specific connection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>connection</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The connection to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A list of contexts that involve the specified connection in either independant or dependant variables. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="101" column="25" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="101" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a64c6a5845757367d5bef07cd2a7cfa26" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kindref="compound">InterpretationContext</ref> &gt;</type>
+        <definition>const generic::ListSP&lt; InterpretationContext &gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::select_by_connections</definition>
+        <argsstring>(const std::vector&lt; physics::device_structures::ConnectionSP &gt; &amp;connections) const</argsstring>
+        <name>select_by_connections</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_connections</qualifiedname>
+        <param>
+          <type>const std::vector&lt; physics::device_structures::ConnectionSP &gt; &amp;</type>
+          <declname>connections</declname>
+        </param>
+        <briefdescription>
+<para>Select contexts that involve all of the specified connections. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>connections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>List of connections to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A list of contexts that involve all specified connections. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="141" column="25" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="141" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a9317d91956c45b62a8b36ce047b4a760" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kindref="compound">InterpretationContext</ref> &gt;</type>
+        <definition>const generic::ListSP&lt; InterpretationContext &gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::select_by_independent_connection</definition>
+        <argsstring>(const physics::device_structures::ConnectionSP &amp;connection)</argsstring>
+        <name>select_by_independent_connection</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_independent_connection</qualifiedname>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>connection</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="173" column="25" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="173" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1ab763bb7dc00865d6633d6f221bd7099f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kindref="compound">InterpretationContext</ref> &gt;</type>
+        <definition>const generic::ListSP&lt; InterpretationContext &gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::select_by_dependent_connection</definition>
+        <argsstring>(const physics::device_structures::ConnectionSP &amp;connection)</argsstring>
+        <name>select_by_dependent_connection</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_by_dependent_connection</qualifiedname>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>connection</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="193" column="25" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="193" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a29ab0d08fe3595c1b6d0d7e287813974" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kindref="compound">InterpretationContext</ref> &gt;</type>
+        <definition>const generic::ListSP&lt; InterpretationContext &gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::select_contexts</definition>
+        <argsstring>(const generic::ListSP&lt; physics::device_structures::Connection &gt; &amp;independent_connections, const generic::ListSP&lt; physics::device_structures::Connection &gt; &amp;dependent_connections)</argsstring>
+        <name>select_contexts</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::select_contexts</qualifiedname>
+        <param>
+          <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connection" kindref="compound">physics::device_structures::Connection</ref> &gt; &amp;</type>
+          <declname>independent_connections</declname>
+        </param>
+        <param>
+          <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connection" kindref="compound">physics::device_structures::Connection</ref> &gt; &amp;</type>
+          <declname>dependent_connections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="211" column="25" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="211" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a73fda6d28a5acf5e8d0d6d9ba83a636c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::operator==</definition>
+        <argsstring>(const InterpretationContainer&lt; Value &gt; &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::operator==</qualifiedname>
+        <param>
+          <type>const InterpretationContainer&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="290" column="8" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="290" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a44f4db575337c7d057eb435f5f4e406c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;::operator!=</definition>
+        <argsstring>(const InterpretationContainer&lt; Value &gt; &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer::operator!=</qualifiedname>
+        <param>
+          <type>const InterpretationContainer&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="329" column="8" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="329" bodyend="331"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Map&lt; InterpretationContext, Value &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1Map"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer&lt; Value &gt;</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Map&lt; InterpretationContext, Value &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1Map"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" line="17" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainer.hpp" bodystart="18" bodyend="332"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1ac03c24c5b8d995a34079f095a615355b" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>_mu_unit</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a0736bd9d8baa3082aece9867d2d0d368" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>_unit</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a2095e2a5a1c88f31e41934b73d467e8e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a7acf6a4d1d2171d8c859808ae7539d3f" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac7e8789dc6af1c32e902c5567a55d184" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>cbegin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6b18ee5985ff5bc951a68aab5d78b50e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>cend</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4a766530efafc51c3e23625d7af9fd9d" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>clear</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1afc58b04fd9f846e6f8430084fe5943e4" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ab0de81e4e92c0d3c51d89b7c4ec855d7" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>contains</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a8b02ebb498173597ab0884f4b4e467bf" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>create</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aaef974888aa75ee071b5a3552233ee85" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>create_empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aeb55a1fb30f030c23c99e9bc5c675e25" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a219754647f38dde6357f9f21346b06a2" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6c6a509731f529f2cb06e8d1d37bb35c" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>erase</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ab5459580d4f80ec7313b9d94a00286c6" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>find</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4d17123ecc0f4e792f22d10ec0a79341" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ad60e80705672767a50518049f7dab5ab" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>insert_or_assign</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a73ddf149378fd88c7a03de2ce651e906" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>InterpretationContainer</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a8b14fbc6aa41db4cf8a4020ce78572f5" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>InterpretationContainer</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a0210172a4500725297535f08c71e8e0c" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>InterpretationContainer</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6773d17be8c4424b2f1d7c2d3620adeb" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac43d28b18acf543882a79b230d3ffeff" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a3191fa21526b1d21396dc9bd014ff5d4" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>keys</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a8685ea03075adb4a2bda29bdb9c9b203" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>Map</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a44f4db575337c7d057eb435f5f4e406c" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac5c4d437d8d168e336390af2c136a849" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; InterpretationContext, Value &gt;::"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1ad650eedf24acf02e2c674e5b9db644bd" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abba87cdd6da19288ae9ee095f184d7fe" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; InterpretationContext, Value &gt;::"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a73fda6d28a5acf5e8d0d6d9ba83a636c" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abebc000b88ed7bbfba0b64c81a15b811" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; InterpretationContext, Value &gt;::"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a73ec82ac43c448c292313d33cfb0079e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a0f29679d22141a015dedd1a92b88328d" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>select_by_connection</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a64c6a5845757367d5bef07cd2a7cfa26" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>select_by_connections</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1ab763bb7dc00865d6633d6f221bd7099f" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>select_by_dependent_connection</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a9317d91956c45b62a8b36ce047b4a760" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>select_by_independent_connection</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a29ab0d08fe3595c1b6d0d7e287813974" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>select_contexts</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1aad6d0a457a7f12d4a7823fe8c5ef6233" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4ec45ddf012f933fc356ee0ea8ba1ec4" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContainer_1a422bdb25c10ed68deb81bba6cc55a2bc" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>unit</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a0868d998dec5ad8d09e809fce98aa294" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>values</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContainer</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

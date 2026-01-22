@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="Sign_8hpp" kind="file" language="C++">
+    <compoundname>Sign.hpp</compoundname>
+    <innernamespace refid="namespacefalcon__core">falcon_core</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1math">falcon_core::math</innernamespace>
+    <briefdescription>
+<para>Defines the Sign enum for FalconCore. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacefalcon__core" kindref="compound">falcon_core</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">math</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13" refid="Sign_8hpp_1ad7272243dbe701359e3f12ab6f2cd5d1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="Sign_8hpp_1ad7272243dbe701359e3f12ab6f2cd5d1" kindref="member">Sign</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15" refid="Sign_8hpp_1ad7272243dbe701359e3f12ab6f2cd5d1aab6c31432785221bae58327ef5f6ea58" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="Sign_8hpp_1ad7272243dbe701359e3f12ab6f2cd5d1aab6c31432785221bae58327ef5f6ea58" kindref="member">POSITIVE</ref><sp/>=<sp/>1,<sp/></highlight></codeline>
+<codeline lineno="16" refid="Sign_8hpp_1ad7272243dbe701359e3f12ab6f2cd5d1a50546bf973283065b6ccf09faf7a580a" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="Sign_8hpp_1ad7272243dbe701359e3f12ab6f2cd5d1a50546bf973283065b6ccf09faf7a580a" kindref="member">NEGATIVE</ref><sp/>=<sp/>-1<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>falcon_core</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="cpp/include/falcon_core/math/Sign.hpp"/>
+  </compounddef>
+</doxygen>

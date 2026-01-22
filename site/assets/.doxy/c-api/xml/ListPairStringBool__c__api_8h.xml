@@ -1,0 +1,557 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="ListPairStringBool__c__api_8h" kind="file" language="C++">
+    <compoundname>ListPairStringBool_c_api.h</compoundname>
+    <includes refid="PairStringBool__c__api_8h" local="yes">falcon_core/generic/PairStringBool_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="MapStringBool__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapStringBool_c_api.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPairStringBool_c_api.h</label>
+        <link refid="ListPairStringBool__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/PairStringBool_c_api.h</label>
+        <link refid="PairStringBool__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="9">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/ListMapStringBool_c_api.h</label>
+        <link refid="ListMapStringBool__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPairStringBool_c_api.h</label>
+        <link refid="ListPairStringBool__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/MapStringBool_c_api.h</label>
+        <link refid="MapStringBool__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/math/AxesMapStringBool_c_api.h</label>
+        <link refid="AxesMapStringBool__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ListPairStringBool__c__api_8h_1a105162b8accca926f0f586c9fee0b7e0" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ListPairStringBoolHandle</definition>
+        <argsstring></argsstring>
+        <name>ListPairStringBoolHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1af6e9c15bffe3dd9f0164da4315768d32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairStringBoolHandle</type>
+        <definition>ListPairStringBoolHandle ListPairStringBool_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>ListPairStringBool_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="15" column="26" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="15" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a5552d07657132ffaed2478907e2d8fa9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairStringBoolHandle</type>
+        <definition>ListPairStringBoolHandle ListPairStringBool_copy</definition>
+        <argsstring>(ListPairStringBoolHandle handle)</argsstring>
+        <name>ListPairStringBool_copy</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="17" column="26" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="17" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a915b7c446a259be405561de53bd3ee6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairStringBoolHandle</type>
+        <definition>ListPairStringBoolHandle ListPairStringBool_fill_value</definition>
+        <argsstring>(size_t count, PairStringBoolHandle value)</argsstring>
+        <name>ListPairStringBool_fill_value</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>PairStringBoolHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="20" column="26" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="20" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1abb326bbe53163698475d585423858cea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairStringBoolHandle</type>
+        <definition>ListPairStringBoolHandle ListPairStringBool_create</definition>
+        <argsstring>(PairStringBoolHandle *data, size_t count)</argsstring>
+        <name>ListPairStringBool_create</name>
+        <param>
+          <type>PairStringBoolHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="22" column="26" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="22" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a699b029ab7d950bcc55c2d380a6e14dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairStringBool_destroy</definition>
+        <argsstring>(ListPairStringBoolHandle handle)</argsstring>
+        <name>ListPairStringBool_destroy</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1aff31744e37c62555094e3785e34f1dba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairStringBool_push_back</definition>
+        <argsstring>(ListPairStringBoolHandle handle, PairStringBoolHandle value)</argsstring>
+        <name>ListPairStringBool_push_back</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairStringBoolHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a2347f13deb616d379599ccf5250a5673" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairStringBool_size</definition>
+        <argsstring>(ListPairStringBoolHandle handle)</argsstring>
+        <name>ListPairStringBool_size</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a71f8193193f1cb6c36eca2dc09e20cf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairStringBool_empty</definition>
+        <argsstring>(ListPairStringBoolHandle handle)</argsstring>
+        <name>ListPairStringBool_empty</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a73a970ff11b0f5c65aacf5408a8b7b47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairStringBool_erase_at</definition>
+        <argsstring>(ListPairStringBoolHandle handle, size_t idx)</argsstring>
+        <name>ListPairStringBool_erase_at</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1ab241399346f44831d3a6e444c5513c1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairStringBool_clear</definition>
+        <argsstring>(ListPairStringBoolHandle handle)</argsstring>
+        <name>ListPairStringBool_clear</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1ab91302152556ae8f7870b39241316a0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairStringBoolHandle</type>
+        <definition>PairStringBoolHandle ListPairStringBool_at</definition>
+        <argsstring>(ListPairStringBoolHandle handle, size_t idx)</argsstring>
+        <name>ListPairStringBool_at</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="36" column="22" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="36" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a274177f30972424a6facdbc4f012314e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairStringBool_items</definition>
+        <argsstring>(ListPairStringBoolHandle handle, PairStringBoolHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>ListPairStringBool_items</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairStringBoolHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="38" column="8" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="38" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a04c1bb316f104f9d9e47e75b04c9654d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairStringBool_contains</definition>
+        <argsstring>(ListPairStringBoolHandle handle, PairStringBoolHandle value)</argsstring>
+        <name>ListPairStringBool_contains</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairStringBoolHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a76bd81ba563874eff9bb7ee91adfa0f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairStringBool_index</definition>
+        <argsstring>(ListPairStringBoolHandle handle, PairStringBoolHandle value)</argsstring>
+        <name>ListPairStringBool_index</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairStringBoolHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1ada0a1fccb1baea60a2db152be38a231f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairStringBoolHandle</type>
+        <definition>ListPairStringBoolHandle ListPairStringBool_intersection</definition>
+        <argsstring>(ListPairStringBoolHandle handle, ListPairStringBoolHandle other)</argsstring>
+        <name>ListPairStringBool_intersection</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="44" column="26" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="44" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1ad8071531dc3544189bfc37a3b112c376" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairStringBool_equal</definition>
+        <argsstring>(ListPairStringBoolHandle handle, ListPairStringBoolHandle other)</argsstring>
+        <name>ListPairStringBool_equal</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1aacf3c03b77a485264cf6898071e2f292" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairStringBool_not_equal</definition>
+        <argsstring>(ListPairStringBoolHandle handle, ListPairStringBoolHandle other)</argsstring>
+        <name>ListPairStringBool_not_equal</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1a892d4c4f3c875136e4f0ce4819d39a73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle ListPairStringBool_to_json_string</definition>
+        <argsstring>(ListPairStringBoolHandle handle)</argsstring>
+        <name>ListPairStringBool_to_json_string</name>
+        <param>
+          <type>ListPairStringBoolHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairStringBool__c__api_8h_1ac540f8b0aafbd87158ea1b4f6d200fa8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairStringBoolHandle</type>
+        <definition>ListPairStringBoolHandle ListPairStringBool_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>ListPairStringBool_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" line="53" column="26" declfile="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h" declline="53" declcolumn="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/PairStringBool_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ListPairStringBoolHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">ListPairStringBoolHandle<sp/>ListPairStringBool_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">ListPairStringBoolHandle<sp/>ListPairStringBool_copy(ListPairStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ListPairStringBoolHandle<sp/>ListPairStringBool_fill_value(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/>PairStringBoolHandle<sp/>value);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ListPairStringBoolHandle<sp/>ListPairStringBool_create(PairStringBoolHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairStringBool_destroy(ListPairStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairStringBool_push_back(ListPairStringBoolHandle<sp/>handle,<sp/>PairStringBoolHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairStringBool_size(ListPairStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairStringBool_empty(ListPairStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairStringBool_erase_at(ListPairStringBoolHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairStringBool_clear(ListPairStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">PairStringBoolHandle<sp/>ListPairStringBool_at(ListPairStringBoolHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairStringBool_items(ListPairStringBoolHandle<sp/>handle,<sp/>PairStringBoolHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairStringBool_contains(ListPairStringBoolHandle<sp/>handle,<sp/>PairStringBoolHandle<sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairStringBool_index(ListPairStringBoolHandle<sp/>handle,<sp/>PairStringBoolHandle<sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListPairStringBoolHandle<sp/>ListPairStringBool_intersection(ListPairStringBoolHandle<sp/>handle,<sp/>ListPairStringBoolHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairStringBool_equal(ListPairStringBoolHandle<sp/>handle,<sp/>ListPairStringBoolHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairStringBool_not_equal(ListPairStringBoolHandle<sp/>handle,<sp/>ListPairStringBoolHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>ListPairStringBool_to_json_string(ListPairStringBoolHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListPairStringBoolHandle<sp/>ListPairStringBool_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/ListPairStringBool_c_api.h"/>
+  </compounddef>
+</doxygen>

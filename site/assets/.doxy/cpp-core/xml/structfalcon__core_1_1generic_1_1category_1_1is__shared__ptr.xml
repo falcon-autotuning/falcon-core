@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="structfalcon__core_1_1generic_1_1category_1_1is__shared__ptr" kind="struct" language="C++" prot="public">
+    <compoundname>falcon_core::generic::category::is_shared_ptr</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::false_type</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::generic::category::is_shared_ptr&lt; T &gt;</label>
+        <link refid="structfalcon__core_1_1generic_1_1category_1_1is__shared__ptr"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::false_type</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::generic::category::is_shared_ptr&lt; T &gt;</label>
+        <link refid="structfalcon__core_1_1generic_1_1category_1_1is__shared__ptr"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::false_type</label>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/generic/CategoryTags.hpp" line="25" column="1" bodyfile="cpp/include/falcon_core/generic/CategoryTags.hpp" bodystart="25" bodyend="25"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

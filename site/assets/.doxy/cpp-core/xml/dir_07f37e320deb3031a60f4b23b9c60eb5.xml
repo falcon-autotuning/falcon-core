@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_07f37e320deb3031a60f4b23b9c60eb5" kind="dir">
+    <compoundname>cpp/include</compoundname>
+    <innerdir refid="dir_254c24e7a692cc8d0840008ecd80fdac">cpp/include/cereal</innerdir>
+    <innerdir refid="dir_87508f5a35e9f3ffde0c0c6a5e60051b">cpp/include/falcon_core</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/"/>
+  </compounddef>
+</doxygen>

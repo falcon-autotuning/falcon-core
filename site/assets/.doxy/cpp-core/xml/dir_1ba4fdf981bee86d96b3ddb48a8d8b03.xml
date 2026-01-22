@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_1ba4fdf981bee86d96b3ddb48a8d8b03" kind="dir">
+    <compoundname>cpp/include/falcon_core/math/arrays</compoundname>
+    <innerfile refid="ControlArray_8hpp">ControlArray.hpp</innerfile>
+    <innerfile refid="ControlArray1D_8hpp">ControlArray1D.hpp</innerfile>
+    <innerfile refid="IncreasingAlignment_8hpp">IncreasingAlignment.hpp</innerfile>
+    <innerfile refid="Is1D_8hpp">Is1D.hpp</innerfile>
+    <innerfile refid="IsControl_8hpp">IsControl.hpp</innerfile>
+    <innerfile refid="IsLabelled_8hpp">IsLabelled.hpp</innerfile>
+    <innerfile refid="LabelledArrays_8hpp">LabelledArrays.hpp</innerfile>
+    <innerfile refid="LabelledControlArray_8hpp">LabelledControlArray.hpp</innerfile>
+    <innerfile refid="LabelledControlArray1D_8hpp">LabelledControlArray1D.hpp</innerfile>
+    <innerfile refid="LabelledMeasuredArray_8hpp">LabelledMeasuredArray.hpp</innerfile>
+    <innerfile refid="LabelledMeasuredArray1D_8hpp">LabelledMeasuredArray1D.hpp</innerfile>
+    <innerfile refid="MeasuredArray_8hpp">MeasuredArray.hpp</innerfile>
+    <innerfile refid="MeasuredArray1D_8hpp">MeasuredArray1D.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/math/arrays/"/>
+  </compounddef>
+</doxygen>

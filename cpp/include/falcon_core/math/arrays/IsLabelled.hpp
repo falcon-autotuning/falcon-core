@@ -1,11 +1,12 @@
 #pragma once
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/generic/FArrayProtocol.hpp"
 namespace falcon_core {
 namespace math {
 namespace arrays {
 template <typename T>
-class IsLabelled : public virtual generic::IFArray<T> {
+class FALCON_CORE_CPP_API IsLabelled : public virtual generic::IFArray<T> {
  protected:
   friend class cereal::access;
   autotuner_interfaces::contexts::AcquisitionContextSP _label;

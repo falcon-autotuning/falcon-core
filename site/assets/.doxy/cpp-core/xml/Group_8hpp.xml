@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="Group_8hpp" kind="file" language="C++">
+    <compoundname>Group.hpp</compoundname>
+    <includes refid="Channel_8hpp" local="yes">falcon_core/autotuner_interfaces/names/Channel.hpp</includes>
+    <includes refid="StandardConfigConnections_8hpp" local="yes">falcon_core/physics/config/core/StandardConfigConnections.hpp</includes>
+    <includes refid="GateGeometryArray1D_8hpp" local="yes">falcon_core/physics/config/geometries/GateGeometryArray1D.hpp</includes>
+    <includes refid="Connections_8hpp" local="yes">falcon_core/physics/device_structures/Connections.hpp</includes>
+    <includedby refid="Config_8hpp" local="yes">cpp/include/falcon_core/physics/config/core/Config.hpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>falcon_core/autotuner_interfaces/names/Channel.hpp</label>
+        <link refid="Channel_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>falcon_core/generic/CategoryTags.hpp</label>
+        <link refid="CategoryTags_8hpp_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>falcon_core/generic/IsPrimitive.hpp</label>
+        <link refid="IsPrimitive_8hpp_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>falcon_core/generic/List.hpp</label>
+        <link refid="List_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/Song.hpp</label>
+        <link refid="Song_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/physics/config/core/Group.hpp</label>
+        <link refid="Group_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/physics/config/core/StandardConfigConnections.hpp</label>
+        <link refid="StandardConfigConnections_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp</label>
+        <link refid="DotGateWithNeighbors_8hpp_source"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>falcon_core/physics/config/geometries/DotGatesWithNeighbors.hpp</label>
+        <link refid="DotGatesWithNeighbors_8hpp_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>falcon_core/physics/config/geometries/GateGeometryArray1D.hpp</label>
+        <link refid="GateGeometryArray1D_8hpp_source"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>falcon_core/physics/config/geometries/HasImplantedOhmic.hpp</label>
+        <link refid="HasImplantedOhmic_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>falcon_core/physics/config/geometries/HasLeftNeighbor.hpp</label>
+        <link refid="HasLeftNeighbor_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>falcon_core/physics/config/geometries/HasRightNeighbor.hpp</label>
+        <link refid="HasRightNeighbor_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic.hpp</label>
+        <link refid="LeftReservoirWithImplantedOhmic_8hpp_source"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic.hpp</label>
+        <link refid="RightReservoirWithImplantedOhmic_8hpp_source"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/physics/device_structures/Connection.hpp</label>
+        <link refid="Connection_8hpp_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/physics/device_structures/Connections.hpp</label>
+        <link refid="Connections_8hpp_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>algorithm</label>
+      </node>
+      <node id="5">
+        <label>cereal/archives/json.hpp</label>
+      </node>
+      <node id="6">
+        <label>cereal/types/map.hpp</label>
+      </node>
+      <node id="7">
+        <label>cereal/types/memory.hpp</label>
+      </node>
+      <node id="8">
+        <label>cereal/types/polymorphic.hpp</label>
+      </node>
+      <node id="9">
+        <label>cereal/types/string.hpp</label>
+      </node>
+      <node id="10">
+        <label>cereal/types/unordered_map.hpp</label>
+      </node>
+      <node id="11">
+        <label>cereal/types/utility.hpp</label>
+      </node>
+      <node id="12">
+        <label>cereal/types/vector.hpp</label>
+      </node>
+      <node id="13">
+        <label>memory</label>
+      </node>
+      <node id="18">
+        <label>mutex</label>
+      </node>
+      <node id="3">
+        <label>shared_mutex</label>
+      </node>
+      <node id="14">
+        <label>sstream</label>
+      </node>
+      <node id="22">
+        <label>stdexcept</label>
+      </node>
+      <node id="15">
+        <label>string</label>
+      </node>
+      <node id="23">
+        <label>type_traits</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>cpp/include/falcon_core/physics/config/ConfigManipulations.hpp</label>
+        <link refid="ConfigManipulations_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>cpp/include/falcon_core/physics/config/Loader.hpp</label>
+        <link refid="Loader_8hpp_source"/>
+      </node>
+      <node id="2">
+        <label>cpp/include/falcon_core/physics/config/core/Config.hpp</label>
+        <link refid="Config_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/physics/config/core/Group.hpp</label>
+        <link refid="Group_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group" prot="public">falcon_core::physics::config::core::Group</innerclass>
+    <innernamespace refid="namespacefalcon__core">falcon_core</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics">falcon_core::physics</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics_1_1config">falcon_core::physics::config</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics_1_1config_1_1core">falcon_core::physics::config::core</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/autotuner_interfaces/names/Channel.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/config/core/StandardConfigConnections.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/config/geometries/GateGeometryArray1D.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connections.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacefalcon__core" kindref="compound">falcon_core</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">physics<sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">config<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">core<sp/>{</highlight></codeline>
+<codeline lineno="14" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Group<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>StandardConfigConnections<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>autotuner_interfaces::names::ChannelSP<sp/>_name;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_num_dots;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>geometries::GateGeometryArray1DSP<sp/><sp/><sp/><sp/><sp/><sp/>_order;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_name;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_num_dots;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_order;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>Group(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Group&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>Group&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Group&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="35" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac98884294d2da4ec98b52912ae3f679f" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac98884294d2da4ec98b52912ae3f679f" kindref="member">Group</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>autotuner_interfaces::names::ChannelSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a5289b76484c5bfbb05e5e9292128a8b2" kindref="member">name</ref>,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a0543ad2d09f7dc41cffa89037c0a923d" kindref="member">num_dots</ref>,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad0074cb634422205d138a28e85e86c5b" kindref="member">screening_gates</ref>,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a728d66f124942846c9db4aaf91624966" kindref="member">reservoir_gates</ref>,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a7e629c8752f7bf7b7a5c9f1c06ab522b" kindref="member">plunger_gates</ref>,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a926c880392c2460bb6e6fe1569c8306e" kindref="member">barrier_gates</ref>,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1afeeca109940998ceccfcaec1a8086b0f" kindref="member">order</ref>);</highlight></codeline>
+<codeline lineno="45" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a9bf8733b0dc8b0dbbea68b5f46300005" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>device_structures::ConnectionsSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a9bf8733b0dc8b0dbbea68b5f46300005" kindref="member">ohmics</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a5289b76484c5bfbb05e5e9292128a8b2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>autotuner_interfaces::names::ChannelSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a5289b76484c5bfbb05e5e9292128a8b2" kindref="member">name</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="53" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a0543ad2d09f7dc41cffa89037c0a923d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a0543ad2d09f7dc41cffa89037c0a923d" kindref="member">num_dots</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1afeeca109940998ceccfcaec1a8086b0f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometries::GateGeometryArray1DSP&amp;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1afeeca109940998ceccfcaec1a8086b0f" kindref="member">order</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a8246f0bf6273784e9293e941c33b43ec" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a8246f0bf6273784e9293e941c33b43ec" kindref="member">has_channel</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>autotuner_interfaces::names::ChannelSP&amp;<sp/>channel)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac93b4d8f32da0d9d58107c73fc55724f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac93b4d8f32da0d9d58107c73fc55724f" kindref="member">is_charge_sensor</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1aad7e87d30acd20fc29304cee7081c441" refkind="member"><highlight class="normal"><sp/><sp/>device_structures::ConnectionsSP<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1aad7e87d30acd20fc29304cee7081c441" kindref="member">get_all_channel_gates</ref>(</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>autotuner_interfaces::names::ChannelSP&amp;<sp/>channel)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Group&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator!=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Group&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>Group();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">cereal::access;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Archive&gt;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>serialize(Archive&amp;<sp/>ar)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_name(_mu_name,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_num_dots(_mu_num_dots,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_order(_mu_order,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock(lock_name,<sp/>lock_num_dots,<sp/>lock_order);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>ar(cereal::base_class&lt;StandardConfigConnections&gt;(</highlight><highlight class="keyword">this</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_name,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_num_dots,</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_order);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">GroupSP<sp/>=<sp/>std::shared_ptr&lt;Group&gt;;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>config</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>physics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>falcon_core</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="cpp/include/falcon_core/physics/config/core/Group.hpp"/>
+  </compounddef>
+</doxygen>

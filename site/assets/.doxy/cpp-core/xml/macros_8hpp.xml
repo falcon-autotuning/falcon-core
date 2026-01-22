@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="macros_8hpp" kind="file" language="C++">
+    <compoundname>macros.hpp</compoundname>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="macros_8hpp_1acc81402f6a707e656052885ab491c3d1" prot="public" static="no">
+        <name>SP</name>
+        <param><defname>T</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>std::make_shared&lt;T&gt;(__VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/macros.hpp" line="3" column="9" bodyfile="cpp/include/falcon_core/macros.hpp" bodystart="3" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SP(T,<sp/>...)<sp/>std::make_shared&lt;T&gt;(__VA_ARGS__)</highlight></codeline>
+    </programlisting>
+    <location file="cpp/include/falcon_core/macros.hpp"/>
+  </compounddef>
+</doxygen>

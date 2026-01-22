@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "falcon_core/Constants.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/units/TotalDimensions.hpp"
 
@@ -10,7 +11,7 @@ namespace falcon_core {
 namespace physics {
 namespace units {
 
-class Unit : public generic::Song {
+class FALCON_CORE_CPP_API Unit : public generic::Song {
   double          _scale_factor;  // Scale factor relative to SI base units
   double          _offset;        // Offset form base unit (e.g. for Celsius)
   std::string     _prefix;        // The SI prefix symbol (e.g. "k" for kilo)

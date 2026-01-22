@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_8292229a53142724ca7ed55be1de9aba" kind="dir">
+    <compoundname>cpp/include/falcon_core/autotuner_interfaces/names</compoundname>
+    <innerfile refid="Channel_8hpp">Channel.hpp</innerfile>
+    <innerfile refid="Channels_8hpp">Channels.hpp</innerfile>
+    <innerfile refid="Gname_8hpp">Gname.hpp</innerfile>
+    <innerfile refid="NameBase_8hpp">NameBase.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/names/"/>
+  </compounddef>
+</doxygen>

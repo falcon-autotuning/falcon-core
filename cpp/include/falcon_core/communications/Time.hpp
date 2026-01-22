@@ -2,6 +2,7 @@
 
 #include <shared_mutex>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
@@ -9,7 +10,7 @@ namespace communications {
 /**
  * @brief Represents a point in time with microsecond precision.
  */
-class Time : public generic::Song {
+class FALCON_CORE_CPP_API Time : public generic::Song {
   long long                       _micro_seconds_since_epoch;
   mutable std::shared_timed_mutex _mu_time;
 

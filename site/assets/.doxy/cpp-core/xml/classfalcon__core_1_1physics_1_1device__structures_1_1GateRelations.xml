@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::physics::device_structures::GateRelations</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Map" prot="public" virt="non-virtual">falcon_core::generic::Map&lt; Connection, Connections &gt;</basecompoundref>
+    <includes refid="GateRelations_8hpp" local="no">GateRelations.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1a86c70f5ace6f5e60e80b76b6f3e95494" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::device_structures::GateRelations::GateRelations</definition>
+        <argsstring>()</argsstring>
+        <name>GateRelations</name>
+        <qualifiedname>falcon_core::physics::device_structures::GateRelations::GateRelations</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/device_structures/GateRelations.hpp" line="15" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1a114660159e8d5974568f031d4259f967" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::device_structures::GateRelations::GateRelations</definition>
+        <argsstring>(std::vector&lt; std::pair&lt; ConnectionSP, ConnectionsSP &gt; &gt; init)</argsstring>
+        <name>GateRelations</name>
+        <qualifiedname>falcon_core::physics::device_structures::GateRelations::GateRelations</qualifiedname>
+        <param>
+          <type>std::vector&lt; std::pair&lt; ConnectionSP, ConnectionsSP &gt; &gt;</type>
+          <declname>init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/device_structures/GateRelations.hpp" line="16" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1aaa0900497bfbf76ef51bcfcce88090bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::physics::device_structures::GateRelations::insert_or_assign</definition>
+        <argsstring>(const ConnectionSP &amp;key, const ConnectionsSP &amp;value)</argsstring>
+        <name>insert_or_assign</name>
+        <qualifiedname>falcon_core::physics::device_structures::GateRelations::insert_or_assign</qualifiedname>
+        <param>
+          <type>const ConnectionSP &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const ConnectionsSP &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Override the default Map assignment to force gate typing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/device_structures/GateRelations.hpp" line="20" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1a86598080f6944388604334c86c744c2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">generic::List</ref>&lt; <ref refid="classfalcon__core_1_1generic_1_1Pair" kindref="compound">generic::Pair</ref>&lt; <ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connection" kindref="compound">Connection</ref>, <ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connections" kindref="compound">Connections</ref> &gt; &gt;::iterator, bool &gt;</type>
+        <definition>std::pair&lt; generic::List&lt; generic::Pair&lt; Connection, Connections &gt; &gt;::iterator, bool &gt; falcon_core::physics::device_structures::GateRelations::insert</definition>
+        <argsstring>(const ConnectionSP &amp;key, const ConnectionsSP &amp;value)</argsstring>
+        <name>insert</name>
+        <qualifiedname>falcon_core::physics::device_structures::GateRelations::insert</qualifiedname>
+        <param>
+          <type>const ConnectionSP &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const ConnectionsSP &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Override the assert method to force gate typing. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/device_structures/GateRelations.hpp" line="26" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1a836e30ea58fb6cc2ac44a2f0bfec2412" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::device_structures::GateRelations::operator==</definition>
+        <argsstring>(const GateRelations &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::physics::device_structures::GateRelations::operator==</qualifiedname>
+        <param>
+          <type>const GateRelations &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/device_structures/GateRelations.hpp" line="27" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1ad93a49f797fe518fd85a96312ee53509" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::device_structures::GateRelations::operator!=</definition>
+        <argsstring>(const GateRelations &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::physics::device_structures::GateRelations::operator!=</qualifiedname>
+        <param>
+          <type>const GateRelations &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/device_structures/GateRelations.hpp" line="28" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Holds the relations between gates and their neighbors. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::Map&lt; Connection, Connections &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1Map"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::device_structures::GateRelations</label>
+        <link refid="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::Map&lt; Connection, Connections &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1Map"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::device_structures::GateRelations</label>
+        <link refid="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/physics/device_structures/GateRelations.hpp" line="13" column="1" bodyfile="cpp/include/falcon_core/physics/device_structures/GateRelations.hpp" bodystart="13" bodyend="29"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a2095e2a5a1c88f31e41934b73d467e8e" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a7acf6a4d1d2171d8c859808ae7539d3f" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac7e8789dc6af1c32e902c5567a55d184" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>cbegin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6b18ee5985ff5bc951a68aab5d78b50e" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>cend</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4a766530efafc51c3e23625d7af9fd9d" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>clear</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1afc58b04fd9f846e6f8430084fe5943e4" prot="protected" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ab0de81e4e92c0d3c51d89b7c4ec855d7" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>contains</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a8b02ebb498173597ab0884f4b4e467bf" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>create</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aaef974888aa75ee071b5a3552233ee85" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>create_empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aeb55a1fb30f030c23c99e9bc5c675e25" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a219754647f38dde6357f9f21346b06a2" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6c6a509731f529f2cb06e8d1d37bb35c" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>erase</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ab5459580d4f80ec7313b9d94a00286c6" prot="protected" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>find</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1a86c70f5ace6f5e60e80b76b6f3e95494" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>GateRelations</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1a114660159e8d5974568f031d4259f967" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>GateRelations</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1a86598080f6944388604334c86c744c2c" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4d17123ecc0f4e792f22d10ec0a79341" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; Connection, Connections &gt;::"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1aaa0900497bfbf76ef51bcfcce88090bf" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>insert_or_assign</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ad60e80705672767a50518049f7dab5ab" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; Connection, Connections &gt;::"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>insert_or_assign</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6773d17be8c4424b2f1d7c2d3620adeb" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac43d28b18acf543882a79b230d3ffeff" prot="protected" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a3191fa21526b1d21396dc9bd014ff5d4" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>keys</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a8685ea03075adb4a2bda29bdb9c9b203" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>Map</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1ad93a49f797fe518fd85a96312ee53509" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac5c4d437d8d168e336390af2c136a849" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; Connection, Connections &gt;::"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abba87cdd6da19288ae9ee095f184d7fe" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1device__structures_1_1GateRelations_1a836e30ea58fb6cc2ac44a2f0bfec2412" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abebc000b88ed7bbfba0b64c81a15b811" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; Connection, Connections &gt;::"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a73ec82ac43c448c292313d33cfb0079e" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abb9719963e73201beac148c285025c9a" prot="protected" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4ec45ddf012f933fc356ee0ea8ba1ec4" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a0868d998dec5ad8d09e809fce98aa294" prot="public" virt="non-virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>values</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::physics::device_structures::GateRelations</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

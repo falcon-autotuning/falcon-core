@@ -1,13 +1,15 @@
 #pragma once
 
 #include "falcon_core/communications/voltage_states/DeviceVoltageState.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/math/Point.hpp"
 namespace falcon_core {
 namespace communications {
 namespace voltage_states {
 
-class DeviceVoltageStates : public generic::List<DeviceVoltageState> {
+class FALCON_CORE_CPP_API DeviceVoltageStates
+    : public generic::List<DeviceVoltageState> {
  public:
   DeviceVoltageStates();
   /**

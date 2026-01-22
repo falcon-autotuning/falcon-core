@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/AnalyticFunction.hpp"
 
@@ -10,7 +11,7 @@ namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
 
-class PortTransform : public math::AnalyticFunction {
+class FALCON_CORE_CPP_API PortTransform : public math::AnalyticFunction {
   names::InstrumentPortSP         _port;
   mutable std::shared_timed_mutex _mu_port;
 

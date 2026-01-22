@@ -1,0 +1,810 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="DeviceVoltageState__c__api_8h" kind="file" language="C++">
+    <compoundname>DeviceVoltageState_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
+    <includes refid="SymbolUnit__c__api_8h" local="yes">falcon_core/physics/units/SymbolUnit_c_api.h</includes>
+    <includedby refid="ListDeviceVoltageState__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListDeviceVoltageState_c_api.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h</label>
+        <link refid="DeviceVoltageState__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h</label>
+        <link refid="VoltageStatesResponse__c__api_8h_source"/>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h</label>
+        <link refid="DeviceVoltageState__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</label>
+        <link refid="DeviceVoltageStates__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListDeviceVoltageState_c_api.h</label>
+        <link refid="ListDeviceVoltageState__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/math/Vector_c_api.h</label>
+        <link refid="Vector__c__api_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="DeviceVoltageState__c__api_8h_1abc77d3f763ede0c66419057bfbba1c00" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* DeviceVoltageStateHandle</definition>
+        <argsstring></argsstring>
+        <name>DeviceVoltageStateHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a9a32910ebf7c73e052a9e1282f26863f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_create</definition>
+        <argsstring>(ConnectionHandle connection, double voltage, SymbolUnitHandle unit)</argsstring>
+        <name>DeviceVoltageState_create</name>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>connection</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>voltage</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="13" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="13" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1aa49b9a2a2664931d8778b133b6d16c2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DeviceVoltageState_destroy</definition>
+        <argsstring>(DeviceVoltageStateHandle handle)</argsstring>
+        <name>DeviceVoltageState_destroy</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="17" column="6" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a46df3ebb641c65b6f970ba67f958dcba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle DeviceVoltageState_connection</definition>
+        <argsstring>(DeviceVoltageStateHandle handle)</argsstring>
+        <name>DeviceVoltageState_connection</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="19" column="18" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="19" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a4f911073ad02845888f70a57c9aae45e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DeviceVoltageState_voltage</definition>
+        <argsstring>(DeviceVoltageStateHandle handle)</argsstring>
+        <name>DeviceVoltageState_voltage</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="21" column="8" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="21" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1af5700ca133af559c285401d06c91485e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DeviceVoltageState_value</definition>
+        <argsstring>(DeviceVoltageStateHandle handle)</argsstring>
+        <name>DeviceVoltageState_value</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="23" column="8" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="23" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ac64d87140d274011113ff6e664575a9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SymbolUnitHandle</type>
+        <definition>SymbolUnitHandle DeviceVoltageState_unit</definition>
+        <argsstring>(DeviceVoltageStateHandle handle)</argsstring>
+        <name>DeviceVoltageState_unit</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="25" column="18" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="25" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a8aa91a932bf2230f26379d8293752976" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DeviceVoltageState_convert_to</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, SymbolUnitHandle target_unit)</argsstring>
+        <name>DeviceVoltageState_convert_to</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>target_unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="27" column="6" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="27" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ab6e0ff99fac2bffe13b86335aa49ef9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_multiply_int</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, int other)</argsstring>
+        <name>DeviceVoltageState_multiply_int</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="30" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="30" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1afd50923e81b2a757b5caacb6397b9027" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_multiply_double</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, double other)</argsstring>
+        <name>DeviceVoltageState_multiply_double</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="33" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="33" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ae73c1066efaac5ae462fd8aa3ec89fd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_multiply_quantity</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other)</argsstring>
+        <name>DeviceVoltageState_multiply_quantity</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="36" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="36" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ae62f2b7dcf8eac566acef7462d976a1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_multiply_equals_int</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, int other)</argsstring>
+        <name>DeviceVoltageState_multiply_equals_int</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="39" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="39" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ac6d78ed8f7d9fddcb375a26a4384313a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_multiply_equals_double</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, double other)</argsstring>
+        <name>DeviceVoltageState_multiply_equals_double</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="42" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="42" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a072734b0a1ff98a4d697071658384f65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_multiply_equals_quantity</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other)</argsstring>
+        <name>DeviceVoltageState_multiply_equals_quantity</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="45" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="45" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a3db95a1b94d3c5eaadcd201435373e17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_divide_int</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, int other)</argsstring>
+        <name>DeviceVoltageState_divide_int</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="48" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="48" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a9806faf6d48b116fce5237957ac8267a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_divide_double</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, double other)</argsstring>
+        <name>DeviceVoltageState_divide_double</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="51" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="51" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ae50e3c5d7c069cc98f2c8c57ba495fcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_divide_quantity</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other)</argsstring>
+        <name>DeviceVoltageState_divide_quantity</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="54" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="54" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a889560cfa04f59fff25192a6be17caf9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_divide_equals_int</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, int other)</argsstring>
+        <name>DeviceVoltageState_divide_equals_int</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="57" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="57" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a7f640cf9178daad836c3c580a1213b2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_divide_equals_double</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, double other)</argsstring>
+        <name>DeviceVoltageState_divide_equals_double</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="60" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="60" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a249662fb5ad47d526c8c786c553b1b8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_divide_equals_quantity</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other)</argsstring>
+        <name>DeviceVoltageState_divide_equals_quantity</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="63" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="63" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a0fef0f957d39c22c48b813cf517f58d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_power</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, int other)</argsstring>
+        <name>DeviceVoltageState_power</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="66" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="66" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a70294a95f31d462517e95fc846b62d50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_add_quantity</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other)</argsstring>
+        <name>DeviceVoltageState_add_quantity</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="69" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="69" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a353562e36909e105656ae5a4f267abdb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_add_equals_quantity</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other)</argsstring>
+        <name>DeviceVoltageState_add_equals_quantity</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="72" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="72" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1aad09471d0a0236fb247ac1ef0cbc8938" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_subtract_quantity</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other)</argsstring>
+        <name>DeviceVoltageState_subtract_quantity</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="75" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="75" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ac71ba6c587f20459785a0b9973e40db5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_subtract_equals_quantity</definition>
+        <argsstring>(DeviceVoltageStateHandle handle, DeviceVoltageStateHandle other)</argsstring>
+        <name>DeviceVoltageState_subtract_equals_quantity</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="78" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="78" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ae7956726e8d2437032b38140280efead" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_negate</definition>
+        <argsstring>(DeviceVoltageStateHandle handle)</argsstring>
+        <name>DeviceVoltageState_negate</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="81" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="81" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ae910f2cb909b39df86086d8fcfb4ec54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_abs</definition>
+        <argsstring>(DeviceVoltageStateHandle handle)</argsstring>
+        <name>DeviceVoltageState_abs</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="84" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="84" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1afcbe705e8748c9885e4fda989568ff64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DeviceVoltageState_equal</definition>
+        <argsstring>(DeviceVoltageStateHandle a, DeviceVoltageStateHandle b)</argsstring>
+        <name>DeviceVoltageState_equal</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="87" column="6" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="87" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1af162c15b789f77715a557045b3d29815" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DeviceVoltageState_not_equal</definition>
+        <argsstring>(DeviceVoltageStateHandle a, DeviceVoltageStateHandle b)</argsstring>
+        <name>DeviceVoltageState_not_equal</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="90" column="6" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="90" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1a14e46888d9974311e43a676cf6fcdf0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle DeviceVoltageState_to_json_string</definition>
+        <argsstring>(DeviceVoltageStateHandle handle)</argsstring>
+        <name>DeviceVoltageState_to_json_string</name>
+        <param>
+          <type>DeviceVoltageStateHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="93" column="14" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="93" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="DeviceVoltageState__c__api_8h_1ad9b0192b67970e4b4efd3ed58499ce8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DeviceVoltageStateHandle</type>
+        <definition>DeviceVoltageStateHandle DeviceVoltageState_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>DeviceVoltageState_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" line="95" column="26" declfile="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h" declline="95" declcolumn="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/units/SymbolUnit_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>DeviceVoltageStateHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_create(ConnectionHandle<sp/>connection,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>voltage,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SymbolUnitHandle<sp/>unit);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DeviceVoltageState_destroy(DeviceVoltageStateHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">ConnectionHandle<sp/>DeviceVoltageState_connection(DeviceVoltageStateHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DeviceVoltageState_voltage(DeviceVoltageStateHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DeviceVoltageState_value(DeviceVoltageStateHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">SymbolUnitHandle<sp/>DeviceVoltageState_unit(DeviceVoltageStateHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DeviceVoltageState_convert_to(DeviceVoltageStateHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SymbolUnitHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>target_unit);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_multiply_int(</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_multiply_double(</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_multiply_quantity(</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/>DeviceVoltageStateHandle<sp/>other);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_multiply_equals_int(</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_multiply_equals_double(</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_multiply_equals_quantity(</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/>DeviceVoltageStateHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_divide_int(</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_divide_double(</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_divide_quantity(</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/>DeviceVoltageStateHandle<sp/>other);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_divide_equals_int(</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_divide_equals_double(</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_divide_equals_quantity(</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/>DeviceVoltageStateHandle<sp/>other);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_power(</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_add_quantity(</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/>DeviceVoltageStateHandle<sp/>other);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_add_equals_quantity(</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/>DeviceVoltageStateHandle<sp/>other);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_subtract_quantity(</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/>DeviceVoltageStateHandle<sp/>other);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_subtract_equals_quantity(</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle,<sp/>DeviceVoltageStateHandle<sp/>other);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_negate(</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_abs(</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DeviceVoltageState_equal(DeviceVoltageStateHandle<sp/>a,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>b);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DeviceVoltageState_not_equal(DeviceVoltageStateHandle<sp/>a,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DeviceVoltageStateHandle<sp/>b);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal">StringHandle<sp/>DeviceVoltageState_to_json_string(DeviceVoltageStateHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal">DeviceVoltageStateHandle<sp/>DeviceVoltageState_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"/>
+  </compounddef>
+</doxygen>

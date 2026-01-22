@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::communications::voltage_states::DeviceVoltageStates</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1List" prot="public" virt="non-virtual">falcon_core::generic::List&lt; DeviceVoltageState &gt;</basecompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1a59622ae388197427a4db2af0edb026ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::voltage_states::DeviceVoltageStates::DeviceVoltageStates</definition>
+        <argsstring>()</argsstring>
+        <name>DeviceVoltageStates</name>
+        <qualifiedname>falcon_core::communications::voltage_states::DeviceVoltageStates::DeviceVoltageStates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp" line="12" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1a97184b8189ac05d3ca9a07d375127f9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::voltage_states::DeviceVoltageStates::DeviceVoltageStates</definition>
+        <argsstring>(const generic::ListSP&lt; DeviceVoltageState &gt; &amp;states)</argsstring>
+        <name>DeviceVoltageStates</name>
+        <qualifiedname>falcon_core::communications::voltage_states::DeviceVoltageStates::DeviceVoltageStates</qualifiedname>
+        <param>
+          <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageState" kindref="compound">DeviceVoltageState</ref> &gt; &amp;</type>
+          <declname>states</declname>
+        </param>
+        <briefdescription>
+<para>Initialize a set of <ref refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates" kindref="compound">DeviceVoltageStates</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>all of the states contained within the DeviceVotlageStates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1a8da0adfe02db55cf3044f7575a424b4d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageState" kindref="compound">DeviceVoltageState</ref> &gt;</type>
+        <definition>const generic::ListSP&lt; DeviceVoltageState &gt; falcon_core::communications::voltage_states::DeviceVoltageStates::states</definition>
+        <argsstring>() const</argsstring>
+        <name>states</name>
+        <qualifiedname>falcon_core::communications::voltage_states::DeviceVoltageStates::states</qualifiedname>
+        <briefdescription>
+<para>Returns the list of voltage states. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp" line="21" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1a820951bbf716788e6890b958ac7183bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::communications::voltage_states::DeviceVoltageStates::add_state</definition>
+        <argsstring>(const DeviceVoltageStateSP &amp;state)</argsstring>
+        <name>add_state</name>
+        <qualifiedname>falcon_core::communications::voltage_states::DeviceVoltageStates::add_state</qualifiedname>
+        <param>
+          <type>const DeviceVoltageStateSP &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Add a voltage state to the collection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The voltage state to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp" line="26" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1afa1e41b21c7ef5ebffd5574a781156a3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const DeviceVoltageStateSP</type>
+        <definition>const DeviceVoltageStateSP falcon_core::communications::voltage_states::DeviceVoltageStates::find_state</definition>
+        <argsstring>(const physics::device_structures::ConnectionSP &amp;connection) const</argsstring>
+        <name>find_state</name>
+        <qualifiedname>falcon_core::communications::voltage_states::DeviceVoltageStates::find_state</qualifiedname>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>connection</declname>
+        </param>
+        <briefdescription>
+<para>Find a voltage state by its connection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>connection</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The connection to find. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the voltage state if found. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp" line="32" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1abcd64913e4e1eae104d75ea99a76937d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const math::PointSP</type>
+        <definition>const math::PointSP falcon_core::communications::voltage_states::DeviceVoltageStates::to_point</definition>
+        <argsstring>() const</argsstring>
+        <name>to_point</name>
+        <qualifiedname>falcon_core::communications::voltage_states::DeviceVoltageStates::to_point</qualifiedname>
+        <briefdescription>
+<para>Conversion to the Point datatype. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp" line="37" column="23"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::communications::voltage_states::DeviceVoltageStates</label>
+        <link refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::List&lt; DeviceVoltageState &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::communications::voltage_states::DeviceVoltageStates</label>
+        <link refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::List&lt; DeviceVoltageState &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp" line="10" column="1" bodyfile="cpp/include/falcon_core/communications/voltage_states/DeviceVoltageStates.hpp" bodystart="10" bodyend="38"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1a820951bbf716788e6890b958ac7183bb" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>add_state</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac6db589636214138ce4f5099214950d7" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>allocate</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac506f26dd646d8ae9e348d2b2f8b0711" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa027050dbdaabc2be13de8ec48b59ace" prot="protected" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>at_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a642e3b9a1f76d414a908a85b47d8e2f2" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aef038e6660b56dc2f6ff7d624f3e064a" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ae2186f42ba6bb56c8db451baa6d08689" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>clear</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7fc4f3fb80412b75688ae67ef4deb840" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a85efdcdc1929089f640e4ee81e1e161a" prot="protected" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>Container</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af78b99f6bd138b5d4851fcab549a989f" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>contains</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a8721d8693dad51710395ae33fd5b8bb9" prot="protected" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>contains_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a72c2a525720386b4fc7ee1d021d9242c" prot="protected" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>copy_items_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ab80da9fe240a0f7d3e3c6c318baf32a3" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>create</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af10afad8e13353cf1532a6ceac8049e0" prot="protected" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>create_duplicates_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa8a82611d2bfd85bce3bcad2374a7fb8" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>create_empty</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1a59622ae388197427a4db2af0edb026ff" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>DeviceVoltageStates</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1a97184b8189ac05d3ca9a07d375127f9d" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>DeviceVoltageStates</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad993f09ed7500f61be2c6ece0cc56809" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1d05bea2ea3c0c3ee86b1455c3520cff" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a35932f229c9408ffa7682ab7c031e498" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>erase_at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac33acefde3a87a38d16bef723fbefb2f" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>fill_value</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1afa1e41b21c7ef5ebffd5574a781156a3" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>find_state</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1afe083fc302fc55edef258d8daf9f3d47" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>index</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1ffa46e78bb25a7c2adb0ee6c4e16fd7" prot="protected" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>index_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a159ec398798aec49860f25737732d035" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a517adcdb190cba73664d55dd3fcd28e6" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>intersection</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaae12f832dbfcfec53be2d9d579ecb5c" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a94c62a49740f871213c5cbf1649bf467" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2f59e0c944cf9148e92c4857aef93025" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2e97c62492a753fa05fabb22a1ac1537" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad91072aff233646e22fb2b10d1759342" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7ad7b131acaa960629eb948ee49b0141" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaff8f72dc702a07b07f14d9bc075dbb0" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a98aa8f7995e88f333c85d8eb0e44da85" prot="protected" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>operator_equal_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a672370a488b6ca60454cbbed60b4ef4a" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>push_back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a605cb51b17e7a58b8253b041252a8444" prot="protected" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>push_back_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad8cdc2817d5f8111a416930461321b96" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>replace_at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a226d6fcc7858e83189a9bdc736bc5e2d" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a0fea4756b30abd79c04bcfa09296f1d9" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1a8da0adfe02db55cf3044f7575a424b4d" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>states</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aacbc6f6812a1cb140b0d16b336f8bca7" prot="protected" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>StoredValue</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageStates_1abcd64913e4e1eae104d75ea99a76937d" prot="public" virt="non-virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>to_point</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::communications::voltage_states::DeviceVoltageStates</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -3,11 +3,13 @@
 #include <map>
 #include <string>
 
+#include "falcon_core/export.h"
+
 namespace falcon_core {
 namespace physics {
 namespace units {
 
-class Prefix {
+class FALCON_CORE_CPP_API Prefix {
  public:
   /**
    * @brief Get the symbol to power map.

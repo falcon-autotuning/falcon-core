@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_71966f80191a0917307a068cf22a319b" kind="dir">
+    <compoundname>cpp/include/falcon_core/math/discrete_spaces</compoundname>
+    <innerfile refid="DiscreteSpace_8hpp">DiscreteSpace.hpp</innerfile>
+    <innerfile refid="Discretizer_8hpp">Discretizer.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/math/discrete_spaces/"/>
+  </compounddef>
+</doxygen>

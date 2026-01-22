@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/physics/config/geometries/HasImplantedOhmic.hpp"
 #include "falcon_core/physics/config/geometries/HasRightNeighbor.hpp"
 
@@ -11,9 +12,10 @@ namespace geometries {
  * @brief A special reservoir geometry that has an implanted ohmic contact and
  *the rest of the channel extending to the right.
  **/
-class LeftReservoirWithImplantedOhmic : public device_structures::Connection,
-                                        public HasImplantedOhmic,
-                                        public HasRightNeighbor {
+class FALCON_CORE_CPP_API LeftReservoirWithImplantedOhmic
+    : public device_structures::Connection,
+      public HasImplantedOhmic,
+      public HasRightNeighbor {
  public:
   LeftReservoirWithImplantedOhmic(
       std::string                     name,

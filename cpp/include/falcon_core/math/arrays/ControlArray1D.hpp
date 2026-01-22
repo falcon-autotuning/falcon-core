@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/Is1D.hpp"
 namespace falcon_core {
@@ -12,7 +13,8 @@ namespace math {
 namespace arrays {
 
 /// @brief 1D control array, enforces 1D shape at construction.
-class ControlArray1D : public ControlArray, public Is1D<double> {
+class FALCON_CORE_CPP_API ControlArray1D : public ControlArray,
+                                           public Is1D<double> {
  protected:
   friend class cereal::access;
   ControlArray1D();

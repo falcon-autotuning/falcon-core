@@ -1,0 +1,1105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1physics_1_1units_1_1Unit" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::physics::units::Unit</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a810087b0d0f3fc70d2ab70bc2ffefdb3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double falcon_core::physics::units::Unit::_scale_factor</definition>
+        <argsstring></argsstring>
+        <name>_scale_factor</name>
+        <qualifiedname>falcon_core::physics::units::Unit::_scale_factor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="14" column="19" bodyfile="cpp/include/falcon_core/physics/units/Unit.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aaec696f10e0d51d0760333176ebfe5e8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double falcon_core::physics::units::Unit::_offset</definition>
+        <argsstring></argsstring>
+        <name>_offset</name>
+        <qualifiedname>falcon_core::physics::units::Unit::_offset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="15" column="19" bodyfile="cpp/include/falcon_core/physics/units/Unit.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aedc448e9519557f15708f9a0126a5af7" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string falcon_core::physics::units::Unit::_prefix</definition>
+        <argsstring></argsstring>
+        <name>_prefix</name>
+        <qualifiedname>falcon_core::physics::units::Unit::_prefix</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="16" column="19" bodyfile="cpp/include/falcon_core/physics/units/Unit.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a354030abaef72ae1a849bfa783a3a14f" prot="private" static="no" mutable="no">
+        <type>TotalDimensions</type>
+        <definition>TotalDimensions falcon_core::physics::units::Unit::_dimensions</definition>
+        <argsstring></argsstring>
+        <name>_dimensions</name>
+        <qualifiedname>falcon_core::physics::units::Unit::_dimensions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="17" column="19" bodyfile="cpp/include/falcon_core/physics/units/Unit.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::physics::units::Unit::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="230" column="16" bodyfile="cpp/include/falcon_core/physics/units/Unit.hpp" bodystart="230" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ade4a96c00f5435e70e6964f7fef32bd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::units::Unit::Unit</definition>
+        <argsstring>(TotalDimensions dimensions, double scale_factor=1.0, double offset=0.0, std::string prefix=SI::UNIT_SYMBOL)</argsstring>
+        <name>Unit</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Unit</qualifiedname>
+        <param>
+          <type>TotalDimensions</type>
+          <declname>dimensions</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>scale_factor</declname>
+          <defval>1.0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offset</declname>
+          <defval>0.0</defval>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>prefix</declname>
+          <defval>SI::UNIT_SYMBOL</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="19" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae776309d8abad854c486e42248d0f019" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string falcon_core::physics::units::Unit::prefix</definition>
+        <argsstring>() const</argsstring>
+        <name>prefix</name>
+        <qualifiedname>falcon_core::physics::units::Unit::prefix</qualifiedname>
+        <briefdescription>
+<para>The prefix applied to this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="142" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ab608c266a7bf6ec05116b2e21f4ff428" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>TotalDimensions</type>
+        <definition>TotalDimensions falcon_core::physics::units::Unit::dimensions</definition>
+        <argsstring>() const</argsstring>
+        <name>dimensions</name>
+        <qualifiedname>falcon_core::physics::units::Unit::dimensions</qualifiedname>
+        <briefdescription>
+<para>Dimensions of this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="146" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa338c0192db9aa3ea1801f3d774b4a13" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double falcon_core::physics::units::Unit::scale_factor</definition>
+        <argsstring>() const</argsstring>
+        <name>scale_factor</name>
+        <qualifiedname>falcon_core::physics::units::Unit::scale_factor</qualifiedname>
+        <briefdescription>
+<para>Scale factor relatice to SI base units. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="150" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ad0bb05b97b86e06cd2e56c051f3a082e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double falcon_core::physics::units::Unit::offset</definition>
+        <argsstring>() const</argsstring>
+        <name>offset</name>
+        <qualifiedname>falcon_core::physics::units::Unit::offset</qualifiedname>
+        <briefdescription>
+<para>Offset from base unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="154" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a7d4596e5edbfc048733b70c972f35ec0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::operator*</definition>
+        <argsstring>(const std::shared_ptr&lt; Unit &gt; &amp;other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>falcon_core::physics::units::Unit::operator*</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Unit &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Multiply this unit by another unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit to multiply by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new <ref refid="classfalcon__core_1_1physics_1_1units_1_1Unit" kindref="compound">Unit</ref> representing the product of this unit and the other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="161" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a36d9f1d7bb4155558c462a2e2bdcb768" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::operator/</definition>
+        <argsstring>(const std::shared_ptr&lt; Unit &gt; &amp;other) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>falcon_core::physics::units::Unit::operator/</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Unit &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Divide this unit by another unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new <ref refid="classfalcon__core_1_1physics_1_1units_1_1Unit" kindref="compound">Unit</ref> representing the division of this unit by the other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="167" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ab7c1c4df737af4e6c34e0ed134fe4ac6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::operator^</definition>
+        <argsstring>(const int power) const</argsstring>
+        <name>operator^</name>
+        <qualifiedname>falcon_core::physics::units::Unit::operator^</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>power</declname>
+        </param>
+        <briefdescription>
+<para>Raise the unit to a power. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>power</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exponent to raise the unit to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new <ref refid="classfalcon__core_1_1physics_1_1units_1_1Unit" kindref="compound">Unit</ref> raised to the specified power. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="173" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa3cf6dbcd25ce1a3454b8eaf2dc94404" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::with_prefix</definition>
+        <argsstring>(const std::string prefix) const</argsstring>
+        <name>with_prefix</name>
+        <qualifiedname>falcon_core::physics::units::Unit::with_prefix</qualifiedname>
+        <param>
+          <type>const std::string</type>
+          <declname>prefix</declname>
+        </param>
+        <briefdescription>
+<para>Apply a prefix to this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The prefix symbol to apply (e.g. &quot;k&quot; for kilo </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new <ref refid="classfalcon__core_1_1physics_1_1units_1_1Unit" kindref="compound">Unit</ref> with the specified prefix applied. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the prefix is not valid. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="180" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a0191a022b63c1c34b23ccc3de31c8fa5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::get_milli</definition>
+        <argsstring>() const</argsstring>
+        <name>get_milli</name>
+        <qualifiedname>falcon_core::physics::units::Unit::get_milli</qualifiedname>
+        <briefdescription>
+<para>Apply a milli prefix to this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="184" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a3f5897ed5d6780b9ed77bcee7f895944" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::get_micro</definition>
+        <argsstring>() const</argsstring>
+        <name>get_micro</name>
+        <qualifiedname>falcon_core::physics::units::Unit::get_micro</qualifiedname>
+        <briefdescription>
+<para>Apply a micro prefix to this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="188" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae1182d7c94686f92b0568bb2c2190980" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::get_nano</definition>
+        <argsstring>() const</argsstring>
+        <name>get_nano</name>
+        <qualifiedname>falcon_core::physics::units::Unit::get_nano</qualifiedname>
+        <briefdescription>
+<para>Apply a nano prefix to this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="192" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1af786ec6ad1c2c0eb8d496c8fe5f15208" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::get_pico</definition>
+        <argsstring>() const</argsstring>
+        <name>get_pico</name>
+        <qualifiedname>falcon_core::physics::units::Unit::get_pico</qualifiedname>
+        <briefdescription>
+<para>Apply a pico prefix to this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="196" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a72758998e5567d78d250669949090e13" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::get_kilo</definition>
+        <argsstring>() const</argsstring>
+        <name>get_kilo</name>
+        <qualifiedname>falcon_core::physics::units::Unit::get_kilo</qualifiedname>
+        <briefdescription>
+<para>Apply a kilo prefix to this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="200" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a722b143a9d140ece550a54b2f3d15e95" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::get_mega</definition>
+        <argsstring>() const</argsstring>
+        <name>get_mega</name>
+        <qualifiedname>falcon_core::physics::units::Unit::get_mega</qualifiedname>
+        <briefdescription>
+<para>Apply a mega prefix to this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="204" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa61a926cb4f82d2d977304bdd1d1cfd6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::get_giga</definition>
+        <argsstring>() const</argsstring>
+        <name>get_giga</name>
+        <qualifiedname>falcon_core::physics::units::Unit::get_giga</qualifiedname>
+        <briefdescription>
+<para>Apply a giga prefix to this unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="208" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aac72176c07eba36edef84f47e2c4492a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double falcon_core::physics::units::Unit::convert_value_to</definition>
+        <argsstring>(const double value, const std::shared_ptr&lt; Unit &gt; &amp;target_unit) const</argsstring>
+        <name>convert_value_to</name>
+        <qualifiedname>falcon_core::physics::units::Unit::convert_value_to</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; Unit &gt; &amp;</type>
+          <declname>target_unit</declname>
+        </param>
+        <briefdescription>
+<para>Convert a value from this unit to a target unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value in this unit to convert. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target_unit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit to convert the value to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted value in the target unit. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the units are not compatible. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="216" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae8aa9c9164c4cbabffd5088886793deb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::units::Unit::is_compatible_with</definition>
+        <argsstring>(const std::shared_ptr&lt; Unit &gt; &amp;other) const</argsstring>
+        <name>is_compatible_with</name>
+        <qualifiedname>falcon_core::physics::units::Unit::is_compatible_with</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Unit &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Check if this unit is compatible with another unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit to check compatibility with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the units are compatible (same dimensions), false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="224" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a78799418e51d676de0b3274eaa3e3955" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::units::Unit::operator==</definition>
+        <argsstring>(const Unit &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::physics::units::Unit::operator==</qualifiedname>
+        <param>
+          <type>const Unit &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="225" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a5f477009c17415ae7ed4e489d1c45b0f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::units::Unit::operator!=</definition>
+        <argsstring>(const Unit &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::physics::units::Unit::operator!=</qualifiedname>
+        <param>
+          <type>const Unit &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="226" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1af39c8d1fa8e8900fdc4c438f0db6da7f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Meter</definition>
+        <argsstring>()</argsstring>
+        <name>Meter</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Meter</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a meter unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="26" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1abed6b19aeadf03aed5961c9218cf8b3a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Kilogram</definition>
+        <argsstring>()</argsstring>
+        <name>Kilogram</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Kilogram</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a kilogram unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="30" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ad910315c4faf1577b3de9d6dd713ad55" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Second</definition>
+        <argsstring>()</argsstring>
+        <name>Second</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Second</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a second unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="34" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1af71c1e7709cc85d5aed5149615d056d3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Ampere</definition>
+        <argsstring>()</argsstring>
+        <name>Ampere</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Ampere</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a ampere unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="38" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a30500fa858eb209397601b4a3e5a928d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Kelvin</definition>
+        <argsstring>()</argsstring>
+        <name>Kelvin</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Kelvin</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a kelvin unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="42" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae3c5d4f668e10ae3f4bb8b9cb3dc34f6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Mole</definition>
+        <argsstring>()</argsstring>
+        <name>Mole</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Mole</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a mole unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="46" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a8209bcd4d4f7043e854e73d3c161db7d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Candela</definition>
+        <argsstring>()</argsstring>
+        <name>Candela</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Candela</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a candela unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="50" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a4d79065edf9bab6596a6c5d438347739" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Hertz</definition>
+        <argsstring>()</argsstring>
+        <name>Hertz</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Hertz</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a hertz unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="54" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a32d298046c545901529b3943ef2390b8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Newton</definition>
+        <argsstring>()</argsstring>
+        <name>Newton</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Newton</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a newton unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="58" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a0124273227cfae8fece0625c347cd3e0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Pascal</definition>
+        <argsstring>()</argsstring>
+        <name>Pascal</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Pascal</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a pascal unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="62" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ada30df34054c3358acfe1d2f3a2f3c6c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Joule</definition>
+        <argsstring>()</argsstring>
+        <name>Joule</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Joule</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a joule unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="66" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1adfdbb157f3acdb016c650b8994b96e25" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Watt</definition>
+        <argsstring>()</argsstring>
+        <name>Watt</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Watt</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a watt unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="70" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ad8436888eb00d09c0080a4f013dde3a2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Coulomb</definition>
+        <argsstring>()</argsstring>
+        <name>Coulomb</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Coulomb</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a coulomb unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="74" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ad81203b1ad3b9d4176f9cb56b89ce852" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Volt</definition>
+        <argsstring>()</argsstring>
+        <name>Volt</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Volt</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a volt unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="78" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1af443df7a16b81ff6317fe53ec8133e39" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Farad</definition>
+        <argsstring>()</argsstring>
+        <name>Farad</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Farad</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a farad unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="82" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a4aec4e229001bd4fc796221b5bcff561" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Ohm</definition>
+        <argsstring>()</argsstring>
+        <name>Ohm</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Ohm</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a ohm unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="86" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a91022acf7f453137e829eeb130828680" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Siemens</definition>
+        <argsstring>()</argsstring>
+        <name>Siemens</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Siemens</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a seimen unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="90" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a4b9f77522dccc358a6b957ce8bfe6fa3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Weber</definition>
+        <argsstring>()</argsstring>
+        <name>Weber</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Weber</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a weber unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="94" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ace42f51f3fe66754032b8dbd05edc1b2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Tesla</definition>
+        <argsstring>()</argsstring>
+        <name>Tesla</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Tesla</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a tesla unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="98" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a80f868732f5184119725fcab3458ae4e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Henry</definition>
+        <argsstring>()</argsstring>
+        <name>Henry</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Henry</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a henry unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="102" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa0e803833b480e337125bd52f470c351" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Minute</definition>
+        <argsstring>()</argsstring>
+        <name>Minute</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Minute</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a minute unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="106" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a83c146cde56134b4faacac42187d2ad9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Hour</definition>
+        <argsstring>()</argsstring>
+        <name>Hour</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Hour</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a hour unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="110" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae7a7e3684266166c955d25d1ff0cbf70" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::ElectronVolt</definition>
+        <argsstring>()</argsstring>
+        <name>ElectronVolt</name>
+        <qualifiedname>falcon_core::physics::units::Unit::ElectronVolt</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a electronvolt unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="114" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a40b93e1322f5dfdc469a539ad967f712" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Celsius</definition>
+        <argsstring>()</argsstring>
+        <name>Celsius</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Celsius</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a celsius unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="118" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a9648e69159438bcbcbfcdb84f8ca7209" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Fahrenheit</definition>
+        <argsstring>()</argsstring>
+        <name>Fahrenheit</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Fahrenheit</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a fahrenheit unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="122" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa0cb325113e069cd1342ab66acf7408e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Dimensionless</definition>
+        <argsstring>()</argsstring>
+        <name>Dimensionless</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Dimensionless</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a dimensionless unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="126" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1a7a4b203b4750b29da0b4585abb2aca84" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Percent</definition>
+        <argsstring>()</argsstring>
+        <name>Percent</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Percent</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a percent unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="130" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1afe9606b015a3d36916e470c3ce205fc5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Unit &gt;</type>
+        <definition>static std::shared_ptr&lt; Unit &gt; falcon_core::physics::units::Unit::Radian</definition>
+        <argsstring>()</argsstring>
+        <name>Radian</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Radian</qualifiedname>
+        <briefdescription>
+<para>A special constructor to build a radian unit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="134" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aef33dfc6f706822f44fdf29f30090f6f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void falcon_core::physics::units::Unit::clean_dimensions</definition>
+        <argsstring>(TotalDimensions &amp;dims)</argsstring>
+        <name>clean_dimensions</name>
+        <qualifiedname>falcon_core::physics::units::Unit::clean_dimensions</qualifiedname>
+        <param>
+          <type>TotalDimensions &amp;</type>
+          <declname>dims</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="137" column="15"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1aff76cf953b353c9d813cdfd5e47edf9d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::units::Unit::Unit</definition>
+        <argsstring>()=default</argsstring>
+        <name>Unit</name>
+        <qualifiedname>falcon_core::physics::units::Unit::Unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="229" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae4c529cfb03661d1765cb198865b85bb" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::physics::units::Unit::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::physics::units::Unit::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="232" column="8" bodyfile="cpp/include/falcon_core/physics/units/Unit.hpp" bodystart="232" bodyend="238"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::units::Unit</label>
+        <link refid="classfalcon__core_1_1physics_1_1units_1_1Unit"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::units::Unit</label>
+        <link refid="classfalcon__core_1_1physics_1_1units_1_1Unit"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/physics/units/Unit.hpp" line="13" column="1" bodyfile="cpp/include/falcon_core/physics/units/Unit.hpp" bodystart="13" bodyend="239"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a354030abaef72ae1a849bfa783a3a14f" prot="private" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>_dimensions</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aaec696f10e0d51d0760333176ebfe5e8" prot="private" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>_offset</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aedc448e9519557f15708f9a0126a5af7" prot="private" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>_prefix</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a810087b0d0f3fc70d2ab70bc2ffefdb3" prot="private" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>_scale_factor</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1af71c1e7709cc85d5aed5149615d056d3" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Ampere</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a8209bcd4d4f7043e854e73d3c161db7d" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Candela</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a40b93e1322f5dfdc469a539ad967f712" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Celsius</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aef33dfc6f706822f44fdf29f30090f6f" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>clean_dimensions</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aac72176c07eba36edef84f47e2c4492a" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>convert_value_to</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ad8436888eb00d09c0080a4f013dde3a2" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Coulomb</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa0cb325113e069cd1342ab66acf7408e" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Dimensionless</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ab608c266a7bf6ec05116b2e21f4ff428" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>dimensions</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae7a7e3684266166c955d25d1ff0cbf70" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>ElectronVolt</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a9648e69159438bcbcbfcdb84f8ca7209" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Fahrenheit</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1af443df7a16b81ff6317fe53ec8133e39" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Farad</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa61a926cb4f82d2d977304bdd1d1cfd6" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>get_giga</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a72758998e5567d78d250669949090e13" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>get_kilo</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a722b143a9d140ece550a54b2f3d15e95" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>get_mega</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a3f5897ed5d6780b9ed77bcee7f895944" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>get_micro</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a0191a022b63c1c34b23ccc3de31c8fa5" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>get_milli</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae1182d7c94686f92b0568bb2c2190980" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>get_nano</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1af786ec6ad1c2c0eb8d496c8fe5f15208" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>get_pico</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a80f868732f5184119725fcab3458ae4e" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Henry</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a4d79065edf9bab6596a6c5d438347739" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Hertz</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a83c146cde56134b4faacac42187d2ad9" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Hour</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae8aa9c9164c4cbabffd5088886793deb" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>is_compatible_with</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ada30df34054c3358acfe1d2f3a2f3c6c" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Joule</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a30500fa858eb209397601b4a3e5a928d" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Kelvin</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1abed6b19aeadf03aed5961c9218cf8b3a" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Kilogram</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1af39c8d1fa8e8900fdc4c438f0db6da7f" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Meter</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa0e803833b480e337125bd52f470c351" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Minute</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae3c5d4f668e10ae3f4bb8b9cb3dc34f6" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Mole</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a32d298046c545901529b3943ef2390b8" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Newton</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ad0bb05b97b86e06cd2e56c051f3a082e" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>offset</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a4aec4e229001bd4fc796221b5bcff561" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Ohm</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a5f477009c17415ae7ed4e489d1c45b0f" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a7d4596e5edbfc048733b70c972f35ec0" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>operator*</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a36d9f1d7bb4155558c462a2e2bdcb768" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>operator/</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a78799418e51d676de0b3274eaa3e3955" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ab7c1c4df737af4e6c34e0ed134fe4ac6" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>operator^</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a0124273227cfae8fece0625c347cd3e0" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Pascal</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a7a4b203b4750b29da0b4585abb2aca84" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Percent</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae776309d8abad854c486e42248d0f019" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>prefix</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1afe9606b015a3d36916e470c3ce205fc5" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Radian</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa338c0192db9aa3ea1801f3d774b4a13" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>scale_factor</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ad910315c4faf1577b3de9d6dd713ad55" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Second</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ae4c529cfb03661d1765cb198865b85bb" prot="protected" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a91022acf7f453137e829eeb130828680" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Siemens</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ace42f51f3fe66754032b8dbd05edc1b2" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Tesla</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ade4a96c00f5435e70e6964f7fef32bd6" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Unit</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aff76cf953b353c9d813cdfd5e47edf9d" prot="protected" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Unit</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1ad81203b1ad3b9d4176f9cb56b89ce852" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Volt</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1adfdbb157f3acdb016c650b8994b96e25" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Watt</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1a4b9f77522dccc358a6b957ce8bfe6fa3" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>Weber</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Unit_1aa3cf6dbcd25ce1a3454b8eaf2dc94404" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Unit</scope><name>with_prefix</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::physics::units::Unit</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

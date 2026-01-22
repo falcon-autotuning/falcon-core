@@ -1,0 +1,1480 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1generic_1_1List" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::generic::List</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1math_1_1Axes" prot="public" virt="non-virtual">falcon_core::math::Axes&lt; Value &gt;</derivedcompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename Value</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classfalcon__core_1_1generic_1_1List_1aacbc6f6812a1cb140b0d16b336f8bca7" prot="protected" static="no">
+        <type>typename std::conditional&lt; std::is_base_of&lt; <ref refid="classfalcon__core_1_1generic_1_1Song" kindref="compound">Song</ref>, Value &gt;::value, std::shared_ptr&lt; Value &gt;, Value &gt;::type</type>
+        <definition>using falcon_core::generic::List&lt; Value &gt;::StoredValue = 
+      typename std::conditional&lt;std::is_base_of&lt;Song, Value&gt;::value,
+                                std::shared_ptr&lt;Value&gt;,
+                                Value&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>StoredValue</name>
+        <qualifiedname>falcon_core::generic::List::StoredValue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="23" column="3" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classfalcon__core_1_1generic_1_1List_1a85efdcdc1929089f640e4ee81e1e161a" prot="protected" static="no">
+        <type>std::vector&lt; StoredValue &gt;</type>
+        <definition>using falcon_core::generic::List&lt; Value &gt;::Container =  std::vector&lt;StoredValue&gt;</definition>
+        <argsstring></argsstring>
+        <name>Container</name>
+        <qualifiedname>falcon_core::generic::List::Container</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="27" column="3" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classfalcon__core_1_1generic_1_1List_1a94c62a49740f871213c5cbf1649bf467" prot="public" static="no">
+        <type>typename Container::iterator</type>
+        <definition>using falcon_core::generic::List&lt; Value &gt;::iterator =  typename Container::iterator</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <qualifiedname>falcon_core::generic::List::iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="34" column="3" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classfalcon__core_1_1generic_1_1List_1a7fc4f3fb80412b75688ae67ef4deb840" prot="public" static="no">
+        <type>typename Container::const_iterator</type>
+        <definition>using falcon_core::generic::List&lt; Value &gt;::const_iterator =  typename Container::const_iterator</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <qualifiedname>falcon_core::generic::List::const_iterator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="35" column="3" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1generic_1_1List_1aebc5cc9ed67cb4cd74bc2bf5e6651174" prot="private" static="no" mutable="no">
+        <type>Container</type>
+        <definition>Container falcon_core::generic::List&lt; Value &gt;::_items</definition>
+        <argsstring></argsstring>
+        <name>_items</name>
+        <qualifiedname>falcon_core::generic::List::_items</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="30" column="35" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1generic_1_1List_1ab904b9234fcf41aa5ab312709058d42b" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::generic::List&lt; Value &gt;::_mu_items</definition>
+        <argsstring></argsstring>
+        <name>_mu_items</name>
+        <qualifiedname>falcon_core::generic::List::_mu_items</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="31" column="35" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1generic_1_1List_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::generic::List::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="271" column="16" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="271" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a2f59e0c944cf9148e92c4857aef93025" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::List&lt; Value &gt;::List</definition>
+        <argsstring>(const List&lt; Value &gt; &amp;other)</argsstring>
+        <name>List</name>
+        <qualifiedname>falcon_core::generic::List::List</qualifiedname>
+        <param>
+          <type>const List&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="31" column="35" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="36" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ad91072aff233646e22fb2b10d1759342" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List</type>
+        <definition>List falcon_core::generic::List&lt; Value &gt;::operator=</definition>
+        <argsstring>(const List&lt; Value &gt; &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::generic::List::operator=</qualifiedname>
+        <param>
+          <type>const List&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="42" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="42" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1af3ca58f7bcbc7f0d0640432cc317f1a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::List&lt; Value &gt;::List</definition>
+        <argsstring>(iterator begin, iterator end)</argsstring>
+        <name>List</name>
+        <qualifiedname>falcon_core::generic::List::List</qualifiedname>
+        <param>
+          <type>iterator</type>
+          <declname>begin</declname>
+        </param>
+        <param>
+          <type>iterator</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="56" column="3" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ac3410b0cb84045447e5a006964ed782f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::List&lt; Value &gt;::List</definition>
+        <argsstring>()</argsstring>
+        <name>List</name>
+        <qualifiedname>falcon_core::generic::List::List</qualifiedname>
+        <briefdescription>
+<para><ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">List</ref> can be constructed in 5 different ways: </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Default constructor: creates an empty <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">List</ref> container. <programlisting><codeline><highlight class="normal">List<sp/>o;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para>Sized constructor: creates an <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">List</ref> container with a given number of default-initialized elements. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of elements. <programlisting><codeline><highlight class="normal">List<sp/>o(10);</highlight></codeline>
+</programlisting></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+</listitem><listitem><para>Fill constructor: creates an <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">List</ref> container with a given number of copies of a specified value. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of elements. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to copy. <programlisting><codeline><highlight class="normal">List<sp/>o(10,<sp/>someValue);</highlight></codeline>
+</programlisting></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+</listitem><listitem><para>Vector constructor: creates an <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">List</ref> container from an existing vector of values. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of values to copy. <programlisting><codeline><highlight class="normal">std::vector&lt;ListP&gt;<sp/>v<sp/>=<sp/>...;</highlight></codeline>
+<codeline><highlight class="normal">List<sp/>o(v);</highlight></codeline>
+</programlisting></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+</listitem><listitem><para>Initializer list constructor: creates a <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">List</ref> container from an initializer list of shared pointers. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>init</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initializer list of shared_ptr&lt;T&gt; to copy. <programlisting><codeline><highlight class="normal">List<sp/>o{ptr1,<sp/>ptr2,<sp/>ptr3};</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="94" column="3" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="94" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a3701ea058322c5cc867d581cf67f6f67" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::List&lt; Value &gt;::List</definition>
+        <argsstring>(size_t count)</argsstring>
+        <name>List</name>
+        <qualifiedname>falcon_core::generic::List::List</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="98" column="3" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="98" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1acdd8c0086c3da618c5c67f0de3299ae7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::List&lt; Value &gt;::List</definition>
+        <argsstring>(size_t count, const StoredValue &amp;value)</argsstring>
+        <name>List</name>
+        <qualifiedname>falcon_core::generic::List::List</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const StoredValue &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="109" column="3" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="109" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a3bbd2d24909116924c10c95692ff7360" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::generic::List&lt; Value &gt;::List</definition>
+        <argsstring>(const Container &amp;init)</argsstring>
+        <name>List</name>
+        <qualifiedname>falcon_core::generic::List::List</qualifiedname>
+        <param>
+          <type>const Container &amp;</type>
+          <declname>init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="117" column="3" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="117" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1aaae12f832dbfcfec53be2d9d579ecb5c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Container</type>
+        <definition>const Container falcon_core::generic::List&lt; Value &gt;::items</definition>
+        <argsstring>() const</argsstring>
+        <name>items</name>
+        <qualifiedname>falcon_core::generic::List::items</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="125" column="19" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="125" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1af33917ac64cea84e3d07f73904615765" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Container</type>
+        <definition>Container falcon_core::generic::List&lt; Value &gt;::items</definition>
+        <argsstring>()</argsstring>
+        <name>items</name>
+        <qualifiedname>falcon_core::generic::List::items</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="129" column="13" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="129" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a672370a488b6ca60454cbbed60b4ef4a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::push_back</definition>
+        <argsstring>(const StoredValue &amp;item)</argsstring>
+        <name>push_back</name>
+        <qualifiedname>falcon_core::generic::List::push_back</qualifiedname>
+        <param>
+          <type>const StoredValue &amp;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="133" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="133" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ad8cdc2817d5f8111a416930461321b96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::replace_at</definition>
+        <argsstring>(size_t idx, const StoredValue &amp;value)</argsstring>
+        <name>replace_at</name>
+        <qualifiedname>falcon_core::generic::List::replace_at</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>const StoredValue &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="137" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="137" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a159ec398798aec49860f25737732d035" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::insert</definition>
+        <argsstring>(iterator pos, const_iterator first, const_iterator last)</argsstring>
+        <name>insert</name>
+        <qualifiedname>falcon_core::generic::List::insert</qualifiedname>
+        <param>
+          <type>iterator</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>const_iterator</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>const_iterator</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="141" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="141" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a0fea4756b30abd79c04bcfa09296f1d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t falcon_core::generic::List&lt; Value &gt;::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>falcon_core::generic::List::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="155" column="10" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="155" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ad993f09ed7500f61be2c6ece0cc56809" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <qualifiedname>falcon_core::generic::List::empty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="156" column="10" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="156" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ac506f26dd646d8ae9e348d2b2f8b0711" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::conditional_t&lt; std::is_same&lt; typename <ref refid="structfalcon__core_1_1generic_1_1category_1_1determine__bool__tag" kindref="compound">category::determine_bool_tag</ref>&lt; Value &gt;::type, <ref refid="structfalcon__core_1_1generic_1_1category_1_1bool__tag" kindref="compound">category::bool_tag</ref> &gt;::value, StoredValue, const StoredValue &amp; &gt;</type>
+        <definition>std::conditional_t&lt; std::is_same&lt; typename category::determine_bool_tag&lt; Value &gt;::type, category::bool_tag &gt;::value, StoredValue, const StoredValue &amp; &gt; falcon_core::generic::List&lt; Value &gt;::at</definition>
+        <argsstring>(const size_t idx) const</argsstring>
+        <name>at</name>
+        <qualifiedname>falcon_core::generic::List::at</qualifiedname>
+        <param>
+          <type>const size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="158" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="158" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a3add922b2425a393e7a8e5b02a5b31f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::conditional_t&lt; std::is_same&lt; typename <ref refid="structfalcon__core_1_1generic_1_1category_1_1determine__bool__tag" kindref="compound">category::determine_bool_tag</ref>&lt; Value &gt;::type, <ref refid="structfalcon__core_1_1generic_1_1category_1_1bool__tag" kindref="compound">category::bool_tag</ref> &gt;::value, StoredValue, StoredValue &amp; &gt;</type>
+        <definition>std::conditional_t&lt; std::is_same&lt; typename category::determine_bool_tag&lt; Value &gt;::type, category::bool_tag &gt;::value, StoredValue, StoredValue &amp; &gt; falcon_core::generic::List&lt; Value &gt;::at</definition>
+        <argsstring>(const size_t idx)</argsstring>
+        <name>at</name>
+        <qualifiedname>falcon_core::generic::List::at</qualifiedname>
+        <param>
+          <type>const size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="165" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="165" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1aaff8f72dc702a07b07f14d9bc075dbb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>StoredValue</type>
+        <definition>StoredValue falcon_core::generic::List&lt; Value &gt;::operator[]</definition>
+        <argsstring>(const size_t idx)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>falcon_core::generic::List::operator[]</qualifiedname>
+        <param>
+          <type>const size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="172" column="22" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="172" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a647cbc75b9defbb7dc37d5019bd6e0e8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const StoredValue &amp;</type>
+        <definition>const StoredValue &amp; falcon_core::generic::List&lt; Value &gt;::operator[]</definition>
+        <argsstring>(const size_t idx) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>falcon_core::generic::List::operator[]</qualifiedname>
+        <param>
+          <type>const size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="173" column="21" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="173" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1aef038e6660b56dc2f6ff7d624f3e064a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator falcon_core::generic::List&lt; Value &gt;::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>falcon_core::generic::List::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="174" column="22" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="174" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a1d05bea2ea3c0c3ee86b1455c3520cff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>iterator</type>
+        <definition>iterator falcon_core::generic::List&lt; Value &gt;::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>falcon_core::generic::List::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="178" column="12" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="178" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a1a6fcf517afa3f28cc51f34bf4346a05" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::generic::List&lt; Value &gt;::begin</definition>
+        <argsstring>() const</argsstring>
+        <name>begin</name>
+        <qualifiedname>falcon_core::generic::List::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="182" column="18" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="182" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a105f08add5e2e75becec7812561c8f62" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const_iterator</type>
+        <definition>const_iterator falcon_core::generic::List&lt; Value &gt;::end</definition>
+        <argsstring>() const</argsstring>
+        <name>end</name>
+        <qualifiedname>falcon_core::generic::List::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="186" column="18" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="186" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1af78b99f6bd138b5d4851fcab549a989f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::contains</definition>
+        <argsstring>(const StoredValue &amp;value) const</argsstring>
+        <name>contains</name>
+        <qualifiedname>falcon_core::generic::List::contains</qualifiedname>
+        <param>
+          <type>const StoredValue &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="190" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="190" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1afe083fc302fc55edef258d8daf9f3d47" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t falcon_core::generic::List&lt; Value &gt;::index</definition>
+        <argsstring>(const StoredValue &amp;value) const</argsstring>
+        <name>index</name>
+        <qualifiedname>falcon_core::generic::List::index</qualifiedname>
+        <param>
+          <type>const StoredValue &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="195" column="10" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="195" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a517adcdb190cba73664d55dd3fcd28e6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; List&lt; Value &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; List&lt; Value &gt; &gt; falcon_core::generic::List&lt; Value &gt;::intersection</definition>
+        <argsstring>(const std::shared_ptr&lt; List&lt; Value &gt; &gt; &amp;other) const</argsstring>
+        <name>intersection</name>
+        <qualifiedname>falcon_core::generic::List::intersection</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; List&lt; Value &gt; &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Finds the intersection between this list and another. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other list to compare again. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A list of values containing elements from both. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="204" column="19" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="204" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ae2186f42ba6bb56c8db451baa6d08689" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>falcon_core::generic::List::clear</qualifiedname>
+        <briefdescription>
+<para>clears to contents of the list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="221" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="221" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a35932f229c9408ffa7682ab7c031e498" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::erase_at</definition>
+        <argsstring>(size_t idx)</argsstring>
+        <name>erase_at</name>
+        <qualifiedname>falcon_core::generic::List::erase_at</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Allows for targetted eraseall of elements at an index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index to erase at. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="229" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="229" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a642e3b9a1f76d414a908a85b47d8e2f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>StoredValue</type>
+        <definition>StoredValue falcon_core::generic::List&lt; Value &gt;::back</definition>
+        <argsstring>()</argsstring>
+        <name>back</name>
+        <qualifiedname>falcon_core::generic::List::back</qualifiedname>
+        <briefdescription>
+<para>Return the last element of a list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="239" column="15" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="239" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a54b82cfe481168e72d1806f3ea5ddb8a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const StoredValue &amp;</type>
+        <definition>const StoredValue &amp; falcon_core::generic::List&lt; Value &gt;::back</definition>
+        <argsstring>() const</argsstring>
+        <name>back</name>
+        <qualifiedname>falcon_core::generic::List::back</qualifiedname>
+        <briefdescription>
+<para>Return the last element of a list. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="250" column="21" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="250" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a226d6fcc7858e83189a9bdc736bc5e2d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::generic::List::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="259" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="259" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a7ad7b131acaa960629eb948ee49b0141" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::operator==</definition>
+        <argsstring>(const List&lt; Value &gt; &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::generic::List::operator==</qualifiedname>
+        <param>
+          <type>const List&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="263" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="263" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a2e97c62492a753fa05fabb22a1ac1537" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::operator!=</definition>
+        <argsstring>(const List&lt; Value &gt; &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::generic::List::operator!=</qualifiedname>
+        <param>
+          <type>const List&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="268" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="268" bodyend="268"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1aa8a82611d2bfd85bce3bcad2374a7fb8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; List&lt; Value &gt; &gt;</type>
+        <definition>static std::shared_ptr&lt; List&lt; Value &gt; &gt; falcon_core::generic::List&lt; Value &gt;::create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>create_empty</name>
+        <qualifiedname>falcon_core::generic::List::create_empty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="95" column="26" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="95" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ac6db589636214138ce4f5099214950d7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; List&lt; Value &gt; &gt;</type>
+        <definition>static std::shared_ptr&lt; List&lt; Value &gt; &gt; falcon_core::generic::List&lt; Value &gt;::allocate</definition>
+        <argsstring>(size_t count)</argsstring>
+        <name>allocate</name>
+        <qualifiedname>falcon_core::generic::List::allocate</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="106" column="26" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="106" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ac33acefde3a87a38d16bef723fbefb2f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; List&lt; Value &gt; &gt;</type>
+        <definition>static std::shared_ptr&lt; List&lt; Value &gt; &gt; falcon_core::generic::List&lt; Value &gt;::fill_value</definition>
+        <argsstring>(size_t count, const StoredValue &amp;value)</argsstring>
+        <name>fill_value</name>
+        <qualifiedname>falcon_core::generic::List::fill_value</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const StoredValue &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="113" column="26" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="113" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ab80da9fe240a0f7d3e3c6c318baf32a3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; List&lt; Value &gt; &gt;</type>
+        <definition>static std::shared_ptr&lt; List&lt; Value &gt; &gt; falcon_core::generic::List&lt; Value &gt;::create</definition>
+        <argsstring>(const Container &amp;init)</argsstring>
+        <name>create</name>
+        <qualifiedname>falcon_core::generic::List::create</qualifiedname>
+        <param>
+          <type>const Container &amp;</type>
+          <declname>init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="122" column="26" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="122" bodyend="124"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1aa027050dbdaabc2be13de8ec48b59ace" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>StoredValue &amp;</type>
+        <definition>StoredValue &amp; falcon_core::generic::List&lt; Value &gt;::at_impl</definition>
+        <argsstring>(size_t idx, category::other_tag)</argsstring>
+        <name>at_impl</name>
+        <qualifiedname>falcon_core::generic::List::at_impl</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1other__tag" kindref="compound">category::other_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="272" column="15" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="272" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1af9134ff9382c39805e714cd84e3c22a3" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const StoredValue &amp;</type>
+        <definition>const StoredValue &amp; falcon_core::generic::List&lt; Value &gt;::at_impl</definition>
+        <argsstring>(size_t idx, category::other_tag) const</argsstring>
+        <name>at_impl</name>
+        <qualifiedname>falcon_core::generic::List::at_impl</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1other__tag" kindref="compound">category::other_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="281" column="21" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="281" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1ae794261c29bb7812e2572f8c016f7d6e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>StoredValue</type>
+        <definition>StoredValue falcon_core::generic::List&lt; Value &gt;::at_impl</definition>
+        <argsstring>(size_t idx, category::bool_tag)</argsstring>
+        <name>at_impl</name>
+        <qualifiedname>falcon_core::generic::List::at_impl</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1bool__tag" kindref="compound">category::bool_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="290" column="15" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="290" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a96da94f27fba8183c6051cde8e78eb3e" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const StoredValue</type>
+        <definition>const StoredValue falcon_core::generic::List&lt; Value &gt;::at_impl</definition>
+        <argsstring>(size_t idx, category::bool_tag) const</argsstring>
+        <name>at_impl</name>
+        <qualifiedname>falcon_core::generic::List::at_impl</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1bool__tag" kindref="compound">category::bool_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="299" column="21" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="299" bodyend="307"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1af10afad8e13353cf1532a6ceac8049e0" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::create_duplicates_impl</definition>
+        <argsstring>(size_t count, const std::shared_ptr&lt; T &gt; &amp;item, category::song_tag)</argsstring>
+        <name>create_duplicates_impl</name>
+        <qualifiedname>falcon_core::generic::List::create_duplicates_impl</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; T &gt; &amp;</type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1song__tag" kindref="compound">category::song_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="310" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="310" bodyend="319"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a9dc23dc2598a552f2542340eeef63d6d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::create_duplicates_impl</definition>
+        <argsstring>(size_t count, const T &amp;item, category::primitive_tag)</argsstring>
+        <name>create_duplicates_impl</name>
+        <qualifiedname>falcon_core::generic::List::create_duplicates_impl</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1primitive__tag" kindref="compound">category::primitive_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="321" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="321" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a973d86badc7061d737f71984f2de6936" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::create_duplicates_impl</definition>
+        <argsstring>(size_t count, const T &amp;item, category::other_tag)</argsstring>
+        <name>create_duplicates_impl</name>
+        <qualifiedname>falcon_core::generic::List::create_duplicates_impl</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1other__tag" kindref="compound">category::other_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="327" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="327" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a605cb51b17e7a58b8253b041252a8444" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::push_back_impl</definition>
+        <argsstring>(const std::shared_ptr&lt; T &gt; &amp;item, category::song_tag)</argsstring>
+        <name>push_back_impl</name>
+        <qualifiedname>falcon_core::generic::List::push_back_impl</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; T &gt; &amp;</type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1song__tag" kindref="compound">category::song_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="334" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="334" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a884d95ba515ea7704a930b0800e988c0" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::push_back_impl</definition>
+        <argsstring>(const T &amp;item, category::primitive_tag)</argsstring>
+        <name>push_back_impl</name>
+        <qualifiedname>falcon_core::generic::List::push_back_impl</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1primitive__tag" kindref="compound">category::primitive_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="340" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="340" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1af2ab5d24ac6173d3c45ce86320e18528" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::push_back_impl</definition>
+        <argsstring>(const T &amp;item, category::other_tag)</argsstring>
+        <name>push_back_impl</name>
+        <qualifiedname>falcon_core::generic::List::push_back_impl</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>item</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1other__tag" kindref="compound">category::other_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="345" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="345" bodyend="348"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a8721d8693dad51710395ae33fd5b8bb9" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::contains_impl</definition>
+        <argsstring>(const std::shared_ptr&lt; T &gt; &amp;value, category::song_tag) const</argsstring>
+        <name>contains_impl</name>
+        <qualifiedname>falcon_core::generic::List::contains_impl</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; T &gt; &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1song__tag" kindref="compound">category::song_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="350" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="350" bodyend="362"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a9d108e5a1ef0c0da241fe1373b771c85" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::contains_impl</definition>
+        <argsstring>(const T &amp;value, category::primitive_tag) const</argsstring>
+        <name>contains_impl</name>
+        <qualifiedname>falcon_core::generic::List::contains_impl</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1primitive__tag" kindref="compound">category::primitive_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="364" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="364" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a7234e2faa6fc8377e8e3c96b9414fd98" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::contains_impl</definition>
+        <argsstring>(const T &amp;value, category::other_tag) const</argsstring>
+        <name>contains_impl</name>
+        <qualifiedname>falcon_core::generic::List::contains_impl</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1other__tag" kindref="compound">category::other_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="372" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="372" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a1ffa46e78bb25a7c2adb0ee6c4e16fd7" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>size_t falcon_core::generic::List&lt; Value &gt;::index_impl</definition>
+        <argsstring>(const std::shared_ptr&lt; T &gt; &amp;value, category::song_tag) const</argsstring>
+        <name>index_impl</name>
+        <qualifiedname>falcon_core::generic::List::index_impl</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; T &gt; &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1song__tag" kindref="compound">category::song_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="377" column="10" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="377" bodyend="390"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a1716ac2001409509523fa78d57293f8f" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>size_t falcon_core::generic::List&lt; Value &gt;::index_impl</definition>
+        <argsstring>(const T &amp;value, category::primitive_tag) const</argsstring>
+        <name>index_impl</name>
+        <qualifiedname>falcon_core::generic::List::index_impl</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1primitive__tag" kindref="compound">category::primitive_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="392" column="10" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="392" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a038d4cbc8b4d76579a6be390ac77d780" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>size_t</type>
+        <definition>size_t falcon_core::generic::List&lt; Value &gt;::index_impl</definition>
+        <argsstring>(const T &amp;value, category::other_tag) const</argsstring>
+        <name>index_impl</name>
+        <qualifiedname>falcon_core::generic::List::index_impl</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1other__tag" kindref="compound">category::other_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="401" column="10" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="401" bodyend="404"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a98aa8f7995e88f333c85d8eb0e44da85" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::operator_equal_impl</definition>
+        <argsstring>(const List&lt; Value &gt; &amp;other, category::song_tag) const</argsstring>
+        <name>operator_equal_impl</name>
+        <qualifiedname>falcon_core::generic::List::operator_equal_impl</qualifiedname>
+        <param>
+          <type>const List&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1song__tag" kindref="compound">category::song_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="405" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="405" bodyend="417"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1affdfe9a228ccb9808ddfc781298657ed" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::operator_equal_impl</definition>
+        <argsstring>(const List&lt; Value &gt; &amp;other, category::primitive_tag) const</argsstring>
+        <name>operator_equal_impl</name>
+        <qualifiedname>falcon_core::generic::List::operator_equal_impl</qualifiedname>
+        <param>
+          <type>const List&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1primitive__tag" kindref="compound">category::primitive_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="418" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="418" bodyend="431"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a6490b850d5bbaf8d4c319b97405af982" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::generic::List&lt; Value &gt;::operator_equal_impl</definition>
+        <argsstring>(const List&lt; Value &gt; &amp;other, category::other_tag) const</argsstring>
+        <name>operator_equal_impl</name>
+        <qualifiedname>falcon_core::generic::List::operator_equal_impl</qualifiedname>
+        <param>
+          <type>const List&lt; Value &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1other__tag" kindref="compound">category::other_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="432" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="432" bodyend="435"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a72c2a525720386b4fc7ee1d021d9242c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::copy_items_impl</definition>
+        <argsstring>(const Container &amp;src, category::song_tag)</argsstring>
+        <name>copy_items_impl</name>
+        <qualifiedname>falcon_core::generic::List::copy_items_impl</qualifiedname>
+        <param>
+          <type>const Container &amp;</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1song__tag" kindref="compound">category::song_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="437" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="437" bodyend="441"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a60a3390ccdf4c80b4792556d2bb630ff" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::copy_items_impl</definition>
+        <argsstring>(const Container &amp;src, category::primitive_tag)</argsstring>
+        <name>copy_items_impl</name>
+        <qualifiedname>falcon_core::generic::List::copy_items_impl</qualifiedname>
+        <param>
+          <type>const Container &amp;</type>
+          <declname>src</declname>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1primitive__tag" kindref="compound">category::primitive_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="442" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="442" bodyend="446"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1generic_1_1List_1a0d6ad43b738c01204914c2253d5b7196" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::generic::List&lt; Value &gt;::copy_items_impl</definition>
+        <argsstring>(const Container &amp;, category::other_tag)</argsstring>
+        <name>copy_items_impl</name>
+        <qualifiedname>falcon_core::generic::List::copy_items_impl</qualifiedname>
+        <param>
+          <type>const Container &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="structfalcon__core_1_1generic_1_1category_1_1other__tag" kindref="compound">category::other_tag</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="447" column="8" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="447" bodyend="449"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::generic::List&lt; Value &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="3">
+        <label>falcon_core::math::Axes&lt; Value &gt;</label>
+        <link refid="classfalcon__core_1_1math_1_1Axes"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::generic::List&lt; Value &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/generic/List.hpp" line="15" column="1" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="15" bodyend="450"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aebc5cc9ed67cb4cd74bc2bf5e6651174" prot="private" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>_items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ab904b9234fcf41aa5ab312709058d42b" prot="private" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>_mu_items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac6db589636214138ce4f5099214950d7" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>allocate</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac506f26dd646d8ae9e348d2b2f8b0711" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a3add922b2425a393e7a8e5b02a5b31f2" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa027050dbdaabc2be13de8ec48b59ace" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>at_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af9134ff9382c39805e714cd84e3c22a3" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>at_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ae794261c29bb7812e2572f8c016f7d6e" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>at_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a96da94f27fba8183c6051cde8e78eb3e" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>at_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a642e3b9a1f76d414a908a85b47d8e2f2" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a54b82cfe481168e72d1806f3ea5ddb8a" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aef038e6660b56dc2f6ff7d624f3e064a" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1a6fcf517afa3f28cc51f34bf4346a05" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ae2186f42ba6bb56c8db451baa6d08689" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>clear</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7fc4f3fb80412b75688ae67ef4deb840" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a85efdcdc1929089f640e4ee81e1e161a" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>Container</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af78b99f6bd138b5d4851fcab549a989f" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>contains</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a8721d8693dad51710395ae33fd5b8bb9" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>contains_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a9d108e5a1ef0c0da241fe1373b771c85" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>contains_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7234e2faa6fc8377e8e3c96b9414fd98" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>contains_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a72c2a525720386b4fc7ee1d021d9242c" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>copy_items_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a60a3390ccdf4c80b4792556d2bb630ff" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>copy_items_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a0d6ad43b738c01204914c2253d5b7196" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>copy_items_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ab80da9fe240a0f7d3e3c6c318baf32a3" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>create</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af10afad8e13353cf1532a6ceac8049e0" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>create_duplicates_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a9dc23dc2598a552f2542340eeef63d6d" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>create_duplicates_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a973d86badc7061d737f71984f2de6936" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>create_duplicates_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa8a82611d2bfd85bce3bcad2374a7fb8" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>create_empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad993f09ed7500f61be2c6ece0cc56809" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1d05bea2ea3c0c3ee86b1455c3520cff" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a105f08add5e2e75becec7812561c8f62" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a35932f229c9408ffa7682ab7c031e498" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>erase_at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac33acefde3a87a38d16bef723fbefb2f" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>fill_value</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1afe083fc302fc55edef258d8daf9f3d47" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>index</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1ffa46e78bb25a7c2adb0ee6c4e16fd7" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>index_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1716ac2001409509523fa78d57293f8f" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>index_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a038d4cbc8b4d76579a6be390ac77d780" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>index_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a159ec398798aec49860f25737732d035" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a517adcdb190cba73664d55dd3fcd28e6" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>intersection</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaae12f832dbfcfec53be2d9d579ecb5c" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af33917ac64cea84e3d07f73904615765" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a94c62a49740f871213c5cbf1649bf467" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2f59e0c944cf9148e92c4857aef93025" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af3ca58f7bcbc7f0d0640432cc317f1a9" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac3410b0cb84045447e5a006964ed782f" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a3701ea058322c5cc867d581cf67f6f67" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1acdd8c0086c3da618c5c67f0de3299ae7" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a3bbd2d24909116924c10c95692ff7360" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2e97c62492a753fa05fabb22a1ac1537" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad91072aff233646e22fb2b10d1759342" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7ad7b131acaa960629eb948ee49b0141" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaff8f72dc702a07b07f14d9bc075dbb0" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a647cbc75b9defbb7dc37d5019bd6e0e8" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a98aa8f7995e88f333c85d8eb0e44da85" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>operator_equal_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1affdfe9a228ccb9808ddfc781298657ed" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>operator_equal_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a6490b850d5bbaf8d4c319b97405af982" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>operator_equal_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a672370a488b6ca60454cbbed60b4ef4a" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>push_back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a605cb51b17e7a58b8253b041252a8444" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>push_back_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a884d95ba515ea7704a930b0800e988c0" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>push_back_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af2ab5d24ac6173d3c45ce86320e18528" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>push_back_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad8cdc2817d5f8111a416930461321b96" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>replace_at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a226d6fcc7858e83189a9bdc736bc5e2d" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a0fea4756b30abd79c04bcfa09296f1d9" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aacbc6f6812a1cb140b0d16b336f8bca7" prot="protected" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>StoredValue</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::generic::List</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::generic::List</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

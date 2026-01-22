@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::physics::config::core::Adjacency</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1FArray" prot="public" virt="non-virtual">falcon_core::generic::FArray&lt; int &gt;</basecompoundref>
+    <includes refid="Adjacency_8hpp" local="no">Adjacency.hpp</includes>
+    <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a5dfdafac82d91b1f0b2af2cc8223ebb5" prot="private" static="no">
+        <type>physics::device_structures::ConnectionsSP</type>
+        <definition>using falcon_core::physics::config::core::Adjacency::Indexes =  physics::device_structures::ConnectionsSP</definition>
+        <argsstring></argsstring>
+        <name>Indexes</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::Indexes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="15" column="3" bodyfile="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1acb653e25768988c68295901c90334723" prot="private" static="no" mutable="no">
+        <type>Indexes</type>
+        <definition>Indexes falcon_core::physics::config::core::Adjacency::_indexes</definition>
+        <argsstring></argsstring>
+        <name>_indexes</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::_indexes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="16" column="35" bodyfile="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1ae5b07a97a0aa5f580d460e60faea2c67" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::core::Adjacency::_mu_indexes</definition>
+        <argsstring></argsstring>
+        <name>_mu_indexes</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::_mu_indexes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="17" column="35" bodyfile="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="38" column="16" bodyfile="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1aa9142a734020d37f963a51ef0c8cafd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::core::Adjacency::Adjacency</definition>
+        <argsstring>(const Adjacency &amp;other)</argsstring>
+        <name>Adjacency</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::Adjacency</qualifiedname>
+        <param>
+          <type>const Adjacency &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="20" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a80cf4d0fcda3cea4330892a65e7e2a42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Adjacency &amp;</type>
+        <definition>Adjacency &amp; falcon_core::physics::config::core::Adjacency::operator=</definition>
+        <argsstring>(const Adjacency &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::operator=</qualifiedname>
+        <param>
+          <type>const Adjacency &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="21" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1afd4ef96cd07b70b6e9743621588a8e79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::core::Adjacency::Adjacency</definition>
+        <argsstring>(const xt::xarray&lt; int &gt; &amp;matrix, const Indexes indexes)</argsstring>
+        <name>Adjacency</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::Adjacency</qualifiedname>
+        <param>
+          <type>const xt::xarray&lt; int &gt; &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <param>
+          <type>const Indexes</type>
+          <declname>indexes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="22" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a8b3d0f52964527cd48863c2ea85ebe64" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>Indexes</type>
+        <definition>Indexes falcon_core::physics::config::core::Adjacency::indexes</definition>
+        <argsstring>() const</argsstring>
+        <name>indexes</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::indexes</qualifiedname>
+        <briefdescription>
+<para>Returns the indexes of the gates in the order for the adjacency matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<sect1 id="/home/tylerk/falcon-dev/falcon-core/cpp/include/falcon_core/physics/config/core/Adjacency.hpp_1autotoc_md0">
+<title>autotoc_md0</title></sect1>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="27" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a1b1f84a15b61d9120d1c813ee3c222ff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::pair&lt; size_t, size_t &gt; &gt;</type>
+        <definition>std::vector&lt; std::pair&lt; size_t, size_t &gt; &gt; falcon_core::physics::config::core::Adjacency::get_true_pairs</definition>
+        <argsstring>() const</argsstring>
+        <name>get_true_pairs</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::get_true_pairs</qualifiedname>
+        <briefdescription>
+<para>Returns the pairs of indexes where the adjacency matrix is true (1). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="32" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a8ff5e06dfb44c03a347e9a47a536aca4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::core::Adjacency::operator==</definition>
+        <argsstring>(const Adjacency &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::operator==</qualifiedname>
+        <param>
+          <type>const Adjacency &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="33" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1ae6fc96457970f2e7ce6a87b02dc55ce0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::core::Adjacency::operator!=</definition>
+        <argsstring>(const Adjacency &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::operator!=</qualifiedname>
+        <param>
+          <type>const Adjacency &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="34" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a0c5b47eb9899f25cf6c66f626992b2da" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::core::Adjacency::Adjacency</definition>
+        <argsstring>()</argsstring>
+        <name>Adjacency</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::Adjacency</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="37" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1acf0de8cd9b82da5f9efdb188ef6dc0dc" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::physics::config::core::Adjacency::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::physics::config::core::Adjacency::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="40" column="8" bodyfile="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" bodystart="40" bodyend="43"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>This a graph representation of the connections between gates in a quantum dot device. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::FArray&lt; int &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1FArray"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core::generic::IFArray&lt; int &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1IFArray"/>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::core::Adjacency</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::FArray&lt; int &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1FArray"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core::generic::IFArray&lt; int &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1IFArray"/>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::core::Adjacency</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" line="14" column="1" bodyfile="cpp/include/falcon_core/physics/config/core/Adjacency.hpp" bodystart="14" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1acb653e25768988c68295901c90334723" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>_indexes</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1ae5b07a97a0aa5f580d460e60faea2c67" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>_mu_indexes</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a37925606e1223c23f53e0971db199284" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>abs</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1aa9142a734020d37f963a51ef0c8cafd5" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>Adjacency</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1afd4ef96cd07b70b6e9743621588a8e79" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>Adjacency</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a0c5b47eb9899f25cf6c66f626992b2da" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>Adjacency</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a9ca135682002e6d9cc0e920fa23fe539" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>array_type</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1aedc45810dfac842ef574fad0637902d9" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1ae23dc2e84d3d31029eef05d432c5bce2" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>cbegin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1ac63b29bb5be8e2d25cdf14a11f7c7bda" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>cend</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1ae95955420634e4c9db88f488af048fee" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>const_reference</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1affce1430fdea03c29a30c63ac8c718a8" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1aa5a880fa6e54880bfb6d1576df35bdca" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>dimension</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1aacf647842d358f5b43534577d1ec8cc7" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a7525d4b42eeacae9f313698028b630a8" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a5d2cef9f807fe607b078a4e8b8e445d0" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>FArray</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1aafddec05e8c927bf81ddd4f07e38e41a" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>flip</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a00803b4f7f337888ba2b4c6c1991bc12" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>get_sum_of_squares</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a1b1f84a15b61d9120d1c813ee3c222ff" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>get_true_pairs</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a4445b821ba12168d6d91e8c8245aa602" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>gradient</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a5dfdafac82d91b1f0b2af2cc8223ebb5" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>Indexes</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a8b3d0f52964527cd48863c2ea85ebe64" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>indexes</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a2959c30cc09675845934b654f6749534" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>max</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1afef4cbb1e46feffb26f4663982d4bf28" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>min</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1ab0b849aea9f7e48751cff0fe99e63097" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator array_type &amp;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1acc2eba6dcd6660eb1a9f2b9ce33d7035" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator const array_type &amp;</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1ae6fc96457970f2e7ce6a87b02dc55ce0" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1aac1648d6701a528c265032f0fca20fc4" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::FArray&lt; int &gt;::"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a633f0afb648a2f5188cabbd8bcff2136" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator()</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a841a7acf644d1cb7028cd893456fe2f3" prot="public" virt="pure-virtual" ambiguityscope="falcon_core::generic::IFArray&lt; int &gt;::"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator()</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a3224ed3fcbb81ac5f80a43b65ffc9654" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator*</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a496294c1e758a2e59d7c8d42b511a0b7" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator*=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1afca92b2f7e0b74add157a26d092c1780" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator+</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1abd2cb3e2125191682dbd8930d3fa68fb" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator+=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a59b1a3b01eba2f93e9f7b46aa7d656b3" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1ab693a75359eda7252121d66cb93a061c" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator-=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a719c06b833112359fb4fcc7f8fdf6c5a" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator/</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a730f7352c02739909cb3119d81356f8e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator/=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1aafdfecae5e8559767fd02ba36fa709d8" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator&lt;</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a80cf4d0fcda3cea4330892a65e7e2a42" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a2796480e4d3d311e6c7df81bb1377c19" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::FArray&lt; int &gt;::"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a8ff5e06dfb44c03a347e9a47a536aca4" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a9be6bfd8a427f02edd7a3b427b28a0df" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::FArray&lt; int &gt;::"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1adf95c7423634b44ec93f73e28afbdfcb" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator&gt;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a82a76b73c8fa88655c7684a7d53eec7e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>operator^</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a49036f8788ff36a3380b4e69fe9f06bd" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>pow_inplace</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1aa947eeca9ec9ae06a6ac63a4ecfc3c65" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>raw_data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a89bb47c47591743a7fc6c2973b53ae63" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>reference</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1ae4c4ee2c8b8fcd863356ad45d255b801" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>remove_offset</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a18d6a44c4e33c6fbf3f2170c631ee396" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>reshape</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1acf0de8cd9b82da5f9efdb188ef6dc0dc" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a50632770f1b703e6ea6c15b3d60a80a6" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>shape</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1abdc537a13dd182842a72ef9be01ba1a6" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a1589140d923ec19b6f5a6f8447cd5d12" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>sum</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a4553a4cd0d1b28ba69992a8117dceaee" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>value_type</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1af7ebd36e967a2dae0518a744760f1e09" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>view</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1aac447430af046114c8380922d647d46f" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>where</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1FArray_1a7ea133e0d206e6a4605a0ea476558b65" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>zeros</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aa5e84ced0ef5ff58d3c81513d72bae88" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>~IFArray</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Adjacency</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

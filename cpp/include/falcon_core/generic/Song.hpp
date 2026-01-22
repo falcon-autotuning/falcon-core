@@ -12,6 +12,8 @@
 #include <sstream>
 #include <string>
 
+#include "falcon_core/export.h"
+
 namespace falcon_core {
 namespace generic {
 /**
@@ -45,7 +47,7 @@ namespace generic {
  * @endcode
  */
 
-class Song {
+class FALCON_CORE_CPP_API Song {
  public:
   virtual ~Song() = default;
   /**

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors.hpp"
 namespace falcon_core {
@@ -46,7 +47,7 @@ namespace geometries {
  *   DotGatesWithNeighbors o{ptr1, ptr2, ptr3};
  *   @endcode
  */
-class DotGatesWithNeighbors
+class FALCON_CORE_CPP_API DotGatesWithNeighbors
     : public falcon_core::generic::List<DotGateWithNeighbors> {
  public:
   DotGatesWithNeighbors();

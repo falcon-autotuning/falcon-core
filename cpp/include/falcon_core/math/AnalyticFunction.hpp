@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
@@ -25,7 +26,8 @@ namespace falcon_core {
 namespace math {
 
 using VariableName = std::string;
-class AnalyticFunction : public generic::List<VariableName> {
+class FALCON_CORE_CPP_API AnalyticFunction
+    : public generic::List<VariableName> {
   std::string                     _expression;
   mutable std::shared_timed_mutex _mu_expression;
   /**

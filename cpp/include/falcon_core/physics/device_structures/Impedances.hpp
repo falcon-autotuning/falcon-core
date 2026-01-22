@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/physics/device_structures/Impedance.hpp"
 
@@ -10,7 +11,7 @@ namespace device_structures {
 /**
  * @brief A collection of Impedances.
  */
-class Impedances : public generic::List<Impedance> {
+class FALCON_CORE_CPP_API Impedances : public generic::List<Impedance> {
  public:
   Impedances();
   Impedances(const std::vector<ImpedanceSP>& vec);

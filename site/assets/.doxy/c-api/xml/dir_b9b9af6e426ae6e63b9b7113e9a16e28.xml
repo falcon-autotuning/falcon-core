@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_b9b9af6e426ae6e63b9b7113e9a16e28" kind="dir">
+    <compoundname>c-api/include/falcon_core/communications/messages</compoundname>
+    <innerfile refid="MeasurementRequest__c__api_8h">MeasurementRequest_c_api.h</innerfile>
+    <innerfile refid="MeasurementResponse__c__api_8h">MeasurementResponse_c_api.h</innerfile>
+    <innerfile refid="StandardRequest__c__api_8h">StandardRequest_c_api.h</innerfile>
+    <innerfile refid="StandardResponse__c__api_8h">StandardResponse_c_api.h</innerfile>
+    <innerfile refid="VoltageStatesResponse__c__api_8h">VoltageStatesResponse_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/communications/messages/"/>
+  </compounddef>
+</doxygen>

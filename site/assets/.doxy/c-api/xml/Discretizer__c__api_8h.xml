@@ -1,0 +1,412 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="Discretizer__c__api_8h" kind="file" language="C++">
+    <compoundname>Discretizer_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="Domain__c__api_8h" local="yes">falcon_core/math/domains/Domain_c_api.h</includes>
+    <includedby refid="ListDiscretizer__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListDiscretizer_c_api.h</includedby>
+    <includedby refid="AxesDiscretizer__c__api_8h" local="yes">c-api/include/falcon_core/math/AxesDiscretizer_c_api.h</includedby>
+    <includedby refid="UnitSpace__c__api_8h" local="yes">c-api/include/falcon_core/math/UnitSpace_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h</label>
+        <link refid="Discretizer__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/math/domains/Domain_c_api.h</label>
+        <link refid="Domain__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="10">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListDiscretizer_c_api.h</label>
+        <link refid="ListDiscretizer__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/math/AxesDiscretizer_c_api.h</label>
+        <link refid="AxesDiscretizer__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h</label>
+        <link refid="Discretizer__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Discretizer__c__api_8h_1ac8b0b5ba69d7cc74ae3e64198949e113" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* DiscretizerHandle</definition>
+        <argsstring></argsstring>
+        <name>DiscretizerHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Discretizer__c__api_8h_1a82235ae114c738792ec465166404d139" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscretizerHandle</type>
+        <definition>DiscretizerHandle Discretizer_copy</definition>
+        <argsstring>(DiscretizerHandle handle)</argsstring>
+        <name>Discretizer_copy</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="13" column="19" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="13" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1a26fa3e17fff2ad09925cef978908cc7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretizer_destroy</definition>
+        <argsstring>(DiscretizerHandle handle)</argsstring>
+        <name>Discretizer_destroy</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="15" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="15" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1a8d2a9e57f97a4b84b51a3756671c6f34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Discretizer_equal</definition>
+        <argsstring>(DiscretizerHandle handle, DiscretizerHandle other)</argsstring>
+        <name>Discretizer_equal</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="17" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1a817e4f1d9a03bd2e2057f4eade77ce27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Discretizer_not_equal</definition>
+        <argsstring>(DiscretizerHandle handle, DiscretizerHandle other)</argsstring>
+        <name>Discretizer_not_equal</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1a14400a7bd3e6aff7fcd1c1103b8bce66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle Discretizer_to_json_string</definition>
+        <argsstring>(DiscretizerHandle handle)</argsstring>
+        <name>Discretizer_to_json_string</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="21" column="14" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="21" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1afc1e630d32a80aa8b53ca407695b6c65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscretizerHandle</type>
+        <definition>DiscretizerHandle Discretizer_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Discretizer_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="23" column="19" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="23" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1a7e3d3349afedec4bc0bba72d0728dd52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscretizerHandle</type>
+        <definition>DiscretizerHandle Discretizer_create_cartesian_discretizer</definition>
+        <argsstring>(double delta)</argsstring>
+        <name>Discretizer_create_cartesian_discretizer</name>
+        <param>
+          <type>double</type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="25" column="19" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="25" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1a373e1724d890507e3a89d38bc98310ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscretizerHandle</type>
+        <definition>DiscretizerHandle Discretizer_create_polar_discretizer</definition>
+        <argsstring>(double delta)</argsstring>
+        <name>Discretizer_create_polar_discretizer</name>
+        <param>
+          <type>double</type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="27" column="19" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="27" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1af7aac4fd55edf0cab45d14b27f91dfe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Discretizer_delta</definition>
+        <argsstring>(DiscretizerHandle handle)</argsstring>
+        <name>Discretizer_delta</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="29" column="8" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="29" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1aab7f0c51d178b968c800be6b1161f341" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretizer_set_delta</definition>
+        <argsstring>(DiscretizerHandle handle, double delta)</argsstring>
+        <name>Discretizer_set_delta</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="31" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="31" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1aa57396af9ca18a2c3396ed71f6b38e3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle Discretizer_domain</definition>
+        <argsstring>(DiscretizerHandle handle)</argsstring>
+        <name>Discretizer_domain</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="33" column="14" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="33" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1ad7d383e3715be8f7d8819e45e1e626d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Discretizer_is_cartesian</definition>
+        <argsstring>(DiscretizerHandle handle)</argsstring>
+        <name>Discretizer_is_cartesian</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the current Discretizer is Cartesian. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Discretizer__c__api_8h_1ab0c78aab457d98eaa44e7ae84afc3148" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Discretizer_is_polar</definition>
+        <argsstring>(DiscretizerHandle handle)</argsstring>
+        <name>Discretizer_is_polar</name>
+        <param>
+          <type>DiscretizerHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the current Discretizer is Polar. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" line="47" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h" declline="47" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/domains/Domain_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>DiscretizerHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">DiscretizerHandle<sp/>Discretizer_copy(DiscretizerHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Discretizer_destroy(DiscretizerHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Discretizer_equal(DiscretizerHandle<sp/>handle,<sp/>DiscretizerHandle<sp/>other);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Discretizer_not_equal(DiscretizerHandle<sp/>handle,<sp/>DiscretizerHandle<sp/>other);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">StringHandle<sp/>Discretizer_to_json_string(DiscretizerHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">DiscretizerHandle<sp/>Discretizer_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">DiscretizerHandle<sp/>Discretizer_create_cartesian_discretizer(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">DiscretizerHandle<sp/>Discretizer_create_polar_discretizer(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Discretizer_delta(DiscretizerHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Discretizer_set_delta(DiscretizerHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">DomainHandle<sp/>Discretizer_domain(DiscretizerHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Discretizer_is_cartesian<sp/>|</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::Discretizer::is_cartesian<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Discretizer_is_cartesian(DiscretizerHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Discretizer_is_polar<sp/>|</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::Discretizer::is_polar<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Discretizer_is_polar(DiscretizerHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/discrete_spaces/Discretizer_c_api.h"/>
+  </compounddef>
+</doxygen>

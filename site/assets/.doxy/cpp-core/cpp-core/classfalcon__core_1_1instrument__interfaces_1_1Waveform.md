@@ -1,0 +1,756 @@
+
+
+# Class falcon\_core::instrument\_interfaces::Waveform
+
+
+
+[**ClassList**](annotated.md) **>** [**falcon\_core**](namespacefalcon__core.md) **>** [**instrument\_interfaces**](namespacefalcon__core_1_1instrument__interfaces.md) **>** [**Waveform**](classfalcon__core_1_1instrument__interfaces_1_1Waveform.md)
+
+
+
+
+
+
+
+
+Inherits the following classes: [falcon\_core::instrument\_interfaces::port\_transforms::PortTransforms](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Types inherited from falcon_core::generic::List
+
+See [falcon\_core::generic::List](classfalcon__core_1_1generic_1_1List.md)
+
+| Type | Name |
+| ---: | :--- |
+| typedef typename Container::const\_iterator | [**const\_iterator**](classfalcon__core_1_1generic_1_1List.md#typedef-const_iterator)  <br> |
+| typedef typename Container::iterator | [**iterator**](classfalcon__core_1_1generic_1_1List.md#typedef-iterator)  <br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Functions
+
+| Type | Name |
+| ---: | :--- |
+|   | [**Waveform**](#function-waveform-13) (const Waveform & other) <br> |
+|   | [**Waveform**](#function-waveform-23) (const math::discrete\_spaces::DiscreteSpaceSP & space, const generic::ListSP&lt; [**port\_transforms::PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; & transforms=std::make\_shared&lt; [**generic::List**](classfalcon__core_1_1generic_1_1List.md)&lt; [**port\_transforms::PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; &gt;()) <br>_Construct a_ [_**Waveform**_](classfalcon__core_1_1instrument__interfaces_1_1Waveform.md) _._ |
+|  void | [**confirm\_knobs\_match**](#function-confirm_knobs_match) () const<br>_Confirm that all function knobs are in the discrete space._  |
+|  bool | [**operator!=**](#function-operator) (const Waveform & other) const<br> |
+|  Waveform & | [**operator=**](#function-operator_1) (const Waveform & other) <br> |
+|  bool | [**operator==**](#function-operator_2) (const Waveform & other) const<br> |
+|  const math::discrete\_spaces::DiscreteSpaceSP & | [**space**](#function-space) () const<br>_Get the measurement space._  |
+
+
+## Public Functions inherited from falcon_core::instrument_interfaces::port_transforms::PortTransforms
+
+See [falcon\_core::instrument\_interfaces::port\_transforms::PortTransforms](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms.md)
+
+| Type | Name |
+| ---: | :--- |
+|   | [**PortTransforms**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms.md#function-porttransforms-14) (const PortTransforms & other) <br> |
+|   | [**PortTransforms**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms.md#function-porttransforms-24) () <br> |
+|   | [**PortTransforms**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms.md#function-porttransforms-34) (const generic::ListSP&lt; [**PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; & init) <br>_Constructor for a collection of port transforms._  |
+|   | [**PortTransforms**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms.md#function-porttransforms-44) (const std::vector&lt; PortTransformSP &gt; & init) <br>_Constructor for a collection of port transforms._  |
+|  const generic::ListSP&lt; [**PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; | [**transforms**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms.md#function-transforms) () const<br> |
+
+
+## Public Functions inherited from falcon_core::generic::List
+
+See [falcon\_core::generic::List](classfalcon__core_1_1generic_1_1List.md)
+
+| Type | Name |
+| ---: | :--- |
+|   | [**List**](classfalcon__core_1_1generic_1_1List.md#function-list-16) (const List&lt; Value &gt; & other) <br> |
+|   | [**List**](classfalcon__core_1_1generic_1_1List.md#function-list-26) (iterator begin, iterator end) <br> |
+|   | [**List**](classfalcon__core_1_1generic_1_1List.md#function-list-36) () <br>[_**List**_](classfalcon__core_1_1generic_1_1List.md) _can be constructed in 5 different ways:_ |
+|   | [**List**](classfalcon__core_1_1generic_1_1List.md#function-list-46) (size\_t count) <br> |
+|   | [**List**](classfalcon__core_1_1generic_1_1List.md#function-list-56) (size\_t count, const StoredValue & value) <br> |
+|   | [**List**](classfalcon__core_1_1generic_1_1List.md#function-list-66) (const Container & init) <br> |
+|  std::conditional\_t&lt; std::is\_same&lt; typename [**category::determine\_bool\_tag**](structfalcon__core_1_1generic_1_1category_1_1determine__bool__tag.md)&lt; Value &gt;::type, [**category::bool\_tag**](structfalcon__core_1_1generic_1_1category_1_1bool__tag.md) &gt;::value, StoredValue, const StoredValue & &gt; | [**at**](classfalcon__core_1_1generic_1_1List.md#function-at-12) (const size\_t idx) const<br> |
+|  std::conditional\_t&lt; std::is\_same&lt; typename [**category::determine\_bool\_tag**](structfalcon__core_1_1generic_1_1category_1_1determine__bool__tag.md)&lt; Value &gt;::type, [**category::bool\_tag**](structfalcon__core_1_1generic_1_1category_1_1bool__tag.md) &gt;::value, StoredValue, StoredValue & &gt; | [**at**](classfalcon__core_1_1generic_1_1List.md#function-at-22) (const size\_t idx) <br> |
+|  StoredValue | [**back**](classfalcon__core_1_1generic_1_1List.md#function-back-12) () <br>_Return the last element of a list._  |
+|  const StoredValue & | [**back**](classfalcon__core_1_1generic_1_1List.md#function-back-22) () const<br>_Return the last element of a list._  |
+|  iterator | [**begin**](classfalcon__core_1_1generic_1_1List.md#function-begin-12) () <br> |
+|  const\_iterator | [**begin**](classfalcon__core_1_1generic_1_1List.md#function-begin-22) () const<br> |
+|  void | [**clear**](classfalcon__core_1_1generic_1_1List.md#function-clear) () <br>_clears to contents of the list._  |
+|  bool | [**contains**](classfalcon__core_1_1generic_1_1List.md#function-contains) (const StoredValue & value) const<br> |
+|  bool | [**empty**](classfalcon__core_1_1generic_1_1List.md#function-empty) () const<br> |
+|  iterator | [**end**](classfalcon__core_1_1generic_1_1List.md#function-end-12) () <br> |
+|  const\_iterator | [**end**](classfalcon__core_1_1generic_1_1List.md#function-end-22) () const<br> |
+|  void | [**erase\_at**](classfalcon__core_1_1generic_1_1List.md#function-erase_at) (size\_t idx) <br>_Allows for targetted eraseall of elements at an index._  |
+|  size\_t | [**index**](classfalcon__core_1_1generic_1_1List.md#function-index) (const StoredValue & value) const<br> |
+|  void | [**insert**](classfalcon__core_1_1generic_1_1List.md#function-insert) (iterator pos, const\_iterator first, const\_iterator last) <br> |
+|  std::shared\_ptr&lt; List&lt; Value &gt; &gt; | [**intersection**](classfalcon__core_1_1generic_1_1List.md#function-intersection) (const std::shared\_ptr&lt; List&lt; Value &gt; &gt; & other) const<br>_Finds the intersection between this list and another._  |
+|  const Container | [**items**](classfalcon__core_1_1generic_1_1List.md#function-items-12) () const<br> |
+|  Container | [**items**](classfalcon__core_1_1generic_1_1List.md#function-items-22) () <br> |
+|  bool | [**operator!=**](classfalcon__core_1_1generic_1_1List.md#function-operator) (const List&lt; Value &gt; & other) const<br> |
+|  List | [**operator=**](classfalcon__core_1_1generic_1_1List.md#function-operator_1) (const List&lt; Value &gt; & other) <br> |
+|  bool | [**operator==**](classfalcon__core_1_1generic_1_1List.md#function-operator_2) (const List&lt; Value &gt; & other) const<br> |
+|  StoredValue | [**operator[]**](classfalcon__core_1_1generic_1_1List.md#function-operator_3) (const size\_t idx) <br> |
+|  const StoredValue & | [**operator[]**](classfalcon__core_1_1generic_1_1List.md#function-operator_4) (const size\_t idx) const<br> |
+|  void | [**push\_back**](classfalcon__core_1_1generic_1_1List.md#function-push_back) (const StoredValue & item) <br> |
+|  void | [**replace\_at**](classfalcon__core_1_1generic_1_1List.md#function-replace_at) (size\_t idx, const StoredValue & value) <br> |
+|  void | [**serialize**](classfalcon__core_1_1generic_1_1List.md#function-serialize) (Archive & ar) <br> |
+|  size\_t | [**size**](classfalcon__core_1_1generic_1_1List.md#function-size) () const<br> |
+
+
+## Public Functions inherited from falcon_core::generic::Song
+
+See [falcon\_core::generic::Song](classfalcon__core_1_1generic_1_1Song.md)
+
+| Type | Name |
+| ---: | :--- |
+|  void | [**serialize**](classfalcon__core_1_1generic_1_1Song.md#function-serialize) (Archive &) <br>_cereal serialization interface. Override in derived classes._  |
+|  std::string | [**to\_json\_string**](classfalcon__core_1_1generic_1_1Song.md#function-to_json_string) () const<br>_Serialize this object to a JSON string._  |
+| virtual  | [**~Song**](classfalcon__core_1_1generic_1_1Song.md#function-song) () = default<br> |
+
+
+## Public Static Functions
+
+| Type | Name |
+| ---: | :--- |
+|  const std::shared\_ptr&lt; Waveform &gt; | [**CartesianIdentityWaveform**](#function-cartesianidentitywaveform) (const math::AxesSP&lt; int &gt; & divisions, const math::AxesSP&lt; [**math::domains::CoupledLabelledDomain**](classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain.md) &gt; & axes, const math::AxesSP&lt; [**generic::Map**](classfalcon__core_1_1generic_1_1Map.md)&lt; std::string, bool &gt; &gt; & increasing, const math::domains::DomainSP & domain=std::make\_shared&lt; [**math::domains::Domain**](classfalcon__core_1_1math_1_1domains_1_1Domain.md) &gt;(0, 1)) <br>_Create a ND CartesianWaveform with identity transforms._  |
+|  const std::shared\_ptr&lt; Waveform &gt; | [**CartesianIdentityWaveform1D**](#function-cartesianidentitywaveform1d) (const int & division, const falcon\_core::math::domains::CoupledLabelledDomainSP & shared\_domain, const generic::MapSP&lt; std::string, bool &gt; & increasing, const falcon\_core::math::domains::DomainSP & domain=std::make\_shared&lt; [**falcon\_core::math::domains::Domain**](classfalcon__core_1_1math_1_1domains_1_1Domain.md) &gt;(0, 1)) <br>_Create a 1D CartesianWaveform with identity transforms._  |
+|  const std::shared\_ptr&lt; Waveform &gt; | [**CartesianIdentityWaveform2D**](#function-cartesianidentitywaveform2d) (const math::AxesSP&lt; int &gt; & divisions, const math::AxesSP&lt; [**math::domains::CoupledLabelledDomain**](classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain.md) &gt; & axes, const math::AxesSP&lt; [**generic::Map**](classfalcon__core_1_1generic_1_1Map.md)&lt; std::string, bool &gt; &gt; & increasing, const math::domains::DomainSP & domain=std::make\_shared&lt; [**math::domains::Domain**](classfalcon__core_1_1math_1_1domains_1_1Domain.md) &gt;(0, 1)) <br>_Create a 2D CartesianWaveform with identity transforms._  |
+|  const std::shared\_ptr&lt; Waveform &gt; | [**CartesianWaveform**](#function-cartesianwaveform) (const math::AxesSP&lt; int &gt; & divisions, const math::AxesSP&lt; [**math::domains::CoupledLabelledDomain**](classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain.md) &gt; & axes, const math::AxesSP&lt; [**generic::Map**](classfalcon__core_1_1generic_1_1Map.md)&lt; std::string, bool &gt; &gt; & increasing, const generic::ListSP&lt; [**port\_transforms::PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; & transforms=std::make\_shared&lt; [**generic::List**](classfalcon__core_1_1generic_1_1List.md)&lt; [**port\_transforms::PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; &gt;(), const math::domains::DomainSP & domain=std::make\_shared&lt; [**math::domains::Domain**](classfalcon__core_1_1math_1_1domains_1_1Domain.md) &gt;(0, 1)) <br>_Create a ND CartesianWaveform from raw deltas._  |
+|  const std::shared\_ptr&lt; Waveform &gt; | [**CartesianWaveform1D**](#function-cartesianwaveform1d) (const int & division, const falcon\_core::math::domains::CoupledLabelledDomainSP & shared\_domain, const generic::MapSP&lt; std::string, bool &gt; & increasing, const generic::ListSP&lt; [**port\_transforms::PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; & transforms=std::make\_shared&lt; [**generic::List**](classfalcon__core_1_1generic_1_1List.md)&lt; [**port\_transforms::PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; &gt;(), const falcon\_core::math::domains::DomainSP & domain=std::make\_shared&lt; [**falcon\_core::math::domains::Domain**](classfalcon__core_1_1math_1_1domains_1_1Domain.md) &gt;(0, 1)) <br>_Create a 1D CartesianWaveform from raw deltas._  |
+|  const std::shared\_ptr&lt; Waveform &gt; | [**CartesianWaveform2D**](#function-cartesianwaveform2d) (const math::AxesSP&lt; int &gt; & divisions, const math::AxesSP&lt; [**math::domains::CoupledLabelledDomain**](classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain.md) &gt; & axes, const math::AxesSP&lt; [**generic::Map**](classfalcon__core_1_1generic_1_1Map.md)&lt; std::string, bool &gt; &gt; & increasing, const generic::ListSP&lt; [**port\_transforms::PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; & transforms=std::make\_shared&lt; [**generic::List**](classfalcon__core_1_1generic_1_1List.md)&lt; [**port\_transforms::PortTransform**](classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform.md) &gt; &gt;(), const math::domains::DomainSP & domain=std::make\_shared&lt; [**math::domains::Domain**](classfalcon__core_1_1math_1_1domains_1_1Domain.md) &gt;(0, 1)) <br>_Create a 2D CartesianWaveform from raw deltas._  |
+
+
+
+
+## Public Static Functions inherited from falcon_core::generic::List
+
+See [falcon\_core::generic::List](classfalcon__core_1_1generic_1_1List.md)
+
+| Type | Name |
+| ---: | :--- |
+|  std::shared\_ptr&lt; List&lt; Value &gt; &gt; | [**allocate**](classfalcon__core_1_1generic_1_1List.md#function-allocate) (size\_t count) <br> |
+|  std::shared\_ptr&lt; List&lt; Value &gt; &gt; | [**create**](classfalcon__core_1_1generic_1_1List.md#function-create) (const Container & init) <br> |
+|  std::shared\_ptr&lt; List&lt; Value &gt; &gt; | [**create\_empty**](classfalcon__core_1_1generic_1_1List.md#function-create_empty) () <br> |
+|  std::shared\_ptr&lt; List&lt; Value &gt; &gt; | [**fill\_value**](classfalcon__core_1_1generic_1_1List.md#function-fill_value) (size\_t count, const StoredValue & value) <br> |
+
+
+## Public Static Functions inherited from falcon_core::generic::Song
+
+See [falcon\_core::generic::Song](classfalcon__core_1_1generic_1_1Song.md)
+
+| Type | Name |
+| ---: | :--- |
+|  std::shared\_ptr&lt; T &gt; | [**from\_json\_string**](classfalcon__core_1_1generic_1_1Song.md#function-from_json_string) (const std::string & json) <br>_Deserialize an object from a JSON string._  |
+
+
+
+
+
+
+## Protected Types inherited from falcon_core::generic::List
+
+See [falcon\_core::generic::List](classfalcon__core_1_1generic_1_1List.md)
+
+| Type | Name |
+| ---: | :--- |
+| typedef std::vector&lt; StoredValue &gt; | [**Container**](classfalcon__core_1_1generic_1_1List.md#typedef-container)  <br> |
+| typedef typename std::conditional&lt; std::is\_base\_of&lt; [**Song**](classfalcon__core_1_1generic_1_1Song.md), Value &gt;::value, std::shared\_ptr&lt; Value &gt;, Value &gt;::type | [**StoredValue**](classfalcon__core_1_1generic_1_1List.md#typedef-storedvalue)  <br> |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Protected Functions
+
+| Type | Name |
+| ---: | :--- |
+|   | [**Waveform**](#function-waveform-33) () <br> |
+|  void | [**serialize**](#function-serialize) (Archive & ar) <br> |
+
+
+
+
+## Protected Functions inherited from falcon_core::generic::List
+
+See [falcon\_core::generic::List](classfalcon__core_1_1generic_1_1List.md)
+
+| Type | Name |
+| ---: | :--- |
+|  StoredValue & | [**at\_impl**](classfalcon__core_1_1generic_1_1List.md#function-at_impl-14) (size\_t idx, [**category::other\_tag**](structfalcon__core_1_1generic_1_1category_1_1other__tag.md)) <br> |
+|  const StoredValue & | [**at\_impl**](classfalcon__core_1_1generic_1_1List.md#function-at_impl-24) (size\_t idx, [**category::other\_tag**](structfalcon__core_1_1generic_1_1category_1_1other__tag.md)) const<br> |
+|  StoredValue | [**at\_impl**](classfalcon__core_1_1generic_1_1List.md#function-at_impl-34) (size\_t idx, [**category::bool\_tag**](structfalcon__core_1_1generic_1_1category_1_1bool__tag.md)) <br> |
+|  const StoredValue | [**at\_impl**](classfalcon__core_1_1generic_1_1List.md#function-at_impl-44) (size\_t idx, [**category::bool\_tag**](structfalcon__core_1_1generic_1_1category_1_1bool__tag.md)) const<br> |
+|  bool | [**contains\_impl**](classfalcon__core_1_1generic_1_1List.md#function-contains_impl-13) (const std::shared\_ptr&lt; T &gt; & value, [**category::song\_tag**](structfalcon__core_1_1generic_1_1category_1_1song__tag.md)) const<br> |
+|  bool | [**contains\_impl**](classfalcon__core_1_1generic_1_1List.md#function-contains_impl-23) (const T & value, [**category::primitive\_tag**](structfalcon__core_1_1generic_1_1category_1_1primitive__tag.md)) const<br> |
+|  bool | [**contains\_impl**](classfalcon__core_1_1generic_1_1List.md#function-contains_impl-33) (const T & value, [**category::other\_tag**](structfalcon__core_1_1generic_1_1category_1_1other__tag.md)) const<br> |
+|  void | [**copy\_items\_impl**](classfalcon__core_1_1generic_1_1List.md#function-copy_items_impl-13) (const Container & src, [**category::song\_tag**](structfalcon__core_1_1generic_1_1category_1_1song__tag.md)) <br> |
+|  void | [**copy\_items\_impl**](classfalcon__core_1_1generic_1_1List.md#function-copy_items_impl-23) (const Container & src, [**category::primitive\_tag**](structfalcon__core_1_1generic_1_1category_1_1primitive__tag.md)) <br> |
+|  void | [**copy\_items\_impl**](classfalcon__core_1_1generic_1_1List.md#function-copy_items_impl-33) (const Container &, [**category::other\_tag**](structfalcon__core_1_1generic_1_1category_1_1other__tag.md)) <br> |
+|  void | [**create\_duplicates\_impl**](classfalcon__core_1_1generic_1_1List.md#function-create_duplicates_impl-13) (size\_t count, const std::shared\_ptr&lt; T &gt; & item, [**category::song\_tag**](structfalcon__core_1_1generic_1_1category_1_1song__tag.md)) <br> |
+|  void | [**create\_duplicates\_impl**](classfalcon__core_1_1generic_1_1List.md#function-create_duplicates_impl-23) (size\_t count, const T & item, [**category::primitive\_tag**](structfalcon__core_1_1generic_1_1category_1_1primitive__tag.md)) <br> |
+|  void | [**create\_duplicates\_impl**](classfalcon__core_1_1generic_1_1List.md#function-create_duplicates_impl-33) (size\_t count, const T & item, [**category::other\_tag**](structfalcon__core_1_1generic_1_1category_1_1other__tag.md)) <br> |
+|  size\_t | [**index\_impl**](classfalcon__core_1_1generic_1_1List.md#function-index_impl-13) (const std::shared\_ptr&lt; T &gt; & value, [**category::song\_tag**](structfalcon__core_1_1generic_1_1category_1_1song__tag.md)) const<br> |
+|  size\_t | [**index\_impl**](classfalcon__core_1_1generic_1_1List.md#function-index_impl-23) (const T & value, [**category::primitive\_tag**](structfalcon__core_1_1generic_1_1category_1_1primitive__tag.md)) const<br> |
+|  size\_t | [**index\_impl**](classfalcon__core_1_1generic_1_1List.md#function-index_impl-33) (const T & value, [**category::other\_tag**](structfalcon__core_1_1generic_1_1category_1_1other__tag.md)) const<br> |
+|  bool | [**operator\_equal\_impl**](classfalcon__core_1_1generic_1_1List.md#function-operator_equal_impl-13) (const List&lt; Value &gt; & other, [**category::song\_tag**](structfalcon__core_1_1generic_1_1category_1_1song__tag.md)) const<br> |
+|  bool | [**operator\_equal\_impl**](classfalcon__core_1_1generic_1_1List.md#function-operator_equal_impl-23) (const List&lt; Value &gt; & other, [**category::primitive\_tag**](structfalcon__core_1_1generic_1_1category_1_1primitive__tag.md)) const<br> |
+|  bool | [**operator\_equal\_impl**](classfalcon__core_1_1generic_1_1List.md#function-operator_equal_impl-33) (const List&lt; Value &gt; & other, [**category::other\_tag**](structfalcon__core_1_1generic_1_1category_1_1other__tag.md)) const<br> |
+|  void | [**push\_back\_impl**](classfalcon__core_1_1generic_1_1List.md#function-push_back_impl-13) (const std::shared\_ptr&lt; T &gt; & item, [**category::song\_tag**](structfalcon__core_1_1generic_1_1category_1_1song__tag.md)) <br> |
+|  void | [**push\_back\_impl**](classfalcon__core_1_1generic_1_1List.md#function-push_back_impl-23) (const T & item, [**category::primitive\_tag**](structfalcon__core_1_1generic_1_1category_1_1primitive__tag.md)) <br> |
+|  void | [**push\_back\_impl**](classfalcon__core_1_1generic_1_1List.md#function-push_back_impl-33) (const T & item, [**category::other\_tag**](structfalcon__core_1_1generic_1_1category_1_1other__tag.md)) <br> |
+
+
+
+
+
+
+
+
+
+
+
+
+## Public Functions Documentation
+
+
+
+
+### function Waveform [1/3]
+
+```C++
+falcon_core::instrument_interfaces::Waveform::Waveform (
+    const Waveform & other
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function Waveform [2/3]
+
+_Construct a_ [_**Waveform**_](classfalcon__core_1_1instrument__interfaces_1_1Waveform.md) _._
+```C++
+falcon_core::instrument_interfaces::Waveform::Waveform (
+    const math::discrete_spaces::DiscreteSpaceSP & space,
+    const generic::ListSP< port_transforms::PortTransform > & transforms=std::make_shared< generic::List < port_transforms::PortTransform > >()
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `space` The measurement space. 
+* `transforms` The port transforms. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function confirm\_knobs\_match 
+
+_Confirm that all function knobs are in the discrete space._ 
+```C++
+void falcon_core::instrument_interfaces::Waveform::confirm_knobs_match () const
+```
+
+
+
+
+
+**Exception:**
+
+
+* `std::runtime_error` if any function knob is not in the discrete space. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function operator!= 
+
+```C++
+bool falcon_core::instrument_interfaces::Waveform::operator!= (
+    const Waveform & other
+) const
+```
+
+
+
+
+<hr>
+
+
+
+### function operator= 
+
+```C++
+Waveform & falcon_core::instrument_interfaces::Waveform::operator= (
+    const Waveform & other
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function operator== 
+
+```C++
+bool falcon_core::instrument_interfaces::Waveform::operator== (
+    const Waveform & other
+) const
+```
+
+
+
+
+<hr>
+
+
+
+### function space 
+
+_Get the measurement space._ 
+```C++
+const math::discrete_spaces::DiscreteSpaceSP & falcon_core::instrument_interfaces::Waveform::space () const
+```
+
+
+
+
+<hr>
+## Public Static Functions Documentation
+
+
+
+
+### function CartesianIdentityWaveform 
+
+_Create a ND CartesianWaveform with identity transforms._ 
+```C++
+static const std::shared_ptr< Waveform > falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform (
+    const math::AxesSP< int > & divisions,
+    const math::AxesSP< math::domains::CoupledLabelledDomain > & axes,
+    const math::AxesSP< generic::Map < std::string, bool > > & increasing,
+    const math::domains::DomainSP & domain=std::make_shared< math::domains::Domain >(0, 1)
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `divisions` The number of divisions along each axis. 
+* `axes` The axes defining the cartesian space. 
+* `domain` The base domain of the cartesian space. 
+* `increasing` if the array should increase following the domain or not. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function CartesianIdentityWaveform1D 
+
+_Create a 1D CartesianWaveform with identity transforms._ 
+```C++
+static const std::shared_ptr< Waveform > falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform1D (
+    const int & division,
+    const falcon_core::math::domains::CoupledLabelledDomainSP & shared_domain,
+    const generic::MapSP< std::string, bool > & increasing,
+    const falcon_core::math::domains::DomainSP & domain=std::make_shared< falcon_core::math::domains::Domain >(0, 1)
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `divisions` The number of divisions along each axis. 
+* `axes` The axes defining the cartesian space. 
+* `domain` The base domain of the cartesian space. 
+* `increasing` if the array should increase following the domain or not. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function CartesianIdentityWaveform2D 
+
+_Create a 2D CartesianWaveform with identity transforms._ 
+```C++
+static const std::shared_ptr< Waveform > falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform2D (
+    const math::AxesSP< int > & divisions,
+    const math::AxesSP< math::domains::CoupledLabelledDomain > & axes,
+    const math::AxesSP< generic::Map < std::string, bool > > & increasing,
+    const math::domains::DomainSP & domain=std::make_shared< math::domains::Domain >(0, 1)
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `divisions` The number of divisions along each axis. 
+* `axes` The axes defining the cartesian space. 
+* `domain` The base domain of the cartesian space. 
+* `increasing` if the array should increase following the domain or not. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function CartesianWaveform 
+
+_Create a ND CartesianWaveform from raw deltas._ 
+```C++
+static const std::shared_ptr< Waveform > falcon_core::instrument_interfaces::Waveform::CartesianWaveform (
+    const math::AxesSP< int > & divisions,
+    const math::AxesSP< math::domains::CoupledLabelledDomain > & axes,
+    const math::AxesSP< generic::Map < std::string, bool > > & increasing,
+    const generic::ListSP< port_transforms::PortTransform > & transforms=std::make_shared< generic::List < port_transforms::PortTransform > >(),
+    const math::domains::DomainSP & domain=std::make_shared< math::domains::Domain >(0, 1)
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `divisions` The number of divisions along each axis. 
+* `axes` The axes defining the cartesian space. 
+* `domain` The base domain of the cartesian space. 
+* `transforms` the transforms to apply to the waveform. 
+* `increasing` if the array should increase following the domain or not. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function CartesianWaveform1D 
+
+_Create a 1D CartesianWaveform from raw deltas._ 
+```C++
+static const std::shared_ptr< Waveform > falcon_core::instrument_interfaces::Waveform::CartesianWaveform1D (
+    const int & division,
+    const falcon_core::math::domains::CoupledLabelledDomainSP & shared_domain,
+    const generic::MapSP< std::string, bool > & increasing,
+    const generic::ListSP< port_transforms::PortTransform > & transforms=std::make_shared< generic::List < port_transforms::PortTransform > >(),
+    const falcon_core::math::domains::DomainSP & domain=std::make_shared< falcon_core::math::domains::Domain >(0, 1)
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `divisions` The number of divisions along each axis. 
+* `axes` The axes defining the cartesian space. 
+* `domain` The base domain of the cartesian space. 
+* `transforms` the transforms to apply to the waveform. 
+* `increasing` if the array should increase following the domain or not. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function CartesianWaveform2D 
+
+_Create a 2D CartesianWaveform from raw deltas._ 
+```C++
+static const std::shared_ptr< Waveform > falcon_core::instrument_interfaces::Waveform::CartesianWaveform2D (
+    const math::AxesSP< int > & divisions,
+    const math::AxesSP< math::domains::CoupledLabelledDomain > & axes,
+    const math::AxesSP< generic::Map < std::string, bool > > & increasing,
+    const generic::ListSP< port_transforms::PortTransform > & transforms=std::make_shared< generic::List < port_transforms::PortTransform > >(),
+    const math::domains::DomainSP & domain=std::make_shared< math::domains::Domain >(0, 1)
+) 
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `divisions` The number of divisions along each axis. 
+* `axes` The axes defining the cartesian space. 
+* `domain` The base domain of the cartesian space. 
+* `transforms` the transforms to apply to the waveform. 
+* `increasing` if the array should increase following the domain or not. 
+
+
+
+
+        
+
+<hr>
+## Protected Functions Documentation
+
+
+
+
+### function Waveform [3/3]
+
+```C++
+falcon_core::instrument_interfaces::Waveform::Waveform () 
+```
+
+
+
+
+<hr>
+
+
+
+### function serialize 
+
+```C++
+template<class Archive>
+inline void falcon_core::instrument_interfaces::Waveform::serialize (
+    Archive & ar
+) 
+```
+
+
+
+
+<hr>## Friends Documentation
+
+
+
+
+
+### friend access 
+
+```C++
+class falcon_core::instrument_interfaces::Waveform::access (
+    cereal::access
+) 
+```
+
+
+
+
+<hr>
+
+------------------------------
+The documentation for this class was generated from the following file `cpp/include/falcon_core/instrument_interfaces/Waveform.hpp`
+

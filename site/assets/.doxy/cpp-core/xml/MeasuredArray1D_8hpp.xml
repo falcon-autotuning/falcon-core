@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="MeasuredArray1D_8hpp" kind="file" language="C++">
+    <compoundname>MeasuredArray1D.hpp</compoundname>
+    <includes refid="Is1D_8hpp" local="yes">falcon_core/math/arrays/Is1D.hpp</includes>
+    <includes refid="MeasuredArray_8hpp" local="yes">falcon_core/math/arrays/MeasuredArray.hpp</includes>
+    <includedby refid="LabelledMeasuredArray1D_8hpp" local="yes">cpp/include/falcon_core/math/arrays/LabelledMeasuredArray1D.hpp</includedby>
+    <incdepgraph>
+      <node id="6">
+        <label>cereal/types/xtensor.hpp</label>
+        <link refid="xtensor_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>falcon_core/generic/CategoryTags.hpp</label>
+        <link refid="CategoryTags_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/FArray.hpp</label>
+        <link refid="FArray_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/FArrayProtocol.hpp</label>
+        <link refid="FArrayProtocol_8hpp_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>falcon_core/generic/IsPrimitive.hpp</label>
+        <link refid="IsPrimitive_8hpp_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/generic/List.hpp</label>
+        <link refid="List_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>falcon_core/generic/Song.hpp</label>
+        <link refid="Song_8hpp_source"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/math/arrays/Is1D.hpp</label>
+        <link refid="Is1D_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>falcon_core/math/arrays/MeasuredArray.hpp</label>
+        <link refid="MeasuredArray_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/math/arrays/MeasuredArray1D.hpp</label>
+        <link refid="MeasuredArray1D_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>algorithm</label>
+      </node>
+      <node id="31">
+        <label>cereal/archives/binary.hpp</label>
+      </node>
+      <node id="24">
+        <label>cereal/archives/json.hpp</label>
+      </node>
+      <node id="7">
+        <label>cereal/cereal.hpp</label>
+      </node>
+      <node id="25">
+        <label>cereal/types/map.hpp</label>
+      </node>
+      <node id="4">
+        <label>cereal/types/memory.hpp</label>
+      </node>
+      <node id="26">
+        <label>cereal/types/polymorphic.hpp</label>
+      </node>
+      <node id="27">
+        <label>cereal/types/string.hpp</label>
+      </node>
+      <node id="28">
+        <label>cereal/types/unordered_map.hpp</label>
+      </node>
+      <node id="29">
+        <label>cereal/types/utility.hpp</label>
+      </node>
+      <node id="5">
+        <label>cereal/types/vector.hpp</label>
+      </node>
+      <node id="15">
+        <label>memory</label>
+      </node>
+      <node id="16">
+        <label>mutex</label>
+      </node>
+      <node id="17">
+        <label>shared_mutex</label>
+      </node>
+      <node id="30">
+        <label>sstream</label>
+      </node>
+      <node id="18">
+        <label>stdexcept</label>
+      </node>
+      <node id="22">
+        <label>string</label>
+      </node>
+      <node id="19">
+        <label>type_traits</label>
+      </node>
+      <node id="8">
+        <label>xtensor/xarray.hpp</label>
+      </node>
+      <node id="9">
+        <label>xtensor/xio.hpp</label>
+      </node>
+      <node id="12">
+        <label>xtensor/xshape.hpp</label>
+      </node>
+      <node id="10">
+        <label>xtensor/xview.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>cpp/include/falcon_core/math/arrays/LabelledMeasuredArray1D.hpp</label>
+        <link refid="LabelledMeasuredArray1D_8hpp"/>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/math/arrays/MeasuredArray1D.hpp</label>
+        <link refid="MeasuredArray1D_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D" prot="public">falcon_core::math::arrays::MeasuredArray1D</innerclass>
+    <innernamespace refid="namespacefalcon__core">falcon_core</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1math">falcon_core::math</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1math_1_1arrays">falcon_core::math::arrays</innernamespace>
+    <briefdescription>
+<para>Defines the MeasuredArray1D template for FalconCore. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/arrays/Is1D.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MeasuredArray_8hpp" kindref="compound">falcon_core/math/arrays/MeasuredArray.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacefalcon__core" kindref="compound">falcon_core</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">math<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">arrays<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">MeasuredArray1D<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>MeasuredArray,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D" kindref="compound">Is1D</ref>&lt;double&gt;<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">value_type<sp/>=<sp/>double;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/>MeasuredArray1D();</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>MeasuredArray1D(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>generic::FArraySP&lt;double&gt;&amp;<sp/>arr);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>MeasuredArray1D(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>MeasuredArraySP&amp;<sp/>arr);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>MeasuredArray1D(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>xt::xarray&lt;double&gt;&amp;<sp/>arr);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>MeasuredArray1D(xt::xarray&lt;double&gt;&amp;&amp;<sp/>arr)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>zeros(</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;size_t&gt;&amp;<sp/>shape)<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_shared&lt;MeasuredArray1D&gt;(xt::zeros&lt;double&gt;(shape));</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>empty(</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;size_t&gt;&amp;<sp/>shape)<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::make_shared&lt;MeasuredArray1D&gt;(xt::empty&lt;double&gt;(shape));</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Arithmetic<sp/>operators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator+(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator+(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator+(</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator+(</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator-(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator-(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator-(</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator-(</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&lt;double&gt;&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator-()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator*(</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator*(</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&lt;double&gt;&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator/(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator/(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator/(</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator/(</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&lt;double&gt;&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>operator^(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/>abs()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82" refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1a9ea7490ac44a3991133e6b0feaf0eebf" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1a9ea7490ac44a3991133e6b0feaf0eebf" kindref="member">min</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1a9ea7490ac44a3991133e6b0feaf0eebf" kindref="member">min</ref>(</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1a9ea7490ac44a3991133e6b0feaf0eebf" kindref="member">min</ref>(</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&lt;double&gt;&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92" refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1aa2c4432f008149d2613461f0c2e49b54" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1aa2c4432f008149d2613461f0c2e49b54" kindref="member">max</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1aa2c4432f008149d2613461f0c2e49b54" kindref="member">max</ref>(</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1aa2c4432f008149d2613461f0c2e49b54" kindref="member">max</ref>(</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&lt;double&gt;&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1a680d9d69cf178ead95350b467085addb" refkind="member"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1a680d9d69cf178ead95350b467085addb" kindref="member">reshape</ref>(</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;size_t&gt;&amp;<sp/>shape)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112" refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1aa99dd3b86fee1727a0a25a1cd15afebe" refkind="member"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;MeasuredArray1D&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1aa99dd3b86fee1727a0a25a1cd15afebe" kindref="member">flip</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124" refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1ad790020cb08b2c6d744abe8d37352563" refkind="member"><highlight class="normal"><sp/><sp/>generic::FArraySP&lt;double&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1ad790020cb08b2c6d744abe8d37352563" kindref="member">gradient</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="135" refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1ab450cbe508403148c265acd713a922ce" refkind="member"><highlight class="normal"><sp/><sp/>generic::ListSP&lt;generic::FArray&lt;double&gt;&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D_1ab450cbe508403148c265acd713a922ce" kindref="member">gradient</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">cereal::access;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Archive&gt;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>serialize(Archive&amp;<sp/>ar)<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>ar(cereal::base_class&lt;MeasuredArray&gt;(</highlight><highlight class="keyword">this</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">MeasuredArray1DSP<sp/>=<sp/>std::shared_ptr&lt;MeasuredArray1D&gt;;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>arrays</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>math</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>falcon_core</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="cpp/include/falcon_core/math/arrays/MeasuredArray1D.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,11 +1,12 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/names/NameBase.hpp"
+#include "falcon_core/export.h"
 
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace names {
-class Gname : public NameBase {
+class FALCON_CORE_CPP_API Gname : public NameBase {
   std::string _index_string = "group";
 
  public:

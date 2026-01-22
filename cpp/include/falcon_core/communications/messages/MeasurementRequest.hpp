@@ -1,6 +1,7 @@
 #pragma once
 
 #include "falcon_core/communications/messages/BaseMessage.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/instrument_interfaces/Waveform.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
 
@@ -10,7 +11,7 @@ namespace messages {
 
 // Use the base waveform type for BaseDiscreteSpace
 
-class MeasurementRequest : public BaseMessage {
+class FALCON_CORE_CPP_API MeasurementRequest : public BaseMessage {
   std::string                                      _measurement_name;
   generic::ListSP<instrument_interfaces::Waveform> _waveforms;
   instrument_interfaces::names::PortsSP            _getters;

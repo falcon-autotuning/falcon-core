@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
 namespace falcon_core {
@@ -16,7 +17,7 @@ namespace math {
  * @details
  * Supports arithmetic operations and unit conversion.
  */
-class Quantity : public generic::Song {
+class FALCON_CORE_CPP_API Quantity : public generic::Song {
   double                          _value;
   physics::units::SymbolUnitSP    _unit;
   mutable std::shared_timed_mutex _mu_value;

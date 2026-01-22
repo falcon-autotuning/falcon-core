@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/FArray.hpp"
 namespace falcon_core {
 namespace math {
@@ -13,7 +14,7 @@ namespace arrays {
 /**
  * @brief Array type for measured data, derived from BaseArray.
  */
-class MeasuredArray : public generic::FArray<double> {
+class FALCON_CORE_CPP_API MeasuredArray : public generic::FArray<double> {
  protected:
   friend class cereal::access;
   MeasuredArray();

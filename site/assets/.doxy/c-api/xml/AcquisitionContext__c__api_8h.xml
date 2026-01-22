@@ -1,0 +1,643 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="AcquisitionContext__c__api_8h" kind="file" language="C++">
+    <compoundname>AcquisitionContext_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="InstrumentPort__c__api_8h" local="yes">falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</includes>
+    <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
+    <includes refid="SymbolUnit__c__api_8h" local="yes">falcon_core/physics/units/SymbolUnit_c_api.h</includes>
+    <includedby refid="ListAcquisitionContext__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h</includedby>
+    <includedby refid="LabelledControlArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.h</includedby>
+    <includedby refid="LabelledControlArray__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.h</includedby>
+    <includedby refid="LabelledMeasuredArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h</includedby>
+    <includedby refid="LabelledMeasuredArray__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</label>
+        <link refid="AcquisitionContext__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</label>
+        <link refid="AcquisitionContext__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="19">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementResponse_c_api.h</label>
+        <link refid="MeasurementResponse__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h</label>
+        <link refid="ListAcquisitionContext__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/generic/ListLabelledControlArray1D_c_api.h</label>
+        <link refid="ListLabelledControlArray1D__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>c-api/include/falcon_core/generic/ListLabelledControlArray_c_api.h</label>
+        <link refid="ListLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>c-api/include/falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="ListLabelledMeasuredArray1D__c__api_8h_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>c-api/include/falcon_core/generic/ListLabelledMeasuredArray_c_api.h</label>
+        <link refid="ListLabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/math/AxesLabelledControlArray1D_c_api.h</label>
+        <link refid="AxesLabelledControlArray1D__c__api_8h_source"/>
+      </node>
+      <node id="15">
+        <label>c-api/include/falcon_core/math/AxesLabelledControlArray_c_api.h</label>
+        <link refid="AxesLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>c-api/include/falcon_core/math/AxesLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="AxesLabelledMeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="25">
+        <label>c-api/include/falcon_core/math/AxesLabelledMeasuredArray_c_api.h</label>
+        <link refid="AxesLabelledMeasuredArray__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h</label>
+        <link refid="LabelledArraysLabelledControlArray1D__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h</label>
+        <link refid="LabelledArraysLabelledControlArray__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/math/arrays/LabelledControlArray1D_c_api.h</label>
+        <link refid="LabelledControlArray1D__c__api_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/math/arrays/LabelledControlArray_c_api.h</label>
+        <link refid="LabelledControlArray__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledMeasuredArray1D__c__api_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>c-api/include/falcon_core/math/arrays/LabelledMeasuredArray_c_api.h</label>
+        <link refid="LabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="AcquisitionContext__c__api_8h_1a7ea411462e81c019647a84893c01bb3e" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* AcquisitionContextHandle</definition>
+        <argsstring></argsstring>
+        <name>AcquisitionContextHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1a433d84f5c818aad29bf98d91dc82174c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AcquisitionContextHandle</type>
+        <definition>AcquisitionContextHandle AcquisitionContext_copy</definition>
+        <argsstring>(AcquisitionContextHandle handle)</argsstring>
+        <name>AcquisitionContext_copy</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="14" column="26" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="14" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1afa863f3a0635fe09fa3ac942de5f17a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AcquisitionContext_destroy</definition>
+        <argsstring>(AcquisitionContextHandle handle)</argsstring>
+        <name>AcquisitionContext_destroy</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="17" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1a71fef2589cf308d2790430fa892af87c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AcquisitionContext_equal</definition>
+        <argsstring>(AcquisitionContextHandle handle, AcquisitionContextHandle other)</argsstring>
+        <name>AcquisitionContext_equal</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1adc1cba5575c83d6eedc5eafa0fa29d60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AcquisitionContext_not_equal</definition>
+        <argsstring>(AcquisitionContextHandle handle, AcquisitionContextHandle other)</argsstring>
+        <name>AcquisitionContext_not_equal</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="22" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="22" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1a4a62349945f0957e4e988b1fd3128955" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle AcquisitionContext_to_json_string</definition>
+        <argsstring>(AcquisitionContextHandle handle)</argsstring>
+        <name>AcquisitionContext_to_json_string</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="25" column="14" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="25" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1af4ffb825c97bd6dfdca6aa19f267f19f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AcquisitionContextHandle</type>
+        <definition>AcquisitionContextHandle AcquisitionContext_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>AcquisitionContext_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="27" column="26" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="27" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1af44a72c411e002ae2efca12d3dfa7492" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AcquisitionContextHandle</type>
+        <definition>AcquisitionContextHandle AcquisitionContext_create</definition>
+        <argsstring>(ConnectionHandle connection, StringHandle instrument_type, SymbolUnitHandle units)</argsstring>
+        <name>AcquisitionContext_create</name>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>connection</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>instrument_type</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>units</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="29" column="26" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="29" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1ac2a5a6cb8b39fdcefbbb2758342f1712" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AcquisitionContextHandle</type>
+        <definition>AcquisitionContextHandle AcquisitionContext_create_from_port</definition>
+        <argsstring>(InstrumentPortHandle port)</argsstring>
+        <name>AcquisitionContext_create_from_port</name>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="33" column="26" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="33" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1a593834b3619c7ec68ad43c6fb08637a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle AcquisitionContext_connection</definition>
+        <argsstring>(AcquisitionContextHandle handle)</argsstring>
+        <name>AcquisitionContext_connection</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="36" column="18" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="36" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1a35836169e3b859fd4f64b99d01f9eb47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle AcquisitionContext_instrument_type</definition>
+        <argsstring>(AcquisitionContextHandle handle)</argsstring>
+        <name>AcquisitionContext_instrument_type</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="38" column="14" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="38" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1a57409941e86712a73bff1531256c850e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SymbolUnitHandle</type>
+        <definition>SymbolUnitHandle AcquisitionContext_units</definition>
+        <argsstring>(AcquisitionContextHandle handle)</argsstring>
+        <name>AcquisitionContext_units</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the units of the context. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="46" column="18" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="46" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1a6ff71dd5f5e09b0fc0960764d93042fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AcquisitionContextHandle</type>
+        <definition>AcquisitionContextHandle AcquisitionContext_division_unit</definition>
+        <argsstring>(AcquisitionContextHandle handle, SymbolUnitHandle other)</argsstring>
+        <name>AcquisitionContext_division_unit</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="48" column="26" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="48" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1a656e4da3fa65b338283bf4af72844823" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AcquisitionContextHandle</type>
+        <definition>AcquisitionContextHandle AcquisitionContext_division</definition>
+        <argsstring>(AcquisitionContextHandle handle, AcquisitionContextHandle other)</argsstring>
+        <name>AcquisitionContext_division</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="51" column="26" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="51" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1abef26fed3cdab7633f9a77f1da71d46e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AcquisitionContext_match_connection</definition>
+        <argsstring>(AcquisitionContextHandle handle, ConnectionHandle other)</argsstring>
+        <name>AcquisitionContext_match_connection</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Divide the units. The context on the top keeps all other details. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new context with the divided units. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="62" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="62" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="AcquisitionContext__c__api_8h_1ae28171acd7a520fcf870351006df2fe1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AcquisitionContext_match_instrument_type</definition>
+        <argsstring>(AcquisitionContextHandle handle, StringHandle other)</argsstring>
+        <name>AcquisitionContext_match_instrument_type</name>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Returns if the instrument type matches this context. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" line="71" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h" declline="71" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/units/SymbolUnit_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>AcquisitionContextHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">AcquisitionContextHandle<sp/>AcquisitionContext_copy(</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>AcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AcquisitionContext_destroy(AcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AcquisitionContext_equal(AcquisitionContextHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AcquisitionContextHandle<sp/>other);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AcquisitionContext_not_equal(AcquisitionContextHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AcquisitionContextHandle<sp/>other);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">StringHandle<sp/>AcquisitionContext_to_json_string(AcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">AcquisitionContextHandle<sp/>AcquisitionContext_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">AcquisitionContextHandle<sp/>AcquisitionContext_create(ConnectionHandle<sp/>connection,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StringHandle<sp/>instrument_type,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SymbolUnitHandle<sp/>units);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">AcquisitionContextHandle<sp/>AcquisitionContext_create_from_port(</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>InstrumentPortHandle<sp/>port);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">ConnectionHandle<sp/>AcquisitionContext_connection(AcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">StringHandle<sp/>AcquisitionContext_instrument_type(</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>AcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>AcquisitionContext_units<sp/>|</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::contexts::AcquisitionContext::units<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">SymbolUnitHandle<sp/>AcquisitionContext_units(AcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">AcquisitionContextHandle<sp/>AcquisitionContext_division_unit(</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>AcquisitionContextHandle<sp/>handle,<sp/>SymbolUnitHandle<sp/>other);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">AcquisitionContextHandle<sp/>AcquisitionContext_division(</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>AcquisitionContextHandle<sp/>handle,<sp/>AcquisitionContextHandle<sp/>other);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>AcquisitionContext_match_connection<sp/>|</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_connection</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AcquisitionContext_match_connection(AcquisitionContextHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>AcquisitionContext_match_instrument_type<sp/>|</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_instrument_type</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>AcquisitionContext_match_instrument_type(AcquisitionContextHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StringHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"/>
+  </compounddef>
+</doxygen>

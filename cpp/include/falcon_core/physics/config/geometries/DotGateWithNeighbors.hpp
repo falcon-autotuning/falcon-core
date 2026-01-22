@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/physics/config/geometries/HasLeftNeighbor.hpp"
 #include "falcon_core/physics/config/geometries/HasRightNeighbor.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
@@ -9,9 +10,10 @@ namespace physics {
 namespace config {
 namespace geometries {
 
-class DotGateWithNeighbors : public device_structures::Connection,
-                             public HasLeftNeighbor,
-                             public HasRightNeighbor {
+class FALCON_CORE_CPP_API DotGateWithNeighbors
+    : public device_structures::Connection,
+      public HasLeftNeighbor,
+      public HasRightNeighbor {
  public:
   DotGateWithNeighbors(const DotGateWithNeighbors& other);
   DotGateWithNeighbors& operator=(const DotGateWithNeighbors& other);

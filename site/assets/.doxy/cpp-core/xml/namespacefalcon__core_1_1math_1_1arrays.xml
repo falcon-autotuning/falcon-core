@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1math_1_1arrays" kind="namespace" language="C++">
+    <compoundname>falcon_core::math::arrays</compoundname>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray" prot="public">falcon_core::math::arrays::ControlArray</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray1D" prot="public">falcon_core::math::arrays::ControlArray1D</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment" prot="public">falcon_core::math::arrays::IncreasingAlignment</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1Is1D" prot="public">falcon_core::math::arrays::Is1D</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl" prot="public">falcon_core::math::arrays::IsControl</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" prot="public">falcon_core::math::arrays::IsLabelled</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledArrays" prot="public">falcon_core::math::arrays::LabelledArrays</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray" prot="public">falcon_core::math::arrays::LabelledControlArray</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray1D" prot="public">falcon_core::math::arrays::LabelledControlArray1D</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray" prot="public">falcon_core::math::arrays::LabelledMeasuredArray</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray1D" prot="public">falcon_core::math::arrays::LabelledMeasuredArray1D</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray" prot="public">falcon_core::math::arrays::MeasuredArray</innerclass>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D" prot="public">falcon_core::math::arrays::MeasuredArray1D</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ControlArray_8hpp_1aa5a40355ff32872f31731bc76abdefa4" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray" kindref="compound">ControlArray</ref> &gt;</type>
+        <definition>using falcon_core::math::arrays::ControlArraySP =  std::shared_ptr&lt;ControlArray&gt;</definition>
+        <argsstring></argsstring>
+        <name>ControlArraySP</name>
+        <qualifiedname>falcon_core::math::arrays::ControlArraySP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/ControlArray.hpp" line="124" column="1" bodyfile="cpp/include/falcon_core/math/arrays/ControlArray.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="ControlArray1D_8hpp_1ac5549013e7a58c594466a0920b91b5a7" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray1D" kindref="compound">ControlArray1D</ref> &gt;</type>
+        <definition>using falcon_core::math::arrays::ControlArray1DSP =  std::shared_ptr&lt;ControlArray1D&gt;</definition>
+        <argsstring></argsstring>
+        <name>ControlArray1DSP</name>
+        <qualifiedname>falcon_core::math::arrays::ControlArray1DSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/ControlArray1D.hpp" line="123" column="1" bodyfile="cpp/include/falcon_core/math/arrays/ControlArray1D.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="IncreasingAlignment_8hpp_1a54bcf58388c53be4d1d9ccda62feeb4e" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment" kindref="compound">IncreasingAlignment</ref> &gt;</type>
+        <definition>using falcon_core::math::arrays::IncreasingAlignmentSP =  std::shared_ptr&lt;IncreasingAlignment&gt;</definition>
+        <argsstring></argsstring>
+        <name>IncreasingAlignmentSP</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignmentSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="45" column="1" bodyfile="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="LabelledArrays_8hpp_1a2b2c669d88127e152ba8a65cbad527ed" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledArrays" kindref="compound">LabelledArrays</ref>&lt; T &gt; &gt;</type>
+        <definition>using falcon_core::math::arrays::LabelledArraysSP =  std::shared_ptr&lt;LabelledArrays&lt;T&gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>LabelledArraysSP</name>
+        <qualifiedname>falcon_core::math::arrays::LabelledArraysSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/LabelledArrays.hpp" line="110" column="1" bodyfile="cpp/include/falcon_core/math/arrays/LabelledArrays.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="LabelledControlArray_8hpp_1a0b6608e51b14636d4daf88dd42bca150" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray" kindref="compound">LabelledControlArray</ref> &gt;</type>
+        <definition>using falcon_core::math::arrays::LabelledControlArraySP =  std::shared_ptr&lt;LabelledControlArray&gt;</definition>
+        <argsstring></argsstring>
+        <name>LabelledControlArraySP</name>
+        <qualifiedname>falcon_core::math::arrays::LabelledControlArraySP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/LabelledControlArray.hpp" line="151" column="1" bodyfile="cpp/include/falcon_core/math/arrays/LabelledControlArray.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="LabelledControlArray1D_8hpp_1a3ca2c4f5f82a9815567eb0ef0ae39116" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray1D" kindref="compound">LabelledControlArray1D</ref> &gt;</type>
+        <definition>using falcon_core::math::arrays::LabelledControlArray1DSP =  std::shared_ptr&lt;LabelledControlArray1D&gt;</definition>
+        <argsstring></argsstring>
+        <name>LabelledControlArray1DSP</name>
+        <qualifiedname>falcon_core::math::arrays::LabelledControlArray1DSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/LabelledControlArray1D.hpp" line="143" column="1" bodyfile="cpp/include/falcon_core/math/arrays/LabelledControlArray1D.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="LabelledMeasuredArray_8hpp_1aeded5730c2ac261d4aaa52f8f8db3705" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray" kindref="compound">LabelledMeasuredArray</ref> &gt;</type>
+        <definition>using falcon_core::math::arrays::LabelledMeasuredArraySP =  std::shared_ptr&lt;LabelledMeasuredArray&gt;</definition>
+        <argsstring></argsstring>
+        <name>LabelledMeasuredArraySP</name>
+        <qualifiedname>falcon_core::math::arrays::LabelledMeasuredArraySP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/LabelledMeasuredArray.hpp" line="162" column="1" bodyfile="cpp/include/falcon_core/math/arrays/LabelledMeasuredArray.hpp" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="LabelledMeasuredArray1D_8hpp_1a0795dc1d10b47d2c4beeb536bb7856af" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray1D" kindref="compound">LabelledMeasuredArray1D</ref> &gt;</type>
+        <definition>using falcon_core::math::arrays::LabelledMeasuredArray1DSP =  std::shared_ptr&lt;LabelledMeasuredArray1D&gt;</definition>
+        <argsstring></argsstring>
+        <name>LabelledMeasuredArray1DSP</name>
+        <qualifiedname>falcon_core::math::arrays::LabelledMeasuredArray1DSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/LabelledMeasuredArray1D.hpp" line="155" column="1" bodyfile="cpp/include/falcon_core/math/arrays/LabelledMeasuredArray1D.hpp" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="MeasuredArray_8hpp_1a3cf9861df409619e55c07266d4a1b6a3" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray" kindref="compound">MeasuredArray</ref> &gt;</type>
+        <definition>using falcon_core::math::arrays::MeasuredArraySP =  std::shared_ptr&lt;MeasuredArray&gt;</definition>
+        <argsstring></argsstring>
+        <name>MeasuredArraySP</name>
+        <qualifiedname>falcon_core::math::arrays::MeasuredArraySP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/MeasuredArray.hpp" line="137" column="1" bodyfile="cpp/include/falcon_core/math/arrays/MeasuredArray.hpp" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="MeasuredArray1D_8hpp_1a450aedacc3dfbb21651a92e128144d8f" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1MeasuredArray1D" kindref="compound">MeasuredArray1D</ref> &gt;</type>
+        <definition>using falcon_core::math::arrays::MeasuredArray1DSP =  std::shared_ptr&lt;MeasuredArray1D&gt;</definition>
+        <argsstring></argsstring>
+        <name>MeasuredArray1DSP</name>
+        <qualifiedname>falcon_core::math::arrays::MeasuredArray1DSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/MeasuredArray1D.hpp" line="144" column="1" bodyfile="cpp/include/falcon_core/math/arrays/MeasuredArray1D.hpp" bodystart="144" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/math/arrays/ControlArray.hpp" line="11" column="1"/>
+  </compounddef>
+</doxygen>

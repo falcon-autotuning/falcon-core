@@ -1,13 +1,14 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
 
-class AcquisitionContext : public BaseContext {
+class FALCON_CORE_CPP_API AcquisitionContext : public BaseContext {
   physics::units::SymbolUnitSP    _units;
   mutable std::shared_timed_mutex _mu_units;
 

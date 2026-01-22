@@ -1,0 +1,360 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::autotuner_interfaces::contexts::BaseContext</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1AcquisitionContext" prot="public" virt="non-virtual">falcon_core::autotuner_interfaces::contexts::AcquisitionContext</derivedcompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" prot="public" virt="non-virtual">falcon_core::autotuner_interfaces::contexts::MeasurementContext</derivedcompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1abd4a02c30a74f2a23ea31af7723b6c48" prot="private" static="no" mutable="no">
+        <type>physics::device_structures::ConnectionSP</type>
+        <definition>physics::device_structures::ConnectionSP falcon_core::autotuner_interfaces::contexts::BaseContext::_connection</definition>
+        <argsstring></argsstring>
+        <name>_connection</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::_connection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="11" column="44" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1ad1930eb94346c022e16a10429802c472" prot="private" static="no" mutable="no">
+        <type>instrument_interfaces::names::Instrument</type>
+        <definition>instrument_interfaces::names::Instrument falcon_core::autotuner_interfaces::contexts::BaseContext::_instrument_type</definition>
+        <argsstring></argsstring>
+        <name>_instrument_type</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::_instrument_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="12" column="44" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a07a944e1aa0a87f213f46bde97035cf9" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::contexts::BaseContext::_mu_connection</definition>
+        <argsstring></argsstring>
+        <name>_mu_connection</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::_mu_connection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="13" column="44" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a6b8304f7b7ceeb7d51aabeb3847880d0" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::contexts::BaseContext::_mu_instrument_type</definition>
+        <argsstring></argsstring>
+        <name>_mu_instrument_type</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::_mu_instrument_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="14" column="44" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="44" column="16" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1adc9c4705469bc48dfc772d6cd5501091" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::contexts::BaseContext::BaseContext</definition>
+        <argsstring>(const BaseContext &amp;other)</argsstring>
+        <name>BaseContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::BaseContext</qualifiedname>
+        <param>
+          <type>const BaseContext &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a8ddc469146985fbc253bd56dab42294b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BaseContext &amp;</type>
+        <definition>BaseContext &amp; falcon_core::autotuner_interfaces::contexts::BaseContext::operator=</definition>
+        <argsstring>(const BaseContext &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::operator=</qualifiedname>
+        <param>
+          <type>const BaseContext &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="18" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a58a394682cf210574e4fb0cf19d2b789" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::contexts::BaseContext::BaseContext</definition>
+        <argsstring>(const physics::device_structures::ConnectionSP &amp;connection, const instrument_interfaces::names::Instrument &amp;instrument_type)</argsstring>
+        <name>BaseContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::BaseContext</qualifiedname>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>connection</declname>
+        </param>
+        <param>
+          <type>const instrument_interfaces::names::Instrument &amp;</type>
+          <declname>instrument_type</declname>
+        </param>
+        <briefdescription>
+<para>Initialize a <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext" kindref="compound">BaseContext</ref> with a connection and instrument type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>connection</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The device connection. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>instrument_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of instrument. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="24" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a5fbbb9d3dc5abc9bac276b36d97e257e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::contexts::BaseContext::BaseContext</definition>
+        <argsstring>(const instrument_interfaces::names::InstrumentPortSP &amp;port)</argsstring>
+        <name>BaseContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::BaseContext</qualifiedname>
+        <param>
+          <type>const instrument_interfaces::names::InstrumentPortSP &amp;</type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+<para>Initialize a <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext" kindref="compound">BaseContext</ref> with an InstrumentPort. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instrument port. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="30" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a9d0c9bc345d5ee95d6dee76634412809" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const physics::device_structures::ConnectionSP</type>
+        <definition>const physics::device_structures::ConnectionSP falcon_core::autotuner_interfaces::contexts::BaseContext::connection</definition>
+        <argsstring>() const</argsstring>
+        <name>connection</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::connection</qualifiedname>
+        <briefdescription>
+<para>Return the connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="34" column="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a26782e81ceea6067763a9fafa846f192" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const instrument_interfaces::names::Instrument</type>
+        <definition>const instrument_interfaces::names::Instrument falcon_core::autotuner_interfaces::contexts::BaseContext::instrument_type</definition>
+        <argsstring>() const</argsstring>
+        <name>instrument_type</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::instrument_type</qualifiedname>
+        <briefdescription>
+<para>Return the instrument type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="38" column="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1adaa624a8f329adfe51d74552e1b99fea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::autotuner_interfaces::contexts::BaseContext::operator==</definition>
+        <argsstring>(const BaseContext &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::operator==</qualifiedname>
+        <param>
+          <type>const BaseContext &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="40" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a10df8d786f7df3e9a4ffc5ed63ae7a87" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::autotuner_interfaces::contexts::BaseContext::operator!=</definition>
+        <argsstring>(const BaseContext &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::operator!=</qualifiedname>
+        <param>
+          <type>const BaseContext &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="41" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1aff418c18e508b103febbf6e8c0447f66" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::contexts::BaseContext::BaseContext</definition>
+        <argsstring>()</argsstring>
+        <name>BaseContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::BaseContext</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="45" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1adfa2378da924d274c27986330b507e34" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::autotuner_interfaces::contexts::BaseContext::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContext::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="47" column="8" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" bodystart="47" bodyend="54"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>falcon_core::autotuner_interfaces::contexts::AcquisitionContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1AcquisitionContext"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::contexts::BaseContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core::autotuner_interfaces::contexts::MeasurementContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::contexts::BaseContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="10" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" bodystart="10" bodyend="55"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1abd4a02c30a74f2a23ea31af7723b6c48" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>_connection</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1ad1930eb94346c022e16a10429802c472" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>_instrument_type</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a07a944e1aa0a87f213f46bde97035cf9" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>_mu_connection</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a6b8304f7b7ceeb7d51aabeb3847880d0" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>_mu_instrument_type</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1adc9c4705469bc48dfc772d6cd5501091" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>BaseContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a58a394682cf210574e4fb0cf19d2b789" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>BaseContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a5fbbb9d3dc5abc9bac276b36d97e257e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>BaseContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1aff418c18e508b103febbf6e8c0447f66" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>BaseContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a9d0c9bc345d5ee95d6dee76634412809" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>connection</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a26782e81ceea6067763a9fafa846f192" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>instrument_type</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a10df8d786f7df3e9a4ffc5ed63ae7a87" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1a8ddc469146985fbc253bd56dab42294b" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1adaa624a8f329adfe51d74552e1b99fea" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext_1adfa2378da924d274c27986330b507e34" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::autotuner_interfaces::contexts::BaseContext</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

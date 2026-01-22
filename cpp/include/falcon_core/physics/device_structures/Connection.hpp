@@ -3,6 +3,7 @@
 #include <mutex>
 #include <shared_mutex>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
@@ -21,7 +22,7 @@ static const std::map<DeviceFeature, std::string> DeviceFeatureNames = {
     {DeviceFeature::ReservoirGate, "ReservoirGate"},
     {DeviceFeature::ScreeningGate, "ScreeningGate"},
     {DeviceFeature::Ohmic, "Ohmic"}};
-class Connection : public virtual generic::Song {
+class FALCON_CORE_CPP_API Connection : public virtual generic::Song {
   std::string                     _name;
   DeviceFeature                   _type;
   mutable std::shared_timed_mutex _mu_name;

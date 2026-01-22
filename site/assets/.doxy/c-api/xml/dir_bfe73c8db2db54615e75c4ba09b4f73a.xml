@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_bfe73c8db2db54615e75c4ba09b4f73a" kind="dir">
+    <compoundname>c-api/include/falcon_core/math/arrays</compoundname>
+    <innerfile refid="ControlArray1D__c__api_8h">ControlArray1D_c_api.h</innerfile>
+    <innerfile refid="ControlArray__c__api_8h">ControlArray_c_api.h</innerfile>
+    <innerfile refid="IncreasingAlignment__c__api_8h">IncreasingAlignment_c_api.h</innerfile>
+    <innerfile refid="LabelledArraysLabelledControlArray1D__c__api_8h">LabelledArraysLabelledControlArray1D_c_api.h</innerfile>
+    <innerfile refid="LabelledArraysLabelledControlArray__c__api_8h">LabelledArraysLabelledControlArray_c_api.h</innerfile>
+    <innerfile refid="LabelledArraysLabelledMeasuredArray1D__c__api_8h">LabelledArraysLabelledMeasuredArray1D_c_api.h</innerfile>
+    <innerfile refid="LabelledArraysLabelledMeasuredArray__c__api_8h">LabelledArraysLabelledMeasuredArray_c_api.h</innerfile>
+    <innerfile refid="LabelledControlArray1D__c__api_8h">LabelledControlArray1D_c_api.h</innerfile>
+    <innerfile refid="LabelledControlArray__c__api_8h">LabelledControlArray_c_api.h</innerfile>
+    <innerfile refid="LabelledMeasuredArray1D__c__api_8h">LabelledMeasuredArray1D_c_api.h</innerfile>
+    <innerfile refid="LabelledMeasuredArray__c__api_8h">LabelledMeasuredArray_c_api.h</innerfile>
+    <innerfile refid="MeasuredArray1D__c__api_8h">MeasuredArray1D_c_api.h</innerfile>
+    <innerfile refid="MeasuredArray__c__api_8h">MeasuredArray_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/math/arrays/"/>
+  </compounddef>
+</doxygen>

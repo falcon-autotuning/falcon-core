@@ -1,0 +1,499 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1math_1_1AnalyticFunction" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::math::AnalyticFunction</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1List" prot="public" virt="non-virtual">falcon_core::generic::List&lt; VariableName &gt;</basecompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" prot="public" virt="non-virtual">falcon_core::instrument_interfaces::port_transforms::PortTransform</derivedcompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a414911c1a59295b04ac29570dc1b0b8b" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string falcon_core::math::AnalyticFunction::_expression</definition>
+        <argsstring></argsstring>
+        <name>_expression</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::_expression</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="29" column="35" bodyfile="cpp/include/falcon_core/math/AnalyticFunction.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1AnalyticFunction_1af95f3f3ae0a059849339f7bad97e8598" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::AnalyticFunction::_mu_expression</definition>
+        <argsstring></argsstring>
+        <name>_mu_expression</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::_mu_expression</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="30" column="35" bodyfile="cpp/include/falcon_core/math/AnalyticFunction.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1math_1_1AnalyticFunction_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="87" column="16" bodyfile="cpp/include/falcon_core/math/AnalyticFunction.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a426a723b167c7e9de3da5f2b1ab6c3c8" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::math::AnalyticFunction::checkSafeEvaluateArgs</definition>
+        <argsstring>(const generic::MapSP&lt; VariableName, double &gt; &amp;args) const</argsstring>
+        <name>checkSafeEvaluateArgs</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::checkSafeEvaluateArgs</qualifiedname>
+        <param>
+          <type>const generic::MapSP&lt; VariableName, double &gt; &amp;</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Checks that it is safe to evaluate the args that the user passed in. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The user args from the evaluate function </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the args are improper. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="36" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a46489e4a9c7fd9338664477d3ab36f83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::AnalyticFunction::AnalyticFunction</definition>
+        <argsstring>(const AnalyticFunction &amp;other)</argsstring>
+        <name>AnalyticFunction</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::AnalyticFunction</qualifiedname>
+        <param>
+          <type>const AnalyticFunction &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="40" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a237b598edc744503648e10bcdb15331f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AnalyticFunction &amp;</type>
+        <definition>AnalyticFunction &amp; falcon_core::math::AnalyticFunction::operator=</definition>
+        <argsstring>(const AnalyticFunction &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::operator=</qualifiedname>
+        <param>
+          <type>const AnalyticFunction &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="41" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1aa1d94158dc45d04b2ca6dd89b400da16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::AnalyticFunction::AnalyticFunction</definition>
+        <argsstring>(const generic::ListSP&lt; VariableName &gt; &amp;labels, const std::string &amp;expression)</argsstring>
+        <name>AnalyticFunction</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::AnalyticFunction</qualifiedname>
+        <param>
+          <type>const generic::ListSP&lt; VariableName &gt; &amp;</type>
+          <declname>labels</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>expression</declname>
+        </param>
+        <briefdescription>
+<para>Construct an <ref refid="classfalcon__core_1_1math_1_1AnalyticFunction" kindref="compound">AnalyticFunction</ref> with a mapping of the function&apos;s arguments to their names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The label for each element of the vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>expression</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The mathematical expression to be evaluated </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="48" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a0b983199c94de3822930d931fce7b325" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const generic::ListSP&lt; VariableName &gt;</type>
+        <definition>const generic::ListSP&lt; VariableName &gt; falcon_core::math::AnalyticFunction::labels</definition>
+        <argsstring>() const</argsstring>
+        <name>labels</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::labels</qualifiedname>
+        <briefdescription>
+<para>Return the set of labels in proper order of the function&apos;s arguments to their names. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="64" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a02981c37bd370afaa0a251fdebb016c6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double falcon_core::math::AnalyticFunction::evaluate</definition>
+        <argsstring>(const generic::MapSP&lt; VariableName, double &gt; &amp;args, const double &amp;time) const</argsstring>
+        <name>evaluate</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::evaluate</qualifiedname>
+        <param>
+          <type>const generic::MapSP&lt; VariableName, double &gt; &amp;</type>
+          <declname>args</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Returns the evaluated analytic function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector arguments supplied with human readable names </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time to evaluate the function at.. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="70" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a962bd6fc1c6c2dbb8c679c29600a5503" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>generic::FArraySP&lt; double &gt;</type>
+        <definition>generic::FArraySP&lt; double &gt; falcon_core::math::AnalyticFunction::evaluate</definition>
+        <argsstring>(const generic::MapSP&lt; VariableName, double &gt; &amp;args, const double &amp;deltaT, const double &amp;maxTime) const</argsstring>
+        <name>evaluate</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::evaluate</qualifiedname>
+        <param>
+          <type>const generic::MapSP&lt; VariableName, double &gt; &amp;</type>
+          <declname>args</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>deltaT</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>maxTime</declname>
+        </param>
+        <briefdescription>
+<para>Returns the evaluated analytic function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector arguments supplied with human readable names </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>deltaT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The different between calculated datapoints </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total time to expend running the calculation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="78" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1ac5fd33a798615830d388f0eae907b816" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::AnalyticFunction::operator==</definition>
+        <argsstring>(const AnalyticFunction &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::operator==</qualifiedname>
+        <param>
+          <type>const AnalyticFunction &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="82" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a6de3fb2c5bc7fe358c859cfedee0e8af" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::AnalyticFunction::operator!=</definition>
+        <argsstring>(const AnalyticFunction &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::operator!=</qualifiedname>
+        <param>
+          <type>const AnalyticFunction &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="83" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a7b3cf0b0cbf565b57f3c36d9c673643e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; AnalyticFunction &gt;</type>
+        <definition>static std::shared_ptr&lt; AnalyticFunction &gt; falcon_core::math::AnalyticFunction::Identity</definition>
+        <argsstring>()</argsstring>
+        <name>Identity</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::Identity</qualifiedname>
+        <briefdescription>
+<para>Construct an identity. The equation is : x[0] where x[0] is some supplied quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="54" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a6a711df40ad25354a9e813cd5b764b96" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; AnalyticFunction &gt;</type>
+        <definition>static std::shared_ptr&lt; AnalyticFunction &gt; falcon_core::math::AnalyticFunction::Constant</definition>
+        <argsstring>(const double &amp;value)</argsstring>
+        <name>Constant</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::Constant</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Construct an constant function. The equation is : const where const is supplied here on construction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="59" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a85127a1fdd7195ac578b8515df298e08" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::AnalyticFunction::AnalyticFunction</definition>
+        <argsstring>()</argsstring>
+        <name>AnalyticFunction</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::AnalyticFunction</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="86" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1AnalyticFunction_1a45356f4fca3bd354e6c13ab6d6bb57c4" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::math::AnalyticFunction::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::math::AnalyticFunction::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="89" column="8" bodyfile="cpp/include/falcon_core/math/AnalyticFunction.hpp" bodystart="89" bodyend="92"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::List&lt; VariableName &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="4">
+        <label>falcon_core::instrument_interfaces::port_transforms::PortTransform</label>
+        <link refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::AnalyticFunction</label>
+        <link refid="classfalcon__core_1_1math_1_1AnalyticFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::List&lt; VariableName &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::AnalyticFunction</label>
+        <link refid="classfalcon__core_1_1math_1_1AnalyticFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/math/AnalyticFunction.hpp" line="28" column="1" bodyfile="cpp/include/falcon_core/math/AnalyticFunction.hpp" bodystart="28" bodyend="93"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a414911c1a59295b04ac29570dc1b0b8b" prot="private" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>_expression</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1af95f3f3ae0a059849339f7bad97e8598" prot="private" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>_mu_expression</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac6db589636214138ce4f5099214950d7" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>allocate</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a46489e4a9c7fd9338664477d3ab36f83" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>AnalyticFunction</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1aa1d94158dc45d04b2ca6dd89b400da16" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>AnalyticFunction</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a85127a1fdd7195ac578b8515df298e08" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>AnalyticFunction</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac506f26dd646d8ae9e348d2b2f8b0711" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa027050dbdaabc2be13de8ec48b59ace" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>at_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a642e3b9a1f76d414a908a85b47d8e2f2" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aef038e6660b56dc2f6ff7d624f3e064a" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a426a723b167c7e9de3da5f2b1ab6c3c8" prot="private" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>checkSafeEvaluateArgs</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ae2186f42ba6bb56c8db451baa6d08689" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>clear</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7fc4f3fb80412b75688ae67ef4deb840" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a6a711df40ad25354a9e813cd5b764b96" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>Constant</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a85efdcdc1929089f640e4ee81e1e161a" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>Container</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af78b99f6bd138b5d4851fcab549a989f" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>contains</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a8721d8693dad51710395ae33fd5b8bb9" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>contains_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a72c2a525720386b4fc7ee1d021d9242c" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>copy_items_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ab80da9fe240a0f7d3e3c6c318baf32a3" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>create</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af10afad8e13353cf1532a6ceac8049e0" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>create_duplicates_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa8a82611d2bfd85bce3bcad2374a7fb8" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>create_empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad993f09ed7500f61be2c6ece0cc56809" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1d05bea2ea3c0c3ee86b1455c3520cff" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a35932f229c9408ffa7682ab7c031e498" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>erase_at</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a02981c37bd370afaa0a251fdebb016c6" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>evaluate</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a962bd6fc1c6c2dbb8c679c29600a5503" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>evaluate</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac33acefde3a87a38d16bef723fbefb2f" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>fill_value</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a7b3cf0b0cbf565b57f3c36d9c673643e" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>Identity</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1afe083fc302fc55edef258d8daf9f3d47" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>index</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1ffa46e78bb25a7c2adb0ee6c4e16fd7" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>index_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a159ec398798aec49860f25737732d035" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a517adcdb190cba73664d55dd3fcd28e6" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>intersection</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaae12f832dbfcfec53be2d9d579ecb5c" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a94c62a49740f871213c5cbf1649bf467" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a0b983199c94de3822930d931fce7b325" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>labels</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2f59e0c944cf9148e92c4857aef93025" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a6de3fb2c5bc7fe358c859cfedee0e8af" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2e97c62492a753fa05fabb22a1ac1537" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::List&lt; VariableName &gt;::"><scope>falcon_core::math::AnalyticFunction</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a237b598edc744503648e10bcdb15331f" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad91072aff233646e22fb2b10d1759342" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::List&lt; VariableName &gt;::"><scope>falcon_core::math::AnalyticFunction</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1ac5fd33a798615830d388f0eae907b816" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7ad7b131acaa960629eb948ee49b0141" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::List&lt; VariableName &gt;::"><scope>falcon_core::math::AnalyticFunction</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaff8f72dc702a07b07f14d9bc075dbb0" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a98aa8f7995e88f333c85d8eb0e44da85" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>operator_equal_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a672370a488b6ca60454cbbed60b4ef4a" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>push_back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a605cb51b17e7a58b8253b041252a8444" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>push_back_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad8cdc2817d5f8111a416930461321b96" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>replace_at</name></member>
+      <member refid="classfalcon__core_1_1math_1_1AnalyticFunction_1a45356f4fca3bd354e6c13ab6d6bb57c4" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a0fea4756b30abd79c04bcfa09296f1d9" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aacbc6f6812a1cb140b0d16b336f8bca7" prot="protected" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>StoredValue</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::math::AnalyticFunction</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

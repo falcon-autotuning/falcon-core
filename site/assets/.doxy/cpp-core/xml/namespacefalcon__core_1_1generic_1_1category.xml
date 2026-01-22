@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1generic_1_1category" kind="namespace" language="C++">
+    <compoundname>falcon_core::generic::category</compoundname>
+    <innerclass refid="structfalcon__core_1_1generic_1_1category_1_1song__tag" prot="public">falcon_core::generic::category::song_tag</innerclass>
+    <innerclass refid="structfalcon__core_1_1generic_1_1category_1_1primitive__tag" prot="public">falcon_core::generic::category::primitive_tag</innerclass>
+    <innerclass refid="structfalcon__core_1_1generic_1_1category_1_1bool__tag" prot="public">falcon_core::generic::category::bool_tag</innerclass>
+    <innerclass refid="structfalcon__core_1_1generic_1_1category_1_1other__tag" prot="public">falcon_core::generic::category::other_tag</innerclass>
+    <innerclass refid="structfalcon__core_1_1generic_1_1category_1_1determine__tag" prot="public">falcon_core::generic::category::determine_tag</innerclass>
+    <innerclass refid="structfalcon__core_1_1generic_1_1category_1_1determine__bool__tag" prot="public">falcon_core::generic::category::determine_bool_tag</innerclass>
+    <innerclass refid="structfalcon__core_1_1generic_1_1category_1_1is__shared__ptr" prot="public">falcon_core::generic::category::is_shared_ptr</innerclass>
+    <innerclass refid="structfalcon__core_1_1generic_1_1category_1_1is__shared__ptr_3_01std_1_1shared__ptr_3_01T_01_4_01_4" prot="public">falcon_core::generic::category::is_shared_ptr&lt; std::shared_ptr&lt; T &gt; &gt;</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="CategoryTags_8hpp_1a045a5bcdbdf9fecd789fbd2671d24898" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool falcon_core::generic::category::compare_value</definition>
+        <argsstring>(const T &amp;a, const T &amp;b, std::true_type)</argsstring>
+        <name>compare_value</name>
+        <qualifiedname>falcon_core::generic::category::compare_value</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>std::true_type</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/CategoryTags.hpp" line="31" column="6" bodyfile="cpp/include/falcon_core/generic/CategoryTags.hpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="CategoryTags_8hpp_1a1cdc7e08ccce75019f98ba6293b4ab3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool falcon_core::generic::category::compare_value</definition>
+        <argsstring>(const T &amp;a, const T &amp;b, std::false_type)</argsstring>
+        <name>compare_value</name>
+        <qualifiedname>falcon_core::generic::category::compare_value</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>std::false_type</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/CategoryTags.hpp" line="38" column="6" bodyfile="cpp/include/falcon_core/generic/CategoryTags.hpp" bodystart="38" bodyend="40"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/generic/CategoryTags.hpp" line="6" column="1"/>
+  </compounddef>
+</doxygen>

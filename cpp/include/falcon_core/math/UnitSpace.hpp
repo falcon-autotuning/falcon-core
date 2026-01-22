@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/math/arrays/ControlArray1D.hpp"
 #include "falcon_core/math/discrete_spaces/Discretizer.hpp"
@@ -21,7 +22,8 @@ namespace math {
  * @details
  * UnitSpace is the base class for spaces with axes and a domain.
  */
-class UnitSpace : public math::Axes<discrete_spaces::Discretizer> {
+class FALCON_CORE_CPP_API UnitSpace
+    : public math::Axes<discrete_spaces::Discretizer> {
   domains::DomainSP               _domain;
   AxesSP<arrays::ControlArray1D>  _ranges;
   generic::FArraySP<double>       _space;

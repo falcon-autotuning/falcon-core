@@ -1,6 +1,7 @@
 #pragma once
 #include <yaml-cpp/yaml.h>
 
+#include "falcon_core/export.h"
 #include "falcon_core/physics/config/core/Config.hpp"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 namespace falcon_core {
@@ -10,7 +11,7 @@ namespace config {
  * @brief A utility class for manipulating and extracting information from
  * device configurations.
  */
-class ConfigManipulations {
+class FALCON_CORE_CPP_API ConfigManipulations {
  public:
   ConfigManipulations();
   /**

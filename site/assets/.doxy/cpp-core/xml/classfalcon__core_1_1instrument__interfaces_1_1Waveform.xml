@@ -1,0 +1,804 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1instrument__interfaces_1_1Waveform" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::instrument_interfaces::Waveform</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms" prot="public" virt="non-virtual">falcon_core::instrument_interfaces::port_transforms::PortTransforms</basecompoundref>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a985f2d33454e4b0f158eefe38efb4c0b" prot="private" static="no" mutable="no">
+        <type>math::discrete_spaces::DiscreteSpaceSP</type>
+        <definition>math::discrete_spaces::DiscreteSpaceSP falcon_core::instrument_interfaces::Waveform::_space</definition>
+        <argsstring></argsstring>
+        <name>_space</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::_space</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="15" column="42" bodyfile="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a6325db416dbf2b1cfd0796a23fbc26f3" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::instrument_interfaces::Waveform::_mu_dspace</definition>
+        <argsstring></argsstring>
+        <name>_mu_dspace</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::_mu_dspace</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="16" column="42" bodyfile="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="133" column="16" bodyfile="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" bodystart="133" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a316ef29a1da34f5fbeaa6852f9f4deaa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::instrument_interfaces::Waveform::Waveform</definition>
+        <argsstring>(const Waveform &amp;other)</argsstring>
+        <name>Waveform</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::Waveform</qualifiedname>
+        <param>
+          <type>const Waveform &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="19" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1ab4fcd07b3ae03c908e3aa82eb673d5d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Waveform &amp;</type>
+        <definition>Waveform &amp; falcon_core::instrument_interfaces::Waveform::operator=</definition>
+        <argsstring>(const Waveform &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::operator=</qualifiedname>
+        <param>
+          <type>const Waveform &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="20" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a16c3d49117e2f70ece1f3af08a0bafc0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::instrument_interfaces::Waveform::Waveform</definition>
+        <argsstring>(const math::discrete_spaces::DiscreteSpaceSP &amp;space, const generic::ListSP&lt; port_transforms::PortTransform &gt; &amp;transforms=std::make_shared&lt; generic::List&lt; port_transforms::PortTransform &gt; &gt;())</argsstring>
+        <name>Waveform</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::Waveform</qualifiedname>
+        <param>
+          <type>const math::discrete_spaces::DiscreteSpaceSP &amp;</type>
+          <declname>space</declname>
+        </param>
+        <param>
+          <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" kindref="compound">port_transforms::PortTransform</ref> &gt; &amp;</type>
+          <declname>transforms</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">generic::List</ref>&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" kindref="compound">port_transforms::PortTransform</ref> &gt; &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform" kindref="compound">Waveform</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>space</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The measurement space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transforms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The port transforms. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="26" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1af625305de5e8e67794fcb116a90b60b0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const math::discrete_spaces::DiscreteSpaceSP &amp;</type>
+        <definition>const math::discrete_spaces::DiscreteSpaceSP &amp; falcon_core::instrument_interfaces::Waveform::space</definition>
+        <argsstring>() const</argsstring>
+        <name>space</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::space</qualifiedname>
+        <briefdescription>
+<para>Get the measurement space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="121" column="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a9501cb4893e168b3aed93bdf3571504e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::instrument_interfaces::Waveform::confirm_knobs_match</definition>
+        <argsstring>() const</argsstring>
+        <name>confirm_knobs_match</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::confirm_knobs_match</qualifiedname>
+        <briefdescription>
+<para>Confirm that all function knobs are in the discrete space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if any function knob is not in the discrete space. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="128" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a2221343545ab8bad3d3ab72aab614fc1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::instrument_interfaces::Waveform::operator==</definition>
+        <argsstring>(const Waveform &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::operator==</qualifiedname>
+        <param>
+          <type>const Waveform &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="129" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a8ead85d860f26ef472f1cfab8ee1f0d8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::instrument_interfaces::Waveform::operator!=</definition>
+        <argsstring>(const Waveform &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::operator!=</qualifiedname>
+        <param>
+          <type>const Waveform &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="130" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1aba813fd59d50fbe45250fadb61f36be5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; Waveform &gt;</type>
+        <definition>static const std::shared_ptr&lt; Waveform &gt; falcon_core::instrument_interfaces::Waveform::CartesianWaveform</definition>
+        <argsstring>(const math::AxesSP&lt; int &gt; &amp;divisions, const math::AxesSP&lt; math::domains::CoupledLabelledDomain &gt; &amp;axes, const math::AxesSP&lt; generic::Map&lt; std::string, bool &gt; &gt; &amp;increasing, const generic::ListSP&lt; port_transforms::PortTransform &gt; &amp;transforms=std::make_shared&lt; generic::List&lt; port_transforms::PortTransform &gt; &gt;(), const math::domains::DomainSP &amp;domain=std::make_shared&lt; math::domains::Domain &gt;(0, 1))</argsstring>
+        <name>CartesianWaveform</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::CartesianWaveform</qualifiedname>
+        <param>
+          <type>const math::AxesSP&lt; int &gt; &amp;</type>
+          <declname>divisions</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain" kindref="compound">math::domains::CoupledLabelledDomain</ref> &gt; &amp;</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">generic::Map</ref>&lt; std::string, bool &gt; &gt; &amp;</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" kindref="compound">port_transforms::PortTransform</ref> &gt; &amp;</type>
+          <declname>transforms</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">generic::List</ref>&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" kindref="compound">port_transforms::PortTransform</ref> &gt; &gt;()</defval>
+        </param>
+        <param>
+          <type>const math::domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1Domain" kindref="compound">math::domains::Domain</ref> &gt;(0, 1)</defval>
+        </param>
+        <briefdescription>
+<para>Create a ND CartesianWaveform from raw deltas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of divisions along each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes defining the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The base domain of the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transforms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the transforms to apply to the waveform. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>increasing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the array should increase following the domain or not. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="38" column="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a4b53b6a20f72a33f0c0e601579812e56" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; Waveform &gt;</type>
+        <definition>static const std::shared_ptr&lt; Waveform &gt; falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform</definition>
+        <argsstring>(const math::AxesSP&lt; int &gt; &amp;divisions, const math::AxesSP&lt; math::domains::CoupledLabelledDomain &gt; &amp;axes, const math::AxesSP&lt; generic::Map&lt; std::string, bool &gt; &gt; &amp;increasing, const math::domains::DomainSP &amp;domain=std::make_shared&lt; math::domains::Domain &gt;(0, 1))</argsstring>
+        <name>CartesianIdentityWaveform</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform</qualifiedname>
+        <param>
+          <type>const math::AxesSP&lt; int &gt; &amp;</type>
+          <declname>divisions</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain" kindref="compound">math::domains::CoupledLabelledDomain</ref> &gt; &amp;</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">generic::Map</ref>&lt; std::string, bool &gt; &gt; &amp;</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>const math::domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1Domain" kindref="compound">math::domains::Domain</ref> &gt;(0, 1)</defval>
+        </param>
+        <briefdescription>
+<para>Create a ND CartesianWaveform with identity transforms. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of divisions along each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes defining the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The base domain of the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>increasing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the array should increase following the domain or not. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="53" column="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a6d0b84184549b755234d0de66c04fa0d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; Waveform &gt;</type>
+        <definition>static const std::shared_ptr&lt; Waveform &gt; falcon_core::instrument_interfaces::Waveform::CartesianWaveform2D</definition>
+        <argsstring>(const math::AxesSP&lt; int &gt; &amp;divisions, const math::AxesSP&lt; math::domains::CoupledLabelledDomain &gt; &amp;axes, const math::AxesSP&lt; generic::Map&lt; std::string, bool &gt; &gt; &amp;increasing, const generic::ListSP&lt; port_transforms::PortTransform &gt; &amp;transforms=std::make_shared&lt; generic::List&lt; port_transforms::PortTransform &gt; &gt;(), const math::domains::DomainSP &amp;domain=std::make_shared&lt; math::domains::Domain &gt;(0, 1))</argsstring>
+        <name>CartesianWaveform2D</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::CartesianWaveform2D</qualifiedname>
+        <param>
+          <type>const math::AxesSP&lt; int &gt; &amp;</type>
+          <declname>divisions</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain" kindref="compound">math::domains::CoupledLabelledDomain</ref> &gt; &amp;</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">generic::Map</ref>&lt; std::string, bool &gt; &gt; &amp;</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" kindref="compound">port_transforms::PortTransform</ref> &gt; &amp;</type>
+          <declname>transforms</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">generic::List</ref>&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" kindref="compound">port_transforms::PortTransform</ref> &gt; &gt;()</defval>
+        </param>
+        <param>
+          <type>const math::domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1Domain" kindref="compound">math::domains::Domain</ref> &gt;(0, 1)</defval>
+        </param>
+        <briefdescription>
+<para>Create a 2D CartesianWaveform from raw deltas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of divisions along each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes defining the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The base domain of the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transforms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the transforms to apply to the waveform. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>increasing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the array should increase following the domain or not. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="67" column="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1aa891bb9cc211e304b3ae0ee12e66f282" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; Waveform &gt;</type>
+        <definition>static const std::shared_ptr&lt; Waveform &gt; falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform2D</definition>
+        <argsstring>(const math::AxesSP&lt; int &gt; &amp;divisions, const math::AxesSP&lt; math::domains::CoupledLabelledDomain &gt; &amp;axes, const math::AxesSP&lt; generic::Map&lt; std::string, bool &gt; &gt; &amp;increasing, const math::domains::DomainSP &amp;domain=std::make_shared&lt; math::domains::Domain &gt;(0, 1))</argsstring>
+        <name>CartesianIdentityWaveform2D</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform2D</qualifiedname>
+        <param>
+          <type>const math::AxesSP&lt; int &gt; &amp;</type>
+          <declname>divisions</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain" kindref="compound">math::domains::CoupledLabelledDomain</ref> &gt; &amp;</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">generic::Map</ref>&lt; std::string, bool &gt; &gt; &amp;</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>const math::domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1Domain" kindref="compound">math::domains::Domain</ref> &gt;(0, 1)</defval>
+        </param>
+        <briefdescription>
+<para>Create a 2D CartesianWaveform with identity transforms. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of divisions along each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes defining the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The base domain of the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>increasing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the array should increase following the domain or not. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="82" column="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a0e7552ad1c5a7cdefdf5496cfb9d3fc3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; Waveform &gt;</type>
+        <definition>static const std::shared_ptr&lt; Waveform &gt; falcon_core::instrument_interfaces::Waveform::CartesianWaveform1D</definition>
+        <argsstring>(const int &amp;division, const falcon_core::math::domains::CoupledLabelledDomainSP &amp;shared_domain, const generic::MapSP&lt; std::string, bool &gt; &amp;increasing, const generic::ListSP&lt; port_transforms::PortTransform &gt; &amp;transforms=std::make_shared&lt; generic::List&lt; port_transforms::PortTransform &gt; &gt;(), const falcon_core::math::domains::DomainSP &amp;domain=std::make_shared&lt; falcon_core::math::domains::Domain &gt;(0, 1))</argsstring>
+        <name>CartesianWaveform1D</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::CartesianWaveform1D</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>division</declname>
+        </param>
+        <param>
+          <type>const falcon_core::math::domains::CoupledLabelledDomainSP &amp;</type>
+          <declname>shared_domain</declname>
+        </param>
+        <param>
+          <type>const generic::MapSP&lt; std::string, bool &gt; &amp;</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" kindref="compound">port_transforms::PortTransform</ref> &gt; &amp;</type>
+          <declname>transforms</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">generic::List</ref>&lt; <ref refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransform" kindref="compound">port_transforms::PortTransform</ref> &gt; &gt;()</defval>
+        </param>
+        <param>
+          <type>const falcon_core::math::domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1Domain" kindref="compound">falcon_core::math::domains::Domain</ref> &gt;(0, 1)</defval>
+        </param>
+        <briefdescription>
+<para>Create a 1D CartesianWaveform from raw deltas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of divisions along each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes defining the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The base domain of the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transforms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the transforms to apply to the waveform. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>increasing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the array should increase following the domain or not. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="96" column="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1adba93fc99a39d01d1c60e831b0edf777" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; Waveform &gt;</type>
+        <definition>static const std::shared_ptr&lt; Waveform &gt; falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform1D</definition>
+        <argsstring>(const int &amp;division, const falcon_core::math::domains::CoupledLabelledDomainSP &amp;shared_domain, const generic::MapSP&lt; std::string, bool &gt; &amp;increasing, const falcon_core::math::domains::DomainSP &amp;domain=std::make_shared&lt; falcon_core::math::domains::Domain &gt;(0, 1))</argsstring>
+        <name>CartesianIdentityWaveform1D</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::CartesianIdentityWaveform1D</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>division</declname>
+        </param>
+        <param>
+          <type>const falcon_core::math::domains::CoupledLabelledDomainSP &amp;</type>
+          <declname>shared_domain</declname>
+        </param>
+        <param>
+          <type>const generic::MapSP&lt; std::string, bool &gt; &amp;</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>const falcon_core::math::domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+          <defval>std::make_shared&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1Domain" kindref="compound">falcon_core::math::domains::Domain</ref> &gt;(0, 1)</defval>
+        </param>
+        <briefdescription>
+<para>Create a 1D CartesianWaveform with identity transforms. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of divisions along each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes defining the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The base domain of the cartesian space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>increasing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the array should increase following the domain or not. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="112" column="32"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a85b246a8ebd7ec3275433bc6e17bb8eb" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::instrument_interfaces::Waveform::Waveform</definition>
+        <argsstring>()</argsstring>
+        <name>Waveform</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::Waveform</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="134" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1ae6403dea3687169f5086ebe9146bbd65" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::instrument_interfaces::Waveform::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::instrument_interfaces::Waveform::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="136" column="8" bodyfile="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" bodystart="136" bodyend="139"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>falcon_core::generic::List&lt; PortTransform &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::instrument_interfaces::Waveform</label>
+        <link refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::instrument_interfaces::port_transforms::PortTransforms</label>
+        <link refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>falcon_core::generic::List&lt; PortTransform &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::instrument_interfaces::Waveform</label>
+        <link refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::instrument_interfaces::port_transforms::PortTransforms</label>
+        <link refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" line="14" column="1" bodyfile="cpp/include/falcon_core/instrument_interfaces/Waveform.hpp" bodystart="14" bodyend="140"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a6325db416dbf2b1cfd0796a23fbc26f3" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>_mu_dspace</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a985f2d33454e4b0f158eefe38efb4c0b" prot="private" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>_space</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac6db589636214138ce4f5099214950d7" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>allocate</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac506f26dd646d8ae9e348d2b2f8b0711" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa027050dbdaabc2be13de8ec48b59ace" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>at_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a642e3b9a1f76d414a908a85b47d8e2f2" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aef038e6660b56dc2f6ff7d624f3e064a" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a4b53b6a20f72a33f0c0e601579812e56" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>CartesianIdentityWaveform</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1adba93fc99a39d01d1c60e831b0edf777" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>CartesianIdentityWaveform1D</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1aa891bb9cc211e304b3ae0ee12e66f282" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>CartesianIdentityWaveform2D</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1aba813fd59d50fbe45250fadb61f36be5" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>CartesianWaveform</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a0e7552ad1c5a7cdefdf5496cfb9d3fc3" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>CartesianWaveform1D</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a6d0b84184549b755234d0de66c04fa0d" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>CartesianWaveform2D</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ae2186f42ba6bb56c8db451baa6d08689" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>clear</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a9501cb4893e168b3aed93bdf3571504e" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>confirm_knobs_match</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7fc4f3fb80412b75688ae67ef4deb840" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a85efdcdc1929089f640e4ee81e1e161a" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>Container</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af78b99f6bd138b5d4851fcab549a989f" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>contains</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a8721d8693dad51710395ae33fd5b8bb9" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>contains_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a72c2a525720386b4fc7ee1d021d9242c" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>copy_items_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ab80da9fe240a0f7d3e3c6c318baf32a3" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>create</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af10afad8e13353cf1532a6ceac8049e0" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>create_duplicates_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa8a82611d2bfd85bce3bcad2374a7fb8" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>create_empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad993f09ed7500f61be2c6ece0cc56809" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1d05bea2ea3c0c3ee86b1455c3520cff" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a35932f229c9408ffa7682ab7c031e498" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>erase_at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac33acefde3a87a38d16bef723fbefb2f" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>fill_value</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1afe083fc302fc55edef258d8daf9f3d47" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>index</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1ffa46e78bb25a7c2adb0ee6c4e16fd7" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>index_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a159ec398798aec49860f25737732d035" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a517adcdb190cba73664d55dd3fcd28e6" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>intersection</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaae12f832dbfcfec53be2d9d579ecb5c" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a94c62a49740f871213c5cbf1649bf467" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2f59e0c944cf9148e92c4857aef93025" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a8ead85d860f26ef472f1cfab8ee1f0d8" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2e97c62492a753fa05fabb22a1ac1537" prot="public" virt="non-virtual" ambiguityscope="falcon_core::instrument_interfaces::port_transforms::PortTransforms::"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1ab4fcd07b3ae03c908e3aa82eb673d5d2" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad91072aff233646e22fb2b10d1759342" prot="public" virt="non-virtual" ambiguityscope="falcon_core::instrument_interfaces::port_transforms::PortTransforms::"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a2221343545ab8bad3d3ab72aab614fc1" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7ad7b131acaa960629eb948ee49b0141" prot="public" virt="non-virtual" ambiguityscope="falcon_core::instrument_interfaces::port_transforms::PortTransforms::"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaff8f72dc702a07b07f14d9bc075dbb0" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a98aa8f7995e88f333c85d8eb0e44da85" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>operator_equal_impl</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms_1a08772b4a533c309cfb25909a448345ea" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>PortTransforms</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms_1a6439de2524ca4b0464dbe33ef66ea19d" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>PortTransforms</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms_1a3c3609bbf22c6d982792cd7b488715d8" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>PortTransforms</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms_1a4425d2983ad9a912b63d093c5e941d87" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>PortTransforms</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a672370a488b6ca60454cbbed60b4ef4a" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>push_back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a605cb51b17e7a58b8253b041252a8444" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>push_back_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad8cdc2817d5f8111a416930461321b96" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>replace_at</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1ae6403dea3687169f5086ebe9146bbd65" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a0fea4756b30abd79c04bcfa09296f1d9" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1af625305de5e8e67794fcb116a90b60b0" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>space</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aacbc6f6812a1cb140b0d16b336f8bca7" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>StoredValue</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1port__transforms_1_1PortTransforms_1a08d6ff07faacba588382ef3a79936ec6" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>transforms</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a316ef29a1da34f5fbeaa6852f9f4deaa" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>Waveform</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a16c3d49117e2f70ece1f3af08a0bafc0" prot="public" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>Waveform</name></member>
+      <member refid="classfalcon__core_1_1instrument__interfaces_1_1Waveform_1a85b246a8ebd7ec3275433bc6e17bb8eb" prot="protected" virt="non-virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>Waveform</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::instrument_interfaces::Waveform</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

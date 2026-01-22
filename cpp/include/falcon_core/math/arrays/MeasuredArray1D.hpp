@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/math/arrays/Is1D.hpp"
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
 namespace falcon_core {
@@ -14,7 +15,8 @@ namespace arrays {
 /**
  * @brief Array type for measured data, derived from BaseArray.
  */
-class MeasuredArray1D : public MeasuredArray, public Is1D<double> {
+class FALCON_CORE_CPP_API MeasuredArray1D : public MeasuredArray,
+                                            public Is1D<double> {
  public:
   using value_type = double;
   MeasuredArray1D();

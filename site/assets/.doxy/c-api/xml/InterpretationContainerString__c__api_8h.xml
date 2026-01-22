@@ -1,0 +1,812 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="InterpretationContainerString__c__api_8h" kind="file" language="C++">
+    <compoundname>InterpretationContainerString_c_api.h</compoundname>
+    <includes refid="ListConnection__c__api_8h" local="yes">falcon_core/generic/ListConnection_c_api.h</includes>
+    <includes refid="SymbolUnit__c__api_8h" local="yes">falcon_core/physics/units/SymbolUnit_c_api.h</includes>
+    <includes refid="Connections__c__api_8h" local="yes">falcon_core/physics/device_structures/Connections_c_api.h</includes>
+    <includes refid="InterpretationContext__c__api_8h" local="yes">falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h</includes>
+    <includes refid="ListInterpretationContext__c__api_8h" local="yes">falcon_core/generic/ListInterpretationContext_c_api.h</includes>
+    <includes refid="ListString__c__api_8h" local="yes">falcon_core/generic/ListString_c_api.h</includes>
+    <includes refid="ListPairInterpretationContextString__c__api_8h" local="yes">falcon_core/generic/ListPairInterpretationContextString_c_api.h</includes>
+    <includes refid="MapInterpretationContextString__c__api_8h" local="yes">falcon_core/generic/MapInterpretationContextString_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <incdepgraph>
+      <node id="10">
+        <label>falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h</label>
+        <link refid="MeasurementContext__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h</label>
+        <link refid="InterpretationContainerString__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h</label>
+        <link refid="InterpretationContext__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/generic/ListInterpretationContext_c_api.h</label>
+        <link refid="ListInterpretationContext__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/generic/ListMeasurementContext_c_api.h</label>
+        <link refid="ListMeasurementContext__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/generic/ListPairInterpretationContextString_c_api.h</label>
+        <link refid="ListPairInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/generic/MapInterpretationContextString_c_api.h</label>
+        <link refid="MapInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/generic/PairInterpretationContextString_c_api.h</label>
+        <link refid="PairInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/math/AxesMeasurementContext_c_api.h</label>
+        <link refid="AxesMeasurementContext__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="InterpretationContainerString__c__api_8h_1a342877108980569930a7254ccb9a3796" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* InterpretationContainerStringHandle</definition>
+        <argsstring></argsstring>
+        <name>InterpretationContainerStringHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="18" column="14" bodyfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1ab9bbdb1695fda9546f8213c86241a4a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InterpretationContainerStringHandle</type>
+        <definition>InterpretationContainerStringHandle InterpretationContainerString_create</definition>
+        <argsstring>(MapInterpretationContextStringHandle contextDoubleMap)</argsstring>
+        <name>InterpretationContainerString_create</name>
+        <param>
+          <type>MapInterpretationContextStringHandle</type>
+          <declname>contextDoubleMap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="22" column="37" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="22" declcolumn="37"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a1cc4f510bf9d4f21cc0f624c41be98f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InterpretationContainerStringHandle</type>
+        <definition>InterpretationContainerStringHandle InterpretationContainerString_copy</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_copy</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="24" column="37" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="24" declcolumn="37"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a79f635090ddc736ec1a17d5582d902c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InterpretationContainerString_destroy</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_destroy</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1ad08bf744d75f69b27ca15d42bcbb6dca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SymbolUnitHandle</type>
+        <definition>SymbolUnitHandle InterpretationContainerString_unit</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_unit</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="28" column="18" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="28" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1af4c7cc93b3574b3bde53c51a96da7f13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListInterpretationContextHandle</type>
+        <definition>ListInterpretationContextHandle InterpretationContainerString_select_by_connection</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, ConnectionHandle connection)</argsstring>
+        <name>InterpretationContainerString_select_by_connection</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>connection</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="31" column="33" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="31" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a486520fbbaf7427f171444bfb5c01dc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListInterpretationContextHandle</type>
+        <definition>ListInterpretationContextHandle InterpretationContainerString_select_by_connections</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, ConnectionsHandle connections)</argsstring>
+        <name>InterpretationContainerString_select_by_connections</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>connections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="34" column="33" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="34" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a7b6eba6a98ed0b7edf3fad782dd22b3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListInterpretationContextHandle</type>
+        <definition>ListInterpretationContextHandle InterpretationContainerString_select_by_independent_connection</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, ConnectionHandle connection)</argsstring>
+        <name>InterpretationContainerString_select_by_independent_connection</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>connection</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="37" column="33" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="37" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a8ad9498ca56da913456539d54191a17b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListInterpretationContextHandle</type>
+        <definition>ListInterpretationContextHandle InterpretationContainerString_select_by_dependent_connection</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, ConnectionHandle connection)</argsstring>
+        <name>InterpretationContainerString_select_by_dependent_connection</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>connection</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="40" column="33" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="40" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1acec615693e3c6a7c6ffe4c4f7be5bf7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListInterpretationContextHandle</type>
+        <definition>ListInterpretationContextHandle InterpretationContainerString_select_contexts</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, ListConnectionHandle independent_connections, ListConnectionHandle dependent_connections)</argsstring>
+        <name>InterpretationContainerString_select_contexts</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListConnectionHandle</type>
+          <declname>independent_connections</declname>
+        </param>
+        <param>
+          <type>ListConnectionHandle</type>
+          <declname>dependent_connections</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="43" column="33" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="43" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a82df8750d2d01aab2bce66e462f7d2bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InterpretationContainerString_insert_or_assign</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, InterpretationContextHandle key, StringHandle value)</argsstring>
+        <name>InterpretationContainerString_insert_or_assign</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1afa817a23094d89f2f7424ca53b0192a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InterpretationContainerString_insert</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, InterpretationContextHandle key, StringHandle value)</argsstring>
+        <name>InterpretationContainerString_insert</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="52" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="52" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1acf7e39d1850d2e5196082397d39ad308" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle InterpretationContainerString_at</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, InterpretationContextHandle key)</argsstring>
+        <name>InterpretationContainerString_at</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="57" column="14" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="57" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a364a353de6705a08b63acb949912806f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InterpretationContainerString_erase</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, InterpretationContextHandle key)</argsstring>
+        <name>InterpretationContainerString_erase</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="60" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="60" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a69dfcd70588cd88a721a759fd8676f84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t InterpretationContainerString_size</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_size</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="63" column="8" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="63" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1abca093cb9cb9e44c35baadac39f60032" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InterpretationContainerString_empty</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_empty</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="65" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="65" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a356c34b672e236d8cfe9d6d6f251b255" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InterpretationContainerString_clear</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_clear</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="67" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="67" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1ac5adb5f51c908cb1ab82a1f470b2ae53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InterpretationContainerString_contains</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, InterpretationContextHandle key)</argsstring>
+        <name>InterpretationContainerString_contains</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="69" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="69" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1aa81eed11c8630b4fd573504d3bc12398" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListInterpretationContextHandle</type>
+        <definition>ListInterpretationContextHandle InterpretationContainerString_keys</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_keys</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="72" column="33" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="72" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a6b77011f96296a0cb9ba3161598cdc6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle InterpretationContainerString_values</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_values</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="75" column="18" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="75" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1aabdbba579e7ae69e7a6e54a6b387f7a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairInterpretationContextStringHandle</type>
+        <definition>ListPairInterpretationContextStringHandle InterpretationContainerString_items</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_items</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="77" column="43" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="77" declcolumn="43"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1aa935e2b570d60758f47ffd7a6c16f96c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InterpretationContainerString_equal</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, InterpretationContainerStringHandle other)</argsstring>
+        <name>InterpretationContainerString_equal</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="80" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="80" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a04b6d6547c20e054599d41aa22b3e65a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InterpretationContainerString_not_equal</definition>
+        <argsstring>(InterpretationContainerStringHandle handle, InterpretationContainerStringHandle other)</argsstring>
+        <name>InterpretationContainerString_not_equal</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="82" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="82" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a5e6bb3009eadfe599254268f213348de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle InterpretationContainerString_to_json_string</definition>
+        <argsstring>(InterpretationContainerStringHandle handle)</argsstring>
+        <name>InterpretationContainerString_to_json_string</name>
+        <param>
+          <type>InterpretationContainerStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="85" column="19" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="85" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContainerString__c__api_8h_1a98ce3e3abcf2c78d9ab6af6f3dddace6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InterpretationContainerStringHandle</type>
+        <definition>InterpretationContainerStringHandle InterpretationContainerString_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>InterpretationContainerString_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" line="87" column="37" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h" declline="87" declcolumn="37"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListConnection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/units/SymbolUnit_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connections_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListInterpretationContext_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListString_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListPairInterpretationContextString_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/MapInterpretationContextString_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>InterpretationContainerStringHandle;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">InterpretationContainerStringHandle<sp/>InterpretationContainerString_create(MapInterpretationContextStringHandle<sp/>contextDoubleMap);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">InterpretationContainerStringHandle<sp/>InterpretationContainerString_copy(InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InterpretationContainerString_destroy(InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">SymbolUnitHandle<sp/>InterpretationContainerString_unit(</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">ListInterpretationContextHandle<sp/>InterpretationContainerString_select_by_connection(</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContainerStringHandle<sp/>handle,<sp/>ConnectionHandle<sp/>connection);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">ListInterpretationContextHandle<sp/>InterpretationContainerString_select_by_connections(</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InterpretationContainerStringHandle<sp/>handle,<sp/>ConnectionsHandle<sp/>connections);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">ListInterpretationContextHandle<sp/>InterpretationContainerString_select_by_independent_connection(</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InterpretationContainerStringHandle<sp/>handle,<sp/>ConnectionHandle<sp/>connection);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">ListInterpretationContextHandle<sp/>InterpretationContainerString_select_by_dependent_connection(</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InterpretationContainerStringHandle<sp/>handle,<sp/>ConnectionHandle<sp/>connection);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">ListInterpretationContextHandle<sp/>InterpretationContainerString_select_contexts(</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContainerStringHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>ListConnectionHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>independent_connections,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>ListConnectionHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dependent_connections);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InterpretationContainerString_insert_or_assign(InterpretationContainerStringHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/><sp/><sp/>key,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>StringHandle<sp/>value);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InterpretationContainerString_insert(</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContainerStringHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/><sp/><sp/>key,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>StringHandle<sp/>value);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">StringHandle<sp/>InterpretationContainerString_at(InterpretationContainerStringHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/><sp/><sp/>key);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InterpretationContainerString_erase(InterpretationContainerStringHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/><sp/><sp/>key);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>InterpretationContainerString_size(InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InterpretationContainerString_empty(InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InterpretationContainerString_clear(InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InterpretationContainerString_contains(InterpretationContainerStringHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/><sp/><sp/>key);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">ListInterpretationContextHandle<sp/>InterpretationContainerString_keys(</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">ListStringHandle<sp/>InterpretationContainerString_values(InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal">ListPairInterpretationContextStringHandle<sp/>InterpretationContainerString_items(</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InterpretationContainerString_equal(InterpretationContainerStringHandle<sp/>handle,InterpretationContainerStringHandle<sp/>other);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InterpretationContainerString_not_equal(InterpretationContainerStringHandle<sp/>handle,InterpretationContainerStringHandle<sp/>other);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>InterpretationContainerString_to_json_string(InterpretationContainerStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">InterpretationContainerStringHandle<sp/>InterpretationContainerString_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"/>
+  </compounddef>
+</doxygen>

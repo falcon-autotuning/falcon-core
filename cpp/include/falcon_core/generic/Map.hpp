@@ -2,13 +2,14 @@
 
 #include <numeric>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Pair.hpp"
 namespace falcon_core {
 namespace generic {
 
 template <typename Key, typename Value>
-class Map : public virtual generic::Song {
+class FALCON_CORE_CPP_API Map : public virtual generic::Song {
   static_assert(!std::is_pointer<Key>::value,
                 "Key template argument must not be a pointer type");
   static_assert(!std::is_pointer<Value>::value,

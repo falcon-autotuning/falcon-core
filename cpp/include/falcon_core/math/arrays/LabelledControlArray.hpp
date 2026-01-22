@@ -7,6 +7,7 @@
 
 #include "cereal/types/base_class.hpp"
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/math/arrays/ControlArray.hpp"
 #include "falcon_core/math/arrays/IsLabelled.hpp"
 namespace falcon_core {
@@ -16,7 +17,8 @@ namespace arrays {
 /**
  * @brief An array with a context label attached.
  */
-class LabelledControlArray : public ControlArray, public IsLabelled<double> {
+class FALCON_CORE_CPP_API LabelledControlArray : public ControlArray,
+                                                 public IsLabelled<double> {
  public:
   LabelledControlArray(const LabelledControlArray& other);
   LabelledControlArray& operator=(const LabelledControlArray& other);

@@ -1,0 +1,671 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="MapGnameGroup__c__api_8h" kind="file" language="C++">
+    <compoundname>MapGnameGroup_c_api.h</compoundname>
+    <includes refid="PairGnameGroup__c__api_8h" local="yes">falcon_core/generic/PairGnameGroup_c_api.h</includes>
+    <includes refid="ListGname__c__api_8h" local="yes">falcon_core/generic/ListGname_c_api.h</includes>
+    <includes refid="ListGroup__c__api_8h" local="yes">falcon_core/generic/ListGroup_c_api.h</includes>
+    <includes refid="ListPairGnameGroup__c__api_8h" local="yes">falcon_core/generic/ListPairGnameGroup_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
+    <incdepgraph>
+      <node id="8">
+        <label>falcon_core/autotuner_interfaces/names/Channel_c_api.h</label>
+        <link refid="Channel__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/autotuner_interfaces/names/Gname_c_api.h</label>
+        <link refid="Gname__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/ListDotGateWithNeighbors_c_api.h</label>
+        <link refid="ListDotGateWithNeighbors__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/generic/ListGname_c_api.h</label>
+        <link refid="ListGname__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/generic/ListGroup_c_api.h</label>
+        <link refid="ListGroup__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>falcon_core/generic/ListPairGnameGroup_c_api.h</label>
+        <link refid="ListPairGnameGroup__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
+        <link refid="MapGnameGroup__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/PairGnameGroup_c_api.h</label>
+        <link refid="PairGnameGroup__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/physics/config/core/Group_c_api.h</label>
+        <link refid="Group__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h</label>
+        <link refid="DotGateWithNeighbors__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h</label>
+        <link refid="DotGatesWithNeighbors__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</label>
+        <link refid="GateGeometryArray1D__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h</label>
+        <link refid="LeftReservoirWithImplantedOhmic__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h</label>
+        <link refid="RightReservoirWithImplantedOhmic__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
+        <link refid="MapGnameGroup__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="MapGnameGroup__c__api_8h_1a7fdc3e6fe704dd22ef7ef78c2e2c438b" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* MapGnameGroupHandle</definition>
+        <argsstring></argsstring>
+        <name>MapGnameGroupHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="12" column="14" bodyfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1aae9d8836c055b3cf7facea6f94628e1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapGnameGroupHandle</type>
+        <definition>MapGnameGroupHandle MapGnameGroup_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>MapGnameGroup_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="16" column="21" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="16" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a53e772f3074856c5f842d27b569a2b3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapGnameGroupHandle</type>
+        <definition>MapGnameGroupHandle MapGnameGroup_copy</definition>
+        <argsstring>(MapGnameGroupHandle handle)</argsstring>
+        <name>MapGnameGroup_copy</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="18" column="21" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="18" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a263a8d4299b6fddd76f995befe7911a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapGnameGroupHandle</type>
+        <definition>MapGnameGroupHandle MapGnameGroup_create</definition>
+        <argsstring>(PairGnameGroupHandle *data, size_t count)</argsstring>
+        <name>MapGnameGroup_create</name>
+        <param>
+          <type>PairGnameGroupHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="20" column="21" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="20" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1aebb9c5f24fc5b44296550b93d1c92a71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapGnameGroup_destroy</definition>
+        <argsstring>(MapGnameGroupHandle handle)</argsstring>
+        <name>MapGnameGroup_destroy</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="22" column="6" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="22" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a695738b54860468d3f334ba369272733" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapGnameGroup_insert_or_assign</definition>
+        <argsstring>(MapGnameGroupHandle handle, GnameHandle key, GroupHandle value)</argsstring>
+        <name>MapGnameGroup_insert_or_assign</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GnameHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>GroupHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a0dcf8c56459069d997af6ed18eee7580" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapGnameGroup_insert</definition>
+        <argsstring>(MapGnameGroupHandle handle, GnameHandle key, GroupHandle value)</argsstring>
+        <name>MapGnameGroup_insert</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GnameHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>GroupHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1adb01e41ec41d270bc252a2db2b3c9276" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GroupHandle</type>
+        <definition>GroupHandle MapGnameGroup_at</definition>
+        <argsstring>(MapGnameGroupHandle handle, GnameHandle key)</argsstring>
+        <name>MapGnameGroup_at</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GnameHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="28" column="13" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="28" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1ab057e62279e057eba101bf044b6e8a29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapGnameGroup_erase</definition>
+        <argsstring>(MapGnameGroupHandle handle, GnameHandle key)</argsstring>
+        <name>MapGnameGroup_erase</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GnameHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a5d154fb23702d894b62b668ea3f75291" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t MapGnameGroup_size</definition>
+        <argsstring>(MapGnameGroupHandle handle)</argsstring>
+        <name>MapGnameGroup_size</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="32" column="8" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="32" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a05e13f2763cf0c9157edd8c8f15b1849" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapGnameGroup_empty</definition>
+        <argsstring>(MapGnameGroupHandle handle)</argsstring>
+        <name>MapGnameGroup_empty</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a925e8211562f3848a433d1a79c02f140" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapGnameGroup_clear</definition>
+        <argsstring>(MapGnameGroupHandle handle)</argsstring>
+        <name>MapGnameGroup_clear</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="36" column="6" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="36" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1add6f99874889b9d43a080785dee77997" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapGnameGroup_contains</definition>
+        <argsstring>(MapGnameGroupHandle handle, GnameHandle key)</argsstring>
+        <name>MapGnameGroup_contains</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GnameHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="38" column="6" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="38" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a88e3bd2b5ac371542301d649ddb0a55d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListGnameHandle</type>
+        <definition>ListGnameHandle MapGnameGroup_keys</definition>
+        <argsstring>(MapGnameGroupHandle handle)</argsstring>
+        <name>MapGnameGroup_keys</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="40" column="17" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="40" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a4e41b171a73439d5aef5b99b85401e74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListGroupHandle</type>
+        <definition>ListGroupHandle MapGnameGroup_values</definition>
+        <argsstring>(MapGnameGroupHandle handle)</argsstring>
+        <name>MapGnameGroup_values</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="42" column="17" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="42" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1aa8e56370adfaa577522c87145faf8593" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairGnameGroupHandle</type>
+        <definition>ListPairGnameGroupHandle MapGnameGroup_items</definition>
+        <argsstring>(MapGnameGroupHandle handle)</argsstring>
+        <name>MapGnameGroup_items</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="44" column="26" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="44" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1abdd24e55da8ba71e843a0c363d9664bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapGnameGroup_equal</definition>
+        <argsstring>(MapGnameGroupHandle handle, MapGnameGroupHandle other)</argsstring>
+        <name>MapGnameGroup_equal</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a35d85f9533724d2759572883b5a3d977" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapGnameGroup_not_equal</definition>
+        <argsstring>(MapGnameGroupHandle handle, MapGnameGroupHandle other)</argsstring>
+        <name>MapGnameGroup_not_equal</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1a228157e0ff6ec3622b2d6e100e7572c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle MapGnameGroup_to_json_string</definition>
+        <argsstring>(MapGnameGroupHandle handle)</argsstring>
+        <name>MapGnameGroup_to_json_string</name>
+        <param>
+          <type>MapGnameGroupHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="50" column="19" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="50" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="MapGnameGroup__c__api_8h_1afe2883d93838bb99e0a26f145abfc43d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapGnameGroupHandle</type>
+        <definition>MapGnameGroupHandle MapGnameGroup_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>MapGnameGroup_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" line="52" column="21" declfile="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h" declline="52" declcolumn="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/PairGnameGroup_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListGname_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListGroup_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListPairGnameGroup_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>MapGnameGroupHandle;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">MapGnameGroupHandle<sp/>MapGnameGroup_create_empty();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">MapGnameGroupHandle<sp/>MapGnameGroup_copy(MapGnameGroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">MapGnameGroupHandle<sp/>MapGnameGroup_create(PairGnameGroupHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapGnameGroup_destroy(MapGnameGroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapGnameGroup_insert_or_assign(MapGnameGroupHandle<sp/>handle,<sp/>GnameHandle<sp/>key,<sp/>GroupHandle<sp/>value);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapGnameGroup_insert(MapGnameGroupHandle<sp/>handle,<sp/>GnameHandle<sp/>key,<sp/>GroupHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">GroupHandle<sp/>MapGnameGroup_at(MapGnameGroupHandle<sp/>handle,<sp/>GnameHandle<sp/>key);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapGnameGroup_erase(MapGnameGroupHandle<sp/>handle,<sp/>GnameHandle<sp/>key);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>MapGnameGroup_size(MapGnameGroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapGnameGroup_empty(MapGnameGroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapGnameGroup_clear(MapGnameGroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapGnameGroup_contains(MapGnameGroupHandle<sp/>handle,<sp/>GnameHandle<sp/>key);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">ListGnameHandle<sp/>MapGnameGroup_keys(MapGnameGroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">ListGroupHandle<sp/>MapGnameGroup_values(MapGnameGroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListPairGnameGroupHandle<sp/>MapGnameGroup_items(MapGnameGroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapGnameGroup_equal(MapGnameGroupHandle<sp/>handle,<sp/>MapGnameGroupHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapGnameGroup_not_equal(MapGnameGroupHandle<sp/>handle,<sp/>MapGnameGroupHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>MapGnameGroup_to_json_string(MapGnameGroupHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">MapGnameGroupHandle<sp/>MapGnameGroup_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/MapGnameGroup_c_api.h"/>
+  </compounddef>
+</doxygen>

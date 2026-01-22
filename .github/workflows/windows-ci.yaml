@@ -1,153 +1,265 @@
-name: Windows CI
+name: Native Windows Build and Test
+
 on:
   push:
-    branches: [main]
+    branches: [dev]
   pull_request:
-    branches: [main]
+    branches: [dev]
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
 jobs:
   build-and-test-windows:
+    name: Build and Test on Windows (clang + Ninja)
     runs-on: windows-latest
+
+    # vcpkg binary caching
+    env:
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
+
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: choco install ninja ccache python llvm
-
-      - name: Add LLVM to PATH
-        run: echo "C:\Program Files\LLVM\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
-
-      - name: Install latest CMake
-        uses: jwlawson/actions-setup-cmake@v1
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          cmake-version: "3.27.7" # or any version >= 3.21
+          submodules: recursive
+          ref: dev
 
-      - name: Install vcpkg
+      - name: Attempt to restore vcpkg binary cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            . vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-clang-${{ hashFiles('cpp/vcpkg. json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          restore-keys: |
+            vcpkg-${{ runner. os }}-clang-
+            vcpkg-${{ runner.os }}-
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      # Ensure we have a recent version of LLVM/Clang
+      - name: Install LLVM/Clang via Chocolatey
+        shell: pwsh
         run: |
-          git clone https://github.com/microsoft/vcpkg.git
-          .\vcpkg\bootstrap-vcpkg.bat
+          choco install llvm -y --version=18.1.8
+          refreshenv
 
-      # Install vcpkg dependencies for cpp
-      - name: Install vcpkg dependencies for cpp
-        run: ..\vcpkg\vcpkg.exe install --triplet x64-windows
+      # Install Ninja build system
+      - name: Install Ninja
+        shell: pwsh
+        run: |
+          choco install ninja -y
+
+      - name: Configure CMake with Ninja + Clang
         working-directory: cpp
-
-      # Build and test cpp
-      - name: Generate CMakePresets.json for DEV build (cpp)
+        shell: pwsh
         run: |
-          @"
-          {
-            "version": 3,
-            "configurePresets": [
-              {
-                "name": "DEV",
-                "displayName": "Development build with coverage (Clang, vcpkg, Debug)",
-                "generator": "Ninja",
-                "binaryDir": "build",
-                "cacheVariables": {
-                  "CMAKE_TOOLCHAIN_FILE": "../vcpkg/scripts/buildsystems/vcpkg.cmake",
-                  "VCPKG_TARGET_TRIPLET": "x64-windows",
-                  "CMAKE_BUILD_TYPE": "Debug",
-                  "CMAKE_C_COMPILER": "clang",
-                  "CMAKE_CXX_COMPILER": "clang++",
-                  "USE_VCPKG": "1",
-                  "FALCON_CORE_DEV": "ON"
-                }
-              }
-            ]
+          # Refresh environment to get LLVM paths
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+          Write-Host "=== Compiler Info ==="
+          clang --version
+          clang++ --version
+          ninja --version
+
+          Write-Host "`n=== Configuring CMake ==="
+          cmake -B build `
+            -S .  `
+            -G "Ninja" `
+            -DCMAKE_C_COMPILER=clang `
+            -DCMAKE_CXX_COMPILER=clang++ `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/cpp" `
+            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/cpp/build/vcpkg_installed" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DFALCON_CORE_DEV=ON `
+            -DUSE_VCPKG=ON
+
+      - name: Save vcpkg binary cache (early)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-clang-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}-${{ github.run_id }}
+
+      - name: Build falcon-core-cpp
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          Write-Host "=== Building with Ninja ==="
+          ninja -C build -v
+
+      - name: List build outputs
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          Write-Host "=== Build Directory Structure ==="
+          Get-ChildItem -Path "build" -Recurse -Include *.exe,*.dll | Select-Object FullName, Length
+
+      - name: Run CPP tests
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          # Set PATH to include vcpkg DLLs and build directory
+          $vcpkgBin = (Resolve-Path "build/vcpkg_installed/x64-windows/bin").Path
+          $buildDir = (Resolve-Path "build").Path
+
+          Write-Host "=== Environment Setup ==="
+          Write-Host "VcpkgBin: $vcpkgBin"
+          Write-Host "BuildDir: $buildDir"
+
+          # Add DLL directories to PATH (simpler approach)
+          $env:PATH = "$vcpkgBin;$buildDir;$env:PATH"
+
+          # Verify DLL locations
+          Write-Host "`n=== DLL Verification ==="
+          Write-Host "Looking for zlib1.dll:"
+          where. exe zlib1.dll 2>&1 | Select-Object -First 3
+          Write-Host "`nLooking for hdf5.dll:"
+          where.exe hdf5.dll 2>&1 | Select-Object -First 3
+          Write-Host "`nLooking for yaml-cpp.dll:"
+          where. exe yaml-cpp.dll 2>&1 | Select-Object -First 3
+
+          # Find test executable
+          $testExe = Get-ChildItem -Path "build" -Filter "falcon_core_cpp_run_tests.exe" -Recurse | Select-Object -First 1
+
+          if (-not $testExe) {
+            Write-Error "Test executable not found!"
+            exit 1
           }
-          "@ | Out-File -Encoding utf8 CMakePresets.json
-        shell: pwsh
-        working-directory: cpp
-      - name: List files in cpp/ (detailed)
-        run: Get-ChildItem -Force | Format-List
-        shell: pwsh
-        working-directory: cpp
-      - name: Show CMakePresets.json
-        run: cat CMakePresets.json
-        working-directory: cpp
 
-      - name: Configure CMake for cpp (with coverage)
-        run: cmake --preset DEV
-        working-directory: cpp
+          Write-Host "`n=== Running Tests ==="
+          Write-Host "Test executable: $($testExe.FullName)"
 
-      - name: Build cpp
-        run: cmake --build build
-        working-directory: cpp
+          # Run tests
+          & $testExe.FullName --gtest_color=yes --gtest_output=xml: test-results.xml
+          $exitCode = $LASTEXITCODE
 
-      - name: Test falcon-core-cpp-dev (with coverage)
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-          $buildDir = "build"
-          $coverageDir = "coverage"
-          New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
-          $env:PATH = "$env:GITHUB_WORKSPACE\cpp\$buildDir;$env:PATH"
-          $env:LLVM_PROFILE_FILE = "$env:GITHUB_WORKSPACE\cpp\$buildDir\falcon_core_cpp_run_tests.profraw"
-          .\$buildDir\falcon_core_cpp_run_tests.exe
-          llvm-profdata merge -sparse $buildDir\falcon_core_cpp_run_tests.profraw -o $buildDir\falcon_core_cpp_run_tests.profdata
-          llvm-cov report .\$buildDir\falcon_core_cpp_run_tests.exe -instr-profile=$buildDir\falcon_core_cpp_run_tests.profdata | Out-File -Encoding utf8 $coverageDir\falcon-core-cpp.txt
-        working-directory: cpp
+          Write-Host "`nTest exit code: $exitCode"
 
-      # Install vcpkg dependencies for c-api
-      - name: Install vcpkg dependencies for c-api
-        run: ..\vcpkg\vcpkg.exe install --triplet x64-windows
-        working-directory: c-api
-
-      # Build and test c-api
-      - name: Generate CMakePresets.json for DEV build
-        run: |
-          @"
-          {
-            "version": 3,
-            "configurePresets": [
-              {
-                "name": "DEV",
-                "displayName": "Development build with coverage (Clang, vcpkg, Debug)",
-                "generator": "Ninja",
-                "binaryDir": "build",
-                "cacheVariables": {
-                  "CMAKE_TOOLCHAIN_FILE": "../vcpkg/scripts/buildsystems/vcpkg.cmake",
-                  "VCPKG_TARGET_TRIPLET": "x64-windows",
-                  "CMAKE_BUILD_TYPE": "Debug",
-                  "CMAKE_C_COMPILER": "clang",
-                  "CMAKE_CXX_COMPILER": "clang++",
-                  "USE_VCPKG": "1",
-                  "FALCON_CORE_DEV": "ON",
-                  "CORE_ROOT": "../cpp"
-                }
-              }
-            ]
+          # Check for common Windows errors
+          if ($exitCode -eq -1073741515 -or $exitCode -eq 3221225781) {
+            Write-Error "DLL NOT FOUND ERROR (0xC0000135)"
+            Write-Host "Missing DLL dependencies. Check vcpkg installation."
+            exit 1
+          } elseif ($exitCode -eq -1073741819 -or $exitCode -eq 3221225477) {
+            Write-Error "ACCESS VIOLATION ERROR (0xC0000005)"
+            Write-Host "Memory access violation in tests. This may indicate:"
+            Write-Host "  - NULL pointer dereference"
+            Write-Host "  - Buffer overflow"
+            Write-Host "  - Stack corruption"
+            Write-Host "  - ABI mismatch between libraries"
+            exit 1
           }
-          "@ | Out-File -Encoding utf8 CMakePresets.json
-        shell: pwsh
-        working-directory: c-api
 
-      - name: Configure CMake for c-api (with coverage)
-        run: cmake --preset DEV
-        working-directory: c-api
+          if ($exitCode -ne 0) {
+            Write-Error "Tests failed with exit code: $exitCode"
+            exit $exitCode
+          }
 
-      - name: Build c-api
-        run: cmake --build build
-        working-directory: c-api
+          Write-Host "✓ Tests passed successfully"
 
-      - name: Test falcon-core-c-api-dev (with coverage)
+      # ------------------
+      # Error handling and debugging steps
+      # ------------------
+      - name: Run tests with detailed diagnostics (on failure)
+        if: failure()
+        working-directory: cpp
         shell: pwsh
         run: |
-          $ErrorActionPreference = "Stop"
-          $buildDir = "build"
-          $coverageDir = "coverage"
-          New-Item -ItemType Directory -Force -Path $coverageDir | Out-Null
-          $env:PATH = "$env:GITHUB_WORKSPACE\c-api\$buildDir;$env:PATH"
-          $env:LLVM_PROFILE_FILE = "$env:GITHUB_WORKSPACE\c-api\$buildDir\falcon_core_c_api_run_tests.profraw"
-          .\$buildDir\falcon_core_c_api_run_tests.exe
-          llvm-profdata merge -sparse $buildDir\falcon_core_c_api_run_tests.profraw -o $buildDir\falcon_core_c_api_run_tests.profdata
-          llvm-cov report .\$buildDir\falcon_core_c_api_run_tests.exe -instr-profile=$buildDir\falcon_core_c_api_run_tests.profdata | Out-File -Encoding utf8 $coverageDir\falcon-core-c-api.txt
-        working-directory: c-api
+          Write-Host "=== Gathering Diagnostic Information ==="
 
-      - name: Upload coverage reports
+          # Show loaded modules/DLLs
+          $testExe = Get-ChildItem -Path "build" -Filter "falcon_core_cpp_run_tests.exe" -Recurse | Select-Object -First 1
+
+          if ($testExe) {
+            Write-Host "`n=== DLL Dependencies (using dumpbin) ==="
+            if (Get-Command "dumpbin. exe" -ErrorAction SilentlyContinue) {
+              dumpbin.exe /DEPENDENTS $testExe.FullName
+            } else {
+              Write-Host "dumpbin not available"
+            }
+            
+            # Try running with verbose DLL loading
+            Write-Host "`n=== Attempting test run with loader snaps ==="
+            $env:PATH = "$(Resolve-Path 'build/vcpkg_installed/x64-windows/bin');$(Resolve-Path 'build');$env:PATH"
+            
+            # Set loader debugging (shows DLL load attempts)
+            $env:_NT_LOADER_DEBUG = "0x1"
+            
+            & $testExe.FullName --gtest_list_tests 2>&1 | Tee-Object -Variable output
+            
+            Remove-Item Env: \_NT_LOADER_DEBUG -ErrorAction SilentlyContinue
+          }
+
+      - name: Run tests with ProcDump (capture crash dumps)
+        if: failure()
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          # Install ProcDump
+          choco install procdump -y
+
+          $testExe = Get-ChildItem -Path "build" -Filter "falcon_core_cpp_run_tests.exe" -Recurse | Select-Object -First 1
+
+          if (-not $testExe) {
+            Write-Host "Test executable not found, skipping dump"
+            exit 0
+          }
+
+          $dumpDir = Join-Path $PWD "dumps"
+          New-Item -ItemType Directory -Force -Path $dumpDir | Out-Null
+
+          # Set PATH for DLLs
+          $env:PATH = "$(Resolve-Path 'build/vcpkg_installed/x64-windows/bin');$(Resolve-Path 'build');$env:PATH"
+
+          Write-Host "=== Running under ProcDump ==="
+          Write-Host "Dump directory: $dumpDir"
+
+          # Run under ProcDump to capture crash
+          procdump -accepteula -ma -e -x $dumpDir $testExe. FullName --gtest_color=no
+
+          Write-Host "`n=== Crash Dumps ==="
+          Get-ChildItem $dumpDir -Recurse -ErrorAction SilentlyContinue | Select-Object FullName, Length
+
+      - name: Upload crash dumps
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-reports
+          name: windows-crash-dumps
+          path: cpp/dumps/**
+          if-no-files-found: ignore
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-test-results
+          path: cpp/test-results.xml
+          if-no-files-found: ignore
+
+      - name: Upload build logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build-logs
           path: |
-            cpp/coverage/*
-            c-api/coverage/*
+            cpp/build/**/*.log
+            cpp/build/CMakeFiles/*. log
+          if-no-files-found: ignore
+
+      - name: Setup tmate session for debugging (on failure)
+        if: failure() && github.event_name == 'workflow_dispatch'
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 60
+        with:
+          limit-access-to-actor: true

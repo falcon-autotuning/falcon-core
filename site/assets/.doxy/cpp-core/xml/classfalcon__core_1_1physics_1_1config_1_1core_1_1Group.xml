@@ -1,0 +1,561 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::physics::config::core::Group</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections" prot="public" virt="non-virtual">falcon_core::physics::config::core::StandardConfigConnections</basecompoundref>
+    <includes refid="Group_8hpp" local="no">Group.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1acc88a27eb63662c415f650b8bca68ddf" prot="private" static="no" mutable="no">
+        <type>autotuner_interfaces::names::ChannelSP</type>
+        <definition>autotuner_interfaces::names::ChannelSP falcon_core::physics::config::core::Group::_name</definition>
+        <argsstring></argsstring>
+        <name>_name</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="15" column="42" bodyfile="cpp/include/falcon_core/physics/config/core/Group.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac02fc62b3c01c0f8c2422699ba8739e7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int falcon_core::physics::config::core::Group::_num_dots</definition>
+        <argsstring></argsstring>
+        <name>_num_dots</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::_num_dots</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="16" column="42" bodyfile="cpp/include/falcon_core/physics/config/core/Group.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1aa4066cb9d04deb35cfff1c3e00b9a9e2" prot="private" static="no" mutable="no">
+        <type>geometries::GateGeometryArray1DSP</type>
+        <definition>geometries::GateGeometryArray1DSP falcon_core::physics::config::core::Group::_order</definition>
+        <argsstring></argsstring>
+        <name>_order</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::_order</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="17" column="42" bodyfile="cpp/include/falcon_core/physics/config/core/Group.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1af75ed8c115ba6676e8e2e04b8d2c29a8" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::core::Group::_mu_name</definition>
+        <argsstring></argsstring>
+        <name>_mu_name</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::_mu_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="18" column="42" bodyfile="cpp/include/falcon_core/physics/config/core/Group.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1af71ac3308ce3fb693026714302e6106d" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::core::Group::_mu_num_dots</definition>
+        <argsstring></argsstring>
+        <name>_mu_num_dots</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::_mu_num_dots</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="19" column="42" bodyfile="cpp/include/falcon_core/physics/config/core/Group.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a5236ddef6b08a7e9c041e10f3548d7ee" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::physics::config::core::Group::_mu_order</definition>
+        <argsstring></argsstring>
+        <name>_mu_order</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::_mu_order</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="20" column="42" bodyfile="cpp/include/falcon_core/physics/config/core/Group.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="84" column="16" bodyfile="cpp/include/falcon_core/physics/config/core/Group.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a55a5e7505774bad660c30b20834ddf3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::core::Group::Group</definition>
+        <argsstring>(const Group &amp;other)</argsstring>
+        <name>Group</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::Group</qualifiedname>
+        <param>
+          <type>const Group &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="23" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a24e0b153b283e663765dcbcc86191a0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Group &amp;</type>
+        <definition>Group &amp; falcon_core::physics::config::core::Group::operator=</definition>
+        <argsstring>(const Group &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::operator=</qualifiedname>
+        <param>
+          <type>const Group &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="24" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac98884294d2da4ec98b52912ae3f679f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::core::Group::Group</definition>
+        <argsstring>(const autotuner_interfaces::names::ChannelSP &amp;name, const int &amp;num_dots, const device_structures::ConnectionsSP &amp;screening_gates, const device_structures::ConnectionsSP &amp;reservoir_gates, const device_structures::ConnectionsSP &amp;plunger_gates, const device_structures::ConnectionsSP &amp;barrier_gates, const device_structures::ConnectionsSP &amp;order)</argsstring>
+        <name>Group</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::Group</qualifiedname>
+        <param>
+          <type>const autotuner_interfaces::names::ChannelSP &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>num_dots</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionsSP &amp;</type>
+          <declname>screening_gates</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionsSP &amp;</type>
+          <declname>reservoir_gates</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionsSP &amp;</type>
+          <declname>plunger_gates</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionsSP &amp;</type>
+          <declname>barrier_gates</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionsSP &amp;</type>
+          <declname>order</declname>
+        </param>
+        <briefdescription>
+<para>Holds information about a group of gates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the group. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_dots</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of dots in the group. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>screening_gates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The screening gates in the group. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reservoir_gates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reservoir gates in the group. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>plunger_gates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The plunger gates in the group. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>barrier_gates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The barrier gates in the group. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>order</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The order of the gates in the group. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="35" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a9bf8733b0dc8b0dbbea68b5f46300005" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const device_structures::ConnectionsSP</type>
+        <definition>const device_structures::ConnectionsSP falcon_core::physics::config::core::Group::ohmics</definition>
+        <argsstring>() const</argsstring>
+        <name>ohmics</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::ohmics</qualifiedname>
+        <briefdescription>
+<para>collect the ohmics pertaining to this group. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="45" column="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a5289b76484c5bfbb05e5e9292128a8b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const autotuner_interfaces::names::ChannelSP &amp;</type>
+        <definition>const autotuner_interfaces::names::ChannelSP &amp; falcon_core::physics::config::core::Group::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::name</qualifiedname>
+        <briefdescription>
+<para>collect the name of this group. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="49" column="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a0543ad2d09f7dc41cffa89037c0a923d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const int &amp;</type>
+        <definition>const int &amp; falcon_core::physics::config::core::Group::num_dots</definition>
+        <argsstring>() const</argsstring>
+        <name>num_dots</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::num_dots</qualifiedname>
+        <briefdescription>
+<para>collect the number of dots in this group. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="53" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1afeeca109940998ceccfcaec1a8086b0f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const geometries::GateGeometryArray1DSP &amp;</type>
+        <definition>const geometries::GateGeometryArray1DSP &amp; falcon_core::physics::config::core::Group::order</definition>
+        <argsstring>() const</argsstring>
+        <name>order</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::order</qualifiedname>
+        <briefdescription>
+<para>collect the order of the gates in this group. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="57" column="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a8246f0bf6273784e9293e941c33b43ec" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::core::Group::has_channel</definition>
+        <argsstring>(const autotuner_interfaces::names::ChannelSP &amp;channel) const</argsstring>
+        <name>has_channel</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::has_channel</qualifiedname>
+        <param>
+          <type>const autotuner_interfaces::names::ChannelSP &amp;</type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+<para>Validates if this channel is present. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>channel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The channel to validate. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the channel is present. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="63" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac93b4d8f32da0d9d58107c73fc55724f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::core::Group::is_charge_sensor</definition>
+        <argsstring>() const</argsstring>
+        <name>is_charge_sensor</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::is_charge_sensor</qualifiedname>
+        <briefdescription>
+<para>Checks if this channel could be a charge sensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if the channel has a single dot. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="68" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1aad7e87d30acd20fc29304cee7081c441" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::core::Group::get_all_channel_gates</definition>
+        <argsstring>(const autotuner_interfaces::names::ChannelSP &amp;channel) const</argsstring>
+        <name>get_all_channel_gates</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::get_all_channel_gates</qualifiedname>
+        <param>
+          <type>const autotuner_interfaces::names::ChannelSP &amp;</type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+<para>Gets all of the gates assocciated with this channel from the config. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>channel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The channel to collect the gates for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The gates associated with this channel. If the channel is not correct then empty gates are returned. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="76" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ae5f8f798d996a90a4b7c79b72d77758f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::core::Group::operator==</definition>
+        <argsstring>(const Group &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::operator==</qualifiedname>
+        <param>
+          <type>const Group &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="79" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1aedaae5f8c4e863a580e52076fe7bbabc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::physics::config::core::Group::operator!=</definition>
+        <argsstring>(const Group &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::operator!=</qualifiedname>
+        <param>
+          <type>const Group &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="80" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ae40dec3e1dd68ced52ea1b2741da9a32" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::core::Group::Group</definition>
+        <argsstring>()</argsstring>
+        <name>Group</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::Group</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="83" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a3c6646549c01c844f12496ee51992379" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::physics::config::core::Group::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::physics::config::core::Group::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="86" column="8" bodyfile="cpp/include/falcon_core/physics/config/core/Group.hpp" bodystart="86" bodyend="98"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Elements of the config that pertain to an individual group of gates. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::core::Group</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::physics::config::core::StandardConfigConnections</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::physics::config::core::Group</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::physics::config::core::StandardConfigConnections</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/physics/config/core/Group.hpp" line="14" column="1" bodyfile="cpp/include/falcon_core/physics/config/core/Group.hpp" bodystart="14" bodyend="99"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1af75ed8c115ba6676e8e2e04b8d2c29a8" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>_mu_name</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1af71ac3308ce3fb693026714302e6106d" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>_mu_num_dots</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a5236ddef6b08a7e9c041e10f3548d7ee" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>_mu_order</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1acc88a27eb63662c415f650b8bca68ddf" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>_name</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac02fc62b3c01c0f8c2422699ba8739e7" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>_num_dots</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1aa4066cb9d04deb35cfff1c3e00b9a9e2" prot="private" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>_order</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a926c880392c2460bb6e6fe1569c8306e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>barrier_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a691023025d5b848e645a4331c3707341" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>dot_gates</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1aad7e87d30acd20fc29304cee7081c441" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_all_channel_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a77adac25e767cc46cae5f355d6b803c4" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_all_connections</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a4333d18e9d2371b9d88e7030b2e4ac2d" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_all_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a926bb49abf210ef2ca1ed29c17c64037" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_barrier_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a9dd10116ebda7ac205197b02d872f416" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_dot_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a991dae9156fe34b7494f80451382d123" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1af68937d3a71a3273e439c4100ff0b1a2" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_ohmic</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a33f405ddf8579ae3f55d5576c9435a5e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_plunger_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a1447dc4b99196953ea549697474e62fd" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_reservoir_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad9388aa004cd19ca3398dc82b547c95b" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>get_screening_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a55a5e7505774bad660c30b20834ddf3e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>Group</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac98884294d2da4ec98b52912ae3f679f" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>Group</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ae40dec3e1dd68ced52ea1b2741da9a32" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>Group</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad50cf6c99d7e348b585fdf4cc73632b3" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>has_barrier_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a8246f0bf6273784e9293e941c33b43ec" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>has_channel</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a239f5125b838e180a3f9e088641d48ce" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>has_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a7a4a62a70c020e41a1e9d751f009ca60" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>has_ohmic</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1aabe9204f4efd78665242e0030d8c7357" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>has_plunger_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ac4356ec844f3ccb17cc77fb6b3e2d4cc" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>has_reservoir_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a6a1d1c9a78f8e36383a43d70154d71a1" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>has_screening_gate</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ac93b4d8f32da0d9d58107c73fc55724f" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>is_charge_sensor</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a5289b76484c5bfbb05e5e9292128a8b2" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>name</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a0543ad2d09f7dc41cffa89037c0a923d" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>num_dots</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a9bf8733b0dc8b0dbbea68b5f46300005" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>ohmics</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1aedaae5f8c4e863a580e52076fe7bbabc" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a4da459b807d6a0efdd7f9318ada7b7b1" prot="public" virt="non-virtual" ambiguityscope="falcon_core::physics::config::core::StandardConfigConnections::"><scope>falcon_core::physics::config::core::Group</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a24e0b153b283e663765dcbcc86191a0f" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a5d0c7bb73071c9dbd6b761932333b4bd" prot="public" virt="non-virtual" ambiguityscope="falcon_core::physics::config::core::StandardConfigConnections::"><scope>falcon_core::physics::config::core::Group</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1ae5f8f798d996a90a4b7c79b72d77758f" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a7d1e0f67bccbcd6a782f0a35fa03ff8f" prot="public" virt="non-virtual" ambiguityscope="falcon_core::physics::config::core::StandardConfigConnections::"><scope>falcon_core::physics::config::core::Group</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1afeeca109940998ceccfcaec1a8086b0f" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>order</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a7e629c8752f7bf7b7a5c9f1c06ab522b" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>plunger_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a728d66f124942846c9db4aaf91624966" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>reservoir_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1ad0074cb634422205d138a28e85e86c5b" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>screening_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Group_1a3c6646549c01c844f12496ee51992379" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a5941727ef404a28d23b9eacafcf14a3b" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>StandardConfigConnections</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1a25d609a42d196dde57558348cd86d215" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>StandardConfigConnections</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1StandardConfigConnections_1af63126220a108892b20f764431416a50" prot="protected" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>StandardConfigConnections</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::core::Group</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::physics::config::core::Group</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

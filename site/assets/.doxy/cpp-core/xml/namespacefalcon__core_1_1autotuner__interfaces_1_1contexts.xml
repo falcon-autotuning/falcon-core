@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1autotuner__interfaces_1_1contexts" kind="namespace" language="C++">
+    <compoundname>falcon_core::autotuner_interfaces::contexts</compoundname>
+    <innerclass refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1AcquisitionContext" prot="public">falcon_core::autotuner_interfaces::contexts::AcquisitionContext</innerclass>
+    <innerclass refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext" prot="public">falcon_core::autotuner_interfaces::contexts::BaseContext</innerclass>
+    <innerclass refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" prot="public">falcon_core::autotuner_interfaces::contexts::MeasurementContext</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="AcquisitionContext_8hpp_1a7b354e6230f64cabe78175300d4024ae" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1AcquisitionContext" kindref="compound">AcquisitionContext</ref> &gt;</type>
+        <definition>using falcon_core::autotuner_interfaces::contexts::AcquisitionContextSP =  std::shared_ptr&lt;AcquisitionContext&gt;</definition>
+        <argsstring></argsstring>
+        <name>AcquisitionContextSP</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::AcquisitionContextSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp" line="83" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="BaseContext_8hpp_1a5301be0b4c57456075addb67f3684eb3" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1BaseContext" kindref="compound">BaseContext</ref> &gt;</type>
+        <definition>using falcon_core::autotuner_interfaces::contexts::BaseContextSP =  std::shared_ptr&lt;BaseContext&gt;</definition>
+        <argsstring></argsstring>
+        <name>BaseContextSP</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::BaseContextSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" line="56" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/BaseContext.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="MeasurementContext_8hpp_1abddbaed93dad0991731305a7c775e58d" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">MeasurementContext</ref> &gt;</type>
+        <definition>using falcon_core::autotuner_interfaces::contexts::MeasurementContextSP =  std::shared_ptr&lt;MeasurementContext&gt;</definition>
+        <argsstring></argsstring>
+        <name>MeasurementContextSP</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::contexts::MeasurementContextSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" line="38" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp" line="8" column="1"/>
+  </compounddef>
+</doxygen>

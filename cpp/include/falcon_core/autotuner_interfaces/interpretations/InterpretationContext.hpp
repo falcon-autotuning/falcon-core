@@ -1,6 +1,7 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/math/Axes.hpp"
 #include "falcon_core/physics/units/SymbolUnit.hpp"
 
@@ -15,7 +16,7 @@ namespace interpretations {
  * parameters), a list of MeasurementContext for dependent variables (measured
  * parameters), and a unit for interpreting the values.
  */
-class InterpretationContext : public generic::Song {
+class FALCON_CORE_CPP_API InterpretationContext : public generic::Song {
   math::AxesSP<autotuner_interfaces::contexts::MeasurementContext>
       _independent_variables;
   generic::ListSP<autotuner_interfaces::contexts::MeasurementContext>

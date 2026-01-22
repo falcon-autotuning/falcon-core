@@ -1,0 +1,719 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1math_1_1UnitSpace" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::math::UnitSpace</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1math_1_1Axes" prot="public" virt="non-virtual">falcon_core::math::Axes&lt; discrete_spaces::Discretizer &gt;</basecompoundref>
+    <includes refid="UnitSpace_8hpp" local="no">UnitSpace.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1UnitSpace_1ad41219a68aee30e340b86d0fe7ca9b62" prot="private" static="no" mutable="no">
+        <type>domains::DomainSP</type>
+        <definition>domains::DomainSP falcon_core::math::UnitSpace::_domain</definition>
+        <argsstring></argsstring>
+        <name>_domain</name>
+        <qualifiedname>falcon_core::math::UnitSpace::_domain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="25" column="35" bodyfile="cpp/include/falcon_core/math/UnitSpace.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1UnitSpace_1a0e47534682d8731b031ad1efd74d5d9d" prot="private" static="no" mutable="no">
+        <type>AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray1D" kindref="compound">arrays::ControlArray1D</ref> &gt;</type>
+        <definition>AxesSP&lt;arrays::ControlArray1D&gt; falcon_core::math::UnitSpace::_ranges</definition>
+        <argsstring></argsstring>
+        <name>_ranges</name>
+        <qualifiedname>falcon_core::math::UnitSpace::_ranges</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="26" column="11" bodyfile="cpp/include/falcon_core/math/UnitSpace.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1UnitSpace_1ae65989412a8aee62931a7ab98c13cb25" prot="private" static="no" mutable="no">
+        <type>generic::FArraySP&lt; double &gt;</type>
+        <definition>generic::FArraySP&lt;double&gt; falcon_core::math::UnitSpace::_space</definition>
+        <argsstring></argsstring>
+        <name>_space</name>
+        <qualifiedname>falcon_core::math::UnitSpace::_space</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="27" column="27" bodyfile="cpp/include/falcon_core/math/UnitSpace.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1UnitSpace_1adc163cbb75d94c5b7bfaf7a3650d7890" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::UnitSpace::_mu_space</definition>
+        <argsstring></argsstring>
+        <name>_mu_space</name>
+        <qualifiedname>falcon_core::math::UnitSpace::_mu_space</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="28" column="35" bodyfile="cpp/include/falcon_core/math/UnitSpace.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1UnitSpace_1a09e090885a750291d2c64f59188d1f0a" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::UnitSpace::_mu_ranges</definition>
+        <argsstring></argsstring>
+        <name>_mu_ranges</name>
+        <qualifiedname>falcon_core::math::UnitSpace::_mu_ranges</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="29" column="35" bodyfile="cpp/include/falcon_core/math/UnitSpace.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1UnitSpace_1a726981521d4ed70abb922091dd92651d" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::UnitSpace::_mu_domain</definition>
+        <argsstring></argsstring>
+        <name>_mu_domain</name>
+        <qualifiedname>falcon_core::math::UnitSpace::_mu_domain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="30" column="35" bodyfile="cpp/include/falcon_core/math/UnitSpace.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1math_1_1UnitSpace_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::math::UnitSpace::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="114" column="16" bodyfile="cpp/include/falcon_core/math/UnitSpace.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a5453084956e0fce173948011fc568129" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::math::UnitSpace::make_discrete_axes</definition>
+        <argsstring>()</argsstring>
+        <name>make_discrete_axes</name>
+        <qualifiedname>falcon_core::math::UnitSpace::make_discrete_axes</qualifiedname>
+        <briefdescription>
+<para>Store the computed discrete ranges. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the discretizer is not supported. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="36" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a5ba7c434010a612dfb1ec1c3f7024f80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::UnitSpace::UnitSpace</definition>
+        <argsstring>(const UnitSpace &amp;other)</argsstring>
+        <name>UnitSpace</name>
+        <qualifiedname>falcon_core::math::UnitSpace::UnitSpace</qualifiedname>
+        <param>
+          <type>const UnitSpace &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="39" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1ab151eccbace71d0b807419de010a37c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpace &amp;</type>
+        <definition>UnitSpace &amp; falcon_core::math::UnitSpace::operator=</definition>
+        <argsstring>(const UnitSpace &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::math::UnitSpace::operator=</qualifiedname>
+        <param>
+          <type>const UnitSpace &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="40" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a8f64c7dbd00d20470db3b0b658463e65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::UnitSpace::UnitSpace</definition>
+        <argsstring>(const AxesSP&lt; discrete_spaces::Discretizer &gt; &amp;axes, const domains::DomainSP &amp;domain)</argsstring>
+        <name>UnitSpace</name>
+        <qualifiedname>falcon_core::math::UnitSpace::UnitSpace</qualifiedname>
+        <param>
+          <type>const AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1Discretizer" kindref="compound">discrete_spaces::Discretizer</ref> &gt; &amp;</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>const domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+<para>Initialize a <ref refid="classfalcon__core_1_1math_1_1UnitSpace" kindref="compound">UnitSpace</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes defining the space. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The domain of the space. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="46" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a8f843c245235ba7cf835aa73ea9357af" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1Discretizer" kindref="compound">discrete_spaces::Discretizer</ref> &gt;</type>
+        <definition>const AxesSP&lt; discrete_spaces::Discretizer &gt; falcon_core::math::UnitSpace::axes</definition>
+        <argsstring>() const</argsstring>
+        <name>axes</name>
+        <qualifiedname>falcon_core::math::UnitSpace::axes</qualifiedname>
+        <briefdescription>
+<para>Return the axes of the space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="81" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1af4fa57f3b474905f85b5207d85c2f8e4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const domains::DomainSP &amp;</type>
+        <definition>const domains::DomainSP &amp; falcon_core::math::UnitSpace::domain</definition>
+        <argsstring>() const</argsstring>
+        <name>domain</name>
+        <qualifiedname>falcon_core::math::UnitSpace::domain</qualifiedname>
+        <briefdescription>
+<para>Return the domain of the space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="85" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1ac36f853ecab990cdeafb5e794006e7a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const generic::FArraySP&lt; double &gt; &amp;</type>
+        <definition>const generic::FArraySP&lt; double &gt; &amp; falcon_core::math::UnitSpace::space</definition>
+        <argsstring>() const</argsstring>
+        <name>space</name>
+        <qualifiedname>falcon_core::math::UnitSpace::space</qualifiedname>
+        <briefdescription>
+<para>Return the stored space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="89" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a4da9248983ec2be94e115253fb8e8f4b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const generic::ListSP&lt; int &gt;</type>
+        <definition>const generic::ListSP&lt; int &gt; falcon_core::math::UnitSpace::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <qualifiedname>falcon_core::math::UnitSpace::shape</qualifiedname>
+        <briefdescription>
+<para>Return the shape of the unit space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="93" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1aaa6d76be59a0d78e7a950b5c8daae00a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const int</type>
+        <definition>const int falcon_core::math::UnitSpace::dimension</definition>
+        <argsstring>() const</argsstring>
+        <name>dimension</name>
+        <qualifiedname>falcon_core::math::UnitSpace::dimension</qualifiedname>
+        <briefdescription>
+<para>Return the number of dimensions in the space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="97" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a752f5ab685da264f29619f31f10a7210" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::math::UnitSpace::compile</definition>
+        <argsstring>()</argsstring>
+        <name>compile</name>
+        <qualifiedname>falcon_core::math::UnitSpace::compile</qualifiedname>
+        <briefdescription>
+<para>Compile the unit space into a space. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="101" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a37189523c785c191e15ba4d6990724a7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray" kindref="compound">arrays::ControlArray</ref> &gt;</type>
+        <definition>const AxesSP&lt; arrays::ControlArray &gt; falcon_core::math::UnitSpace::create_array</definition>
+        <argsstring>(const AxesSP&lt; int &gt; &amp;axes) const</argsstring>
+        <name>create_array</name>
+        <qualifiedname>falcon_core::math::UnitSpace::create_array</qualifiedname>
+        <param>
+          <type>const AxesSP&lt; int &gt; &amp;</type>
+          <declname>axes</declname>
+        </param>
+        <briefdescription>
+<para>Return the projection of the space onto the given axes. The projection contains the indexes of the axes to project onto. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes to project onto. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A set of proper Control Arrays </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="108" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a7ecaf6d08b4ba9a2a333f2729e769b7b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::UnitSpace::operator==</definition>
+        <argsstring>(const UnitSpace &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::math::UnitSpace::operator==</qualifiedname>
+        <param>
+          <type>const UnitSpace &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="110" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a68b3b83ab419f0fa3eb870ccd0fff4b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::UnitSpace::operator!=</definition>
+        <argsstring>(const UnitSpace &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::math::UnitSpace::operator!=</qualifiedname>
+        <param>
+          <type>const UnitSpace &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="111" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a56417c764d5a4861f0947deb3be0ac33" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; UnitSpace &gt;</type>
+        <definition>static std::shared_ptr&lt; UnitSpace &gt; falcon_core::math::UnitSpace::RaySpace</definition>
+        <argsstring>(const double &amp;dr, const double &amp;dtheta, const domains::DomainSP &amp;domain)</argsstring>
+        <name>RaySpace</name>
+        <qualifiedname>falcon_core::math::UnitSpace::RaySpace</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dr</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dtheta</declname>
+        </param>
+        <param>
+          <type>const domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+<para>Create a ray space with radial and angular discretization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the radial delta. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dtheta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the angular delta. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The domain of the space. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="54" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a2c5a49a72fea9023db834419d790955a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; UnitSpace &gt;</type>
+        <definition>static std::shared_ptr&lt; UnitSpace &gt; falcon_core::math::UnitSpace::CartesianSpace</definition>
+        <argsstring>(const AxesSP&lt; double &gt; &amp;deltas, const domains::DomainSP &amp;domain)</argsstring>
+        <name>CartesianSpace</name>
+        <qualifiedname>falcon_core::math::UnitSpace::CartesianSpace</qualifiedname>
+        <param>
+          <type>const AxesSP&lt; double &gt; &amp;</type>
+          <declname>deltas</declname>
+        </param>
+        <param>
+          <type>const domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+<para>Create a ND cartesian space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The discretizations for each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The domain of the space. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="62" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a2ff4299357f6797b9be2bebc53f48f6f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; UnitSpace &gt;</type>
+        <definition>static std::shared_ptr&lt; UnitSpace &gt; falcon_core::math::UnitSpace::Cartesian1DSpace</definition>
+        <argsstring>(const double &amp;delta, const domains::DomainSP &amp;domain)</argsstring>
+        <name>Cartesian1DSpace</name>
+        <qualifiedname>falcon_core::math::UnitSpace::Cartesian1DSpace</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>delta</declname>
+        </param>
+        <param>
+          <type>const domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+<para>Create a 1D cartesian space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>delta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The discretization for the main axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The domain of the space. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="69" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a52ed610d2255f28e7de5297e56994b64" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; UnitSpace &gt;</type>
+        <definition>static std::shared_ptr&lt; UnitSpace &gt; falcon_core::math::UnitSpace::Cartesian2DSpace</definition>
+        <argsstring>(const AxesSP&lt; double &gt; &amp;deltas, const domains::DomainSP &amp;domain)</argsstring>
+        <name>Cartesian2DSpace</name>
+        <qualifiedname>falcon_core::math::UnitSpace::Cartesian2DSpace</qualifiedname>
+        <param>
+          <type>const AxesSP&lt; double &gt; &amp;</type>
+          <declname>deltas</declname>
+        </param>
+        <param>
+          <type>const domains::DomainSP &amp;</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+<para>Create a 2D cartesian space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deltas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The discretizations for each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The domain of the space. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="76" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1af2636c06599504696a1db80144ce24d7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::UnitSpace::UnitSpace</definition>
+        <argsstring>()</argsstring>
+        <name>UnitSpace</name>
+        <qualifiedname>falcon_core::math::UnitSpace::UnitSpace</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="115" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1UnitSpace_1a79d028836cacf2dea57c0e4d64a8df12" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::math::UnitSpace::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::math::UnitSpace::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="117" column="8" bodyfile="cpp/include/falcon_core/math/UnitSpace.hpp" bodystart="117" bodyend="126"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Respresents a hypercube of measurement space. It is defined by a set of axes, each of which can be discretized. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This space can be compiled and packed into the space when necessary.</para>
+<para><ref refid="classfalcon__core_1_1math_1_1UnitSpace" kindref="compound">UnitSpace</ref> is the base class for spaces with axes and a domain. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>falcon_core::generic::List&lt; discrete_spaces::Discretizer &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="2">
+        <label>falcon_core::math::Axes&lt; discrete_spaces::Discretizer &gt;</label>
+        <link refid="classfalcon__core_1_1math_1_1Axes"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::UnitSpace</label>
+        <link refid="classfalcon__core_1_1math_1_1UnitSpace"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>falcon_core::generic::List&lt; discrete_spaces::Discretizer &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1List"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="2">
+        <label>falcon_core::math::Axes&lt; discrete_spaces::Discretizer &gt;</label>
+        <link refid="classfalcon__core_1_1math_1_1Axes"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::UnitSpace</label>
+        <link refid="classfalcon__core_1_1math_1_1UnitSpace"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/math/UnitSpace.hpp" line="24" column="1" bodyfile="cpp/include/falcon_core/math/UnitSpace.hpp" bodystart="24" bodyend="127"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1ad41219a68aee30e340b86d0fe7ca9b62" prot="private" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>_domain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a726981521d4ed70abb922091dd92651d" prot="private" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>_mu_domain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a09e090885a750291d2c64f59188d1f0a" prot="private" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>_mu_ranges</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1adc163cbb75d94c5b7bfaf7a3650d7890" prot="private" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>_mu_space</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a0e47534682d8731b031ad1efd74d5d9d" prot="private" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>_ranges</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1ae65989412a8aee62931a7ab98c13cb25" prot="private" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>_space</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac6db589636214138ce4f5099214950d7" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>allocate</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac506f26dd646d8ae9e348d2b2f8b0711" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa027050dbdaabc2be13de8ec48b59ace" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>at_impl</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Axes_1aa0788abaef9fa7437da58361bda92565" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>Axes</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a8f843c245235ba7cf835aa73ea9357af" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>axes</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a642e3b9a1f76d414a908a85b47d8e2f2" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aef038e6660b56dc2f6ff7d624f3e064a" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a2ff4299357f6797b9be2bebc53f48f6f" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>Cartesian1DSpace</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a52ed610d2255f28e7de5297e56994b64" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>Cartesian2DSpace</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a2c5a49a72fea9023db834419d790955a" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>CartesianSpace</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ae2186f42ba6bb56c8db451baa6d08689" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>clear</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a752f5ab685da264f29619f31f10a7210" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>compile</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7fc4f3fb80412b75688ae67ef4deb840" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a85efdcdc1929089f640e4ee81e1e161a" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>Container</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af78b99f6bd138b5d4851fcab549a989f" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>contains</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a8721d8693dad51710395ae33fd5b8bb9" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>contains_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a72c2a525720386b4fc7ee1d021d9242c" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>copy_items_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ab80da9fe240a0f7d3e3c6c318baf32a3" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>create</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a37189523c785c191e15ba4d6990724a7" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>create_array</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1af10afad8e13353cf1532a6ceac8049e0" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>create_duplicates_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aa8a82611d2bfd85bce3bcad2374a7fb8" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>create_empty</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1aaa6d76be59a0d78e7a950b5c8daae00a" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>dimension</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1af4fa57f3b474905f85b5207d85c2f8e4" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>domain</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad993f09ed7500f61be2c6ece0cc56809" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1d05bea2ea3c0c3ee86b1455c3520cff" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a35932f229c9408ffa7682ab7c031e498" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>erase_at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ac33acefde3a87a38d16bef723fbefb2f" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>fill_value</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1afe083fc302fc55edef258d8daf9f3d47" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>index</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a1ffa46e78bb25a7c2adb0ee6c4e16fd7" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>index_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a159ec398798aec49860f25737732d035" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a517adcdb190cba73664d55dd3fcd28e6" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>intersection</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaae12f832dbfcfec53be2d9d579ecb5c" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a94c62a49740f871213c5cbf1649bf467" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2f59e0c944cf9148e92c4857aef93025" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>List</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a5453084956e0fce173948011fc568129" prot="private" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>make_discrete_axes</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a68b3b83ab419f0fa3eb870ccd0fff4b2" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Axes_1aa86fa0e45d7602416f43b89f6f85b5d5" prot="public" virt="non-virtual" ambiguityscope="falcon_core::math::Axes&lt; discrete_spaces::Discretizer &gt;::"><scope>falcon_core::math::UnitSpace</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a2e97c62492a753fa05fabb22a1ac1537" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::List&lt; discrete_spaces::Discretizer &gt;::"><scope>falcon_core::math::UnitSpace</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1ab151eccbace71d0b807419de010a37c8" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad91072aff233646e22fb2b10d1759342" prot="public" virt="non-virtual" ambiguityscope="falcon_core::math::Axes&lt; discrete_spaces::Discretizer &gt;::"><scope>falcon_core::math::UnitSpace</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a7ecaf6d08b4ba9a2a333f2729e769b7b" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Axes_1a5055df037ed92bea2a4115db5a53e5ac" prot="public" virt="non-virtual" ambiguityscope="falcon_core::math::Axes&lt; discrete_spaces::Discretizer &gt;::"><scope>falcon_core::math::UnitSpace</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a7ad7b131acaa960629eb948ee49b0141" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::List&lt; discrete_spaces::Discretizer &gt;::"><scope>falcon_core::math::UnitSpace</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aaff8f72dc702a07b07f14d9bc075dbb0" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Axes_1afd1c44e1e76c09b1731fe3d9632d62e0" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>operator_equal_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a98aa8f7995e88f333c85d8eb0e44da85" prot="protected" virt="non-virtual" ambiguityscope="falcon_core::generic::List&lt; discrete_spaces::Discretizer &gt;::"><scope>falcon_core::math::UnitSpace</scope><name>operator_equal_impl</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a672370a488b6ca60454cbbed60b4ef4a" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>push_back</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a605cb51b17e7a58b8253b041252a8444" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>push_back_impl</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a56417c764d5a4861f0947deb3be0ac33" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>RaySpace</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1ad8cdc2817d5f8111a416930461321b96" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>replace_at</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a79d028836cacf2dea57c0e4d64a8df12" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a4da9248983ec2be94e115253fb8e8f4b" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>shape</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1a0fea4756b30abd79c04bcfa09296f1d9" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1ac36f853ecab990cdeafb5e794006e7a5" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>space</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1List_1aacbc6f6812a1cb140b0d16b336f8bca7" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>StoredValue</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a5ba7c434010a612dfb1ec1c3f7024f80" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>UnitSpace</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1a8f64c7dbd00d20470db3b0b658463e65" prot="public" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>UnitSpace</name></member>
+      <member refid="classfalcon__core_1_1math_1_1UnitSpace_1af2636c06599504696a1db80144ce24d7" prot="protected" virt="non-virtual"><scope>falcon_core::math::UnitSpace</scope><name>UnitSpace</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::math::UnitSpace</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

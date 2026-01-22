@@ -1,0 +1,721 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="GateGeometryArray1D__c__api_8h" kind="file" language="C++">
+    <compoundname>GateGeometryArray1D_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="DotGatesWithNeighbors__c__api_8h" local="yes">falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h</includes>
+    <includes refid="LeftReservoirWithImplantedOhmic__c__api_8h" local="yes">falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h</includes>
+    <includes refid="RightReservoirWithImplantedOhmic__c__api_8h" local="yes">falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h</includes>
+    <includes refid="Connections__c__api_8h" local="yes">falcon_core/physics/device_structures/Connections_c_api.h</includes>
+    <includedby refid="Group__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Group_c_api.h</includedby>
+    <incdepgraph>
+      <node id="12">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/ListDotGateWithNeighbors_c_api.h</label>
+        <link refid="ListDotGateWithNeighbors__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h</label>
+        <link refid="DotGateWithNeighbors__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h</label>
+        <link refid="DotGatesWithNeighbors__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</label>
+        <link refid="GateGeometryArray1D__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h</label>
+        <link refid="LeftReservoirWithImplantedOhmic__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h</label>
+        <link refid="RightReservoirWithImplantedOhmic__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/ListGroup_c_api.h</label>
+        <link refid="ListGroup__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h</label>
+        <link refid="ListPairGnameGroup__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
+        <link refid="MapGnameGroup__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/generic/PairGnameGroup_c_api.h</label>
+        <link refid="PairGnameGroup__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/physics/config/core/Group_c_api.h</label>
+        <link refid="Group__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</label>
+        <link refid="GateGeometryArray1D__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="GateGeometryArray1D__c__api_8h_1a22f9b175ce7eb5b89d3b685bd23e8382" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* GateGeometryArray1DHandle</definition>
+        <argsstring></argsstring>
+        <name>GateGeometryArray1DHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="13" column="14" bodyfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a0444ea28cd52f86b11ad1b499bd090e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GateGeometryArray1DHandle</type>
+        <definition>GateGeometryArray1DHandle GateGeometryArray1D_copy</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_copy</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="16" column="27" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="16" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a22e2a8d8054cacf8c8e061240b58f142" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GateGeometryArray1D_destroy</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_destroy</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a9781dc0590a583534f29b5e4c56f3b29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GateGeometryArray1D_equal</definition>
+        <argsstring>(GateGeometryArray1DHandle handle, GateGeometryArray1DHandle other)</argsstring>
+        <name>GateGeometryArray1D_equal</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1ab92d48ba54094f112adfbb158bbab099" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GateGeometryArray1D_not_equal</definition>
+        <argsstring>(GateGeometryArray1DHandle handle, GateGeometryArray1DHandle other)</argsstring>
+        <name>GateGeometryArray1D_not_equal</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1addb2e6065170ccb4556778ab857e421a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle GateGeometryArray1D_to_json_string</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_to_json_string</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="27" column="14" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="27" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a304092fe0dd88578031958962eb8a752" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GateGeometryArray1DHandle</type>
+        <definition>GateGeometryArray1DHandle GateGeometryArray1D_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>GateGeometryArray1D_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="30" column="27" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="30" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a2bbedfc3d15105b3a347cfcd5f3b10b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GateGeometryArray1DHandle</type>
+        <definition>GateGeometryArray1DHandle GateGeometryArray1D_create</definition>
+        <argsstring>(ConnectionsHandle lineararray, ConnectionsHandle screening_gates)</argsstring>
+        <name>GateGeometryArray1D_create</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>lineararray</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>screening_gates</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="33" column="27" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="33" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a7d64a92df40f1e1671b1333f3681325e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GateGeometryArray1D_append_central_gate</definition>
+        <argsstring>(GateGeometryArray1DHandle handle, ConnectionHandle left_neighbor, ConnectionHandle selected_gate, ConnectionHandle right_neighbor)</argsstring>
+        <name>GateGeometryArray1D_append_central_gate</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>left_neighbor</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>selected_gate</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>right_neighbor</declname>
+        </param>
+        <briefdescription>
+<para>Appends a central gate to the geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gate to append. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="43" column="6" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="43" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1ae2c8c6a25752134cc0b93b2c14e77663" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGatesWithNeighborsHandle</type>
+        <definition>DotGatesWithNeighborsHandle GateGeometryArray1D_all_dot_gates</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_all_dot_gates</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets all of the dot gates in the geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A collection of all dot gates in the array with localities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="55" column="29" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="55" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a2647fdadc901a6e4b5ad65974b5500ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle GateGeometryArray1D_query_neighbors</definition>
+        <argsstring>(GateGeometryArray1DHandle handle, ConnectionHandle gate)</argsstring>
+        <name>GateGeometryArray1D_query_neighbors</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>gate</declname>
+        </param>
+        <briefdescription>
+<para>Queries the neighbors of a gate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gate to query neighbors for </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The collection of neighboring gates </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="66" column="19" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="66" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1abd2fbceba222cdc5dcdddd6896b4d3d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LeftReservoirWithImplantedOhmicHandle</type>
+        <definition>LeftReservoirWithImplantedOhmicHandle GateGeometryArray1D_left_reservoir</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_left_reservoir</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets the left reservoir with implanted ohmic contact. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The left reservoir with implanted ohmic contact. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="76" column="39" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="76" declcolumn="39"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a80404f6855c46a44b9c8241e133def12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RightReservoirWithImplantedOhmicHandle</type>
+        <definition>RightReservoirWithImplantedOhmicHandle GateGeometryArray1D_right_reservoir</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_right_reservoir</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets the right reservoir with implanted ohmic contact. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The right reservoir with implanted ohmic contact. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="86" column="40" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="86" declcolumn="40"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1aef12f13c98a792d1d0e36b24709caafc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGateWithNeighborsHandle</type>
+        <definition>DotGateWithNeighborsHandle GateGeometryArray1D_left_barrier</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_left_barrier</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets the leftmost barrier gate in the array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The leftmost barrier gate. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="96" column="28" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="96" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1ae5abdbd26efd1245f7a782ecb63ff279" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGateWithNeighborsHandle</type>
+        <definition>DotGateWithNeighborsHandle GateGeometryArray1D_right_barrier</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_right_barrier</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets the rightmost barrier gate in the array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The rightmost barrier gate. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="106" column="28" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="106" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a116ea4f570537a4620bb826b18f047f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle GateGeometryArray1D_linear_array</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_linear_array</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="109" column="19" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="109" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1aca42ca50aae8023e3541e484a536ca1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle GateGeometryArray1D_screening_gates</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_screening_gates</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets the screening gates in the geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The screening gates in the geometry. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="119" column="19" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="119" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1aacd0ccffeb8c4b088641331548f4edb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle GateGeometryArray1D_raw_central_gates</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_raw_central_gates</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets the central gates without localities. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The central gates without localities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="129" column="19" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="129" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1aea894af5b068b70169ac53d4662dc15f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DotGatesWithNeighborsHandle</type>
+        <definition>DotGatesWithNeighborsHandle GateGeometryArray1D_central_dot_gates</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_central_dot_gates</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets the central gates with localities. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The central gates with localities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="139" column="29" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="139" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="GateGeometryArray1D__c__api_8h_1a1401be37ffc830a9e28cb735c9c01ae5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle GateGeometryArray1D_ohmics</definition>
+        <argsstring>(GateGeometryArray1DHandle handle)</argsstring>
+        <name>GateGeometryArray1D_ohmics</name>
+        <param>
+          <type>GateGeometryArray1DHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Gets the ohmics attached the the quantum dot geometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The ohmics attached to the quantum dot geometry. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" line="148" column="19" declfile="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h" declline="148" declcolumn="19"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connections_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>GateGeometryArray1DHandle;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">GateGeometryArray1DHandle<sp/>GateGeometryArray1D_copy(</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GateGeometryArray1D_destroy(GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>GateGeometryArray1D_equal(GateGeometryArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>GateGeometryArray1D_not_equal(GateGeometryArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>other);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">StringHandle<sp/>GateGeometryArray1D_to_json_string(</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">GateGeometryArray1DHandle<sp/>GateGeometryArray1D_from_json_string(</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">GateGeometryArray1DHandle<sp/>GateGeometryArray1D_create(</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>ConnectionsHandle<sp/>lineararray,<sp/>ConnectionsHandle<sp/>screening_gates);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_append_central_gate<sp/>|</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::append_central_gate</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GateGeometryArray1D_append_central_gate(GateGeometryArray1DHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>left_neighbor,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>selected_gate,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>right_neighbor);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_all_dot_gates<sp/>|</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::all_dot_gates</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">DotGatesWithNeighborsHandle<sp/>GateGeometryArray1D_all_dot_gates(</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_query_neighbors<sp/>|</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::query_neighbors</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">ConnectionsHandle<sp/>GateGeometryArray1D_query_neighbors(</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle,<sp/>ConnectionHandle<sp/>gate);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_left_reservoir<sp/>|</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::left_reservoir</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">LeftReservoirWithImplantedOhmicHandle<sp/>GateGeometryArray1D_left_reservoir(</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_right_reservoir<sp/>|</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::right_reservoir</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">RightReservoirWithImplantedOhmicHandle<sp/>GateGeometryArray1D_right_reservoir(</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_left_barrier<sp/>|</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::left_barrier</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">DotGateWithNeighborsHandle<sp/>GateGeometryArray1D_left_barrier(</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_right_barrier<sp/>|</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::right_barrier</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">DotGateWithNeighborsHandle<sp/>GateGeometryArray1D_right_barrier(</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">ConnectionsHandle<sp/>GateGeometryArray1D_linear_array(</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_screening_gates<sp/>|</highlight></codeline>
+<codeline lineno="113"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::screening_gates</highlight></codeline>
+<codeline lineno="114"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal">ConnectionsHandle<sp/>GateGeometryArray1D_screening_gates(</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_raw_central_gates<sp/>|</highlight></codeline>
+<codeline lineno="123"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::raw_central_gates</highlight></codeline>
+<codeline lineno="124"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal">ConnectionsHandle<sp/>GateGeometryArray1D_raw_central_gates(</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_central_dot_gates<sp/>|</highlight></codeline>
+<codeline lineno="133"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::central_dot_gates</highlight></codeline>
+<codeline lineno="134"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal">DotGatesWithNeighborsHandle<sp/>GateGeometryArray1D_central_dot_gates(</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>GateGeometryArray1D_ohmics<sp/>|</highlight></codeline>
+<codeline lineno="143"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::geometries::GateGeometryArray1D::ohmics<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal">ConnectionsHandle<sp/>GateGeometryArray1D_ohmics(GateGeometryArray1DHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h"/>
+  </compounddef>
+</doxygen>

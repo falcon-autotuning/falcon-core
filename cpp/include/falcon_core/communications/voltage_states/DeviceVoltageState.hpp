@@ -3,11 +3,13 @@
 #include <falcon_core/math/Quantity.hpp>
 #include <falcon_core/physics/device_structures/Connection.hpp>
 
+#include "falcon_core/export.h"
+
 namespace falcon_core {
 namespace communications {
 namespace voltage_states {
 
-class DeviceVoltageState : public math::Quantity {
+class FALCON_CORE_CPP_API DeviceVoltageState : public math::Quantity {
   physics::device_structures::ConnectionSP _connection;
   mutable std::shared_timed_mutex          _mu_connection;
 

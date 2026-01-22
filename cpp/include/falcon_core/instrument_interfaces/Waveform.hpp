@@ -1,4 +1,5 @@
 #pragma once
+#include "falcon_core/export.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransforms.hpp"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace.hpp"
@@ -11,7 +12,7 @@
 namespace falcon_core {
 namespace instrument_interfaces {
 
-class Waveform : public port_transforms::PortTransforms {
+class FALCON_CORE_CPP_API Waveform : public port_transforms::PortTransforms {
   math::discrete_spaces::DiscreteSpaceSP _space;
   mutable std::shared_timed_mutex        _mu_dspace;
 
