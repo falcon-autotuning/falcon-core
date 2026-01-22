@@ -12,6 +12,9 @@ extern FALCON_CORE_CPP_API const double PI;
 extern FALCON_CORE_CPP_API const double ELECTRON_CHARGE;
 extern FALCON_CORE_CPP_API const double CELSIUS_OFFSET;
 extern FALCON_CORE_CPP_API const double FAHRENHEIT_OFFSET;
+extern FALCON_CORE_CPP_API const double UNIT_SCALE_FAHRENHEIT;
+extern FALCON_CORE_CPP_API const int    SECONDS_PER_MINUTE;
+extern FALCON_CORE_CPP_API const int    MINUTES_PER_HOUR;
 
 // SI prefix values
 namespace SI {
