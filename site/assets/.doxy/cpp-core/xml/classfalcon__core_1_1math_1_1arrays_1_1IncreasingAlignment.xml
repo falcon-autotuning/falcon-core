@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::math::arrays::IncreasingAlignment</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <includes refid="IncreasingAlignment_8hpp" local="no">IncreasingAlignment.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a799a3430d0d25ead8ed4730c30d33390" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int falcon_core::math::arrays::IncreasingAlignment::_alignment</definition>
+        <argsstring></argsstring>
+        <name>_alignment</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::_alignment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="22" column="35" bodyfile="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1aa1c154d779cb3aa0144c76dbb1bdfa70" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::arrays::IncreasingAlignment::_mu_alignment</definition>
+        <argsstring></argsstring>
+        <name>_mu_alignment</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::_mu_alignment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="23" column="35" bodyfile="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="26" column="16" bodyfile="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a53cbcea19bd5d5bf16844902930876ec" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::math::arrays::IncreasingAlignment::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="28" column="8" bodyfile="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" bodystart="28" bodyend="31"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a90a6708e2e6ba27e1c2507658ef72858" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::arrays::IncreasingAlignment::IncreasingAlignment</definition>
+        <argsstring>(const IncreasingAlignment &amp;other)</argsstring>
+        <name>IncreasingAlignment</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::IncreasingAlignment</qualifiedname>
+        <param>
+          <type>const IncreasingAlignment &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="34" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1aad4461aa9e868234867604587f6a05c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>IncreasingAlignment &amp;</type>
+        <definition>IncreasingAlignment &amp; falcon_core::math::arrays::IncreasingAlignment::operator=</definition>
+        <argsstring>(const IncreasingAlignment &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::operator=</qualifiedname>
+        <param>
+          <type>const IncreasingAlignment &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="35" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1aa4215ba9c6c2da8ae401a2b03907ab97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::arrays::IncreasingAlignment::IncreasingAlignment</definition>
+        <argsstring>()</argsstring>
+        <name>IncreasingAlignment</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::IncreasingAlignment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="36" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1ada4fc042032fb34a6b17f20434848e97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::arrays::IncreasingAlignment::IncreasingAlignment</definition>
+        <argsstring>(const bool alignment)</argsstring>
+        <name>IncreasingAlignment</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::IncreasingAlignment</qualifiedname>
+        <param>
+          <type>const bool</type>
+          <declname>alignment</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="37" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a58986717b8198e0ee92557c4fe042acb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int falcon_core::math::arrays::IncreasingAlignment::alignment</definition>
+        <argsstring>() const</argsstring>
+        <name>alignment</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::alignment</qualifiedname>
+        <briefdescription>
+<para>Return the alignment of the domain. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="41" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a610b7d64360af57f204d8aa2d3a90492" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::arrays::IncreasingAlignment::operator==</definition>
+        <argsstring>(const IncreasingAlignment &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::operator==</qualifiedname>
+        <param>
+          <type>const IncreasingAlignment &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="42" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1ad4b3ed978f39796d6d91331e4b1f2417" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::arrays::IncreasingAlignment::operator!=</definition>
+        <argsstring>(const IncreasingAlignment &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::math::arrays::IncreasingAlignment::operator!=</qualifiedname>
+        <param>
+          <type>const IncreasingAlignment &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="43" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A three state system. The three states are 1, -1, and 0. 0 implies no trend in the domain. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::arrays::IncreasingAlignment</label>
+        <link refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::arrays::IncreasingAlignment</label>
+        <link refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" line="21" column="1" bodyfile="cpp/include/falcon_core/math/arrays/IncreasingAlignment.hpp" bodystart="21" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a799a3430d0d25ead8ed4730c30d33390" prot="private" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>_alignment</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1aa1c154d779cb3aa0144c76dbb1bdfa70" prot="private" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>_mu_alignment</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a58986717b8198e0ee92557c4fe042acb" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>alignment</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a90a6708e2e6ba27e1c2507658ef72858" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>IncreasingAlignment</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1aa4215ba9c6c2da8ae401a2b03907ab97" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>IncreasingAlignment</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1ada4fc042032fb34a6b17f20434848e97" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>IncreasingAlignment</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1ad4b3ed978f39796d6d91331e4b1f2417" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1aad4461aa9e868234867604587f6a05c5" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a610b7d64360af57f204d8aa2d3a90492" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IncreasingAlignment_1a53cbcea19bd5d5bf16844902930876ec" prot="protected" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::math::arrays::IncreasingAlignment</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

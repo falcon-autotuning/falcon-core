@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/math/Quantity.hpp"
@@ -20,7 +21,7 @@ namespace math {
  * Each Point stores a mapping from device connections to coordinate values,
  * along with a unit. Supports arithmetic operations and iteration.
  */
-class Point
+class FALCON_CORE_CPP_API Point
     : public generic::Map<physics::device_structures::Connection, Quantity> {
   physics::units::SymbolUnitSP    _unit;
   mutable std::shared_timed_mutex _mu_unit;

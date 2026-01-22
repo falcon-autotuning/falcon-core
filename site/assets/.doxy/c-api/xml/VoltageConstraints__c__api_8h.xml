@@ -1,0 +1,440 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="VoltageConstraints__c__api_8h" kind="file" language="C++">
+    <compoundname>VoltageConstraints_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="FArrayDouble__c__api_8h" local="yes">falcon_core/generic/FArrayDouble_c_api.h</includes>
+    <includes refid="PairDoubleDouble__c__api_8h" local="yes">falcon_core/generic/PairDoubleDouble_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="Adjacency__c__api_8h" local="yes">falcon_core/physics/config/core/Adjacency_c_api.h</includes>
+    <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/FArrayInt_c_api.h</label>
+        <link refid="FArrayInt__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/ListPairSizeTSizeT_c_api.h</label>
+        <link refid="ListPairSizeTSizeT__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/PairDoubleDouble_c_api.h</label>
+        <link refid="PairDoubleDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/PairSizeTSizeT_c_api.h</label>
+        <link refid="PairSizeTSizeT__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/physics/config/core/Adjacency_c_api.h</label>
+        <link refid="Adjacency__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h</label>
+        <link refid="VoltageConstraints__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h</label>
+        <link refid="VoltageConstraints__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="VoltageConstraints__c__api_8h_1a7436d378d1c9c732974381fa73ab78ce" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* VoltageConstraintsHandle</definition>
+        <argsstring></argsstring>
+        <name>VoltageConstraintsHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="12" column="14" bodyfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1ac2638d5d56cf50369e9f7b78f7a72f54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VoltageConstraintsHandle</type>
+        <definition>VoltageConstraintsHandle VoltageConstraints_copy</definition>
+        <argsstring>(VoltageConstraintsHandle handle)</argsstring>
+        <name>VoltageConstraints_copy</name>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="15" column="26" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="15" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1a5205df2260950ccfac39dede59ff51d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void VoltageConstraints_destroy</definition>
+        <argsstring>(VoltageConstraintsHandle handle)</argsstring>
+        <name>VoltageConstraints_destroy</name>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="18" column="6" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1ad14e4b2c3399de090031044d27189f61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool VoltageConstraints_equal</definition>
+        <argsstring>(VoltageConstraintsHandle handle, VoltageConstraintsHandle other)</argsstring>
+        <name>VoltageConstraints_equal</name>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="20" column="6" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1ae4a52c4f82d7df1065daeafce43fd584" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool VoltageConstraints_not_equal</definition>
+        <argsstring>(VoltageConstraintsHandle handle, VoltageConstraintsHandle other)</argsstring>
+        <name>VoltageConstraints_not_equal</name>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1ab15fa4a909d111ccb7112b32f96ca941" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle VoltageConstraints_to_json_string</definition>
+        <argsstring>(VoltageConstraintsHandle handle)</argsstring>
+        <name>VoltageConstraints_to_json_string</name>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="26" column="14" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="26" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1a96824620b1108a387c7d3e0aff7f0e29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VoltageConstraintsHandle</type>
+        <definition>VoltageConstraintsHandle VoltageConstraints_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>VoltageConstraints_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="28" column="26" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="28" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1a5cbb8d61985cd8c237f1b458e5bc455d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VoltageConstraintsHandle</type>
+        <definition>VoltageConstraintsHandle VoltageConstraints_create</definition>
+        <argsstring>(AdjacencyHandle adjacency, double max_safe_diff, PairDoubleDoubleHandle bounds)</argsstring>
+        <name>VoltageConstraints_create</name>
+        <param>
+          <type>AdjacencyHandle</type>
+          <declname>adjacency</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max_safe_diff</declname>
+        </param>
+        <param>
+          <type>PairDoubleDoubleHandle</type>
+          <declname>bounds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="30" column="26" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="30" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1a12255fed88fe838ebdaf35280578ff7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle VoltageConstraints_matrix</definition>
+        <argsstring>(VoltageConstraintsHandle handle)</argsstring>
+        <name>VoltageConstraints_matrix</name>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>The constraint matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="40" column="20" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="40" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1a57049408156741efe4706fd6aa5558aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AdjacencyHandle</type>
+        <definition>AdjacencyHandle VoltageConstraints_adjacency</definition>
+        <argsstring>(VoltageConstraintsHandle handle)</argsstring>
+        <name>VoltageConstraints_adjacency</name>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>The adjacency matrix used to understand the device layout. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="47" column="17" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="47" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="VoltageConstraints__c__api_8h_1a7b86107d6cd8e183b47fb5e95aacb261" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FArrayDoubleHandle</type>
+        <definition>FArrayDoubleHandle VoltageConstraints_limits</definition>
+        <argsstring>(VoltageConstraintsHandle handle)</argsstring>
+        <name>VoltageConstraints_limits</name>
+        <param>
+          <type>VoltageConstraintsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>The y axis vector safe voltage limits for each constraint. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" line="54" column="20" declfile="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h" declline="54" declcolumn="20"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/FArrayDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/PairDoubleDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/config/core/Adjacency_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>VoltageConstraintsHandle;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">VoltageConstraintsHandle<sp/>VoltageConstraints_copy(</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>VoltageConstraintsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>VoltageConstraints_destroy(VoltageConstraintsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>VoltageConstraints_equal(VoltageConstraintsHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VoltageConstraintsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>VoltageConstraints_not_equal(VoltageConstraintsHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VoltageConstraintsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">StringHandle<sp/>VoltageConstraints_to_json_string(VoltageConstraintsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">VoltageConstraintsHandle<sp/>VoltageConstraints_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">VoltageConstraintsHandle<sp/>VoltageConstraints_create(</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>AdjacencyHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>adjacency,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_safe_diff,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>PairDoubleDoubleHandle<sp/>bounds);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>VoltageConstraints_matrix<sp/>|</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::VoltageConstraints::matrix<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">FArrayDoubleHandle<sp/>VoltageConstraints_matrix(VoltageConstraintsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>VoltageConstraints_adjacency<sp/>|</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::VoltageConstraints::adjacency<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">AdjacencyHandle<sp/>VoltageConstraints_adjacency(VoltageConstraintsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>VoltageConstraints_limits<sp/>|</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::config::core::VoltageConstraints::limits<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">FArrayDoubleHandle<sp/>VoltageConstraints_limits(VoltageConstraintsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h"/>
+  </compounddef>
+</doxygen>

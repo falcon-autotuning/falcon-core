@@ -6,6 +6,7 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/math/arrays/IsLabelled.hpp"
 #include "falcon_core/math/arrays/LabelledControlArray.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
@@ -18,7 +19,7 @@ namespace arrays {
  * @param T Type of labelled array.
  */
 template <typename ArrayType>
-class LabelledArrays : public generic::List<ArrayType> {
+class FALCON_CORE_CPP_API LabelledArrays : public generic::List<ArrayType> {
   static_assert(std::is_base_of<generic::FArray<double>, ArrayType>::value,
                 "T must inherit from FArray");
   static_assert(std::is_base_of<IsLabelled<double>, ArrayType>::value,

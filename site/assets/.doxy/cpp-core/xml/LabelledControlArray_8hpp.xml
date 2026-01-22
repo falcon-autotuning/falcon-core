@@ -1,0 +1,488 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="LabelledControlArray_8hpp" kind="file" language="C++">
+    <compoundname>LabelledControlArray.hpp</compoundname>
+    <includes local="yes">cereal/types/base_class.hpp</includes>
+    <includes refid="AcquisitionContext_8hpp" local="yes">falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp</includes>
+    <includes refid="ControlArray_8hpp" local="yes">falcon_core/math/arrays/ControlArray.hpp</includes>
+    <includes refid="IsLabelled_8hpp" local="yes">falcon_core/math/arrays/IsLabelled.hpp</includes>
+    <includedby refid="LabelledArrays_8hpp" local="yes">cpp/include/falcon_core/math/arrays/LabelledArrays.hpp</includedby>
+    <includedby refid="LabelledControlArray1D_8hpp" local="yes">cpp/include/falcon_core/math/arrays/LabelledControlArray1D.hpp</includedby>
+    <includedby refid="DiscreteSpace_8hpp" local="yes">cpp/include/falcon_core/math/discrete_spaces/DiscreteSpace.hpp</includedby>
+    <incdepgraph>
+      <node id="30">
+        <label>cereal/types/xtensor.hpp</label>
+        <link refid="xtensor_8hpp_source"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>falcon_core/Constants.hpp</label>
+        <link refid="Constants_8hpp_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp</label>
+        <link refid="AcquisitionContext_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/autotuner_interfaces/contexts/BaseContext.hpp</label>
+        <link refid="BaseContext_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>falcon_core/generic/CategoryTags.hpp</label>
+        <link refid="CategoryTags_8hpp_source"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>falcon_core/generic/FArray.hpp</label>
+        <link refid="FArray_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>falcon_core/generic/FArrayProtocol.hpp</label>
+        <link refid="FArrayProtocol_8hpp_source"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>falcon_core/generic/IsPrimitive.hpp</label>
+        <link refid="IsPrimitive_8hpp_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>falcon_core/generic/List.hpp</label>
+        <link refid="List_8hpp_source"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/Song.hpp</label>
+        <link refid="Song_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/instrument_interfaces/names/Instrument.hpp</label>
+        <link refid="Instrument_8hpp_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort.hpp</label>
+        <link refid="InstrumentPort_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>falcon_core/math/arrays/ControlArray.hpp</label>
+        <link refid="ControlArray_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>falcon_core/math/arrays/IncreasingAlignment.hpp</label>
+        <link refid="IncreasingAlignment_8hpp"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>falcon_core/math/arrays/IsControl.hpp</label>
+        <link refid="IsControl_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>falcon_core/math/arrays/IsLabelled.hpp</label>
+        <link refid="IsLabelled_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/math/arrays/LabelledControlArray.hpp</label>
+        <link refid="LabelledControlArray_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/physics/device_structures/Connection.hpp</label>
+        <link refid="Connection_8hpp_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>falcon_core/physics/units/SymbolUnit.hpp</label>
+        <link refid="SymbolUnit_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>falcon_core/physics/units/TotalDimensions.hpp</label>
+        <link refid="TotalDimensions_8hpp_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>falcon_core/physics/units/Unit.hpp</label>
+        <link refid="Unit_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>algorithm</label>
+      </node>
+      <node id="43">
+        <label>cereal/archives/binary.hpp</label>
+      </node>
+      <node id="6">
+        <label>cereal/archives/json.hpp</label>
+      </node>
+      <node id="31">
+        <label>cereal/cereal.hpp</label>
+      </node>
+      <node id="2">
+        <label>cereal/types/base_class.hpp</label>
+      </node>
+      <node id="7">
+        <label>cereal/types/map.hpp</label>
+      </node>
+      <node id="8">
+        <label>cereal/types/memory.hpp</label>
+      </node>
+      <node id="9">
+        <label>cereal/types/polymorphic.hpp</label>
+      </node>
+      <node id="10">
+        <label>cereal/types/string.hpp</label>
+      </node>
+      <node id="11">
+        <label>cereal/types/unordered_map.hpp</label>
+      </node>
+      <node id="12">
+        <label>cereal/types/utility.hpp</label>
+      </node>
+      <node id="13">
+        <label>cereal/types/vector.hpp</label>
+      </node>
+      <node id="25">
+        <label>map</label>
+      </node>
+      <node id="14">
+        <label>memory</label>
+      </node>
+      <node id="20">
+        <label>mutex</label>
+      </node>
+      <node id="21">
+        <label>shared_mutex</label>
+      </node>
+      <node id="15">
+        <label>sstream</label>
+      </node>
+      <node id="39">
+        <label>stdexcept</label>
+      </node>
+      <node id="16">
+        <label>string</label>
+      </node>
+      <node id="40">
+        <label>type_traits</label>
+      </node>
+      <node id="32">
+        <label>xtensor/xarray.hpp</label>
+      </node>
+      <node id="33">
+        <label>xtensor/xio.hpp</label>
+      </node>
+      <node id="36">
+        <label>xtensor/xshape.hpp</label>
+      </node>
+      <node id="34">
+        <label>xtensor/xview.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>cpp/include/falcon_core/communications/HDF5Data.hpp</label>
+        <link refid="HDF5Data_8hpp_source"/>
+      </node>
+      <node id="8">
+        <label>cpp/include/falcon_core/communications/messages/MeasurementRequest.hpp</label>
+        <link refid="MeasurementRequest_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>cpp/include/falcon_core/communications/messages/MeasurementResponse.hpp</label>
+        <link refid="MeasurementResponse_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cpp/include/falcon_core/instrument_interfaces/Waveform.hpp</label>
+        <link refid="Waveform_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cpp/include/falcon_core/math/arrays/LabelledArrays.hpp</label>
+        <link refid="LabelledArrays_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/math/arrays/LabelledControlArray.hpp</label>
+        <link refid="LabelledControlArray_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cpp/include/falcon_core/math/arrays/LabelledControlArray1D.hpp</label>
+        <link refid="LabelledControlArray1D_8hpp"/>
+      </node>
+      <node id="6">
+        <label>cpp/include/falcon_core/math/discrete_spaces/DiscreteSpace.hpp</label>
+        <link refid="DiscreteSpace_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray" prot="public">falcon_core::math::arrays::LabelledControlArray</innerclass>
+    <innernamespace refid="namespacefalcon__core">falcon_core</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1math">falcon_core::math</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1math_1_1arrays">falcon_core::math::arrays</innernamespace>
+    <briefdescription>
+<para>Defines the a control array with a label. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cereal/types/base_class.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ControlArray_8hpp" kindref="compound">falcon_core/math/arrays/ControlArray.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/arrays/IsLabelled.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacefalcon__core" kindref="compound">falcon_core</ref><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">math<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">arrays<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">LabelledControlArray<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ControlArray,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt;double&gt;<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>LabelledControlArray(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LabelledControlArray&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>LabelledControlArray&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LabelledControlArray&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="28" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a660995b7ea4b03340d880ebc82648026" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a660995b7ea4b03340d880ebc82648026" kindref="member">LabelledControlArray</ref>(</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>arrays::ControlArraySP&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>array,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>autotuner_interfaces::contexts::AcquisitionContextSP&amp;<sp/>label);</highlight></codeline>
+<codeline lineno="37" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1af9afd5addb1c97bf398c08b306364c2a" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1af9afd5addb1c97bf398c08b306364c2a" kindref="member">LabelledControlArray</ref>(</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>generic::FArraySP&lt;double&gt;&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>array,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>autotuner_interfaces::contexts::AcquisitionContextSP&amp;<sp/>label);</highlight></codeline>
+<codeline lineno="45" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a2098785446b6e4c41a9207f923a9a21e" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a2098785446b6e4c41a9207f923a9a21e" kindref="member">LabelledControlArray</ref>(</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>generic::FArraySP&lt;double&gt;&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>array,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>instrument_interfaces::names::InstrumentPortSP&amp;<sp/>port);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Arithmetic<sp/>operators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator+(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator+(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator+(</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;LabelledControlArray&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator+(</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator-(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator-(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator-(</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;LabelledControlArray&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator-(</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&lt;double&gt;&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator-()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator*(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator/(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator/(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>operator^(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/>abs()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a058f329f9592377724b007dfeb24520c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a058f329f9592377724b007dfeb24520c" kindref="member">min</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a058f329f9592377724b007dfeb24520c" kindref="member">min</ref>(</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;LabelledControlArray&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a058f329f9592377724b007dfeb24520c" kindref="member">min</ref>(</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&lt;double&gt;&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a8c20309428b47e0b6bcbc6020f468ab0" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a8c20309428b47e0b6bcbc6020f468ab0" kindref="member">max</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a8c20309428b47e0b6bcbc6020f468ab0" kindref="member">max</ref>(</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;LabelledControlArray&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a8c20309428b47e0b6bcbc6020f468ab0" kindref="member">max</ref>(</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;FArray&lt;double&gt;&gt;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a1c65faaf5217093ebeca13806d022047" refkind="member"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1a1c65faaf5217093ebeca13806d022047" kindref="member">reshape</ref>(</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;size_t&gt;&amp;<sp/>shape)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1ad9109b2facac53ced0373dd0539bddb6" refkind="member"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;LabelledControlArray&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1ad9109b2facac53ced0373dd0539bddb6" kindref="member">flip</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="128" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1af3abec1ee0fc72105066154089eb845a" refkind="member"><highlight class="normal"><sp/><sp/>generic::FArraySP&lt;double&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1af3abec1ee0fc72105066154089eb845a" kindref="member">gradient</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>axis)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139" refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1abcfac8d1d3a8dde45a614dd8fb802e8c" refkind="member"><highlight class="normal"><sp/><sp/>generic::ListSP&lt;generic::FArray&lt;double&gt;&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1abcfac8d1d3a8dde45a614dd8fb802e8c" kindref="member">gradient</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LabelledControlArray&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator!=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>LabelledControlArray&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/>LabelledControlArray();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">cereal::access;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Archive&gt;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>serialize(Archive&amp;<sp/>ar)<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>ar(cereal::base_class&lt;ControlArray&gt;(</highlight><highlight class="keyword">this</highlight><highlight class="normal">),<sp/>_label);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">LabelledControlArraySP<sp/>=<sp/>std::shared_ptr&lt;LabelledControlArray&gt;;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>arrays</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>math</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>falcon_core</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="cpp/include/falcon_core/math/arrays/LabelledControlArray.hpp"/>
+  </compounddef>
+</doxygen>

@@ -3,12 +3,13 @@
 #include <mutex>
 #include <shared_mutex>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
 namespace autotuner_interfaces {
 namespace names {
-class NameBase : public generic::Song {
+class FALCON_CORE_CPP_API NameBase : public generic::Song {
   std::string                     _name;
   int                             _num;
   std::string                     _index_string;

@@ -1,0 +1,526 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::math::arrays::IsLabelled</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1IFArray" prot="public" virt="virtual">falcon_core::generic::IFArray&lt; T &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="10" column="16" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a32757421e12b16eab0811124d0a57357" prot="protected" static="no" mutable="no">
+        <type>autotuner_interfaces::contexts::AcquisitionContextSP</type>
+        <definition>autotuner_interfaces::contexts::AcquisitionContextSP falcon_core::math::arrays::IsLabelled&lt; T &gt;::_label</definition>
+        <argsstring></argsstring>
+        <name>_label</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::_label</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="11" column="56" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1afef738cc2e563f4c6c167fb0423a255f" prot="protected" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::arrays::IsLabelled&lt; T &gt;::_mu_label</definition>
+        <argsstring></argsstring>
+        <name>_mu_label</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::_mu_label</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="12" column="56" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1acbe982ecd412bb6dd676ea4231248704" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>autotuner_interfaces::contexts::AcquisitionContextSP</type>
+        <definition>autotuner_interfaces::contexts::AcquisitionContextSP falcon_core::math::arrays::IsLabelled&lt; T &gt;::label</definition>
+        <argsstring>() const</argsstring>
+        <name>label</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::label</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="15" column="56" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="15" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a9e47f4b8c4ebeb488ce574d04d2e0f28" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const physics::device_structures::ConnectionSP</type>
+        <definition>const physics::device_structures::ConnectionSP falcon_core::math::arrays::IsLabelled&lt; T &gt;::connection</definition>
+        <argsstring>() const</argsstring>
+        <name>connection</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::connection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="19" column="50" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="19" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a6b2de646186f2b5b14d91bb91b319527" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const instrument_interfaces::names::Instrument</type>
+        <definition>const instrument_interfaces::names::Instrument falcon_core::math::arrays::IsLabelled&lt; T &gt;::instrument_type</definition>
+        <argsstring>() const</argsstring>
+        <name>instrument_type</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::instrument_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="22" column="50" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="22" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a77627d2cd1ba84ffca12399f25c7c622" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const physics::units::SymbolUnitSP</type>
+        <definition>const physics::units::SymbolUnitSP falcon_core::math::arrays::IsLabelled&lt; T &gt;::units</definition>
+        <argsstring>() const</argsstring>
+        <name>units</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::units</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="25" column="38" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a7baff937f67e42ad06d329869796b31c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator+</definition>
+        <argsstring>(const std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator+</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="27" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="27" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a8db67fb7fcc90cec8bf652560fec5386" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator+</definition>
+        <argsstring>(const int other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator+</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="36" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="36" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a694483d632a3bff82bfe6a5a25b6eb54" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator+</definition>
+        <argsstring>(const double other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator+</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="39" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="39" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a474a31f2767600518192ab8b5ca6d637" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator-</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="42" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="42" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a20b45c7785b5f0f765dde71ad36d814b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator-</definition>
+        <argsstring>(const std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator-</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="45" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="45" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a83f03f677237f0106b0eb82de7cbc034" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator-</definition>
+        <argsstring>(const int other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator-</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="54" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="54" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a181ff7350dd9495a054b6663fc568dbb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator-</definition>
+        <argsstring>(const double other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator-</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="57" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="57" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a4aaa272ef5fc20ca6509240a5c123d15" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator^</definition>
+        <argsstring>(const int other) const</argsstring>
+        <name>operator^</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator^</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="60" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="60" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a2b29eeee2e1f54b21c4b3f0e87373941" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator*</definition>
+        <argsstring>(const std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; &amp;other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator*</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="63" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="63" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a427c1e3231b831a8879642cdd9497186" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator*</definition>
+        <argsstring>(const int other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator*</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="69" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="69" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1aa6880a1f96a0640670fe019fe7b1d338" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator*</definition>
+        <argsstring>(const double other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator*</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="72" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="72" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ae8e8d6234a2f39c2fc766df0f326863c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator/</definition>
+        <argsstring>(const std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; &amp;other) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator/</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="75" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="75" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1adaf71283d326471e35acb4733edff6d4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator/</definition>
+        <argsstring>(const int other) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator/</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="81" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="81" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ae37ea6bf3aebad4c1be4469a783e0e09" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::operator/</definition>
+        <argsstring>(const double other) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::operator/</qualifiedname>
+        <param>
+          <type>const double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="84" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="84" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a24518e1a1a493a4b610fd8dcabfb8292" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::flip</definition>
+        <argsstring>(size_t axis) const</argsstring>
+        <name>flip</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::flip</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Flip the data along the given axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axis to flip. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A flipped <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="92" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="92" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ac285de5c8cdc7f1adc19dedccad903f8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>generic::ListSP&lt; std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt; &gt;</type>
+        <definition>generic::ListSP&lt; std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::gradient</definition>
+        <argsstring>() const</argsstring>
+        <name>gradient</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::gradient</qualifiedname>
+        <briefdescription>
+<para>Return the gradient of the data along all axes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="98" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="98" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ab34703e20ac87c9ba50e694a24a7de18" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>&lt; T &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; IsLabelled&lt; T &gt; &gt; falcon_core::math::arrays::IsLabelled&lt; T &gt;::gradient</definition>
+        <argsstring>(size_t axis) const</argsstring>
+        <name>gradient</name>
+        <qualifiedname>falcon_core::math::arrays::IsLabelled::gradient</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+<para>Return the gradient of the data along a given axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axis to compute the gradient. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The gradient <ref refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled" kindref="compound">IsLabelled</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="113" column="19" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="113" bodyend="117"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::IFArray&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1IFArray"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::arrays::IsLabelled&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::IFArray&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1IFArray"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::arrays::IsLabelled&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" line="8" column="1" bodyfile="cpp/include/falcon_core/math/arrays/IsLabelled.hpp" bodystart="8" bodyend="118"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a32757421e12b16eab0811124d0a57357" prot="protected" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>_label</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1afef738cc2e563f4c6c167fb0423a255f" prot="protected" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>_mu_label</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a09c9a9893229b976032765f70aa818a1" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>array_type</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a0f3f5db91ae2010d171bdfa5ca312ed0" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a07f44536871b2971eaedd85f1866c6e4" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>cbegin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a50163d6b71e155106921efc2965b417b" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>cend</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a9e47f4b8c4ebeb488ce574d04d2e0f28" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>connection</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a6f3535fb8e16377a42fb17652ddc06e8" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>const_reference</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a41d4ac35a8ca9e991b99807c1ccd5dbd" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a1de5f60ef98c44b8f48981020f246adb" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aee90b4e861f478743fa025a88a9a8fd6" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>dimension</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1acd9aec51caa0620e31299c476b4c31d7" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a24518e1a1a493a4b610fd8dcabfb8292" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>flip</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ac285de5c8cdc7f1adc19dedccad903f8" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>gradient</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ab34703e20ac87c9ba50e694a24a7de18" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>gradient</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a6b2de646186f2b5b14d91bb91b319527" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>instrument_type</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1acbe982ecd412bb6dd676ea4231248704" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>label</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1acaf07d9d2513fb31eef7b6bb04594b7a" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>max</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a3c9418699feee13302673aaaf26170f6" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>min</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a774031e743d6041cd444f97e9e1a1654" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator array_type &amp;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1ac92a53df9a6609cca5c49a579bae29e4" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator const array_type &amp;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a841a7acf644d1cb7028cd893456fe2f3" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator()</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a166c92b447e549de7c264608c2adceb6" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator()</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a2b29eeee2e1f54b21c4b3f0e87373941" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator*</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a427c1e3231b831a8879642cdd9497186" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator*</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1aa6880a1f96a0640670fe019fe7b1d338" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator*</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a7baff937f67e42ad06d329869796b31c" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator+</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a8db67fb7fcc90cec8bf652560fec5386" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator+</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a694483d632a3bff82bfe6a5a25b6eb54" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator+</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a474a31f2767600518192ab8b5ca6d637" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a20b45c7785b5f0f765dde71ad36d814b" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a83f03f677237f0106b0eb82de7cbc034" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a181ff7350dd9495a054b6663fc568dbb" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ae8e8d6234a2f39c2fc766df0f326863c" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator/</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1adaf71283d326471e35acb4733edff6d4" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator/</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1ae37ea6bf3aebad4c1be4469a783e0e09" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator/</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a29689afd6c5d60f6d1a7666d50507dd7" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator&lt;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a8edd0d840bb6d198096e0d589373f326" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator&gt;</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a4aaa272ef5fc20ca6509240a5c123d15" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>operator^</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aec2f2dc372d880230b43b63e760cb88c" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>raw_data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a71fd0f2313bb55409bf7d50007d7b321" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>raw_data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a59a361d72ff63edf2aebf0dde2ae4b55" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>reference</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a71d578ab512bcca49e424b9dddc2c375" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>remove_offset</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a3ae14c8ecd7d2aed60cf31ecb0a8810e" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>shape</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a53fbc1dad98728229de8add662b2d24e" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a5890ecbfc58b7ca64783121f3bb9d061" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>sum</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsLabelled_1a77627d2cd1ba84ffca12399f25c7c622" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>units</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1afbcadca4952a23c0c46d69b5fd12fc09" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>value_type</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a89e1b99be80d48ebe4cf780cb5d4ee99" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>where</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aa5e84ced0ef5ff58d3c81513d72bae88" prot="public" virt="virtual"><scope>falcon_core::math::arrays::IsLabelled</scope><name>~IFArray</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

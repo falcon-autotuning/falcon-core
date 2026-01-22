@@ -1,0 +1,1735 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1SI" kind="namespace" language="C++">
+    <compoundname>falcon_core::SI</compoundname>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="Constants_8hpp_1af522330bb4ae2e1b44e7d27ab9d932f0" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::YOCTO_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>YOCTO_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::YOCTO_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="19" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="19" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a70c10da0f19622edabdf644071e50618" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::ZEPTO_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>ZEPTO_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::ZEPTO_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="20" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="20" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aa935c95d7dd03a2318ffb0afd9da4881" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::ATTO_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>ATTO_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::ATTO_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="21" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="21" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aa65af41d65b469389a20c2e8597fe3cd" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::FEMTO_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>FEMTO_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::FEMTO_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="22" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="22" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ae9127d17f37caa5d83dece342137e478" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::PICO_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>PICO_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::PICO_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="23" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="23" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a496b72551816dae80a4b5a4fe8dd1571" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::NANO_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>NANO_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::NANO_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="24" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="24" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aa889b4ebe2d6f22777766fbf5b34df42" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::MICRO_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>MICRO_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::MICRO_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="25" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="25" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a7fe04973138c3ec094b290069bb40ef2" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::MILLI_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>MILLI_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::MILLI_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="26" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="26" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a28e3e704589abc80bcd93e207785f095" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::CENTI_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>CENTI_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::CENTI_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="27" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="27" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a7ed300ff435ce0c77c137ff736fdbd33" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::UNIT_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::UNIT_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="28" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="28" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a6cb305454c911ce35fdf3b72a811104e" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::HECTO_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>HECTO_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::HECTO_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="29" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="29" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aaca6aa63a135560d4a3b7c529bffe7e5" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::KILO_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>KILO_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::KILO_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="30" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="30" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ac1ccbf2e175c10ed31a64f103081335f" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::MEGA_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>MEGA_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::MEGA_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="31" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="31" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a709fd2ab64f6c31b1ca05c1428345001" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::GIGA_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>GIGA_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::GIGA_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="32" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="32" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a8bfb051c67a2b744a5063156f1dfbeef" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::TERA_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>TERA_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::TERA_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="33" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="33" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aa11285da95d8dce6ad930b7df0d15f48" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::PETA_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>PETA_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::PETA_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="34" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="34" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aad0a9f7f63a166796a56202892c3fc63" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::EXA_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>EXA_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::EXA_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="35" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="35" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ad809960ee1222e38774916141aeb51b7" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::ZETTA_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>ZETTA_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::ZETTA_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="36" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="36" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a79c37f6a87d0ce3becf12799f8486d06" prot="public" static="no" extern="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int falcon_core::SI::YOTTA_EXPONENT</definition>
+        <argsstring></argsstring>
+        <name>YOTTA_EXPONENT</name>
+        <qualifiedname>falcon_core::SI::YOTTA_EXPONENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="37" column="18" declfile="cpp/include/falcon_core/Constants.hpp" declline="37" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a151514fafcc08f5fb913c5f2017c1cb0" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::YOCTO_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>YOCTO_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::YOCTO_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="40" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="40" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a39b8e95e7260d8bd207cfda63494ae12" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::ZEPTO_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>ZEPTO_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::ZEPTO_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="41" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="41" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ac73488a5276d816a887a2fbcd1d14e69" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::ATTO_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>ATTO_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::ATTO_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="42" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="42" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a2dc70b967bbeee549e31c014fa3183fe" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::FEMTO_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>FEMTO_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::FEMTO_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="43" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="43" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1acd1e95e1df3cbb5fb50c9d2f9858881d" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::PICO_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>PICO_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::PICO_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="44" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="44" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ae7a474595c5901111c57171860ff79a9" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::NANO_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>NANO_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::NANO_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="45" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="45" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a04561b01ee01286d0ac647c893635318" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::MICRO_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>MICRO_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::MICRO_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="46" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="46" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ab33003ed09c5249348d34529a66bdd35" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::MILLI_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>MILLI_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::MILLI_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="47" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="47" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a03b8a6ed1acc511e5493da4f26fadf1b" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::CENTI_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>CENTI_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::CENTI_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="48" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="48" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a614f0d1b9baba189d33790055d7c3c8a" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="49" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="49" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a1281010ec484bc8caf23da06bf7d5f4f" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::HECTO_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>HECTO_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::HECTO_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="50" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="50" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a7c401f27d894a03ddb7d8cdeb58661d4" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::KILO_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>KILO_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::KILO_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="51" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="51" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a2dfead9ac3a0d32c26451482e7ef5c08" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::MEGA_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>MEGA_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::MEGA_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="52" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="52" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ad181749216faece0ffa2990d14302de7" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::GIGA_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>GIGA_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::GIGA_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="53" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="53" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a773c5682142c1571cc672a1be74d20a1" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::TERA_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>TERA_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::TERA_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="54" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="54" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a1f8d9f0c688026ca0d495cf44354da18" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::PETA_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>PETA_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::PETA_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="55" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="55" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a3195c034912be32ab06b037d505fe081" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::EXA_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>EXA_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::EXA_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="56" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="56" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a0f93cf867cd569ba5280874e403b58fb" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::ZETTA_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>ZETTA_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::ZETTA_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="57" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="57" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a89f1c30cc8ddd6c60623775a7a0ee6c6" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::YOTTA_SYMBOL</definition>
+        <argsstring></argsstring>
+        <name>YOTTA_SYMBOL</name>
+        <qualifiedname>falcon_core::SI::YOTTA_SYMBOL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="58" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="58" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1abcd00d25fdea478c0d76027d92122145" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::ALL_PREFIXES[19]</definition>
+        <argsstring>[19]</argsstring>
+        <name>ALL_PREFIXES</name>
+        <qualifiedname>falcon_core::SI::ALL_PREFIXES</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="60" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="60" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ad2ff38df8ee8f3c8199db776c52c1162" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::DIMENSION_LENGTH</definition>
+        <argsstring></argsstring>
+        <name>DIMENSION_LENGTH</name>
+        <qualifiedname>falcon_core::SI::DIMENSION_LENGTH</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="63" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="63" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a318478cbfa022f3eed10e0860c9a4469" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::DIMENSION_MASS</definition>
+        <argsstring></argsstring>
+        <name>DIMENSION_MASS</name>
+        <qualifiedname>falcon_core::SI::DIMENSION_MASS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="64" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="64" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a25c44e02b0e503e3eeac3e454128e871" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::DIMENSION_TIME</definition>
+        <argsstring></argsstring>
+        <name>DIMENSION_TIME</name>
+        <qualifiedname>falcon_core::SI::DIMENSION_TIME</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="65" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="65" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a26f9f6087da2ded12b8ae22ea6abe062" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::DIMENSION_CURRENT</definition>
+        <argsstring></argsstring>
+        <name>DIMENSION_CURRENT</name>
+        <qualifiedname>falcon_core::SI::DIMENSION_CURRENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="66" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="66" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1acf996eb6979bd29828ac38b70d7ef24d" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::DIMENSION_TEMPERATURE</definition>
+        <argsstring></argsstring>
+        <name>DIMENSION_TEMPERATURE</name>
+        <qualifiedname>falcon_core::SI::DIMENSION_TEMPERATURE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="67" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="67" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1abe7c275c4b183e61b28f425969136495" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::DIMENSION_AMOUNT</definition>
+        <argsstring></argsstring>
+        <name>DIMENSION_AMOUNT</name>
+        <qualifiedname>falcon_core::SI::DIMENSION_AMOUNT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="68" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="68" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a87f49e8cb936c783820951fb17dc5761" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::DIMENSION_LUMINOSITY</definition>
+        <argsstring></argsstring>
+        <name>DIMENSION_LUMINOSITY</name>
+        <qualifiedname>falcon_core::SI::DIMENSION_LUMINOSITY</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="69" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="69" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ad8d3e721fdf0de6e8286a1881822066a" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::ALL_DIMENSIONS[7]</definition>
+        <argsstring>[7]</argsstring>
+        <name>ALL_DIMENSIONS</name>
+        <qualifiedname>falcon_core::SI::ALL_DIMENSIONS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="72" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="72" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1acceaf16cc60ed5efbad8799c4cc477e5" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_DIMENSIONLESS</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_DIMENSIONLESS</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_DIMENSIONLESS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="75" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="75" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a76a3322d4296ce758d493f8baff0486e" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_METER</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_METER</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_METER</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="76" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="76" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a669d645e9a5d80078ef3eda269caee36" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_KILOGRAM</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_KILOGRAM</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_KILOGRAM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="77" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="77" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aa07210931421f1149db203220e293e5c" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_SECOND</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_SECOND</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_SECOND</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="78" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="78" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aa56a8826e7a6fd45ad8b4596613694a8" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_AMPERE</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_AMPERE</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_AMPERE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="79" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="79" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a336ba6cda6d7c7d70b6b6d4897deb973" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_KELVIN</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_KELVIN</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_KELVIN</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="80" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="80" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1adcd9564ed21de6fb5a0f549224b6f579" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_MOLE</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_MOLE</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_MOLE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="81" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="81" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a746427e56ec0478cdaf3833a4064d0e0" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_CANDELA</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_CANDELA</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_CANDELA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="82" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="82" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a646a8060b64702acb391779a0040a505" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_HERTZ</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_HERTZ</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_HERTZ</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="83" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="83" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a12cb0b61a502f7806db1dc1014b43a08" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_NEWTON</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_NEWTON</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_NEWTON</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="84" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="84" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a2a998fb2d91bf70c23096cf476276e49" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_PASCAL</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_PASCAL</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_PASCAL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="85" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="85" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ac1745783bc37e1c4b53b79a894c1cf02" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_JOULE</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_JOULE</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_JOULE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="86" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="86" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aa777f6094ed978933cb87809e82b073f" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_WATT</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_WATT</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_WATT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="87" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="87" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a55eabd9ff5aa13b12987fbcda6c02634" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_COULOMB</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_COULOMB</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_COULOMB</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="88" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="88" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aaaaeee986b1078aaccc5be77fcf11b05" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_VOLT</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_VOLT</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_VOLT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="89" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="89" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a20fa3701bf3999f24efbe9ecf7e5ae4c" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_FARAD</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_FARAD</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_FARAD</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="90" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="90" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a74f1938d2e7fb455e3743a737478612c" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_OHM</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_OHM</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_OHM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="91" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="91" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1addd369ec5a5917d5b6c84c2c3ddc25c5" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_SIEMENS</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_SIEMENS</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_SIEMENS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="92" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="92" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ade9f411a5f692edfc3b78cf2b9eaa666" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_WEBER</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_WEBER</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_WEBER</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="93" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="93" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a4a4149c74cf04540d27075b2290d556c" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_TESLA</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_TESLA</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_TESLA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="94" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="94" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aade436ce795f3f4290b7633c4766b1cd" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::map&lt; std::string, int &gt;</type>
+        <definition>const std::map&lt;std::string, int&gt; falcon_core::SI::DIMENSIONS_HENRY</definition>
+        <argsstring></argsstring>
+        <name>DIMENSIONS_HENRY</name>
+        <qualifiedname>falcon_core::SI::DIMENSIONS_HENRY</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="95" column="23" declfile="cpp/include/falcon_core/Constants.hpp" declline="95" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a5f9067e7f393040decf1296b752ebf49" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_METER</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_METER</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_METER</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="98" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="98" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a562e74bb35a6f3bd7342e3bd7cf47fb2" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_KILOGRAM</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_KILOGRAM</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_KILOGRAM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="99" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="99" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1af6420754d18191c415d3650e4edf8728" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_SECOND</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_SECOND</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_SECOND</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="100" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="100" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a4a1a6298cbc63ce4dae3f40d062e8e15" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_AMPERE</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_AMPERE</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_AMPERE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="101" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="101" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ad0c7aef0c4ea971de3e2ac065b98b17e" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_KELVIN</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_KELVIN</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_KELVIN</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="102" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="102" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1afc776e5618d5c0bccae68d5df58424af" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_MOLE</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_MOLE</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_MOLE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="103" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="103" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a738141774942fd3563d49a55911e8a5f" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_CANDELA</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_CANDELA</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_CANDELA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="104" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="104" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a384e98b2dcd05c6962d818944e8299a1" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_HERTZ</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_HERTZ</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_HERTZ</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="105" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="105" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a35de273a720eedf148fad16fe9697a46" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_NEWTON</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_NEWTON</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_NEWTON</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="106" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="106" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aa2a6c655367d70aefbc122113f0d0ede" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_PASCAL</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_PASCAL</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_PASCAL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="107" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="107" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a1dca4a53549d8e891d9c03018b5e126f" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_JOULE</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_JOULE</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_JOULE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="108" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="108" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1acac6d4ed52ffa1599044d73776955bcc" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_WATT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_WATT</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_WATT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="109" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="109" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ad24e3557732dd18bf4ef5790b16eca32" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_COULOMB</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_COULOMB</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_COULOMB</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="110" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="110" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a6fbf9800c3163e1ff43a3e0a1e666a64" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_VOLT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_VOLT</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_VOLT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="111" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="111" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a30365e69208edac0e4d73084a62a80b1" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_FARAD</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_FARAD</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_FARAD</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="112" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="112" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1ad123cd05470cb6fa3a7144b4b3e90cfd" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_OHM</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_OHM</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_OHM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="113" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="113" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a7936365dd7953b988dc58eff3d4e9978" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_SIEMENS</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_SIEMENS</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_SIEMENS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="114" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="114" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a07547737eaef777c77906d2f90ce9c6b" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_WEBER</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_WEBER</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_WEBER</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="115" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="115" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1af2594de9b426f29353f055e5cf88b3ae" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_TESLA</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_TESLA</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_TESLA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="116" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="116" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1abcdef0e4efd2ad08482076532072354b" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_HENRY</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_HENRY</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_HENRY</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="117" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="117" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a34c8274b6dcb3c7832b4ecfd2d237c6f" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_MINUTE</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_MINUTE</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_MINUTE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="118" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="118" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1acbaaf7003e3a3bf83df36bedda898101" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_HOUR</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_HOUR</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_HOUR</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="119" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="119" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a2c5bff078b39136c63562dc4c46f1284" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_ELECTRON_VOLT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_ELECTRON_VOLT</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_ELECTRON_VOLT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="120" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="120" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a8f23ac7df660e275361dc701dd834588" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_CELSIUS</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_CELSIUS</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_CELSIUS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="121" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="121" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a3a74abc13c4a27e6bc3f6954d42db6e7" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_FAHRENHEIT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_FAHRENHEIT</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_FAHRENHEIT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="122" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="122" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a22991a8c809d3ea1b82fd5173d8bc5e9" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_PERCENT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_PERCENT</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_PERCENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="123" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="123" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a4f599059c3774d64331ad104e97384c2" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_SYMBOL_RADIAN</definition>
+        <argsstring></argsstring>
+        <name>UNIT_SYMBOL_RADIAN</name>
+        <qualifiedname>falcon_core::SI::UNIT_SYMBOL_RADIAN</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="124" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="124" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a337b8e41c5e44f9338761c835372d3ae" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_METER</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_METER</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_METER</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="127" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="127" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aea8a3f3697a6bccc2324fd760b6f91f1" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_KILOGRAM</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_KILOGRAM</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_KILOGRAM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="128" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="128" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1adc8a6b599348e3dc59dcbdd2cf662728" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_SECOND</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_SECOND</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_SECOND</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="129" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="129" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a1103b19d99ba1b91512774c9b7a19b8a" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_AMPERE</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_AMPERE</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_AMPERE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="130" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="130" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aed36986adbcc9deb2608f9cc05eebe3b" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_KELVIN</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_KELVIN</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_KELVIN</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="131" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="131" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a2b95608f92cc32cfdc3fc2e2e79322c5" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_MOLE</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_MOLE</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_MOLE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="132" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="132" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a381f2ec256841ce7113ffa1cb2cb1ee8" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_CANDELA</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_CANDELA</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_CANDELA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="133" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="133" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1af1a3efe7c88020feae7e62d700363bb2" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_HERTZ</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_HERTZ</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_HERTZ</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="134" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="134" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a7010a45041236ece6b299eedb65e2084" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_NEWTON</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_NEWTON</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_NEWTON</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="135" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="135" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a34187732f1699777a5d06d9c42acecbe" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_PASCAL</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_PASCAL</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_PASCAL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="136" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="136" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a07fc154681cb9e216ca93fb0246d2d3f" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_JOULE</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_JOULE</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_JOULE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="137" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="137" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a1c6cdbe4d981019082e35cb039140261" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_WATT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_WATT</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_WATT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="138" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="138" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a6224f3790303e0a5766d4d43b9b7734c" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_COULOMB</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_COULOMB</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_COULOMB</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="139" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="139" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1acecea952c641f004deca1974b32dfd54" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_VOLT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_VOLT</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_VOLT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="140" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="140" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a87587ba93b5a9e7d63b798957b028a94" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_FARAD</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_FARAD</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_FARAD</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="141" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="141" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a0a2ff39419a24fad333e406165f987fa" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_OHM</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_OHM</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_OHM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="142" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="142" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1aeea737402e8fa975e504b7a622af6062" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_SIEMENS</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_SIEMENS</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_SIEMENS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="143" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="143" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a59b85d5098e3e1c2d2c06e7360ee6aca" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_WEBER</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_WEBER</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_WEBER</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="144" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="144" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a64fc6e10d24fad185c3cbe874b7b5847" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_TESLA</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_TESLA</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_TESLA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="145" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="145" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a974d5ec167c94a708756ddff5875f384" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_HENRY</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_HENRY</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_HENRY</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="146" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="146" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a85a501adae42375b40f70e1c1ae8f317" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_MINUTE</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_MINUTE</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_MINUTE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="147" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="147" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1adfbd16aeac79d04394bf90a751d01056" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_HOUR</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_HOUR</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_HOUR</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="148" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="148" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a1c37a8bae18ead6c6fc659804af6a37d" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_ELECTRON_VOLT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_ELECTRON_VOLT</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_ELECTRON_VOLT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="149" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="149" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a75883cee27b23a65b7572eb1b6e5c84c" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_CELSIUS</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_CELSIUS</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_CELSIUS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="150" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="150" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a7343ce77e8fd3ff3027442b3578a439c" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_FAHRENHEIT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_FAHRENHEIT</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_FAHRENHEIT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="151" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="151" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a3acc6a5c94ffc66db74f87d38e146602" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_DIMENSIONLESS</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_DIMENSIONLESS</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_DIMENSIONLESS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="152" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="152" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1a75f8639fb130e0f4b136c427429aa39b" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_PERCENT</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_PERCENT</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_PERCENT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="153" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="153" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="Constants_8hpp_1add19ebca54067e23e6ce3843d4f3e90e" prot="public" static="no" extern="yes" mutable="no">
+        <type>const char *const</type>
+        <definition>const char* const falcon_core::SI::UNIT_NAME_RADIAN</definition>
+        <argsstring></argsstring>
+        <name>UNIT_NAME_RADIAN</name>
+        <qualifiedname>falcon_core::SI::UNIT_NAME_RADIAN</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/Constants.hpp" line="154" column="25" declfile="cpp/include/falcon_core/Constants.hpp" declline="154" declcolumn="25"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/Constants.hpp" line="18" column="1"/>
+  </compounddef>
+</doxygen>

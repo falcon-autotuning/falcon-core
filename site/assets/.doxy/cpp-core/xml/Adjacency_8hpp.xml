@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="Adjacency_8hpp" kind="file" language="C++">
+    <compoundname>Adjacency.hpp</compoundname>
+    <includes refid="FArray_8hpp" local="yes">falcon_core/generic/FArray.hpp</includes>
+    <includes refid="Connections_8hpp" local="yes">falcon_core/physics/device_structures/Connections.hpp</includes>
+    <includedby refid="VoltageConstraints_8hpp" local="yes">cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>cereal/types/xtensor.hpp</label>
+        <link refid="xtensor_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/generic/CategoryTags.hpp</label>
+        <link refid="CategoryTags_8hpp_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/FArray.hpp</label>
+        <link refid="FArray_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/FArrayProtocol.hpp</label>
+        <link refid="FArrayProtocol_8hpp_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>falcon_core/generic/IsPrimitive.hpp</label>
+        <link refid="IsPrimitive_8hpp_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/List.hpp</label>
+        <link refid="List_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>falcon_core/generic/Song.hpp</label>
+        <link refid="Song_8hpp_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/physics/config/core/Adjacency.hpp</label>
+        <link refid="Adjacency_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>falcon_core/physics/device_structures/Connection.hpp</label>
+        <link refid="Connection_8hpp_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>falcon_core/physics/device_structures/Connections.hpp</label>
+        <link refid="Connections_8hpp_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>algorithm</label>
+      </node>
+      <node id="30">
+        <label>cereal/archives/binary.hpp</label>
+      </node>
+      <node id="23">
+        <label>cereal/archives/json.hpp</label>
+      </node>
+      <node id="6">
+        <label>cereal/cereal.hpp</label>
+      </node>
+      <node id="24">
+        <label>cereal/types/map.hpp</label>
+      </node>
+      <node id="3">
+        <label>cereal/types/memory.hpp</label>
+      </node>
+      <node id="25">
+        <label>cereal/types/polymorphic.hpp</label>
+      </node>
+      <node id="26">
+        <label>cereal/types/string.hpp</label>
+      </node>
+      <node id="27">
+        <label>cereal/types/unordered_map.hpp</label>
+      </node>
+      <node id="28">
+        <label>cereal/types/utility.hpp</label>
+      </node>
+      <node id="4">
+        <label>cereal/types/vector.hpp</label>
+      </node>
+      <node id="14">
+        <label>memory</label>
+      </node>
+      <node id="15">
+        <label>mutex</label>
+      </node>
+      <node id="16">
+        <label>shared_mutex</label>
+      </node>
+      <node id="29">
+        <label>sstream</label>
+      </node>
+      <node id="17">
+        <label>stdexcept</label>
+      </node>
+      <node id="21">
+        <label>string</label>
+      </node>
+      <node id="18">
+        <label>type_traits</label>
+      </node>
+      <node id="7">
+        <label>xtensor/xarray.hpp</label>
+      </node>
+      <node id="8">
+        <label>xtensor/xio.hpp</label>
+      </node>
+      <node id="11">
+        <label>xtensor/xshape.hpp</label>
+      </node>
+      <node id="9">
+        <label>xtensor/xview.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>cpp/include/falcon_core/physics/config/ConfigManipulations.hpp</label>
+        <link refid="ConfigManipulations_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cpp/include/falcon_core/physics/config/Loader.hpp</label>
+        <link refid="Loader_8hpp_source"/>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/physics/config/core/Adjacency.hpp</label>
+        <link refid="Adjacency_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cpp/include/falcon_core/physics/config/core/Config.hpp</label>
+        <link refid="Config_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cpp/include/falcon_core/physics/config/core/VoltageConstraints.hpp</label>
+        <link refid="VoltageConstraints_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency" prot="public">falcon_core::physics::config::core::Adjacency</innerclass>
+    <innernamespace refid="namespacefalcon__core">falcon_core</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics">falcon_core::physics</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics_1_1config">falcon_core::physics::config</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1physics_1_1config_1_1core">falcon_core::physics::config::core</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/FArray.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connections.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacefalcon__core" kindref="compound">falcon_core</ref><sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">physics<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">config<sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">core<sp/>{</highlight></codeline>
+<codeline lineno="14" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Adjacency<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">generic::FArray</ref>&lt;int&gt;<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Indexes<sp/>=<sp/>physics::device_structures::ConnectionsSP;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>Indexes<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_indexes;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/>_mu_indexes;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/>Adjacency(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Adjacency&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>Adjacency&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Adjacency&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>Adjacency(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>xt::xarray&lt;int&gt;&amp;<sp/>matrix,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Indexes<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a8b3d0f52964527cd48863c2ea85ebe64" kindref="member">indexes</ref>);</highlight></codeline>
+<codeline lineno="27" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a8b3d0f52964527cd48863c2ea85ebe64" refkind="member"><highlight class="normal"><sp/><sp/>Indexes<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a8b3d0f52964527cd48863c2ea85ebe64" kindref="member">indexes</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a1b1f84a15b61d9120d1c813ee3c222ff" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::pair&lt;size_t,<sp/>size_t&gt;&gt;<sp/><ref refid="classfalcon__core_1_1physics_1_1config_1_1core_1_1Adjacency_1a1b1f84a15b61d9120d1c813ee3c222ff" kindref="member">get_true_pairs</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Adjacency&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator!=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Adjacency&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>Adjacency();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">cereal::access;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Archive&gt;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>serialize(Archive&amp;<sp/>ar)<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_indexes(_mu_indexes);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>ar(cereal::base_class&lt;<ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">generic::FArray&lt;int&gt;</ref>&gt;(</highlight><highlight class="keyword">this</highlight><highlight class="normal">),<sp/>_indexes);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">AdjacencySP<sp/>=<sp/>std::shared_ptr&lt;Adjacency&gt;;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>core</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>config</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>physics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>falcon_core</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="cpp/include/falcon_core/physics/config/core/Adjacency.hpp"/>
+  </compounddef>
+</doxygen>

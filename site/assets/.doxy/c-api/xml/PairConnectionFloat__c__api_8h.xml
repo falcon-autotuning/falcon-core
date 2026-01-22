@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="PairConnectionFloat__c__api_8h" kind="file" language="C++">
+    <compoundname>PairConnectionFloat_c_api.h</compoundname>
+    <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="ListPairConnectionFloat__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListPairConnectionFloat_c_api.h</includedby>
+    <includedby refid="MapConnectionFloat__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapConnectionFloat_c_api.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h</label>
+        <link refid="PairConnectionFloat__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListPairConnectionFloat_c_api.h</label>
+        <link refid="ListPairConnectionFloat__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/MapConnectionFloat_c_api.h</label>
+        <link refid="MapConnectionFloat__c__api_8h_source"/>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h</label>
+        <link refid="PairConnectionFloat__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="PairConnectionFloat__c__api_8h_1ac2090494ce2a6ca5ae0d0390e00e9a6e" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* PairConnectionFloatHandle</definition>
+        <argsstring></argsstring>
+        <name>PairConnectionFloatHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="PairConnectionFloat__c__api_8h_1a3f7a79c9d47c799170805652607d9fe1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairConnectionFloatHandle</type>
+        <definition>PairConnectionFloatHandle PairConnectionFloat_create</definition>
+        <argsstring>(ConnectionHandle first, float second)</argsstring>
+        <name>PairConnectionFloat_create</name>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>second</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="14" column="27" declfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" declline="14" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="PairConnectionFloat__c__api_8h_1aa52c3724f8c155a58f1f6fc13f5214ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairConnectionFloatHandle</type>
+        <definition>PairConnectionFloatHandle PairConnectionFloat_copy</definition>
+        <argsstring>(PairConnectionFloatHandle handle)</argsstring>
+        <name>PairConnectionFloat_copy</name>
+        <param>
+          <type>PairConnectionFloatHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="16" column="27" declfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" declline="16" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="PairConnectionFloat__c__api_8h_1a0f49f6a687c100f653a91ade6528b33e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PairConnectionFloat_destroy</definition>
+        <argsstring>(PairConnectionFloatHandle handle)</argsstring>
+        <name>PairConnectionFloat_destroy</name>
+        <param>
+          <type>PairConnectionFloatHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="18" column="6" declfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="PairConnectionFloat__c__api_8h_1aff22c8bd0d80885f2e1c03402feb59fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle PairConnectionFloat_first</definition>
+        <argsstring>(PairConnectionFloatHandle handle)</argsstring>
+        <name>PairConnectionFloat_first</name>
+        <param>
+          <type>PairConnectionFloatHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="20" column="18" declfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" declline="20" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="PairConnectionFloat__c__api_8h_1a77db42baed1d15177f392a5a02c9cbda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float PairConnectionFloat_second</definition>
+        <argsstring>(PairConnectionFloatHandle handle)</argsstring>
+        <name>PairConnectionFloat_second</name>
+        <param>
+          <type>PairConnectionFloatHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="22" column="7" declfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" declline="22" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="PairConnectionFloat__c__api_8h_1a0222c52f1aebebef0a56f6f517da8a9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PairConnectionFloat_equal</definition>
+        <argsstring>(PairConnectionFloatHandle handle, PairConnectionFloatHandle other)</argsstring>
+        <name>PairConnectionFloat_equal</name>
+        <param>
+          <type>PairConnectionFloatHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionFloatHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="PairConnectionFloat__c__api_8h_1a044b938c9245ac1d3c71d44b50b75fbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PairConnectionFloat_not_equal</definition>
+        <argsstring>(PairConnectionFloatHandle handle, PairConnectionFloatHandle other)</argsstring>
+        <name>PairConnectionFloat_not_equal</name>
+        <param>
+          <type>PairConnectionFloatHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionFloatHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="PairConnectionFloat__c__api_8h_1ac0862afdd602907b98e13a643a5e49b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle PairConnectionFloat_to_json_string</definition>
+        <argsstring>(PairConnectionFloatHandle handle)</argsstring>
+        <name>PairConnectionFloat_to_json_string</name>
+        <param>
+          <type>PairConnectionFloatHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="28" column="19" declfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" declline="28" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="PairConnectionFloat__c__api_8h_1a117b6304ed4aad074c58a7d1e6fbce66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairConnectionFloatHandle</type>
+        <definition>PairConnectionFloatHandle PairConnectionFloat_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>PairConnectionFloat_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" line="30" column="27" declfile="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h" declline="30" declcolumn="27"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>PairConnectionFloatHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">PairConnectionFloatHandle<sp/>PairConnectionFloat_create(ConnectionHandle<sp/>first,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>second);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">PairConnectionFloatHandle<sp/>PairConnectionFloat_copy(PairConnectionFloatHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>PairConnectionFloat_destroy(PairConnectionFloatHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ConnectionHandle<sp/>PairConnectionFloat_first(PairConnectionFloatHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>PairConnectionFloat_second(PairConnectionFloatHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>PairConnectionFloat_equal(PairConnectionFloatHandle<sp/>handle,<sp/>PairConnectionFloatHandle<sp/>other);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>PairConnectionFloat_not_equal(PairConnectionFloatHandle<sp/>handle,<sp/>PairConnectionFloatHandle<sp/>other);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>PairConnectionFloat_to_json_string(PairConnectionFloatHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">PairConnectionFloatHandle<sp/>PairConnectionFloat_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/PairConnectionFloat_c_api.h"/>
+  </compounddef>
+</doxygen>

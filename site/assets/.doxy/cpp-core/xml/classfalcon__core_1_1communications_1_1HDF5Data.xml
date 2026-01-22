@@ -1,0 +1,892 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1communications_1_1HDF5Data" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::communications::HDF5Data</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classfalcon__core_1_1communications_1_1HDF5Data_1a8941285b97a4f68e254826563533ab00" prot="private" static="no">
+        <type><ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">generic::Map</ref>&lt; std::string, std::string &gt;</type>
+        <definition>using falcon_core::communications::HDF5Data::Metadata =  generic::Map&lt;std::string, std::string&gt;</definition>
+        <argsstring></argsstring>
+        <name>Metadata</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::Metadata</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="19" column="3" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a9e5dc001393186850addc08623ccb4e0" prot="private" static="no" mutable="no">
+        <type>math::AxesSP&lt; int &gt;</type>
+        <definition>math::AxesSP&lt;int&gt; falcon_core::communications::HDF5Data::_shape</definition>
+        <argsstring></argsstring>
+        <name>_shape</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_shape</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="20" column="49" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a6de99417fd98303dee8d5843957eb2a7" prot="private" static="no" mutable="no">
+        <type>math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray" kindref="compound">math::arrays::ControlArray</ref> &gt;</type>
+        <definition>math::AxesSP&lt;math::arrays::ControlArray&gt; falcon_core::communications::HDF5Data::_unit_domain</definition>
+        <argsstring></argsstring>
+        <name>_unit_domain</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_unit_domain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="21" column="26" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a857e0c67862452340b2b5df32011c85f" prot="private" static="no" mutable="no">
+        <type>math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain" kindref="compound">math::domains::CoupledLabelledDomain</ref> &gt;</type>
+        <definition>math::AxesSP&lt;math::domains::CoupledLabelledDomain&gt; falcon_core::communications::HDF5Data::_domain_labels</definition>
+        <argsstring></argsstring>
+        <name>_domain_labels</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_domain_labels</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="22" column="16" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1ad7ceac1e78e3744b984db038635c8d28" prot="private" static="no" mutable="no">
+        <type>math::arrays::LabelledArraysSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray" kindref="compound">math::arrays::LabelledMeasuredArray</ref> &gt;</type>
+        <definition>math::arrays::LabelledArraysSP&lt;math::arrays::LabelledMeasuredArray&gt; falcon_core::communications::HDF5Data::_ranges</definition>
+        <argsstring></argsstring>
+        <name>_ranges</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_ranges</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="23" column="34" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a3290fc63155749b06610ae0a4909c4d5" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; Metadata &gt;</type>
+        <definition>std::shared_ptr&lt;Metadata&gt; falcon_core::communications::HDF5Data::_metadata</definition>
+        <argsstring></argsstring>
+        <name>_metadata</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_metadata</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="24" column="61" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a37b70cd683fff741c2ce6c8392b26b1a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string falcon_core::communications::HDF5Data::_measurement_title</definition>
+        <argsstring></argsstring>
+        <name>_measurement_title</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_measurement_title</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="25" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1aeeaf53b942cb1cedca50a4ffd4dda9de" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int falcon_core::communications::HDF5Data::_unique_id</definition>
+        <argsstring></argsstring>
+        <name>_unique_id</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_unique_id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="26" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a6d54b8e35e23935ab6a8ffb18ad6f42a" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int falcon_core::communications::HDF5Data::_timestamp</definition>
+        <argsstring></argsstring>
+        <name>_timestamp</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_timestamp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="27" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1af8ca799185cb72b5d05f6c057b3f5e48" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::HDF5Data::_mu_metadata</definition>
+        <argsstring></argsstring>
+        <name>_mu_metadata</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_mu_metadata</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="28" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1abd4e751e062eec08ae59842ff47ad4c9" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::HDF5Data::_mu_ranges</definition>
+        <argsstring></argsstring>
+        <name>_mu_ranges</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_mu_ranges</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="29" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a8619fc5578386642b612b38420b2e8cf" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::HDF5Data::_mu_unit_domain</definition>
+        <argsstring></argsstring>
+        <name>_mu_unit_domain</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_mu_unit_domain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="30" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1abc7503904befb9b8f6c93cfe4b6eb03b" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::HDF5Data::_mu_domain_labels</definition>
+        <argsstring></argsstring>
+        <name>_mu_domain_labels</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_mu_domain_labels</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="31" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a5f802172292565c7fbea40495505826b" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::HDF5Data::_mu_shape</definition>
+        <argsstring></argsstring>
+        <name>_mu_shape</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_mu_shape</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="32" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a57302536c53abf54a112f42576a75e2e" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::HDF5Data::_mu_measurement_title</definition>
+        <argsstring></argsstring>
+        <name>_mu_measurement_title</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_mu_measurement_title</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="33" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1afa26e79c6b31c0823e81bc892599b884" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::HDF5Data::_mu_unique_id</definition>
+        <argsstring></argsstring>
+        <name>_mu_unique_id</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_mu_unique_id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="34" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1HDF5Data_1a804b33a906824bd4a908126861260ebb" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::HDF5Data::_mu_timestamp</definition>
+        <argsstring></argsstring>
+        <name>_mu_timestamp</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::_mu_timestamp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="35" column="35" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1communications_1_1HDF5Data_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="38" column="16" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1a3ae6514091f308ac56b73f6f1be63699" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::HDF5Data::HDF5Data</definition>
+        <argsstring>()</argsstring>
+        <name>HDF5Data</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::HDF5Data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="39" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1afba3dd311eaa3840b8edc47d095079c8" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::communications::HDF5Data::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="41" column="8" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="41" bodyend="69"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1ae0ba343e16745b1a99c473a6675eefaf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::HDF5Data::HDF5Data</definition>
+        <argsstring>(const HDF5Data &amp;other)</argsstring>
+        <name>HDF5Data</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::HDF5Data</qualifiedname>
+        <param>
+          <type>const HDF5Data &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="72" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1aaa5894f413e204cb17598e02198a9ee4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>HDF5Data &amp;</type>
+        <definition>HDF5Data &amp; falcon_core::communications::HDF5Data::operator=</definition>
+        <argsstring>(const HDF5Data &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::operator=</qualifiedname>
+        <param>
+          <type>const HDF5Data &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="73" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1a8563af23758fab436dd167e1b6d1a38f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::HDF5Data::HDF5Data</definition>
+        <argsstring>(const math::AxesSP&lt; int &gt; &amp;shape, const math::AxesSP&lt; math::arrays::ControlArray &gt; &amp;unit_domain, const math::AxesSP&lt; math::domains::CoupledLabelledDomain &gt; &amp;domain_labels, const math::arrays::LabelledArraysSP&lt; math::arrays::LabelledMeasuredArray &gt; &amp;ranges, const std::shared_ptr&lt; Metadata &gt; &amp;metadata, const std::string &amp;measurement_title, const int &amp;unique_id, const int &amp;timestamp)</argsstring>
+        <name>HDF5Data</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::HDF5Data</qualifiedname>
+        <param>
+          <type>const math::AxesSP&lt; int &gt; &amp;</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray" kindref="compound">math::arrays::ControlArray</ref> &gt; &amp;</type>
+          <declname>unit_domain</declname>
+        </param>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain" kindref="compound">math::domains::CoupledLabelledDomain</ref> &gt; &amp;</type>
+          <declname>domain_labels</declname>
+        </param>
+        <param>
+          <type>const math::arrays::LabelledArraysSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray" kindref="compound">math::arrays::LabelledMeasuredArray</ref> &gt; &amp;</type>
+          <declname>ranges</declname>
+        </param>
+        <param>
+          <type>const std::shared_ptr&lt; Metadata &gt; &amp;</type>
+          <declname>metadata</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>measurement_title</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>unique_id</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>timestamp</declname>
+        </param>
+        <briefdescription>
+<para>Construct the protable data for database storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The shape of the data array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>unit_domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit domain for each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain_labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The domain labels for each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ranges</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ranges for each axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>metadata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The metadata for the measurement. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>measurement_title</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The title of the measurement. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>unique_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A unique id for the measurement. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timestamp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A timestamp for the measurement. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="85" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1a738f0b07f5c6e3c7f71e251445c25cb9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::communications::HDF5Data::to_file</definition>
+        <argsstring>(const std::string &amp;path) const</argsstring>
+        <name>to_file</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::to_file</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Convert from an <ref refid="classfalcon__core_1_1communications_1_1HDF5Data" kindref="compound">HDF5Data</ref> object to a file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to write the HDF5 file at. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="124" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1ae97c70efb1974b37b1d00509234d6a2d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>math::AxesSP&lt; int &gt;</type>
+        <definition>math::AxesSP&lt; int &gt; falcon_core::communications::HDF5Data::shape</definition>
+        <argsstring>() const</argsstring>
+        <name>shape</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::shape</qualifiedname>
+        <briefdescription>
+<para>Get the shape of the data array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The shape of the data array. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="129" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1a60bffbfa4656674e6800648774830ef9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray" kindref="compound">math::arrays::ControlArray</ref> &gt;</type>
+        <definition>math::AxesSP&lt; math::arrays::ControlArray &gt; falcon_core::communications::HDF5Data::unit_domain</definition>
+        <argsstring>() const</argsstring>
+        <name>unit_domain</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::unit_domain</qualifiedname>
+        <briefdescription>
+<para>Get the unit domain for each axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The unit domain for each axis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="134" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1afc161d31fb7d05228b41450326030bee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>math::AxesSP&lt; <ref refid="classfalcon__core_1_1math_1_1domains_1_1CoupledLabelledDomain" kindref="compound">math::domains::CoupledLabelledDomain</ref> &gt;</type>
+        <definition>math::AxesSP&lt; math::domains::CoupledLabelledDomain &gt; falcon_core::communications::HDF5Data::domain_labels</definition>
+        <argsstring>() const</argsstring>
+        <name>domain_labels</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::domain_labels</qualifiedname>
+        <briefdescription>
+<para>Get the domain labels for each axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The domain labels for each axis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="139" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1a6a05ed03ed93bbd86e66a3dacc6bb10f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>math::arrays::LabelledArraysSP&lt; <ref refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledMeasuredArray" kindref="compound">math::arrays::LabelledMeasuredArray</ref> &gt;</type>
+        <definition>math::arrays::LabelledArraysSP&lt; math::arrays::LabelledMeasuredArray &gt; falcon_core::communications::HDF5Data::ranges</definition>
+        <argsstring>() const</argsstring>
+        <name>ranges</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::ranges</qualifiedname>
+        <briefdescription>
+<para>Get the ranges for each axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The ranges for each axis. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="144" column="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1aee9d1f863a7878802679e86b146e0182" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Metadata &gt;</type>
+        <definition>std::shared_ptr&lt; Metadata &gt; falcon_core::communications::HDF5Data::metadata</definition>
+        <argsstring>() const</argsstring>
+        <name>metadata</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::metadata</qualifiedname>
+        <briefdescription>
+<para>Get the metadata for the measurement. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The metadata for the measurement. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="150" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1ab867f9af3625853cf2cb4f7f7d2903bb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string falcon_core::communications::HDF5Data::measurement_title</definition>
+        <argsstring>() const</argsstring>
+        <name>measurement_title</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::measurement_title</qualifiedname>
+        <briefdescription>
+<para>Get the measurement title. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The measurement title. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="155" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1a07cab222c157aa5fa590ecca41faf484" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int falcon_core::communications::HDF5Data::unique_id</definition>
+        <argsstring>() const</argsstring>
+        <name>unique_id</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::unique_id</qualifiedname>
+        <briefdescription>
+<para>Get the unique id for the measurement. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The unique id for the measurement. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="160" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1a6dd1d085d390b65406204b069d310d52" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int falcon_core::communications::HDF5Data::timestamp</definition>
+        <argsstring>() const</argsstring>
+        <name>timestamp</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::timestamp</qualifiedname>
+        <briefdescription>
+<para>Get the timestamp for the measurement. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The timestamp for the measurement. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="165" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1ac016ab18e93b3f4afc1af05a6727fc08" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::pair&lt; communications::messages::MeasurementResponseSP, communications::messages::MeasurementRequestSP &gt;</type>
+        <definition>const std::pair&lt; communications::messages::MeasurementResponseSP, communications::messages::MeasurementRequestSP &gt; falcon_core::communications::HDF5Data::to_communications</definition>
+        <argsstring>() const</argsstring>
+        <name>to_communications</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::to_communications</qualifiedname>
+        <briefdescription>
+<para>Convert from an <ref refid="classfalcon__core_1_1communications_1_1HDF5Data" kindref="compound">HDF5Data</ref> object to a MeasurementResponse and a Metadata. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A pair of MeasurementResponse and MeasurementRequest. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="173" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1ab0f8aa5803731a5cd2f6c10ca321e8bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::HDF5Data::operator==</definition>
+        <argsstring>(const HDF5Data &amp;other)</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::operator==</qualifiedname>
+        <param>
+          <type>const HDF5Data &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="175" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1ae25abb67936d8ff549f1c0393a644bd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::HDF5Data::operator!=</definition>
+        <argsstring>(const HDF5Data &amp;other)</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::operator!=</qualifiedname>
+        <param>
+          <type>const HDF5Data &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="176" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1a1809b4de428ed23cec550512b973829d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; HDF5Data &gt;</type>
+        <definition>static const std::shared_ptr&lt; HDF5Data &gt; falcon_core::communications::HDF5Data::from_file</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>from_file</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::from_file</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Convert from a file to an <ref refid="classfalcon__core_1_1communications_1_1HDF5Data" kindref="compound">HDF5Data</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the HDF5 file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <ref refid="classfalcon__core_1_1communications_1_1HDF5Data" kindref="compound">HDF5Data</ref> object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="100" column="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1HDF5Data_1ac0b613d58d98bdd4ac619b0c8c61af12" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; HDF5Data &gt;</type>
+        <definition>static const std::shared_ptr&lt; HDF5Data &gt; falcon_core::communications::HDF5Data::from_communications</definition>
+        <argsstring>(const messages::MeasurementRequestSP &amp;request, const messages::MeasurementResponseSP &amp;response, const voltage_states::DeviceVoltageStatesSP &amp;device_voltage_states, const boost::uuids::uuid &amp;session_id, const std::string &amp;measurement_title, const int &amp;unique_id, const int &amp;timestamp)</argsstring>
+        <name>from_communications</name>
+        <qualifiedname>falcon_core::communications::HDF5Data::from_communications</qualifiedname>
+        <param>
+          <type>const messages::MeasurementRequestSP &amp;</type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>const messages::MeasurementResponseSP &amp;</type>
+          <declname>response</declname>
+        </param>
+        <param>
+          <type>const voltage_states::DeviceVoltageStatesSP &amp;</type>
+          <declname>device_voltage_states</declname>
+        </param>
+        <param>
+          <type>const boost::uuids::uuid &amp;</type>
+          <declname>session_id</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>measurement_title</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>unique_id</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>timestamp</declname>
+        </param>
+        <briefdescription>
+<para>Load the data from a MeasurementResponse and MeasurementResponse. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>request</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The MeasurementRequest from falcon. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>response</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The MeasurementResponse from the instrument server. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>device_votlage_states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the device voltages. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>session_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the session from the instrument server. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>measurement_title</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The title of the measurement. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>unique_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A unique id for the measurement. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timestamp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time the measurement was taken. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <ref refid="classfalcon__core_1_1communications_1_1HDF5Data" kindref="compound">HDF5Data</ref> object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="112" column="32"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::communications::HDF5Data</label>
+        <link refid="classfalcon__core_1_1communications_1_1HDF5Data"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::communications::HDF5Data</label>
+        <link refid="classfalcon__core_1_1communications_1_1HDF5Data"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/communications/HDF5Data.hpp" line="18" column="1" bodyfile="cpp/include/falcon_core/communications/HDF5Data.hpp" bodystart="18" bodyend="177"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a857e0c67862452340b2b5df32011c85f" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_domain_labels</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a37b70cd683fff741c2ce6c8392b26b1a" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_measurement_title</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a3290fc63155749b06610ae0a4909c4d5" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_metadata</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1abc7503904befb9b8f6c93cfe4b6eb03b" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_mu_domain_labels</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a57302536c53abf54a112f42576a75e2e" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_mu_measurement_title</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1af8ca799185cb72b5d05f6c057b3f5e48" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_mu_metadata</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1abd4e751e062eec08ae59842ff47ad4c9" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_mu_ranges</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a5f802172292565c7fbea40495505826b" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_mu_shape</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a804b33a906824bd4a908126861260ebb" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_mu_timestamp</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1afa26e79c6b31c0823e81bc892599b884" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_mu_unique_id</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a8619fc5578386642b612b38420b2e8cf" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_mu_unit_domain</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1ad7ceac1e78e3744b984db038635c8d28" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_ranges</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a9e5dc001393186850addc08623ccb4e0" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_shape</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a6d54b8e35e23935ab6a8ffb18ad6f42a" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_timestamp</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1aeeaf53b942cb1cedca50a4ffd4dda9de" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_unique_id</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a6de99417fd98303dee8d5843957eb2a7" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>_unit_domain</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1afc161d31fb7d05228b41450326030bee" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>domain_labels</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1ac0b613d58d98bdd4ac619b0c8c61af12" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>from_communications</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a1809b4de428ed23cec550512b973829d" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>from_file</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a3ae6514091f308ac56b73f6f1be63699" prot="protected" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>HDF5Data</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1ae0ba343e16745b1a99c473a6675eefaf" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>HDF5Data</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a8563af23758fab436dd167e1b6d1a38f" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>HDF5Data</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1ab867f9af3625853cf2cb4f7f7d2903bb" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>measurement_title</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a8941285b97a4f68e254826563533ab00" prot="private" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>Metadata</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1aee9d1f863a7878802679e86b146e0182" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>metadata</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1ae25abb67936d8ff549f1c0393a644bd1" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1aaa5894f413e204cb17598e02198a9ee4" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1ab0f8aa5803731a5cd2f6c10ca321e8bb" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a6a05ed03ed93bbd86e66a3dacc6bb10f" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>ranges</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1afba3dd311eaa3840b8edc47d095079c8" prot="protected" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1ae97c70efb1974b37b1d00509234d6a2d" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>shape</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a6dd1d085d390b65406204b069d310d52" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>timestamp</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1ac016ab18e93b3f4afc1af05a6727fc08" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>to_communications</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a738f0b07f5c6e3c7f71e251445c25cb9" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>to_file</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a07cab222c157aa5fa590ecca41faf484" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>unique_id</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1HDF5Data_1a60bffbfa4656674e6800648774830ef9" prot="public" virt="non-virtual"><scope>falcon_core::communications::HDF5Data</scope><name>unit_domain</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::communications::HDF5Data</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

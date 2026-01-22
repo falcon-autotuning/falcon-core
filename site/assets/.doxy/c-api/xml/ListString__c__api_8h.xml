@@ -1,0 +1,711 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="ListString__c__api_8h" kind="file" language="C++">
+    <compoundname>ListString_c_api.h</compoundname>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="InterpretationContainerString__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h</includedby>
+    <includedby refid="Channels__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h</includedby>
+    <includedby refid="MapInterpretationContextString__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.h</includedby>
+    <includedby refid="MapStringBool__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapStringBool_c_api.h</includedby>
+    <includedby refid="MapStringDouble__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapStringDouble_c_api.h</includedby>
+    <includedby refid="MapStringString__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapStringString_c_api.h</includedby>
+    <includedby refid="Ports__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h</includedby>
+    <includedby refid="PortTransform__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</includedby>
+    <includedby refid="AnalyticFunction__c__api_8h" local="yes">c-api/include/falcon_core/math/AnalyticFunction_c_api.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h</label>
+        <link refid="InterpretationContainerString__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/autotuner_interfaces/names/Channels_c_api.h</label>
+        <link refid="Channels__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>c-api/include/falcon_core/generic/ListCoupledLabelledDomain_c_api.h</label>
+        <link refid="ListCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/generic/ListMapStringBool_c_api.h</label>
+        <link refid="ListMapStringBool__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="ListPairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>c-api/include/falcon_core/generic/ListPortTransform_c_api.h</label>
+        <link refid="ListPortTransform__c__api_8h_source"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h</label>
+        <link refid="MapInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.h</label>
+        <link refid="MapInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/generic/MapStringBool_c_api.h</label>
+        <link refid="MapStringBool__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>c-api/include/falcon_core/generic/MapStringDouble_c_api.h</label>
+        <link refid="MapStringDouble__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>c-api/include/falcon_core/generic/MapStringString_c_api.h</label>
+        <link refid="MapStringString__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="PairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>c-api/include/falcon_core/instrument_interfaces/names/Ports_c_api.h</label>
+        <link refid="Ports__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
+        <link refid="PortTransform__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms_c_api.h</label>
+        <link refid="PortTransforms__c__api_8h_source"/>
+      </node>
+      <node id="23">
+        <label>c-api/include/falcon_core/math/AnalyticFunction_c_api.h</label>
+        <link refid="AnalyticFunction__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>c-api/include/falcon_core/math/AxesCoupledLabelledDomain_c_api.h</label>
+        <link refid="AxesCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/math/AxesMapStringBool_c_api.h</label>
+        <link refid="AxesMapStringBool__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>c-api/include/falcon_core/math/domains/CoupledLabelledDomain_c_api.h</label>
+        <link refid="CoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ListString__c__api_8h_1a4ab7036f32db0bfccd77f8cf9a194619" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ListStringHandle</definition>
+        <argsstring></argsstring>
+        <name>ListStringHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/generic/ListString_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ListString__c__api_8h_1a87ceb1ee3cbffd7913ec3036b0b0787e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle ListString_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>ListString_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="14" column="18" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="14" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a708b30bb7c4455d7f92509d821491e02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle ListString_copy</definition>
+        <argsstring>(ListStringHandle handle)</argsstring>
+        <name>ListString_copy</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="16" column="18" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="16" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a14d9b3c2f2f6f1243a60c3aa65ecefe1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle ListString_allocate</definition>
+        <argsstring>(size_t count)</argsstring>
+        <name>ListString_allocate</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="18" column="18" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="18" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a63eed4757a91bb137b644be2a000d1ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle ListString_fill_value</definition>
+        <argsstring>(size_t count, StringHandle value)</argsstring>
+        <name>ListString_fill_value</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="20" column="18" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="20" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1aef5160e5e13b4998f28f75ac1d896d70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle ListString_create</definition>
+        <argsstring>(StringHandle *data, size_t count)</argsstring>
+        <name>ListString_create</name>
+        <param>
+          <type>StringHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="22" column="18" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="22" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1aa41d988c61fd5b028dbdcbdf9ea1573f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListString_destroy</definition>
+        <argsstring>(ListStringHandle handle)</argsstring>
+        <name>ListString_destroy</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a78050f12fce45fa7737c94a3d9a0a61e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListString_push_back</definition>
+        <argsstring>(ListStringHandle handle, StringHandle value)</argsstring>
+        <name>ListString_push_back</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1ae7a0d4782c52851538187377fa87ae5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListString_size</definition>
+        <argsstring>(ListStringHandle handle)</argsstring>
+        <name>ListString_size</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1aa4157d4664bbbf5bde8297292a369653" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListString_empty</definition>
+        <argsstring>(ListStringHandle handle)</argsstring>
+        <name>ListString_empty</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a2dab7f402a64890d4c89be91dbfb68e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListString_erase_at</definition>
+        <argsstring>(ListStringHandle handle, size_t idx)</argsstring>
+        <name>ListString_erase_at</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1aa62b05fd0007b86a32883beb7b1a91b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListString_clear</definition>
+        <argsstring>(ListStringHandle handle)</argsstring>
+        <name>ListString_clear</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1acd8d5623577248cf89296b936b37cbc0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle ListString_at</definition>
+        <argsstring>(ListStringHandle handle, size_t idx)</argsstring>
+        <name>ListString_at</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="36" column="14" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="36" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a62f3944d6fd7c4fd6e9eb8ae47dd978b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListString_items</definition>
+        <argsstring>(ListStringHandle handle, StringHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>ListString_items</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="38" column="8" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="38" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a001bdf09e7b34f6156416187dda1b73a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListString_contains</definition>
+        <argsstring>(ListStringHandle handle, StringHandle value)</argsstring>
+        <name>ListString_contains</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a1fe88ed367612b0efa19b599a62bb40f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListString_index</definition>
+        <argsstring>(ListStringHandle handle, StringHandle value)</argsstring>
+        <name>ListString_index</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a00f084b7daaaf19b954e5af79e471bf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle ListString_intersection</definition>
+        <argsstring>(ListStringHandle handle, ListStringHandle other)</argsstring>
+        <name>ListString_intersection</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="44" column="18" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="44" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1ae1c9136a3259f5b372b0b18061fc9a8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListString_equal</definition>
+        <argsstring>(ListStringHandle handle, ListStringHandle other)</argsstring>
+        <name>ListString_equal</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a65b76162207ba877d7e5f0b1e56b3015" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListString_not_equal</definition>
+        <argsstring>(ListStringHandle handle, ListStringHandle other)</argsstring>
+        <name>ListString_not_equal</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a77edafa2ecdd3e69edcb05f785a6284e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle ListString_to_json_string</definition>
+        <argsstring>(ListStringHandle handle)</argsstring>
+        <name>ListString_to_json_string</name>
+        <param>
+          <type>ListStringHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="ListString__c__api_8h_1a0e2e13ee7bf514727315ecf4965b83d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle ListString_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>ListString_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListString_c_api.h" line="53" column="18" declfile="c-api/include/falcon_core/generic/ListString_c_api.h" declline="53" declcolumn="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ListStringHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">ListStringHandle<sp/>ListString_create_empty();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">ListStringHandle<sp/>ListString_copy(ListStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">ListStringHandle<sp/>ListString_allocate(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ListStringHandle<sp/>ListString_fill_value(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/>StringHandle<sp/>value);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ListStringHandle<sp/>ListString_create(StringHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListString_destroy(ListStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListString_push_back(ListStringHandle<sp/>handle,<sp/>StringHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListString_size(ListStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListString_empty(ListStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListString_erase_at(ListStringHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListString_clear(ListStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">StringHandle<sp/>ListString_at(ListStringHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListString_items(ListStringHandle<sp/>handle,<sp/>StringHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListString_contains(ListStringHandle<sp/>handle,<sp/>StringHandle<sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListString_index(ListStringHandle<sp/>handle,<sp/>StringHandle<sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListStringHandle<sp/>ListString_intersection(ListStringHandle<sp/>handle,<sp/>ListStringHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListString_equal(ListStringHandle<sp/>handle,<sp/>ListStringHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListString_not_equal(ListStringHandle<sp/>handle,<sp/>ListStringHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>ListString_to_json_string(ListStringHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListStringHandle<sp/>ListString_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/ListString_c_api.h"/>
+  </compounddef>
+</doxygen>

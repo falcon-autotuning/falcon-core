@@ -6,6 +6,7 @@
 #pragma once
 
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Pair.hpp"
 #include "falcon_core/math/Point.hpp"
 #include "falcon_core/math/Quantity.hpp"
@@ -22,8 +23,9 @@ namespace math {
  * conversion. Each vector is defined by two points and a set of device
  * connections.
  */
-class Vector : public generic::Map<physics::device_structures::Connection,
-                                   generic::Pair<Quantity, Quantity>> {
+class FALCON_CORE_CPP_API Vector
+    : public generic::Map<physics::device_structures::Connection,
+                          generic::Pair<Quantity, Quantity>> {
   physics::units::SymbolUnitSP              _unit;
   physics::device_structures::ConnectionsSP _connections;
   mutable std::shared_timed_mutex           _mu_unit;

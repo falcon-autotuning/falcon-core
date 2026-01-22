@@ -1,0 +1,590 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="ListAcquisitionContext__c__api_8h" kind="file" language="C++">
+    <compoundname>ListAcquisitionContext_c_api.h</compoundname>
+    <includes refid="AcquisitionContext__c__api_8h" local="yes">falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="LabelledArraysLabelledControlArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h</includedby>
+    <includedby refid="LabelledArraysLabelledControlArray__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h</includedby>
+    <includedby refid="LabelledArraysLabelledMeasuredArray1D__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h</includedby>
+    <includedby refid="LabelledArraysLabelledMeasuredArray__c__api_8h" local="yes">c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</label>
+        <link refid="AcquisitionContext__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h</label>
+        <link refid="ListAcquisitionContext__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementResponse_c_api.h</label>
+        <link refid="MeasurementResponse__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h</label>
+        <link refid="ListAcquisitionContext__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h</label>
+        <link refid="LabelledArraysLabelledControlArray1D__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h</label>
+        <link refid="LabelledArraysLabelledControlArray__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray1D__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h</label>
+        <link refid="LabelledArraysLabelledMeasuredArray__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ListAcquisitionContext__c__api_8h_1a25a7e6a04f31bc21d68cee204ff8bb07" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ListAcquisitionContextHandle</definition>
+        <argsstring></argsstring>
+        <name>ListAcquisitionContextHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a392ff93eb66c67f4869d9191b60e7b99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListAcquisitionContextHandle</type>
+        <definition>ListAcquisitionContextHandle ListAcquisitionContext_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>ListAcquisitionContext_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="15" column="30" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="15" declcolumn="30"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a37d8181e1a292649f345b2b2b733432c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListAcquisitionContextHandle</type>
+        <definition>ListAcquisitionContextHandle ListAcquisitionContext_copy</definition>
+        <argsstring>(ListAcquisitionContextHandle handle)</argsstring>
+        <name>ListAcquisitionContext_copy</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="17" column="30" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="17" declcolumn="30"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a02a5921fef68bfc5e337ef59a0ea5cb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListAcquisitionContextHandle</type>
+        <definition>ListAcquisitionContextHandle ListAcquisitionContext_fill_value</definition>
+        <argsstring>(size_t count, AcquisitionContextHandle value)</argsstring>
+        <name>ListAcquisitionContext_fill_value</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="20" column="30" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="20" declcolumn="30"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a79ae8e590415e14998560b3b793cff56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListAcquisitionContextHandle</type>
+        <definition>ListAcquisitionContextHandle ListAcquisitionContext_create</definition>
+        <argsstring>(AcquisitionContextHandle *data, size_t count)</argsstring>
+        <name>ListAcquisitionContext_create</name>
+        <param>
+          <type>AcquisitionContextHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="22" column="30" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="22" declcolumn="30"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a54a133fa59c88a123552e26ec37dfecd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListAcquisitionContext_destroy</definition>
+        <argsstring>(ListAcquisitionContextHandle handle)</argsstring>
+        <name>ListAcquisitionContext_destroy</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a071c31686094bd168e67161796d556aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListAcquisitionContext_push_back</definition>
+        <argsstring>(ListAcquisitionContextHandle handle, AcquisitionContextHandle value)</argsstring>
+        <name>ListAcquisitionContext_push_back</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1ad46d3abe13da2e30539f8ca9e019d5ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListAcquisitionContext_size</definition>
+        <argsstring>(ListAcquisitionContextHandle handle)</argsstring>
+        <name>ListAcquisitionContext_size</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a0fa0dc367b8f7e57d58614911ed53f77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListAcquisitionContext_empty</definition>
+        <argsstring>(ListAcquisitionContextHandle handle)</argsstring>
+        <name>ListAcquisitionContext_empty</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1af026b3174fbda6caf26391af0a6627a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListAcquisitionContext_erase_at</definition>
+        <argsstring>(ListAcquisitionContextHandle handle, size_t idx)</argsstring>
+        <name>ListAcquisitionContext_erase_at</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a825f4ee6557688d2a8d93a6d3dd4e8db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListAcquisitionContext_clear</definition>
+        <argsstring>(ListAcquisitionContextHandle handle)</argsstring>
+        <name>ListAcquisitionContext_clear</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a38f72347f91bc97c856a5e926fe0c7f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AcquisitionContextHandle</type>
+        <definition>AcquisitionContextHandle ListAcquisitionContext_at</definition>
+        <argsstring>(ListAcquisitionContextHandle handle, size_t idx)</argsstring>
+        <name>ListAcquisitionContext_at</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="36" column="26" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="36" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1add0ff60f6137f1d7687e1eac888ba1bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListAcquisitionContext_items</definition>
+        <argsstring>(ListAcquisitionContextHandle handle, AcquisitionContextHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>ListAcquisitionContext_items</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="38" column="8" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="38" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1aa977482636b82ac20109d4916cfe19e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListAcquisitionContext_contains</definition>
+        <argsstring>(ListAcquisitionContextHandle handle, AcquisitionContextHandle value)</argsstring>
+        <name>ListAcquisitionContext_contains</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1ae297c68b2fac041fe67d00463b8565b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListAcquisitionContext_index</definition>
+        <argsstring>(ListAcquisitionContextHandle handle, AcquisitionContextHandle value)</argsstring>
+        <name>ListAcquisitionContext_index</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AcquisitionContextHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1abb352a7b01d9bcc92f0329d82dc80e92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListAcquisitionContextHandle</type>
+        <definition>ListAcquisitionContextHandle ListAcquisitionContext_intersection</definition>
+        <argsstring>(ListAcquisitionContextHandle handle, ListAcquisitionContextHandle other)</argsstring>
+        <name>ListAcquisitionContext_intersection</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="44" column="30" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="44" declcolumn="30"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1afee02641ca39c317bc5dbd25604d1991" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListAcquisitionContext_equal</definition>
+        <argsstring>(ListAcquisitionContextHandle handle, ListAcquisitionContextHandle other)</argsstring>
+        <name>ListAcquisitionContext_equal</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a09c5530e7a5d11551819800dc56bbfbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListAcquisitionContext_not_equal</definition>
+        <argsstring>(ListAcquisitionContextHandle handle, ListAcquisitionContextHandle other)</argsstring>
+        <name>ListAcquisitionContext_not_equal</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a0a3010213942e1b6ced56380d012252e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle ListAcquisitionContext_to_json_string</definition>
+        <argsstring>(ListAcquisitionContextHandle handle)</argsstring>
+        <name>ListAcquisitionContext_to_json_string</name>
+        <param>
+          <type>ListAcquisitionContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="ListAcquisitionContext__c__api_8h_1a069f6a9501ecb233ca49a9a7a1853e21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListAcquisitionContextHandle</type>
+        <definition>ListAcquisitionContextHandle ListAcquisitionContext_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>ListAcquisitionContext_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" line="53" column="30" declfile="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h" declline="53" declcolumn="30"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ListAcquisitionContextHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">ListAcquisitionContextHandle<sp/>ListAcquisitionContext_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">ListAcquisitionContextHandle<sp/>ListAcquisitionContext_copy(ListAcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ListAcquisitionContextHandle<sp/>ListAcquisitionContext_fill_value(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/>AcquisitionContextHandle<sp/>value);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ListAcquisitionContextHandle<sp/>ListAcquisitionContext_create(AcquisitionContextHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListAcquisitionContext_destroy(ListAcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListAcquisitionContext_push_back(ListAcquisitionContextHandle<sp/>handle,<sp/>AcquisitionContextHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListAcquisitionContext_size(ListAcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListAcquisitionContext_empty(ListAcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListAcquisitionContext_erase_at(ListAcquisitionContextHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListAcquisitionContext_clear(ListAcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">AcquisitionContextHandle<sp/>ListAcquisitionContext_at(ListAcquisitionContextHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListAcquisitionContext_items(ListAcquisitionContextHandle<sp/>handle,<sp/>AcquisitionContextHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListAcquisitionContext_contains(ListAcquisitionContextHandle<sp/>handle,<sp/>AcquisitionContextHandle<sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListAcquisitionContext_index(ListAcquisitionContextHandle<sp/>handle,<sp/>AcquisitionContextHandle<sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListAcquisitionContextHandle<sp/>ListAcquisitionContext_intersection(ListAcquisitionContextHandle<sp/>handle,<sp/>ListAcquisitionContextHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListAcquisitionContext_equal(ListAcquisitionContextHandle<sp/>handle,<sp/>ListAcquisitionContextHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListAcquisitionContext_not_equal(ListAcquisitionContextHandle<sp/>handle,<sp/>ListAcquisitionContextHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>ListAcquisitionContext_to_json_string(ListAcquisitionContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListAcquisitionContextHandle<sp/>ListAcquisitionContext_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/ListAcquisitionContext_c_api.h"/>
+  </compounddef>
+</doxygen>

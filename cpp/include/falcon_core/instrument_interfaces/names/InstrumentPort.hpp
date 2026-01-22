@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
@@ -14,7 +15,7 @@ enum class PortType {
   Meter,
   InstrumentPort,
 };
-class InstrumentPort : public generic::Song {
+class FALCON_CORE_CPP_API InstrumentPort : public generic::Song {
   std::string                              _default_name;
   physics::device_structures::ConnectionSP _pseudo_name;
   Instrument                               _instrument_type;

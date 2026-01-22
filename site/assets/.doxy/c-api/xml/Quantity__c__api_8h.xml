@@ -1,0 +1,877 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="Quantity__c__api_8h" kind="file" language="C++">
+    <compoundname>Quantity_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="SymbolUnit__c__api_8h" local="yes">falcon_core/physics/units/SymbolUnit_c_api.h</includes>
+    <includedby refid="ListQuantity__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListQuantity_c_api.h</includedby>
+    <includedby refid="PairConnectionQuantity__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairConnectionQuantity_c_api.h</includedby>
+    <includedby refid="PairInterpretationContextQuantity__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h</includedby>
+    <includedby refid="PairQuantityQuantity__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairQuantityQuantity_c_api.h</includedby>
+    <includedby refid="Point__c__api_8h" local="yes">c-api/include/falcon_core/math/Point_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/Quantity_c_api.h</label>
+        <link refid="Quantity__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h</label>
+        <link refid="InterpretationContainerQuantity__c__api_8h_source"/>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h</label>
+        <link refid="VoltageStatesResponse__c__api_8h_source"/>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</label>
+        <link refid="DeviceVoltageStates__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>c-api/include/falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.h</label>
+        <link refid="ListPairConnectionPairQuantityQuantity__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/generic/ListPairConnectionQuantity_c_api.h</label>
+        <link refid="ListPairConnectionQuantity__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h</label>
+        <link refid="ListPairInterpretationContextQuantity__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>c-api/include/falcon_core/generic/ListPairQuantityQuantity_c_api.h</label>
+        <link refid="ListPairQuantityQuantity__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/ListQuantity_c_api.h</label>
+        <link refid="ListQuantity__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/generic/MapConnectionQuantity_c_api.h</label>
+        <link refid="MapConnectionQuantity__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.h</label>
+        <link refid="MapInterpretationContextQuantity__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>c-api/include/falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h</label>
+        <link refid="PairConnectionPairQuantityQuantity__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/generic/PairConnectionQuantity_c_api.h</label>
+        <link refid="PairConnectionQuantity__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h</label>
+        <link refid="PairInterpretationContextQuantity__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>c-api/include/falcon_core/generic/PairQuantityQuantity_c_api.h</label>
+        <link refid="PairQuantityQuantity__c__api_8h_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/math/Point_c_api.h</label>
+        <link refid="Point__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/Quantity_c_api.h</label>
+        <link refid="Quantity__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/math/Vector_c_api.h</label>
+        <link refid="Vector__c__api_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Quantity__c__api_8h_1ab38e08508103562b337fefacb6106888" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* QuantityHandle</definition>
+        <argsstring></argsstring>
+        <name>QuantityHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/math/Quantity_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Quantity__c__api_8h_1aa624cbc50cb1f3580277edee3ab662d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_copy</definition>
+        <argsstring>(QuantityHandle handle)</argsstring>
+        <name>Quantity_copy</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="13" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="13" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1aa4236d2b375ad0214c05919d91ae7f53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Quantity_destroy</definition>
+        <argsstring>(QuantityHandle handle)</argsstring>
+        <name>Quantity_destroy</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="15" column="6" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="15" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a5d1b33c5cb92de0ac6a3680db842b08b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Quantity_equal</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_equal</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="17" column="6" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1aa14c1d4411e19f9c825de276f0e22182" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Quantity_not_equal</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_not_equal</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a1295bc40a684e61b342b36f5ca964bfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle Quantity_to_json_string</definition>
+        <argsstring>(QuantityHandle handle)</argsstring>
+        <name>Quantity_to_json_string</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="21" column="14" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="21" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a1e7d19a998b86189b6f611f499477c6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Quantity_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="23" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="23" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a8ae1141b2af7a189b5bccc2e56ae6e20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_create</definition>
+        <argsstring>(double value, SymbolUnitHandle unit)</argsstring>
+        <name>Quantity_create</name>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="25" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="25" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1ae62d130f6d45d25045c70c70740903f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Quantity_value</definition>
+        <argsstring>(QuantityHandle handle)</argsstring>
+        <name>Quantity_value</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the value of the quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="31" column="8" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="31" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a986dcccf66f19eb0970599d87e08279a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SymbolUnitHandle</type>
+        <definition>SymbolUnitHandle Quantity_unit</definition>
+        <argsstring>(QuantityHandle handle)</argsstring>
+        <name>Quantity_unit</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the unit of the quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="37" column="18" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="37" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1af5e7763e5960f1ccced60fa29a03b63d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Quantity_convert_to</definition>
+        <argsstring>(QuantityHandle handle, SymbolUnitHandle target_unit)</argsstring>
+        <name>Quantity_convert_to</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>target_unit</declname>
+        </param>
+        <briefdescription>
+<para>Convert the quantity to a different unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>target_unit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the raget unit to convert to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="45" column="6" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="45" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1afbbb0240c0054cc22f1cf126a7cda99b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_multiply_int</definition>
+        <argsstring>(QuantityHandle handle, int other)</argsstring>
+        <name>Quantity_multiply_int</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="47" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="47" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1aabd21bb6b850c691c978cbbfbeccc217" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_multiply_double</definition>
+        <argsstring>(QuantityHandle handle, double other)</argsstring>
+        <name>Quantity_multiply_double</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="49" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="49" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a7f953b831886d20359aa12352fca7436" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_multiply_quantity</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_multiply_quantity</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="51" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="51" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a3568e5f65d2c052b5fcb86dbd95d93b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_multiply_equals_int</definition>
+        <argsstring>(QuantityHandle handle, int other)</argsstring>
+        <name>Quantity_multiply_equals_int</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="54" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="54" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1ae9cedb75b539eb2151018d5bb651d6a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_multiply_equals_double</definition>
+        <argsstring>(QuantityHandle handle, double other)</argsstring>
+        <name>Quantity_multiply_equals_double</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="56" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="56" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a27581814792535590667606c3e288e70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_multiply_equals_quantity</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_multiply_equals_quantity</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="59" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="59" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1ac36a6c9802b77bb8cd184007d5ccb2f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_divide_int</definition>
+        <argsstring>(QuantityHandle handle, int other)</argsstring>
+        <name>Quantity_divide_int</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="62" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="62" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1aac7071a233f11da26a22de093224e13c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_divide_double</definition>
+        <argsstring>(QuantityHandle handle, double other)</argsstring>
+        <name>Quantity_divide_double</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="64" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="64" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a77f1cc424155c8527fac67d7b1b5f4f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_divide_quantity</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_divide_quantity</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="66" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="66" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1aa5b436ee61f76c47c616e36729eb8838" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_divide_equals_int</definition>
+        <argsstring>(QuantityHandle handle, int other)</argsstring>
+        <name>Quantity_divide_equals_int</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="69" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="69" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1ae47f54873faf89acd75df15d863a8c66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_divide_equals_double</definition>
+        <argsstring>(QuantityHandle handle, double other)</argsstring>
+        <name>Quantity_divide_equals_double</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="71" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="71" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1ad8a47ce1a460302ec786fc8a787af37c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_divide_equals_quantity</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_divide_equals_quantity</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="74" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="74" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a1b6359adfd486edfea7c181b8b381981" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_power</definition>
+        <argsstring>(QuantityHandle handle, int other)</argsstring>
+        <name>Quantity_power</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="77" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="77" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1aaa7fa7fa44be1afae8a3a8b9bf46a3c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_add_quantity</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_add_quantity</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="79" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="79" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1ad71e1074ac5fe1878a18bfff71b68765" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_add_equals_quantity</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_add_equals_quantity</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="82" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="82" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1af95db1e0a335bfd0b1174757b987ba5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_subtract_quantity</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_subtract_quantity</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="85" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="85" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a69febdcb2346c2287699d28c9293f642" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_subtract_equals_quantity</definition>
+        <argsstring>(QuantityHandle handle, QuantityHandle other)</argsstring>
+        <name>Quantity_subtract_equals_quantity</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="88" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="88" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1ae7aeed5f7a3f0bc20fd70736312bcb65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_negate</definition>
+        <argsstring>(QuantityHandle handle)</argsstring>
+        <name>Quantity_negate</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="91" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="91" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Quantity__c__api_8h_1a4d61d1fe86ec0c0d240a1bae043064be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Quantity_abs</definition>
+        <argsstring>(QuantityHandle handle)</argsstring>
+        <name>Quantity_abs</name>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Quantity_c_api.h" line="93" column="16" declfile="c-api/include/falcon_core/math/Quantity_c_api.h" declline="93" declcolumn="16"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/units/SymbolUnit_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>QuantityHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">QuantityHandle<sp/>Quantity_copy(QuantityHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Quantity_destroy(QuantityHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Quantity_equal(QuantityHandle<sp/>handle,<sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Quantity_not_equal(QuantityHandle<sp/>handle,<sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">StringHandle<sp/>Quantity_to_json_string(QuantityHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">QuantityHandle<sp/>Quantity_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">QuantityHandle<sp/>Quantity_create(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value,<sp/>SymbolUnitHandle<sp/>unit);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Quantity_value<sp/>|<sp/>falcon_core::math::Quantity::value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Quantity_value(QuantityHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Quantity_unit<sp/>|<sp/>falcon_core::math::Quantity::unit<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">SymbolUnitHandle<sp/>Quantity_unit(QuantityHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Quantity_convert_to<sp/>|</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>falcon_core::math::Quantity::convert_to<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Quantity_convert_to(QuantityHandle<sp/>handle,<sp/>SymbolUnitHandle<sp/>target_unit);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">QuantityHandle<sp/>Quantity_multiply_int(QuantityHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">QuantityHandle<sp/>Quantity_multiply_double(QuantityHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">QuantityHandle<sp/>Quantity_multiply_quantity(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">QuantityHandle<sp/>Quantity_multiply_equals_int(QuantityHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">QuantityHandle<sp/>Quantity_multiply_equals_double(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">QuantityHandle<sp/>Quantity_multiply_equals_quantity(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">QuantityHandle<sp/>Quantity_divide_int(QuantityHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal">QuantityHandle<sp/>Quantity_divide_double(QuantityHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">QuantityHandle<sp/>Quantity_divide_quantity(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">QuantityHandle<sp/>Quantity_divide_equals_int(QuantityHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">QuantityHandle<sp/>Quantity_divide_equals_double(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">QuantityHandle<sp/>Quantity_divide_equals_quantity(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal">QuantityHandle<sp/>Quantity_power(QuantityHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>other);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">QuantityHandle<sp/>Quantity_add_quantity(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal">QuantityHandle<sp/>Quantity_add_equals_quantity(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">QuantityHandle<sp/>Quantity_subtract_quantity(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal">QuantityHandle<sp/>Quantity_subtract_equals_quantity(QuantityHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/>other);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">QuantityHandle<sp/>Quantity_negate(QuantityHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal">QuantityHandle<sp/>Quantity_abs(QuantityHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/Quantity_c_api.h"/>
+  </compounddef>
+</doxygen>

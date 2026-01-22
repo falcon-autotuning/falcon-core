@@ -3,13 +3,14 @@
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 #include <falcon_core/math/arrays/LabelledArrays.hpp>
 
+#include "falcon_core/export.h"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 
 namespace falcon_core {
 namespace communications {
 namespace messages {
 
-class MeasurementResponse : public BaseMessage {
+class FALCON_CORE_CPP_API MeasurementResponse : public BaseMessage {
   math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray> _arrays;
   mutable std::shared_timed_mutex _mu_arrays;
 

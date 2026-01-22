@@ -1,0 +1,378 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::physics::config::ConfigManipulations</compoundname>
+    <derivedcompoundref refid="classfalcon__core_1_1physics_1_1config_1_1Loader" prot="public" virt="non-virtual">falcon_core::physics::config::Loader</derivedcompoundref>
+    <includes refid="ConfigManipulations_8hpp" local="no">ConfigManipulations.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a1baefab9321a5cea6875216b72625147" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::physics::config::ConfigManipulations::ConfigManipulations</definition>
+        <argsstring>()</argsstring>
+        <name>ConfigManipulations</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::ConfigManipulations</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="15" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a8e02aed134b738497257cb0f694f0e9f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>core::ConfigSP</type>
+        <definition>core::ConfigSP falcon_core::physics::config::ConfigManipulations::unpack_device_config</definition>
+        <argsstring>(const YAML::Node &amp;config) const</argsstring>
+        <name>unpack_device_config</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::unpack_device_config</qualifiedname>
+        <param>
+          <type>const YAML::Node &amp;</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+<para>Unpacks a mapping into a Config object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A mapping containing configuration details. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A Config object populated with the provided details. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="21" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1aaafb01760401b20d3a11383cb3815caf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>core::AdjacencySP</type>
+        <definition>core::AdjacencySP falcon_core::physics::config::ConfigManipulations::_extract_adjacency</definition>
+        <argsstring>(const YAML::Node &amp;map, const device_structures::ConnectionsSP &amp;total_gates) const</argsstring>
+        <name>_extract_adjacency</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_adjacency</qualifiedname>
+        <param>
+          <type>const YAML::Node &amp;</type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionsSP &amp;</type>
+          <declname>total_gates</declname>
+        </param>
+        <briefdescription>
+<para>given the available gates loaded from the config, lets generate the adjacency matrix for this device. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="26" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a4a9174e6efb8ac06216c6554a39f7724" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>core::VoltageConstraintsSP</type>
+        <definition>core::VoltageConstraintsSP falcon_core::physics::config::ConfigManipulations::_extract_voltage_constraints</definition>
+        <argsstring>(const YAML::Node &amp;map, const device_structures::ConnectionsSP &amp;total_gates) const</argsstring>
+        <name>_extract_voltage_constraints</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_voltage_constraints</qualifiedname>
+        <param>
+          <type>const YAML::Node &amp;</type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionsSP &amp;</type>
+          <declname>total_gates</declname>
+        </param>
+        <briefdescription>
+<para>Given the available gates and the config lets produce a voltage constraints. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="33" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a0522f160e6c54d433f5bc023e5d471cd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ImpedancesSP</type>
+        <definition>device_structures::ImpedancesSP falcon_core::physics::config::ConfigManipulations::_extract_dcwiring</definition>
+        <argsstring>(const YAML::Node &amp;map, const device_structures::ConnectionsSP &amp;ohmics, const core::StandardConfigConnectionsSP &amp;connections) const</argsstring>
+        <name>_extract_dcwiring</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_dcwiring</qualifiedname>
+        <param>
+          <type>const YAML::Node &amp;</type>
+          <declname>map</declname>
+        </param>
+        <param>
+          <type>const device_structures::ConnectionsSP &amp;</type>
+          <declname>ohmics</declname>
+        </param>
+        <param>
+          <type>const core::StandardConfigConnectionsSP &amp;</type>
+          <declname>connections</declname>
+        </param>
+        <briefdescription>
+<para>Extracts a dcwiring from a config dictionary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dict</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A mapping containing dcwiring details. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ohmics</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list of ohmics in the device. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>connections</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration of the device connections. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An impedances object representing the dcwiring. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the dcwiring extraction fails. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="44" column="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a07c3511e8da5e071fa10e2f7d7bc0fa8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::ConfigManipulations::_extract_barrier_gates</definition>
+        <argsstring>(const std::string raw) const</argsstring>
+        <name>_extract_barrier_gates</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_barrier_gates</qualifiedname>
+        <param>
+          <type>const std::string</type>
+          <declname>raw</declname>
+        </param>
+        <briefdescription>
+<para>Extract the barrier gates from the compressed &quot;;&quot; delimited string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="51" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1abeb7ab8583726187b32afdc620bb8948" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::ConfigManipulations::_extract_plunger_gates</definition>
+        <argsstring>(const std::string raw) const</argsstring>
+        <name>_extract_plunger_gates</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_plunger_gates</qualifiedname>
+        <param>
+          <type>const std::string</type>
+          <declname>raw</declname>
+        </param>
+        <briefdescription>
+<para>Extract the plunger gates from the compressed &quot;;&quot; delimited string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="56" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1ab3f792f4001bfd3cbfea8d8c07870d26" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::ConfigManipulations::_extract_reservoir_gates</definition>
+        <argsstring>(const std::string raw) const</argsstring>
+        <name>_extract_reservoir_gates</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_reservoir_gates</qualifiedname>
+        <param>
+          <type>const std::string</type>
+          <declname>raw</declname>
+        </param>
+        <briefdescription>
+<para>Extract the reservoir gates from the compressed &quot;;&quot; delimited string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="61" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a9d05d1d366da1737c7a2d5e63b1745f2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::ConfigManipulations::_extract_screening_gates</definition>
+        <argsstring>(const std::string raw) const</argsstring>
+        <name>_extract_screening_gates</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_screening_gates</qualifiedname>
+        <param>
+          <type>const std::string</type>
+          <declname>raw</declname>
+        </param>
+        <briefdescription>
+<para>Extract the screening gates from the compressed &quot;;&quot; delimited string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="66" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a894d6598fe515c56c9d824ae610c747e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>core::StandardConfigConnectionsSP</type>
+        <definition>core::StandardConfigConnectionsSP falcon_core::physics::config::ConfigManipulations::_extract_standard_config_connections</definition>
+        <argsstring>(const YAML::Node &amp;config) const</argsstring>
+        <name>_extract_standard_config_connections</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_standard_config_connections</qualifiedname>
+        <param>
+          <type>const YAML::Node &amp;</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+<para>Extracts the standard connections from a config dictonary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dictionary with keys that are gate types and values which are &quot;;&quot; delimtted strings of gates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a collection of standard connections. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="74" column="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1aa878c07fb2a4d6981cb67b2e7d410860" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>core::StandardConfigConnectionsSP</type>
+        <definition>core::StandardConfigConnectionsSP falcon_core::physics::config::ConfigManipulations::_extract_standard_group_config_connections</definition>
+        <argsstring>(const YAML::Node &amp;config) const</argsstring>
+        <name>_extract_standard_group_config_connections</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_standard_group_config_connections</qualifiedname>
+        <param>
+          <type>const YAML::Node &amp;</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+<para>Extracts the standard connections from a config dictonary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dictionary with keys that are gate types and values which are &quot;;&quot; delimtted strings of gates. This version does not include ohmics. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a collection of standard connections. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="82" column="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a2b9dd77e581c3787f286141ad1bf831f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::ConfigManipulations::_extract_ohmics</definition>
+        <argsstring>(const std::string raw) const</argsstring>
+        <name>_extract_ohmics</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_ohmics</qualifiedname>
+        <param>
+          <type>const std::string</type>
+          <declname>raw</declname>
+        </param>
+        <briefdescription>
+<para>Extract the ohmics from the compressed &quot;;&quot; delimited string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="87" column="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a7c175a75f65b6e868242f08f06eb1467" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>device_structures::ConnectionsSP</type>
+        <definition>device_structures::ConnectionsSP falcon_core::physics::config::ConfigManipulations::_extract_order</definition>
+        <argsstring>(const std::string raw, const core::StandardConfigConnectionsSP &amp;connections) const</argsstring>
+        <name>_extract_order</name>
+        <qualifiedname>falcon_core::physics::config::ConfigManipulations::_extract_order</qualifiedname>
+        <param>
+          <type>const std::string</type>
+          <declname>raw</declname>
+        </param>
+        <param>
+          <type>const core::StandardConfigConnectionsSP &amp;</type>
+          <declname>connections</declname>
+        </param>
+        <briefdescription>
+<para>Extracts the order from the compressed &quot;;&quot; delimited string. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="91" column="36"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A utility class for manipulating and extracting information from device configurations. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::physics::config::ConfigManipulations</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations"/>
+      </node>
+      <node id="2">
+        <label>falcon_core::physics::config::Loader</label>
+        <link refid="classfalcon__core_1_1physics_1_1config_1_1Loader"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" line="13" column="1" bodyfile="cpp/include/falcon_core/physics/config/ConfigManipulations.hpp" bodystart="13" bodyend="94"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1aaafb01760401b20d3a11383cb3815caf" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_adjacency</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a07c3511e8da5e071fa10e2f7d7bc0fa8" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_barrier_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a0522f160e6c54d433f5bc023e5d471cd" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_dcwiring</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a2b9dd77e581c3787f286141ad1bf831f" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_ohmics</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a7c175a75f65b6e868242f08f06eb1467" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_order</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1abeb7ab8583726187b32afdc620bb8948" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_plunger_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1ab3f792f4001bfd3cbfea8d8c07870d26" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_reservoir_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a9d05d1d366da1737c7a2d5e63b1745f2" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_screening_gates</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a894d6598fe515c56c9d824ae610c747e" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_standard_config_connections</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1aa878c07fb2a4d6981cb67b2e7d410860" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_standard_group_config_connections</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a4a9174e6efb8ac06216c6554a39f7724" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>_extract_voltage_constraints</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a1baefab9321a5cea6875216b72625147" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>ConfigManipulations</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1config_1_1ConfigManipulations_1a8e02aed134b738497257cb0f694f0e9f" prot="public" virt="non-virtual"><scope>falcon_core::physics::config::ConfigManipulations</scope><name>unpack_device_config</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

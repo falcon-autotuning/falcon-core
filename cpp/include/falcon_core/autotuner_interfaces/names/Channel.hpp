@@ -2,6 +2,7 @@
 
 #include <shared_mutex>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
@@ -10,7 +11,7 @@ namespace names {
 /**
  * @brief A string corresponding to a channel name.
  */
-class Channel : public generic::Song {
+class FALCON_CORE_CPP_API Channel : public generic::Song {
   std::string                     _name;
   mutable std::shared_timed_mutex _mu_name;
   /**

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_9a3e3629c63b09e0e53088699a1e2284" kind="dir">
+    <compoundname>c-api/include/falcon_core/instrument_interfaces</compoundname>
+    <innerdir refid="dir_fb9004cf3d6d1aecbf7000576bf4839c">c-api/include/falcon_core/instrument_interfaces/names</innerdir>
+    <innerdir refid="dir_d9b7dfc8594864a30460f4237d4753dd">c-api/include/falcon_core/instrument_interfaces/port_transforms</innerdir>
+    <innerfile refid="Waveform__c__api_8h">Waveform_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/instrument_interfaces/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,561 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::math::domains::LabelledDomain</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1math_1_1domains_1_1Domain" prot="public" virt="non-virtual">falcon_core::math::domains::Domain</basecompoundref>
+    <includes refid="LabelledDomain_8hpp" local="no">LabelledDomain.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a84e748d47b572ec3de43bdc8a1e5c3e7" prot="private" static="no" mutable="no">
+        <type>instrument_interfaces::names::InstrumentPortSP</type>
+        <definition>instrument_interfaces::names::InstrumentPortSP falcon_core::math::domains::LabelledDomain::_port</definition>
+        <argsstring></argsstring>
+        <name>_port</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::_port</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="20" column="50" bodyfile="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a9b675d680dcd232ef1ad52784790f656" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::domains::LabelledDomain::_mu_port</definition>
+        <argsstring></argsstring>
+        <name>_mu_port</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::_mu_port</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="21" column="50" bodyfile="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="107" column="16" bodyfile="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a403a93b1e555e8a27807f7a9054276af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::domains::LabelledDomain::LabelledDomain</definition>
+        <argsstring>(const LabelledDomain &amp;other)</argsstring>
+        <name>LabelledDomain</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::LabelledDomain</qualifiedname>
+        <param>
+          <type>const LabelledDomain &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="24" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1af1878aa8bb275416f9ab94ef4e0c4ab8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LabelledDomain &amp;</type>
+        <definition>LabelledDomain &amp; falcon_core::math::domains::LabelledDomain::operator=</definition>
+        <argsstring>(const LabelledDomain &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::operator=</qualifiedname>
+        <param>
+          <type>const LabelledDomain &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="25" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1ae6091f1505f5865c47b97b2300cb3490" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::domains::LabelledDomain::LabelledDomain</definition>
+        <argsstring>(const std::string &amp;default_name, const std::pair&lt; double, double &gt; &amp;bounds, const physics::device_structures::ConnectionSP &amp;psuedo_name, const instrument_interfaces::names::Instrument &amp;instrument_type, bool lesser_bound_contained, bool greater_bound_contained, const physics::units::SymbolUnitSP &amp;units, const std::string &amp;description, const instrument_interfaces::names::PortType type=instrument_interfaces::names::PortType::Knob)</argsstring>
+        <name>LabelledDomain</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::LabelledDomain</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>default_name</declname>
+        </param>
+        <param>
+          <type>const std::pair&lt; double, double &gt; &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>psuedo_name</declname>
+        </param>
+        <param>
+          <type>const instrument_interfaces::names::Instrument &amp;</type>
+          <declname>instrument_type</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>lesser_bound_contained</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>greater_bound_contained</declname>
+        </param>
+        <param>
+          <type>const physics::units::SymbolUnitSP &amp;</type>
+          <declname>units</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>description</declname>
+        </param>
+        <param>
+          <type>const instrument_interfaces::names::PortType</type>
+          <declname>type</declname>
+          <defval>instrument_interfaces::names::PortType::Knob</defval>
+        </param>
+        <briefdescription>
+<para>Construct a labelled domain. @default_name The default_name for the instrument. @bounds The bounds on the domain. @psuedo_name The name of the connection on the instrument if available. @instrument_type The type of instrument connected to @lesser_bound_contained If the lesser_bound is contained in the domain. @greater_bound_contained If the greater_bound is contained in the domain. @units The units of the instrument. @description The description of the instrument. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="37" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a5e9b1f8a6474d86c42a6368bc15fdf4d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const instrument_interfaces::names::InstrumentPortSP &amp;</type>
+        <definition>const instrument_interfaces::names::InstrumentPortSP &amp; falcon_core::math::domains::LabelledDomain::port</definition>
+        <argsstring>() const</argsstring>
+        <name>port</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::port</qualifiedname>
+        <briefdescription>
+<para>Get the port. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Shared pointer to the port. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="90" column="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1ae1f7715adb57a74b9811d6e1d744bcee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Domain &gt;</type>
+        <definition>std::shared_ptr&lt; Domain &gt; falcon_core::math::domains::LabelledDomain::domain</definition>
+        <argsstring>() const</argsstring>
+        <name>domain</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::domain</qualifiedname>
+        <briefdescription>
+<para>Gets the domain associated with the port. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="94" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a6733040eac91162a96084d3585c49662" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::domains::LabelledDomain::matching_port</definition>
+        <argsstring>(const instrument_interfaces::names::InstrumentPortSP &amp;port) const</argsstring>
+        <name>matching_port</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::matching_port</qualifiedname>
+        <param>
+          <type>const instrument_interfaces::names::InstrumentPortSP &amp;</type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the port matches the given port. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The port to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the ports match, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="100" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a41b6365f9a1b52682606d08f9a7b43d7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::domains::LabelledDomain::operator==</definition>
+        <argsstring>(const LabelledDomain &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::operator==</qualifiedname>
+        <param>
+          <type>const LabelledDomain &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="102" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a9810e7bb55f9029c19037ff4dd53d274" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::domains::LabelledDomain::operator!=</definition>
+        <argsstring>(const LabelledDomain &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::operator!=</qualifiedname>
+        <param>
+          <type>const LabelledDomain &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="103" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a1acff17d5a5a7ad3402427f349d486da" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; LabelledDomain &gt;</type>
+        <definition>static const std::shared_ptr&lt; LabelledDomain &gt; falcon_core::math::domains::LabelledDomain::from_port</definition>
+        <argsstring>(const std::pair&lt; double, double &gt; &amp;bounds, const instrument_interfaces::names::InstrumentPortSP &amp;port, const bool &amp;lesser_bound_contained=true, const bool &amp;greater_bound_contained=true)</argsstring>
+        <name>from_port</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::from_port</qualifiedname>
+        <param>
+          <type>const std::pair&lt; double, double &gt; &amp;</type>
+          <declname>bounds</declname>
+        </param>
+        <param>
+          <type>const instrument_interfaces::names::InstrumentPortSP &amp;</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>lesser_bound_contained</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>greater_bound_contained</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Construct a labelled domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minimum, Maximum pair of the domain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shared pointer to the port. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="53" column="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a7d4aac24f20f4291d43e12d733109bdf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; LabelledDomain &gt;</type>
+        <definition>static const std::shared_ptr&lt; LabelledDomain &gt; falcon_core::math::domains::LabelledDomain::from_port_and_domain</definition>
+        <argsstring>(const instrument_interfaces::names::InstrumentPortSP &amp;port, const DomainSP &amp;domain)</argsstring>
+        <name>from_port_and_domain</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::from_port_and_domain</qualifiedname>
+        <param>
+          <type>const instrument_interfaces::names::InstrumentPortSP &amp;</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>const DomainSP &amp;</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+<para>Create a <ref refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain" kindref="compound">LabelledDomain</ref> from an existing knob and domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>knob</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The knob to associate with the domain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The domain to associate with the knob. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A created <ref refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain" kindref="compound">LabelledDomain</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="64" column="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a01f2ea017a14912ca152411c8ef13dad" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; LabelledDomain &gt;</type>
+        <definition>static const std::shared_ptr&lt; LabelledDomain &gt; falcon_core::math::domains::LabelledDomain::from_domain</definition>
+        <argsstring>(const DomainSP &amp;domain, const std::string &amp;default_name, const physics::device_structures::ConnectionSP &amp;pseudo_name, const instrument_interfaces::names::Instrument &amp;instrument_type, const physics::units::SymbolUnitSP &amp;units=physics::units::SymbolUnit::Volt(), const std::string &amp;description=&quot;&quot;)</argsstring>
+        <name>from_domain</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::from_domain</qualifiedname>
+        <param>
+          <type>const DomainSP &amp;</type>
+          <declname>domain</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>default_name</declname>
+        </param>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>pseudo_name</declname>
+        </param>
+        <param>
+          <type>const instrument_interfaces::names::Instrument &amp;</type>
+          <declname>instrument_type</declname>
+        </param>
+        <param>
+          <type>const physics::units::SymbolUnitSP &amp;</type>
+          <declname>units</declname>
+          <defval><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab18074c5750e6e964385e75d3c5340c6" kindref="member">physics::units::SymbolUnit::Volt</ref>()</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>description</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Create a <ref refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain" kindref="compound">LabelledDomain</ref> from an existing domain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>domain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The domain to associate with the knob. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>default_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The default name of the knob. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pseudo_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional colloquial name of the knob. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>instrument_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of instrument the knob belongs to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>units</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the units of the knob&apos;s domain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>description</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A description of the knob. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A created <ref refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain" kindref="compound">LabelledDomain</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="77" column="32"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1ae50f6a902a4591d061c7cf15452b0c92" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::domains::LabelledDomain::LabelledDomain</definition>
+        <argsstring>()</argsstring>
+        <name>LabelledDomain</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::LabelledDomain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="106" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1acc15dc315e1f7184c7058b1e51697e28" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::math::domains::LabelledDomain::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::math::domains::LabelledDomain::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="109" column="8" bodyfile="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" bodystart="109" bodyend="112"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classfalcon__core_1_1math_1_1domains_1_1Domain" kindref="compound">Domain</ref> with an associated label with the instrument associated. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="2">
+        <label>falcon_core::math::domains::Domain</label>
+        <link refid="classfalcon__core_1_1math_1_1domains_1_1Domain"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::domains::LabelledDomain</label>
+        <link refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="2">
+        <label>falcon_core::math::domains::Domain</label>
+        <link refid="classfalcon__core_1_1math_1_1domains_1_1Domain"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::domains::LabelledDomain</label>
+        <link refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" line="19" column="1" bodyfile="cpp/include/falcon_core/math/domains/LabelledDomain.hpp" bodystart="19" bodyend="113"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a9b675d680dcd232ef1ad52784790f656" prot="private" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>_mu_port</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a84e748d47b572ec3de43bdc8a1e5c3e7" prot="private" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>_port</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a5a40df844ddce583a645323512191637" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>bounds</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1ab8fba46bbcba3f7df08184a263f66f2c" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>calculate_transform</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a31fb44b4c1965e716f2e66adfa32270a" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>contains_domain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1ace2f90f2ba2bf92caeb664af19487cf1" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>Domain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a8bf09b394ae9dd0722adb74b5458b24c" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>Domain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1adb36f932f27a509b7ef758b2206af26f" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>Domain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a50c255f23cb5524a6f024c8e2b6a41fb" prot="protected" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>Domain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1ae1f7715adb57a74b9811d6e1d744bcee" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>domain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a01f2ea017a14912ca152411c8ef13dad" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>from_domain</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a1acff17d5a5a7ad3402427f349d486da" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>from_port</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a7d4aac24f20f4291d43e12d733109bdf" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>from_port_and_domain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a53e546113efda450c992d2d3f28d6279" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>get_center</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1aa34cbb4c125d28b588e41703d8fa63f5" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>greater_bound</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1abcdd24d52e84dbef6b943aa8996b6a2e" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>greater_bound_contained</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1ac1688e1bfb0948b10f62f769a3dd08a3" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>in</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1ab761e0fc3487f12039215a8f54123796" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>is_empty</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a403a93b1e555e8a27807f7a9054276af" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>LabelledDomain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1ae6091f1505f5865c47b97b2300cb3490" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>LabelledDomain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1ae50f6a902a4591d061c7cf15452b0c92" prot="protected" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>LabelledDomain</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a181b80cdc37e88a4fb21e20a7e7a4d2b" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>lesser_bound</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a2f66e5bd528b7f348563963377e08729" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>lesser_bound_contained</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a6733040eac91162a96084d3585c49662" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>matching_port</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a9810e7bb55f9029c19037ff4dd53d274" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a0e85c04b232797a119460207514a94e6" prot="public" virt="non-virtual" ambiguityscope="falcon_core::math::domains::Domain::"><scope>falcon_core::math::domains::LabelledDomain</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1ab5d4d12dbb5be1eb6a9027af24a29cfb" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>operator&amp;</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1af1878aa8bb275416f9ab94ef4e0c4ab8" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a23665a9f76168f90b9e1e2a5e20f3f7a" prot="public" virt="non-virtual" ambiguityscope="falcon_core::math::domains::Domain::"><scope>falcon_core::math::domains::LabelledDomain</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a41b6365f9a1b52682606d08f9a7b43d7" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1af1d08661df35f4ba1f57b0e69405f486" prot="public" virt="non-virtual" ambiguityscope="falcon_core::math::domains::Domain::"><scope>falcon_core::math::domains::LabelledDomain</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1af2c29dd7085190b35aac5d10d1537db7" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>operator|</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1a5e9b1f8a6474d86c42a6368bc15fdf4d" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>port</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a33604367de964b78c29b1529bf39cf20" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>range</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a9508e73dd8264acd7538849ab9c14736" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>scale</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1LabelledDomain_1acc15dc315e1f7184c7058b1e51697e28" prot="protected" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1aa95febe0a161bb94f4eb15a96abd9dd9" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>shift</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1math_1_1domains_1_1Domain_1a2e7726bf98e4d7701b641f2b0477c4e1" prot="public" virt="non-virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>transform</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::math::domains::LabelledDomain</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

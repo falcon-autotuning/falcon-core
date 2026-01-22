@@ -1,0 +1,520 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="ListGname__c__api_8h" kind="file" language="C++">
+    <compoundname>ListGname_c_api.h</compoundname>
+    <includes refid="Gname__c__api_8h" local="yes">falcon_core/autotuner_interfaces/names/Gname_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="MapGnameGroup__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</includedby>
+    <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>falcon_core/autotuner_interfaces/names/Gname_c_api.h</label>
+        <link refid="Gname__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListGname_c_api.h</label>
+        <link refid="ListGname__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListGname_c_api.h</label>
+        <link refid="ListGname__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
+        <link refid="MapGnameGroup__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ListGname__c__api_8h_1ad4da3a4711c33819a5c99c4b3345a432" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ListGnameHandle</definition>
+        <argsstring></argsstring>
+        <name>ListGnameHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/ListGname_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ListGname__c__api_8h_1a0771b881e14bf24f4a90a891e59158b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListGnameHandle</type>
+        <definition>ListGnameHandle ListGname_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>ListGname_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="15" column="17" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="15" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1ab1bc4084b725c63e62cc75ea6c85e55c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListGnameHandle</type>
+        <definition>ListGnameHandle ListGname_copy</definition>
+        <argsstring>(ListGnameHandle handle)</argsstring>
+        <name>ListGname_copy</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="17" column="17" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="17" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1ad856540eda1f3a67e609c9b3938bd7eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListGnameHandle</type>
+        <definition>ListGnameHandle ListGname_fill_value</definition>
+        <argsstring>(size_t count, GnameHandle value)</argsstring>
+        <name>ListGname_fill_value</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>GnameHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="20" column="17" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="20" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a827c518f4cc3cd7a8c13c0589c5c6fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListGnameHandle</type>
+        <definition>ListGnameHandle ListGname_create</definition>
+        <argsstring>(GnameHandle *data, size_t count)</argsstring>
+        <name>ListGname_create</name>
+        <param>
+          <type>GnameHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="22" column="17" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="22" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a8ae00f91d4fe840ea78f4a44971bb7ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListGname_destroy</definition>
+        <argsstring>(ListGnameHandle handle)</argsstring>
+        <name>ListGname_destroy</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a00594d13aeea5ac18f227e90afed5d10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListGname_push_back</definition>
+        <argsstring>(ListGnameHandle handle, GnameHandle value)</argsstring>
+        <name>ListGname_push_back</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GnameHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a70aac6aa7a47486b2f746ab694736279" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListGname_size</definition>
+        <argsstring>(ListGnameHandle handle)</argsstring>
+        <name>ListGname_size</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a42890fbeb2f8b8c7324e8458bf3f7e3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListGname_empty</definition>
+        <argsstring>(ListGnameHandle handle)</argsstring>
+        <name>ListGname_empty</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a378599d40775ae9a1ddb18f4340c96f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListGname_erase_at</definition>
+        <argsstring>(ListGnameHandle handle, size_t idx)</argsstring>
+        <name>ListGname_erase_at</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a55d59fe4bac185f5e3f6cbf4aaabcb84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListGname_clear</definition>
+        <argsstring>(ListGnameHandle handle)</argsstring>
+        <name>ListGname_clear</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1ac9ec640af2c9092f0590b07665e3c306" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GnameHandle</type>
+        <definition>GnameHandle ListGname_at</definition>
+        <argsstring>(ListGnameHandle handle, size_t idx)</argsstring>
+        <name>ListGname_at</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="36" column="13" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="36" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a5c2dbf10e65a6582f21e7b043cf64c21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListGname_items</definition>
+        <argsstring>(ListGnameHandle handle, GnameHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>ListGname_items</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GnameHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="38" column="8" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="38" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1abfa3f1d1316cce906a09bce579258b24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListGname_contains</definition>
+        <argsstring>(ListGnameHandle handle, GnameHandle value)</argsstring>
+        <name>ListGname_contains</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GnameHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1af89562bab556e54d710d5fb14b07ab56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListGname_index</definition>
+        <argsstring>(ListGnameHandle handle, GnameHandle value)</argsstring>
+        <name>ListGname_index</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>GnameHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a2a253bcffeeca1025ff5d9e654151a45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListGnameHandle</type>
+        <definition>ListGnameHandle ListGname_intersection</definition>
+        <argsstring>(ListGnameHandle handle, ListGnameHandle other)</argsstring>
+        <name>ListGname_intersection</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="44" column="17" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="44" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a027e2dfb046c23e2bb76b53c2cbf312d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListGname_equal</definition>
+        <argsstring>(ListGnameHandle handle, ListGnameHandle other)</argsstring>
+        <name>ListGname_equal</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1a6ecaef769879afc2ddc3c534407697ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListGname_not_equal</definition>
+        <argsstring>(ListGnameHandle handle, ListGnameHandle other)</argsstring>
+        <name>ListGname_not_equal</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1af750eba8899bb7ddd9a6d4a40e902e14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle ListGname_to_json_string</definition>
+        <argsstring>(ListGnameHandle handle)</argsstring>
+        <name>ListGname_to_json_string</name>
+        <param>
+          <type>ListGnameHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="ListGname__c__api_8h_1ab90d88a41098b5ca181ca6b05c011bfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListGnameHandle</type>
+        <definition>ListGnameHandle ListGname_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>ListGname_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListGname_c_api.h" line="53" column="17" declfile="c-api/include/falcon_core/generic/ListGname_c_api.h" declline="53" declcolumn="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/autotuner_interfaces/names/Gname_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ListGnameHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">ListGnameHandle<sp/>ListGname_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">ListGnameHandle<sp/>ListGname_copy(ListGnameHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ListGnameHandle<sp/>ListGname_fill_value(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/>GnameHandle<sp/>value);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ListGnameHandle<sp/>ListGname_create(GnameHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListGname_destroy(ListGnameHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListGname_push_back(ListGnameHandle<sp/>handle,<sp/>GnameHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListGname_size(ListGnameHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListGname_empty(ListGnameHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListGname_erase_at(ListGnameHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListGname_clear(ListGnameHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">GnameHandle<sp/>ListGname_at(ListGnameHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListGname_items(ListGnameHandle<sp/>handle,<sp/>GnameHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListGname_contains(ListGnameHandle<sp/>handle,<sp/>GnameHandle<sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListGname_index(ListGnameHandle<sp/>handle,<sp/>GnameHandle<sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListGnameHandle<sp/>ListGname_intersection(ListGnameHandle<sp/>handle,<sp/>ListGnameHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListGname_equal(ListGnameHandle<sp/>handle,<sp/>ListGnameHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListGname_not_equal(ListGnameHandle<sp/>handle,<sp/>ListGnameHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>ListGname_to_json_string(ListGnameHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListGnameHandle<sp/>ListGname_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/ListGname_c_api.h"/>
+  </compounddef>
+</doxygen>

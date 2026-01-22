@@ -1,0 +1,486 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="Impedances__c__api_8h" kind="file" language="C++">
+    <compoundname>Impedances_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="ListImpedance__c__api_8h" local="yes">falcon_core/generic/ListImpedance_c_api.h</includes>
+    <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/generic/ListImpedance_c_api.h</label>
+        <link refid="ListImpedance__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/physics/device_structures/Impedance_c_api.h</label>
+        <link refid="Impedance__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h</label>
+        <link refid="Impedances__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="7">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h</label>
+        <link refid="Impedances__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Impedances__c__api_8h_1a924f5628373c01163aa0f166d1282994" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ImpedancesHandle</definition>
+        <argsstring></argsstring>
+        <name>ImpedancesHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="9" column="14" bodyfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Impedances__c__api_8h_1a2a8c37891af0d249ff145ccb8128ef7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ImpedancesHandle</type>
+        <definition>ImpedancesHandle Impedances_copy</definition>
+        <argsstring>(ImpedancesHandle handle)</argsstring>
+        <name>Impedances_copy</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="12" column="18" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="12" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1af8b23f04e91dc339ac0df9125f06f498" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Impedances_destroy</definition>
+        <argsstring>(ImpedancesHandle handle)</argsstring>
+        <name>Impedances_destroy</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="14" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="14" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1ad1e1d8e9d720fa5dc65c8e9e7eddcc9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Impedances_equal</definition>
+        <argsstring>(ImpedancesHandle handle, ImpedancesHandle other)</argsstring>
+        <name>Impedances_equal</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="16" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="16" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1a76d418d107f95afba16d336902c3a9ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Impedances_not_equal</definition>
+        <argsstring>(ImpedancesHandle handle, ImpedancesHandle other)</argsstring>
+        <name>Impedances_not_equal</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="18" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1a03f5d3d2cbdd6e4298e83e0bb035e3b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle Impedances_to_json_string</definition>
+        <argsstring>(ImpedancesHandle handle)</argsstring>
+        <name>Impedances_to_json_string</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="20" column="14" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="20" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1aa4a30400bda07274a12626a298fcfe9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ImpedancesHandle</type>
+        <definition>ImpedancesHandle Impedances_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Impedances_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="22" column="18" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="22" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1a7a8e56ff16bcbf6a9b3a27c2540ee928" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ImpedancesHandle</type>
+        <definition>ImpedancesHandle Impedances_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>Impedances_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="24" column="18" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="24" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1a563aa409b235f6b3f2f0d0dccdad32ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ImpedancesHandle</type>
+        <definition>ImpedancesHandle Impedances_create</definition>
+        <argsstring>(ListImpedanceHandle items)</argsstring>
+        <name>Impedances_create</name>
+        <param>
+          <type>ListImpedanceHandle</type>
+          <declname>items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="26" column="18" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="26" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1a8303429a8b71dbc5787b50be0f27607a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Impedances_push_back</definition>
+        <argsstring>(ImpedancesHandle handle, ImpedanceHandle value)</argsstring>
+        <name>Impedances_push_back</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ImpedanceHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="28" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="28" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1a0612c95f9aab38c07c82da16571fa33a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Impedances_size</definition>
+        <argsstring>(ImpedancesHandle handle)</argsstring>
+        <name>Impedances_size</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="30" column="8" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="30" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1ad75e57c30ddf5727331f847bdde8f511" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Impedances_empty</definition>
+        <argsstring>(ImpedancesHandle handle)</argsstring>
+        <name>Impedances_empty</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1aaab5a4ab699afa8e9e51fb1102e3fe7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Impedances_erase_at</definition>
+        <argsstring>(ImpedancesHandle handle, size_t idx)</argsstring>
+        <name>Impedances_erase_at</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1a5ca4e186426d778f732f7e969997cae8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Impedances_clear</definition>
+        <argsstring>(ImpedancesHandle handle)</argsstring>
+        <name>Impedances_clear</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="36" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="36" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1ac043195c47d10e5221a62219762af628" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ImpedanceHandle</type>
+        <definition>ImpedanceHandle Impedances_at</definition>
+        <argsstring>(ImpedancesHandle handle, size_t idx)</argsstring>
+        <name>Impedances_at</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="38" column="17" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="38" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1ad49211d139a1fb9b3d32e5b58dcdc589" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListImpedanceHandle</type>
+        <definition>ListImpedanceHandle Impedances_items</definition>
+        <argsstring>(ImpedancesHandle handle)</argsstring>
+        <name>Impedances_items</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="40" column="21" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="40" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1af3ac4c1fa96ffe71a362cff66524b7ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Impedances_contains</definition>
+        <argsstring>(ImpedancesHandle handle, ImpedanceHandle value)</argsstring>
+        <name>Impedances_contains</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ImpedanceHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="42" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="42" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1a6dfeff513eecdc2be3892c0fc1fe28d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ImpedancesHandle</type>
+        <definition>ImpedancesHandle Impedances_intersection</definition>
+        <argsstring>(ImpedancesHandle handle, ImpedancesHandle other)</argsstring>
+        <name>Impedances_intersection</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="44" column="18" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="44" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Impedances__c__api_8h_1a76ad8c9a7d0b06efed21ef2690c8c4b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Impedances_index</definition>
+        <argsstring>(ImpedancesHandle handle, ImpedanceHandle value)</argsstring>
+        <name>Impedances_index</name>
+        <param>
+          <type>ImpedancesHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ImpedanceHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" line="47" column="8" declfile="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h" declline="47" declcolumn="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListImpedance_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ImpedancesHandle;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">ImpedancesHandle<sp/>Impedances_copy(ImpedancesHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Impedances_destroy(ImpedancesHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Impedances_equal(ImpedancesHandle<sp/>handle,<sp/>ImpedancesHandle<sp/>other);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Impedances_not_equal(ImpedancesHandle<sp/>handle,<sp/>ImpedancesHandle<sp/>other);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">StringHandle<sp/>Impedances_to_json_string(ImpedancesHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ImpedancesHandle<sp/>Impedances_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">ImpedancesHandle<sp/>Impedances_create_empty();</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">ImpedancesHandle<sp/>Impedances_create(ListImpedanceHandle<sp/>items);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Impedances_push_back(ImpedancesHandle<sp/>handle,<sp/>ImpedanceHandle<sp/>value);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Impedances_size(ImpedancesHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Impedances_empty(ImpedancesHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Impedances_erase_at(ImpedancesHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Impedances_clear(ImpedancesHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">ImpedanceHandle<sp/>Impedances_at(ImpedancesHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">ListImpedanceHandle<sp/>Impedances_items(ImpedancesHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Impedances_contains(ImpedancesHandle<sp/>handle,<sp/>ImpedanceHandle<sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ImpedancesHandle<sp/>Impedances_intersection(ImpedancesHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImpedancesHandle<sp/>other);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Impedances_index(ImpedancesHandle<sp/>handle,<sp/>ImpedanceHandle<sp/>value);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/physics/device_structures/Impedances_c_api.h"/>
+  </compounddef>
+</doxygen>

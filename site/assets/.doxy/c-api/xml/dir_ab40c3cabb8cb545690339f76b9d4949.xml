@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_ab40c3cabb8cb545690339f76b9d4949" kind="dir">
+    <compoundname>c-api/include/falcon_core/autotuner_interfaces/contexts</compoundname>
+    <innerfile refid="AcquisitionContext__c__api_8h">AcquisitionContext_c_api.h</innerfile>
+    <innerfile refid="MeasurementContext__c__api_8h">MeasurementContext_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/autotuner_interfaces/contexts/"/>
+  </compounddef>
+</doxygen>

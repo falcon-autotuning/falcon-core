@@ -2,12 +2,13 @@
 #include <mutex>
 #include <shared_mutex>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core {
 namespace generic {
 template <typename T1, typename T2>
-class Pair : public generic::Song {
+class FALCON_CORE_CPP_API Pair : public generic::Song {
   static_assert(!std::is_pointer<T1>::value,
                 "First template argument must not be a pointer type");
   static_assert(!std::is_pointer<T2>::value,

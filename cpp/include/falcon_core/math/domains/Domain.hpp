@@ -3,13 +3,14 @@
 #include <mutex>
 #include <shared_mutex>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
 namespace math {
 namespace domains {
 
-class Domain : public generic::Song {
+class FALCON_CORE_CPP_API Domain : public generic::Song {
   double                          _lesser_bound;
   double                          _greater_bound;
   bool                            _lesser_bound_contained;

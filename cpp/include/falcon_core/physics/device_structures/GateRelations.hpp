@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
@@ -10,7 +11,8 @@ namespace device_structures {
 /**
  * @brief Holds the relations between gates and their neighbors.
  */
-class GateRelations : public generic::Map<Connection, Connections> {
+class FALCON_CORE_CPP_API GateRelations
+    : public generic::Map<Connection, Connections> {
  public:
   GateRelations();
   GateRelations(std::vector<std::pair<ConnectionSP, ConnectionsSP>> init);

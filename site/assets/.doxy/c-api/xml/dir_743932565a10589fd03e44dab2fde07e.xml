@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_743932565a10589fd03e44dab2fde07e" kind="dir">
+    <compoundname>c-api/include/falcon_core/communications/voltage_states</compoundname>
+    <innerfile refid="DeviceVoltageState__c__api_8h">DeviceVoltageState_c_api.h</innerfile>
+    <innerfile refid="DeviceVoltageStates__c__api_8h">DeviceVoltageStates_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/communications/voltage_states/"/>
+  </compounddef>
+</doxygen>

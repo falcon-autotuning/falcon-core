@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1physics_1_1units_1_1Prefix" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::physics::units::Prefix</compoundname>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a223823737350bc4848a4efdb89f1a844" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::map&lt; std::string, int &gt; &amp;</type>
+        <definition>static const std::map&lt; std::string, int &gt; &amp; falcon_core::physics::units::Prefix::get_symbol_to_power_map</definition>
+        <argsstring>()</argsstring>
+        <name>get_symbol_to_power_map</name>
+        <qualifiedname>falcon_core::physics::units::Prefix::get_symbol_to_power_map</qualifiedname>
+        <briefdescription>
+<para>Get the symbol to power map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A constant reference to the symbol to power map. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Prefix.hpp" line="16" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a38230001e7026bb222334ff44fa32250" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::map&lt; int, std::string &gt; &amp;</type>
+        <definition>static const std::map&lt; int, std::string &gt; &amp; falcon_core::physics::units::Prefix::get_power_to_symbol_map</definition>
+        <argsstring>()</argsstring>
+        <name>get_power_to_symbol_map</name>
+        <qualifiedname>falcon_core::physics::units::Prefix::get_power_to_symbol_map</qualifiedname>
+        <briefdescription>
+<para>Get the power to symbol map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A constant reference to the power to symbol map. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Prefix.hpp" line="21" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a3dacc32fe23e7c277b40f99ceb1f06f6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string falcon_core::physics::units::Prefix::get_symbol</definition>
+        <argsstring>(int prefix_value)</argsstring>
+        <name>get_symbol</name>
+        <qualifiedname>falcon_core::physics::units::Prefix::get_symbol</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>prefix_value</declname>
+        </param>
+        <briefdescription>
+<para>Get the symbol for a prefix value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefix_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exponent value of the prefix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The symbol corresponding to the prefix value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Prefix.hpp" line="27" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a5ae78aa77b46ae78a6bf79b846d73750" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int falcon_core::physics::units::Prefix::get_value</definition>
+        <argsstring>(std::string prefix_symbol)</argsstring>
+        <name>get_value</name>
+        <qualifiedname>falcon_core::physics::units::Prefix::get_value</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>prefix_symbol</declname>
+        </param>
+        <briefdescription>
+<para>Get the exponent value for a prefix symbol. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefix_symbol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The symbol of the prefix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The exponent value corresponding to the prefix symbol. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Prefix.hpp" line="33" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a41c7e72a19cf5c39450db9d2893da5d4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool falcon_core::physics::units::Prefix::is_valid</definition>
+        <argsstring>(std::string prefix_symbol)</argsstring>
+        <name>is_valid</name>
+        <qualifiedname>falcon_core::physics::units::Prefix::is_valid</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>prefix_symbol</declname>
+        </param>
+        <briefdescription>
+<para>Check if a prefix symbol is valid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefix_symbol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The symbol of the prefix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the prefix is valid </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Prefix.hpp" line="39" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1physics_1_1units_1_1Prefix_1ae3ad737b9a2b01cc2c6f64d7e544a56b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; double, std::string &gt;</type>
+        <definition>static std::pair&lt; double, std::string &gt; falcon_core::physics::units::Prefix::prefix_multiplication</definition>
+        <argsstring>(std::string first_prefix, std::string second_prefix, double scale_factor)</argsstring>
+        <name>prefix_multiplication</name>
+        <qualifiedname>falcon_core::physics::units::Prefix::prefix_multiplication</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>first_prefix</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>second_prefix</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>scale_factor</declname>
+        </param>
+        <briefdescription>
+<para>Multiply two prefixes together. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>first_prefix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first prefix symbol. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>second_prefix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second prefix symbol. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scale_factor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scale factor to apply. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pair containing the resulting prefix symbol and scale factor. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/physics/units/Prefix.hpp" line="47" column="20"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/physics/units/Prefix.hpp" line="10" column="1" bodyfile="cpp/include/falcon_core/physics/units/Prefix.hpp" bodystart="10" bodyend="49"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a38230001e7026bb222334ff44fa32250" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Prefix</scope><name>get_power_to_symbol_map</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a3dacc32fe23e7c277b40f99ceb1f06f6" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Prefix</scope><name>get_symbol</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a223823737350bc4848a4efdb89f1a844" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Prefix</scope><name>get_symbol_to_power_map</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a5ae78aa77b46ae78a6bf79b846d73750" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Prefix</scope><name>get_value</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Prefix_1a41c7e72a19cf5c39450db9d2893da5d4" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Prefix</scope><name>is_valid</name></member>
+      <member refid="classfalcon__core_1_1physics_1_1units_1_1Prefix_1ae3ad737b9a2b01cc2c6f64d7e544a56b" prot="public" virt="non-virtual"><scope>falcon_core::physics::units::Prefix</scope><name>prefix_multiplication</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

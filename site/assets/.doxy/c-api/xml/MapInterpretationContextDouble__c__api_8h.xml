@@ -1,0 +1,627 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="MapInterpretationContextDouble__c__api_8h" kind="file" language="C++">
+    <compoundname>MapInterpretationContextDouble_c_api.h</compoundname>
+    <includes refid="PairInterpretationContextDouble__c__api_8h" local="yes">falcon_core/generic/PairInterpretationContextDouble_c_api.h</includes>
+    <includes refid="ListDouble__c__api_8h" local="yes">falcon_core/generic/ListDouble_c_api.h</includes>
+    <includes refid="ListInterpretationContext__c__api_8h" local="yes">falcon_core/generic/ListInterpretationContext_c_api.h</includes>
+    <includes refid="ListPairInterpretationContextDouble__c__api_8h" local="yes">falcon_core/generic/ListPairInterpretationContextDouble_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="InterpretationContainerDouble__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h</label>
+        <link refid="MeasurementContext__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h</label>
+        <link refid="InterpretationContext__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/generic/ListInterpretationContext_c_api.h</label>
+        <link refid="ListInterpretationContext__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/ListMeasurementContext_c_api.h</label>
+        <link refid="ListMeasurementContext__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/generic/ListPairInterpretationContextDouble_c_api.h</label>
+        <link refid="ListPairInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h</label>
+        <link refid="MapInterpretationContextDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/PairInterpretationContextDouble_c_api.h</label>
+        <link refid="PairInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/math/AxesMeasurementContext_c_api.h</label>
+        <link refid="AxesMeasurementContext__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="7">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</label>
+        <link refid="InterpretationContainerDouble__c__api_8h_source"/>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h</label>
+        <link refid="MapInterpretationContextDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="MapInterpretationContextDouble__c__api_8h_1aa5b52819745e1774bc33acd497941023" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* MapInterpretationContextDoubleHandle</definition>
+        <argsstring></argsstring>
+        <name>MapInterpretationContextDoubleHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="12" column="14" bodyfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1af54d2c68ddd0394d39de6569d6a8e373" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapInterpretationContextDoubleHandle</type>
+        <definition>MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>MapInterpretationContextDouble_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="16" column="38" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="16" declcolumn="38"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a04d92ad3ac02047f1838ddca12508777" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapInterpretationContextDoubleHandle</type>
+        <definition>MapInterpretationContextDoubleHandle MapInterpretationContextDouble_copy</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle)</argsstring>
+        <name>MapInterpretationContextDouble_copy</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="18" column="38" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="18" declcolumn="38"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a5476e6cefdf05ab7327df5d902b54067" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapInterpretationContextDoubleHandle</type>
+        <definition>MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create</definition>
+        <argsstring>(PairInterpretationContextDoubleHandle *data, size_t count)</argsstring>
+        <name>MapInterpretationContextDouble_create</name>
+        <param>
+          <type>PairInterpretationContextDoubleHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="20" column="38" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="20" declcolumn="38"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1ad7594c7c948fdd914901eef7fd9f6fb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapInterpretationContextDouble_destroy</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle)</argsstring>
+        <name>MapInterpretationContextDouble_destroy</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="22" column="6" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="22" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a101ab02f4259e23b3edef6f687553755" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapInterpretationContextDouble_insert_or_assign</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle, InterpretationContextHandle key, double value)</argsstring>
+        <name>MapInterpretationContextDouble_insert_or_assign</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a53277a8d824443e81f7afeb998f22586" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapInterpretationContextDouble_insert</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle, InterpretationContextHandle key, double value)</argsstring>
+        <name>MapInterpretationContextDouble_insert</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a6dd942736b67abb8193a184b1ef00f75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double MapInterpretationContextDouble_at</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle, InterpretationContextHandle key)</argsstring>
+        <name>MapInterpretationContextDouble_at</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1acf35f90411b3338251b150ca155f60a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapInterpretationContextDouble_erase</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle, InterpretationContextHandle key)</argsstring>
+        <name>MapInterpretationContextDouble_erase</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a065eb3290597d2fe871e08ee320a6a71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t MapInterpretationContextDouble_size</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle)</argsstring>
+        <name>MapInterpretationContextDouble_size</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="32" column="8" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="32" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a40dbd47d3290f2fd2f9037fc8f147d7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapInterpretationContextDouble_empty</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle)</argsstring>
+        <name>MapInterpretationContextDouble_empty</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1accccf027df85fcbe52a8cf0cbac0538f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapInterpretationContextDouble_clear</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle)</argsstring>
+        <name>MapInterpretationContextDouble_clear</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="36" column="6" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="36" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a6a51a28b100b525b8564d4baadba9b84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapInterpretationContextDouble_contains</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle, InterpretationContextHandle key)</argsstring>
+        <name>MapInterpretationContextDouble_contains</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="38" column="6" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="38" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a9a9af8d952ad2173dd73eefadc99180d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListInterpretationContextHandle</type>
+        <definition>ListInterpretationContextHandle MapInterpretationContextDouble_keys</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle)</argsstring>
+        <name>MapInterpretationContextDouble_keys</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="40" column="33" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="40" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a73aec5d75c9f68025a0cf73a2cf7d069" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListDoubleHandle</type>
+        <definition>ListDoubleHandle MapInterpretationContextDouble_values</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle)</argsstring>
+        <name>MapInterpretationContextDouble_values</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="42" column="18" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="42" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1ad214f320f7d7eaa18a56e049b8343998" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairInterpretationContextDoubleHandle</type>
+        <definition>ListPairInterpretationContextDoubleHandle MapInterpretationContextDouble_items</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle)</argsstring>
+        <name>MapInterpretationContextDouble_items</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="44" column="43" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="44" declcolumn="43"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a700e539fc03ae65e30ed316b2075f5c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapInterpretationContextDouble_equal</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle, MapInterpretationContextDoubleHandle other)</argsstring>
+        <name>MapInterpretationContextDouble_equal</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a901598fdb797fad495608b79204455f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapInterpretationContextDouble_not_equal</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle, MapInterpretationContextDoubleHandle other)</argsstring>
+        <name>MapInterpretationContextDouble_not_equal</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a9dfeae32577432f38b3200584d19bc31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle MapInterpretationContextDouble_to_json_string</definition>
+        <argsstring>(MapInterpretationContextDoubleHandle handle)</argsstring>
+        <name>MapInterpretationContextDouble_to_json_string</name>
+        <param>
+          <type>MapInterpretationContextDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="50" column="19" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="50" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="MapInterpretationContextDouble__c__api_8h_1a44f7fede013f052ddaa1daa32e57acfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapInterpretationContextDoubleHandle</type>
+        <definition>MapInterpretationContextDoubleHandle MapInterpretationContextDouble_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>MapInterpretationContextDouble_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" line="52" column="38" declfile="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h" declline="52" declcolumn="38"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/PairInterpretationContextDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListInterpretationContext_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListPairInterpretationContextDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>MapInterpretationContextDoubleHandle;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">MapInterpretationContextDoubleHandle<sp/>MapInterpretationContextDouble_create_empty();</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">MapInterpretationContextDoubleHandle<sp/>MapInterpretationContextDouble_copy(MapInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">MapInterpretationContextDoubleHandle<sp/>MapInterpretationContextDouble_create(PairInterpretationContextDoubleHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_destroy(MapInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_insert_or_assign(MapInterpretationContextDoubleHandle<sp/>handle,<sp/>InterpretationContextHandle<sp/>key,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_insert(MapInterpretationContextDoubleHandle<sp/>handle,<sp/>InterpretationContextHandle<sp/>key,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_at(MapInterpretationContextDoubleHandle<sp/>handle,<sp/>InterpretationContextHandle<sp/>key);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_erase(MapInterpretationContextDoubleHandle<sp/>handle,<sp/>InterpretationContextHandle<sp/>key);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_size(MapInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_empty(MapInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_clear(MapInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_contains(MapInterpretationContextDoubleHandle<sp/>handle,<sp/>InterpretationContextHandle<sp/>key);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">ListInterpretationContextHandle<sp/>MapInterpretationContextDouble_keys(MapInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">ListDoubleHandle<sp/>MapInterpretationContextDouble_values(MapInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListPairInterpretationContextDoubleHandle<sp/>MapInterpretationContextDouble_items(MapInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_equal(MapInterpretationContextDoubleHandle<sp/>handle,<sp/>MapInterpretationContextDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapInterpretationContextDouble_not_equal(MapInterpretationContextDoubleHandle<sp/>handle,<sp/>MapInterpretationContextDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>MapInterpretationContextDouble_to_json_string(MapInterpretationContextDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">MapInterpretationContextDoubleHandle<sp/>MapInterpretationContextDouble_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h"/>
+  </compounddef>
+</doxygen>

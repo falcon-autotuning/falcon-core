@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_320c7f873cf8bb1c06309e978e7d7eca" kind="dir">
+    <compoundname>c-api/include/falcon_core</compoundname>
+    <innerdir refid="dir_a97a284a51e1fae1832044fe1b75b0a4">c-api/include/falcon_core/autotuner_interfaces</innerdir>
+    <innerdir refid="dir_333323e88b5d6263154607a1eb6b024f">c-api/include/falcon_core/communications</innerdir>
+    <innerdir refid="dir_496d41daa888fe924b07cec1e014cccd">c-api/include/falcon_core/generic</innerdir>
+    <innerdir refid="dir_9a3e3629c63b09e0e53088699a1e2284">c-api/include/falcon_core/instrument_interfaces</innerdir>
+    <innerdir refid="dir_5926e65cd25d57bf5041735c2c12a8f7">c-api/include/falcon_core/math</innerdir>
+    <innerdir refid="dir_675f009264d19d6a7779f7cbdc1a7572">c-api/include/falcon_core/physics</innerdir>
+    <innerfile refid="CerealMacro__c__api_8h">CerealMacro_c_api.h</innerfile>
+    <innerfile refid="CopyMacro__c__api_8h">CopyMacro_c_api.h</innerfile>
+    <innerfile refid="DestroyMacro__c__api_8h">DestroyMacro_c_api.h</innerfile>
+    <innerfile refid="EqualityMacro__c__api_8h">EqualityMacro_c_api.h</innerfile>
+    <innerfile refid="Precompiled__c__api_8h">Precompiled_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/"/>
+  </compounddef>
+</doxygen>

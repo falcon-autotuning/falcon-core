@@ -7,6 +7,7 @@
 #include "falcon_core/communications/messages/MeasurementRequest.hpp"
 #include "falcon_core/communications/messages/MeasurementResponse.hpp"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Map.hpp"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/Axes.hpp"
@@ -15,7 +16,7 @@
 #include "falcon_core/math/domains/CoupledLabelledDomain.hpp"
 namespace falcon_core {
 namespace communications {
-class HDF5Data : public generic::Song {
+class FALCON_CORE_CPP_API HDF5Data : public generic::Song {
   using Metadata = generic::Map<std::string, std::string>;
   math::AxesSP<int>                                  _shape;
   math::AxesSP<math::arrays::ControlArray>           _unit_domain;

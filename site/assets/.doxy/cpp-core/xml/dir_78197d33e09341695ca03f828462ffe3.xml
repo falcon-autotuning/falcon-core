@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_78197d33e09341695ca03f828462ffe3" kind="dir">
+    <compoundname>cpp/include/falcon_core/autotuner_interfaces/contexts</compoundname>
+    <innerfile refid="AcquisitionContext_8hpp">AcquisitionContext.hpp</innerfile>
+    <innerfile refid="BaseContext_8hpp">BaseContext.hpp</innerfile>
+    <innerfile refid="MeasurementContext_8hpp">MeasurementContext.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/contexts/"/>
+  </compounddef>
+</doxygen>

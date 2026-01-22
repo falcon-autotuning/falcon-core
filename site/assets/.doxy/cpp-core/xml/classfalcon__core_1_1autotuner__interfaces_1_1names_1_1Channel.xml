@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::autotuner_interfaces::names::Channel</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <includes refid="Channel_8hpp" local="no">Channel.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a9ae65153af4fe4dbe33a95481cbecbdb" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string falcon_core::autotuner_interfaces::names::Channel::_name</definition>
+        <argsstring></argsstring>
+        <name>_name</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="14" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a3af8cb83cbbf9aa1775baba67812a7e3" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::names::Channel::_mu_name</definition>
+        <argsstring></argsstring>
+        <name>_mu_name</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::_mu_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="15" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="29" column="16" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ad688463fd6a73dcd91ccbca51268511d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::names::Channel::Channel</definition>
+        <argsstring>(const Channel &amp;other)</argsstring>
+        <name>Channel</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::Channel</qualifiedname>
+        <param>
+          <type>const Channel &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a channel with the given name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="20" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ac275ad3c6e59fcac3df10c8ea90d7f67" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ad688463fd6a73dcd91ccbca51268511d" kindref="member">Channel</ref> &amp;</type>
+        <definition>Channel &amp; falcon_core::autotuner_interfaces::names::Channel::operator=</definition>
+        <argsstring>(const Channel &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ad688463fd6a73dcd91ccbca51268511d" kindref="member">Channel</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="21" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a483da93184d832a58139ffe64d50efe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::names::Channel::Channel</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>Channel</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::Channel</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="22" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a00df8747ececb78cc484e6e13269f908" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string falcon_core::autotuner_interfaces::names::Channel::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="23" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1abe58092f1483b7a369b82014df8305a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::autotuner_interfaces::names::Channel::operator==</definition>
+        <argsstring>(const Channel &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ad688463fd6a73dcd91ccbca51268511d" kindref="member">Channel</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="24" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ae5fca8645da95250e3f94d0cd920f605" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::autotuner_interfaces::names::Channel::operator!=</definition>
+        <argsstring>(const Channel &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ad688463fd6a73dcd91ccbca51268511d" kindref="member">Channel</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="25" column="15"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a86571965d0fc990050535e8454caf456" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::names::Channel::Channel</definition>
+        <argsstring>()</argsstring>
+        <name>Channel</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::Channel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="28" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ac7a11f2758d45a77ac8186a464295b16" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::autotuner_interfaces::names::Channel::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::Channel::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="31" column="8" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A string corresponding to a channel name. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::names::Channel</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::names::Channel</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="13" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" bodystart="13" bodyend="35"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a3af8cb83cbbf9aa1775baba67812a7e3" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>_mu_name</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a9ae65153af4fe4dbe33a95481cbecbdb" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>_name</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ad688463fd6a73dcd91ccbca51268511d" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>Channel</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a483da93184d832a58139ffe64d50efe4" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>Channel</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a86571965d0fc990050535e8454caf456" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>Channel</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1a00df8747ececb78cc484e6e13269f908" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>name</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ae5fca8645da95250e3f94d0cd920f605" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ac275ad3c6e59fcac3df10c8ea90d7f67" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1abe58092f1483b7a369b82014df8305a5" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel_1ac7a11f2758d45a77ac8186a464295b16" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::autotuner_interfaces::names::Channel</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

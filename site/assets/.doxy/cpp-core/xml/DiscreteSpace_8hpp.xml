@@ -1,0 +1,555 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="DiscreteSpace_8hpp" kind="file" language="C++">
+    <compoundname>DiscreteSpace.hpp</compoundname>
+    <includes refid="Map_8hpp" local="yes">falcon_core/generic/Map.hpp</includes>
+    <includes refid="InstrumentPort_8hpp" local="yes">falcon_core/instrument_interfaces/names/InstrumentPort.hpp</includes>
+    <includes refid="Ports_8hpp" local="yes">falcon_core/instrument_interfaces/names/Ports.hpp</includes>
+    <includes refid="UnitSpace_8hpp" local="yes">falcon_core/math/UnitSpace.hpp</includes>
+    <includes refid="LabelledControlArray_8hpp" local="yes">falcon_core/math/arrays/LabelledControlArray.hpp</includes>
+    <includes refid="CoupledLabelledDomain_8hpp" local="yes">falcon_core/math/domains/CoupledLabelledDomain.hpp</includes>
+    <includedby refid="Waveform_8hpp" local="yes">cpp/include/falcon_core/instrument_interfaces/Waveform.hpp</includedby>
+    <incdepgraph>
+      <node id="40">
+        <label>cereal/types/xtensor.hpp</label>
+        <link refid="xtensor_8hpp_source"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>falcon_core/Constants.hpp</label>
+        <link refid="Constants_8hpp_source"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp</label>
+        <link refid="AcquisitionContext_8hpp_source"/>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>falcon_core/autotuner_interfaces/contexts/BaseContext.hpp</label>
+        <link refid="BaseContext_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/CategoryTags.hpp</label>
+        <link refid="CategoryTags_8hpp_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>falcon_core/generic/FArray.hpp</label>
+        <link refid="FArray_8hpp_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>falcon_core/generic/FArrayProtocol.hpp</label>
+        <link refid="FArrayProtocol_8hpp_source"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/IsPrimitive.hpp</label>
+        <link refid="IsPrimitive_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/List.hpp</label>
+        <link refid="List_8hpp_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/Map.hpp</label>
+        <link refid="Map_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>falcon_core/generic/Pair.hpp</label>
+        <link refid="Pair_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/generic/Song.hpp</label>
+        <link refid="Song_8hpp_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>falcon_core/instrument_interfaces/names/Instrument.hpp</label>
+        <link refid="Instrument_8hpp_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort.hpp</label>
+        <link refid="InstrumentPort_8hpp_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>falcon_core/instrument_interfaces/names/Ports.hpp</label>
+        <link refid="Ports_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>falcon_core/math/Axes.hpp</label>
+        <link refid="Axes_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>falcon_core/math/UnitSpace.hpp</label>
+        <link refid="UnitSpace_8hpp"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>falcon_core/math/arrays/ControlArray.hpp</label>
+        <link refid="ControlArray_8hpp"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>falcon_core/math/arrays/ControlArray1D.hpp</label>
+        <link refid="ControlArray1D_8hpp"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>falcon_core/math/arrays/IncreasingAlignment.hpp</label>
+        <link refid="IncreasingAlignment_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>falcon_core/math/arrays/Is1D.hpp</label>
+        <link refid="Is1D_8hpp_source"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>falcon_core/math/arrays/IsControl.hpp</label>
+        <link refid="IsControl_8hpp_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>falcon_core/math/arrays/IsLabelled.hpp</label>
+        <link refid="IsLabelled_8hpp_source"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>falcon_core/math/arrays/LabelledControlArray.hpp</label>
+        <link refid="LabelledControlArray_8hpp"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/math/discrete_spaces/DiscreteSpace.hpp</label>
+        <link refid="DiscreteSpace_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>falcon_core/math/discrete_spaces/Discretizer.hpp</label>
+        <link refid="Discretizer_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>falcon_core/math/domains/CoupledLabelledDomain.hpp</label>
+        <link refid="CoupledLabelledDomain_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>falcon_core/math/domains/Domain.hpp</label>
+        <link refid="Domain_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>falcon_core/math/domains/LabelledDomain.hpp</label>
+        <link refid="LabelledDomain_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>falcon_core/physics/device_structures/Connection.hpp</label>
+        <link refid="Connection_8hpp_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>falcon_core/physics/units/SymbolUnit.hpp</label>
+        <link refid="SymbolUnit_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>falcon_core/physics/units/TotalDimensions.hpp</label>
+        <link refid="TotalDimensions_8hpp_source"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>falcon_core/physics/units/Unit.hpp</label>
+        <link refid="Unit_8hpp_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>algorithm</label>
+      </node>
+      <node id="47">
+        <label>cereal/archives/binary.hpp</label>
+      </node>
+      <node id="15">
+        <label>cereal/archives/json.hpp</label>
+      </node>
+      <node id="41">
+        <label>cereal/cereal.hpp</label>
+      </node>
+      <node id="53">
+        <label>cereal/types/base_class.hpp</label>
+      </node>
+      <node id="16">
+        <label>cereal/types/map.hpp</label>
+      </node>
+      <node id="17">
+        <label>cereal/types/memory.hpp</label>
+      </node>
+      <node id="18">
+        <label>cereal/types/polymorphic.hpp</label>
+      </node>
+      <node id="19">
+        <label>cereal/types/string.hpp</label>
+      </node>
+      <node id="20">
+        <label>cereal/types/unordered_map.hpp</label>
+      </node>
+      <node id="21">
+        <label>cereal/types/utility.hpp</label>
+      </node>
+      <node id="22">
+        <label>cereal/types/vector.hpp</label>
+      </node>
+      <node id="31">
+        <label>map</label>
+      </node>
+      <node id="6">
+        <label>memory</label>
+      </node>
+      <node id="7">
+        <label>mutex</label>
+      </node>
+      <node id="3">
+        <label>numeric</label>
+      </node>
+      <node id="8">
+        <label>shared_mutex</label>
+      </node>
+      <node id="23">
+        <label>sstream</label>
+      </node>
+      <node id="9">
+        <label>stdexcept</label>
+      </node>
+      <node id="13">
+        <label>string</label>
+      </node>
+      <node id="10">
+        <label>type_traits</label>
+      </node>
+      <node id="42">
+        <label>xtensor/xarray.hpp</label>
+      </node>
+      <node id="43">
+        <label>xtensor/xio.hpp</label>
+      </node>
+      <node id="46">
+        <label>xtensor/xshape.hpp</label>
+      </node>
+      <node id="44">
+        <label>xtensor/xview.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>cpp/include/falcon_core/communications/HDF5Data.hpp</label>
+        <link refid="HDF5Data_8hpp_source"/>
+      </node>
+      <node id="3">
+        <label>cpp/include/falcon_core/communications/messages/MeasurementRequest.hpp</label>
+        <link refid="MeasurementRequest_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cpp/include/falcon_core/instrument_interfaces/Waveform.hpp</label>
+        <link refid="Waveform_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>cpp/include/falcon_core/math/discrete_spaces/DiscreteSpace.hpp</label>
+        <link refid="DiscreteSpace_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace" prot="public">falcon_core::math::discrete_spaces::DiscreteSpace</innerclass>
+    <innernamespace refid="namespacefalcon__core">falcon_core</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1math">falcon_core::math</innernamespace>
+    <innernamespace refid="namespacefalcon__core_1_1math_1_1discrete__spaces">falcon_core::math::discrete_spaces</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/Map.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/instrument_interfaces/names/InstrumentPort.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/instrument_interfaces/names/Ports.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="UnitSpace_8hpp" kindref="compound">falcon_core/math/UnitSpace.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="LabelledControlArray_8hpp" kindref="compound">falcon_core/math/arrays/LabelledControlArray.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/domains/CoupledLabelledDomain.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacefalcon__core" kindref="compound">falcon_core</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">math<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">discrete_spaces<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">DiscreteSpace<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1generic_1_1Song" kindref="compound">generic::Song</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>UnitSpaceSP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_space;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>AxesSP&lt;domains::CoupledLabelledDomain&gt;<sp/><sp/>_axes;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>AxesSP&lt;generic::Map&lt;std::string,<sp/>bool&gt;&gt;<sp/>_increasing;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_space;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_axes;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::shared_timed_mutex<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_mu_increasing;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>DiscreteSpace(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DiscreteSpace&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>DiscreteSpace&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DiscreteSpace&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="33" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a75e26ee9aea55c5addf6a9c75f653559" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a75e26ee9aea55c5addf6a9c75f653559" kindref="member">DiscreteSpace</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>UnitSpaceSP&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a1b140544215de89baea2e36d761218bf" kindref="member">space</ref>,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AxesSP&lt;domains::CoupledLabelledDomain&gt;&amp;<sp/><sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a8db11e72ce50660bb4306e26fa83e7b8" kindref="member">axes</ref>,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AxesSP&lt;<ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">generic::Map&lt;std::string, bool&gt;</ref>&gt;&amp;<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1ab6b26490cdbb19d76f80894be5fccd56" kindref="member">increasing</ref>);</highlight></codeline>
+<codeline lineno="43" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a99f71f2ea7f5eb2c9b115709a0e20b72" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;DiscreteSpace&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a99f71f2ea7f5eb2c9b115709a0e20b72" kindref="member">CartesianDiscreteSpace</ref>(</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AxesSP&lt;int&gt;&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>divisions,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AxesSP&lt;domains::CoupledLabelledDomain&gt;&amp;<sp/><sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a8db11e72ce50660bb4306e26fa83e7b8" kindref="member">axes</ref>,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AxesSP&lt;<ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">generic::Map&lt;std::string, bool&gt;</ref>&gt;&amp;<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1ab6b26490cdbb19d76f80894be5fccd56" kindref="member">increasing</ref>,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>domains::DomainSP&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain<sp/>=</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::make_shared&lt;domains::Domain&gt;(std::pair&lt;double,<sp/>double&gt;(0,<sp/>1)));</highlight></codeline>
+<codeline lineno="56" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a3e0e18838aeb4e3a440d0d1e7526c7c8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;DiscreteSpace&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a3e0e18838aeb4e3a440d0d1e7526c7c8" kindref="member">CartesianDiscreteSpace1D</ref>(</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>division,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>domains::CoupledLabelledDomainSP&amp;<sp/><sp/>shared_domain,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>generic::MapSP&lt;std::string,<sp/>bool&gt;&amp;<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1ab6b26490cdbb19d76f80894be5fccd56" kindref="member">increasing</ref>,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>domains::DomainSP&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain<sp/>=</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::make_shared&lt;domains::Domain&gt;(std::pair&lt;double,<sp/>double&gt;(0,<sp/>1)));</highlight></codeline>
+<codeline lineno="65" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a1b140544215de89baea2e36d761218bf" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>UnitSpaceSP&amp;<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a1b140544215de89baea2e36d761218bf" kindref="member">space</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="69" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a8db11e72ce50660bb4306e26fa83e7b8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AxesSP&lt;domains::CoupledLabelledDomain&gt;&amp;<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a8db11e72ce50660bb4306e26fa83e7b8" kindref="member">axes</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1ab6b26490cdbb19d76f80894be5fccd56" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AxesSP&lt;generic::Map&lt;std::string,<sp/>bool&gt;&gt;&amp;<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1ab6b26490cdbb19d76f80894be5fccd56" kindref="member">increasing</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a2ed3e2bea28df317933b2e675c53b262" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>instrument_interfaces::names::PortsSP<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a2ed3e2bea28df317933b2e675c53b262" kindref="member">knobs</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a7e29d9135aad7f06fda9e6c682f278cb" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a7e29d9135aad7f06fda9e6c682f278cb" kindref="member">validate_unit_space_dimensionality_matches_knobs</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a652543a81d94e5326f62e4892c05f689" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a652543a81d94e5326f62e4892c05f689" kindref="member">validate_knob_uniqueness</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1ae1a78a31e1d6cc720ee7f0149d717443" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1ae1a78a31e1d6cc720ee7f0149d717443" kindref="member">get_axis</ref>(</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>instrument_interfaces::names::InstrumentPortSP&amp;<sp/>knob)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a670f4b40e930e1f101ec4c9f6925eabf" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>domains::DomainSP<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a670f4b40e930e1f101ec4c9f6925eabf" kindref="member">get_domain</ref>(</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>instrument_interfaces::names::InstrumentPortSP&amp;<sp/>knob)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107" refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a4c3ea04fd0e63a024e1c6a3ae89f945a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AxesSP&lt;arrays::LabelledControlArray&gt;<sp/><ref refid="classfalcon__core_1_1math_1_1discrete__spaces_1_1DiscreteSpace_1a4c3ea04fd0e63a024e1c6a3ae89f945a" kindref="member">get_projection</ref>(</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>AxesSP&lt;instrument_interfaces::names::InstrumentPort&gt;&amp;<sp/>projection)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DiscreteSpace&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator!=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DiscreteSpace&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>DiscreteSpace();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">cereal::access;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Archive&gt;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>serialize(Archive&amp;<sp/>ar)<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_space(_mu_space,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_axes(_mu_axes,</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_lock&lt;std::shared_timed_mutex&gt;<sp/>lock_increasing(_mu_increasing,</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::defer_lock);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock(lock_space,<sp/>lock_axes,<sp/>lock_increasing);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>ar(cereal::base_class&lt;generic::Song&gt;(</highlight><highlight class="keyword">this</highlight><highlight class="normal">),<sp/>_space,<sp/>_axes,<sp/>_increasing);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">DiscreteSpaceSP<sp/>=<sp/>std::shared_ptr&lt;DiscreteSpace&gt;;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>discrete_spaces</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>math</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>falcon_core</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="cpp/include/falcon_core/math/discrete_spaces/DiscreteSpace.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,888 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="Point__c__api_8h" kind="file" language="C++">
+    <compoundname>Point_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes refid="ListConnection__c__api_8h" local="yes">falcon_core/generic/ListConnection_c_api.h</includes>
+    <includes refid="MapConnectionDouble__c__api_8h" local="yes">falcon_core/generic/MapConnectionDouble_c_api.h</includes>
+    <includes refid="MapConnectionQuantity__c__api_8h" local="yes">falcon_core/generic/MapConnectionQuantity_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="Quantity__c__api_8h" local="yes">falcon_core/math/Quantity_c_api.h</includes>
+    <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
+    <includes refid="SymbolUnit__c__api_8h" local="yes">falcon_core/physics/units/SymbolUnit_c_api.h</includes>
+    <includedby refid="DeviceVoltageStates__c__api_8h" local="yes">c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</includedby>
+    <includedby refid="Vector__c__api_8h" local="yes">c-api/include/falcon_core/math/Vector_c_api.h</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/ListPairConnectionDouble_c_api.h</label>
+        <link refid="ListPairConnectionDouble__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/generic/ListPairConnectionQuantity_c_api.h</label>
+        <link refid="ListPairConnectionQuantity__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/generic/ListQuantity_c_api.h</label>
+        <link refid="ListQuantity__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/MapConnectionDouble_c_api.h</label>
+        <link refid="MapConnectionDouble__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/MapConnectionQuantity_c_api.h</label>
+        <link refid="MapConnectionQuantity__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/generic/PairConnectionDouble_c_api.h</label>
+        <link refid="PairConnectionDouble__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/generic/PairConnectionQuantity_c_api.h</label>
+        <link refid="PairConnectionQuantity__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/Point_c_api.h</label>
+        <link refid="Point__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/math/Quantity_c_api.h</label>
+        <link refid="Quantity__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h</label>
+        <link refid="VoltageStatesResponse__c__api_8h_source"/>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</label>
+        <link refid="DeviceVoltageStates__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/Point_c_api.h</label>
+        <link refid="Point__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/math/Vector_c_api.h</label>
+        <link refid="Vector__c__api_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Point__c__api_8h_1a0e0eecc47a81c22dd3c98273021e55ff" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* PointHandle</definition>
+        <argsstring></argsstring>
+        <name>PointHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="17" column="14" bodyfile="c-api/include/falcon_core/math/Point_c_api.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Point__c__api_8h_1ac0299ac379fede0c0e062b41dbf51900" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_copy</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_copy</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="20" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="20" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a2e798cf2f8af37acf2e54fce7fe45d11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Point_destroy</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_destroy</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="22" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="22" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a8aec03b8455c068f70f119d5cc089a6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Point_equal</definition>
+        <argsstring>(PointHandle handle, PointHandle other)</argsstring>
+        <name>Point_equal</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PointHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1af872e32181582fc3cbecd1e253dcd3c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Point_not_equal</definition>
+        <argsstring>(PointHandle handle, PointHandle other)</argsstring>
+        <name>Point_not_equal</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PointHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a6ab30e0022fae0e81fb6e78c8a67117a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle Point_to_json_string</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_to_json_string</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="28" column="14" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="28" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a3163ae098289ea382a4da6eb4634f1a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Point_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="30" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="30" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a5a4984c8e75bce2c78d01e5ad76ac891" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>Point_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="32" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="32" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1aca24ea192bd6304ce4cebd26277ec1f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_create</definition>
+        <argsstring>(MapConnectionDoubleHandle items, SymbolUnitHandle unit)</argsstring>
+        <name>Point_create</name>
+        <param>
+          <type>MapConnectionDoubleHandle</type>
+          <declname>items</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="34" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="34" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a5fcf937d51009c6f57194e3cf00dab84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_create_from_parent</definition>
+        <argsstring>(MapConnectionQuantityHandle items)</argsstring>
+        <name>Point_create_from_parent</name>
+        <param>
+          <type>MapConnectionQuantityHandle</type>
+          <declname>items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="37" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="37" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a57d80123172f9935b7f3735ae62a1810" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SymbolUnitHandle</type>
+        <definition>SymbolUnitHandle Point_unit</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_unit</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the SI unit for the point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="43" column="18" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="43" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a3d40b3c51b19ef324ddaa40e8c897279" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Point_insert_or_assign</definition>
+        <argsstring>(PointHandle handle, ConnectionHandle key, QuantityHandle value)</argsstring>
+        <name>Point_insert_or_assign</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>an overide of insert to make sure units are fixed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="50" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="50" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a344b647d53e1b87814f1d0409ef43bb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Point_insert</definition>
+        <argsstring>(PointHandle handle, ConnectionHandle key, QuantityHandle value)</argsstring>
+        <name>Point_insert</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>QuantityHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="54" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="54" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a7c1951506261f7d2b5d14b2e58216abb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QuantityHandle</type>
+        <definition>QuantityHandle Point_at</definition>
+        <argsstring>(PointHandle handle, ConnectionHandle key)</argsstring>
+        <name>Point_at</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="58" column="16" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="58" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a54b38e7b1babca92d71dd8e502ee0175" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Point_erase</definition>
+        <argsstring>(PointHandle handle, ConnectionHandle key)</argsstring>
+        <name>Point_erase</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="60" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="60" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a1a9956ddb1b3cf724dd22d07c8d1ed48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Point_size</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_size</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="62" column="8" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="62" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1ad43def6ddaad2a43b92b988950831489" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Point_empty</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_empty</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="64" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="64" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a8a1f5f01b115f19549d3b9de44681a3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Point_clear</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_clear</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="66" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="66" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a6707fbf7dfc5dbc04c9ff064c3c1734a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Point_contains</definition>
+        <argsstring>(PointHandle handle, ConnectionHandle key)</argsstring>
+        <name>Point_contains</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="68" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="68" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a5090191b5b08b80fec51f187824714e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListConnectionHandle</type>
+        <definition>ListConnectionHandle Point_keys</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_keys</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="70" column="22" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="70" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a908076fbcd63f5a9f0d413f7d590c6e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListQuantityHandle</type>
+        <definition>ListQuantityHandle Point_values</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_values</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="72" column="20" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="72" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a0cd29edc5679935f996297f53014d170" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionQuantityHandle</type>
+        <definition>ListPairConnectionQuantityHandle Point_items</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_items</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="74" column="34" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="74" declcolumn="34"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1aa18da968bdf9274c120bca6e90e335b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapConnectionQuantityHandle</type>
+        <definition>MapConnectionQuantityHandle Point_coordinates</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_coordinates</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the coordinates for the point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="81" column="29" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="81" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1ac6180f8795937fc79dcb1c901f96ff4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListConnectionHandle</type>
+        <definition>ListConnectionHandle Point_connections</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_connections</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Returns the connections for the point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="88" column="22" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="88" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a2769d86a47da5339af8c1f33eee338eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_addition</definition>
+        <argsstring>(PointHandle handle, PointHandle other)</argsstring>
+        <name>Point_addition</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PointHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="90" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="90" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1ae3052c2e311d09d0d6ce3b35ca544501" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_subtraction</definition>
+        <argsstring>(PointHandle handle, PointHandle other)</argsstring>
+        <name>Point_subtraction</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PointHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="92" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="92" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a598c19da3bfe02151fea6e84400a026d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_multiplication</definition>
+        <argsstring>(PointHandle handle, double scalar)</argsstring>
+        <name>Point_multiplication</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="94" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="94" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1afb4faf99d745c8519da6ff17ba087b65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_division</definition>
+        <argsstring>(PointHandle handle, double scalar)</argsstring>
+        <name>Point_division</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="96" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="96" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1aaf8181d85f7542010b19cd9bdd202f1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PointHandle</type>
+        <definition>PointHandle Point_negation</definition>
+        <argsstring>(PointHandle handle)</argsstring>
+        <name>Point_negation</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="98" column="13" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="98" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Point__c__api_8h_1a133acbba184c2ffe1b2c2cc10d31857e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Point_set_unit</definition>
+        <argsstring>(PointHandle handle, SymbolUnitHandle unit)</argsstring>
+        <name>Point_set_unit</name>
+        <param>
+          <type>PointHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/Point_c_api.h" line="100" column="6" declfile="c-api/include/falcon_core/math/Point_c_api.h" declline="100" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListConnection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/MapConnectionDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/MapConnectionQuantity_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/Quantity_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/units/SymbolUnit_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>PointHandle;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">PointHandle<sp/>Point_copy(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Point_destroy(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Point_equal(PointHandle<sp/>handle,<sp/>PointHandle<sp/>other);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Point_not_equal(PointHandle<sp/>handle,<sp/>PointHandle<sp/>other);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">StringHandle<sp/>Point_to_json_string(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">PointHandle<sp/>Point_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">PointHandle<sp/>Point_create_empty();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">PointHandle<sp/>Point_create(MapConnectionDoubleHandle<sp/>items,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SymbolUnitHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unit);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">PointHandle<sp/>Point_create_from_parent(MapConnectionQuantityHandle<sp/>items);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Point_unit<sp/>|<sp/>falcon_core::math::Point::unit<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">SymbolUnitHandle<sp/>Point_unit(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Point_insert_or_assign<sp/>|</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>falcon_core::math::Point::insert_or_assign<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Point_insert_or_assign(PointHandle<sp/><sp/><sp/><sp/><sp/><sp/>handle,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>key,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/><sp/><sp/>value);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Point_insert(PointHandle<sp/><sp/><sp/><sp/><sp/><sp/>handle,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionHandle<sp/>key,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QuantityHandle<sp/><sp/><sp/>value);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">QuantityHandle<sp/>Point_at(PointHandle<sp/>handle,<sp/>ConnectionHandle<sp/>key);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Point_erase(PointHandle<sp/>handle,<sp/>ConnectionHandle<sp/>key);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Point_size(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Point_empty(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Point_clear(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Point_contains(PointHandle<sp/>handle,<sp/>ConnectionHandle<sp/>key);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">ListConnectionHandle<sp/>Point_keys(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">ListQuantityHandle<sp/>Point_values(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">ListPairConnectionQuantityHandle<sp/>Point_items(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Point_coordinates<sp/>|<sp/>falcon_core::math::Point::coordinates</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">MapConnectionQuantityHandle<sp/>Point_coordinates(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Point_connections<sp/>|<sp/>falcon_core::math::Point::connections</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal">ListConnectionHandle<sp/>Point_connections(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal">PointHandle<sp/>Point_addition(PointHandle<sp/>handle,<sp/>PointHandle<sp/>other);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal">PointHandle<sp/>Point_subtraction(PointHandle<sp/>handle,<sp/>PointHandle<sp/>other);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">PointHandle<sp/>Point_multiplication(PointHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scalar);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">PointHandle<sp/>Point_division(PointHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scalar);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">PointHandle<sp/>Point_negation(PointHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Point_set_unit(PointHandle<sp/>handle,<sp/>SymbolUnitHandle<sp/>unit);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/Point_c_api.h"/>
+  </compounddef>
+</doxygen>

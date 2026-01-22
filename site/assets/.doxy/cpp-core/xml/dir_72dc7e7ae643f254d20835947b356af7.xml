@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_72dc7e7ae643f254d20835947b356af7" kind="dir">
+    <compoundname>cpp/include/falcon_core/physics/config/geometries</compoundname>
+    <innerfile refid="DotGatesWithNeighbors_8hpp">DotGatesWithNeighbors.hpp</innerfile>
+    <innerfile refid="DotGateWithNeighbors_8hpp">DotGateWithNeighbors.hpp</innerfile>
+    <innerfile refid="GateGeometryArray1D_8hpp">GateGeometryArray1D.hpp</innerfile>
+    <innerfile refid="HasImplantedOhmic_8hpp">HasImplantedOhmic.hpp</innerfile>
+    <innerfile refid="HasLeftNeighbor_8hpp">HasLeftNeighbor.hpp</innerfile>
+    <innerfile refid="HasRightNeighbor_8hpp">HasRightNeighbor.hpp</innerfile>
+    <innerfile refid="LeftReservoirWithImplantedOhmic_8hpp">LeftReservoirWithImplantedOhmic.hpp</innerfile>
+    <innerfile refid="RightReservoirWithImplantedOhmic_8hpp">RightReservoirWithImplantedOhmic.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/physics/config/geometries/"/>
+  </compounddef>
+</doxygen>

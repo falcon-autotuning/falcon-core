@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 
@@ -8,7 +9,7 @@ namespace instrument_interfaces {
 namespace names {
 
 // Generic collection of instrument ports
-class Ports : public generic::List<InstrumentPort> {
+class FALCON_CORE_CPP_API Ports : public generic::List<InstrumentPort> {
  public:
   Ports();
   /**

@@ -3,11 +3,13 @@
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 #include <falcon_core/communications/voltage_states/DeviceVoltageStates.hpp>
 
+#include "falcon_core/export.h"
+
 namespace falcon_core {
 namespace communications {
 namespace messages {
 
-class VoltageStatesResponse : public BaseMessage {
+class FALCON_CORE_CPP_API VoltageStatesResponse : public BaseMessage {
   communications::voltage_states::DeviceVoltageStatesSP _states;
   mutable std::shared_timed_mutex                       _mu_states;
 

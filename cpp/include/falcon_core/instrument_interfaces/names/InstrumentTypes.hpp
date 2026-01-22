@@ -1,10 +1,11 @@
 #pragma once
+#include "falcon_core/export.h"
 #include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 
 namespace falcon_core {
 namespace instrument_interfaces {
 namespace names {
-struct InstrumentTypes {
+struct FALCON_CORE_CPP_API InstrumentTypes {
   static const Instrument DC_VOLTAGE_SOURCE;
   static const Instrument AMNMETER;
   static const Instrument MAGNET;

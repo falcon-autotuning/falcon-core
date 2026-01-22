@@ -1,6 +1,7 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/contexts/BaseContext.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/instrument_interfaces/names/Instrument.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
@@ -8,7 +9,7 @@ namespace falcon_core {
 namespace autotuner_interfaces {
 namespace contexts {
 
-class MeasurementContext : public contexts::BaseContext {
+class FALCON_CORE_CPP_API MeasurementContext : public contexts::BaseContext {
  protected:
   friend class cereal::access;
   MeasurementContext();

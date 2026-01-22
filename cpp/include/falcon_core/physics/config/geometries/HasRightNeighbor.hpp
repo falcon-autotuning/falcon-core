@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
@@ -11,7 +12,7 @@ namespace geometries {
 /**
  * @brief A gate with a right neighbor.
  */
-class HasRightNeighbor : public virtual generic::Song {
+class FALCON_CORE_CPP_API HasRightNeighbor : public virtual generic::Song {
   device_structures::ConnectionSP _right_neighbor;
   mutable std::shared_timed_mutex _mu_right_neighbor;
 

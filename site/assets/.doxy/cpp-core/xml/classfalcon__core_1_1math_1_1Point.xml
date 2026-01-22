@@ -1,0 +1,500 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1math_1_1Point" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::math::Point</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Map" prot="public" virt="non-virtual">falcon_core::generic::Map&lt; physics::device_structures::Connection, Quantity &gt;</basecompoundref>
+    <includes refid="Point_8hpp" local="no">Point.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1Point_1ae7a1ebaccdee3f8b38940a827f070494" prot="private" static="no" mutable="no">
+        <type>physics::units::SymbolUnitSP</type>
+        <definition>physics::units::SymbolUnitSP falcon_core::math::Point::_unit</definition>
+        <argsstring></argsstring>
+        <name>_unit</name>
+        <qualifiedname>falcon_core::math::Point::_unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="25" column="35" bodyfile="cpp/include/falcon_core/math/Point.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1Point_1a1470f68392125cfa651cf55086d9d298" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::Point::_mu_unit</definition>
+        <argsstring></argsstring>
+        <name>_mu_unit</name>
+        <qualifiedname>falcon_core::math::Point::_mu_unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="26" column="35" bodyfile="cpp/include/falcon_core/math/Point.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1math_1_1Point_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::math::Point::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="75" column="16" bodyfile="cpp/include/falcon_core/math/Point.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a0ad2f8abc8ba18a2f52af1b01bfba825" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::Point::Point</definition>
+        <argsstring>(const Point &amp;other)</argsstring>
+        <name>Point</name>
+        <qualifiedname>falcon_core::math::Point::Point</qualifiedname>
+        <param>
+          <type>const Point &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="29" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1abdc0625e5e0da7c8dbe682d74d63cac9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Point &amp;</type>
+        <definition>Point &amp; falcon_core::math::Point::operator=</definition>
+        <argsstring>(const Point &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::math::Point::operator=</qualifiedname>
+        <param>
+          <type>const Point &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="30" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1ae81ddcfee7350c8cd19a2a8aeb7ff280" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::Point::Point</definition>
+        <argsstring>()</argsstring>
+        <name>Point</name>
+        <qualifiedname>falcon_core::math::Point::Point</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="31" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1afb29fd5a324a5670d9781f118c5a4433" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::Point::Point</definition>
+        <argsstring>(const generic::MapSP&lt; physics::device_structures::Connection, double &gt; &amp;init, const physics::units::SymbolUnitSP &amp;unit)</argsstring>
+        <name>Point</name>
+        <qualifiedname>falcon_core::math::Point::Point</qualifiedname>
+        <param>
+          <type>const generic::MapSP&lt; <ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connection" kindref="compound">physics::device_structures::Connection</ref>, double &gt; &amp;</type>
+          <declname>init</declname>
+        </param>
+        <param>
+          <type>const physics::units::SymbolUnitSP &amp;</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="32" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a0aa043cc7dd7d78277d703794578b075" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::Point::Point</definition>
+        <argsstring>(const generic::MapSP&lt; physics::device_structures::Connection, Quantity &gt; &amp;init)</argsstring>
+        <name>Point</name>
+        <qualifiedname>falcon_core::math::Point::Point</qualifiedname>
+        <param>
+          <type>const generic::MapSP&lt; <ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connection" kindref="compound">physics::device_structures::Connection</ref>, <ref refid="classfalcon__core_1_1math_1_1Quantity" kindref="compound">Quantity</ref> &gt; &amp;</type>
+          <declname>init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="35" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1abc5adc514458e3689503d71f47b200ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::math::Point::insert_or_assign</definition>
+        <argsstring>(const physics::device_structures::ConnectionSP &amp;key, const QuantitySP &amp;value)</argsstring>
+        <name>insert_or_assign</name>
+        <qualifiedname>falcon_core::math::Point::insert_or_assign</qualifiedname>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const QuantitySP &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>an overide of insert to make sure units are fixed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="40" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a2bafc29ca8c0a2bc42d59b180c8dddae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; iterator, bool &gt;</type>
+        <definition>std::pair&lt; iterator, bool &gt; falcon_core::math::Point::insert</definition>
+        <argsstring>(const physics::device_structures::ConnectionSP &amp;key, const QuantitySP &amp;value)</argsstring>
+        <name>insert</name>
+        <qualifiedname>falcon_core::math::Point::insert</qualifiedname>
+        <param>
+          <type>const physics::device_structures::ConnectionSP &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const QuantitySP &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>an overide of insert to make sure units are fixed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="46" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a0a5fbdacf6a5586b6d54205bfa940c38" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const physics::units::SymbolUnitSP</type>
+        <definition>const physics::units::SymbolUnitSP falcon_core::math::Point::unit</definition>
+        <argsstring>() const</argsstring>
+        <name>unit</name>
+        <qualifiedname>falcon_core::math::Point::unit</qualifiedname>
+        <briefdescription>
+<para>Returns the SI unit for the point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="52" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1af4c424ec4d389b3e157100bdfa1bf088" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const generic::MapSP&lt; <ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connection" kindref="compound">physics::device_structures::Connection</ref>, <ref refid="classfalcon__core_1_1math_1_1Quantity" kindref="compound">Quantity</ref> &gt;</type>
+        <definition>const generic::MapSP&lt; physics::device_structures::Connection, Quantity &gt; falcon_core::math::Point::coordinates</definition>
+        <argsstring>() const</argsstring>
+        <name>coordinates</name>
+        <qualifiedname>falcon_core::math::Point::coordinates</qualifiedname>
+        <briefdescription>
+<para>Returns the coordinates for the point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="57" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a52ed96c88ca6c4d14d63ccadd0527494" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1physics_1_1device__structures_1_1Connection" kindref="compound">physics::device_structures::Connection</ref> &gt;</type>
+        <definition>const generic::ListSP&lt; physics::device_structures::Connection &gt; falcon_core::math::Point::connections</definition>
+        <argsstring>() const</argsstring>
+        <name>connections</name>
+        <qualifiedname>falcon_core::math::Point::connections</qualifiedname>
+        <briefdescription>
+<para>Returns the connections for the point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="61" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a65d0fbbe26a942883c3cdc03cbda65a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Point &gt;</type>
+        <definition>std::shared_ptr&lt; Point &gt; falcon_core::math::Point::operator+</definition>
+        <argsstring>(const std::shared_ptr&lt; Point &gt; &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>falcon_core::math::Point::operator+</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Point &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="64" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1ab5a0218b7534f8c34a914c68e66e803d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Point &gt;</type>
+        <definition>std::shared_ptr&lt; Point &gt; falcon_core::math::Point::operator-</definition>
+        <argsstring>(const std::shared_ptr&lt; Point &gt; &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::Point::operator-</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Point &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="65" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1ae88f2ac06f95dc6747bf98e7db6d96d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Point &gt;</type>
+        <definition>std::shared_ptr&lt; Point &gt; falcon_core::math::Point::operator*</definition>
+        <argsstring>(double scalar) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>falcon_core::math::Point::operator*</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="66" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1ab4042ae6aaa38cf2bd81e00ba1533f0d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Point &gt;</type>
+        <definition>std::shared_ptr&lt; Point &gt; falcon_core::math::Point::operator/</definition>
+        <argsstring>(double scalar) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>falcon_core::math::Point::operator/</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="67" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a727406929fff373d86d2638c91aa0b61" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Point &gt;</type>
+        <definition>std::shared_ptr&lt; Point &gt; falcon_core::math::Point::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::Point::operator-</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="68" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a270d355bb80f463a436959887c31eeed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::math::Point::set_unit</definition>
+        <argsstring>(physics::units::SymbolUnitSP unit)</argsstring>
+        <name>set_unit</name>
+        <qualifiedname>falcon_core::math::Point::set_unit</qualifiedname>
+        <param>
+          <type>physics::units::SymbolUnitSP</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="70" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1ad6ad86b523f82996ad53a6d88fd2ea0f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::Point::operator==</definition>
+        <argsstring>(const Point &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::math::Point::operator==</qualifiedname>
+        <param>
+          <type>const Point &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="71" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a22cf4ae1757865ae624798def8ec2734" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::Point::operator!=</definition>
+        <argsstring>(const Point &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::math::Point::operator!=</qualifiedname>
+        <param>
+          <type>const Point &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="72" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Point_1a25057f0330667e2905b953f56ac43d85" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::math::Point::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::math::Point::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Point.hpp" line="77" column="8" bodyfile="cpp/include/falcon_core/math/Point.hpp" bodystart="77" bodyend="83"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a point in a multi-dimensional space, indexed by connections. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Each <ref refid="classfalcon__core_1_1math_1_1Point" kindref="compound">Point</ref> stores a mapping from device connections to coordinate values, along with a unit. Supports arithmetic operations and iteration. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::Map&lt; physics::device_structures::Connection, Quantity &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1Map"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::Point</label>
+        <link refid="classfalcon__core_1_1math_1_1Point"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::Map&lt; physics::device_structures::Connection, Quantity &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1Map"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::Point</label>
+        <link refid="classfalcon__core_1_1math_1_1Point"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/math/Point.hpp" line="23" column="1" bodyfile="cpp/include/falcon_core/math/Point.hpp" bodystart="24" bodyend="84"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a1470f68392125cfa651cf55086d9d298" prot="private" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>_mu_unit</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1ae7a1ebaccdee3f8b38940a827f070494" prot="private" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>_unit</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a2095e2a5a1c88f31e41934b73d467e8e" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>at</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a7acf6a4d1d2171d8c859808ae7539d3f" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac7e8789dc6af1c32e902c5567a55d184" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>cbegin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6b18ee5985ff5bc951a68aab5d78b50e" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>cend</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4a766530efafc51c3e23625d7af9fd9d" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>clear</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a52ed96c88ca6c4d14d63ccadd0527494" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>connections</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1afc58b04fd9f846e6f8430084fe5943e4" prot="protected" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>const_iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ab0de81e4e92c0d3c51d89b7c4ec855d7" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>contains</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1af4c424ec4d389b3e157100bdfa1bf088" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>coordinates</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a8b02ebb498173597ab0884f4b4e467bf" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>create</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aaef974888aa75ee071b5a3552233ee85" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>create_empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1aeb55a1fb30f030c23c99e9bc5c675e25" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>empty</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a219754647f38dde6357f9f21346b06a2" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6c6a509731f529f2cb06e8d1d37bb35c" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>erase</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ab5459580d4f80ec7313b9d94a00286c6" prot="protected" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>find</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a2bafc29ca8c0a2bc42d59b180c8dddae" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4d17123ecc0f4e792f22d10ec0a79341" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; physics::device_structures::Connection, Quantity &gt;::"><scope>falcon_core::math::Point</scope><name>insert</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1abc5adc514458e3689503d71f47b200ea" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>insert_or_assign</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ad60e80705672767a50518049f7dab5ab" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; physics::device_structures::Connection, Quantity &gt;::"><scope>falcon_core::math::Point</scope><name>insert_or_assign</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a6773d17be8c4424b2f1d7c2d3620adeb" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>items</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac43d28b18acf543882a79b230d3ffeff" prot="protected" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>iterator</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a3191fa21526b1d21396dc9bd014ff5d4" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>keys</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a8685ea03075adb4a2bda29bdb9c9b203" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>Map</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a22cf4ae1757865ae624798def8ec2734" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1ac5c4d437d8d168e336390af2c136a849" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; physics::device_structures::Connection, Quantity &gt;::"><scope>falcon_core::math::Point</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1ae88f2ac06f95dc6747bf98e7db6d96d2" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>operator*</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a65d0fbbe26a942883c3cdc03cbda65a5" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>operator+</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1ab5a0218b7534f8c34a914c68e66e803d" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a727406929fff373d86d2638c91aa0b61" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1ab4042ae6aaa38cf2bd81e00ba1533f0d" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>operator/</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1abdc0625e5e0da7c8dbe682d74d63cac9" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abba87cdd6da19288ae9ee095f184d7fe" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; physics::device_structures::Connection, Quantity &gt;::"><scope>falcon_core::math::Point</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1ad6ad86b523f82996ad53a6d88fd2ea0f" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1abebc000b88ed7bbfba0b64c81a15b811" prot="public" virt="non-virtual" ambiguityscope="falcon_core::generic::Map&lt; physics::device_structures::Connection, Quantity &gt;::"><scope>falcon_core::math::Point</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a73ec82ac43c448c292313d33cfb0079e" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>operator[]</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a0ad2f8abc8ba18a2f52af1b01bfba825" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>Point</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1ae81ddcfee7350c8cd19a2a8aeb7ff280" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>Point</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1afb29fd5a324a5670d9781f118c5a4433" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>Point</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a0aa043cc7dd7d78277d703794578b075" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>Point</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a25057f0330667e2905b953f56ac43d85" prot="protected" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a270d355bb80f463a436959887c31eeed" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>set_unit</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a4ec45ddf012f933fc356ee0ea8ba1ec4" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Point_1a0a5fbdacf6a5586b6d54205bfa940c38" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>unit</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Map_1a0868d998dec5ad8d09e809fce98aa294" prot="public" virt="non-virtual"><scope>falcon_core::math::Point</scope><name>values</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::math::Point</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

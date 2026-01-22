@@ -1,0 +1,547 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="ListPairConnectionDouble__c__api_8h" kind="file" language="C++">
+    <compoundname>ListPairConnectionDouble_c_api.h</compoundname>
+    <includes refid="PairConnectionDouble__c__api_8h" local="yes">falcon_core/generic/PairConnectionDouble_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="MapConnectionDouble__c__api_8h" local="yes">c-api/include/falcon_core/generic/MapConnectionDouble_c_api.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h</label>
+        <link refid="ListPairConnectionDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/PairConnectionDouble_c_api.h</label>
+        <link refid="PairConnectionDouble__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/communications/messages/VoltageStatesResponse_c_api.h</label>
+        <link refid="VoltageStatesResponse__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h</label>
+        <link refid="DeviceVoltageStates__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h</label>
+        <link refid="ListPairConnectionDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/generic/MapConnectionDouble_c_api.h</label>
+        <link refid="MapConnectionDouble__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/math/Point_c_api.h</label>
+        <link refid="Point__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/math/Vector_c_api.h</label>
+        <link refid="Vector__c__api_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="ListPairConnectionDouble__c__api_8h_1a399c615704e0b72393e60b46fc44ff5e" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ListPairConnectionDoubleHandle</definition>
+        <argsstring></argsstring>
+        <name>ListPairConnectionDoubleHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="11" column="14" bodyfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a34266dba14e7b149bbdb4c1a953879c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionDoubleHandle</type>
+        <definition>ListPairConnectionDoubleHandle ListPairConnectionDouble_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>ListPairConnectionDouble_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="15" column="32" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="15" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a405429b1556141036aeb8f0ba26d4fa7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionDoubleHandle</type>
+        <definition>ListPairConnectionDoubleHandle ListPairConnectionDouble_copy</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle)</argsstring>
+        <name>ListPairConnectionDouble_copy</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="17" column="32" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="17" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1aa257bddeae0e3230e431b7e045c1a840" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionDoubleHandle</type>
+        <definition>ListPairConnectionDoubleHandle ListPairConnectionDouble_fill_value</definition>
+        <argsstring>(size_t count, PairConnectionDoubleHandle value)</argsstring>
+        <name>ListPairConnectionDouble_fill_value</name>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <param>
+          <type>PairConnectionDoubleHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="20" column="32" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="20" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a204812e0332ba56c2e5f7445f7432e85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionDoubleHandle</type>
+        <definition>ListPairConnectionDoubleHandle ListPairConnectionDouble_create</definition>
+        <argsstring>(PairConnectionDoubleHandle *data, size_t count)</argsstring>
+        <name>ListPairConnectionDouble_create</name>
+        <param>
+          <type>PairConnectionDoubleHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="22" column="32" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="22" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a53c5e56101a5511342d6fd95c4882479" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairConnectionDouble_destroy</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle)</argsstring>
+        <name>ListPairConnectionDouble_destroy</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1ac85d2f1759ce41ab5eb0346b5f483d9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairConnectionDouble_push_back</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value)</argsstring>
+        <name>ListPairConnectionDouble_push_back</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionDoubleHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="26" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="26" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1aab61d894800c35896edae71b5c898e58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairConnectionDouble_size</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle)</argsstring>
+        <name>ListPairConnectionDouble_size</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="28" column="8" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="28" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1af7dd34a87321216fe740df8ecf3b0aef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairConnectionDouble_empty</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle)</argsstring>
+        <name>ListPairConnectionDouble_empty</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="30" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="30" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a314076a6cbdf8c5261961a9d4596c99a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairConnectionDouble_erase_at</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle, size_t idx)</argsstring>
+        <name>ListPairConnectionDouble_erase_at</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="32" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a8f250306d3869d848ca666176bca1bc7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ListPairConnectionDouble_clear</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle)</argsstring>
+        <name>ListPairConnectionDouble_clear</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a7bdd770d43f2cd32e4fa36aa3a13f2b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PairConnectionDoubleHandle</type>
+        <definition>PairConnectionDoubleHandle ListPairConnectionDouble_at</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle, size_t idx)</argsstring>
+        <name>ListPairConnectionDouble_at</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="36" column="28" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="36" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1ad6ef837e1ff00bb2a233e3349a00ad25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairConnectionDouble_items</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle *out_buffer, size_t buffer_size)</argsstring>
+        <name>ListPairConnectionDouble_items</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionDoubleHandle *</type>
+          <declname>out_buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="38" column="8" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="38" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1aafb4fd5269faee33f7c62dad99a8c410" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairConnectionDouble_contains</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value)</argsstring>
+        <name>ListPairConnectionDouble_contains</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionDoubleHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="40" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1ac0263bdbb69526febe8475fae551061e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t ListPairConnectionDouble_index</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle, PairConnectionDoubleHandle value)</argsstring>
+        <name>ListPairConnectionDouble_index</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>PairConnectionDoubleHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="42" column="8" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="42" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a40e5dfc5c779d3fc43d7d119199e5204" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionDoubleHandle</type>
+        <definition>ListPairConnectionDoubleHandle ListPairConnectionDouble_intersection</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle, ListPairConnectionDoubleHandle other)</argsstring>
+        <name>ListPairConnectionDouble_intersection</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="44" column="32" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="44" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a6f19d7bb5d0d2de34866993daf0712b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairConnectionDouble_equal</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle, ListPairConnectionDoubleHandle other)</argsstring>
+        <name>ListPairConnectionDouble_equal</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="46" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a61c384f87ad7d33891ffde23b58c34ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ListPairConnectionDouble_not_equal</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle, ListPairConnectionDoubleHandle other)</argsstring>
+        <name>ListPairConnectionDouble_not_equal</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a00270d7740370be61361b1105421dd6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle ListPairConnectionDouble_to_json_string</definition>
+        <argsstring>(ListPairConnectionDoubleHandle handle)</argsstring>
+        <name>ListPairConnectionDouble_to_json_string</name>
+        <param>
+          <type>ListPairConnectionDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="ListPairConnectionDouble__c__api_8h_1a32489f417e8593703b10cde643a4442b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairConnectionDoubleHandle</type>
+        <definition>ListPairConnectionDoubleHandle ListPairConnectionDouble_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>ListPairConnectionDouble_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" line="53" column="32" declfile="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h" declline="53" declcolumn="32"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/PairConnectionDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ListPairConnectionDoubleHandle;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">ListPairConnectionDoubleHandle<sp/>ListPairConnectionDouble_create_empty();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">ListPairConnectionDoubleHandle<sp/>ListPairConnectionDouble_copy(ListPairConnectionDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">ListPairConnectionDoubleHandle<sp/>ListPairConnectionDouble_fill_value(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count,<sp/>PairConnectionDoubleHandle<sp/>value);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">ListPairConnectionDoubleHandle<sp/>ListPairConnectionDouble_create(PairConnectionDoubleHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_destroy(ListPairConnectionDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_push_back(ListPairConnectionDoubleHandle<sp/>handle,<sp/>PairConnectionDoubleHandle<sp/>value);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_size(ListPairConnectionDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_empty(ListPairConnectionDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_erase_at(ListPairConnectionDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_clear(ListPairConnectionDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">PairConnectionDoubleHandle<sp/>ListPairConnectionDouble_at(ListPairConnectionDoubleHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_items(ListPairConnectionDoubleHandle<sp/>handle,<sp/>PairConnectionDoubleHandle*<sp/>out_buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_contains(ListPairConnectionDoubleHandle<sp/>handle,<sp/>PairConnectionDoubleHandle<sp/>value);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_index(ListPairConnectionDoubleHandle<sp/>handle,<sp/>PairConnectionDoubleHandle<sp/>value);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">ListPairConnectionDoubleHandle<sp/>ListPairConnectionDouble_intersection(ListPairConnectionDoubleHandle<sp/>handle,<sp/>ListPairConnectionDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_equal(ListPairConnectionDoubleHandle<sp/>handle,<sp/>ListPairConnectionDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ListPairConnectionDouble_not_equal(ListPairConnectionDoubleHandle<sp/>handle,<sp/>ListPairConnectionDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>ListPairConnectionDouble_to_json_string(ListPairConnectionDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListPairConnectionDoubleHandle<sp/>ListPairConnectionDouble_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/ListPairConnectionDouble_c_api.h"/>
+  </compounddef>
+</doxygen>

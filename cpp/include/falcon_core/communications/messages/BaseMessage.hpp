@@ -3,11 +3,13 @@
 #include <falcon_core/generic/Song.hpp>
 #include <shared_mutex>
 
+#include "falcon_core/export.h"
+
 namespace falcon_core {
 namespace communications {
 namespace messages {
 
-class BaseMessage : public generic::Song {
+class FALCON_CORE_CPP_API BaseMessage : public generic::Song {
   std::string                     _message;
   mutable std::shared_timed_mutex _mu_message;
 

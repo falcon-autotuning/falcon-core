@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="CopyMacro__c__api_8h" kind="file" language="C++">
+    <compoundname>CopyMacro_c_api.h</compoundname>
+    <includedby refid="Precompiled__c__api_8h" local="yes">c-api/include/falcon_core/Precompiled_c_api.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>c-api/include/falcon_core/CopyMacro_c_api.h</label>
+        <link refid="CopyMacro__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/Precompiled_c_api.h</label>
+        <link refid="Precompiled__c__api_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="CopyMacro__c__api_8h_1add9e5ff8a63b539b8c3cdd8c1917298c" prot="public" static="no">
+        <name>DEFINE_C_API_COPY_TEMPLATE</name>
+        <param><defname>CType</defname></param>
+        <param><defname>CPPType</defname></param>
+        <initializer>  CType##Handle CType##_copy(CType##Handle handle) {                       \
+    FALCON_C_API_BEGIN                                                     \
+    if (!handle) {                                                         \
+      throw std::invalid_argument(#CType &quot;_copy: handle cannot be null&quot;);  \
+    }                                                                      \
+    std::shared_ptr&lt;CPPType&gt; self =                                        \
+        *static_cast&lt;std::shared_ptr&lt;CPPType&gt;*&gt;(handle);                   \
+    return new std::shared_ptr&lt;CPPType&gt;(std::make_shared&lt;CPPType&gt;(*self)); \
+    FALCON_C_API_END(nullptr)                                              \
+  }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/CopyMacro_c_api.h" line="3" column="9" bodyfile="c-api/include/falcon_core/CopyMacro_c_api.h" bodystart="3" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="define" id="CopyMacro__c__api_8h_1aedc9716cfaa93476f9a7dbd665ef7193" prot="public" static="no">
+        <name>DEFINE_C_API_COPY</name>
+        <param><defname>Type</defname></param>
+        <initializer>DEFINE_C_API_COPY_TEMPLATE(Type, Type)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/CopyMacro_c_api.h" line="15" column="9" bodyfile="c-api/include/falcon_core/CopyMacro_c_api.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFINE_C_API_COPY_TEMPLATE(CType,<sp/>CPPType)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"><sp/><sp/>CType##Handle<sp/>CType##_copy(CType##Handle<sp/>handle)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="5"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>FALCON_C_API_BEGIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>if<sp/>(!handle)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::invalid_argument(#CType<sp/>&quot;_copy:<sp/>handle<sp/>cannot<sp/>be<sp/>null&quot;);<sp/><sp/>\</highlight></codeline>
+<codeline lineno="8"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>std::shared_ptr&lt;CPPType&gt;<sp/>self<sp/>=<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="10"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*static_cast&lt;std::shared_ptr&lt;CPPType&gt;*&gt;(handle);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="11"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>return<sp/>new<sp/>std::shared_ptr&lt;CPPType&gt;(std::make_shared&lt;CPPType&gt;(*self));<sp/>\</highlight></codeline>
+<codeline lineno="12"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>FALCON_C_API_END(nullptr)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="13"><highlight class="preprocessor"><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFINE_C_API_COPY(Type)<sp/>DEFINE_C_API_COPY_TEMPLATE(Type,<sp/>Type)</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/CopyMacro_c_api.h"/>
+  </compounddef>
+</doxygen>

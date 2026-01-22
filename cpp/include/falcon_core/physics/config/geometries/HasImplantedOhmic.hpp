@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 namespace falcon_core {
@@ -9,7 +10,7 @@ namespace geometries {
 /**
  * @brief A gate with an ohmic below it.
  */
-class HasImplantedOhmic : public virtual generic::Song {
+class FALCON_CORE_CPP_API HasImplantedOhmic : public virtual generic::Song {
   device_structures::ConnectionSP _ohmic;
   mutable std::shared_timed_mutex _mu_ohmic;
 

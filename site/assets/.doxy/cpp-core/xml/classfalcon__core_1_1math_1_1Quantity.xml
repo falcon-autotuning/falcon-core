@@ -1,0 +1,862 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1math_1_1Quantity" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::math::Quantity</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <derivedcompoundref refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageState" prot="public" virt="non-virtual">falcon_core::communications::voltage_states::DeviceVoltageState</derivedcompoundref>
+    <includes refid="Quantity_8hpp" local="no">Quantity.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1Quantity_1a3c4bd0d9c647963eae78930056b331c2" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double falcon_core::math::Quantity::_value</definition>
+        <argsstring></argsstring>
+        <name>_value</name>
+        <qualifiedname>falcon_core::math::Quantity::_value</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="20" column="35" bodyfile="cpp/include/falcon_core/math/Quantity.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1Quantity_1a9e0f81d47eebc380cb0840d9d5f53e75" prot="private" static="no" mutable="no">
+        <type>physics::units::SymbolUnitSP</type>
+        <definition>physics::units::SymbolUnitSP falcon_core::math::Quantity::_unit</definition>
+        <argsstring></argsstring>
+        <name>_unit</name>
+        <qualifiedname>falcon_core::math::Quantity::_unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="21" column="35" bodyfile="cpp/include/falcon_core/math/Quantity.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1Quantity_1a71b227b64cb2014e3dbffacf3dede9b0" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::Quantity::_mu_value</definition>
+        <argsstring></argsstring>
+        <name>_mu_value</name>
+        <qualifiedname>falcon_core::math::Quantity::_mu_value</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="22" column="35" bodyfile="cpp/include/falcon_core/math/Quantity.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1Quantity_1a4dda6d62d3f1f8481e4361923cd2c14e" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::Quantity::_mu_unit</definition>
+        <argsstring></argsstring>
+        <name>_mu_unit</name>
+        <qualifiedname>falcon_core::math::Quantity::_mu_unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="23" column="35" bodyfile="cpp/include/falcon_core/math/Quantity.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1math_1_1Quantity_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::math::Quantity::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="92" column="16" bodyfile="cpp/include/falcon_core/math/Quantity.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1acf6d871ddd9bfbd30e3242dd2a2c73a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::Quantity::Quantity</definition>
+        <argsstring>(const Quantity &amp;other)</argsstring>
+        <name>Quantity</name>
+        <qualifiedname>falcon_core::math::Quantity::Quantity</qualifiedname>
+        <param>
+          <type>const Quantity &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="26" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1ab71643160f475670dac69342e9b7d776" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator=</definition>
+        <argsstring>(const Quantity &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator=</qualifiedname>
+        <param>
+          <type>const Quantity &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="27" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a97cb1c82c99dd821abe5226b65fd536b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::Quantity::Quantity</definition>
+        <argsstring>(double value, physics::units::SymbolUnitSP unit=physics::units::SymbolUnit::Volt())</argsstring>
+        <name>Quantity</name>
+        <qualifiedname>falcon_core::math::Quantity::Quantity</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>physics::units::SymbolUnitSP</type>
+          <declname>unit</declname>
+          <defval><ref refid="classfalcon__core_1_1physics_1_1units_1_1SymbolUnit_1ab18074c5750e6e964385e75d3c5340c6" kindref="member">physics::units::SymbolUnit::Volt</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Initialize a <ref refid="classfalcon__core_1_1math_1_1Quantity" kindref="compound">Quantity</ref>, which is a float with a unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the value of the quantity. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>unit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the unit of the quantity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="33" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a6f6e8608eccfc3b60de9ee60d96c9437" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double falcon_core::math::Quantity::value</definition>
+        <argsstring>() const</argsstring>
+        <name>value</name>
+        <qualifiedname>falcon_core::math::Quantity::value</qualifiedname>
+        <briefdescription>
+<para>Return the value of the quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="40" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a66a9d00c7b10ad4e776257f2589a7b60" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>physics::units::SymbolUnitSP</type>
+        <definition>physics::units::SymbolUnitSP falcon_core::math::Quantity::unit</definition>
+        <argsstring>() const</argsstring>
+        <name>unit</name>
+        <qualifiedname>falcon_core::math::Quantity::unit</qualifiedname>
+        <briefdescription>
+<para>Return the unit of the quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="44" column="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1aac2f08681baa766af6d5617d50558937" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::math::Quantity::convert_to</definition>
+        <argsstring>(physics::units::SymbolUnitSP target_unit)</argsstring>
+        <name>convert_to</name>
+        <qualifiedname>falcon_core::math::Quantity::convert_to</qualifiedname>
+        <param>
+          <type>physics::units::SymbolUnitSP</type>
+          <declname>target_unit</declname>
+        </param>
+        <briefdescription>
+<para>Convert the quantity to a different unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>target_unit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the raget unit to convert to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="49" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1abc84c0a05f655108791bbf442437d43f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator*</definition>
+        <argsstring>(const int &amp;other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>falcon_core::math::Quantity::operator*</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="51" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a6635d75fe891ec8610c7cb216b8d581a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator*</definition>
+        <argsstring>(const double &amp;other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>falcon_core::math::Quantity::operator*</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="52" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1aeae128279f68ab886c4a089eff270de6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator*</definition>
+        <argsstring>(const std::shared_ptr&lt; Quantity &gt; &amp;other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>falcon_core::math::Quantity::operator*</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Quantity &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="53" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1aa8e612506b4c40e1b50f59fe9006d9bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator*=</definition>
+        <argsstring>(const int &amp;other)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator*=</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="55" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1ab7b09f04110b3d271402434a39a59752" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator*=</definition>
+        <argsstring>(const double &amp;other)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator*=</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="56" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a9e9b3a11a6a90032f13b9e8e3427b7b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator*=</definition>
+        <argsstring>(const std::shared_ptr&lt; Quantity &gt; &amp;other)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator*=</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Quantity &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="57" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a792be3b06fe6870f82410386fcccb453" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator/</definition>
+        <argsstring>(const int &amp;other) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>falcon_core::math::Quantity::operator/</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="59" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a83e1a5e318fafe82e883cf24342f40ae" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator/</definition>
+        <argsstring>(const double &amp;other) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>falcon_core::math::Quantity::operator/</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="60" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a80b7a42b92256471eda7d205c371ec65" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator/</definition>
+        <argsstring>(const std::shared_ptr&lt; Quantity &gt; &amp;other) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>falcon_core::math::Quantity::operator/</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Quantity &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="61" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a788026dde7c04c8355c594abbcdbe747" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator/=</definition>
+        <argsstring>(const int &amp;other)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator/=</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="63" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a8765683e0e4da4188f2d448519ce14ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator/=</definition>
+        <argsstring>(const double &amp;other)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator/=</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="64" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a402c56f12f526981f97362581ddb475e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator/=</definition>
+        <argsstring>(const std::shared_ptr&lt; Quantity &gt; &amp;other)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator/=</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Quantity &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="65" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1af5a38693311108f0bde3472e3a468def" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator^</definition>
+        <argsstring>(const int &amp;other) const</argsstring>
+        <name>operator^</name>
+        <qualifiedname>falcon_core::math::Quantity::operator^</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="67" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a1038e236367163b01c63f7ca852cabf0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator+</definition>
+        <argsstring>(const int &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>falcon_core::math::Quantity::operator+</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="69" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a5e7f754a99879567be8bb9a9a88efb02" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator+</definition>
+        <argsstring>(const double &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>falcon_core::math::Quantity::operator+</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="70" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1ad51734e163bc72fddd3a9c1d99b927d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator+</definition>
+        <argsstring>(const std::shared_ptr&lt; Quantity &gt; &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>falcon_core::math::Quantity::operator+</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Quantity &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="71" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a319f5ab6e208a7e28fc915c7ac3005a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator+=</definition>
+        <argsstring>(const int &amp;other)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator+=</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="73" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a9d519a35bdae41de26fc5331241b8b20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator+=</definition>
+        <argsstring>(const double &amp;other)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator+=</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="74" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a63e339c6047c04c2c955c4a9d9787a2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator+=</definition>
+        <argsstring>(const std::shared_ptr&lt; Quantity &gt; &amp;other)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator+=</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Quantity &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="75" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a5d5efc66c0dde4809ffbd50b99cd8074" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::Quantity::operator-</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="77" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a11707de458a92f46b1240ee492760190" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator-</definition>
+        <argsstring>(const int &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::Quantity::operator-</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="79" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a7714deb0ff5042ed44409f410020fa89" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator-</definition>
+        <argsstring>(const double &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::Quantity::operator-</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="80" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1ac296be4d9018695ab83f2b577e577d0d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::operator-</definition>
+        <argsstring>(const std::shared_ptr&lt; Quantity &gt; &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>falcon_core::math::Quantity::operator-</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Quantity &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="81" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1add2c5256c958d5da2a2d6cc5c7f65e07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator-=</definition>
+        <argsstring>(const int &amp;other)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator-=</qualifiedname>
+        <param>
+          <type>const int &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="83" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a1f0ecdc994e8a433a76859255e61db18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator-=</definition>
+        <argsstring>(const double &amp;other)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator-=</qualifiedname>
+        <param>
+          <type>const double &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="84" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1aeb88f8f6948450d1dd46123f2352f412" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Quantity &amp;</type>
+        <definition>Quantity &amp; falcon_core::math::Quantity::operator-=</definition>
+        <argsstring>(const std::shared_ptr&lt; Quantity &gt; &amp;other)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator-=</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; Quantity &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="85" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a1eadecc9aa63132e5113be9cac1ce00a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Quantity &gt;</type>
+        <definition>std::shared_ptr&lt; Quantity &gt; falcon_core::math::Quantity::abs</definition>
+        <argsstring>() const</argsstring>
+        <name>abs</name>
+        <qualifiedname>falcon_core::math::Quantity::abs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="87" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1aa36646c70a8aa745bb456fd367e79bdc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::Quantity::operator==</definition>
+        <argsstring>(const Quantity &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::math::Quantity::operator==</qualifiedname>
+        <param>
+          <type>const Quantity &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="88" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a0a128bd355f49035d9a62b7c215bea4a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::math::Quantity::operator!=</definition>
+        <argsstring>(const Quantity &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::math::Quantity::operator!=</qualifiedname>
+        <param>
+          <type>const Quantity &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="89" column="29"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a97bca742e40a93ea7eb26d73aed98805" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::math::Quantity::Quantity</definition>
+        <argsstring>()</argsstring>
+        <name>Quantity</name>
+        <qualifiedname>falcon_core::math::Quantity::Quantity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="93" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1Quantity_1a0e12464ccfb593b834df09b4f3f0f67b" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::math::Quantity::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::math::Quantity::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/Quantity.hpp" line="95" column="8" bodyfile="cpp/include/falcon_core/math/Quantity.hpp" bodystart="95" bodyend="102"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a physical quantity with a value and unit. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Supports arithmetic operations and unit conversion. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>falcon_core::communications::voltage_states::DeviceVoltageState</label>
+        <link refid="classfalcon__core_1_1communications_1_1voltage__states_1_1DeviceVoltageState"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::Quantity</label>
+        <link refid="classfalcon__core_1_1math_1_1Quantity"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::Quantity</label>
+        <link refid="classfalcon__core_1_1math_1_1Quantity"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/math/Quantity.hpp" line="19" column="1" bodyfile="cpp/include/falcon_core/math/Quantity.hpp" bodystart="19" bodyend="103"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a4dda6d62d3f1f8481e4361923cd2c14e" prot="private" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>_mu_unit</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a71b227b64cb2014e3dbffacf3dede9b0" prot="private" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>_mu_value</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a9e0f81d47eebc380cb0840d9d5f53e75" prot="private" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>_unit</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a3c4bd0d9c647963eae78930056b331c2" prot="private" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>_value</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a1eadecc9aa63132e5113be9cac1ce00a" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>abs</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1aac2f08681baa766af6d5617d50558937" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>convert_to</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a0a128bd355f49035d9a62b7c215bea4a" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1abc84c0a05f655108791bbf442437d43f" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator*</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a6635d75fe891ec8610c7cb216b8d581a" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator*</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1aeae128279f68ab886c4a089eff270de6" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator*</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1aa8e612506b4c40e1b50f59fe9006d9bf" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator*=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1ab7b09f04110b3d271402434a39a59752" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator*=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a9e9b3a11a6a90032f13b9e8e3427b7b0" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator*=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a1038e236367163b01c63f7ca852cabf0" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator+</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a5e7f754a99879567be8bb9a9a88efb02" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator+</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1ad51734e163bc72fddd3a9c1d99b927d9" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator+</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a319f5ab6e208a7e28fc915c7ac3005a7" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator+=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a9d519a35bdae41de26fc5331241b8b20" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator+=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a63e339c6047c04c2c955c4a9d9787a2f" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator+=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a5d5efc66c0dde4809ffbd50b99cd8074" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a11707de458a92f46b1240ee492760190" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a7714deb0ff5042ed44409f410020fa89" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1ac296be4d9018695ab83f2b577e577d0d" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator-</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1add2c5256c958d5da2a2d6cc5c7f65e07" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator-=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a1f0ecdc994e8a433a76859255e61db18" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator-=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1aeb88f8f6948450d1dd46123f2352f412" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator-=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a792be3b06fe6870f82410386fcccb453" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator/</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a83e1a5e318fafe82e883cf24342f40ae" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator/</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a80b7a42b92256471eda7d205c371ec65" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator/</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a788026dde7c04c8355c594abbcdbe747" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator/=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a8765683e0e4da4188f2d448519ce14ab" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator/=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a402c56f12f526981f97362581ddb475e" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator/=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1ab71643160f475670dac69342e9b7d776" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1aa36646c70a8aa745bb456fd367e79bdc" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1af5a38693311108f0bde3472e3a468def" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>operator^</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1acf6d871ddd9bfbd30e3242dd2a2c73a5" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>Quantity</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a97cb1c82c99dd821abe5226b65fd536b" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>Quantity</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a97bca742e40a93ea7eb26d73aed98805" prot="protected" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>Quantity</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a0e12464ccfb593b834df09b4f3f0f67b" prot="protected" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a66a9d00c7b10ad4e776257f2589a7b60" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>unit</name></member>
+      <member refid="classfalcon__core_1_1math_1_1Quantity_1a6f6e8608eccfc3b60de9ee60d96c9437" prot="public" virt="non-virtual"><scope>falcon_core::math::Quantity</scope><name>value</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::math::Quantity</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

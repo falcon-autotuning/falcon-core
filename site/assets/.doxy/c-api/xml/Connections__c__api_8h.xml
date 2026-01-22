@@ -1,0 +1,795 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="Connections__c__api_8h" kind="file" language="C++">
+    <compoundname>Connections_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="ListConnection__c__api_8h" local="yes">falcon_core/generic/ListConnection_c_api.h</includes>
+    <includes refid="Connection__c__api_8h" local="yes">falcon_core/physics/device_structures/Connection_c_api.h</includes>
+    <includedby refid="InterpretationContainerDouble__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</includedby>
+    <includedby refid="InterpretationContainerQuantity__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h</includedby>
+    <includedby refid="InterpretationContainerString__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h</includedby>
+    <includedby refid="ListConnections__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListConnections_c_api.h</includedby>
+    <includedby refid="PairChannelConnections__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairChannelConnections_c_api.h</includedby>
+    <includedby refid="PairConnectionConnections__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairConnectionConnections_c_api.h</includedby>
+    <includedby refid="Adjacency__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h</includedby>
+    <includedby refid="Config__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Config_c_api.h</includedby>
+    <includedby refid="Group__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/core/Group_c_api.h</includedby>
+    <includedby refid="GateGeometryArray1D__c__api_8h" local="yes">c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</includedby>
+    <includedby refid="GateRelations__c__api_8h" local="yes">c-api/include/falcon_core/physics/device_structures/GateRelations_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</label>
+        <link refid="InterpretationContainerDouble__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h</label>
+        <link refid="InterpretationContainerQuantity__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h</label>
+        <link refid="InterpretationContainerString__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/generic/ListConnections_c_api.h</label>
+        <link refid="ListConnections__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>c-api/include/falcon_core/generic/ListGroup_c_api.h</label>
+        <link refid="ListGroup__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/generic/ListPairChannelConnections_c_api.h</label>
+        <link refid="ListPairChannelConnections__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/generic/ListPairConnectionConnections_c_api.h</label>
+        <link refid="ListPairConnectionConnections__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>c-api/include/falcon_core/generic/ListPairGnameGroup_c_api.h</label>
+        <link refid="ListPairGnameGroup__c__api_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/MapChannelConnections_c_api.h</label>
+        <link refid="MapChannelConnections__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>c-api/include/falcon_core/generic/MapGnameGroup_c_api.h</label>
+        <link refid="MapGnameGroup__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/generic/PairChannelConnections_c_api.h</label>
+        <link refid="PairChannelConnections__c__api_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/generic/PairConnectionConnections_c_api.h</label>
+        <link refid="PairConnectionConnections__c__api_8h_source"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>c-api/include/falcon_core/generic/PairGnameGroup_c_api.h</label>
+        <link refid="PairGnameGroup__c__api_8h_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/physics/config/Loader_c_api.h</label>
+        <link refid="Loader__c__api_8h_source"/>
+      </node>
+      <node id="14">
+        <label>c-api/include/falcon_core/physics/config/core/Adjacency_c_api.h</label>
+        <link refid="Adjacency__c__api_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/physics/config/core/Config_c_api.h</label>
+        <link refid="Config__c__api_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>c-api/include/falcon_core/physics/config/core/Group_c_api.h</label>
+        <link refid="Group__c__api_8h_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>c-api/include/falcon_core/physics/config/core/VoltageConstraints_c_api.h</label>
+        <link refid="VoltageConstraints__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>c-api/include/falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h</label>
+        <link refid="GateGeometryArray1D__c__api_8h_source"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/physics/device_structures/Connections_c_api.h</label>
+        <link refid="Connections__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/physics/device_structures/GateRelations_c_api.h</label>
+        <link refid="GateRelations__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Connections__c__api_8h_1a8a9bc9459df43f773de89f39f498ddb4" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* ConnectionsHandle</definition>
+        <argsstring></argsstring>
+        <name>ConnectionsHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="10" column="14" bodyfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="Connections__c__api_8h_1a5feec9bd083404372cd2b7afeb3b8a4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Connections_copy</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_copy</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="13" column="19" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="13" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1ab06138cc2268cb5a5ff67ffbcbc0bfb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Connections_destroy</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_destroy</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="15" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="15" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1ae401d5e43de3bb39d6dc5613cd5f240d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_equal</definition>
+        <argsstring>(ConnectionsHandle handle, ConnectionsHandle other)</argsstring>
+        <name>Connections_equal</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="17" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a0485f9caa472c3154a330c51ef5ba9c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_not_equal</definition>
+        <argsstring>(ConnectionsHandle handle, ConnectionsHandle other)</argsstring>
+        <name>Connections_not_equal</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1acfe8492ea5fdc1afb18161adfd973041" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle Connections_to_json_string</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_to_json_string</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="21" column="14" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="21" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a8dae569b987635f683e4f5d3637ec8c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Connections_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>Connections_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="23" column="19" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="23" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a22de15a2f90598abebc913e8c4078c04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Connections_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>Connections_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="25" column="19" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="25" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1aad6e6d3e4e5947c7b5d80e828373c42e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Connections_create</definition>
+        <argsstring>(ListConnectionHandle items)</argsstring>
+        <name>Connections_create</name>
+        <param>
+          <type>ListConnectionHandle</type>
+          <declname>items</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="27" column="19" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="27" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1ad14c8ada30fab0a292e89ef5a7d26d75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_is_gates</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_is_gates</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if all connections are gates (not ohmics). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="34" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="34" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a68bb53e0e41c99bd389009c0aaa07268" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_is_ohmics</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_is_ohmics</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if all connections are ohmics (not gates). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="41" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="41" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a4ef0aae975ef756928c9cc298d7326d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_is_dot_gates</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_is_dot_gates</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if all connections are dot gates (plunger or barrier). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="48" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a9cc704b51242d4988e527949ac5971cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_is_plunger_gates</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_is_plunger_gates</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if all connections are plunger gates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="55" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="55" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1ab53c48a238752a44364886acf334eec4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_is_barrier_gates</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_is_barrier_gates</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if all connections are barrier gates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="62" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="62" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a8d6248ad712812b606349e7a2fd712c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_is_reservoir_gates</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_is_reservoir_gates</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if all connections are reservoir gates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="69" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="69" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a215e2ea8cebd883b26aaacda6715f31e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_is_screening_gates</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_is_screening_gates</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Check if all connections are screening gates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="76" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="76" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a11b8f14fdc22a2a748e39453afd0ba59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionsHandle</type>
+        <definition>ConnectionsHandle Connections_intersection</definition>
+        <argsstring>(ConnectionsHandle handle, ConnectionsHandle other)</argsstring>
+        <name>Connections_intersection</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Finds the intersection between this list and another. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other list to compare again. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A list of values containing elements from both. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="85" column="19" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="85" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a64a64c69d36d1bdb9286904938fc8447" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Connections_push_back</definition>
+        <argsstring>(ConnectionsHandle handle, ConnectionHandle value)</argsstring>
+        <name>Connections_push_back</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="88" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="88" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1abb09f5fdd4f217aedb7a24056ec84315" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Connections_size</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_size</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="90" column="8" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="90" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1aea2844a5c1da2164b80598e1671d240f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_empty</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_empty</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="92" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="92" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a63776494c8dac2f5ebd40046dc51f9ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Connections_erase_at</definition>
+        <argsstring>(ConnectionsHandle handle, size_t idx)</argsstring>
+        <name>Connections_erase_at</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="94" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="94" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1ac472634d8b768b111870857a7047d9d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Connections_clear</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_clear</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="96" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="96" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a6778bf1d231724f910aa03c02a2230dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ConnectionHandle</type>
+        <definition>ConnectionHandle Connections_at</definition>
+        <argsstring>(ConnectionsHandle handle, size_t idx)</argsstring>
+        <name>Connections_at</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="98" column="18" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="98" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a7351764c543c1a68703bbbe2a54045a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListConnectionHandle</type>
+        <definition>ListConnectionHandle Connections_items</definition>
+        <argsstring>(ConnectionsHandle handle)</argsstring>
+        <name>Connections_items</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="100" column="22" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="100" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a49ee67e0a28a3a13d642c6e033083a02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Connections_contains</definition>
+        <argsstring>(ConnectionsHandle handle, ConnectionHandle value)</argsstring>
+        <name>Connections_contains</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="102" column="6" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="102" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Connections__c__api_8h_1a9c8c9bcecc171a435f341db81afc79bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Connections_index</definition>
+        <argsstring>(ConnectionsHandle handle, ConnectionHandle value)</argsstring>
+        <name>Connections_index</name>
+        <param>
+          <type>ConnectionsHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>ConnectionHandle</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" line="104" column="8" declfile="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h" declline="104" declcolumn="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListConnection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/device_structures/Connection_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ConnectionsHandle;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">ConnectionsHandle<sp/>Connections_copy(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Connections_destroy(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_equal(ConnectionsHandle<sp/>handle,<sp/>ConnectionsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_not_equal(ConnectionsHandle<sp/>handle,<sp/>ConnectionsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">StringHandle<sp/>Connections_to_json_string(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">ConnectionsHandle<sp/>Connections_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">ConnectionsHandle<sp/>Connections_create_empty();</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">ConnectionsHandle<sp/>Connections_create(ListConnectionHandle<sp/>items);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Connections_is_gates<sp/>|</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::device_structures::Connections::is_gates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_is_gates(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Connections_is_ohmics<sp/>|</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::device_structures::Connections::is_ohmics<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_is_ohmics(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Connections_is_dot_gates<sp/>|</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::device_structures::Connections::is_dot_gates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_is_dot_gates(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Connections_is_plunger_gates<sp/>|</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::device_structures::Connections::is_plunger_gates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_is_plunger_gates(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Connections_is_barrier_gates<sp/>|</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::device_structures::Connections::is_barrier_gates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_is_barrier_gates(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Connections_is_reservoir_gates<sp/>|</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::device_structures::Connections::is_reservoir_gates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_is_reservoir_gates(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Connections_is_screening_gates<sp/>|</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::device_structures::Connections::is_screening_gates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_is_screening_gates(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>Connections_intersection<sp/>|</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/>falcon_core::physics::device_structures::Connections::intersection<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">ConnectionsHandle<sp/>Connections_intersection(ConnectionsHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConnectionsHandle<sp/>other);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Connections_push_back(ConnectionsHandle<sp/>handle,<sp/>ConnectionHandle<sp/>value);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Connections_size(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_empty(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Connections_erase_at(ConnectionsHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Connections_clear(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal">ConnectionHandle<sp/>Connections_at(ConnectionsHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>idx);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal">ListConnectionHandle<sp/>Connections_items(ConnectionsHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Connections_contains(ConnectionsHandle<sp/>handle,<sp/>ConnectionHandle<sp/>value);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>Connections_index(ConnectionsHandle<sp/>handle,<sp/>ConnectionHandle<sp/>value);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/physics/device_structures/Connections_c_api.h"/>
+  </compounddef>
+</doxygen>

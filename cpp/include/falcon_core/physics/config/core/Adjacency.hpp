@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/FArray.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
 
@@ -11,7 +12,7 @@ namespace core {
  * @brief This a graph representation of the connections between gates in a
  * quantum dot device.
  **/
-class Adjacency : public generic::FArray<int> {
+class FALCON_CORE_CPP_API Adjacency : public generic::FArray<int> {
   using Indexes = physics::device_structures::ConnectionsSP;
   Indexes                         _indexes;
   mutable std::shared_timed_mutex _mu_indexes;

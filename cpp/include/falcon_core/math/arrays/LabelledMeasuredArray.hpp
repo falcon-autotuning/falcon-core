@@ -6,6 +6,7 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/math/arrays/IsLabelled.hpp"
 #include "falcon_core/math/arrays/MeasuredArray.hpp"
 namespace falcon_core {
@@ -15,7 +16,8 @@ namespace arrays {
 /**
  * @brief An array with a context label attached.
  */
-class LabelledMeasuredArray : public MeasuredArray, public IsLabelled<double> {
+class FALCON_CORE_CPP_API LabelledMeasuredArray : public MeasuredArray,
+                                                  public IsLabelled<double> {
  public:
   LabelledMeasuredArray(const LabelledMeasuredArray& other);
   LabelledMeasuredArray& operator=(const LabelledMeasuredArray& other);

@@ -1,0 +1,616 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="MapStringDouble__c__api_8h" kind="file" language="C++">
+    <compoundname>MapStringDouble_c_api.h</compoundname>
+    <includes refid="ListPairStringDouble__c__api_8h" local="yes">falcon_core/generic/ListPairStringDouble_c_api.h</includes>
+    <includes refid="ListString__c__api_8h" local="yes">falcon_core/generic/ListString_c_api.h</includes>
+    <includes refid="ListDouble__c__api_8h" local="yes">falcon_core/generic/ListDouble_c_api.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includedby refid="PortTransform__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</includedby>
+    <includedby refid="AnalyticFunction__c__api_8h" local="yes">c-api/include/falcon_core/math/AnalyticFunction_c_api.h</includedby>
+    <incdepgraph>
+      <node id="8">
+        <label>falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core/generic/ListPairStringDouble_c_api.h</label>
+        <link refid="ListPairStringDouble__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapStringDouble_c_api.h</label>
+        <link refid="MapStringDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/PairStringDouble_c_api.h</label>
+        <link refid="PairStringDouble__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="7">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="ListPairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/ListPortTransform_c_api.h</label>
+        <link refid="ListPortTransform__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/generic/MapInstrumentPortPortTransform_c_api.h</label>
+        <link refid="MapInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/generic/MapStringDouble_c_api.h</label>
+        <link refid="MapStringDouble__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/generic/PairInstrumentPortPortTransform_c_api.h</label>
+        <link refid="PairInstrumentPortPortTransform__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h</label>
+        <link refid="PortTransform__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/instrument_interfaces/port_transforms/PortTransforms_c_api.h</label>
+        <link refid="PortTransforms__c__api_8h_source"/>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/math/AnalyticFunction_c_api.h</label>
+        <link refid="AnalyticFunction__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="MapStringDouble__c__api_8h_1aa7031f00118f97a7202d483b870bd019" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* MapStringDoubleHandle</definition>
+        <argsstring></argsstring>
+        <name>MapStringDoubleHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="13" column="14" bodyfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a4c9ac8dd24877483d3817300e0245fa0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapStringDoubleHandle</type>
+        <definition>MapStringDoubleHandle MapStringDouble_create_empty</definition>
+        <argsstring>()</argsstring>
+        <name>MapStringDouble_create_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="17" column="23" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="17" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1afbb391c96cef47cc28243145d95455bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapStringDoubleHandle</type>
+        <definition>MapStringDoubleHandle MapStringDouble_copy</definition>
+        <argsstring>(MapStringDoubleHandle handle)</argsstring>
+        <name>MapStringDouble_copy</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="19" column="23" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="19" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1af6bacd030e3d44f37e0e1f63c0264606" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapStringDoubleHandle</type>
+        <definition>MapStringDoubleHandle MapStringDouble_create</definition>
+        <argsstring>(PairStringDoubleHandle *data, size_t count)</argsstring>
+        <name>MapStringDouble_create</name>
+        <param>
+          <type>PairStringDoubleHandle *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="21" column="23" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="21" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a31d568d621714d39ba3aeb8cf86e5214" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringDouble_destroy</definition>
+        <argsstring>(MapStringDoubleHandle handle)</argsstring>
+        <name>MapStringDouble_destroy</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1adf44c069d47a48b30b49701a9bd0b260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringDouble_insert_or_assign</definition>
+        <argsstring>(MapStringDoubleHandle handle, StringHandle key, double value)</argsstring>
+        <name>MapStringDouble_insert_or_assign</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="25" column="6" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="25" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a24096921f55ce34ea476ee670e1d5bf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringDouble_insert</definition>
+        <argsstring>(MapStringDoubleHandle handle, StringHandle key, double value)</argsstring>
+        <name>MapStringDouble_insert</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="27" column="6" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="27" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a72fda8437776e990036ac575ab212d9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double MapStringDouble_at</definition>
+        <argsstring>(MapStringDoubleHandle handle, StringHandle key)</argsstring>
+        <name>MapStringDouble_at</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="29" column="8" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="29" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a82f235c1f8562b57da74d0236e9fe217" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringDouble_erase</definition>
+        <argsstring>(MapStringDoubleHandle handle, StringHandle key)</argsstring>
+        <name>MapStringDouble_erase</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="31" column="6" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="31" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1ac78bee2bd85e77af12170f68a893bd9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t MapStringDouble_size</definition>
+        <argsstring>(MapStringDoubleHandle handle)</argsstring>
+        <name>MapStringDouble_size</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="33" column="8" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="33" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a954c25f827f4ab021e44b81e2f519036" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapStringDouble_empty</definition>
+        <argsstring>(MapStringDoubleHandle handle)</argsstring>
+        <name>MapStringDouble_empty</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="35" column="6" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="35" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a14be3de554b24626b09f5d2ec4eb57b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapStringDouble_clear</definition>
+        <argsstring>(MapStringDoubleHandle handle)</argsstring>
+        <name>MapStringDouble_clear</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="37" column="6" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="37" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a82656774b37a075e67ed7ae9705bdbb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapStringDouble_contains</definition>
+        <argsstring>(MapStringDoubleHandle handle, StringHandle key)</argsstring>
+        <name>MapStringDouble_contains</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>StringHandle</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="39" column="6" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="39" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1af62b9cdcf2cdc41cb708cd4b28700f11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListStringHandle</type>
+        <definition>ListStringHandle MapStringDouble_keys</definition>
+        <argsstring>(MapStringDoubleHandle handle)</argsstring>
+        <name>MapStringDouble_keys</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="41" column="18" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="41" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a81b7db2442709d5d47008a27d79399e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListDoubleHandle</type>
+        <definition>ListDoubleHandle MapStringDouble_values</definition>
+        <argsstring>(MapStringDoubleHandle handle)</argsstring>
+        <name>MapStringDouble_values</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="43" column="18" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="43" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1aa9f57da5493446ca0f9fff4bcf80c7a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListPairStringDoubleHandle</type>
+        <definition>ListPairStringDoubleHandle MapStringDouble_items</definition>
+        <argsstring>(MapStringDoubleHandle handle)</argsstring>
+        <name>MapStringDouble_items</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="45" column="28" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="45" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a8f0f49006bed010e8f182e072c1b3957" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapStringDouble_equal</definition>
+        <argsstring>(MapStringDoubleHandle handle, MapStringDoubleHandle other)</argsstring>
+        <name>MapStringDouble_equal</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="47" column="6" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="47" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1ad8437bd4d36cbed7c283ba1a8362c875" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MapStringDouble_not_equal</definition>
+        <argsstring>(MapStringDoubleHandle handle, MapStringDoubleHandle other)</argsstring>
+        <name>MapStringDouble_not_equal</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="49" column="6" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="49" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1a255eec23b550c9c91d853f24aa4cc179" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle MapStringDouble_to_json_string</definition>
+        <argsstring>(MapStringDoubleHandle handle)</argsstring>
+        <name>MapStringDouble_to_json_string</name>
+        <param>
+          <type>MapStringDoubleHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="51" column="19" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="51" declcolumn="19"/>
+      </memberdef>
+      <memberdef kind="function" id="MapStringDouble__c__api_8h_1aad39bdcdcde90279c0c68d41b68a5cb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MapStringDoubleHandle</type>
+        <definition>MapStringDoubleHandle MapStringDouble_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>MapStringDouble_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" line="53" column="23" declfile="c-api/include/falcon_core/generic/MapStringDouble_c_api.h" declline="53" declcolumn="23"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListPairStringDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListString_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListDouble_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>opaque<sp/>handles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>MapStringDoubleHandle;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Function<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">MapStringDoubleHandle<sp/>MapStringDouble_create_empty();</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">MapStringDoubleHandle<sp/>MapStringDouble_copy(MapStringDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">MapStringDoubleHandle<sp/>MapStringDouble_create(PairStringDoubleHandle*<sp/>data,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringDouble_destroy(MapStringDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringDouble_insert_or_assign(MapStringDoubleHandle<sp/>handle,<sp/>StringHandle<sp/>key,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringDouble_insert(MapStringDoubleHandle<sp/>handle,<sp/>StringHandle<sp/>key,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>MapStringDouble_at(MapStringDoubleHandle<sp/>handle,<sp/>StringHandle<sp/>key);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringDouble_erase(MapStringDoubleHandle<sp/>handle,<sp/>StringHandle<sp/>key);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>MapStringDouble_size(MapStringDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapStringDouble_empty(MapStringDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MapStringDouble_clear(MapStringDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapStringDouble_contains(MapStringDoubleHandle<sp/>handle,<sp/>StringHandle<sp/>key);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">ListStringHandle<sp/>MapStringDouble_keys(MapStringDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">ListDoubleHandle<sp/>MapStringDouble_values(MapStringDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">ListPairStringDoubleHandle<sp/>MapStringDouble_items(MapStringDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapStringDouble_equal(MapStringDoubleHandle<sp/>handle,<sp/>MapStringDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MapStringDouble_not_equal(MapStringDoubleHandle<sp/>handle,<sp/>MapStringDoubleHandle<sp/>other);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">StringHandle<sp/><sp/><sp/><sp/><sp/><sp/>MapStringDouble_to_json_string(MapStringDoubleHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">MapStringDoubleHandle<sp/>MapStringDouble_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/generic/MapStringDouble_c_api.h"/>
+  </compounddef>
+</doxygen>

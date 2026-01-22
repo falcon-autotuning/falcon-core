@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/math/arrays/Is1D.hpp"
 #include "falcon_core/math/arrays/LabelledMeasuredArray.hpp"
 #include "falcon_core/math/arrays/MeasuredArray1D.hpp"
@@ -13,8 +14,9 @@ namespace math {
 namespace arrays {
 
 /// @brief 1D control array with a label.
-class LabelledMeasuredArray1D : public LabelledMeasuredArray,
-                                public Is1D<double> {
+class FALCON_CORE_CPP_API LabelledMeasuredArray1D
+    : public LabelledMeasuredArray,
+      public Is1D<double> {
  public:
   /**
    * @brief Construct a new Labelled Measured Array object.

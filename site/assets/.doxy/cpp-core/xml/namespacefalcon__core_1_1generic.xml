@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1generic" kind="namespace" language="C++">
+    <compoundname>falcon_core::generic</compoundname>
+    <innerclass refid="classfalcon__core_1_1generic_1_1FArray" prot="public">falcon_core::generic::FArray</innerclass>
+    <innerclass refid="classfalcon__core_1_1generic_1_1IFArray" prot="public">falcon_core::generic::IFArray</innerclass>
+    <innerclass refid="structfalcon__core_1_1generic_1_1is__primitive" prot="public">falcon_core::generic::is_primitive</innerclass>
+    <innerclass refid="classfalcon__core_1_1generic_1_1List" prot="public">falcon_core::generic::List</innerclass>
+    <innerclass refid="classfalcon__core_1_1generic_1_1Map" prot="public">falcon_core::generic::Map</innerclass>
+    <innerclass refid="classfalcon__core_1_1generic_1_1Pair" prot="public">falcon_core::generic::Pair</innerclass>
+    <innerclass refid="classfalcon__core_1_1generic_1_1Song" prot="public">falcon_core::generic::Song</innerclass>
+    <innernamespace refid="namespacefalcon__core_1_1generic_1_1category">falcon_core::generic::category</innernamespace>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="FArray_8hpp_1a3437b5214f02fd15ea88b1c87f572725" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">FArray</ref>&lt; T &gt; &gt;</type>
+        <definition>using falcon_core::generic::FArraySP =  std::shared_ptr&lt;FArray&lt;T&gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>FArraySP</name>
+        <qualifiedname>falcon_core::generic::FArraySP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/FArray.hpp" line="473" column="1" bodyfile="cpp/include/falcon_core/generic/FArray.hpp" bodystart="473" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="List_8hpp_1a365f09cbb86da1dcc27989982a8c7942" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename Value</type>
+          </param>
+        </templateparamlist>
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1generic_1_1List" kindref="compound">List</ref>&lt; Value &gt; &gt;</type>
+        <definition>using falcon_core::generic::ListSP =  std::shared_ptr&lt;List&lt;Value&gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>ListSP</name>
+        <qualifiedname>falcon_core::generic::ListSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/List.hpp" line="452" column="1" bodyfile="cpp/include/falcon_core/generic/List.hpp" bodystart="452" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Map_8hpp_1a8f90ed493f5e94edf14a461f6cb68ddc" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename Key</type>
+          </param>
+          <param>
+            <type>typename Value</type>
+          </param>
+        </templateparamlist>
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1generic_1_1Map" kindref="compound">Map</ref>&lt; Key, Value &gt; &gt;</type>
+        <definition>using falcon_core::generic::MapSP =  std::shared_ptr&lt;Map&lt;Key, Value&gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>MapSP</name>
+        <qualifiedname>falcon_core::generic::MapSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Map.hpp" line="232" column="1" bodyfile="cpp/include/falcon_core/generic/Map.hpp" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Pair_8hpp_1a42a545860eecb495d6897f8c37575c7c" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T1</type>
+          </param>
+          <param>
+            <type>typename T2</type>
+          </param>
+        </templateparamlist>
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1generic_1_1Pair" kindref="compound">Pair</ref>&lt; T1, T2 &gt; &gt;</type>
+        <definition>using falcon_core::generic::PairSP =  std::shared_ptr&lt;Pair&lt;T1, T2&gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>PairSP</name>
+        <qualifiedname>falcon_core::generic::PairSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Pair.hpp" line="192" column="1" bodyfile="cpp/include/falcon_core/generic/Pair.hpp" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Song_8hpp_1a15b64f2ff5e7db25c9ca83ff5f57d653" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1generic_1_1Song" kindref="compound">Song</ref> &gt;</type>
+        <definition>using falcon_core::generic::SongSP =  std::shared_ptr&lt;Song&gt;</definition>
+        <argsstring></argsstring>
+        <name>SongSP</name>
+        <qualifiedname>falcon_core::generic::SongSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/generic/Song.hpp" line="95" column="1" bodyfile="cpp/include/falcon_core/generic/Song.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/generic/CategoryTags.hpp" line="5" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_d9b7dfc8594864a30460f4237d4753dd" kind="dir">
+    <compoundname>c-api/include/falcon_core/instrument_interfaces/port_transforms</compoundname>
+    <innerfile refid="PortTransform__c__api_8h">PortTransform_c_api.h</innerfile>
+    <innerfile refid="PortTransforms__c__api_8h">PortTransforms_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/instrument_interfaces/port_transforms/"/>
+  </compounddef>
+</doxygen>

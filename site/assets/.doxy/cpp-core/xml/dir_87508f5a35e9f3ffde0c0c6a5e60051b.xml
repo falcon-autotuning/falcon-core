@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_87508f5a35e9f3ffde0c0c6a5e60051b" kind="dir">
+    <compoundname>cpp/include/falcon_core</compoundname>
+    <innerdir refid="dir_f103c4a8c56717e1b25b9ff095326f77">cpp/include/falcon_core/autotuner_interfaces</innerdir>
+    <innerdir refid="dir_b94a6b29f2c7b9c121097afc928ed71e">cpp/include/falcon_core/communications</innerdir>
+    <innerdir refid="dir_b58ad87d7b49f24215c248c1165fe6c1">cpp/include/falcon_core/generic</innerdir>
+    <innerdir refid="dir_1d63ba24e228ec3f87efddb1c2728844">cpp/include/falcon_core/instrument_interfaces</innerdir>
+    <innerdir refid="dir_deeec2dd49335e06d18546a1be264a01">cpp/include/falcon_core/math</innerdir>
+    <innerdir refid="dir_ef8a5933242b0e98f781c5d9eb0e15a8">cpp/include/falcon_core/physics</innerdir>
+    <innerfile refid="Constants_8hpp">Constants.hpp</innerfile>
+    <innerfile refid="macros_8hpp">macros.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/"/>
+  </compounddef>
+</doxygen>

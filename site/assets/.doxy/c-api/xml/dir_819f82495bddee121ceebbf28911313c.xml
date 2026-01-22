@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_819f82495bddee121ceebbf28911313c" kind="dir">
+    <compoundname>c-api/include/falcon_core/physics/units</compoundname>
+    <innerfile refid="SymbolUnit__c__api_8h">SymbolUnit_c_api.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="c-api/include/falcon_core/physics/units/"/>
+  </compounddef>
+</doxygen>

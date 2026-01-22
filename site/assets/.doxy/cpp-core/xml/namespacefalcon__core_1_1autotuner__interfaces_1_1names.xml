@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="namespacefalcon__core_1_1autotuner__interfaces_1_1names" kind="namespace" language="C++">
+    <compoundname>falcon_core::autotuner_interfaces::names</compoundname>
+    <innerclass refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel" prot="public">falcon_core::autotuner_interfaces::names::Channel</innerclass>
+    <innerclass refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channels" prot="public">falcon_core::autotuner_interfaces::names::Channels</innerclass>
+    <innerclass refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Gname" prot="public">falcon_core::autotuner_interfaces::names::Gname</innerclass>
+    <innerclass refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" prot="public">falcon_core::autotuner_interfaces::names::NameBase</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="Channel_8hpp_1a08e6981b7d01105a7af517a43dff8b23" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channel" kindref="compound">Channel</ref> &gt;</type>
+        <definition>using falcon_core::autotuner_interfaces::names::ChannelSP =  std::shared_ptr&lt;Channel&gt;</definition>
+        <argsstring></argsstring>
+        <name>ChannelSP</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::ChannelSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="36" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Channels_8hpp_1ad6d14b712038fa2f6e57f17042d80fa4" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Channels" kindref="compound">Channels</ref> &gt;</type>
+        <definition>using falcon_core::autotuner_interfaces::names::ChannelsSP =  std::shared_ptr&lt;Channels&gt;</definition>
+        <argsstring></argsstring>
+        <name>ChannelsSP</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::ChannelsSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channels.hpp" line="57" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/Channels.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="Gname_8hpp_1a4be34906fbad1c4843ad298f1caed431" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1Gname" kindref="compound">Gname</ref> &gt;</type>
+        <definition>using falcon_core::autotuner_interfaces::names::GnameSP =  std::shared_ptr&lt;Gname&gt;</definition>
+        <argsstring></argsstring>
+        <name>GnameSP</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::GnameSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/Gname.hpp" line="29" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/Gname.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="NameBase_8hpp_1a5676e28319e9659bf2d8f79a2a2fbee8" prot="public" static="no">
+        <type>std::shared_ptr&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1names_1_1NameBase" kindref="compound">NameBase</ref> &gt;</type>
+        <definition>using falcon_core::autotuner_interfaces::names::NameBaseSP =  std::shared_ptr&lt;NameBase&gt;</definition>
+        <argsstring></argsstring>
+        <name>NameBaseSP</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::names::NameBaseSP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" line="53" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/names/NameBase.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/names/Channel.hpp" line="9" column="1"/>
+  </compounddef>
+</doxygen>

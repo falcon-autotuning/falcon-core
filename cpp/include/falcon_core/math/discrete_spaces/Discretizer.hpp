@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/math/domains/Domain.hpp"
 
 enum class Dividers {
@@ -21,7 +22,7 @@ namespace discrete_spaces {
  * @details
  * Discretizers define how a domain is divided into discrete steps.
  */
-class Discretizer : public generic::Song {
+class FALCON_CORE_CPP_API Discretizer : public generic::Song {
   double                          _delta;
   domains::DomainSP               _delta_domain;
   Dividers                        _type;

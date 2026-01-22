@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 namespace falcon_core {
@@ -45,7 +46,8 @@ namespace device_structures {
  *   Connections o{ptr1, ptr2, ptr3};
  *   @endcode
  */
-class Connections : public falcon_core::generic::List<Connection> {
+class FALCON_CORE_CPP_API Connections
+    : public falcon_core::generic::List<Connection> {
  public:
   /**
    * @brief Default constructor: creates an empty Connections container.

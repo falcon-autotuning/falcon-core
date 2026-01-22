@@ -1,0 +1,1092 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="DiscreteSpace__c__api_8h" kind="file" language="C++">
+    <compoundname>DiscreteSpace_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="InstrumentPort__c__api_8h" local="yes">falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</includes>
+    <includes refid="AxesCoupledLabelledDomain__c__api_8h" local="yes">falcon_core/math/AxesCoupledLabelledDomain_c_api.h</includes>
+    <includes refid="AxesInstrumentPort__c__api_8h" local="yes">falcon_core/math/AxesInstrumentPort_c_api.h</includes>
+    <includes refid="AxesLabelledControlArray__c__api_8h" local="yes">falcon_core/math/AxesLabelledControlArray_c_api.h</includes>
+    <includes refid="AxesMapStringBool__c__api_8h" local="yes">falcon_core/math/AxesMapStringBool_c_api.h</includes>
+    <includes refid="UnitSpace__c__api_8h" local="yes">falcon_core/math/UnitSpace_c_api.h</includes>
+    <includes refid="CoupledLabelledDomain__c__api_8h" local="yes">falcon_core/math/domains/CoupledLabelledDomain_c_api.h</includes>
+    <includedby refid="Waveform__c__api_8h" local="yes">c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</includedby>
+    <incdepgraph>
+      <node id="22">
+        <label>falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h</label>
+        <link refid="AcquisitionContext__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>falcon_core/generic/FArrayDouble_c_api.h</label>
+        <link refid="FArrayDouble__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>falcon_core/generic/ListBool_c_api.h</label>
+        <link refid="ListBool__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>falcon_core/generic/ListConnection_c_api.h</label>
+        <link refid="ListConnection__c__api_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>falcon_core/generic/ListControlArray_c_api.h</label>
+        <link refid="ListControlArray__c__api_8h_source"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>falcon_core/generic/ListCoupledLabelledDomain_c_api.h</label>
+        <link refid="ListCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>falcon_core/generic/ListDiscretizer_c_api.h</label>
+        <link refid="ListDiscretizer__c__api_8h_source"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>falcon_core/generic/ListDouble_c_api.h</label>
+        <link refid="ListDouble__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>falcon_core/generic/ListInstrumentPort_c_api.h</label>
+        <link refid="ListInstrumentPort__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>falcon_core/generic/ListInt_c_api.h</label>
+        <link refid="ListInt__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>falcon_core/generic/ListLabelledControlArray_c_api.h</label>
+        <link refid="ListLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/generic/ListLabelledDomain_c_api.h</label>
+        <link refid="ListLabelledDomain__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>falcon_core/generic/ListListSizeT_c_api.h</label>
+        <link refid="ListListSizeT__c__api_8h_source"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>falcon_core/generic/ListMapStringBool_c_api.h</label>
+        <link refid="ListMapStringBool__c__api_8h_source"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>falcon_core/generic/ListPairStringBool_c_api.h</label>
+        <link refid="ListPairStringBool__c__api_8h_source"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>falcon_core/generic/ListSizeT_c_api.h</label>
+        <link refid="ListSizeT__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>falcon_core/generic/ListString_c_api.h</label>
+        <link refid="ListString__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>falcon_core/generic/MapStringBool_c_api.h</label>
+        <link refid="MapStringBool__c__api_8h_source"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>falcon_core/generic/PairStringBool_c_api.h</label>
+        <link refid="PairStringBool__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>falcon_core/instrument_interfaces/names/Ports_c_api.h</label>
+        <link refid="Ports__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>falcon_core/math/AxesControlArray_c_api.h</label>
+        <link refid="AxesControlArray__c__api_8h_source"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/math/AxesCoupledLabelledDomain_c_api.h</label>
+        <link refid="AxesCoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>falcon_core/math/AxesDiscretizer_c_api.h</label>
+        <link refid="AxesDiscretizer__c__api_8h_source"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>falcon_core/math/AxesDouble_c_api.h</label>
+        <link refid="AxesDouble__c__api_8h_source"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>falcon_core/math/AxesInstrumentPort_c_api.h</label>
+        <link refid="AxesInstrumentPort__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>falcon_core/math/AxesInt_c_api.h</label>
+        <link refid="AxesInt__c__api_8h_source"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>falcon_core/math/AxesLabelledControlArray_c_api.h</label>
+        <link refid="AxesLabelledControlArray__c__api_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>falcon_core/math/AxesMapStringBool_c_api.h</label>
+        <link refid="AxesMapStringBool__c__api_8h_source"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>falcon_core/math/UnitSpace_c_api.h</label>
+        <link refid="UnitSpace__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>falcon_core/math/arrays/ControlArray_c_api.h</label>
+        <link refid="ControlArray__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>falcon_core/math/arrays/LabelledControlArray_c_api.h</label>
+        <link refid="LabelledControlArray__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>falcon_core/math/discrete_spaces/Discretizer_c_api.h</label>
+        <link refid="Discretizer__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/math/domains/CoupledLabelledDomain_c_api.h</label>
+        <link refid="CoupledLabelledDomain__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>falcon_core/math/domains/Domain_c_api.h</label>
+        <link refid="Domain__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>falcon_core/math/domains/LabelledDomain_c_api.h</label>
+        <link refid="LabelledDomain__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6">
+        <label>c-api/include/falcon_core/communications/HDF5Data_c_api.h</label>
+        <link refid="HDF5Data__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/communications/messages/MeasurementRequest_c_api.h</label>
+        <link refid="MeasurementRequest__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/generic/ListWaveform_c_api.h</label>
+        <link refid="ListWaveform__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h</label>
+        <link refid="PairMeasurementResponseMeasurementRequest__c__api_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c-api/include/falcon_core/instrument_interfaces/Waveform_c_api.h</label>
+        <link refid="Waveform__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h</label>
+        <link refid="DiscreteSpace__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="DiscreteSpace__c__api_8h_1a4ffde29f69d37133c56f5fb3bd5f72c1" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* DiscreteSpaceHandle</definition>
+        <argsstring></argsstring>
+        <name>DiscreteSpaceHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="16" column="14" bodyfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a42e53c8ff9d510726e31850928fb7aab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscreteSpaceHandle</type>
+        <definition>DiscreteSpaceHandle DiscreteSpace_copy</definition>
+        <argsstring>(DiscreteSpaceHandle handle)</argsstring>
+        <name>DiscreteSpace_copy</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="19" column="21" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="19" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1aade3c58d32f4b9d37baa54b75dfef98e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DiscreteSpace_destroy</definition>
+        <argsstring>(DiscreteSpaceHandle handle)</argsstring>
+        <name>DiscreteSpace_destroy</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1ab0841efbf88cf59324bd92d88444bbf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DiscreteSpace_equal</definition>
+        <argsstring>(DiscreteSpaceHandle handle, DiscreteSpaceHandle other)</argsstring>
+        <name>DiscreteSpace_equal</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="23" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="23" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1adcd9ec28b9b5ddc98e884cbc8a4a9a1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DiscreteSpace_not_equal</definition>
+        <argsstring>(DiscreteSpaceHandle handle, DiscreteSpaceHandle other)</argsstring>
+        <name>DiscreteSpace_not_equal</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="25" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="25" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a1b826b41eeeaf6e3545556dff818cd9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle DiscreteSpace_to_json_string</definition>
+        <argsstring>(DiscreteSpaceHandle handle)</argsstring>
+        <name>DiscreteSpace_to_json_string</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="28" column="14" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="28" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a3716937a101deaf684df5c9c03364a32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscreteSpaceHandle</type>
+        <definition>DiscreteSpaceHandle DiscreteSpace_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>DiscreteSpace_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="30" column="21" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="30" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a544f16a3a596cf8b8cb682e16fe07d6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscreteSpaceHandle</type>
+        <definition>DiscreteSpaceHandle DiscreteSpace_create</definition>
+        <argsstring>(UnitSpaceHandle space, AxesCoupledLabelledDomainHandle axes, AxesMapStringBoolHandle increasing)</argsstring>
+        <name>DiscreteSpace_create</name>
+        <param>
+          <type>UnitSpaceHandle</type>
+          <declname>space</declname>
+        </param>
+        <param>
+          <type>AxesCoupledLabelledDomainHandle</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>increasing</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="32" column="21" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="32" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a2ca420c02eb38ad274d252cb01443fb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscreteSpaceHandle</type>
+        <definition>DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space</definition>
+        <argsstring>(AxesIntHandle divisions, AxesCoupledLabelledDomainHandle axes, AxesMapStringBoolHandle increasing, DomainHandle domain)</argsstring>
+        <name>DiscreteSpace_create_cartesian_discrete_space</name>
+        <param>
+          <type>AxesIntHandle</type>
+          <declname>divisions</declname>
+        </param>
+        <param>
+          <type>AxesCoupledLabelledDomainHandle</type>
+          <declname>axes</declname>
+        </param>
+        <param>
+          <type>AxesMapStringBoolHandle</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="36" column="21" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="36" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a08e2f0f6064a2cf8caf941d30a890f7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DiscreteSpaceHandle</type>
+        <definition>DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space_1D</definition>
+        <argsstring>(int division, CoupledLabelledDomainHandle shared_domain, MapStringBoolHandle increasing, DomainHandle domain)</argsstring>
+        <name>DiscreteSpace_create_cartesian_discrete_space_1D</name>
+        <param>
+          <type>int</type>
+          <declname>division</declname>
+        </param>
+        <param>
+          <type>CoupledLabelledDomainHandle</type>
+          <declname>shared_domain</declname>
+        </param>
+        <param>
+          <type>MapStringBoolHandle</type>
+          <declname>increasing</declname>
+        </param>
+        <param>
+          <type>DomainHandle</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="42" column="21" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="42" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a0e356d7b0b20d17ae3af6a3884dd9e9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>UnitSpaceHandle</type>
+        <definition>UnitSpaceHandle DiscreteSpace_space</definition>
+        <argsstring>(DiscreteSpaceHandle handle)</argsstring>
+        <name>DiscreteSpace_space</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the stored UnitSpace. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="54" column="17" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="54" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a49330a6e7a56f4151f7f0002909f8c17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesCoupledLabelledDomainHandle</type>
+        <definition>AxesCoupledLabelledDomainHandle DiscreteSpace_axes</definition>
+        <argsstring>(DiscreteSpaceHandle handle)</argsstring>
+        <name>DiscreteSpace_axes</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the stored axes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="61" column="33" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="61" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a3a500ead6855425cb2a6302cd2d68a12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesMapStringBoolHandle</type>
+        <definition>AxesMapStringBoolHandle DiscreteSpace_increasing</definition>
+        <argsstring>(DiscreteSpaceHandle handle)</argsstring>
+        <name>DiscreteSpace_increasing</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the increasing properties. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="68" column="25" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="68" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a6b0be9e04d4113665f0178b3a0d8f98d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PortsHandle</type>
+        <definition>PortsHandle DiscreteSpace_knobs</definition>
+        <argsstring>(DiscreteSpaceHandle handle)</argsstring>
+        <name>DiscreteSpace_knobs</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the knobs. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="75" column="13" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="75" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a9bf73b63b20ca580c93138b113e457e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DiscreteSpace_validate_unit_space_dimensionality_matches_knobs</definition>
+        <argsstring>(DiscreteSpaceHandle handle)</argsstring>
+        <name>DiscreteSpace_validate_unit_space_dimensionality_matches_knobs</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Validate that the unit space dimensionality matches the number of knobs. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="85" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="85" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1a9aa15856dbfb525288f373e56bac4cfe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DiscreteSpace_validate_knob_uniqueness</definition>
+        <argsstring>(DiscreteSpaceHandle handle)</argsstring>
+        <name>DiscreteSpace_validate_knob_uniqueness</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Validate that the knobs are unique. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="94" column="6" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="94" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1acf92c33fb7cc1aa2e0f9953a1183bace" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int DiscreteSpace_get_axis</definition>
+        <argsstring>(DiscreteSpaceHandle handle, InstrumentPortHandle knob)</argsstring>
+        <name>DiscreteSpace_get_axis</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>knob</declname>
+        </param>
+        <briefdescription>
+<para>Return the index of the axis containing the given knob. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>knob</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The knob to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The index of the axis containing the knob. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the knob is not found. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="104" column="5" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="104" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1aa20ce68fef455ba2ec96539e311ba185" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DomainHandle</type>
+        <definition>DomainHandle DiscreteSpace_get_domain</definition>
+        <argsstring>(DiscreteSpaceHandle handle, InstrumentPortHandle knob)</argsstring>
+        <name>DiscreteSpace_get_domain</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InstrumentPortHandle</type>
+          <declname>knob</declname>
+        </param>
+        <briefdescription>
+<para>Return the domain of the given knob. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>knob</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The knob to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The domain of the knob. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="114" column="14" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="114" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="DiscreteSpace__c__api_8h_1ad5945b9794fc0e9e8d390b850b53e0f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesLabelledControlArrayHandle</type>
+        <definition>AxesLabelledControlArrayHandle DiscreteSpace_get_projection</definition>
+        <argsstring>(DiscreteSpaceHandle handle, AxesInstrumentPortHandle projection)</argsstring>
+        <name>DiscreteSpace_get_projection</name>
+        <param>
+          <type>DiscreteSpaceHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>AxesInstrumentPortHandle</type>
+          <declname>projection</declname>
+        </param>
+        <briefdescription>
+<para>Return the projection of the unit space onto the given axes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>projection</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The axes to project onto. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The projection of th espace onto the given axes. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" line="124" column="32" declfile="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h" declline="124" declcolumn="32"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesCoupledLabelledDomain_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesInstrumentPort_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesLabelledControlArray_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesMapStringBool_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/UnitSpace_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/domains/CoupledLabelledDomain_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>DiscreteSpaceHandle;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">DiscreteSpaceHandle<sp/>DiscreteSpace_copy(DiscreteSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DiscreteSpace_destroy(DiscreteSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DiscreteSpace_equal(DiscreteSpaceHandle<sp/>handle,<sp/>DiscreteSpaceHandle<sp/>other);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DiscreteSpace_not_equal(DiscreteSpaceHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DiscreteSpaceHandle<sp/>other);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">StringHandle<sp/>DiscreteSpace_to_json_string(DiscreteSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">DiscreteSpaceHandle<sp/>DiscreteSpace_from_json_string(StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">DiscreteSpaceHandle<sp/>DiscreteSpace_create(UnitSpaceHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>space,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AxesCoupledLabelledDomainHandle<sp/>axes,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AxesMapStringBoolHandle<sp/>increasing);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">DiscreteSpaceHandle<sp/>DiscreteSpace_create_cartesian_discrete_space(</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesIntHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>divisions,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesCoupledLabelledDomainHandle<sp/>axes,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesMapStringBoolHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>increasing,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">DiscreteSpaceHandle<sp/>DiscreteSpace_create_cartesian_discrete_space_1D(</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>division,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>CoupledLabelledDomainHandle<sp/>shared_domain,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>MapStringBoolHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>increasing,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>DomainHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>domain);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>DiscreteSpace_space<sp/>|</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::DiscreteSpace::space<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">UnitSpaceHandle<sp/>DiscreteSpace_space(DiscreteSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>DiscreteSpace_axes<sp/>|</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::DiscreteSpace::axes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">AxesCoupledLabelledDomainHandle<sp/>DiscreteSpace_axes(DiscreteSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>DiscreteSpace_increasing<sp/>|</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::DiscreteSpace::increasing<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">AxesMapStringBoolHandle<sp/>DiscreteSpace_increasing(DiscreteSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>DiscreteSpace_knobs<sp/>|</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::DiscreteSpace::knobs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">PortsHandle<sp/>DiscreteSpace_knobs(DiscreteSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>DiscreteSpace_validate_unit_space_dimensionality_matches_knobs<sp/>|</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::DiscreteSpace::validate_unit_space_dimensionality_matches_knobs</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>DiscreteSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>DiscreteSpace_validate_knob_uniqueness<sp/>|</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::DiscreteSpace::validate_knob_uniqueness</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DiscreteSpace_validate_knob_uniqueness(DiscreteSpaceHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>DiscreteSpace_get_axis<sp/>|</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::DiscreteSpace::get_axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DiscreteSpace_get_axis(DiscreteSpaceHandle<sp/><sp/>handle,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InstrumentPortHandle<sp/>knob);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>DiscreteSpace_get_domain<sp/>|</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::DiscreteSpace::get_domain<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">DomainHandle<sp/>DiscreteSpace_get_domain(DiscreteSpaceHandle<sp/><sp/>handle,</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InstrumentPortHandle<sp/>knob);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>DiscreteSpace_get_projection<sp/>|</highlight></codeline>
+<codeline lineno="118"><highlight class="comment"><sp/>*<sp/>falcon_core::math::discrete_spaces::DiscreteSpace::get_projection<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal">AxesLabelledControlArrayHandle<sp/>DiscreteSpace_get_projection(</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>DiscreteSpaceHandle<sp/>handle,<sp/>AxesInstrumentPortHandle<sp/>projection);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"/>
+  </compounddef>
+</doxygen>

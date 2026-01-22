@@ -1,6 +1,7 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 namespace falcon_core {
 namespace autotuner_interfaces {
@@ -9,7 +10,7 @@ namespace names {
 /**
  * @brief A collection of channels..
  */
-class Channels : public generic::List<Channel> {
+class FALCON_CORE_CPP_API Channels : public generic::List<Channel> {
  public:
   /**
    * @brief Channels can be constructed in 5 different ways:

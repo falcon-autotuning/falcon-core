@@ -7,12 +7,13 @@
 #include <stdexcept>
 #include <type_traits>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core {
 namespace generic {
 template <typename Value>
-class List : public generic::Song {
+class FALCON_CORE_CPP_API List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
                 "Value template argument must not be a pointer type");
   static_assert(std::is_base_of<Song, Value>::value ||

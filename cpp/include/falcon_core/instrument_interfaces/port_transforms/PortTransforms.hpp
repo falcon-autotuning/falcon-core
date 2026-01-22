@@ -1,5 +1,6 @@
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 /**
@@ -9,7 +10,7 @@ namespace falcon_core {
 namespace instrument_interfaces {
 namespace port_transforms {
 
-class PortTransforms : public generic::List<PortTransform> {
+class FALCON_CORE_CPP_API PortTransforms : public generic::List<PortTransform> {
  public:
   PortTransforms(const PortTransforms& other);
   PortTransforms();

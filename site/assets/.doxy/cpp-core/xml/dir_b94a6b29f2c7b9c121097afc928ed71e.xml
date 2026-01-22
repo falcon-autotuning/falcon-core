@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_b94a6b29f2c7b9c121097afc928ed71e" kind="dir">
+    <compoundname>cpp/include/falcon_core/communications</compoundname>
+    <innerdir refid="dir_f6911bd59d3e24442984bf7e05e945fa">cpp/include/falcon_core/communications/messages</innerdir>
+    <innerdir refid="dir_707a09d08b8cf5ba6e3c2c40da44e9d3">cpp/include/falcon_core/communications/voltage_states</innerdir>
+    <innerfile refid="HDF5Data_8hpp">HDF5Data.hpp</innerfile>
+    <innerfile refid="Time_8hpp">Time.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="cpp/include/falcon_core/communications/"/>
+  </compounddef>
+</doxygen>

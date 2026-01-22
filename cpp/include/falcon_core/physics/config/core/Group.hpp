@@ -1,6 +1,7 @@
 #pragma once
 
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/physics/config/core/StandardConfigConnections.hpp"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
@@ -11,7 +12,7 @@ namespace core {
 /**
  * @brief Elements of the config that pertain to an individual group of gates.
  */
-class Group : public StandardConfigConnections {
+class FALCON_CORE_CPP_API Group : public StandardConfigConnections {
   autotuner_interfaces::names::ChannelSP _name;
   int                                    _num_dots;
   geometries::GateGeometryArray1DSP      _order;

@@ -2,11 +2,13 @@
 
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 
+#include "falcon_core/export.h"
+
 namespace falcon_core {
 namespace communications {
 namespace messages {
 
-class StandardResponse : public BaseMessage {
+class FALCON_CORE_CPP_API StandardResponse : public BaseMessage {
  public:
   StandardResponse(const std::string& message);
 

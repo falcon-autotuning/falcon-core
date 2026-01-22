@@ -7,6 +7,7 @@
 
 #include <shared_mutex>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/Song.hpp"
 
 namespace falcon_core {
@@ -18,7 +19,7 @@ namespace arrays {
  * The three states are 1, -1, and 0.
  * 0 implies no trend in the domain.
  */
-class IncreasingAlignment : public generic::Song {
+class FALCON_CORE_CPP_API IncreasingAlignment : public generic::Song {
   int                             _alignment;
   mutable std::shared_timed_mutex _mu_alignment;
 

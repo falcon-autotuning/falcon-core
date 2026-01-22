@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1math_1_1arrays_1_1IsControl" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>falcon_core::math::arrays::IsControl</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1IFArray" prot="public" virt="virtual">falcon_core::generic::IFArray&lt; T &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a6c0d9938951e52dc9c4c2cf24360372f" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int falcon_core::math::arrays::IsControl&lt; T &gt;::_principle_dimension</definition>
+        <argsstring></argsstring>
+        <name>_principle_dimension</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::_principle_dimension</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="13" column="35" bodyfile="cpp/include/falcon_core/math/arrays/IsControl.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1aa4ddc63520a74f76ca3500ee355681b0" prot="protected" static="no" mutable="no">
+        <type>IncreasingAlignmentSP</type>
+        <definition>IncreasingAlignmentSP falcon_core::math::arrays::IsControl&lt; T &gt;::_alignment</definition>
+        <argsstring></argsstring>
+        <name>_alignment</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::_alignment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="14" column="35" bodyfile="cpp/include/falcon_core/math/arrays/IsControl.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a4cfab71c23e57ceb94ee288ecdb916df" prot="protected" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::arrays::IsControl&lt; T &gt;::_mu_alignment</definition>
+        <argsstring></argsstring>
+        <name>_mu_alignment</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::_mu_alignment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="15" column="35" bodyfile="cpp/include/falcon_core/math/arrays/IsControl.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a7c99fcbf99a709dcfd0a26d3c64a2617" prot="protected" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::math::arrays::IsControl&lt; T &gt;::_mu_principle_dimension</definition>
+        <argsstring></argsstring>
+        <name>_mu_principle_dimension</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::_mu_principle_dimension</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="16" column="35" bodyfile="cpp/include/falcon_core/math/arrays/IsControl.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a78d5f9eb55184fc18732d9c940008dd4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>generic::FArraySP&lt; T &gt;</type>
+        <definition>virtual generic::FArraySP&lt; T &gt; falcon_core::math::arrays::IsControl&lt; T &gt;::gradient</definition>
+        <argsstring>(size_t axis) const =0</argsstring>
+        <name>gradient</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::gradient</qualifiedname>
+        <reimplementedby refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray1D_1a27844018cfce1dce5571678bf6ca6666">gradient</reimplementedby>
+        <reimplementedby refid="classfalcon__core_1_1math_1_1arrays_1_1ControlArray_1a8aa05dd8fe3ee6ddaa66504a086fee58">gradient</reimplementedby>
+        <reimplementedby refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray1D_1a6e5676994215932c6f827b588c2049a6">gradient</reimplementedby>
+        <reimplementedby refid="classfalcon__core_1_1math_1_1arrays_1_1LabelledControlArray_1af3abec1ee0fc72105066154089eb845a">gradient</reimplementedby>
+        <param>
+          <type>size_t</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="19" column="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1ae975d996f3b99ab79224596297e9ffeb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>generic::ListSP&lt; <ref refid="classfalcon__core_1_1generic_1_1FArray" kindref="compound">generic::FArray</ref>&lt; T &gt; &gt;</type>
+        <definition>virtual generic::ListSP&lt; generic::FArray&lt; T &gt; &gt; falcon_core::math::arrays::IsControl&lt; T &gt;::gradient</definition>
+        <argsstring>() const =0</argsstring>
+        <name>gradient</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::gradient</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="20" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1aa9055916338b5aed8296b385001f9c25" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int falcon_core::math::arrays::IsControl&lt; T &gt;::principle_dimension</definition>
+        <argsstring>() const</argsstring>
+        <name>principle_dimension</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::principle_dimension</qualifiedname>
+        <briefdescription>
+<para>Return the principle dimension of the array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="24" column="7" bodyfile="cpp/include/falcon_core/math/arrays/IsControl.hpp" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a0139f7897228f4501c412868291e6965" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>IncreasingAlignmentSP</type>
+        <definition>IncreasingAlignmentSP falcon_core::math::arrays::IsControl&lt; T &gt;::alignment</definition>
+        <argsstring>() const</argsstring>
+        <name>alignment</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::alignment</qualifiedname>
+        <briefdescription>
+<para>Return the increasing alignments for each dimension. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="31" column="25" bodyfile="cpp/include/falcon_core/math/arrays/IsControl.hpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a3204cd33490488bcb8c6cb91f677ce39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::math::arrays::IsControl&lt; T &gt;::update_alignments</definition>
+        <argsstring>()</argsstring>
+        <name>update_alignments</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::update_alignments</qualifiedname>
+        <briefdescription>
+<para>Recalculates the alignments zmerinobased on current data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="38" column="8" bodyfile="cpp/include/falcon_core/math/arrays/IsControl.hpp" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a93093b3404bbef5e0480af4dac8e5f7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IncreasingAlignmentSP</type>
+        <definition>IncreasingAlignmentSP falcon_core::math::arrays::IsControl&lt; T &gt;::_determine_alignments</definition>
+        <argsstring>()</argsstring>
+        <name>_determine_alignments</name>
+        <qualifiedname>falcon_core::math::arrays::IsControl::_determine_alignments</qualifiedname>
+        <briefdescription>
+<para>Determine the alignment for each dimension of the array. for each dimension checks if the values are increasing, decreasing, or not changing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the alignment for each dimension. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if no alignment is found. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if more than one alignment is found. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="50" column="25" bodyfile="cpp/include/falcon_core/math/arrays/IsControl.hpp" bodystart="50" bodyend="78"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>falcon_core::generic::IFArray&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1IFArray"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::arrays::IsControl&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>falcon_core::generic::IFArray&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1generic_1_1IFArray"/>
+      </node>
+      <node id="1">
+        <label>falcon_core::math::arrays::IsControl&lt; T &gt;</label>
+        <link refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/math/arrays/IsControl.hpp" line="11" column="1" bodyfile="cpp/include/falcon_core/math/arrays/IsControl.hpp" bodystart="11" bodyend="79"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1aa4ddc63520a74f76ca3500ee355681b0" prot="protected" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>_alignment</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a93093b3404bbef5e0480af4dac8e5f7a" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>_determine_alignments</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a4cfab71c23e57ceb94ee288ecdb916df" prot="protected" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>_mu_alignment</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a7c99fcbf99a709dcfd0a26d3c64a2617" prot="protected" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>_mu_principle_dimension</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a6c0d9938951e52dc9c4c2cf24360372f" prot="protected" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>_principle_dimension</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a0139f7897228f4501c412868291e6965" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>alignment</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a09c9a9893229b976032765f70aa818a1" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>array_type</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a0f3f5db91ae2010d171bdfa5ca312ed0" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>begin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a07f44536871b2971eaedd85f1866c6e4" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>cbegin</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a50163d6b71e155106921efc2965b417b" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>cend</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a6f3535fb8e16377a42fb17652ddc06e8" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>const_reference</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a41d4ac35a8ca9e991b99807c1ccd5dbd" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a1de5f60ef98c44b8f48981020f246adb" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aee90b4e861f478743fa025a88a9a8fd6" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>dimension</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1acd9aec51caa0620e31299c476b4c31d7" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>end</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a78d5f9eb55184fc18732d9c940008dd4" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>gradient</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1ae975d996f3b99ab79224596297e9ffeb" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>gradient</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1acaf07d9d2513fb31eef7b6bb04594b7a" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>max</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a3c9418699feee13302673aaaf26170f6" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>min</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a774031e743d6041cd444f97e9e1a1654" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>operator array_type &amp;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1ac92a53df9a6609cca5c49a579bae29e4" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>operator const array_type &amp;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a841a7acf644d1cb7028cd893456fe2f3" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>operator()</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a166c92b447e549de7c264608c2adceb6" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>operator()</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a29689afd6c5d60f6d1a7666d50507dd7" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>operator&lt;</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a8edd0d840bb6d198096e0d589373f326" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>operator&gt;</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1aa9055916338b5aed8296b385001f9c25" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>principle_dimension</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aec2f2dc372d880230b43b63e760cb88c" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>raw_data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a71fd0f2313bb55409bf7d50007d7b321" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>raw_data</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a59a361d72ff63edf2aebf0dde2ae4b55" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>reference</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a71d578ab512bcca49e424b9dddc2c375" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>remove_offset</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a3ae14c8ecd7d2aed60cf31ecb0a8810e" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>shape</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a53fbc1dad98728229de8add662b2d24e" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>size</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a5890ecbfc58b7ca64783121f3bb9d061" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>sum</name></member>
+      <member refid="classfalcon__core_1_1math_1_1arrays_1_1IsControl_1a3204cd33490488bcb8c6cb91f677ce39" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>update_alignments</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1afbcadca4952a23c0c46d69b5fd12fc09" prot="public" virt="non-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>value_type</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1a89e1b99be80d48ebe4cf780cb5d4ee99" prot="public" virt="pure-virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>where</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1IFArray_1aa5e84ced0ef5ff58d3c81513d72bae88" prot="public" virt="virtual"><scope>falcon_core::math::arrays::IsControl</scope><name>~IFArray</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

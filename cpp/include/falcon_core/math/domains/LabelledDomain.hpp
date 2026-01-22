@@ -7,6 +7,7 @@
 
 #include <memory>
 
+#include "falcon_core/export.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon_core/math/domains/Domain.hpp"
 namespace falcon_core {
@@ -16,7 +17,7 @@ namespace domains {
 /**
  * @brief Domain with an associated label with the instrument associated.
  */
-class LabelledDomain : public Domain {
+class FALCON_CORE_CPP_API LabelledDomain : public Domain {
   instrument_interfaces::names::InstrumentPortSP _port;
   mutable std::shared_timed_mutex                _mu_port;
 

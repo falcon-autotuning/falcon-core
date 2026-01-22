@@ -1,11 +1,12 @@
 #pragma once
 #include <boost/filesystem.hpp>
 
+#include "falcon_core/export.h"
 #include "falcon_core/physics/config/ConfigManipulations.hpp"
 namespace falcon_core {
 namespace physics {
 namespace config {
-class Loader : public ConfigManipulations {
+class FALCON_CORE_CPP_API Loader : public ConfigManipulations {
   boost::filesystem::path         _config_path;
   core::ConfigSP                  _config;
   mutable std::shared_timed_mutex _mu_config;

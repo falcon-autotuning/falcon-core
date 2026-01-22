@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "falcon_core/export.h"
 #include "falcon_core/math/arrays/IsControl.hpp"
 namespace falcon_core {
 namespace math {
@@ -13,7 +14,8 @@ namespace arrays {
 /**
  * @brief Array type for control independant axis data
  */
-class ControlArray : public generic::FArray<double>, public IsControl<double> {
+class FALCON_CORE_CPP_API ControlArray : public generic::FArray<double>,
+                                         public IsControl<double> {
  protected:
   friend class cereal::access;
   ControlArray();

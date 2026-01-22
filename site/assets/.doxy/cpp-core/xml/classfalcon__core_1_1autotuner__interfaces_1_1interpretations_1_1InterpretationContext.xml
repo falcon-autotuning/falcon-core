@@ -1,0 +1,527 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <includes refid="InterpretationContext_8hpp" local="no">InterpretationContext.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a56c2f4d6fffc1d5d9966a0f3d5e0f0a0" prot="private" static="no" mutable="no">
+        <type>math::AxesSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">autotuner_interfaces::contexts::MeasurementContext</ref> &gt;</type>
+        <definition>math::AxesSP&lt;autotuner_interfaces::contexts::MeasurementContext&gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_independent_variables</definition>
+        <argsstring></argsstring>
+        <name>_independent_variables</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_independent_variables</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="20" column="7" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ade0b49c6f904751950c454ce2ce9c891" prot="private" static="no" mutable="no">
+        <type>generic::ListSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">autotuner_interfaces::contexts::MeasurementContext</ref> &gt;</type>
+        <definition>generic::ListSP&lt;autotuner_interfaces::contexts::MeasurementContext&gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_dependent_variables</definition>
+        <argsstring></argsstring>
+        <name>_dependent_variables</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_dependent_variables</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="22" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a3e5df4728112a77bd82ebb0ad73605da" prot="private" static="no" mutable="no">
+        <type>physics::units::SymbolUnitSP</type>
+        <definition>physics::units::SymbolUnitSP falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_unit</definition>
+        <argsstring></argsstring>
+        <name>_unit</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="23" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ae93c28b1668000aef13166818f6da726" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_mu_independent_variables</definition>
+        <argsstring></argsstring>
+        <name>_mu_independent_variables</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_mu_independent_variables</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="24" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a2af991588314df7a4ec6fc9a3a7ee6c4" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_mu_dependent_variables</definition>
+        <argsstring></argsstring>
+        <name>_mu_dependent_variables</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_mu_dependent_variables</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="25" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a3d26c891899cfc1ab31d33c2bfa0417e" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_mu_unit</definition>
+        <argsstring></argsstring>
+        <name>_mu_unit</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::_mu_unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="26" column="35" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="97" column="16" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1afb21e1d5937974a2a40f4955e1a1e018" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::InterpretationContext</definition>
+        <argsstring>(const InterpretationContext &amp;other)</argsstring>
+        <name>InterpretationContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::InterpretationContext</qualifiedname>
+        <param>
+          <type>const InterpretationContext &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="29" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1aa260c4bb5fe111847521dc7750fa4faf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InterpretationContext &amp;</type>
+        <definition>InterpretationContext &amp; falcon_core::autotuner_interfaces::interpretations::InterpretationContext::operator=</definition>
+        <argsstring>(const InterpretationContext &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::operator=</qualifiedname>
+        <param>
+          <type>const InterpretationContext &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="30" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1aa35a540f979d072864ad2d354286510a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::InterpretationContext</definition>
+        <argsstring>(const math::AxesSP&lt; autotuner_interfaces::contexts::MeasurementContext &gt; &amp;independent_variables, const generic::ListSP&lt; autotuner_interfaces::contexts::MeasurementContext &gt; &amp;dependent_variables, const physics::units::SymbolUnitSP &amp;unit)</argsstring>
+        <name>InterpretationContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::InterpretationContext</qualifiedname>
+        <param>
+          <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">autotuner_interfaces::contexts::MeasurementContext</ref> &gt; &amp;</type>
+          <declname>independent_variables</declname>
+        </param>
+        <param>
+          <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">autotuner_interfaces::contexts::MeasurementContext</ref> &gt; &amp;</type>
+          <declname>dependent_variables</declname>
+        </param>
+        <param>
+          <type>const physics::units::SymbolUnitSP &amp;</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+<para>Creates the <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext" kindref="compound">InterpretationContext</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>independent_variables</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The independent variables (sweep parameters). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>depedant_variables</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dependent variables (measured parameters). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>unit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit for interpreting the values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="37" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1aa376f66452a6e7ce8932b4ff848a6e7a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const math::AxesSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">autotuner_interfaces::contexts::MeasurementContext</ref> &gt;</type>
+        <definition>const math::AxesSP&lt; autotuner_interfaces::contexts::MeasurementContext &gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContext::independent_variables</definition>
+        <argsstring>() const</argsstring>
+        <name>independent_variables</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::independent_variables</qualifiedname>
+        <briefdescription>
+<para>Return the independent variables (sweep parameters). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="47" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a23bcc0d0132c1f751d76aa7d0271184b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const generic::ListSP&lt; <ref refid="classfalcon__core_1_1autotuner__interfaces_1_1contexts_1_1MeasurementContext" kindref="compound">autotuner_interfaces::contexts::MeasurementContext</ref> &gt;</type>
+        <definition>const generic::ListSP&lt; autotuner_interfaces::contexts::MeasurementContext &gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dependent_variables</definition>
+        <argsstring>() const</argsstring>
+        <name>dependent_variables</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dependent_variables</qualifiedname>
+        <briefdescription>
+<para>Return the dependent variables (measured parameters). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="52" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a4aa51412fd9c1b39bf6fd83101f19caf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const physics::units::SymbolUnitSP</type>
+        <definition>const physics::units::SymbolUnitSP falcon_core::autotuner_interfaces::interpretations::InterpretationContext::unit</definition>
+        <argsstring>() const</argsstring>
+        <name>unit</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::unit</qualifiedname>
+        <briefdescription>
+<para>Return the unit for interpreting the values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="56" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1aa45dff89e10d17bbd4349f11633696af" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const int</type>
+        <definition>const int falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dimension</definition>
+        <argsstring>() const</argsstring>
+        <name>dimension</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dimension</qualifiedname>
+        <briefdescription>
+<para>Return the dimensionality of the measurement (number of independent variables). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="61" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a7b982bb6f66b8dbed5a9498f3fe2a088" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::autotuner_interfaces::interpretations::InterpretationContext::add_dependent_variable</definition>
+        <argsstring>(const autotuner_interfaces::contexts::MeasurementContextSP &amp;variable)</argsstring>
+        <name>add_dependent_variable</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::add_dependent_variable</qualifiedname>
+        <param>
+          <type>const autotuner_interfaces::contexts::MeasurementContextSP &amp;</type>
+          <declname>variable</declname>
+        </param>
+        <briefdescription>
+<para>Add a dependant variable to the measurement context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>variable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dependent variable to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="66" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a84cd7339c983f221db85f6a88c46a951" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void falcon_core::autotuner_interfaces::interpretations::InterpretationContext::replace_dependent_variable</definition>
+        <argsstring>(int index, const autotuner_interfaces::contexts::MeasurementContextSP &amp;variable)</argsstring>
+        <name>replace_dependent_variable</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::replace_dependent_variable</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const autotuner_interfaces::contexts::MeasurementContextSP &amp;</type>
+          <declname>variable</declname>
+        </param>
+        <briefdescription>
+<para>Replace a dependent variable at the specified index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The count corresponding to the location of the variable to replace. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>variable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The varaible that is to be stored at the location. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="74" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a1c59ba446963bf40029c821a165f1d35" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const contexts::MeasurementContextSP</type>
+        <definition>const contexts::MeasurementContextSP falcon_core::autotuner_interfaces::interpretations::InterpretationContext::get_independent_variable</definition>
+        <argsstring>(int index) const</argsstring>
+        <name>get_independent_variable</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::get_independent_variable</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Get an independant variable by index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The count corresponding to the location of the variable to collect. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="82" column="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a7810bf170cbf3e87dfecc51ddd7176dd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::shared_ptr&lt; InterpretationContext &gt;</type>
+        <definition>const std::shared_ptr&lt; InterpretationContext &gt; falcon_core::autotuner_interfaces::interpretations::InterpretationContext::with_unit</definition>
+        <argsstring>(physics::units::SymbolUnitSP unit) const</argsstring>
+        <name>with_unit</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::with_unit</qualifiedname>
+        <param>
+          <type>physics::units::SymbolUnitSP</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+<para>Create a new interpretation context with the given unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>unit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The physical unit to use </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new interpretation context with the same variables but a different unit. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="91" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ae923f5aabea8bc70c5b13b2196c2f616" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::autotuner_interfaces::interpretations::InterpretationContext::operator==</definition>
+        <argsstring>(const InterpretationContext &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::operator==</qualifiedname>
+        <param>
+          <type>const InterpretationContext &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="93" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a49a499e9d23be19a405b43602f060c42" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::autotuner_interfaces::interpretations::InterpretationContext::operator!=</definition>
+        <argsstring>(const InterpretationContext &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::operator!=</qualifiedname>
+        <param>
+          <type>const InterpretationContext &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="94" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ad274b18ef8a8ce933be00f1cc9c6c0f6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::InterpretationContext</definition>
+        <argsstring>()</argsstring>
+        <name>InterpretationContext</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::InterpretationContext</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="98" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a943c770aa22c9002842a9458748cf1f8" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::autotuner_interfaces::interpretations::InterpretationContext::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="100" column="8" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="100" bodyend="111"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A context that describes measurement variables. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Contains an Axes of MeasurementContext for independent variables (sweep parameters), a list of MeasurementContext for dependent variables (measured parameters), and a unit for interpreting the values. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</label>
+        <link refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" line="18" column="1" bodyfile="cpp/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp" bodystart="18" bodyend="112"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ade0b49c6f904751950c454ce2ce9c891" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>_dependent_variables</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a56c2f4d6fffc1d5d9966a0f3d5e0f0a0" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>_independent_variables</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a2af991588314df7a4ec6fc9a3a7ee6c4" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>_mu_dependent_variables</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ae93c28b1668000aef13166818f6da726" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>_mu_independent_variables</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a3d26c891899cfc1ab31d33c2bfa0417e" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>_mu_unit</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a3e5df4728112a77bd82ebb0ad73605da" prot="private" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>_unit</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a7b982bb6f66b8dbed5a9498f3fe2a088" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>add_dependent_variable</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a23bcc0d0132c1f751d76aa7d0271184b" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>dependent_variables</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1aa45dff89e10d17bbd4349f11633696af" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>dimension</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a1c59ba446963bf40029c821a165f1d35" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>get_independent_variable</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1aa376f66452a6e7ce8932b4ff848a6e7a" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>independent_variables</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1afb21e1d5937974a2a40f4955e1a1e018" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>InterpretationContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1aa35a540f979d072864ad2d354286510a" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>InterpretationContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ad274b18ef8a8ce933be00f1cc9c6c0f6" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>InterpretationContext</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a49a499e9d23be19a405b43602f060c42" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1aa260c4bb5fe111847521dc7750fa4faf" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1ae923f5aabea8bc70c5b13b2196c2f616" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a84cd7339c983f221db85f6a88c46a951" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>replace_dependent_variable</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a943c770aa22c9002842a9458748cf1f8" prot="protected" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a4aa51412fd9c1b39bf6fd83101f19caf" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>unit</name></member>
+      <member refid="classfalcon__core_1_1autotuner__interfaces_1_1interpretations_1_1InterpretationContext_1a7810bf170cbf3e87dfecc51ddd7176dd" prot="public" virt="non-virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>with_unit</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::autotuner_interfaces::interpretations::InterpretationContext</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

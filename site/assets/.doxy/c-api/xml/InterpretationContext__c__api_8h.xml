@@ -1,0 +1,686 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="InterpretationContext__c__api_8h" kind="file" language="C++">
+    <compoundname>InterpretationContext_c_api.h</compoundname>
+    <includes local="no">stdbool.h</includes>
+    <includes refid="MeasurementContext__c__api_8h" local="yes">falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h</includes>
+    <includes refid="ListMeasurementContext__c__api_8h" local="yes">falcon_core/generic/ListMeasurementContext_c_api.h</includes>
+    <includes refid="String__c__api_8h" local="yes">falcon_core/generic/String_c_api.h</includes>
+    <includes refid="AxesMeasurementContext__c__api_8h" local="yes">falcon_core/math/AxesMeasurementContext_c_api.h</includes>
+    <includes refid="SymbolUnit__c__api_8h" local="yes">falcon_core/physics/units/SymbolUnit_c_api.h</includes>
+    <includedby refid="InterpretationContainerDouble__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</includedby>
+    <includedby refid="InterpretationContainerQuantity__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h</includedby>
+    <includedby refid="InterpretationContainerString__c__api_8h" local="yes">c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h</includedby>
+    <includedby refid="ListInterpretationContext__c__api_8h" local="yes">c-api/include/falcon_core/generic/ListInterpretationContext_c_api.h</includedby>
+    <includedby refid="PairInterpretationContextDouble__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairInterpretationContextDouble_c_api.h</includedby>
+    <includedby refid="PairInterpretationContextQuantity__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h</includedby>
+    <includedby refid="PairInterpretationContextString__c__api_8h" local="yes">c-api/include/falcon_core/generic/PairInterpretationContextString_c_api.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h</label>
+        <link refid="MeasurementContext__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h</label>
+        <link refid="InterpretationContext__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>falcon_core/generic/ListMeasurementContext_c_api.h</label>
+        <link refid="ListMeasurementContext__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>falcon_core/generic/String_c_api.h</label>
+        <link refid="String__c__api_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h</label>
+        <link refid="InstrumentPort__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>falcon_core/instrument_interfaces/names/InstrumentTypes_c_api.h</label>
+        <link refid="InstrumentTypes__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>falcon_core/math/AxesMeasurementContext_c_api.h</label>
+        <link refid="AxesMeasurementContext__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>falcon_core/physics/device_structures/Connection_c_api.h</label>
+        <link refid="Connection__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>falcon_core/physics/units/SymbolUnit_c_api.h</label>
+        <link refid="SymbolUnit__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdbool.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h</label>
+        <link refid="InterpretationContainerDouble__c__api_8h_source"/>
+      </node>
+      <node id="3">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h</label>
+        <link refid="InterpretationContainerQuantity__c__api_8h_source"/>
+      </node>
+      <node id="4">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h</label>
+        <link refid="InterpretationContainerString__c__api_8h_source"/>
+      </node>
+      <node id="1">
+        <label>c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h</label>
+        <link refid="InterpretationContext__c__api_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>c-api/include/falcon_core/generic/ListInterpretationContext_c_api.h</label>
+        <link refid="ListInterpretationContext__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextDouble_c_api.h</label>
+        <link refid="ListPairInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h</label>
+        <link refid="ListPairInterpretationContextQuantity__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>c-api/include/falcon_core/generic/ListPairInterpretationContextString_c_api.h</label>
+        <link refid="ListPairInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextDouble_c_api.h</label>
+        <link refid="MapInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextQuantity_c_api.h</label>
+        <link refid="MapInterpretationContextQuantity__c__api_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>c-api/include/falcon_core/generic/MapInterpretationContextString_c_api.h</label>
+        <link refid="MapInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>c-api/include/falcon_core/generic/PairInterpretationContextDouble_c_api.h</label>
+        <link refid="PairInterpretationContextDouble__c__api_8h_source"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>c-api/include/falcon_core/generic/PairInterpretationContextQuantity_c_api.h</label>
+        <link refid="PairInterpretationContextQuantity__c__api_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>c-api/include/falcon_core/generic/PairInterpretationContextString_c_api.h</label>
+        <link refid="PairInterpretationContextString__c__api_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="InterpretationContext__c__api_8h_1a1ba947a1341fee5b7b2e654c81920d89" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* InterpretationContextHandle</definition>
+        <argsstring></argsstring>
+        <name>InterpretationContextHandle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="13" column="14" bodyfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1ac9f141d4b5cb1e3d3d07e9c455f1d613" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InterpretationContextHandle</type>
+        <definition>InterpretationContextHandle InterpretationContext_copy</definition>
+        <argsstring>(InterpretationContextHandle handle)</argsstring>
+        <name>InterpretationContext_copy</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="16" column="29" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="16" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1a86699185504ec7aafa5970e9a51f444e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InterpretationContext_destroy</definition>
+        <argsstring>(InterpretationContextHandle handle)</argsstring>
+        <name>InterpretationContext_destroy</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="19" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1a412b9a59e729358b65458561926d1ec2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InterpretationContext_equal</definition>
+        <argsstring>(InterpretationContextHandle handle, InterpretationContextHandle other)</argsstring>
+        <name>InterpretationContext_equal</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="21" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1a7afbadf868f80324fb779f70fde1d358" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool InterpretationContext_not_equal</definition>
+        <argsstring>(InterpretationContextHandle handle, InterpretationContextHandle other)</argsstring>
+        <name>InterpretationContext_not_equal</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="24" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1a6530420e95ff7809c0afc8e0345e7b7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>StringHandle</type>
+        <definition>StringHandle InterpretationContext_to_json_string</definition>
+        <argsstring>(InterpretationContextHandle handle)</argsstring>
+        <name>InterpretationContext_to_json_string</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="27" column="14" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="27" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1a23b62305053390f07cfc0dc05db06ac4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InterpretationContextHandle</type>
+        <definition>InterpretationContextHandle InterpretationContext_from_json_string</definition>
+        <argsstring>(StringHandle json)</argsstring>
+        <name>InterpretationContext_from_json_string</name>
+        <param>
+          <type>StringHandle</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="30" column="29" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="30" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1aeccd5aa28e660b271747b9f12a314158" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InterpretationContextHandle</type>
+        <definition>InterpretationContextHandle InterpretationContext_create</definition>
+        <argsstring>(AxesMeasurementContextHandle independant_variables, ListMeasurementContextHandle dependant_variables, SymbolUnitHandle unit)</argsstring>
+        <name>InterpretationContext_create</name>
+        <param>
+          <type>AxesMeasurementContextHandle</type>
+          <declname>independant_variables</declname>
+        </param>
+        <param>
+          <type>ListMeasurementContextHandle</type>
+          <declname>dependant_variables</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="33" column="29" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="33" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1ab5523921c712b3e1c78a6a374f330c6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>AxesMeasurementContextHandle</type>
+        <definition>AxesMeasurementContextHandle InterpretationContext_independent_variables</definition>
+        <argsstring>(InterpretationContextHandle handle)</argsstring>
+        <name>InterpretationContext_independent_variables</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the independent variables (sweep parameters). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="44" column="30" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="44" declcolumn="30"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1a87cc2c968a6560f874dd31f8765d552c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ListMeasurementContextHandle</type>
+        <definition>ListMeasurementContextHandle InterpretationContext_dependent_variables</definition>
+        <argsstring>(InterpretationContextHandle handle)</argsstring>
+        <name>InterpretationContext_dependent_variables</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the dependent variables (measured parameters). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="53" column="30" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="53" declcolumn="30"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1a8542de02d5daf429523b76b73a31f6a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>SymbolUnitHandle</type>
+        <definition>SymbolUnitHandle InterpretationContext_unit</definition>
+        <argsstring>(InterpretationContextHandle handle)</argsstring>
+        <name>InterpretationContext_unit</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the unit for interpreting the values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="62" column="18" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="62" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1a0b66208b5e89bf80e47732a77f0cd503" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int InterpretationContext_dimension</definition>
+        <argsstring>(InterpretationContextHandle handle)</argsstring>
+        <name>InterpretationContext_dimension</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+<para>Return the dimensionality of the measurement (number of independent variables). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="71" column="5" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="71" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1a3693c5dca507f6a67637adb2286a4077" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InterpretationContext_add_dependent_variable</definition>
+        <argsstring>(InterpretationContextHandle handle, MeasurementContextHandle variable)</argsstring>
+        <name>InterpretationContext_add_dependent_variable</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>MeasurementContextHandle</type>
+          <declname>variable</declname>
+        </param>
+        <briefdescription>
+<para>Add a dependant variable to the measurement context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>variable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dependent variable to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="80" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="80" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1ae719a7153c60a7b30b31d94d6050c484" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void InterpretationContext_replace_dependent_variable</definition>
+        <argsstring>(InterpretationContextHandle handle, int index, MeasurementContextHandle variable)</argsstring>
+        <name>InterpretationContext_replace_dependent_variable</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>MeasurementContextHandle</type>
+          <declname>variable</declname>
+        </param>
+        <briefdescription>
+<para>Replace a dependent variable at the specified index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The count corresponding to the location of the variable to replace. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>variable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The varaible that is to be stored at the location. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="92" column="6" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="92" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1adb41ebb154e624d7ae1e5a13d6101da5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MeasurementContextHandle</type>
+        <definition>MeasurementContextHandle InterpretationContext_get_independent_variables</definition>
+        <argsstring>(InterpretationContextHandle handle, int index)</argsstring>
+        <name>InterpretationContext_get_independent_variables</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="97" column="26" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="97" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="InterpretationContext__c__api_8h_1afcdcd737f2ffb226136187b003f0f32a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>InterpretationContextHandle</type>
+        <definition>InterpretationContextHandle InterpretationContext_with_unit</definition>
+        <argsstring>(InterpretationContextHandle handle, SymbolUnitHandle unit)</argsstring>
+        <name>InterpretationContext_with_unit</name>
+        <param>
+          <type>InterpretationContextHandle</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>SymbolUnitHandle</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+<para>Create a new interpretation context with the given unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>unit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The physical unit to use </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new interpretation context with the same variables but a different unit. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" line="110" column="29" declfile="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h" declline="110" declcolumn="29"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/ListMeasurementContext_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/generic/String_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/math/AxesMeasurementContext_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;falcon_core/physics/units/SymbolUnit_c_api.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>InterpretationContextHandle;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">InterpretationContextHandle<sp/>InterpretationContext_copy(</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:deallocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InterpretationContext_destroy(InterpretationContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InterpretationContext_equal(InterpretationContextHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>other);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>InterpretationContext_not_equal(InterpretationContextHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>other);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">StringHandle<sp/>InterpretationContext_to_json_string(</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">InterpretationContextHandle<sp/>InterpretationContext_from_json_string(</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>StringHandle<sp/>json);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:allocation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">InterpretationContextHandle<sp/>InterpretationContext_create(</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>AxesMeasurementContextHandle<sp/>independant_variables,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>ListMeasurementContextHandle<sp/>dependant_variables,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>SymbolUnitHandle<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unit);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InterpretationContext_independent_variables<sp/>|</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::independent_variables</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">AxesMeasurementContextHandle<sp/>InterpretationContext_independent_variables(</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InterpretationContext_dependent_variables<sp/>|</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dependent_variables</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">ListMeasurementContextHandle<sp/>InterpretationContext_dependent_variables(</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InterpretationContext_unit<sp/>|</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::unit</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">SymbolUnitHandle<sp/>InterpretationContext_unit(InterpretationContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InterpretationContext_dimension<sp/>|</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::dimension</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>InterpretationContext_dimension(InterpretationContextHandle<sp/>handle);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InterpretationContext_add_dependent_variable<sp/>|</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::add_dependent_variable</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InterpretationContext_add_dependent_variable(</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>handle,<sp/>MeasurementContextHandle<sp/>variable);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:write</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InterpretationContext_replace_dependent_variable<sp/>|</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::replace_dependent_variable</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>InterpretationContext_replace_dependent_variable(</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>handle,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>index,</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>MeasurementContextHandle<sp/><sp/><sp/><sp/>variable);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">MeasurementContextHandle<sp/>InterpretationContext_get_independent_variables(</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>handle,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/>@category:read</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>AUTO-DOC<sp/>from<sp/>cpp:<sp/>InterpretationContext_with_unit<sp/>|</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*<sp/>falcon_core::autotuner_interfaces::interpretations::InterpretationContext::with_unit</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">InterpretationContextHandle<sp/>InterpretationContext_with_unit(</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>InterpretationContextHandle<sp/>handle,<sp/>SymbolUnitHandle<sp/>unit);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c-api/include/falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"/>
+  </compounddef>
+</doxygen>

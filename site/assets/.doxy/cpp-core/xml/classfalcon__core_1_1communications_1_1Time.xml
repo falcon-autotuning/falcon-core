@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="classfalcon__core_1_1communications_1_1Time" kind="class" language="C++" prot="public">
+    <compoundname>falcon_core::communications::Time</compoundname>
+    <basecompoundref refid="classfalcon__core_1_1generic_1_1Song" prot="public" virt="non-virtual">falcon_core::generic::Song</basecompoundref>
+    <includes refid="Time_8hpp" local="no">Time.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1Time_1a1e786fcf6d7b026458a703d932d3eff2" prot="private" static="no" mutable="no">
+        <type>long long</type>
+        <definition>long long falcon_core::communications::Time::_micro_seconds_since_epoch</definition>
+        <argsstring></argsstring>
+        <name>_micro_seconds_since_epoch</name>
+        <qualifiedname>falcon_core::communications::Time::_micro_seconds_since_epoch</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="13" column="35" bodyfile="cpp/include/falcon_core/communications/Time.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classfalcon__core_1_1communications_1_1Time_1a85a0203a140bfcf2a91451ef8611e44b" prot="private" static="no" mutable="yes">
+        <type>std::shared_timed_mutex</type>
+        <definition>std::shared_timed_mutex falcon_core::communications::Time::_mu_time</definition>
+        <argsstring></argsstring>
+        <name>_mu_time</name>
+        <qualifiedname>falcon_core::communications::Time::_mu_time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="14" column="35" bodyfile="cpp/include/falcon_core/communications/Time.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classfalcon__core_1_1communications_1_1Time_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class cereal::access</definition>
+        <argsstring></argsstring>
+        <name>cereal::access</name>
+        <qualifiedname>falcon_core::communications::Time::access</qualifiedname>
+        <param>
+          <type>cereal::access</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="17" column="16" bodyfile="cpp/include/falcon_core/communications/Time.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1a54a31019fedca7a1e0c8426c3ef6758c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Archive</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void falcon_core::communications::Time::serialize</definition>
+        <argsstring>(Archive &amp;ar)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>falcon_core::communications::Time::serialize</qualifiedname>
+        <param>
+          <type>Archive &amp;</type>
+          <declname>ar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="19" column="8" bodyfile="cpp/include/falcon_core/communications/Time.hpp" bodystart="19" bodyend="21"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1a8d9202e8465bdc5eec004e6f46c86256" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::Time::Time</definition>
+        <argsstring>(const Time &amp;other)</argsstring>
+        <name>Time</name>
+        <qualifiedname>falcon_core::communications::Time::Time</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="24" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1a987b2e234e7f1279f460610c26ad1a90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Time &amp;</type>
+        <definition>Time &amp; falcon_core::communications::Time::operator=</definition>
+        <argsstring>(const Time &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>falcon_core::communications::Time::operator=</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="25" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1a9202c4cb5254512158fc3877f59762ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::Time::Time</definition>
+        <argsstring>()</argsstring>
+        <name>Time</name>
+        <qualifiedname>falcon_core::communications::Time::Time</qualifiedname>
+        <briefdescription>
+<para>Construct a Tiem object at the current time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="29" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1a85756f7a869bfb2e4b12e5af1e481b2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>falcon_core::communications::Time::Time</definition>
+        <argsstring>(long long micro_seconds_since_epoch)</argsstring>
+        <name>Time</name>
+        <qualifiedname>falcon_core::communications::Time::Time</qualifiedname>
+        <param>
+          <type>long long</type>
+          <declname>micro_seconds_since_epoch</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="classfalcon__core_1_1communications_1_1Time" kindref="compound">Time</ref> object at a specific time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>micro_seconds_since_epoch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time in microseconds since the epoch. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="35" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1a2647e87c833ba552348d0f0ce515e8a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const long long</type>
+        <definition>const long long falcon_core::communications::Time::micro_seconds_since_epoch</definition>
+        <argsstring>() const</argsstring>
+        <name>micro_seconds_since_epoch</name>
+        <qualifiedname>falcon_core::communications::Time::micro_seconds_since_epoch</qualifiedname>
+        <briefdescription>
+<para>Get the time in microseconds since epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The time in microseconds since epoch. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="41" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1a093b5f470449495c6d8f42cdaa9a97af" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const long long</type>
+        <definition>const long long falcon_core::communications::Time::time</definition>
+        <argsstring>() const</argsstring>
+        <name>time</name>
+        <qualifiedname>falcon_core::communications::Time::time</qualifiedname>
+        <briefdescription>
+<para>Get the time in seconds since epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The time in seconds since epoch. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="46" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1a906c903a6254c8807d74976d2f3ce6ff" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string</type>
+        <definition>const std::string falcon_core::communications::Time::to_string</definition>
+        <argsstring>() const</argsstring>
+        <name>to_string</name>
+        <qualifiedname>falcon_core::communications::Time::to_string</qualifiedname>
+        <briefdescription>
+<para>Convert the <ref refid="classfalcon__core_1_1communications_1_1Time" kindref="compound">Time</ref> to a human-readable string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A string representation of the <ref refid="classfalcon__core_1_1communications_1_1Time" kindref="compound">Time</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="52" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1a90263d9a2e0e0df8669ab91b7f9b1cf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::Time::operator==</definition>
+        <argsstring>(const Time &amp;other)</argsstring>
+        <name>operator==</name>
+        <qualifiedname>falcon_core::communications::Time::operator==</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="53" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classfalcon__core_1_1communications_1_1Time_1aefb52ea92a7ea97582ec414df5e3cba6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool falcon_core::communications::Time::operator!=</definition>
+        <argsstring>(const Time &amp;other)</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>falcon_core::communications::Time::operator!=</qualifiedname>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="cpp/include/falcon_core/communications/Time.hpp" line="54" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a point in time with microsecond precision. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>falcon_core::communications::Time</label>
+        <link refid="classfalcon__core_1_1communications_1_1Time"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>falcon_core::communications::Time</label>
+        <link refid="classfalcon__core_1_1communications_1_1Time"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>falcon_core::generic::Song</label>
+        <link refid="classfalcon__core_1_1generic_1_1Song"/>
+      </node>
+    </collaborationgraph>
+    <location file="cpp/include/falcon_core/communications/Time.hpp" line="12" column="1" bodyfile="cpp/include/falcon_core/communications/Time.hpp" bodystart="12" bodyend="55"/>
+    <listofallmembers>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a1e786fcf6d7b026458a703d932d3eff2" prot="private" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>_micro_seconds_since_epoch</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a85a0203a140bfcf2a91451ef8611e44b" prot="private" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>_mu_time</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1ab2f44cbb59a08132f4c843e5225bba0e" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>cereal::access</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1af0219fa7fe4264758494efe1d6229138" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>from_json_string</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a2647e87c833ba552348d0f0ce515e8a0" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>micro_seconds_since_epoch</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1aefb52ea92a7ea97582ec414df5e3cba6" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>operator!=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a987b2e234e7f1279f460610c26ad1a90" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>operator=</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a90263d9a2e0e0df8669ab91b7f9b1cf5" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>operator==</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a54a31019fedca7a1e0c8426c3ef6758c" prot="protected" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>serialize</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a8d9202e8465bdc5eec004e6f46c86256" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>Time</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a9202c4cb5254512158fc3877f59762ed" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>Time</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a85756f7a869bfb2e4b12e5af1e481b2c" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>Time</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a093b5f470449495c6d8f42cdaa9a97af" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>time</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1a646a3e33b90e8118d643ce66aa30fda3" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>to_json_string</name></member>
+      <member refid="classfalcon__core_1_1communications_1_1Time_1a906c903a6254c8807d74976d2f3ce6ff" prot="public" virt="non-virtual"><scope>falcon_core::communications::Time</scope><name>to_string</name></member>
+      <member refid="classfalcon__core_1_1generic_1_1Song_1ab5b9a04c4853ac7ab5a5609cb8b47cfa" prot="public" virt="virtual"><scope>falcon_core::communications::Time</scope><name>~Song</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
