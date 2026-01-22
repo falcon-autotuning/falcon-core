@@ -48,7 +48,7 @@ jobs:
       - name: Install LLVM/Clang via Chocolatey
         shell: pwsh
         run: |
-          choco install llvm -y --version=18.1.8
+          choco install llvm -y
           refreshenv
 
       # Install Ninja build system
