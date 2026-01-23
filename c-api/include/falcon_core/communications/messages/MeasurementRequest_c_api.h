@@ -13,44 +13,49 @@ extern "C" {
 typedef void* MeasurementRequestHandle;
 
 // @category:allocation
-MeasurementRequestHandle MeasurementRequest_copy(
-    MeasurementRequestHandle handle);
+FALCON_CORE_C_API MeasurementRequestHandle
+MeasurementRequest_copy(MeasurementRequestHandle handle);
 // @category:deallocation
-void MeasurementRequest_destroy(MeasurementRequestHandle handle);
+FALCON_CORE_C_API void MeasurementRequest_destroy(
+    MeasurementRequestHandle handle);
 // @category:read
-bool MeasurementRequest_equal(MeasurementRequestHandle handle,
-                              MeasurementRequestHandle other);
+FALCON_CORE_C_API bool MeasurementRequest_equal(MeasurementRequestHandle handle,
+                                                MeasurementRequestHandle other);
 // @category:read
-bool MeasurementRequest_not_equal(MeasurementRequestHandle handle,
-                                  MeasurementRequestHandle other);
+FALCON_CORE_C_API bool MeasurementRequest_not_equal(
+    MeasurementRequestHandle handle, MeasurementRequestHandle other);
 // @category:read
-StringHandle MeasurementRequest_to_json_string(MeasurementRequestHandle handle);
+FALCON_CORE_C_API StringHandle
+MeasurementRequest_to_json_string(MeasurementRequestHandle handle);
 // @category:allocation
-MeasurementRequestHandle MeasurementRequest_from_json_string(StringHandle json);
+FALCON_CORE_C_API MeasurementRequestHandle
+MeasurementRequest_from_json_string(StringHandle json);
 // @category:allocation
-MeasurementRequestHandle MeasurementRequest_create(
-    StringHandle                         message,
-    StringHandle                         measurement_name,
-    ListWaveformHandle                   waveforms,
-    PortsHandle                          getters,
-    MapInstrumentPortPortTransformHandle meter_transforms,
-    LabelledDomainHandle                 time_domain);
+FALCON_CORE_C_API MeasurementRequestHandle
+MeasurementRequest_create(StringHandle                         message,
+                          StringHandle                         measurement_name,
+                          ListWaveformHandle                   waveforms,
+                          PortsHandle                          getters,
+                          MapInstrumentPortPortTransformHandle meter_transforms,
+                          LabelledDomainHandle                 time_domain);
 // @category:read
-StringHandle MeasurementRequest_measurement_name(
-    MeasurementRequestHandle handle);
+FALCON_CORE_C_API StringHandle
+MeasurementRequest_measurement_name(MeasurementRequestHandle handle);
 // @category:read
-PortsHandle MeasurementRequest_getters(MeasurementRequestHandle handle);
+FALCON_CORE_C_API PortsHandle
+MeasurementRequest_getters(MeasurementRequestHandle handle);
 // @category:read
-ListWaveformHandle MeasurementRequest_waveforms(
-    MeasurementRequestHandle handle);
+FALCON_CORE_C_API ListWaveformHandle
+MeasurementRequest_waveforms(MeasurementRequestHandle handle);
 // @category:read
-MapInstrumentPortPortTransformHandle MeasurementRequest_meter_transforms(
-    MeasurementRequestHandle handle);
+FALCON_CORE_C_API MapInstrumentPortPortTransformHandle
+MeasurementRequest_meter_transforms(MeasurementRequestHandle handle);
 // @category:read
-LabelledDomainHandle MeasurementRequest_time_domain(
-    MeasurementRequestHandle handle);
+FALCON_CORE_C_API LabelledDomainHandle
+MeasurementRequest_time_domain(MeasurementRequestHandle handle);
 // @category:read
-StringHandle MeasurementRequest_message(MeasurementRequestHandle handle);
+FALCON_CORE_C_API StringHandle
+MeasurementRequest_message(MeasurementRequestHandle handle);
 
 #ifdef __cplusplus
 }

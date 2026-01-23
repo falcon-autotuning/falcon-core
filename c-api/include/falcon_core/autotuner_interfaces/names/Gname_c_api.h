@@ -5,32 +5,33 @@ extern "C" {
 
 #include <stdbool.h>
 
+#include "falcon_core/export_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 typedef void* GnameHandle;
 
 // @category:allocation
-GnameHandle Gname_copy(GnameHandle handle);
+FALCON_CORE_C_API GnameHandle Gname_copy(GnameHandle handle);
 // @category:deallocation
-void Gname_destroy(GnameHandle handle);
+FALCON_CORE_C_API void Gname_destroy(GnameHandle handle);
 // @category:read
-bool Gname_equal(GnameHandle handle, GnameHandle other);
+FALCON_CORE_C_API bool Gname_equal(GnameHandle handle, GnameHandle other);
 // @category:read
-bool Gname_not_equal(GnameHandle handle, GnameHandle other);
+FALCON_CORE_C_API bool Gname_not_equal(GnameHandle handle, GnameHandle other);
 // @category:read
-StringHandle Gname_to_json_string(GnameHandle handle);
+FALCON_CORE_C_API StringHandle Gname_to_json_string(GnameHandle handle);
 // @category:allocation
-GnameHandle Gname_from_json_string(StringHandle json);
+FALCON_CORE_C_API GnameHandle Gname_from_json_string(StringHandle json);
 // @category:allocation
-GnameHandle Gname_create_from_num(int num);
+FALCON_CORE_C_API GnameHandle Gname_create_from_num(int num);
 // @category:allocation
-GnameHandle Gname_create(StringHandle name);
+FALCON_CORE_C_API GnameHandle Gname_create(StringHandle name);
 // @category:read
 /* AUTO-DOC from cpp: Gname_gname |
  * falcon_core::autotuner_interfaces::names::Gname::gname */
 /**
  * @brief Collect the gname as a string.
  */
-StringHandle Gname_gname(GnameHandle handle);
+FALCON_CORE_C_API StringHandle Gname_gname(GnameHandle handle);
 
 #ifdef __cplusplus
 }
