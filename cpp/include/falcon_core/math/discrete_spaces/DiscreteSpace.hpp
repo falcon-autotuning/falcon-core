@@ -115,7 +115,7 @@ class FALCON_CORE_CPP_API DiscreteSpace : public generic::Song {
   DiscreteSpace();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_space(_mu_space,
                                                          std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_axes(_mu_axes,

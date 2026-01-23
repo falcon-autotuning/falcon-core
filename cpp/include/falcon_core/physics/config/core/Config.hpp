@@ -567,7 +567,7 @@ class FALCON_CORE_CPP_API Config : public StandardConfigConnections {
   Config();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_channels(_mu_channels,
                                                             std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_groups(_mu_groups,

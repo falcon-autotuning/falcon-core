@@ -27,7 +27,7 @@ class Map : public virtual generic::Song {
   Map<Key, Value>(const Map<Key, Value>& other) {
     _items = std::make_shared<Container>(*other.items());
   }
-  Map<Key, Value>& operator=(const Map<Key, Value>& other) {
+  inline Map<Key, Value>& operator=(const Map<Key, Value>& other) {
     if (this != &other) {
       std::unique_lock<std::shared_timed_mutex> lock_items(_mu_items);
       _items = std::make_shared<Container>(*other.items());
@@ -53,23 +53,23 @@ class Map : public virtual generic::Song {
   std::shared_ptr<Map<Key, Value>> create(const Container& init) {
     return std::make_shared<Map<Key, Value>>(init);
   }
-  const std::shared_ptr<Container> items() const {
+  inline const std::shared_ptr<Container> items() const {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return _items;
   }
-  std::shared_ptr<Container> items() {
+  inline std::shared_ptr<Container> items() {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return _items;
   }
 
-  void insert_or_assign(const typename ContainerItem::StoredT1& key,
-                        const typename ContainerItem::StoredT2& value) {
+  inline void insert_or_assign(const typename ContainerItem::StoredT1& key,
+                               const typename ContainerItem::StoredT2& value) {
     erase(key);
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     _items->push_back(std::make_shared<Pair<Key, Value>>(key, value));
   }
 
-  std::pair<iterator, bool> insert(
+  inline std::pair<iterator, bool> insert(
       const typename ContainerItem::StoredT1& key,
       const typename ContainerItem::StoredT2& value) {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
@@ -82,14 +82,14 @@ class Map : public virtual generic::Song {
   }
 
   // at
-  typename ContainerItem::StoredT2 at(
+  inline typename ContainerItem::StoredT2 at(
       const typename ContainerItem::StoredT1& key) {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     iterator                                  it = find(key);
     if (it == _items->end()) throw std::out_of_range("Map: Key not found");
     return (*it)->second();
   }
-  const typename ContainerItem::StoredT2 at(
+  inline const typename ContainerItem::StoredT2 at(
       const typename ContainerItem::StoredT1& key) const {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     const_iterator                            it = find(key);
@@ -97,7 +97,7 @@ class Map : public virtual generic::Song {
     return (*it)->second();
   }
 
-  typename ContainerItem::StoredT2 operator[](
+  inline typename ContainerItem::StoredT2 operator[](
       const typename ContainerItem::StoredT1& key) {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     auto                                      it = find(key);
@@ -110,7 +110,7 @@ class Map : public virtual generic::Song {
   }
 
   // erase
-  void erase(const typename ContainerItem::StoredT1& key) {
+  inline void erase(const typename ContainerItem::StoredT1& key) {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     auto                                      it = find(key);
     if (it != _items->end()) {
@@ -120,27 +120,27 @@ class Map : public virtual generic::Song {
   }
 
   // size
-  std::size_t size() const { return items()->size(); }
+  inline std::size_t size() const { return items()->size(); }
 
   // empty
-  bool empty() const { return items()->empty(); }
+  inline bool empty() const { return items()->empty(); }
 
   // clear
-  void clear() {
+  inline void clear() {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     _items->clear();
   }
 
   // iterators
-  iterator       begin() { return items()->begin(); }
-  iterator       end() { return items()->end(); }
-  const_iterator begin() const { return items()->begin(); }
-  const_iterator end() const { return items()->end(); }
-  const_iterator cbegin() const { return items()->cbegin(); }
-  const_iterator cend() const { return items()->cend(); }
+  inline iterator       begin() { return items()->begin(); }
+  inline iterator       end() { return items()->end(); }
+  inline const_iterator begin() const { return items()->begin(); }
+  inline const_iterator end() const { return items()->end(); }
+  inline const_iterator cbegin() const { return items()->cbegin(); }
+  inline const_iterator cend() const { return items()->cend(); }
 
   // contains
-  bool contains(const typename ContainerItem::StoredT1& key) const {
+  inline bool contains(const typename ContainerItem::StoredT1& key) const {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return find(key) != items()->end();
   }
@@ -148,7 +148,7 @@ class Map : public virtual generic::Song {
   /**
    * @brief Return the keys of the Map.
    */
-  const generic::ListSP<Key> keys() const {
+  inline const generic::ListSP<Key> keys() const {
     generic::List<Key> out   = generic::List<Key>();
     auto               items = *this->items();
     for (const ContainerItemSP& pair : items) {
@@ -160,7 +160,7 @@ class Map : public virtual generic::Song {
   /**
    * @brief Return the values of the Map.
    */
-  const generic::ListSP<Value> values() const {
+  inline const generic::ListSP<Value> values() const {
     generic::List<Value> out   = generic::List<Value>();
     auto                 items = *this->items();
     for (const ContainerItemSP& pair : items) {
@@ -168,7 +168,7 @@ class Map : public virtual generic::Song {
     }
     return std::make_shared<generic::List<Value>>(out);
   }
-  bool operator==(const Map<Key, Value>& other) const {
+  inline bool operator==(const Map<Key, Value>& other) const {
     if (this == &other) return true;
     if (size() != other.size()) return false;
     std::vector<size_t> unmatched_indexes(size());
@@ -189,21 +189,22 @@ class Map : public virtual generic::Song {
     }
     return unmatched_indexes.empty();  // All pairs matched
   }
-  bool operator!=(const Map<Key, Value>& other) const {
+  inline bool operator!=(const Map<Key, Value>& other) const {
     return !(*this == other);
   }
 
  protected:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     ar(cereal::base_class<Song>(this), *_items);
   }
   // Find
   template <typename K = Key>
-  typename std::enable_if<std::is_base_of<Song, K>::value, iterator>::type find(
-      const typename ContainerItem::StoredT1& key) {
+  inline
+      typename std::enable_if<std::is_base_of<Song, K>::value, iterator>::type
+      find(const typename ContainerItem::StoredT1& key) {
     if (!key) return _items->end();
     return std::find_if(
         _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
@@ -212,8 +213,9 @@ class Map : public virtual generic::Song {
   }
 
   template <typename K = Key>
-  typename std::enable_if<!std::is_base_of<Song, K>::value, iterator>::type
-  find(const typename ContainerItem::StoredT1& key) {
+  inline
+      typename std::enable_if<!std::is_base_of<Song, K>::value, iterator>::type
+      find(const typename ContainerItem::StoredT1& key) {
     return std::find_if(
         _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
           return v->first() == key;
@@ -221,7 +223,8 @@ class Map : public virtual generic::Song {
   }
 
   template <typename K = Key>
-  typename std::enable_if<std::is_base_of<Song, K>::value, const_iterator>::type
+  inline typename std::enable_if<std::is_base_of<Song, K>::value,
+                                 const_iterator>::type
   find(const typename ContainerItem::StoredT1& key) const {
     if (!key) return _items->end();
     return std::find_if(
@@ -231,8 +234,8 @@ class Map : public virtual generic::Song {
   }
 
   template <typename K = Key>
-  typename std::enable_if<!std::is_base_of<Song, K>::value,
-                          const_iterator>::type
+  inline typename std::enable_if<!std::is_base_of<Song, K>::value,
+                                 const_iterator>::type
   find(const typename ContainerItem::StoredT1& key) const {
     return std::find_if(
         _items->begin(), _items->end(), [&](const ContainerItemSP& v) {

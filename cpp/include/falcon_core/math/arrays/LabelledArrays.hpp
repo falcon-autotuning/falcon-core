@@ -56,12 +56,14 @@ class FALCON_CORE_CPP_API LabelledArrays : public generic::List<ArrayType> {
   /**
    * @brief Returns the internal vector of labelled arrays.
    */
-  std::vector<std::shared_ptr<ArrayType>> arrays() { return this->items(); }
+  inline std::vector<std::shared_ptr<ArrayType>> arrays() {
+    return this->items();
+  }
   /**
    * @brief Returns the labels of all labelled arrays.
    */
-  generic::ListSP<autotuner_interfaces::contexts::AcquisitionContext> labels()
-      const {
+  inline generic::ListSP<autotuner_interfaces::contexts::AcquisitionContext>
+  labels() const {
     auto list = std::make_shared<
         generic::List<autotuner_interfaces::contexts::AcquisitionContext>>();
     for (const auto& item : this->items()) {
@@ -73,7 +75,7 @@ class FALCON_CORE_CPP_API LabelledArrays : public generic::List<ArrayType> {
    * @brief Checks that all array labels are unique.
    * @throws std::runtime_error if any labels are not unique.
    */
-  void check_array_labels() const {
+  inline void check_array_labels() const {
     generic::List<autotuner_interfaces::contexts::AcquisitionContext> seen;
     auto all_labels = *labels();
     for (autotuner_interfaces::contexts::AcquisitionContextSP& label :
@@ -87,7 +89,7 @@ class FALCON_CORE_CPP_API LabelledArrays : public generic::List<ArrayType> {
   /**
    * @brief Checks if the contents are of control arrays.
    */
-  bool is_control_arrays() const {
+  inline bool is_control_arrays() const {
     for (const std::shared_ptr<ArrayType>& array : this->items()) {
       if (!array || !dynamic_cast<const ControlArray*>(array.get())) {
         return false;
@@ -98,7 +100,7 @@ class FALCON_CORE_CPP_API LabelledArrays : public generic::List<ArrayType> {
   /**
    * @brief Checks if the contents are of measured arrays.
    */
-  bool is_measured_arrays() const {
+  inline bool is_measured_arrays() const {
     for (const std::shared_ptr<ArrayType>& array : this->items()) {
       if (!array || !dynamic_cast<const MeasuredArray*>(array.get())) {
         return false;

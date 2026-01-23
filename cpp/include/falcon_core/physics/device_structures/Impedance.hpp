@@ -41,7 +41,7 @@ class FALCON_CORE_CPP_API Impedance : public generic::Song {
    */
   double capacitance() const;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_connection(_mu_connection,
                                                               std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_resistance(_mu_resistance,

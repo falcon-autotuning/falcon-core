@@ -20,7 +20,7 @@ class FALCON_CORE_CPP_API ControlArray : public generic::FArray<double>,
   friend class cereal::access;
   ControlArray();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<FArray<double>>(this),
        principle_dimension(),
        alignment());

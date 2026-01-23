@@ -16,7 +16,7 @@ class FALCON_CORE_CPP_API StandardRequest : public BaseMessage {
   friend class cereal::access;
   StandardRequest();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<BaseMessage>(this));
   }
 };

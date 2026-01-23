@@ -157,7 +157,7 @@ class FALCON_CORE_CPP_API LabelledMeasuredArray : public MeasuredArray,
   LabelledMeasuredArray();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<MeasuredArray>(this), _label);
   }
 };

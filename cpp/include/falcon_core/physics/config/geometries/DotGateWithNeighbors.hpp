@@ -36,7 +36,7 @@ class FALCON_CORE_CPP_API DotGateWithNeighbors
   DotGateWithNeighbors();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<Connection>(this));
     ar(cereal::base_class<HasLeftNeighbor>(this));
     ar(cereal::base_class<HasRightNeighbor>(this));

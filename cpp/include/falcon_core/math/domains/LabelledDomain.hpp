@@ -107,7 +107,7 @@ class FALCON_CORE_CPP_API LabelledDomain : public Domain {
   LabelledDomain();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_port(_mu_port);
     ar(cereal::base_class<Domain>(this), _port);
   }

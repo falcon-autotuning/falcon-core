@@ -23,7 +23,7 @@ class FALCON_CORE_CPP_API Gname : public NameBase {
   Gname();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<NameBase>(this));
   }
 };

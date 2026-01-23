@@ -29,7 +29,7 @@ class FALCON_CORE_CPP_API Channel : public generic::Song {
   Channel();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_name(_mu_name);
     ar(cereal::base_class<generic::Song>(this), _name);
   }

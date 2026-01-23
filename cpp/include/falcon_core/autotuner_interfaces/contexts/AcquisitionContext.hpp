@@ -16,7 +16,7 @@ class FALCON_CORE_CPP_API AcquisitionContext : public BaseContext {
   friend class cereal::access;
   AcquisitionContext();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_u(_mu_units);
     ar(cereal::base_class<BaseContext>(this), _units);
   }

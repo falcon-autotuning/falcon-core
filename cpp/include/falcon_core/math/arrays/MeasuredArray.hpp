@@ -19,7 +19,7 @@ class FALCON_CORE_CPP_API MeasuredArray : public generic::FArray<double> {
   friend class cereal::access;
   MeasuredArray();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<FArray<double>>(this));
   }
 

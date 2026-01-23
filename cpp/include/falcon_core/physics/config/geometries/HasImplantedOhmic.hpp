@@ -27,7 +27,7 @@ class FALCON_CORE_CPP_API HasImplantedOhmic : public virtual generic::Song {
   HasImplantedOhmic();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_ohmic(_mu_ohmic);
     ar(cereal::base_class<Song>(this), _ohmic);
   }

@@ -23,7 +23,7 @@ class InterpretationContainer
   InterpretationContainer() = default;
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_u(_mu_unit);
     ar(cereal::base_class<generic::Map<InterpretationContext, Value>>(this),
        _unit);
@@ -44,7 +44,7 @@ class InterpretationContainer
     }
     _unit = std::make_shared<physics::units::SymbolUnit>(*other._unit);
   }
-  InterpretationContext& operator=(
+  inline InterpretationContext& operator=(
       const InterpretationContainer<Value>& other) {
     if (this != &other) {
       std::shared_lock<std::shared_timed_mutex> lock_o(other._mu_unit,
@@ -88,7 +88,7 @@ class InterpretationContainer
   /**
    * @brief Returns the unit that all contexts in this constainer must have.
    */
-  const physics::units::SymbolUnitSP unit() const {
+  inline const physics::units::SymbolUnitSP unit() const {
     std::shared_lock<std::shared_timed_mutex> lock_u(_mu_unit);
     return _unit;
   }
@@ -98,7 +98,7 @@ class InterpretationContainer
    * @returns A list of contexts that involve the specified connection in either
    * independant or dependant variables.
    */
-  const generic::ListSP<InterpretationContext> select_by_connection(
+  inline const generic::ListSP<InterpretationContext> select_by_connection(
       const physics::device_structures::ConnectionSP& connection) const {
     if (!connection) {
       throw std::invalid_argument("The connection needs to not be null.");
@@ -138,7 +138,7 @@ class InterpretationContainer
    * @param connections List of connections to search for.
    * @returns A list of contexts that involve all specified connections.
    */
-  const generic::ListSP<InterpretationContext> select_by_connections(
+  inline const generic::ListSP<InterpretationContext> select_by_connections(
       const std::vector<physics::device_structures::ConnectionSP>& connections)
       const {
     std::vector<InterpretationContextSP> matching_contexts;
@@ -170,7 +170,8 @@ class InterpretationContainer
     return std::make_shared<generic::List<InterpretationContext>>(
         matching_contexts);
   }
-  const generic::ListSP<InterpretationContext> select_by_independent_connection(
+  inline const generic::ListSP<InterpretationContext>
+  select_by_independent_connection(
       const physics::device_structures::ConnectionSP& connection) {
     if (!connection) {
       throw std::invalid_argument("The connection must not be null.");
@@ -190,7 +191,8 @@ class InterpretationContainer
     }
     return results;
   }
-  const generic::ListSP<InterpretationContext> select_by_dependent_connection(
+  inline const generic::ListSP<InterpretationContext>
+  select_by_dependent_connection(
       const physics::device_structures::ConnectionSP& connection) {
     if (!connection) {
       throw std::invalid_argument("The connection must not be null.");
@@ -208,7 +210,7 @@ class InterpretationContainer
     }
     return results;
   }
-  const generic::ListSP<InterpretationContext> select_contexts(
+  inline const generic::ListSP<InterpretationContext> select_contexts(
       const generic::ListSP<physics::device_structures::Connection>&
           independent_connections,
       const generic::ListSP<physics::device_structures::Connection>&
@@ -287,7 +289,7 @@ class InterpretationContainer
         matching_contexts);
     return result;
   }
-  bool operator==(const InterpretationContainer<Value>& other) const {
+  inline bool operator==(const InterpretationContainer<Value>& other) const {
     if (this->size() != other.size()) return false;
     std::vector<size_t> unmatched_indexes(this->size());
     for (size_t i = 0; i < this->size(); ++i) {
@@ -326,7 +328,7 @@ class InterpretationContainer
     }
     return true;
   }
-  bool operator!=(const InterpretationContainer<Value>& other) const {
+  inline bool operator!=(const InterpretationContainer<Value>& other) const {
     return !(*this == other);
   }
 };

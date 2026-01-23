@@ -39,7 +39,7 @@ class FALCON_CORE_CPP_API HDF5Data : public generic::Song {
   friend class cereal::access;
   HDF5Data();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_m(_mu_metadata,
                                                      std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_r(_mu_ranges,

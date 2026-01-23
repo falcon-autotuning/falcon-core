@@ -38,7 +38,7 @@ class FALCON_CORE_CPP_API Adjacency : public generic::FArray<int> {
   Adjacency();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_indexes(_mu_indexes);
     ar(cereal::base_class<generic::FArray<int>>(this), _indexes);
   }

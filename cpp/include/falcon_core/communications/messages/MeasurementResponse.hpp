@@ -30,7 +30,7 @@ class FALCON_CORE_CPP_API MeasurementResponse : public BaseMessage {
   MeasurementResponse();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_a(_mu_arrays);
     ar(cereal::base_class<BaseMessage>(this), _arrays);
   }

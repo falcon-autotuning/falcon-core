@@ -17,7 +17,7 @@ class FALCON_CORE_CPP_API Time : public generic::Song {
  protected:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<generic::Song>(this), _micro_seconds_since_epoch);
   }
 
