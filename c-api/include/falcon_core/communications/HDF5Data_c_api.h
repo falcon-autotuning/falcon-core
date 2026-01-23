@@ -18,30 +18,33 @@ extern "C" {
 typedef void* HDF5DataHandle;
 
 // @category:allocation
-HDF5DataHandle HDF5Data_copy(HDF5DataHandle handle);
+FALCON_CORE_C_API HDF5DataHandle HDF5Data_copy(HDF5DataHandle handle);
 // @category:deallocation
-void HDF5Data_destroy(HDF5DataHandle handle);
+FALCON_CORE_C_API void HDF5Data_destroy(HDF5DataHandle handle);
 // @category:read
-bool HDF5Data_equal(HDF5DataHandle handle, HDF5DataHandle other);
+FALCON_CORE_C_API bool HDF5Data_equal(HDF5DataHandle handle,
+                                      HDF5DataHandle other);
 // @category:read
-bool HDF5Data_not_equal(HDF5DataHandle handle, HDF5DataHandle other);
+FALCON_CORE_C_API bool HDF5Data_not_equal(HDF5DataHandle handle,
+                                          HDF5DataHandle other);
 // @category:read
-StringHandle HDF5Data_to_json_string(HDF5DataHandle handle);
+FALCON_CORE_C_API StringHandle HDF5Data_to_json_string(HDF5DataHandle handle);
 // @category:allocation
-HDF5DataHandle HDF5Data_from_json_string(StringHandle json);
+FALCON_CORE_C_API HDF5DataHandle HDF5Data_from_json_string(StringHandle json);
 // @category:allocation
-HDF5DataHandle HDF5Data_create(AxesIntHandle                   shape,
-                               AxesControlArrayHandle          unit_domain,
-                               AxesCoupledLabelledDomainHandle domain_labels,
-                               LabelledArraysLabelledMeasuredArrayHandle ranges,
-                               MapStringStringHandle metadata,
-                               StringHandle          measurement_title,
-                               int                   unique_id,
-                               int                   timestamp);
+FALCON_CORE_C_API HDF5DataHandle
+HDF5Data_create(AxesIntHandle                             shape,
+                AxesControlArrayHandle                    unit_domain,
+                AxesCoupledLabelledDomainHandle           domain_labels,
+                LabelledArraysLabelledMeasuredArrayHandle ranges,
+                MapStringStringHandle                     metadata,
+                StringHandle                              measurement_title,
+                int                                       unique_id,
+                int                                       timestamp);
 // @category:allocation
-HDF5DataHandle HDF5Data_create_from_file(StringHandle path);
+FALCON_CORE_C_API HDF5DataHandle HDF5Data_create_from_file(StringHandle path);
 // @category:allocation
-HDF5DataHandle HDF5Data_create_from_communications(
+FALCON_CORE_C_API HDF5DataHandle HDF5Data_create_from_communications(
     MeasurementRequestHandle  request,
     MeasurementResponseHandle response,
     DeviceVoltageStatesHandle device_voltage_states,
@@ -56,7 +59,8 @@ HDF5DataHandle HDF5Data_create_from_communications(
  * @brief Convert from an HDF5Data object to a file.
  * @param path The path to write the HDF5 file at.
  */
-void HDF5Data_to_file(HDF5DataHandle handle, StringHandle path);
+FALCON_CORE_C_API void HDF5Data_to_file(HDF5DataHandle handle,
+                                        StringHandle   path);
 // @category:read
 /* AUTO-DOC from cpp: HDF5Data_to_communications |
  * falcon_core::communications::HDF5Data::to_communications */
@@ -65,25 +69,29 @@ void HDF5Data_to_file(HDF5DataHandle handle, StringHandle path);
  * Metadata.
  * @return A pair of MeasurementResponse and MeasurementRequest.
  */
-PairMeasurementResponseMeasurementRequestHandle HDF5Data_to_communications(
-    HDF5DataHandle handle);
+FALCON_CORE_C_API PairMeasurementResponseMeasurementRequestHandle
+HDF5Data_to_communications(HDF5DataHandle handle);
 // @category:read
-AxesIntHandle HDF5Data_shape(HDF5DataHandle handle);
+FALCON_CORE_C_API AxesIntHandle HDF5Data_shape(HDF5DataHandle handle);
 // @category:read
-AxesControlArrayHandle HDF5Data_unit_domain(HDF5DataHandle handle);
+FALCON_CORE_C_API AxesControlArrayHandle
+HDF5Data_unit_domain(HDF5DataHandle handle);
 // @category:read
-AxesCoupledLabelledDomainHandle HDF5Data_domain_labels(HDF5DataHandle handle);
+FALCON_CORE_C_API AxesCoupledLabelledDomainHandle
+HDF5Data_domain_labels(HDF5DataHandle handle);
 // @category:read
-LabelledArraysLabelledMeasuredArrayHandle HDF5Data_ranges(
-    HDF5DataHandle handle);
+FALCON_CORE_C_API LabelledArraysLabelledMeasuredArrayHandle
+HDF5Data_ranges(HDF5DataHandle handle);
 // @category:read
-MapStringStringHandle HDF5Data_metadata(HDF5DataHandle handle);
+FALCON_CORE_C_API MapStringStringHandle
+HDF5Data_metadata(HDF5DataHandle handle);
 // @category:read
-StringHandle HDF5Data_measurement_title(HDF5DataHandle handle);
+FALCON_CORE_C_API StringHandle
+HDF5Data_measurement_title(HDF5DataHandle handle);
 // @category:read
-int HDF5Data_unique_id(HDF5DataHandle handle);
+FALCON_CORE_C_API int HDF5Data_unique_id(HDF5DataHandle handle);
 // @category:read
-int HDF5Data_timestamp(HDF5DataHandle handle);
+FALCON_CORE_C_API int HDF5Data_timestamp(HDF5DataHandle handle);
 
 #ifdef __cplusplus
 }
