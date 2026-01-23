@@ -123,9 +123,21 @@ if(WIN32)
   set_target_properties(${CPP_LIB_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS
                                                    OFF)
 endif()
-set_target_properties(${CPP_LIB_NAME} PROPERTIES UNITY_BUILD ON)
-set_target_properties(${CPP_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
-                                                 ${BATCH_SIZE})
+if(WIN32)
+  # Windows: Disable Unity Build to avoid duplicate symbol errors
+  set_target_properties(${CPP_LIB_NAME} PROPERTIES
+    WINDOWS_EXPORT_ALL_SYMBOLS OFF
+    UNITY_BUILD OFF
+  )
+  message(STATUS "Windows detected: Unity Build DISABLED for ${CPP_LIB_NAME}")
+else()
+  # Linux/macOS: Keep Unity Build enabled for faster compilation
+  set_target_properties(${CPP_LIB_NAME} PROPERTIES 
+    UNITY_BUILD ON
+    UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
+  )
+  message(STATUS "Unix detected: Unity Build ENABLED for ${CPP_LIB_NAME}")
+endif()
 target_include_directories(
   ${CPP_LIB_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                          $<INSTALL_INTERFACE:include>)
