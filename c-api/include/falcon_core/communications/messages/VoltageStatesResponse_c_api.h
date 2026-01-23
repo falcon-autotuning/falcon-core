@@ -6,34 +6,37 @@ extern "C" {
 #include <stdbool.h>
 
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
+#include "falcon_core/export_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 typedef void* VoltageStatesResponseHandle;
 
 // @category:allocation
-VoltageStatesResponseHandle VoltageStatesResponse_copy(
-    VoltageStatesResponseHandle handle);
+FALCON_CORE_C_API VoltageStatesResponseHandle
+VoltageStatesResponse_copy(VoltageStatesResponseHandle handle);
 // @category:deallocation
-void VoltageStatesResponse_destroy(VoltageStatesResponseHandle handle);
-// @category:read
-bool VoltageStatesResponse_equal(VoltageStatesResponseHandle handle,
-                                 VoltageStatesResponseHandle other);
-// @category:read
-bool VoltageStatesResponse_not_equal(VoltageStatesResponseHandle handle,
-                                     VoltageStatesResponseHandle other);
-// @category:read
-StringHandle VoltageStatesResponse_to_json_string(
+FALCON_CORE_C_API void VoltageStatesResponse_destroy(
     VoltageStatesResponseHandle handle);
+// @category:read
+FALCON_CORE_C_API bool VoltageStatesResponse_equal(
+    VoltageStatesResponseHandle handle, VoltageStatesResponseHandle other);
+// @category:read
+FALCON_CORE_C_API bool VoltageStatesResponse_not_equal(
+    VoltageStatesResponseHandle handle, VoltageStatesResponseHandle other);
+// @category:read
+FALCON_CORE_C_API StringHandle
+VoltageStatesResponse_to_json_string(VoltageStatesResponseHandle handle);
 // @category:allocation
-VoltageStatesResponseHandle VoltageStatesResponse_from_json_string(
-    StringHandle json);
+FALCON_CORE_C_API VoltageStatesResponseHandle
+VoltageStatesResponse_from_json_string(StringHandle json);
 // @category:allocation
-VoltageStatesResponseHandle VoltageStatesResponse_create(
+FALCON_CORE_C_API VoltageStatesResponseHandle VoltageStatesResponse_create(
     StringHandle message, DeviceVoltageStatesHandle states);
 // @category:read
-StringHandle VoltageStatesResponse_message(VoltageStatesResponseHandle handle);
+FALCON_CORE_C_API StringHandle
+VoltageStatesResponse_message(VoltageStatesResponseHandle handle);
 // @category:read
-DeviceVoltageStatesHandle VoltageStatesResponse_states(
-    VoltageStatesResponseHandle handle);
+FALCON_CORE_C_API DeviceVoltageStatesHandle
+VoltageStatesResponse_states(VoltageStatesResponseHandle handle);
 
 #ifdef __cplusplus
 }
