@@ -5,27 +5,33 @@ extern "C" {
 
 #include <stdbool.h>
 
+#include "falcon_core/export_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 typedef void* StandardRequestHandle;
 
 // @category:allocation
-StandardRequestHandle StandardRequest_copy(StandardRequestHandle handle);
+FALCON_CORE_C_API StandardRequestHandle
+StandardRequest_copy(StandardRequestHandle handle);
 // @category:deallocation
-void StandardRequest_destroy(StandardRequestHandle handle);
+FALCON_CORE_C_API void StandardRequest_destroy(StandardRequestHandle handle);
 // @category:read
-bool StandardRequest_equal(StandardRequestHandle handle,
-                           StandardRequestHandle other);
+FALCON_CORE_C_API bool StandardRequest_equal(StandardRequestHandle handle,
+                                             StandardRequestHandle other);
 // @category:read
-bool StandardRequest_not_equal(StandardRequestHandle handle,
-                               StandardRequestHandle other);
+FALCON_CORE_C_API bool StandardRequest_not_equal(StandardRequestHandle handle,
+                                                 StandardRequestHandle other);
 // @category:read
-StringHandle StandardRequest_to_json_string(StandardRequestHandle handle);
+FALCON_CORE_C_API StringHandle
+StandardRequest_to_json_string(StandardRequestHandle handle);
 // @category:allocation
-StandardRequestHandle StandardRequest_from_json_string(StringHandle json);
+FALCON_CORE_C_API StandardRequestHandle
+StandardRequest_from_json_string(StringHandle json);
 // @category:allocation
-StandardRequestHandle StandardRequest_create(StringHandle message);
+FALCON_CORE_C_API StandardRequestHandle
+StandardRequest_create(StringHandle message);
 // @category:read
-StringHandle StandardRequest_message(StandardRequestHandle handle);
+FALCON_CORE_C_API StringHandle
+StandardRequest_message(StandardRequestHandle handle);
 
 #ifdef __cplusplus
 }
