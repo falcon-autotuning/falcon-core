@@ -50,42 +50,42 @@ TEST_F(VectorTest, ConstructorStartEnd) {
 
 TEST_F(VectorTest, AdditionOperator) {
   auto v_add = *v1 + v2;
-  EXPECT_DOUBLE_EQ((*v_add->endPoint())[conn1] -> value(), 4.0);
-  EXPECT_DOUBLE_EQ((*v_add->endPoint())[conn2] -> value(), 6.0);
-  EXPECT_DOUBLE_EQ((*v_add->startPoint())[conn1] -> value(), 1.0);
-  EXPECT_DOUBLE_EQ((*v_add->startPoint())[conn2] -> value(), 3.0);
+  EXPECT_DOUBLE_EQ((*v_add->endPoint())[conn1]->value(), 4.0);
+  EXPECT_DOUBLE_EQ((*v_add->endPoint())[conn2]->value(), 6.0);
+  EXPECT_DOUBLE_EQ((*v_add->startPoint())[conn1]->value(), 1.0);
+  EXPECT_DOUBLE_EQ((*v_add->startPoint())[conn2]->value(), 3.0);
 }
 
 TEST_F(VectorTest, SubtractionOperator) {
   auto v_sub = *v1 - v2;
-  EXPECT_DOUBLE_EQ((*v_sub->endPoint())[conn1] -> value(), -2.0);
-  EXPECT_DOUBLE_EQ((*v_sub->endPoint())[conn2] -> value(), -2.0);
-  EXPECT_DOUBLE_EQ((*v_sub->startPoint())[conn1] -> value(), -1.0);
-  EXPECT_DOUBLE_EQ((*v_sub->startPoint())[conn2] -> value(), -1.0);
+  EXPECT_DOUBLE_EQ((*v_sub->endPoint())[conn1]->value(), -2.0);
+  EXPECT_DOUBLE_EQ((*v_sub->endPoint())[conn2]->value(), -2.0);
+  EXPECT_DOUBLE_EQ((*v_sub->startPoint())[conn1]->value(), -1.0);
+  EXPECT_DOUBLE_EQ((*v_sub->startPoint())[conn2]->value(), -1.0);
 }
 
 TEST_F(VectorTest, MultiplicationOperator) {
   auto v_mul = *v1 * 2.0;
-  EXPECT_DOUBLE_EQ((*v_mul->endPoint())[conn1] -> value(), 2.0);
-  EXPECT_DOUBLE_EQ((*v_mul->endPoint())[conn2] -> value(), 4.0);
-  EXPECT_DOUBLE_EQ((*v_mul->startPoint())[conn1] -> value(), 0.0);
-  EXPECT_DOUBLE_EQ((*v_mul->startPoint())[conn2] -> value(), 2.0);
+  EXPECT_DOUBLE_EQ((*v_mul->endPoint())[conn1]->value(), 2.0);
+  EXPECT_DOUBLE_EQ((*v_mul->endPoint())[conn2]->value(), 4.0);
+  EXPECT_DOUBLE_EQ((*v_mul->startPoint())[conn1]->value(), 0.0);
+  EXPECT_DOUBLE_EQ((*v_mul->startPoint())[conn2]->value(), 2.0);
 }
 
 TEST_F(VectorTest, DivisionOperator) {
   auto v_div = *v1 / 2.0;
-  EXPECT_DOUBLE_EQ((*v_div->endPoint())[conn1] -> value(), 0.5);
-  EXPECT_DOUBLE_EQ((*v_div->endPoint())[conn2] -> value(), 1.0);
-  EXPECT_DOUBLE_EQ((*v_div->startPoint())[conn1] -> value(), 0.0);
-  EXPECT_DOUBLE_EQ((*v_div->startPoint())[conn2] -> value(), 0.5);
+  EXPECT_DOUBLE_EQ((*v_div->endPoint())[conn1]->value(), 0.5);
+  EXPECT_DOUBLE_EQ((*v_div->endPoint())[conn2]->value(), 1.0);
+  EXPECT_DOUBLE_EQ((*v_div->startPoint())[conn1]->value(), 0.0);
+  EXPECT_DOUBLE_EQ((*v_div->startPoint())[conn2]->value(), 0.5);
 }
 
 TEST_F(VectorTest, NegationOperator) {
   auto v_neg = -(*v1);
-  EXPECT_DOUBLE_EQ((*v_neg->endPoint())[conn1] -> value(), -1.0);
-  EXPECT_DOUBLE_EQ((*v_neg->endPoint())[conn2] -> value(), -2.0);
-  EXPECT_DOUBLE_EQ((*v_neg->startPoint())[conn1] -> value(), -0.0);
-  EXPECT_DOUBLE_EQ((*v_neg->startPoint())[conn2] -> value(), -1.0);
+  EXPECT_DOUBLE_EQ((*v_neg->endPoint())[conn1]->value(), -1.0);
+  EXPECT_DOUBLE_EQ((*v_neg->endPoint())[conn2]->value(), -2.0);
+  EXPECT_DOUBLE_EQ((*v_neg->startPoint())[conn1]->value(), -0.0);
+  EXPECT_DOUBLE_EQ((*v_neg->startPoint())[conn2]->value(), -1.0);
 }
 
 TEST_F(VectorTest, MagnitudeAndIndexing) {
@@ -222,10 +222,10 @@ TEST_F(VectorTest, UpdateStartFromStatesValid) {
   auto updated = v1->update_start_from_states(states);
   ASSERT_NE(updated, nullptr);
 
-  EXPECT_DOUBLE_EQ((*updated->startPoint())[conn1] -> value(), 5.0);
-  EXPECT_DOUBLE_EQ((*updated->startPoint())[conn2] -> value(), 6.0);
-  EXPECT_DOUBLE_EQ((*updated->endPoint())[conn1] -> value(), 6.0);
-  EXPECT_DOUBLE_EQ((*updated->endPoint())[conn2] -> value(), 7.0);
+  EXPECT_DOUBLE_EQ((*updated->startPoint())[conn1]->value(), 5.0);
+  EXPECT_DOUBLE_EQ((*updated->startPoint())[conn2]->value(), 6.0);
+  EXPECT_DOUBLE_EQ((*updated->endPoint())[conn1]->value(), 6.0);
+  EXPECT_DOUBLE_EQ((*updated->endPoint())[conn2]->value(), 7.0);
 }
 TEST_F(VectorTest, UpdateStartFromStatesThrowsOnNull) {
   EXPECT_THROW(v1->update_start_from_states(nullptr), std::invalid_argument);
@@ -302,8 +302,12 @@ TEST_F(VectorTest, NotEqualOperator) {
 }
 
 TEST_F(VectorTest, NullStartEndPointsWithUnit) {
-  EXPECT_THROW(std::make_shared<Vector>(nullptr, nullptr, unit),
-               std::invalid_argument);
+  EXPECT_THROW(
+      {
+        auto v = std::make_shared<Vector>(nullptr, nullptr, unit);
+        (void)v;  // Explicitly use the variable
+      },
+      std::invalid_argument);
 }
 
 TEST_F(VectorTest, ConstructorStartEndExtraEndConns) {
@@ -382,8 +386,8 @@ TEST_F(VectorTest, ConstructFromPairMap) {
 
   auto vec = std::make_shared<Vector>(pair_map);
   ASSERT_NE(vec, nullptr);
-  EXPECT_DOUBLE_EQ((*vec->startPoint())[conn1] -> value(), 0.0);
-  EXPECT_DOUBLE_EQ((*vec->endPoint())[conn2] -> value(), 2.0);
+  EXPECT_DOUBLE_EQ((*vec->startPoint())[conn1]->value(), 0.0);
+  EXPECT_DOUBLE_EQ((*vec->endPoint())[conn2]->value(), 2.0);
 }
 
 TEST_F(VectorTest, SinglePointConstructor) {
@@ -399,8 +403,8 @@ TEST_F(VectorTest, IntegerMultiplyDivideOperators) {
   auto v_div_int = *v1 / 2;  // operator/(int)
   ASSERT_NE(v_mul_int, nullptr);
   ASSERT_NE(v_div_int, nullptr);
-  EXPECT_DOUBLE_EQ((*v_mul_int->endPoint())[conn1] -> value(), 2.0);
-  EXPECT_DOUBLE_EQ((*v_div_int->endPoint())[conn2] -> value(), 1.0);
+  EXPECT_DOUBLE_EQ((*v_mul_int->endPoint())[conn1]->value(), 2.0);
+  EXPECT_DOUBLE_EQ((*v_div_int->endPoint())[conn2]->value(), 1.0);
 }
 
 TEST_F(VectorTest, PrincipleConnectionChoosesLargestDifference) {

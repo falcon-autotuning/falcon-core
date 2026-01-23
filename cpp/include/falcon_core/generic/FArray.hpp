@@ -7,7 +7,6 @@
 #include <xtensor/xio.hpp>
 #include <xtensor/xview.hpp>
 
-#include "falcon_core/export.h"
 #include "falcon_core/generic/FArrayProtocol.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Song.hpp"
@@ -18,8 +17,7 @@ namespace falcon_core {
 namespace generic {
 
 template <typename T>
-class FALCON_CORE_CPP_API FArray : public generic::Song,
-                                   public virtual IFArray<T> {
+class FArray : public generic::Song, public virtual IFArray<T> {
  public:
   using array_type      = xt::xarray<T>;
   using value_type      = T;
