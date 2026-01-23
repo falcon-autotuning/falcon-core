@@ -35,8 +35,13 @@ const long long Time::time() const { return micro_seconds_since_epoch(); }
 
 const std::string Time::to_string() const {
   std::time_t sec = micro_seconds_since_epoch() / 1000000;
-  std::tm     tm  = *std::localtime(&sec);
-  char        buf[20];
+  std::tm     tm;
+#ifdef _WIN32
+  localtime_s(&tm, &sec);  // Windows safe version
+#else
+  tm = *std::localtime(&sec);  // POSIX version
+#endif
+  char buf[20];
   std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);
   return std::string(buf);
 }

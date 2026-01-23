@@ -1,12 +1,18 @@
 cmake_minimum_required(VERSION 3.14)
 project(FalconCoreCAPI LANGUAGES CXX C)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_C_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
+
 set(C_API_TARGET "falcon_core_c_api")
 set(BATCH_SIZE 20)
+
 option(FALCON_CORE_DEV "Dev mode generates coverage and testing" OFF)
 if(FALCON_CORE_DEV)
   set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -22,12 +28,17 @@ if(CMAKE_C_COMPILER_ID MATCHES "Clang")
     set(C_FLAGS "-Oz")
   endif()
 elseif(CMAKE_C_COMPILER_ID MATCHES "GNU")
-  message("GNU detected. In dev mode so coverage will be built.")
-  set(C_FLAGS "-O0 -fprofile-arcs -ftest-coverage -fsanitize=thread ")
+  if(FALCON_CORE_DEV)
+    message("GNU detected. In dev mode so coverage will be built.")
+    set(C_FLAGS "-O0 -fprofile-arcs -ftest-coverage -fsanitize=thread")
+  else()
+    message("GNU detected.")
+    set(C_FLAGS "-Oz")
+  endif()
 else()
-  message("GNU detected.")
   set(C_FLAGS "-Oz")
 endif()
+
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   if(FALCON_CORE_DEV)
     set(CPP_FLAGS
@@ -36,29 +47,48 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set(CPP_FLAGS "-Oz")
   endif()
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-  set(CPP_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
+  if(FALCON_CORE_DEV)
+    set(CPP_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
+  else()
+    set(CPP_FLAGS "-Oz")
+  endif()
 else()
   set(CPP_FLAGS "-Oz")
 endif()
+
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g ${CPP_FLAGS}")
+
 find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)
   message("Ccache was found. Making use of caching.")
   set(CMAKE_C_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
   set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
 endif()
+
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
 set(BOOST_FILESYSTEM_TARGET Boost::filesystem)
+
 if(USE_VCPKG)
-  # TODO: Add windows support here Don't add manual include dirs or link dirs;
-  # vcpkg toolchain handles it
-  set(VCPKG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux/include")
-  set(RPATH
-      "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/x64-linux-dynamic/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
-  )
+  # Determine platform-specific vcpkg triplet
+  if(WIN32)
+    set(VCPKG_TRIPLET "x64-windows")
+    set(VCPKG_INCLUDE_DIR
+        "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/${VCPKG_TRIPLET}/include")
+    set(RPATH
+        "$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
+    )
+  else()
+    set(VCPKG_TRIPLET "x64-linux-dynamic")
+    set(VCPKG_INCLUDE_DIR
+        "${CMAKE_SOURCE_DIR}/vcpkg_installed/${VCPKG_TRIPLET}/include")
+    set(RPATH
+        "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/${VCPKG_TRIPLET}/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
+    )
+  endif()
+
   set(HDF5_TARGET hdf5::hdf5-shared)
   set(HDF5_CPP_TARGET hdf5::hdf5_cpp-shared)
   set(BOOST_SYSTEM_TARGET Boost::system)
@@ -67,12 +97,17 @@ else()
   set(HDF5_TARGET hdf5-shared)
   set(HDF5_CPP_TARGET hdf5_cpp-shared)
   set(RPATH
-      "<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
+      "$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
   )
 endif()
+
 set(C_API_LIB_NAME
     "${C_API_TARGET}"
     CACHE STRING "ChangeMe")
+
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW)
+endif()
 
 find_package(cereal CONFIG REQUIRED)
 get_target_property(CEREAL_INCLUDE_DIR cereal::cereal
@@ -105,6 +140,7 @@ find_package(Boost REQUIRED COMPONENTS filesystem)
 get_target_property(BOOST_INCLUDE_DIR ${BOOST_FILESYSTEM_TARGET}
                     INTERFACE_INCLUDE_DIRECTORIES)
 message(STATUS "Boost filesystem include dir: ${BOOST_INCLUDE_DIR}")
+
 if(USE_VCPKG)
   find_package(Boost REQUIRED COMPONENTS system uuid)
   get_target_property(BOOST_INCLUDE_DIR ${BOOST_SYSTEM_TARGET}
@@ -118,11 +154,29 @@ endif()
 file(GLOB_RECURSE C_API_SOURCES "src/*.cpp" "src/*.c")
 
 add_library(${C_API_LIB_NAME} SHARED ${C_API_SOURCES})
-target_precompile_headers(${C_API_LIB_NAME} PRIVATE
-                          include/falcon_core/Precompiled_c_api.h)
+
+# Platform-specific precompiled header handling
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include/falcon_core/Precompiled_c_api.h")
+  target_precompile_headers(${C_API_LIB_NAME} PRIVATE
+                            include/falcon_core/Precompiled_c_api.h)
+endif()
+
 set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD ON)
 set_target_properties(${C_API_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
                                                    ${BATCH_SIZE})
+
+# Windows-specific DLL settings
+if(WIN32)
+  set_target_properties(
+    ${C_API_LIB_NAME}
+    PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS OFF # We control exports manually via
+                                              # FALCON_C_API
+               PREFIX "" # No 'lib' prefix on Windows
+               SUFFIX ".dll" # Explicit .dll extension
+  )
+else()
+  set_target_properties(${C_API_LIB_NAME} PROPERTIES PREFIX "lib" SUFFIX ".so")
+endif()
 
 target_include_directories(
   ${C_API_LIB_NAME}
@@ -133,14 +187,17 @@ target_include_directories(
 message(STATUS "CORE_ROOT is: ${CORE_ROOT}")
 get_filename_component(CORE_BUILD_ABS "${CORE_ROOT}/build" ABSOLUTE)
 message(STATUS "CORE_BUILD_ABS: ${CORE_BUILD_ABS}")
-target_link_libraries(${C_API_LIB_NAME} PUBLIC falcon_core_cpp)
+
 add_subdirectory(${CORE_ROOT} ${CORE_ROOT}/build)
+target_link_libraries(${C_API_LIB_NAME} PUBLIC falcon_core_cpp)
 
 set_target_properties(
   ${C_API_LIB_NAME}
   PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
-             PREFIX "lib"
-             SUFFIX ".so")
+             RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build" # For Windows
+                                                                  # DLLs
+             ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build") # For import
+# libs
 
 # ---- Optional test build ----
 if(FALCON_CORE_DEV)
@@ -149,14 +206,23 @@ if(FALCON_CORE_DEV)
   file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
   add_executable(falcon_core_c_api_run_tests ${RUN_TESTS_SOURCES})
   target_link_directories(falcon_core_c_api_run_tests PRIVATE ${CORE_BUILD_ABS})
+
   set_target_properties(falcon_core_c_api_run_tests PROPERTIES UNITY_BUILD ON)
   set_target_properties(falcon_core_c_api_run_tests
                         PROPERTIES UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE})
-  set_target_properties(
-    falcon_core_c_api_run_tests
-    PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
-               BUILD_RPATH ${RPATH}
-               INSTALL_RPATH ${RPATH})
+
+  if(WIN32)
+    set_target_properties(
+      falcon_core_c_api_run_tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+                                             "${CMAKE_SOURCE_DIR}/build")
+  else()
+    set_target_properties(
+      falcon_core_c_api_run_tests
+      PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
+                 BUILD_RPATH ${RPATH}
+                 INSTALL_RPATH ${RPATH})
+  endif()
+
   if(USE_VCPKG)
     target_link_libraries(
       falcon_core_c_api_run_tests
@@ -167,6 +233,7 @@ if(FALCON_CORE_DEV)
       falcon_core_c_api_run_tests PRIVATE GTest::gtest_main yaml-cpp::yaml-cpp
                                           ${C_API_LIB_NAME})
   endif()
+
   include(GoogleTest)
   gtest_discover_tests(falcon_core_c_api_run_tests)
 endif()

@@ -61,7 +61,6 @@ jobs:
         working-directory: cpp
         shell: pwsh
         run: |
-          # Refresh environment to get LLVM paths
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
           Write-Host "=== Compiler Info ==="
@@ -71,7 +70,7 @@ jobs:
 
           Write-Host "`n=== Configuring CMake ==="
           cmake -B build `
-            -S .  `
+            -S . `
             -G "Ninja" `
             -DCMAKE_C_COMPILER=clang `
             -DCMAKE_CXX_COMPILER=clang++ `

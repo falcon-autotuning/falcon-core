@@ -3,8 +3,6 @@ project(FalconCore LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CCMAKE_CXX_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
 set(CPP_TARGET "falcon_core_cpp")
 option(FALCON_CORE_DEV "Dev mode generates coverage and testing" OFF)
 set(BATCH_SIZE 4)
@@ -119,6 +117,12 @@ endif()
 file(GLOB_RECURSE FALCON_CORE_SOURCES CONFIGURE_DEPENDS "src/*.cpp")
 
 add_library(${CPP_LIB_NAME} SHARED ${FALCON_CORE_SOURCES})
+# Windows-specific settings
+if(WIN32)
+  # Don't use CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS - we control exports manually
+  set_target_properties(${CPP_LIB_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS
+                                                   OFF)
+endif()
 set_target_properties(${CPP_LIB_NAME} PROPERTIES UNITY_BUILD ON)
 set_target_properties(${CPP_LIB_NAME} PROPERTIES UNITY_BUILD_BATCH_SIZE
                                                  ${BATCH_SIZE})

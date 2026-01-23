@@ -1,6 +1,5 @@
 #pragma once
 
-#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 
 /**
@@ -28,7 +27,7 @@ static const generic::List<Value>& list_check_and_deref(
  * @tparam T The type of axis object (e.g., double, BaseDiscretizer).
  */
 template <typename Value>
-class FALCON_CORE_CPP_API Axes : public generic::List<Value> {
+class Axes : public generic::List<Value> {
  public:
   Axes() = default;
   /**

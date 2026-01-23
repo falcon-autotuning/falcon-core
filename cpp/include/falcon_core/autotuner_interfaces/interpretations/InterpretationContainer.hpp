@@ -4,7 +4,6 @@
 
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
-#include "falcon_core/export.h"
 #include "falcon_core/generic/CategoryTags.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Map.hpp"
@@ -15,7 +14,7 @@ namespace autotuner_interfaces {
 namespace interpretations {
 
 template <typename Value>
-class FALCON_CORE_CPP_API InterpretationContainer
+class InterpretationContainer
     : public generic::Map<InterpretationContext, Value> {
   physics::units::SymbolUnitSP    _unit;
   mutable std::shared_timed_mutex _mu_unit;
