@@ -16,55 +16,57 @@ extern "C" {
 typedef void* WaveformHandle;
 
 // @category:allocation
-WaveformHandle Waveform_copy(WaveformHandle handle);
+FALCON_CORE_C_API WaveformHandle Waveform_copy(WaveformHandle handle);
 // @category:deallocation
-void Waveform_destroy(WaveformHandle handle);
+FALCON_CORE_C_API void Waveform_destroy(WaveformHandle handle);
 // @category:read
-bool Waveform_equal(WaveformHandle handle, WaveformHandle other);
+FALCON_CORE_C_API bool Waveform_equal(WaveformHandle handle,
+                                      WaveformHandle other);
 // @category:read
-bool Waveform_not_equal(WaveformHandle handle, WaveformHandle other);
+FALCON_CORE_C_API bool Waveform_not_equal(WaveformHandle handle,
+                                          WaveformHandle other);
 // @category:read
-StringHandle Waveform_to_json_string(WaveformHandle handle);
+FALCON_CORE_C_API StringHandle Waveform_to_json_string(WaveformHandle handle);
 // @category:allocation
-WaveformHandle Waveform_from_json_string(StringHandle json);
+FALCON_CORE_C_API WaveformHandle Waveform_from_json_string(StringHandle json);
 // @category:allocation
-WaveformHandle Waveform_create(DiscreteSpaceHandle     space,
-                               ListPortTransformHandle transforms);
+FALCON_CORE_C_API WaveformHandle
+Waveform_create(DiscreteSpaceHandle space, ListPortTransformHandle transforms);
 // @category:allocation
-WaveformHandle Waveform_create_cartesian_waveform(
-    AxesIntHandle                   divisions,
-    AxesCoupledLabelledDomainHandle axes,
-    AxesMapStringBoolHandle         increasing,
-    ListPortTransformHandle         transforms,
-    DomainHandle                    domain);
+FALCON_CORE_C_API WaveformHandle
+Waveform_create_cartesian_waveform(AxesIntHandle                   divisions,
+                                   AxesCoupledLabelledDomainHandle axes,
+                                   AxesMapStringBoolHandle         increasing,
+                                   ListPortTransformHandle         transforms,
+                                   DomainHandle                    domain);
 // @category:allocation
-WaveformHandle Waveform_create_cartesian_identity_waveform(
-    AxesIntHandle                   divisions,
-    AxesCoupledLabelledDomainHandle axes,
-    AxesMapStringBoolHandle         increasing,
-    DomainHandle                    domain);
-// @category:allocation
-WaveformHandle Waveform_create_cartesian_waveform_2D(
-    AxesIntHandle                   divisions,
-    AxesCoupledLabelledDomainHandle axes,
-    AxesMapStringBoolHandle         increasing,
-    ListPortTransformHandle         transforms,
-    DomainHandle                    domain);
-// @category:allocation
-WaveformHandle Waveform_create_cartesian_identity_waveform_2D(
+FALCON_CORE_C_API WaveformHandle Waveform_create_cartesian_identity_waveform(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
     DomainHandle                    domain);
 // @category:allocation
-WaveformHandle Waveform_create_cartesian_waveform_1D(
-    int                         division,
-    CoupledLabelledDomainHandle shared_domain,
-    MapStringBoolHandle         increasing,
-    ListPortTransformHandle     transforms,
-    DomainHandle                domain);
+FALCON_CORE_C_API WaveformHandle
+Waveform_create_cartesian_waveform_2D(AxesIntHandle                   divisions,
+                                      AxesCoupledLabelledDomainHandle axes,
+                                      AxesMapStringBoolHandle increasing,
+                                      ListPortTransformHandle transforms,
+                                      DomainHandle            domain);
 // @category:allocation
-WaveformHandle Waveform_create_cartesian_identity_waveform_1D(
+FALCON_CORE_C_API WaveformHandle Waveform_create_cartesian_identity_waveform_2D(
+    AxesIntHandle                   divisions,
+    AxesCoupledLabelledDomainHandle axes,
+    AxesMapStringBoolHandle         increasing,
+    DomainHandle                    domain);
+// @category:allocation
+FALCON_CORE_C_API WaveformHandle
+Waveform_create_cartesian_waveform_1D(int                         division,
+                                      CoupledLabelledDomainHandle shared_domain,
+                                      MapStringBoolHandle         increasing,
+                                      ListPortTransformHandle     transforms,
+                                      DomainHandle                domain);
+// @category:allocation
+FALCON_CORE_C_API WaveformHandle Waveform_create_cartesian_identity_waveform_1D(
     int                         division,
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,
@@ -75,30 +77,35 @@ WaveformHandle Waveform_create_cartesian_identity_waveform_1D(
 /**
  * @brief Get the measurement space.
  */
-DiscreteSpaceHandle Waveform_space(WaveformHandle handle);
+FALCON_CORE_C_API DiscreteSpaceHandle Waveform_space(WaveformHandle handle);
 // @category:read
-ListPortTransformHandle Waveform_transforms(WaveformHandle handle);
+FALCON_CORE_C_API ListPortTransformHandle
+Waveform_transforms(WaveformHandle handle);
 // @category:write
-void Waveform_push_back(WaveformHandle handle, PortTransformHandle value);
+FALCON_CORE_C_API void Waveform_push_back(WaveformHandle      handle,
+                                          PortTransformHandle value);
 // @category:read
-size_t Waveform_size(WaveformHandle handle);
+FALCON_CORE_C_API size_t Waveform_size(WaveformHandle handle);
 // @category:read
-bool Waveform_empty(WaveformHandle handle);
+FALCON_CORE_C_API bool Waveform_empty(WaveformHandle handle);
 // @category:write
-void Waveform_erase_at(WaveformHandle handle, size_t idx);
+FALCON_CORE_C_API void Waveform_erase_at(WaveformHandle handle, size_t idx);
 // @category:write
-void Waveform_clear(WaveformHandle handle);
+FALCON_CORE_C_API void Waveform_clear(WaveformHandle handle);
 // @category:read
-PortTransformHandle Waveform_at(WaveformHandle handle, size_t idx);
+FALCON_CORE_C_API PortTransformHandle Waveform_at(WaveformHandle handle,
+                                                  size_t         idx);
 // @category:read
-ListPortTransformHandle Waveform_items(WaveformHandle handle);
+FALCON_CORE_C_API ListPortTransformHandle Waveform_items(WaveformHandle handle);
 // @category:read
-bool Waveform_contains(WaveformHandle handle, PortTransformHandle value);
+FALCON_CORE_C_API bool Waveform_contains(WaveformHandle      handle,
+                                         PortTransformHandle value);
 // @category:read
-size_t Waveform_index(WaveformHandle handle, PortTransformHandle value);
+FALCON_CORE_C_API size_t Waveform_index(WaveformHandle      handle,
+                                        PortTransformHandle value);
 // @category:read
-WaveformHandle Waveform_intersection(WaveformHandle handle,
-                                     WaveformHandle other);
+FALCON_CORE_C_API WaveformHandle Waveform_intersection(WaveformHandle handle,
+                                                       WaveformHandle other);
 
 #ifdef __cplusplus
 }

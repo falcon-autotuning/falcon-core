@@ -3,6 +3,8 @@
 extern "C" {
 #endif
 #include <stddef.h>
+
+#include "falcon_core/export_c_api.h"
 struct string {
   char*  raw;
   size_t length;
@@ -10,11 +12,11 @@ struct string {
 
 typedef struct string* StringHandle;
 // @category:allocation
-StringHandle String_create(const char* raw, size_t length);
+FALCON_CORE_C_API StringHandle String_create(const char* raw, size_t length);
 // @category:allocation
-StringHandle String_wrap(const char* raw);
+FALCON_CORE_C_API StringHandle String_wrap(const char* raw);
 // @category:deallocation
-void String_destroy(StringHandle handle);
+FALCON_CORE_C_API void String_destroy(StringHandle handle);
 #ifdef __cplusplus
 }
 #endif

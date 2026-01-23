@@ -4,20 +4,20 @@ extern "C" {
 #endif
 #include "falcon_core/generic/String_c_api.h"
 
-StringHandle InstrumentTypes_dc_voltage_source();
-StringHandle InstrumentTypes_amnmeter();
-StringHandle InstrumentTypes_magnet();
-StringHandle InstrumentTypes_lockin();
-StringHandle InstrumentTypes_voltage_source();
-StringHandle InstrumentTypes_current_source();
-StringHandle InstrumentTypes_hf_voltage_source();
-StringHandle InstrumentTypes_dc_current_source();
-StringHandle InstrumentTypes_hf_current_source();
-StringHandle InstrumentTypes_thermometer();
-StringHandle InstrumentTypes_voltmeter();
-StringHandle InstrumentTypes_fpga();
-StringHandle InstrumentTypes_clock();
-StringHandle InstrumentTypes_discrete();
+FALCON_CORE_C_API StringHandle InstrumentTypes_dc_voltage_source();
+FALCON_CORE_C_API StringHandle InstrumentTypes_amnmeter();
+FALCON_CORE_C_API StringHandle InstrumentTypes_magnet();
+FALCON_CORE_C_API StringHandle InstrumentTypes_lockin();
+FALCON_CORE_C_API StringHandle InstrumentTypes_voltage_source();
+FALCON_CORE_C_API StringHandle InstrumentTypes_current_source();
+FALCON_CORE_C_API StringHandle InstrumentTypes_hf_voltage_source();
+FALCON_CORE_C_API StringHandle InstrumentTypes_dc_current_source();
+FALCON_CORE_C_API StringHandle InstrumentTypes_hf_current_source();
+FALCON_CORE_C_API StringHandle InstrumentTypes_thermometer();
+FALCON_CORE_C_API StringHandle InstrumentTypes_voltmeter();
+FALCON_CORE_C_API StringHandle InstrumentTypes_fpga();
+FALCON_CORE_C_API StringHandle InstrumentTypes_clock();
+FALCON_CORE_C_API StringHandle InstrumentTypes_discrete();
 
 #ifdef __cplusplus
 }
