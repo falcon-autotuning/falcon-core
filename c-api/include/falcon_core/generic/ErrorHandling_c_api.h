@@ -16,11 +16,12 @@ extern char last_error_msg[256];
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include "falcon_core/export_c_api.h"
 
 // Declare the setter/getter functions
-void        set_last_error(int code, const char* msg);
-int         get_last_error_code();
-const char* get_last_error_msg();
+FALCON_CORE_C_API void        set_last_error(int code, const char* msg);
+FALCON_CORE_C_API int         get_last_error_code();
+FALCON_CORE_C_API const char* get_last_error_msg();
 
 #ifdef __cplusplus
 }
