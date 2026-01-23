@@ -201,30 +201,42 @@ class Map : public virtual generic::Song {
     ar(cereal::base_class<Song>(this), *_items);
   }
   // Find
-  iterator find(const Key& key) {
-    return std::find_if(
-        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
-          return v->first() == key;
-        });
-  }
-  iterator find(const std::shared_ptr<Key>& key) {
+  template <typename K = Key>
+  typename std::enable_if<std::is_base_of<Song, K>::value, iterator>::type find(
+      const typename ContainerItem::StoredT1& key) {
     if (!key) return _items->end();
     return std::find_if(
         _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
           return v->first() && (*v->first() == *key);
         });
   }
-  const_iterator find(const Key& key) const {
+
+  template <typename K = Key>
+  typename std::enable_if<!std::is_base_of<Song, K>::value, iterator>::type
+  find(const typename ContainerItem::StoredT1& key) {
     return std::find_if(
         _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
           return v->first() == key;
         });
   }
-  const_iterator find(const std::shared_ptr<Key>& key) const {
+
+  template <typename K = Key>
+  typename std::enable_if<std::is_base_of<Song, K>::value, const_iterator>::type
+  find(const typename ContainerItem::StoredT1& key) const {
     if (!key) return _items->end();
     return std::find_if(
         _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
           return v->first() && (*v->first() == *key);
+        });
+  }
+
+  template <typename K = Key>
+  typename std::enable_if<!std::is_base_of<Song, K>::value,
+                          const_iterator>::type
+  find(const typename ContainerItem::StoredT1& key) const {
+    return std::find_if(
+        _items->begin(), _items->end(), [&](const ContainerItemSP& v) {
+          return v->first() == key;
         });
   }
 };
