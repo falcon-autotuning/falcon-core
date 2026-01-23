@@ -2,7 +2,7 @@
 #include <mutex>
 #include <shared_mutex>
 
-#include "falcon_core/generic/CategoryTags.hpp"
+#include "falcon_core/generic/IsPrimitive.hpp"
 #include "falcon_core/generic/Song.hpp"
 namespace falcon_core {
 namespace generic {
@@ -34,11 +34,8 @@ class Pair : public generic::Song {
   mutable std::shared_timed_mutex _mu_second;
 
  public:
-  Pair<T1, T2>(const Pair<T1, T2>& other) {
-    copy_impl(other,
-              typename category::determine_tag<T1>::type{},
-              typename category::determine_tag<T2>::type{});
-  }
+  Pair<T1, T2>(const Pair<T1, T2>& other) { copy_impl_deferred<T1, T2>(other); }
+
   Pair<T1, T2>& operator=(const Pair<T1, T2>& other) {
     if (this != &other) {
       std::shared_lock<std::shared_timed_mutex> lock_first(_mu_first,
@@ -50,12 +47,11 @@ class Pair : public generic::Song {
       std::shared_lock<std::shared_timed_mutex> lock_other_second(
           other._mu_second, std::defer_lock);
       std::lock(lock_first, lock_second, lock_other_first, lock_other_second);
-      copy_impl(other,
-                typename category::determine_tag<T1>::type{},
-                typename category::determine_tag<T2>::type{});
+      copy_impl_deferred<T1, T2>(other);
     }
     return *this;
   }
+
   /**
    * @brief Store a pair of values.
    * @param first The first value.
@@ -104,10 +100,9 @@ class Pair : public generic::Song {
 
   bool operator==(const Pair<T1, T2>& other) const {
     if (this == &other) return true;
-    return operator_equal_impl(other,
-                               typename category::determine_tag<T1>::type{},
-                               typename category::determine_tag<T2>::type{});
+    return operator_equal_deferred<T1, T2>(other);
   }
+
   bool operator!=(const Pair<T1, T2>& other) const { return !(*this == other); }
 
  protected:
@@ -122,72 +117,88 @@ class Pair : public generic::Song {
     std::lock(lock_first, lock_second);
     ar(cereal::base_class<generic::Song>(this), _first, _second);
   }
-  // Case 1: Both T1 and T2 are primitive
+
+ private:
+  // ==== DEFERRED INSTANTIATION METHODS (Windows fix) ====
+
+  // operator== implementations - deferred
   template <typename U1, typename U2>
-  bool operator_equal_impl(const Pair<U1, U2>& other,
-                           category::primitive_tag,
-                           category::primitive_tag) const {
+  typename std::enable_if<is_primitive<U1>::value && is_primitive<U2>::value,
+                          bool>::type
+  operator_equal_deferred(const Pair<U1, U2>& other) const {
     return (first() == other.first()) && (second() == other.second());
   }
-  // Case 2: T1 is primitive, T2 is Song
+
   template <typename U1, typename U2>
-  bool operator_equal_impl(const Pair<U1, U2>& other,
-                           category::primitive_tag,
-                           category::song_tag) const {
+  typename std::enable_if<is_primitive<U1>::value &&
+                              std::is_base_of<Song, U2>::value,
+                          bool>::type
+  operator_equal_deferred(const Pair<U1, U2>& other) const {
     return (first() == other.first()) && (*second() == *other.second());
   }
-  // Case 3: U1 is a Song and U2 is primitive
+
   template <typename U1, typename U2>
-  bool operator_equal_impl(const Pair<U1, U2>& other,
-                           category::song_tag,
-                           category::primitive_tag) const {
+  typename std::enable_if<std::is_base_of<Song, U1>::value &&
+                              is_primitive<U2>::value,
+                          bool>::type
+  operator_equal_deferred(const Pair<U1, U2>& other) const {
     return (*first() == *other.first()) && (second() == other.second());
   }
-  // Case 4: Both U1 and U2 are Song
+
   template <typename U1, typename U2>
-  bool operator_equal_impl(const Pair<U1, U2>& other,
-                           category::song_tag,
-                           category::song_tag) const {
+  typename std::enable_if<std::is_base_of<Song, U1>::value &&
+                              std::is_base_of<Song, U2>::value,
+                          bool>::type
+  operator_equal_deferred(const Pair<U1, U2>& other) const {
     return (*first() == *other.first()) && (*second() == *other.second());
   }
-  // Tag dispatch for deep copy
-  void copy_impl(const Pair<T1, T2>& other,
-                 category::primitive_tag,
-                 category::primitive_tag) {
+
+  // copy_impl implementations - deferred
+  template <typename U1, typename U2>
+  typename std::enable_if<is_primitive<U1>::value &&
+                          is_primitive<U2>::value>::type
+  copy_impl_deferred(const Pair<U1, U2>& other) {
     _first  = other.first();
     _second = other.second();
   }
-  void copy_impl(const Pair<T1, T2>& other,
-                 category::primitive_tag,
-                 category::song_tag) {
+
+  template <typename U1, typename U2>
+  typename std::enable_if<is_primitive<U1>::value &&
+                          std::is_base_of<Song, U2>::value>::type
+  copy_impl_deferred(const Pair<U1, U2>& other) {
     if (!other.second()) {
       throw std::invalid_argument(
           "Pair copy constructor: Other Pair contains null shared pointer.");
     }
     _first  = other.first();
-    _second = std::make_shared<T2>(*other.second());
+    _second = std::make_shared<U2>(*other.second());
   }
-  void copy_impl(const Pair<T1, T2>& other,
-                 category::song_tag,
-                 category::primitive_tag) {
+
+  template <typename U1, typename U2>
+  typename std::enable_if<std::is_base_of<Song, U1>::value &&
+                          is_primitive<U2>::value>::type
+  copy_impl_deferred(const Pair<U1, U2>& other) {
     if (!other.first()) {
       throw std::invalid_argument(
           "Pair copy constructor: Other Pair contains null shared pointer.");
     }
-    _first  = std::make_shared<T1>(*other.first());
+    _first  = std::make_shared<U1>(*other.first());
     _second = other._second;
   }
-  void copy_impl(const Pair<T1, T2>& other,
-                 category::song_tag,
-                 category::song_tag) {
+
+  template <typename U1, typename U2>
+  typename std::enable_if<std::is_base_of<Song, U1>::value &&
+                          std::is_base_of<Song, U2>::value>::type
+  copy_impl_deferred(const Pair<U1, U2>& other) {
     if (!other.first() || !other.second()) {
       throw std::invalid_argument(
           "Pair copy constructor: Other Pair contains null shared pointer.");
     }
-    _first  = std::make_shared<T1>(*other.first());
-    _second = std::make_shared<T2>(*other.second());
+    _first  = std::make_shared<U1>(*other.first());
+    _second = std::make_shared<U2>(*other.second());
   }
 };
+
 template <typename T1, typename T2>
 using PairSP = std::shared_ptr<Pair<T1, T2>>;
 }  // namespace generic
