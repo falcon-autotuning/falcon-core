@@ -139,18 +139,8 @@ class List : public generic::Song {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     _items.at(idx) = value;
   }
-  void insert(iterator pos, const_iterator first, const_iterator last)
-  // FIXME: Might be broken for single items in list
-  {
-    if (std::is_base_of<Song, Value>::value) {
-      for (auto it = first; it != last; ++it) {
-        if (!*it) {
-          throw std::invalid_argument("List: Cannot insert nullptr element.");
-        }
-      }
-    }
-    std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
-    _items.insert(pos, first, last);
+  void insert(iterator pos, const_iterator first, const_iterator last) {
+    insert_impl<Value>(pos, first, last);
   }
 
   size_t size() const { return items().size(); }
@@ -517,6 +507,36 @@ class List : public generic::Song {
                           bool>::type
   operator_equal_deferred(const List<T>& other) const {
     throw std::runtime_error("Unsupported type for List");
+  }
+  // insert() - deferred for Song types (check for nullptr)
+  template <typename T>
+  typename std::enable_if<std::is_base_of<Song, T>::value>::type insert_impl(
+      iterator pos, const_iterator first, const_iterator last) {
+    // For Song types, StoredValue is shared_ptr<T>, so we can check for nullptr
+    for (auto it = first; it != last; ++it) {
+      if (!*it) {
+        throw std::invalid_argument("List: Cannot insert nullptr element.");
+      }
+    }
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
+    _items.insert(pos, first, last);
+  }
+
+  // insert() - deferred for primitive types (no nullptr check needed)
+  template <typename T>
+  typename std::enable_if<is_primitive<T>::value>::type insert_impl(
+      iterator pos, const_iterator first, const_iterator last) {
+    // For primitives (including std::string), no nullptr check needed
+    std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
+    _items.insert(pos, first, last);
+  }
+
+  // insert() - deferred for unsupported types
+  template <typename T>
+  typename std::enable_if<!std::is_base_of<Song, T>::value &&
+                          !is_primitive<T>::value>::type
+  insert_impl(iterator pos, const_iterator first, const_iterator last) {
+    throw std::runtime_error("Unsupported type for List::insert");
   }
 
  protected:
