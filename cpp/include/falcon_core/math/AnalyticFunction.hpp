@@ -88,7 +88,7 @@ class FALCON_CORE_CPP_API AnalyticFunction
   AnalyticFunction();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_expression(_mu_expression);
     ar(cereal::base_class<generic::List<VariableName>>(this), _expression);
   }

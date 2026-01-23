@@ -14,7 +14,7 @@ class FALCON_CORE_CPP_API MeasurementContext : public contexts::BaseContext {
   friend class cereal::access;
   MeasurementContext();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<contexts::BaseContext>(this));
   }
 

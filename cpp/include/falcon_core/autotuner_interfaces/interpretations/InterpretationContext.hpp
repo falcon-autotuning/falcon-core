@@ -98,7 +98,7 @@ class FALCON_CORE_CPP_API InterpretationContext : public generic::Song {
   friend class cereal::access;
   InterpretationContext();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_iv(_mu_independent_variables,
                                                       std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_dv(_mu_dependent_variables,

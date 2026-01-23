@@ -19,7 +19,7 @@ class FALCON_CORE_CPP_API ControlArray1D : public ControlArray,
   friend class cereal::access;
   ControlArray1D();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<ControlArray>(this),
        principle_dimension(),
        alignment());

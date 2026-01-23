@@ -22,21 +22,21 @@ class FALCON_CORE_CPP_API IsControl : public virtual generic::IFArray<T> {
   /**
    * @brief Return the principle dimension of the array.
    */
-  int principle_dimension() const {
+  inline int principle_dimension() const {
     std::shared_lock<std::shared_timed_mutex> lock_pd(_mu_principle_dimension);
     return _principle_dimension;
   }
   /**
    * @brief Return the increasing alignments for each dimension.
    */
-  IncreasingAlignmentSP alignment() const {
+  inline IncreasingAlignmentSP alignment() const {
     std::shared_lock<std::shared_timed_mutex> lock_a(_mu_alignment);
     return _alignment;
   }
   /**
    * @brief Recalculates the alignments zmerinobased on current data.
    */
-  void update_alignments() {
+  inline void update_alignments() {
     std::unique_lock<std::shared_timed_mutex> lock_a(_mu_alignment);
     _alignment = _determine_alignments();
   }
@@ -48,7 +48,7 @@ class FALCON_CORE_CPP_API IsControl : public virtual generic::IFArray<T> {
    * @throws std::runtime_error if no alignment is found.
    * @throws std::runtime_error if more than one alignment is found.
    */
-  IncreasingAlignmentSP _determine_alignments() {
+  inline IncreasingAlignmentSP _determine_alignments() {
     std::vector<std::pair<IncreasingAlignmentSP, int>> alignments;
     auto                                               shape = this->shape();
 

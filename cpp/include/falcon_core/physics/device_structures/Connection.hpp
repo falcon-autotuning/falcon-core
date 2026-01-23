@@ -115,7 +115,7 @@ class FALCON_CORE_CPP_API Connection : public virtual generic::Song {
   friend class cereal::access;
   Connection();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                         std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_type(_mu_type,

@@ -230,7 +230,7 @@ class FALCON_CORE_CPP_API Unit : public generic::Song {
   Unit() = default;  // or initialize _name with a default value
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<Song>(this),
        _scale_factor,
        _offset,

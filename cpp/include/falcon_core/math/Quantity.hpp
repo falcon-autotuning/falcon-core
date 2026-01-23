@@ -93,7 +93,7 @@ class FALCON_CORE_CPP_API Quantity : public generic::Song {
   friend class cereal::access;
   Quantity();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_value(_mu_value,
                                                          std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit,

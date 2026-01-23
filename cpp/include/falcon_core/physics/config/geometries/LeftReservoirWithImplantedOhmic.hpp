@@ -26,7 +26,7 @@ class FALCON_CORE_CPP_API LeftReservoirWithImplantedOhmic
   LeftReservoirWithImplantedOhmic();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<Connection>(this),
        cereal::base_class<HasImplantedOhmic>(this),
        cereal::base_class<HasRightNeighbor>(this));

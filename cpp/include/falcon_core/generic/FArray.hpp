@@ -36,98 +36,104 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   FArray(array_type&& arr) noexcept : _data(std::move(arr)) {}
   explicit FArray(const std::vector<size_t>& shape) : _data(shape) {}
 
-  static std::shared_ptr<FArray<T>> zeros(const std::vector<size_t>& shape) {
+  inline static std::shared_ptr<FArray<T>> zeros(
+      const std::vector<size_t>& shape) {
     return std::make_shared<FArray<T>>(xt::zeros<T>(shape));
   }
-  static std::shared_ptr<FArray<T>> empty(const std::vector<size_t>& shape) {
+  inline static std::shared_ptr<FArray<T>> empty(
+      const std::vector<size_t>& shape) {
     return std::make_shared<FArray<T>>(xt::empty<T>(shape));
   }
 
   template <typename... Args>
-  decltype(auto) operator()(Args&&... args) {
+  inline decltype(auto) operator()(Args&&... args) {
     return data()(std::forward<Args>(args)...);
   }
   template <typename... Args>
-  decltype(auto) operator()(Args&&... args) const {
+  inline decltype(auto) operator()(Args&&... args) const {
     return data()(std::forward<Args>(args)...);
   }
-  reference       operator()(size_t i) override { return data()(i); }
-  const_reference operator()(size_t i) const override { return data()(i); }
+  inline reference       operator()(size_t i) override { return data()(i); }
+  inline const_reference operator()(size_t i) const override {
+    return data()(i);
+  }
 
-  [[nodiscard]] const xt::dynamic_shape<size_t>& shape()
+  [[nodiscard]] inline const xt::dynamic_shape<size_t>& shape()
       const noexcept override {
     return data().shape();
   }
-  [[nodiscard]] size_t size() const noexcept override { return _data.size(); }
-  [[nodiscard]] size_t dimension() const noexcept override {
+  [[nodiscard]] inline size_t size() const noexcept override {
+    return _data.size();
+  }
+  [[nodiscard]] inline size_t dimension() const noexcept override {
     return _data.dimension();
   }
-  [[nodiscard]] T* raw_data() noexcept override {
+  [[nodiscard]] inline T* raw_data() noexcept override {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_data);
     return _data.data();
   }
-  [[nodiscard]] const T* raw_data() const noexcept override {
+  [[nodiscard]] inline const T* raw_data() const noexcept override {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_data);
     return _data.data();
   }
-  [[nodiscard]] array_type& data() noexcept override {
+  [[nodiscard]] inline array_type& data() noexcept override {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_data);
     return _data;
   }
-  [[nodiscard]] const array_type& data() const noexcept override {
+  [[nodiscard]] inline const array_type& data() const noexcept override {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_data);
     return _data;
   }
 
-  typename array_type::iterator begin() noexcept override {
+  inline typename array_type::iterator begin() noexcept override {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_data);
     return _data.begin();
   }
-  typename array_type::iterator end() noexcept override {
+  inline typename array_type::iterator end() noexcept override {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_data);
     return _data.end();
   }
-  typename array_type::const_iterator cbegin() const noexcept override {
+  inline typename array_type::const_iterator cbegin() const noexcept override {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_data);
     return _data.cbegin();
   }
-  typename array_type::const_iterator cend() const noexcept override {
+  inline typename array_type::const_iterator cend() const noexcept override {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_data);
     return _data.cend();
   }
 
-  FArray<T>& operator+=(const FArray<T>& other) {
+  inline FArray<T>& operator+=(const FArray<T>& other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     _data += other.data();
     return *this;
   }
-  FArray<T>& operator+=(const double other) {
+  inline FArray<T>& operator+=(const double other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     auto ones = xt::ones_like(_data) * other;
     _data += ones;
     return *this;
   }
-  FArray<T>& operator+=(const int other) {
+  inline FArray<T>& operator+=(const int other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     auto ones = xt::ones_like(_data) * other;
     _data += ones;
     return *this;
   }
-  std::shared_ptr<FArray<T>> operator+(const double other) const {
+  inline std::shared_ptr<FArray<T>> operator+(const double other) const {
     FArray<T> result(*this);
     auto      ones = xt::ones_like(result.data()) * other;
     std::shared_lock<std::shared_timed_mutex> lock_data(result._mu_data);
     result._data += ones;
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<T>> operator+(const int other) const {
+  inline std::shared_ptr<FArray<T>> operator+(const int other) const {
     FArray<T> result(*this);
     auto      ones = xt::ones_like(result.data()) * other;
     std::shared_lock<std::shared_timed_mutex> lock_data(result._mu_data);
     result._data += ones;
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<T>> operator+(
+  inline std::shared_ptr<FArray<T>> operator+(
       const std::shared_ptr<FArray<T>>& other) const {
     if (!other) {
       throw std::invalid_argument(
@@ -138,29 +144,29 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     result._data += other->data();
     return std::make_shared<FArray<T>>(result);
   }
-  FArray<T>& operator-=(const FArray<T>& other) {
+  inline FArray<T>& operator-=(const FArray<T>& other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     _data = _data - other.data();
     return *this;
   }
-  FArray<T>& operator-=(const double other) {
+  inline FArray<T>& operator-=(const double other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     auto ones = xt::ones_like(_data) * other;
     _data     = _data - ones;
     return *this;
   }
-  FArray<T>& operator-=(const int other) {
+  inline FArray<T>& operator-=(const int other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     auto ones = xt::ones_like(_data) * other;
     _data     = _data - ones;
     return *this;
   }
-  std::shared_ptr<FArray<T>> operator-() const {
+  inline std::shared_ptr<FArray<T>> operator-() const {
     FArray<T> result(*this);
     return result * -1;
   }
-  std::shared_ptr<FArray<T>> operator-() { return (*this) * -1; }
-  std::shared_ptr<FArray<T>> operator-(
+  inline std::shared_ptr<FArray<T>> operator-() { return (*this) * -1; }
+  inline std::shared_ptr<FArray<T>> operator-(
       const std::shared_ptr<FArray<T>>& other) const {
     if (!other) {
       throw std::invalid_argument(
@@ -171,48 +177,48 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     result._data -= other->data();
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<T>> operator-(const double other) const {
+  inline std::shared_ptr<FArray<T>> operator-(const double other) const {
     FArray<T> result(*this);
     auto      ones = xt::ones_like(result.data()) * other;
     std::shared_lock<std::shared_timed_mutex> lock_data(result._mu_data);
     result._data -= ones;
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<T>> operator-(const int other) const {
+  inline std::shared_ptr<FArray<T>> operator-(const int other) const {
     FArray<T> result(*this);
     auto      ones = xt::ones_like(result.data()) * other;
     std::shared_lock<std::shared_timed_mutex> lock_data(result._mu_data);
     result._data -= ones;
     return std::make_shared<FArray<T>>(result);
   }
-  FArray<T>& operator*=(const double other) {
+  inline FArray<T>& operator*=(const double other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     _data *= other;
     return *this;
   }
-  FArray<T>& operator*=(const int other) {
+  inline FArray<T>& operator*=(const int other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     _data *= other;
     return *this;
   }
-  FArray<T>& operator*=(const FArray<T>& other) {
+  inline FArray<T>& operator*=(const FArray<T>& other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     _data *= other._data;
     return *this;
   }
-  std::shared_ptr<FArray<T>> operator*(const double other) const {
+  inline std::shared_ptr<FArray<T>> operator*(const double other) const {
     FArray<T>                                 result(*this);
     std::shared_lock<std::shared_timed_mutex> lock_data(result._mu_data);
     result._data *= other;
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<T>> operator*(const int other) const {
+  inline std::shared_ptr<FArray<T>> operator*(const int other) const {
     FArray<T>                                 result(*this);
     std::shared_lock<std::shared_timed_mutex> lock_data(result._mu_data);
     result._data *= other;
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<T>> operator*(
+  inline std::shared_ptr<FArray<T>> operator*(
       const std::shared_ptr<FArray<T>>& other) const {
     if (!other) {
       throw std::invalid_argument(
@@ -223,34 +229,34 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     result._data *= other->data();
     return std::make_shared<FArray<T>>(result);
   }
-  FArray<T>& operator/=(const double other) {
+  inline FArray<T>& operator/=(const double other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     _data /= other;
     return *this;
   }
-  FArray<T>& operator/=(const int other) {
+  inline FArray<T>& operator/=(const int other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     _data /= other;
     return *this;
   }
-  FArray<T>& operator/=(const FArray<T>& other) {
+  inline FArray<T>& operator/=(const FArray<T>& other) {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     _data /= other._data;
     return *this;
   }
-  std::shared_ptr<FArray<T>> operator/(const double other) const {
+  inline std::shared_ptr<FArray<T>> operator/(const double other) const {
     FArray<T>                                 result(*this);
     std::shared_lock<std::shared_timed_mutex> lock_data(result._mu_data);
     result._data /= other;
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<T>> operator/(const int other) const {
+  inline std::shared_ptr<FArray<T>> operator/(const int other) const {
     FArray<T>                                 result(*this);
     std::shared_lock<std::shared_timed_mutex> lock_data(result._mu_data);
     result._data /= other;
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<T>> operator/(
+  inline std::shared_ptr<FArray<T>> operator/(
       const std::shared_ptr<FArray<T>>& other) const {
     if (!other) {
       throw std::invalid_argument(
@@ -261,32 +267,34 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     result._data /= other->data();
     return std::make_shared<FArray<T>>(result);
   }
-  std::shared_ptr<FArray<double>> operator^(const double other) const {
+  inline std::shared_ptr<FArray<double>> operator^(const double other) const {
     return std::make_shared<FArray<double>>(xt::pow(this->data(), other));
   }
-  std::shared_ptr<FArray<T>> operator^(const int other) const {
+  inline std::shared_ptr<FArray<T>> operator^(const int other) const {
     return std::make_shared<FArray<T>>(xt::pow(this->data(), other));
   }
-  void pow_inplace(const T other) {
+  inline void pow_inplace(const T other) {
     this->_data = xt::pow(this->data(), other);
   }
-  std::shared_ptr<FArray<T>> abs() const {
+  inline std::shared_ptr<FArray<T>> abs() const {
     FArray<T>                                 result(*this);
     std::unique_lock<std::shared_timed_mutex> lock_data(result._mu_data);
     result._data = xt::abs(result._data);
     lock_data.unlock();
     return std::make_shared<FArray<T>>(result);
   }
-  T                          min() const override { return xt::amin(data())(); }
-  std::shared_ptr<FArray<T>> min(const std::shared_ptr<FArray<T>> other) const {
+  inline T min() const override { return xt::amin(data())(); }
+  inline std::shared_ptr<FArray<T>> min(
+      const std::shared_ptr<FArray<T>> other) const {
     if (!other) {
       throw std::invalid_argument(
           "FArray: The other array cannot be null for min.");
     }
     return std::make_shared<FArray<T>>(xt::minimum(data(), other->data()));
   }
-  T                          max() const override { return xt::amax(data())(); }
-  std::shared_ptr<FArray<T>> max(const std::shared_ptr<FArray<T>> other) const {
+  inline T max() const override { return xt::amax(data())(); }
+  inline std::shared_ptr<FArray<T>> max(
+      const std::shared_ptr<FArray<T>> other) const {
     if (!other) {
       throw std::invalid_argument(
           "FArray: The other array cannot be null for max.");
@@ -295,32 +303,34 @@ class FArray : public generic::Song, public virtual IFArray<T> {
   }
 
   template <typename... Args>
-  decltype(auto) view(Args&&... args) {
+  inline decltype(auto) view(Args&&... args) {
     return xt::view(data(), std::forward<Args>(args)...);
   }
   template <typename... Args>
-  decltype(auto) view(Args&&... args) const {
+  inline decltype(auto) view(Args&&... args) const {
     return xt::view(data(), std::forward<Args>(args)...);
   }
   // Assignment and conversion
-  FArray<T>& operator=(const array_type& arr) {
+  inline FArray<T>& operator=(const array_type& arr) {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_data);
     _data = arr;
     return *this;
   }
-  operator array_type&() override { return data(); }
-  operator const array_type&() const override { return data(); }
+  inline operator array_type&() override { return data(); }
+  inline operator const array_type&() const override { return data(); }
 
-  bool operator==(const FArray<T>& other) const {
+  inline bool operator==(const FArray<T>& other) const {
     return data() == other.data();
   }
-  bool operator!=(const FArray<T>& other) const { return !(*this == other); }
+  inline bool operator!=(const FArray<T>& other) const {
+    return !(*this == other);
+  }
   /**
    * @brief Check if any of the data is greater than the value.
    * @param value The value to compare to.
    * @return True if any of the data is greater than the value, False otherwise.
    */
-  bool operator>(const T& value) const override {
+  inline bool operator>(const T& value) const override {
     return xt::any(data() > value);
   }
 
@@ -329,7 +339,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
    * @param value The value to compare to.
    * @return True if any of the data is less than the value, False otherwise.
    */
-  bool operator<(const T& value) const override {
+  inline bool operator<(const T& value) const override {
     return xt::any(data() < value);
   }
 
@@ -337,7 +347,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
    * @brief Remove the offset from the data.
    * @param offset The offset to remove.
    */
-  void remove_offset(const T& offset) override {
+  inline void remove_offset(const T& offset) override {
     std::unique_lock<std::shared_timed_mutex> lock_data(_mu_data);
     _data -= offset;
   }
@@ -346,14 +356,15 @@ class FArray : public generic::Song, public virtual IFArray<T> {
    * @brief Return the sum of the data.
    * @return The sum of the data.
    */
-  T sum() const override { return xt::sum(data())(); }
+  inline T sum() const override { return xt::sum(data())(); }
 
   /**
    * @brief Return a new Array with the given shape.
    * @param shape The new shape.
    * @return A reshaped FArray.
    */
-  std::shared_ptr<FArray<T>> reshape(const std::vector<size_t>& shape) const {
+  inline std::shared_ptr<FArray<T>> reshape(
+      const std::vector<size_t>& shape) const {
     return std::make_shared<FArray<T>>(xt::reshape_view(data(), shape));
   }
 
@@ -362,7 +373,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
    * @param value The value to search for.
    * @return Indices where the value matches.
    */
-  ListSP<List<size_t>> where(const T& value) const override {
+  inline ListSP<List<size_t>> where(const T& value) const override {
     auto mask    = xt::equal(data(), value);
     auto indices = std::make_shared<List<List<size_t>>>();
     for (size_t i = 0; i < data().size(); ++i) {
@@ -381,7 +392,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
    * @param axis The axis to flip.
    * @return A flipped FArray.
    */
-  std::shared_ptr<FArray<T>> flip(size_t axis) const {
+  inline std::shared_ptr<FArray<T>> flip(size_t axis) const {
     return std::make_shared<FArray<T>>(xt::flip(data(), axis));
   }
 
@@ -395,7 +406,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
    *
    * @return A vector of FArray gradients (one for each axis).
    */
-  ListSP<FArray<T>> gradient() const {
+  inline ListSP<FArray<T>> gradient() const {
     auto   grads = std::make_shared<List<FArray<T>>>();
     size_t ndim  = data().dimension();
     for (size_t axis = 0; axis < ndim; ++axis) {
@@ -415,7 +426,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
    * @param axis The axis to compute the gradient.
    * @return The gradient FArray.
    */
-  std::shared_ptr<FArray<T>> gradient(size_t axis) const {
+  inline std::shared_ptr<FArray<T>> gradient(size_t axis) const {
     auto          shape = data().shape();
     xt::xarray<T> grad  = xt::zeros<T>(shape);
 
@@ -445,14 +456,14 @@ class FArray : public generic::Song, public virtual IFArray<T> {
     return std::make_shared<FArray<T>>(grad);
   }
 
-  double get_sum_of_squares() const { return (*this ^ 2.0)->sum(); }
-  double get_sum_of_squares(const int other) const {
+  inline double get_sum_of_squares() const { return (*this ^ 2.0)->sum(); }
+  inline double get_sum_of_squares(const int other) const {
     return (*(*this - other) ^ 2.0)->sum();
   }
-  double get_sum_of_squares(const double other) const {
+  inline double get_sum_of_squares(const double other) const {
     return (*(*this - other) ^ 2.0)->sum();
   }
-  double get_sum_of_squares(
+  inline double get_sum_of_squares(
       const std::shared_ptr<generic::FArray<T>>& other) const {
     return (*(*this - other) ^ 2.0)->sum();
   }
@@ -460,7 +471,7 @@ class FArray : public generic::Song, public virtual IFArray<T> {
  protected:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_data(_mu_data);
     ar(cereal::base_class<generic::Song>(this), _data);
   }

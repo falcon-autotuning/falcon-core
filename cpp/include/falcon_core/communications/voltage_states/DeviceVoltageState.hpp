@@ -29,7 +29,7 @@ class FALCON_CORE_CPP_API DeviceVoltageState : public math::Quantity {
   friend class cereal::access;
   DeviceVoltageState();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_c(_mu_connection);
     ar(cereal::base_class<math::Quantity>(this), _connection);
   }

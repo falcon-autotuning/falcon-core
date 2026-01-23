@@ -69,7 +69,7 @@ class FALCON_CORE_CPP_API Discretizer : public generic::Song {
   friend class cereal::access;
   Discretizer();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_delta(_mu_delta,
                                                          std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_delta_domain(

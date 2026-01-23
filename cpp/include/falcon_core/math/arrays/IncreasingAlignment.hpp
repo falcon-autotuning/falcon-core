@@ -26,7 +26,7 @@ class FALCON_CORE_CPP_API IncreasingAlignment : public generic::Song {
  protected:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_a(_mu_alignment);
     ar(cereal::base_class<falcon_core::generic::Song>(this), _alignment);
   }

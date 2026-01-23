@@ -140,7 +140,7 @@ class FALCON_CORE_CPP_API InstrumentPort : public generic::Song {
   friend class cereal::access;
   InstrumentPort();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_default_name(
         _mu_default_name, std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_pseudo_name(_mu_pseudo_name,

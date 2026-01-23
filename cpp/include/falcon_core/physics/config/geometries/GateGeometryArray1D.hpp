@@ -129,7 +129,7 @@ class FALCON_CORE_CPP_API GateGeometryArray1D : public generic::Song {
   GateGeometryArray1D();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_central_dot_gates(
         _mu_central_dot_gates, std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_raw_central_gates(

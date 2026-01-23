@@ -50,7 +50,7 @@ class FALCON_CORE_CPP_API VoltageConstraints : public generic::Song {
   VoltageConstraints();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_matrix(_mu_matrix,
                                                           std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_adjacency(_mu_adjacency,

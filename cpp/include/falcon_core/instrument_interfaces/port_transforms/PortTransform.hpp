@@ -47,7 +47,7 @@ class FALCON_CORE_CPP_API PortTransform : public math::AnalyticFunction {
  protected:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_p(_mu_port);
     ar(cereal::base_class<math::AnalyticFunction>(this), _port);
   };

@@ -139,7 +139,7 @@ class FALCON_CORE_CPP_API MeasuredArray1D : public MeasuredArray,
  protected:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     ar(cereal::base_class<MeasuredArray>(this));
   }
 };

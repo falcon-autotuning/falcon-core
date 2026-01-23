@@ -65,51 +65,54 @@ class Pair : public generic::Song {
    * @param first The first value.
    * @param second The second value.
    */
-  std::shared_ptr<Pair> create(const StoredT1& first, const StoredT2& second) {
+  inline std::shared_ptr<Pair> create(const StoredT1& first,
+                                      const StoredT2& second) {
     return std::make_shared<Pair<T1, T2>>(first, second);
   }
 
   /**
    * @brief Get the stored first value.
    */
-  const StoredT1 first() const {
+  inline const StoredT1 first() const {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_first);
     return _first;
   }
   /**
    * @brief Get the stored second value.
    */
-  const StoredT2 second() const {
+  inline const StoredT2 second() const {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_second);
     return _second;
   }
   /**
    * @brief Get the stored first value.
    */
-  StoredT1 first() {
+  inline StoredT1 first() {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_first);
     return _first;
   }
   /**
    * @brief Get the stored second value.
    */
-  StoredT2 second() {
+  inline StoredT2 second() {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_second);
     return _second;
   }
 
-  bool operator==(const Pair<T1, T2>& other) const {
+  inline bool operator==(const Pair<T1, T2>& other) const {
     if (this == &other) return true;
     return operator_equal_deferred<T1, T2>(other);
   }
 
-  bool operator!=(const Pair<T1, T2>& other) const { return !(*this == other); }
+  inline bool operator!=(const Pair<T1, T2>& other) const {
+    return !(*this == other);
+  }
 
  protected:
   friend class cereal::access;
   Pair() = default;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_first(_mu_first,
                                                          std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_second(_mu_second,
@@ -123,48 +126,48 @@ class Pair : public generic::Song {
 
   // operator== implementations - deferred
   template <typename U1, typename U2>
-  typename std::enable_if<is_primitive<U1>::value && is_primitive<U2>::value,
-                          bool>::type
-  operator_equal_deferred(const Pair<U1, U2>& other) const {
+  inline typename std::
+      enable_if<is_primitive<U1>::value && is_primitive<U2>::value, bool>::type
+      operator_equal_deferred(const Pair<U1, U2>& other) const {
     return (first() == other.first()) && (second() == other.second());
   }
 
   template <typename U1, typename U2>
-  typename std::enable_if<is_primitive<U1>::value &&
-                              std::is_base_of<Song, U2>::value,
-                          bool>::type
+  inline typename std::enable_if<is_primitive<U1>::value &&
+                                     std::is_base_of<Song, U2>::value,
+                                 bool>::type
   operator_equal_deferred(const Pair<U1, U2>& other) const {
     return (first() == other.first()) && (*second() == *other.second());
   }
 
   template <typename U1, typename U2>
-  typename std::enable_if<std::is_base_of<Song, U1>::value &&
-                              is_primitive<U2>::value,
-                          bool>::type
+  inline typename std::enable_if<std::is_base_of<Song, U1>::value &&
+                                     is_primitive<U2>::value,
+                                 bool>::type
   operator_equal_deferred(const Pair<U1, U2>& other) const {
     return (*first() == *other.first()) && (second() == other.second());
   }
 
   template <typename U1, typename U2>
-  typename std::enable_if<std::is_base_of<Song, U1>::value &&
-                              std::is_base_of<Song, U2>::value,
-                          bool>::type
+  inline typename std::enable_if<std::is_base_of<Song, U1>::value &&
+                                     std::is_base_of<Song, U2>::value,
+                                 bool>::type
   operator_equal_deferred(const Pair<U1, U2>& other) const {
     return (*first() == *other.first()) && (*second() == *other.second());
   }
 
   // copy_impl implementations - deferred
   template <typename U1, typename U2>
-  typename std::enable_if<is_primitive<U1>::value &&
-                          is_primitive<U2>::value>::type
+  inline typename std::enable_if<is_primitive<U1>::value &&
+                                 is_primitive<U2>::value>::type
   copy_impl_deferred(const Pair<U1, U2>& other) {
     _first  = other.first();
     _second = other.second();
   }
 
   template <typename U1, typename U2>
-  typename std::enable_if<is_primitive<U1>::value &&
-                          std::is_base_of<Song, U2>::value>::type
+  inline typename std::enable_if<is_primitive<U1>::value &&
+                                 std::is_base_of<Song, U2>::value>::type
   copy_impl_deferred(const Pair<U1, U2>& other) {
     if (!other.second()) {
       throw std::invalid_argument(
@@ -175,8 +178,8 @@ class Pair : public generic::Song {
   }
 
   template <typename U1, typename U2>
-  typename std::enable_if<std::is_base_of<Song, U1>::value &&
-                          is_primitive<U2>::value>::type
+  inline typename std::enable_if<std::is_base_of<Song, U1>::value &&
+                                 is_primitive<U2>::value>::type
   copy_impl_deferred(const Pair<U1, U2>& other) {
     if (!other.first()) {
       throw std::invalid_argument(
@@ -187,8 +190,8 @@ class Pair : public generic::Song {
   }
 
   template <typename U1, typename U2>
-  typename std::enable_if<std::is_base_of<Song, U1>::value &&
-                          std::is_base_of<Song, U2>::value>::type
+  inline typename std::enable_if<std::is_base_of<Song, U1>::value &&
+                                 std::is_base_of<Song, U2>::value>::type
   copy_impl_deferred(const Pair<U1, U2>& other) {
     if (!other.first() || !other.second()) {
       throw std::invalid_argument(

@@ -134,7 +134,7 @@ class FALCON_CORE_CPP_API Waveform : public port_transforms::PortTransforms {
   friend class cereal::access;
   Waveform();
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_space(_mu_dspace);
     ar(cereal::base_class<port_transforms::PortTransforms>(this), _space);
   }

@@ -30,7 +30,7 @@ class FALCON_CORE_CPP_API HasRightNeighbor : public virtual generic::Song {
   HasRightNeighbor();
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_right_neighbor(
         _mu_right_neighbor);
     ar(cereal::base_class<generic::Song>(this), _right_neighbor);

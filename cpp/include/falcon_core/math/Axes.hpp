@@ -42,10 +42,12 @@ class Axes : public generic::List<Value> {
    */
   explicit Axes(const generic::ListSP<Value>& items)
       : generic::List<Value>(list_check_and_deref<Value>(items)) {}
-  bool operator==(const Axes<Value>& other) const {
+  inline bool operator==(const Axes<Value>& other) const {
     return generic::List<Value>::operator==(other);
   }
-  bool operator!=(const Axes<Value>& other) const { return !(*this == other); }
+  inline bool operator!=(const Axes<Value>& other) const {
+    return !(*this == other);
+  }
 };
 template <typename V>
 using AxesSP = std::shared_ptr<Axes<V>>;

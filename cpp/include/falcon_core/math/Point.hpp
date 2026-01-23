@@ -75,7 +75,7 @@ class FALCON_CORE_CPP_API Point
  protected:
   friend class cereal::access;
   template <class Archive>
-  void serialize(Archive& ar) {
+  inline void serialize(Archive& ar) {
     std::shared_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
     ar(cereal::base_class<
            generic::Map<physics::device_structures::Connection, Quantity>>(

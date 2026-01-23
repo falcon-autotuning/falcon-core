@@ -17,15 +17,18 @@ class FALCON_CORE_CPP_API IsLabelled : public virtual generic::IFArray<T> {
     std::shared_lock<std::shared_timed_mutex> lock_l(_mu_label);
     return _label;
   }
-  const physics::device_structures::ConnectionSP connection() const {
+  inline const physics::device_structures::ConnectionSP connection() const {
     return label()->connection();
   }
-  const instrument_interfaces::names::Instrument instrument_type() const {
+  inline const instrument_interfaces::names::Instrument instrument_type()
+      const {
     return label()->instrument_type();
   }
-  const physics::units::SymbolUnitSP units() const { return label()->units(); }
+  inline const physics::units::SymbolUnitSP units() const {
+    return label()->units();
+  }
 
-  std::shared_ptr<IsLabelled<T>> operator+(
+  inline std::shared_ptr<IsLabelled<T>> operator+(
       const std::shared_ptr<IsLabelled<T>>& other) const {
     if (label() == other->label()) {
       return std::make_shared<IsLabelled<T>>(*this + *other, this->label());
@@ -34,16 +37,16 @@ class FALCON_CORE_CPP_API IsLabelled : public virtual generic::IFArray<T> {
           "Cannot add labelled arrays with different labels.");
     }
   }
-  std::shared_ptr<IsLabelled<T>> operator+(const int other) const {
+  inline std::shared_ptr<IsLabelled<T>> operator+(const int other) const {
     return std::make_shared<IsLabelled<T>>(*this + other, this->label());
   }
-  std::shared_ptr<IsLabelled<T>> operator+(const double other) const {
+  inline std::shared_ptr<IsLabelled<T>> operator+(const double other) const {
     return std::make_shared<IsLabelled<T>>(*this + other, this->label());
   }
-  std::shared_ptr<IsLabelled<T>> operator-() const {
+  inline std::shared_ptr<IsLabelled<T>> operator-() const {
     return std::make_shared<IsLabelled<T>>(-*this, this->label());
   }
-  std::shared_ptr<IsLabelled<T>> operator-(
+  inline std::shared_ptr<IsLabelled<T>> operator-(
       const std::shared_ptr<IsLabelled<T>>& other) const {
     if (label() == other->label()) {
       return std::make_shared<IsLabelled<T>>(*this - *other, this->label());
@@ -52,37 +55,37 @@ class FALCON_CORE_CPP_API IsLabelled : public virtual generic::IFArray<T> {
           "Cannot subtract labelled arrays with different labels.");
     }
   }
-  std::shared_ptr<IsLabelled<T>> operator-(const int other) const {
+  inline std::shared_ptr<IsLabelled<T>> operator-(const int other) const {
     return std::make_shared<IsLabelled<T>>(*this - other, this->label());
   }
-  std::shared_ptr<IsLabelled<T>> operator-(const double other) const {
+  inline std::shared_ptr<IsLabelled<T>> operator-(const double other) const {
     return std::make_shared<IsLabelled<T>>(*this - other, this->label());
   }
-  std::shared_ptr<IsLabelled<T>> operator^(const int other) const {
+  inline std::shared_ptr<IsLabelled<T>> operator^(const int other) const {
     return std::make_shared<IsLabelled<T>>(*this ^ other, this->label());
   }
-  std::shared_ptr<IsLabelled<T>> operator*(
+  inline std::shared_ptr<IsLabelled<T>> operator*(
       const std::shared_ptr<IsLabelled<T>>& other) const {
     autotuner_interfaces::contexts::AcquisitionContextSP label = this->label();
     label->units() *= other.label()->units();
     return std::make_shared<IsLabelled<T>>(*this * *other, label);
   }
-  std::shared_ptr<IsLabelled<T>> operator*(const int other) const {
+  inline std::shared_ptr<IsLabelled<T>> operator*(const int other) const {
     return std::make_shared<IsLabelled<T>>(*this * other, this->label());
   }
-  std::shared_ptr<IsLabelled<T>> operator*(const double other) const {
+  inline std::shared_ptr<IsLabelled<T>> operator*(const double other) const {
     return std::make_shared<IsLabelled<T>>(*this * other, this->label());
   }
-  std::shared_ptr<IsLabelled<T>> operator/(
+  inline std::shared_ptr<IsLabelled<T>> operator/(
       const std::shared_ptr<IsLabelled<T>>& other) const {
     autotuner_interfaces::contexts::AcquisitionContextSP label = this->label();
     label->units() /= other.label()->units();
     return std::make_shared<IsLabelled<T>>(*this / *other, label);
   }
-  std::shared_ptr<IsLabelled<T>> operator/(const int other) const {
+  inline std::shared_ptr<IsLabelled<T>> operator/(const int other) const {
     return std::make_shared<IsLabelled<T>>(*this / other, this->label());
   }
-  std::shared_ptr<IsLabelled<T>> operator/(const double other) const {
+  inline std::shared_ptr<IsLabelled<T>> operator/(const double other) const {
     return std::make_shared<IsLabelled<T>>(*this / other, this->label());
   }
   /**
@@ -90,13 +93,13 @@ class FALCON_CORE_CPP_API IsLabelled : public virtual generic::IFArray<T> {
    * @param axis The axis to flip.
    * @return A flipped IsLabelled.
    */
-  std::shared_ptr<IsLabelled<T>> flip(size_t axis) const {
+  inline std::shared_ptr<IsLabelled<T>> flip(size_t axis) const {
     return std::make_shared<IsLabelled<T>>(generic::IFArray<T>::flip(axis));
   }
   /**
    * @brief Return the gradient of the data along all axes.
    */
-  generic::ListSP<std::shared_ptr<IsLabelled<T>>> gradient() const {
+  inline generic::ListSP<std::shared_ptr<IsLabelled<T>>> gradient() const {
     auto grads = generic::IFArray<T>::gradient();
     auto list =
         std::make_shared<generic::List<std::shared_ptr<IsLabelled<T>>>>();
@@ -111,7 +114,7 @@ class FALCON_CORE_CPP_API IsLabelled : public virtual generic::IFArray<T> {
    * @param axis The axis to compute the gradient.
    * @return The gradient IsLabelled.
    */
-  std::shared_ptr<IsLabelled<T>> gradient(size_t axis) const {
+  inline std::shared_ptr<IsLabelled<T>> gradient(size_t axis) const {
     auto grad = generic::IFArray<T>::gradient(axis);
     return std::make_shared<IsLabelled<T>>(std::make_shared<T>(*grad),
                                            this->label());
