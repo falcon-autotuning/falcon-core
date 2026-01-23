@@ -187,6 +187,15 @@ class List : public generic::Song {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     return _items.end();
   }
+  const_iterator cbegin() const {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
+    return _items.cbegin();
+  }
+
+  const_iterator cend() const {
+    std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
+    return _items.cend();
+  }
   bool contains(const StoredValue& value) const {
     return contains_impl(value,
                          typename category::determine_tag<Value>::type{});
@@ -421,8 +430,8 @@ class List : public generic::Song {
       return false;
     }
     for (size_t i = 0; i < size(); i++) {
-      const Value our_conn   = this->at(i);
-      const Value other_conn = other.at(i);
+      const StoredValue our_conn   = this->at(i);
+      const StoredValue other_conn = other.at(i);
       if (our_conn != other_conn) {
         return false;
       }
