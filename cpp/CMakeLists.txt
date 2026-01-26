@@ -163,9 +163,21 @@ if(FALCON_CORE_DEV)
   enable_testing()
   file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
   add_executable(falcon_core_cpp_run_tests ${RUN_TESTS_SOURCES})
-  set_target_properties(falcon_core_cpp_run_tests PROPERTIES UNITY_BUILD ON)
-  set_target_properties(falcon_core_cpp_run_tests
-                        PROPERTIES UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE})
+if(WIN32)
+  # Windows: Disable Unity Build to avoid duplicate symbol errors
+  set_target_properties(falcon_core_cpp_run_tests PROPERTIES
+    WINDOWS_EXPORT_ALL_SYMBOLS OFF
+    UNITY_BUILD OFF
+  )
+  message(STATUS "Windows detected: Unity Build DISABLED for falcon_core_cpp_run_tests")
+else()
+  # Linux/macOS: Keep Unity Build enabled for faster compilation
+  set_target_properties(falcon_core_cpp_run_tests PROPERTIES 
+    UNITY_BUILD ON
+    UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
+  )
+  message(STATUS "Unix detected: Unity Build ENABLED for falcon_core_cpp_run_tests")
+endif()
   set_target_properties(
     falcon_core_cpp_run_tests
     PROPERTIES SKIP_BUILD_RPATH FALSE
