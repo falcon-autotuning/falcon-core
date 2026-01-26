@@ -1,9 +1,17 @@
 #pragma once
 
+#include <memory>
 #include <numeric>
+#include <shared_mutex>
+#include <stdexcept>
+#include <string>
+#include <type_traits>
+#include <vector>
 
+#include "falcon_core/export.h"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Pair.hpp"
+
 namespace falcon_core {
 namespace generic {
 
@@ -114,7 +122,6 @@ class Map : public virtual generic::Song {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     auto                                      it = find(key);
     if (it != _items->end()) {
-      auto idx = it - _items->begin();
       _items->erase_at(std::distance(_items->begin(), it));
     }
   }
@@ -247,3 +254,90 @@ template <typename Key, typename Value>
 using MapSP = std::shared_ptr<Map<Key, Value>>;
 }  // namespace generic
 }  // namespace falcon_core
+
+// -----------------------------------------------------------------------------
+// Optional extern template declarations
+//
+// Define FALCON_CORE_USE_EXTERN_TEMPLATES in consumer builds (tests) that link
+// against the compiled falcon_core library which explicitly instantiates the
+// same Map<Key,Value> specializations. This prevents consumers from
+// instantiating the templates again (avoids duplicate-symbol link errors on
+// Windows).
+// -----------------------------------------------------------------------------
+
+#ifdef FALCON_CORE_USE_EXTERN_TEMPLATES
+
+// Forward declarations for concrete project types used in registrations
+namespace falcon_core {
+namespace autotuner_interfaces {
+namespace interpretations {
+class InterpretationContext;
+}
+}
+namespace autotuner_interfaces {
+namespace names {
+class Channel;
+class Gname;
+}
+}
+namespace instrument_interfaces {
+namespace port_transforms {
+class PortTransform;
+}
+namespace names {
+class InstrumentPort;
+}
+}
+namespace math {
+class Quantity;
+}
+namespace physics {
+namespace device_structures {
+class Connection;
+class Connections;
+}
+}
+namespace physics {
+namespace config {
+namespace core {
+class Group;
+}
+}
+}
+
+extern template class FALCON_CORE_CPP_API falcon_core::generic::Map<int, int>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::Map<float, float>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::Map<std::string, bool>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::Map<std::string, double>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::Map<std::string, std::string>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    std::string>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    falcon_core::math::Quantity>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    double>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::
+    Map<falcon_core::physics::device_structures::Connection, float>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::
+    Map<falcon_core::physics::device_structures::Connection, double>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::names::Channel,
+    falcon_core::physics::device_structures::Connections>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,
+                              falcon_core::physics::config::core::Group>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::physics::device_structures::Connection,
+    falcon_core::math::Quantity>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::instrument_interfaces::names::InstrumentPort,
+    falcon_core::instrument_interfaces::port_transforms::PortTransform>;
+
+#endif  // FALCON_CORE_USE_EXTERN_TEMPLATES

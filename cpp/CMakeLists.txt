@@ -183,6 +183,7 @@ endif()
     PROPERTIES SKIP_BUILD_RPATH FALSE
                SKIP_INSTALL_RPATH FALSE
                BUILD_WITH_INSTALL_RPATH FALSE)
+  target_compile_definitions(falcon_core_cpp_run_tests PRIVATE FALCON_USE_EXTERN_TEMPLATES)
   if(USE_VCPKG)
     target_link_libraries(
       falcon_core_cpp_run_tests
