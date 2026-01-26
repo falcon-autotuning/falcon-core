@@ -5,12 +5,16 @@
 #include <mutex>
 #include <shared_mutex>
 #include <stdexcept>
+#include <string>
 #include <type_traits>
+#include <vector>
 
 #include "falcon_core/generic/IsPrimitive.hpp"
 #include "falcon_core/generic/Song.hpp"
+
 namespace falcon_core {
 namespace generic {
+
 template <typename Value>
 class List : public generic::Song {
   static_assert(!std::is_pointer<Value>::value,
@@ -34,7 +38,7 @@ class List : public generic::Song {
   using iterator       = typename Container::iterator;
   using const_iterator = typename Container::const_iterator;
 
-  List<Value>(const List<Value>& other) {
+  inline List<Value>(const List<Value>& other) {
     std::shared_lock<std::shared_timed_mutex> lock_other(other._mu_items);
     _items.reserve(other.size());
     copy_items_from_container(other.items());
@@ -54,49 +58,12 @@ class List : public generic::Song {
     return *this;
   }
 
-  List(iterator begin, iterator end) : _items(begin, end) {}
-  /**
-   * @brief List can be constructed in 5 different ways:
-   *
-   * - Default constructor: creates an empty List container.
-   *   @code
-   *   List o;
-   *   @endcode
-   *
-   * - Sized constructor: creates an List container with a given
-   * number of default-initialized elements.
-   *   @param count Number of elements.
-   *   @code
-   *   List o(10);
-   *   @endcode
-   *
-   * - Fill constructor: creates an List container with a given
-   * number of copies of a specified value.
-   *   @param count Number of elements.
-   *   @param value Value to copy.
-   *   @code
-   *   List o(10, someValue);
-   *   @endcode
-   *
-   * - Vector constructor: creates an List container from an existing
-   * vector of values.
-   *   @param vec Vector of values to copy.
-   *   @code
-   *   std::vector<ListP> v = ...;
-   *   List o(v);
-   *   @endcode
-   * - Initializer list constructor: creates a List container
-   *from an initializer list of shared pointers.
-   *   @param init Initializer list of shared_ptr<T> to copy.
-   *   @code
-   *   List o{ptr1, ptr2, ptr3};
-   *   @endcode
-   */
-  List() : _items(std::vector<StoredValue>()) {}
+  inline List(iterator begin, iterator end) : _items(begin, end) {}
+  inline List() : _items(std::vector<StoredValue>()) {}
   inline static std::shared_ptr<List<Value>> create_empty() {
     return std::make_shared<List<Value>>();
   }
-  List(size_t count) {
+  inline List(size_t count) {
     if (std::is_base_of<Song, Value>::value) {
       throw std::invalid_argument(
           "List: Default-initialized List of shared_ptr is not allowed");
@@ -104,11 +71,11 @@ class List : public generic::Song {
       _items = Container(count);
     }
   }
-  static std::shared_ptr<List<Value>> allocate(size_t count) {
+  inline static std::shared_ptr<List<Value>> allocate(size_t count) {
     return std::make_shared<List<Value>>(count);
   }
 
-  List(size_t count, const StoredValue& value) {
+  inline List(size_t count, const StoredValue& value) {
     create_duplicates_deferred<Value>(count, value);
   }
 
@@ -116,7 +83,7 @@ class List : public generic::Song {
       size_t count, const StoredValue& value) {
     return std::make_shared<List<Value>>(count, value);
   }
-  List(const Container& init) : _items(std::vector<StoredValue>()) {
+  inline List(const Container& init) : _items(std::vector<StoredValue>()) {
     for (const auto& item : init) {
       push_back(item);
     }
@@ -201,11 +168,6 @@ class List : public generic::Song {
     return index_deferred<Value>(value);
   }
 
-  /**
-   * @brief Finds the intersection between this list and another.
-   * @param other the other list to compare again.
-   * @returns A list of values containing elements from both.
-   */
   inline std::shared_ptr<List<Value>> intersection(
       const std::shared_ptr<List<Value>>& other) const {
     if (!other) {
@@ -220,17 +182,12 @@ class List : public generic::Song {
     }
     return result;
   }
-  /**
-   * @brief clears to contents of the list.
-   */
+
   inline void clear() {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     _items.clear();
   }
-  /**
-   * @brief Allows for targetted eraseall of elements at an index.
-   * @param idx The index to erase at.
-   */
+
   inline void erase_at(size_t idx) {
     std::unique_lock<std::shared_timed_mutex> lock(_mu_items);
     if (idx >= _items.size()) {
@@ -238,9 +195,7 @@ class List : public generic::Song {
     }
     _items.erase(_items.begin() + idx);
   }
-  /**
-   * @brief Return the last element of a list.
-   */
+
   inline StoredValue back() {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     if (_items.empty()) {
@@ -249,9 +204,6 @@ class List : public generic::Song {
     return _items.back();
   }
 
-  /**
-   * @brief Return the last element of a list.
-   */
   inline const StoredValue& back() const {
     std::shared_lock<std::shared_timed_mutex> lock(_mu_items);
     if (_items.empty()) {
@@ -356,7 +308,7 @@ class List : public generic::Song {
   template <typename T>
   inline typename std::enable_if<!std::is_base_of<Song, T>::value &&
                                  !is_primitive<T>::value>::type
-  copy_items_impl_deferred(const Container& src) {
+  copy_items_impl_deferred(const Container& /*src*/) {
     static_assert(sizeof(T) == 0, "Unsupported type for List deep copy");
   }
 
@@ -381,7 +333,7 @@ class List : public generic::Song {
   template <typename T>
   inline typename std::enable_if<!std::is_base_of<Song, T>::value &&
                                  !is_primitive<T>::value>::type
-  create_duplicates_deferred(size_t count, const T& item) {
+  create_duplicates_deferred(size_t /*count*/, const T& /*item*/) {
     static_assert(sizeof(T) == 0, "Unsupported type for List");
   }
 
@@ -404,7 +356,7 @@ class List : public generic::Song {
   template <typename T>
   inline typename std::enable_if<!std::is_base_of<Song, T>::value &&
                                  !is_primitive<T>::value>::type
-  push_back_deferred(const T& item) {
+  push_back_deferred(const T& /*item*/) {
     throw std::runtime_error("Unsupported type for tag.");
   }
 
@@ -438,7 +390,7 @@ class List : public generic::Song {
   inline typename std::enable_if<!std::is_base_of<Song, T>::value &&
                                      !is_primitive<T>::value,
                                  bool>::type
-  contains_deferred(const T& value) const {
+  contains_deferred(const T& /*value*/) const {
     throw std::runtime_error("Unsupported type for List");
   }
 
@@ -473,7 +425,7 @@ class List : public generic::Song {
   inline typename std::enable_if<!std::is_base_of<Song, T>::value &&
                                      !is_primitive<T>::value,
                                  size_t>::type
-  index_deferred(const T& value) const {
+  index_deferred(const T& /*value*/) const {
     throw std::runtime_error("Unsupported type for List");
   }
 
@@ -514,7 +466,7 @@ class List : public generic::Song {
   inline typename std::enable_if<!std::is_base_of<Song, T>::value &&
                                      !is_primitive<T>::value,
                                  bool>::type
-  operator_equal_deferred(const List<T>& other) const {
+  operator_equal_deferred(const List<T>& /*other*/) const {
     throw std::runtime_error("Unsupported type for List");
   }
   // insert() - deferred for Song types (check for nullptr)
@@ -554,5 +506,218 @@ class List : public generic::Song {
 
 template <typename Value>
 using ListSP = std::shared_ptr<List<Value>>;
+
 }  // namespace generic
 }  // namespace falcon_core
+
+// -----------------------------------------------------------------------------
+// Optional extern template declarations
+//
+// Define FALCON_CORE_USE_EXTERN_TEMPLATES in consumer builds (tests) that link
+// against the compiled falcon_core library which explicitly instantiates the
+// same List<T> specializations. This prevents consumers from instantiating
+// the templates again (avoids duplicate-symbol link errors on Windows).
+// -----------------------------------------------------------------------------
+
+#ifdef FALCON_CORE_USE_EXTERN_TEMPLATES
+
+// forward declarations for concrete project types (used below)
+namespace falcon_core {
+namespace math {
+class Quantity;
+}
+namespace generic {
+template <typename K, typename V>
+class Pair;
+template <typename K, typename V>
+class Map;
+}
+namespace generic {
+template <typename T>
+class FArray;
+}
+namespace autotuner_interfaces {
+namespace names {
+class Gname;
+class Channel;
+}
+namespace contexts {
+class MeasurementContext;
+class AcquisitionContext;
+}
+namespace interpretations {
+class InterpretationContext;
+}
+}
+namespace instrument_interfaces {
+namespace port_transforms {
+class PortTransform;
+}
+class Waveform;
+namespace names {
+class InstrumentPort;
+}
+}
+namespace math {
+namespace arrays {
+class LabelledMeasuredArray;
+class LabelledMeasuredArray1D;
+class LabelledControlArray;
+class LabelledControlArray1D;
+class ControlArray;
+class ControlArray1D;
+}
+namespace domains {
+class LabelledDomain;
+class CoupledLabelledDomain;
+}
+namespace discrete_spaces {
+class Discretizer;
+}
+}
+namespace physics {
+namespace device_structures {
+class Connection;
+class Connections;
+class Impedance;
+}
+namespace config {
+namespace core {
+class Group;
+}
+namespace geometries {
+class DotGateWithNeighbors;
+}
+}
+}
+namespace communications {
+namespace voltage_states {
+class DeviceVoltageState;
+}
+}
+
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<int>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<float>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<double>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<size_t>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<std::string>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::math::Quantity>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::FArray<double>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::autotuner_interfaces::names::Gname>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::instrument_interfaces::port_transforms::PortTransform>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<std::string, bool>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<std::string, double>>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::generic::Pair<std::string, std::string>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<size_t, size_t>>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::generic::Pair<falcon_core::math::Quantity,
+                               falcon_core::math::Quantity>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<int, int>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<int, float>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<float, float>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::autotuner_interfaces::names::Gname,
+        falcon_core::physics::device_structures::Connections>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::autotuner_interfaces::names::Channel,
+        falcon_core::physics::device_structures::Connections>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::physics::device_structures::Connection,
+        falcon_core::physics::device_structures::Connections>>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::generic::Pair<falcon_core::autotuner_interfaces::names::Gname,
+                               falcon_core::physics::config::core::Group>>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::generic::
+        Pair<falcon_core::physics::device_structures::Connection, double>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::physics::device_structures::Connection,
+        falcon_core::math::Quantity>>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::generic::
+        Pair<falcon_core::physics::device_structures::Connection, float>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::instrument_interfaces::names::InstrumentPort,
+        falcon_core::instrument_interfaces::port_transforms::PortTransform>>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::generic::Pair<falcon_core::autotuner_interfaces::
+                                   interpretations::InterpretationContext,
+                               double>>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::generic::Pair<falcon_core::autotuner_interfaces::
+                                   interpretations::InterpretationContext,
+                               falcon_core::math::Quantity>>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::generic::Pair<falcon_core::autotuner_interfaces::
+                                   interpretations::InterpretationContext,
+                               std::string>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::physics::device_structures::Connection,
+        falcon_core::generic::Pair<falcon_core::math::Quantity,
+                                   falcon_core::math::Quantity>>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::Map<std::string, bool>>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::generic::List<size_t>>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::contexts::MeasurementContext>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::math::arrays::LabelledMeasuredArray>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::math::arrays::LabelledMeasuredArray1D>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::math::arrays::LabelledControlArray>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::math::arrays::LabelledControlArray1D>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::instrument_interfaces::names::InstrumentPort>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::physics::device_structures::Impedance>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::physics::config::core::Group>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::physics::config::geometries::DotGateWithNeighbors>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::math::discrete_spaces::Discretizer>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::communications::voltage_states::DeviceVoltageState>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::math::domains::CoupledLabelledDomain>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::math::arrays::ControlArray1D>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::physics::device_structures::Connection>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::physics::device_structures::Connections>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::names::Channel>;
+extern template class FALCON_CORE_CPP_API falcon_core::generic::List<
+    falcon_core::autotuner_interfaces::contexts::AcquisitionContext>;
+extern template class FALCON_CORE_CPP_API
+    falcon_core::generic::List<falcon_core::instrument_interfaces::Waveform>;
+
+#endif  // FALCON_CORE_USE_EXTERN_TEMPLATES

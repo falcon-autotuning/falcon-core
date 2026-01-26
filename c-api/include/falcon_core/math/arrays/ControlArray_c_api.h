@@ -4,6 +4,7 @@ extern "C" {
 #endif
 #include <stddef.h>
 
+#include "falcon_core/export_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
@@ -11,134 +12,156 @@ extern "C" {
 typedef void* ControlArrayHandle;
 
 // @category:allocation
-ControlArrayHandle ControlArray_copy(ControlArrayHandle handle);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_copy(ControlArrayHandle handle);
 // @category:deallocation
-void ControlArray_destroy(ControlArrayHandle handle);
+FALCON_CORE_C_API void ControlArray_destroy(ControlArrayHandle handle);
 // @category:read
-bool ControlArray_equal(ControlArrayHandle handle, ControlArrayHandle other);
+FALCON_CORE_C_API bool ControlArray_equal(ControlArrayHandle handle,
+                                          ControlArrayHandle other);
 // @category:read
-bool ControlArray_not_equal(ControlArrayHandle handle,
-                            ControlArrayHandle other);
+FALCON_CORE_C_API bool ControlArray_not_equal(ControlArrayHandle handle,
+                                              ControlArrayHandle other);
 // @category:read
-StringHandle ControlArray_to_json_string(ControlArrayHandle handle);
+FALCON_CORE_C_API StringHandle
+ControlArray_to_json_string(ControlArrayHandle handle);
 // @category:allocation
-ControlArrayHandle ControlArray_from_json_string(StringHandle json);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_from_json_string(StringHandle json);
 // @category:allocation
-ControlArrayHandle ControlArray_from_data(const double* data,
-                                          const size_t* shape,
-                                          size_t        ndim);
+FALCON_CORE_C_API ControlArrayHandle ControlArray_from_data(const double* data,
+                                                            const size_t* shape,
+                                                            size_t        ndim);
 // @category:allocation
-ControlArrayHandle ControlArray_from_farray(FArrayDoubleHandle farray);
+FALCON_CORE_C_APIControlArrayHandle ControlArray_from_farray(
+    FArrayDoubleHandle farray);
 // @category:read
-size_t ControlArray_size(ControlArrayHandle handle);
+FALCON_CORE_C_API size_t ControlArray_size(ControlArrayHandle handle);
 // @category:read
-size_t ControlArray_dimension(ControlArrayHandle handle);
+FALCON_CORE_C_API size_t ControlArray_dimension(ControlArrayHandle handle);
 // @category:read
-size_t ControlArray_shape(ControlArrayHandle handle,
-                          size_t*            out_buffer,
-                          size_t             ndim);
+FALCON_CORE_C_API size_t ControlArray_shape(ControlArrayHandle handle,
+                                            size_t*            out_buffer,
+                                            size_t             ndim);
 // @category:read
-size_t ControlArray_data(ControlArrayHandle handle,
-                         double*            out_buffer,
-                         size_t             numdata);
+FALCON_CORE_C_API size_t ControlArray_data(ControlArrayHandle handle,
+                                           double*            out_buffer,
+                                           size_t             numdata);
 // @category:write
-void ControlArray_plus_equals_farray(ControlArrayHandle handle,
-                                     FArrayDoubleHandle other);
+FALCON_CORE_C_API void ControlArray_plus_equals_farray(
+    ControlArrayHandle handle, FArrayDoubleHandle other);
 // @category:write
-void ControlArray_plus_equals_double(ControlArrayHandle handle, double other);
+FALCON_CORE_C_API void ControlArray_plus_equals_double(
+    ControlArrayHandle handle, double other);
 // @category:write
-void ControlArray_plus_equals_int(ControlArrayHandle handle, int other);
+FALCON_CORE_C_APIvoid ControlArray_plus_equals_int(ControlArrayHandle handle,
+                                                   int                other);
 // @category:read
-ControlArrayHandle ControlArray_plus_control_array(ControlArrayHandle handle,
-                                                   ControlArrayHandle other);
+FALCON_CORE_C_APIControlArrayHandle ControlArray_plus_control_array(
+    ControlArrayHandle handle, ControlArrayHandle other);
 // @category:read
-ControlArrayHandle ControlArray_plus_farray(ControlArrayHandle handle,
-                                            FArrayDoubleHandle other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_plus_farray(ControlArrayHandle handle, FArrayDoubleHandle other);
 // @category:read
-ControlArrayHandle ControlArray_plus_double(ControlArrayHandle handle,
-                                            double             other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_plus_double(ControlArrayHandle handle, double other);
 // @category:read
-ControlArrayHandle ControlArray_plus_int(ControlArrayHandle handle, int other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_plus_int(ControlArrayHandle handle, int other);
 // @category:write
-void ControlArray_minus_equals_farray(ControlArrayHandle handle,
-                                      FArrayDoubleHandle other);
+FALCON_CORE_C_API void ControlArray_minus_equals_farray(
+    ControlArrayHandle handle, FArrayDoubleHandle other);
 // @category:write
-void ControlArray_minus_equals_double(ControlArrayHandle handle, double other);
+FALCON_CORE_C_API void ControlArray_minus_equals_double(
+    ControlArrayHandle handle, double other);
 // @category:write
-void ControlArray_minus_equals_int(ControlArrayHandle handle, int other);
+FALCON_CORE_C_API void ControlArray_minus_equals_int(ControlArrayHandle handle,
+                                                     int                other);
 // @category:read
-ControlArrayHandle ControlArray_minus_control_array(ControlArrayHandle handle,
-                                                    ControlArrayHandle other);
+FALCON_CORE_C_API ControlArrayHandle ControlArray_minus_control_array(
+    ControlArrayHandle handle, ControlArrayHandle other);
 // @category:read
-ControlArrayHandle ControlArray_minus_farray(ControlArrayHandle handle,
-                                             FArrayDoubleHandle other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_minus_farray(ControlArrayHandle handle, FArrayDoubleHandle other);
 // @category:read
-ControlArrayHandle ControlArray_minus_double(ControlArrayHandle handle,
-                                             double             other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_minus_double(ControlArrayHandle handle, double other);
 // @category:read
-ControlArrayHandle ControlArray_minus_int(ControlArrayHandle handle, int other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_minus_int(ControlArrayHandle handle, int other);
 // @category:read
-ControlArrayHandle ControlArray_negation(ControlArrayHandle handle);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_negation(ControlArrayHandle handle);
 // @category:write
-void ControlArray_times_equals_double(ControlArrayHandle handle, double other);
+FALCON_CORE_C_API void ControlArray_times_equals_double(
+    ControlArrayHandle handle, double other);
 // @category:write
-void ControlArray_times_equals_int(ControlArrayHandle handle, int other);
+FALCON_CORE_C_API void ControlArray_times_equals_int(ControlArrayHandle handle,
+                                                     int                other);
 // @category:read
-ControlArrayHandle ControlArray_times_double(ControlArrayHandle handle,
-                                             double             other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_times_double(ControlArrayHandle handle, double other);
 // @category:read
-ControlArrayHandle ControlArray_times_int(ControlArrayHandle handle, int other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_times_int(ControlArrayHandle handle, int other);
 // @category:write
-void ControlArray_divides_equals_double(ControlArrayHandle handle,
-                                        double             other);
+FALCON_CORE_C_API void ControlArray_divides_equals_double(
+    ControlArrayHandle handle, double other);
 // @category:write
-void ControlArray_divides_equals_int(ControlArrayHandle handle, int other);
+FALCON_CORE_C_API void ControlArray_divides_equals_int(
+    ControlArrayHandle handle, int other);
 // @category:read
-ControlArrayHandle ControlArray_divides_double(ControlArrayHandle handle,
-                                               double             other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_divides_double(ControlArrayHandle handle, double other);
 // @category:read
-ControlArrayHandle ControlArray_divides_int(ControlArrayHandle handle,
-                                            int                other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_divides_int(ControlArrayHandle handle, int other);
 // @category:read
-ControlArrayHandle ControlArray_pow(ControlArrayHandle handle, double other);
+FALCON_CORE_C_API ControlArrayHandle ControlArray_pow(ControlArrayHandle handle,
+                                                      double             other);
 // @category:read
-ControlArrayHandle ControlArray_abs(ControlArrayHandle handle);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_abs(ControlArrayHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: ControlArray_min |
  * falcon_core::math::arrays::ControlArray::min */
 /**
  * @brief Return the minimum value of the array.
  */
-double ControlArray_min(ControlArrayHandle handle);
+FALCON_CORE_C_API double ControlArray_min(ControlArrayHandle handle);
 // @category:read
-ControlArrayHandle ControlArray_min_farray(ControlArrayHandle handle,
-                                           FArrayDoubleHandle other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_min_farray(ControlArrayHandle handle, FArrayDoubleHandle other);
 // @category:read
-ControlArrayHandle ControlArray_min_control_array(ControlArrayHandle handle,
-                                                  ControlArrayHandle other);
+FALCON_CORE_C_API ControlArrayHandle ControlArray_min_control_array(
+    ControlArrayHandle handle, ControlArrayHandle other);
 // @category:read
 /* AUTO-DOC from cpp: ControlArray_max |
  * falcon_core::math::arrays::ControlArray::max */
 /**
  * @brief Return the maximum value of the array.
  */
-double ControlArray_max(ControlArrayHandle handle);
+FALCON_CORE_C_API double ControlArray_max(ControlArrayHandle handle);
 // @category:read
-ControlArrayHandle ControlArray_max_farray(ControlArrayHandle handle,
-                                           FArrayDoubleHandle other);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_max_farray(ControlArrayHandle handle, FArrayDoubleHandle other);
 // @category:read
-ControlArrayHandle ControlArray_max_control_array(ControlArrayHandle handle,
-                                                  ControlArrayHandle other);
+FALCON_CORE_C_API ControlArrayHandle ControlArray_max_control_array(
+    ControlArrayHandle handle, ControlArrayHandle other);
 // @category:read
-bool ControlArray_greater_than(ControlArrayHandle handle, double value);
+FALCON_CORE_C_API bool ControlArray_greater_than(ControlArrayHandle handle,
+                                                 double             value);
 // @category:read
-bool ControlArray_less_than(ControlArrayHandle handle, double value);
+FALCON_CORE_C_API bool ControlArray_less_than(ControlArrayHandle handle,
+                                              double             value);
 // @category:write
-void ControlArray_remove_offset(ControlArrayHandle handle, double offset);
+FALCON_CORE_C_API void ControlArray_remove_offset(ControlArrayHandle handle,
+                                                  double             offset);
 // @category:read
-double ControlArray_sum(ControlArrayHandle handle);
+FALCON_CORE_C_API double ControlArray_sum(ControlArrayHandle handle);
 // @category:read
-ListListSizeTHandle ControlArray_where(ControlArrayHandle handle, double value);
+FALCON_CORE_C_API ListListSizeTHandle
+ControlArray_where(ControlArrayHandle handle, double value);
 // @category:read
 /* AUTO-DOC from cpp: ControlArray_flip |
  * falcon_core::math::arrays::ControlArray::flip */
@@ -147,25 +170,28 @@ ListListSizeTHandle ControlArray_where(ControlArrayHandle handle, double value);
  * @param axis The axis to flip.
  * @return A flipped ControlArray.
  */
-ControlArrayHandle ControlArray_flip(ControlArrayHandle handle, size_t axis);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_flip(ControlArrayHandle handle, size_t axis);
 // @category:read
-size_t ControlArray_full_gradient(ControlArrayHandle  handle,
-                                  FArrayDoubleHandle* out_buffer,
-                                  size_t              buffer_size);
+FALCON_CORE_C_API size_t
+ControlArray_full_gradient(ControlArrayHandle  handle,
+                           FArrayDoubleHandle* out_buffer,
+                           size_t              buffer_size);
 // @category:read
-FArrayDoubleHandle ControlArray_gradient(ControlArrayHandle handle,
-                                         size_t             axis);
+FALCON_CORE_C_API FArrayDoubleHandle
+ControlArray_gradient(ControlArrayHandle handle, size_t axis);
 // @category:read
-double ControlArray_get_sum_of_squares(ControlArrayHandle handle);
+FALCON_CORE_C_API double ControlArray_get_sum_of_squares(
+    ControlArrayHandle handle);
 // @category:read
-double ControlArray_get_summed_diff_int_of_squares(ControlArrayHandle handle,
-                                                   int                other);
+FALCON_CORE_C_API double ControlArray_get_summed_diff_int_of_squares(
+    ControlArrayHandle handle, int other);
 // @category:read
-double ControlArray_get_summed_diff_double_of_squares(ControlArrayHandle handle,
-                                                      double             other);
+FALCON_CORE_C_API double ControlArray_get_summed_diff_double_of_squares(
+    ControlArrayHandle handle, double other);
 // @category:read
-double ControlArray_get_summed_diff_array_of_squares(ControlArrayHandle handle,
-                                                     ControlArrayHandle other);
+FALCON_CORE_C_API double ControlArray_get_summed_diff_array_of_squares(
+    ControlArrayHandle handle, ControlArrayHandle other);
 
 #ifdef __cplusplus
 }

@@ -3,6 +3,7 @@
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
 #include "falcon_core/autotuner_interfaces/names/Channel.hpp"
 #include "falcon_core/autotuner_interfaces/names/Gname.hpp"
+#include "falcon_core/export.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/config/core/Group.hpp"
@@ -24,7 +25,7 @@ CEREAL_REGISTER_TYPE(
 CEREAL_REGISTER_TYPE(
     falcon_core::generic::Map<falcon_core::autotuner_interfaces::
                                   interpretations::InterpretationContext,
-                              double>)
+                              double>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::Map<
                      falcon_core::physics::device_structures::Connection,
                      float>);
@@ -89,3 +90,45 @@ using MIPT = falcon_core::generic::Map<
     falcon_core::instrument_interfaces::names::InstrumentPort,
     falcon_core::instrument_interfaces::port_transforms::PortTransform>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MIPT);
+
+// -----------------------------------------------------------------------------
+// Explicit template instantiations
+//
+// These force the falcon_core library to emit the concrete Map<Key,Value>
+// symbols. Consumers (tests) should compile with
+// FALCON_CORE_USE_EXTERN_TEMPLATES defined so they do not instantiate the same
+// templates again (avoids duplicate-link).
+// -----------------------------------------------------------------------------
+
+template class FALCON_CORE_CPP_API falcon_core::generic::Map<int, int>;
+template class FALCON_CORE_CPP_API falcon_core::generic::Map<float, float>;
+template class FALCON_CORE_CPP_API falcon_core::generic::Map<std::string, bool>;
+template class FALCON_CORE_CPP_API
+    falcon_core::generic::Map<std::string, double>;
+template class FALCON_CORE_CPP_API
+    falcon_core::generic::Map<std::string, std::string>;
+template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    std::string>;
+template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    falcon_core::math::Quantity>;
+template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    double>;
+template class FALCON_CORE_CPP_API falcon_core::generic::
+    Map<falcon_core::physics::device_structures::Connection, float>;
+template class FALCON_CORE_CPP_API falcon_core::generic::
+    Map<falcon_core::physics::device_structures::Connection, double>;
+template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::names::Channel,
+    falcon_core::physics::device_structures::Connections>;
+template class FALCON_CORE_CPP_API
+    falcon_core::generic::Map<falcon_core::autotuner_interfaces::names::Gname,
+                              falcon_core::physics::config::core::Group>;
+template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::physics::device_structures::Connection,
+    falcon_core::math::Quantity>;
+template class FALCON_CORE_CPP_API falcon_core::generic::Map<
+    falcon_core::instrument_interfaces::names::InstrumentPort,
+    falcon_core::instrument_interfaces::port_transforms::PortTransform>;
