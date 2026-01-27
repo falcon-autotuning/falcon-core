@@ -169,14 +169,7 @@ if(WIN32)
     WINDOWS_EXPORT_ALL_SYMBOLS OFF
     UNITY_BUILD OFF
   )
-  # Windows with DLLs and templates: inline methods in template classes cause duplicate
-  # symbols because extern template doesn't fully suppress instantiation of inline methods.
-  # Use /FORCE:MULTIPLE to allow the linker to resolve these identical duplicates.
-  # Note: This is safe here because all duplicates are identical template instantiations.
-  # The alternative would be to refactor all template classes to move method definitions
-  # out of the class body, which would be a significant change to the codebase.
-  target_link_options(falcon_core_cpp_run_tests PRIVATE /FORCE:MULTIPLE)
-  message(STATUS "Windows detected: Unity Build DISABLED, /FORCE:MULTIPLE enabled for falcon_core_cpp_run_tests")
+  message(STATUS "Windows detected: Unity Build DISABLED for falcon_core_cpp_run_tests")
 else()
   # Linux/macOS: Keep Unity Build enabled for faster compilation
   set_target_properties(falcon_core_cpp_run_tests PROPERTIES 

@@ -521,14 +521,15 @@ using ListSP = std::shared_ptr<List<Value>>;
 
 #ifdef FALCON_CORE_USE_EXTERN_TEMPLATES
 
+// Include Pair.hpp for complete type definitions needed by extern templates
+#include "falcon_core/generic/Pair.hpp"
+
 // forward declarations for concrete project types (used below)
 namespace falcon_core {
 namespace math {
 class Quantity;
 }
 namespace generic {
-template <typename K, typename V>
-class Pair;
 template <typename K, typename V>
 class Map;
 }
