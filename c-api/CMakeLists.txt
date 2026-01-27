@@ -207,21 +207,32 @@ if(FALCON_CORE_DEV)
   add_executable(falcon_core_c_api_run_tests ${RUN_TESTS_SOURCES})
   target_link_directories(falcon_core_c_api_run_tests PRIVATE ${CORE_BUILD_ABS})
 
-  set_target_properties(falcon_core_c_api_run_tests PROPERTIES UNITY_BUILD ON)
-  set_target_properties(falcon_core_c_api_run_tests
-                        PROPERTIES UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE})
-
   if(WIN32)
-    set_target_properties(
-      falcon_core_c_api_run_tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-                                             "${CMAKE_SOURCE_DIR}/build")
+    # Windows: Disable Unity Build to avoid duplicate symbol errors
+    set_target_properties(falcon_core_c_api_run_tests PROPERTIES
+      UNITY_BUILD OFF
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
+    )
+    # Windows with DLLs and templates: inline methods in template classes cause duplicate
+    # symbols because extern template doesn't fully suppress instantiation of inline methods.
+    # Use /FORCE:MULTIPLE to allow the linker to resolve these identical duplicates.
+    # Note: This is safe here because all duplicates are identical template instantiations.
+    target_link_options(falcon_core_c_api_run_tests PRIVATE /FORCE:MULTIPLE)
+    message(STATUS "Windows detected: Unity Build DISABLED, /FORCE:MULTIPLE enabled for falcon_core_c_api_run_tests")
   else()
-    set_target_properties(
-      falcon_core_c_api_run_tests
-      PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
-                 BUILD_RPATH ${RPATH}
-                 INSTALL_RPATH ${RPATH})
+    set_target_properties(falcon_core_c_api_run_tests PROPERTIES
+      UNITY_BUILD ON
+      UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
+      BUILD_RPATH ${RPATH}
+      INSTALL_RPATH ${RPATH}
+    )
   endif()
+
+  # Define FALCON_CORE_USE_EXTERN_TEMPLATES to use extern template declarations.
+  # This prevents tests from instantiating templates that are already provided by the DLL,
+  # which is essential on Windows and improves link times on all platforms.
+  target_compile_definitions(falcon_core_c_api_run_tests PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES)
 
   if(USE_VCPKG)
     target_link_libraries(
