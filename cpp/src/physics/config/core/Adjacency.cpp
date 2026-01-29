@@ -63,3 +63,5 @@ CEREAL_REGISTER_TYPE(falcon_core::generic::FArray<int>)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::FArray<int>,
     falcon_core::physics::config::core::Adjacency)
+
+CEREAL_REGISTER_DYNAMIC_INIT(falcon_core_adjacency)
