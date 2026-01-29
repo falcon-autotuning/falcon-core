@@ -339,31 +339,3 @@ using InterpretationContainerSP =
 }  // namespace interpretations
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core
-
-// -----------------------------------------------------------------------------
-// Optional extern template declarations
-//
-// Define FALCON_CORE_USE_EXTERN_TEMPLATES in consumer builds (tests) that link
-// against the compiled falcon_core library which explicitly instantiates the
-// same InterpretationContainer<T> specializations. This prevents consumers from
-// instantiating the templates again (avoids duplicate-symbol link errors on
-// Windows).
-// -----------------------------------------------------------------------------
-
-#ifdef FALCON_CORE_USE_EXTERN_TEMPLATES
-
-// forward declarations for concrete project types (used below)
-namespace falcon_core {
-namespace math {
-class Quantity;
-}
-}  // namespace falcon_core
-//
-extern template class FALCON_CORE_CPP_API falcon_core::autotuner_interfaces::
-    interpretations::InterpretationContainer<double>;
-extern template class FALCON_CORE_CPP_API falcon_core::autotuner_interfaces::
-    interpretations::InterpretationContainer<std::string>;
-extern template class FALCON_CORE_CPP_API falcon_core::autotuner_interfaces::
-    interpretations::InterpretationContainer<falcon_core::math::Quantity>;
-
-#endif  // FALCON_CORE_USE_EXTERN_TEMPLATES
