@@ -86,7 +86,6 @@ else
 		-DVCPKG_INSTALLED_DIR=$(PWD)/build/vcpkg_installed \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DUSE_VCPKG=$(USE_VCPKG)
-	@ninja -C build -v
 endif
 	ninja -C $(BUILD_DIR) -j $(shell nproc 2>/dev/null || echo 1)
 	@if [ -n "$(STRIP_CMD)" ]; then $(STRIP_CMD) $(BUILD_DIR)/libfalcon_core_cpp.so 2>/dev/null || true; fi
@@ -117,7 +116,6 @@ else
 		-DCMAKE_BUILD_TYPE=Release \
 		-DFALCON_CORE_DEV=ON \
 		-DUSE_VCPKG=$(USE_VCPKG)
-	@ninja -C build -v
 endif
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi;
 	@echo "--- Build complete ---"
@@ -150,11 +148,7 @@ ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@llvm-profdata merge -sparse $(BUILD_DIR)/falcon_core_cpp_run_tests.profraw -o $(BUILD_DIR)/falcon_core_cpp_run_tests.profdata
 else
 	@echo "--- Running all tests (gcov path) on $(PLATFORM) ---"
-ifeq ($(PLATFORM),linux)
-	@GCOV_PREFIX="$(BUILD_DIR)" LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(RUN_TEST_EXE)
-else
 	@GCOV_PREFIX="$(BUILD_DIR)" $(RUN_PREFIX) $(RUN_TEST_EXE)
-endif
 endif
 
 run-subset-tests:
@@ -165,7 +159,7 @@ ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@llvm-profdata merge -sparse $(BUILD_DIR)/falcon_core_cpp_run_tests.profraw -o $(BUILD_DIR)/falcon_core_cpp_run_tests.profdata
 else
 	@echo "--- Running subset of tests (gcov) on $(PLATFORM) ---"
-	@$(RUN_PREFIX) $(RUN_TEST_EXE) --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@GCOV_PREFIX="$(BUILD_DIR)" $(RUN_PREFIX) $(RUN_TEST_EXE) --gtest_filter="$$(paste -sd: test_filter.txt)"
 endif
 
 cov-html:
