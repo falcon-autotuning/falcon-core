@@ -334,8 +334,14 @@ TEST_F(VectorTest, DefaultConstructor) {
 
 TEST_F(VectorTest, ConstructorStartEndNullPointsThrows) {
   // Use explicit PointSP() to avoid ambiguous nullptr overload resolution
-  EXPECT_THROW(std::make_shared<Vector>(PointSP(), PointSP()),
-               std::invalid_argument);
+  // Previously: EXPECT_THROW(std::make_shared<Vector>(PointSP(), PointSP()),
+  //                                      std::invalid_argument);
+  EXPECT_THROW(
+      {
+        auto __unused = std::make_shared<Vector>(PointSP(), PointSP());
+        (void)__unused;
+      },
+      std::invalid_argument);
 }
 
 TEST_F(VectorTest, ConstructorStartHasExtraConnection) {
