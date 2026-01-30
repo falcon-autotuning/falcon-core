@@ -19,7 +19,7 @@ namespace arrays {
  * @param T Type of labelled array.
  */
 template <typename ArrayType>
-class FALCON_CORE_CPP_API LabelledArrays : public generic::List<ArrayType> {
+class LabelledArrays : public generic::List<ArrayType> {
   static_assert(std::is_base_of<generic::FArray<double>, ArrayType>::value,
                 "T must inherit from FArray");
   static_assert(std::is_base_of<IsLabelled<double>, ArrayType>::value,

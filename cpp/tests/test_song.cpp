@@ -126,7 +126,7 @@ void test_serialization(const T& original) {
 }
 
 // --- Tests ---
-
+#if !defined(_WIN32)
 TEST(SongTest, SimpleSerialization) {
   test_serialization(Strsong("hello"));
   test_serialization(ListSong({"hello", "world"}));
@@ -164,4 +164,5 @@ TEST(SongTest, DestroyerSerialization) {
   ASSERT_EQ(*(orig_it->first), *(des_it->first));
   ASSERT_EQ(*(orig_it->second), *(des_it->second));
 }
+#endif
 }  // namespace

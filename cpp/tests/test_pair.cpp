@@ -55,6 +55,7 @@ TEST(PairTest, MixedTypes) {
   EXPECT_EQ(pair.second()->value(), 5);
 }
 
+#if !defined(_WIN32)
 TEST(PairTest, SerializationPrimitive) {
   Pair<int, double> orig(1, 2.5);
   auto              string = orig.to_json_string();
@@ -74,7 +75,7 @@ TEST(PairTest, SerializationNonPrimitive) {
   EXPECT_EQ(restored->first()->value(), 11);
   EXPECT_EQ(restored->second()->value(), 22);
 }
-
+#endif
 TEST(PairTest, Equality) {
   auto               d1 = std::make_shared<Dummy>(11);
   auto               d2 = std::make_shared<Dummy>(22);

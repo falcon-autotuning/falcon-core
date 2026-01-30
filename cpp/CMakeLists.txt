@@ -127,7 +127,8 @@ if(WIN32)
   # Windows: Disable Unity Build to avoid duplicate symbol errors
   set_target_properties(${CPP_LIB_NAME} PROPERTIES
     WINDOWS_EXPORT_ALL_SYMBOLS OFF
-    UNITY_BUILD OFF
+    UNITY_BUILD ON
+    UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
   )
   message(STATUS "Windows detected: Unity Build DISABLED for ${CPP_LIB_NAME}")
 else()
@@ -168,7 +169,8 @@ if(FALCON_CORE_DEV)
     # Windows: Disable Unity Build to avoid duplicate symbol errors
     set_target_properties(falcon_core_cpp_run_tests PROPERTIES
     WINDOWS_EXPORT_ALL_SYMBOLS OFF
-    UNITY_BUILD OFF
+    UNITY_BUILD ON
+    UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
   )
     # Windows with DLLs and templates: inline methods in template classes cause duplicate
     # symbols because extern template doesn't fully suppress instantiation of inline methods.
