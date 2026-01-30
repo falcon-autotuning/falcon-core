@@ -18,5 +18,4 @@ void Song::to_json_stream(std::ostream& os) const {
 
 }  // namespace generic
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::generic::Song)
+CEREAL_REGISTER_TYPE(falcon_core::generic::Song);

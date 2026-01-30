@@ -265,8 +265,3 @@ bool Quantity::operator!=(const Quantity& other) const {
 
 }  // namespace math
 }  // namespace falcon_core
-
-// Cereal registration
-CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::math::Quantity)

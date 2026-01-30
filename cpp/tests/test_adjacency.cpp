@@ -1,13 +1,9 @@
 #include <gtest/gtest.h>
 
+#include "falcon_core/CerealRegistry.hpp"
 #include "falcon_core/physics/config/core/Adjacency.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
-CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Adjacency)
-CEREAL_REGISTER_TYPE(falcon_core::generic::FArray<int>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::FArray<int>,
-    falcon_core::physics::config::core::Adjacency)
 namespace {
 using namespace falcon_core;
 using namespace physics;

@@ -49,7 +49,7 @@ namespace generic {
 
 class FALCON_CORE_CPP_API Song {
  public:
-  virtual inline ~Song() = default;
+  virtual ~Song() = default;
   /**
    * @brief Serialize this object to a JSON string.
    */
@@ -59,7 +59,7 @@ class FALCON_CORE_CPP_API Song {
    * @return std::shared_ptr<Song> (actually the derived type)
    */
   template <typename T>
-  inline static std::shared_ptr<T> from_json_string(const std::string& json) {
+  static std::shared_ptr<T> from_json_string(const std::string& json) {
     std::istringstream iss(json);
     return from_json_stream<T>(iss);
   }
@@ -69,7 +69,7 @@ class FALCON_CORE_CPP_API Song {
    * Override in derived classes.
    */
   template <class Archive>
-  inline void serialize(Archive&) {}
+  void serialize(Archive&) {}
 
  private:
   /**
@@ -82,7 +82,7 @@ class FALCON_CORE_CPP_API Song {
    * @return std::shared_ptr<Song> (actually the derived type)
    */
   template <typename T>
-  static inline std::shared_ptr<T> from_json_stream(std::istream& is) {
+  static std::shared_ptr<T> from_json_stream(std::istream& is) {
     cereal::JSONInputArchive archive(is);
     std::shared_ptr<Song>    ptr;
     archive(ptr);

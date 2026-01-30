@@ -143,7 +143,6 @@ using PICS = falcon_core::generic::Pair<
     falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
     std::string>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PICS);
-
 //
 // Explicit template instantiations exported from the falcon_core library.
 // These are the definitions that consumers should import via extern

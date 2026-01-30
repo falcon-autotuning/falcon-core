@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 #include "falcon_core/export.h"
 #include "falcon_core/generic/FArray.hpp"

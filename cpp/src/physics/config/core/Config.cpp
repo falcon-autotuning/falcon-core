@@ -48,7 +48,7 @@ Config::Config(const Config& other) : StandardConfigConnections(other) {
 }
 Config& Config::operator=(const Config& other) {
   if (this != &other) {
-    StandardConfigConnections::               operator=(other);
+    StandardConfigConnections::operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_groups(_mu_groups,
                                                           std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_wiring_DC(_mu_wiring_DC,
@@ -1291,3 +1291,5 @@ CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Config)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::physics::config::core::StandardConfigConnections,
     falcon_core::physics::config::core::Config)
+
+extern "C" FALCON_CORE_CPP_API void cereal_register_config() {}

@@ -155,7 +155,7 @@ target_link_libraries(
          cereal::cereal
          Threads::Threads)
 target_link_libraries(${CPP_LIB_NAME} PUBLIC yaml-cpp::yaml-cpp)
-target_link_options(${CPP_LIB_NAME} PRIVATE /FORCE:MULTIPLE)
+# target_link_options(${CPP_LIB_NAME} PRIVATE /FORCE:MULTIPLE)
 
 # ---- Optional test build ----
 if(FALCON_CORE_DEV)

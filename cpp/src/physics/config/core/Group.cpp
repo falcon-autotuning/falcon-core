@@ -45,7 +45,7 @@ Group::Group(const Group& other) : StandardConfigConnections(other) {
 }
 Group& Group::operator=(const Group& other) {
   if (this != &other) {
-    StandardConfigConnections::               operator=(other);
+    StandardConfigConnections::operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                         std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_num_dots(_mu_num_dots,
@@ -137,3 +137,5 @@ CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Group)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::physics::config::core::StandardConfigConnections,
     falcon_core::physics::config::core::Group)
+
+extern "C" FALCON_CORE_CPP_API void cereal_register_group() {}
