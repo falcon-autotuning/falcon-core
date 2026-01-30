@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include <boost/filesystem.hpp>
 #include <boost/uuid/random_generator.hpp>
 #include <cereal/types/memory.hpp>
 #include <cereal/types/polymorphic.hpp>
@@ -95,6 +96,12 @@ using math::arrays::LabelledArrays;
 using math::arrays::LabelledMeasuredArray;
 using math::domains::LabelledDomain;
 
+// Helper function to create a temporary file path
+boost::filesystem::path create_temp_path(const std::string& filename) {
+  boost::filesystem::path temp_dir = boost::filesystem::temp_directory_path();
+  return temp_dir / filename;
+}
+
 TEST(HDF5DataTest, FileRoundTripEmptyMetadata) {
   // Build minimal empty axes/domains/ranges and empty metadata to avoid
   // known parsing branches that expect datasets.
@@ -125,14 +132,18 @@ TEST(HDF5DataTest, FileRoundTripEmptyMetadata) {
   ASSERT_FALSE(orig_json.empty());
 
   // Write to a temp file and read back
-  const std::string tmp_path = "/tmp/test_hdf5_data_roundtrip.h5";
-  ASSERT_NO_THROW(hdf.to_file(tmp_path));
-  auto loaded = HDF5Data::from_file(tmp_path);
+  boost::filesystem::path tmp_path =
+      create_temp_path("test_hdf5_data_roundtrip.h5");
+  ASSERT_NO_THROW(hdf.to_file(tmp_path.string()));
+  auto loaded = HDF5Data::from_file(tmp_path.string());
   ASSERT_NE(loaded, nullptr);
 
   // Compare JSON representations for Equal
   std::string loaded_json = loaded->to_json_string();
   EXPECT_EQ(loaded_json, orig_json);
+
+  // Clean up
+  boost::filesystem::remove(tmp_path);
 }
 
 TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
@@ -257,9 +268,9 @@ TEST(HDF5DataTest, FileRoundTripFull) {
                123456);
 
   // write and read back
-  const std::string tmp_path = "/tmp/test_hdf5_data_full.h5";
-  ASSERT_NO_THROW(hdf.to_file(tmp_path));
-  auto loaded = HDF5Data::from_file(tmp_path);
+  boost::filesystem::path tmp_path = create_temp_path("test_hdf5_data_full.h5");
+  ASSERT_NO_THROW(hdf.to_file(tmp_path.string()));
+  auto loaded = HDF5Data::from_file(tmp_path.string());
   ASSERT_NE(loaded, nullptr);
 
   // Loaded JSON should contain key semantic elements from the original (avoid
@@ -275,6 +286,9 @@ TEST(HDF5DataTest, FileRoundTripFull) {
   EXPECT_NE(loaded_json.find("20.0"), std::string::npos);
   EXPECT_NE(loaded_json.find("0.0"), std::string::npos);
   EXPECT_NE(loaded_json.find("1.0"), std::string::npos);
+
+  // Clean up
+  boost::filesystem::remove(tmp_path);
 }
 
 TEST(HDF5DataTest, EqualityOperators) {
@@ -394,11 +408,16 @@ TEST(HDF5DataTest, MeasurementTitleRoundTrip) {
                42,
                123456);
   EXPECT_EQ(hdf.measurement_title(), title);
-  const std::string tmp_path = "/tmp/test_hdf5_data_title.h5";
-  hdf.to_file(tmp_path);
-  auto loaded = HDF5Data::from_file(tmp_path);
+
+  boost::filesystem::path tmp_path =
+      create_temp_path("test_hdf5_data_title.h5");
+  hdf.to_file(tmp_path.string());
+  auto loaded = HDF5Data::from_file(tmp_path.string());
   ASSERT_NE(loaded, nullptr);
   EXPECT_EQ(loaded->measurement_title(), title);
+
+  // Clean up
+  boost::filesystem::remove(tmp_path);
 }
 
 }  // namespace

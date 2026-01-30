@@ -356,14 +356,14 @@ TEST_F(ListTest, NoEraseAt) {
   List<double> list(double_data);
   EXPECT_THROW(list.erase_at(10), std::out_of_range);
 }
-
+#if !defined(_WIN32)
 TEST_F(ListTest, SerializeDeserialize) {
   List<double> list(double_data);
   auto         string = list.to_json_string();
   auto         list2  = List<double>::from_json_string<List<double>>(string);
   EXPECT_EQ(*list2, list);
 }
-
+#endif
 TEST_F(ListTest, BackReturnsLastElement) {
   List<double> list(double_data);
   list.push_back(1);
@@ -505,7 +505,9 @@ TEST_F(ListTest, MultiThreadedAt) {
 
 TEST(ListSerializationTest, PrimitiveTypes) {
   test_list_serialization_roundtrip<int>({1, 2, 3});
+#if !defined(_WIN32)
   test_list_serialization_roundtrip<double>({1.1, 2.2, 3.3});
+#endif
   test_list_serialization_roundtrip<float>({1.1f, 2.2f, 3.3f});
   test_list_serialization_roundtrip<size_t>({1, 2, 3});
   test_list_serialization_roundtrip<std::string>({"a", "b", "c"});

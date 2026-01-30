@@ -1,11 +1,7 @@
 #include <gtest/gtest.h>
 
-#include <concepts>
 #include <fstream>
-#include <iostream>
-#include <memory>
-#include <ranges>
-#include <stdexcept>
+#include <string>
 
 #include "falcon_core/physics/config/Loader.hpp"
 #include "falcon_core/physics/config/core/Config.hpp"
@@ -785,14 +781,26 @@ TEST(ConfigLoaderTest, LoadConfigFromYaml) {
       "  B3: {resistance: 1000.0, capacitance: 1e-12}\n"
       "  B4: {resistance: 1000.0, capacitance: 1e-12}\n"
       "  B5: {resistance: 1000.0, capacitance: 1e-12}\n";
-  std::string   temp_yaml_path = "/tmp/test_config.yaml";
-  std::ofstream yaml_file(temp_yaml_path);
+
+  // Create a unique temp file in the OS temp directory (works on Linux and
+  // Windows)
+  auto temp_yaml = boost::filesystem::temp_directory_path() /
+                   boost::filesystem::unique_path("test_config-%%%%-%%%%.yaml");
+
+  // Write YAML to the temp file
+  std::ofstream yaml_file(temp_yaml.string(), std::ios::binary);
+  ASSERT_TRUE(yaml_file.is_open())
+      << "Failed to open temp yaml file: " << temp_yaml.string();
   yaml_file << yaml_content;
   yaml_file.close();
-  falcon_core::physics::config::Loader loader(temp_yaml_path);
+
+  // Load the config from the temp file
+  falcon_core::physics::config::Loader loader(temp_yaml.string());
   auto                                 config = loader.config();
   ASSERT_TRUE(config != nullptr);
   EXPECT_EQ(config->num_unique_channels(), 2);
+
+  remove(temp_yaml);
 }
 
 TEST_F(ConfigTest, SharedChannelGateFunctions_NullChannel) {
