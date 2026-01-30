@@ -9,42 +9,50 @@ extern "C" {
 typedef void* ImpedancesHandle;
 
 // @category:allocation
-ImpedancesHandle Impedances_copy(ImpedancesHandle handle);
+FALCON_CORE_C_API ImpedancesHandle Impedances_copy(ImpedancesHandle handle);
 // @category:deallocation
-void Impedances_destroy(ImpedancesHandle handle);
+FALCON_CORE_C_API void Impedances_destroy(ImpedancesHandle handle);
 // @category:read
-bool Impedances_equal(ImpedancesHandle handle, ImpedancesHandle other);
+FALCON_CORE_C_API bool Impedances_equal(ImpedancesHandle handle,
+                                        ImpedancesHandle other);
 // @category:read
-bool Impedances_not_equal(ImpedancesHandle handle, ImpedancesHandle other);
+FALCON_CORE_C_API bool Impedances_not_equal(ImpedancesHandle handle,
+                                            ImpedancesHandle other);
 // @category:read
-StringHandle Impedances_to_json_string(ImpedancesHandle handle);
+FALCON_CORE_C_API StringHandle
+Impedances_to_json_string(ImpedancesHandle handle);
 // @category:allocation
-ImpedancesHandle Impedances_from_json_string(StringHandle json);
+FALCON_CORE_C_API ImpedancesHandle
+Impedances_from_json_string(StringHandle json);
 // @category:allocation
-ImpedancesHandle Impedances_create_empty();
+FALCON_CORE_C_API ImpedancesHandle Impedances_create_empty();
 // @category:allocation
-ImpedancesHandle Impedances_create(ListImpedanceHandle items);
+FALCON_CORE_C_API ImpedancesHandle Impedances_create(ListImpedanceHandle items);
 // @category:write
-void Impedances_push_back(ImpedancesHandle handle, ImpedanceHandle value);
+FALCON_CORE_C_API void Impedances_push_back(ImpedancesHandle handle,
+                                            ImpedanceHandle  value);
 // @category:read
-size_t Impedances_size(ImpedancesHandle handle);
+FALCON_CORE_C_API size_t Impedances_size(ImpedancesHandle handle);
 // @category:read
-bool Impedances_empty(ImpedancesHandle handle);
+FALCON_CORE_C_API bool Impedances_empty(ImpedancesHandle handle);
 // @category:write
-void Impedances_erase_at(ImpedancesHandle handle, size_t idx);
+FALCON_CORE_C_API void Impedances_erase_at(ImpedancesHandle handle, size_t idx);
 // @category:write
-void Impedances_clear(ImpedancesHandle handle);
+FALCON_CORE_C_API void Impedances_clear(ImpedancesHandle handle);
 // @category:read
-ImpedanceHandle Impedances_at(ImpedancesHandle handle, size_t idx);
+FALCON_CORE_C_API ImpedanceHandle Impedances_at(ImpedancesHandle handle,
+                                                size_t           idx);
 // @category:read
-ListImpedanceHandle Impedances_items(ImpedancesHandle handle);
+FALCON_CORE_C_API ListImpedanceHandle Impedances_items(ImpedancesHandle handle);
 // @category:read
-bool Impedances_contains(ImpedancesHandle handle, ImpedanceHandle value);
+FALCON_CORE_C_API bool Impedances_contains(ImpedancesHandle handle,
+                                           ImpedanceHandle  value);
 // @category:read
-ImpedancesHandle Impedances_intersection(ImpedancesHandle handle,
-                                         ImpedancesHandle other);
+FALCON_CORE_C_API ImpedancesHandle
+Impedances_intersection(ImpedancesHandle handle, ImpedancesHandle other);
 // @category:read
-size_t Impedances_index(ImpedancesHandle handle, ImpedanceHandle value);
+FALCON_CORE_C_API size_t Impedances_index(ImpedancesHandle handle,
+                                          ImpedanceHandle  value);
 
 #ifdef __cplusplus
 }

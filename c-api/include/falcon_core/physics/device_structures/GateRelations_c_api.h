@@ -12,56 +12,63 @@ extern "C" {
 typedef void* GateRelationsHandle;
 
 // @category:allocation
-GateRelationsHandle GateRelations_copy(GateRelationsHandle handle);
+FALCON_CORE_C_API GateRelationsHandle
+GateRelations_copy(GateRelationsHandle handle);
 // @category:deallocation
-void GateRelations_destroy(GateRelationsHandle handle);
+FALCON_CORE_C_API void GateRelations_destroy(GateRelationsHandle handle);
 // @category:read
-bool GateRelations_equal(GateRelationsHandle handle, GateRelationsHandle other);
+FALCON_CORE_C_API bool GateRelations_equal(GateRelationsHandle handle,
+                                           GateRelationsHandle other);
 // @category:read
-bool GateRelations_not_equal(GateRelationsHandle handle,
-                             GateRelationsHandle other);
+FALCON_CORE_C_API bool GateRelations_not_equal(GateRelationsHandle handle,
+                                               GateRelationsHandle other);
 // @category:read
-StringHandle GateRelations_to_json_string(GateRelationsHandle handle);
+FALCON_CORE_C_API StringHandle
+GateRelations_to_json_string(GateRelationsHandle handle);
 // @category:allocation
-GateRelationsHandle GateRelations_from_json_string(StringHandle json);
+FALCON_CORE_C_API GateRelationsHandle
+GateRelations_from_json_string(StringHandle json);
 // @category:allocation
-GateRelationsHandle GateRelations_create_empty();
+FALCON_CORE_C_API GateRelationsHandle GateRelations_create_empty();
 // @category:allocation
-GateRelationsHandle GateRelations_create(
-    ListPairConnectionConnectionsHandle items);
+FALCON_CORE_C_API GateRelationsHandle
+GateRelations_create(ListPairConnectionConnectionsHandle items);
 // @category:write
 /* AUTO-DOC from cpp: GateRelations_insert_or_assign |
  * falcon_core::physics::device_structures::GateRelations::insert_or_assign */
 /**
  * @brief Override the default Map assignment to force gate typing.
  */
-void GateRelations_insert_or_assign(GateRelationsHandle handle,
-                                    ConnectionHandle    key,
-                                    ConnectionsHandle   value);
+FALCON_CORE_C_API void GateRelations_insert_or_assign(
+    GateRelationsHandle handle, ConnectionHandle key, ConnectionsHandle value);
 // @category:write
-void GateRelations_insert(GateRelationsHandle handle,
-                          ConnectionHandle    key,
-                          ConnectionsHandle   value);
+FALCON_CORE_C_API void GateRelations_insert(GateRelationsHandle handle,
+                                            ConnectionHandle    key,
+                                            ConnectionsHandle   value);
 // @category:read
-ConnectionsHandle GateRelations_at(GateRelationsHandle handle,
-                                   ConnectionHandle    key);
+FALCON_CORE_C_API ConnectionsHandle GateRelations_at(GateRelationsHandle handle,
+                                                     ConnectionHandle    key);
 // @category:write
-void GateRelations_erase(GateRelationsHandle handle, ConnectionHandle key);
+FALCON_CORE_C_API void GateRelations_erase(GateRelationsHandle handle,
+                                           ConnectionHandle    key);
 // @category:read
-size_t GateRelations_size(GateRelationsHandle handle);
+FALCON_CORE_C_API size_t GateRelations_size(GateRelationsHandle handle);
 // @category:read
-bool GateRelations_empty(GateRelationsHandle handle);
+FALCON_CORE_C_API bool GateRelations_empty(GateRelationsHandle handle);
 // @category:write
-void GateRelations_clear(GateRelationsHandle handle);
+FALCON_CORE_C_API void GateRelations_clear(GateRelationsHandle handle);
 // @category:read
-bool GateRelations_contains(GateRelationsHandle handle, ConnectionHandle key);
+FALCON_CORE_C_API bool GateRelations_contains(GateRelationsHandle handle,
+                                              ConnectionHandle    key);
 // @category:read
-ListConnectionHandle GateRelations_keys(GateRelationsHandle handle);
+FALCON_CORE_C_API ListConnectionHandle
+GateRelations_keys(GateRelationsHandle handle);
 // @category:read
-ListConnectionsHandle GateRelations_values(GateRelationsHandle handle);
+FALCON_CORE_C_API ListConnectionsHandle
+GateRelations_values(GateRelationsHandle handle);
 // @category:read
-ListPairConnectionConnectionsHandle GateRelations_items(
-    GateRelationsHandle handle);
+FALCON_CORE_C_API ListPairConnectionConnectionsHandle
+GateRelations_items(GateRelationsHandle handle);
 
 #ifdef __cplusplus
 }

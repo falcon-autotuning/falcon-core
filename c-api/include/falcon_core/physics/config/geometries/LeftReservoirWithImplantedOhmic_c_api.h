@@ -10,39 +10,43 @@ extern "C" {
 typedef void* LeftReservoirWithImplantedOhmicHandle;
 
 // @category:allocation
-LeftReservoirWithImplantedOhmicHandle LeftReservoirWithImplantedOhmic_copy(
+FALCON_CORE_C_API LeftReservoirWithImplantedOhmicHandle
+LeftReservoirWithImplantedOhmic_copy(
     LeftReservoirWithImplantedOhmicHandle handle);
 // @category:deallocation
-void LeftReservoirWithImplantedOhmic_destroy(
+FALCON_CORE_C_API void LeftReservoirWithImplantedOhmic_destroy(
     LeftReservoirWithImplantedOhmicHandle handle);
 // @category:read
-bool LeftReservoirWithImplantedOhmic_equal(
+FALCON_CORE_C_API bool LeftReservoirWithImplantedOhmic_equal(
     LeftReservoirWithImplantedOhmicHandle handle,
     LeftReservoirWithImplantedOhmicHandle other);
 // @category:read
-bool LeftReservoirWithImplantedOhmic_not_equal(
+FALCON_CORE_C_API bool LeftReservoirWithImplantedOhmic_not_equal(
     LeftReservoirWithImplantedOhmicHandle handle,
     LeftReservoirWithImplantedOhmicHandle other);
 // @category:read
-StringHandle LeftReservoirWithImplantedOhmic_to_json_string(
+FALCON_CORE_C_API StringHandle LeftReservoirWithImplantedOhmic_to_json_string(
     LeftReservoirWithImplantedOhmicHandle handle);
 // @category:allocation
-LeftReservoirWithImplantedOhmicHandle
+FALCON_CORE_C_API LeftReservoirWithImplantedOhmicHandle
 LeftReservoirWithImplantedOhmic_from_json_string(StringHandle json);
 // @category:allocation
-LeftReservoirWithImplantedOhmicHandle LeftReservoirWithImplantedOhmic_create(
-    StringHandle name, ConnectionHandle right_neighbor, ConnectionHandle ohmic);
+FALCON_CORE_C_API LeftReservoirWithImplantedOhmicHandle
+LeftReservoirWithImplantedOhmic_create(StringHandle     name,
+                                       ConnectionHandle right_neighbor,
+                                       ConnectionHandle ohmic);
 // @category:read
-StringHandle LeftReservoirWithImplantedOhmic_name(
+FALCON_CORE_C_API StringHandle LeftReservoirWithImplantedOhmic_name(
     LeftReservoirWithImplantedOhmicHandle handle);
 // @category:read
-StringHandle LeftReservoirWithImplantedOhmic_type(
+FALCON_CORE_C_API StringHandle LeftReservoirWithImplantedOhmic_type(
     LeftReservoirWithImplantedOhmicHandle handle);
 // @category:read
-ConnectionHandle LeftReservoirWithImplantedOhmic_ohmic(
+FALCON_CORE_C_API ConnectionHandle LeftReservoirWithImplantedOhmic_ohmic(
     LeftReservoirWithImplantedOhmicHandle handle);
 // @category:read
-ConnectionHandle LeftReservoirWithImplantedOhmic_right_neighbor(
+FALCON_CORE_C_API ConnectionHandle
+LeftReservoirWithImplantedOhmic_right_neighbor(
     LeftReservoirWithImplantedOhmicHandle handle);
 #ifdef __cplusplus
 }

@@ -16,30 +16,37 @@ extern "C" {
 typedef void* DiscreteSpaceHandle;
 
 // @category:allocation
-DiscreteSpaceHandle DiscreteSpace_copy(DiscreteSpaceHandle handle);
+FALCON_CORE_C_API DiscreteSpaceHandle
+DiscreteSpace_copy(DiscreteSpaceHandle handle);
 // @category:deallocation
-void DiscreteSpace_destroy(DiscreteSpaceHandle handle);
+FALCON_CORE_C_API void DiscreteSpace_destroy(DiscreteSpaceHandle handle);
 // @category:read
-bool DiscreteSpace_equal(DiscreteSpaceHandle handle, DiscreteSpaceHandle other);
+FALCON_CORE_C_API bool DiscreteSpace_equal(DiscreteSpaceHandle handle,
+                                           DiscreteSpaceHandle other);
 // @category:read
-bool DiscreteSpace_not_equal(DiscreteSpaceHandle handle,
-                             DiscreteSpaceHandle other);
+FALCON_CORE_C_API bool DiscreteSpace_not_equal(DiscreteSpaceHandle handle,
+                                               DiscreteSpaceHandle other);
 // @category:read
-StringHandle DiscreteSpace_to_json_string(DiscreteSpaceHandle handle);
+FALCON_CORE_C_API StringHandle
+DiscreteSpace_to_json_string(DiscreteSpaceHandle handle);
 // @category:allocation
-DiscreteSpaceHandle DiscreteSpace_from_json_string(StringHandle json);
+FALCON_CORE_C_API DiscreteSpaceHandle
+DiscreteSpace_from_json_string(StringHandle json);
 // @category:allocation
-DiscreteSpaceHandle DiscreteSpace_create(UnitSpaceHandle                 space,
-                                         AxesCoupledLabelledDomainHandle axes,
-                                         AxesMapStringBoolHandle increasing);
+FALCON_CORE_C_API DiscreteSpaceHandle
+DiscreteSpace_create(UnitSpaceHandle                 space,
+                     AxesCoupledLabelledDomainHandle axes,
+                     AxesMapStringBoolHandle         increasing);
 // @category:allocation
-DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space(
+FALCON_CORE_C_API DiscreteSpaceHandle
+DiscreteSpace_create_cartesian_discrete_space(
     AxesIntHandle                   divisions,
     AxesCoupledLabelledDomainHandle axes,
     AxesMapStringBoolHandle         increasing,
     DomainHandle                    domain);
 // @category:allocation
-DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space_1D(
+FALCON_CORE_C_API DiscreteSpaceHandle
+DiscreteSpace_create_cartesian_discrete_space_1D(
     int                         division,
     CoupledLabelledDomainHandle shared_domain,
     MapStringBoolHandle         increasing,
@@ -51,28 +58,31 @@ DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space_1D(
 /**
  * @brief Return the stored UnitSpace.
  */
-UnitSpaceHandle DiscreteSpace_space(DiscreteSpaceHandle handle);
+FALCON_CORE_C_API UnitSpaceHandle
+DiscreteSpace_space(DiscreteSpaceHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: DiscreteSpace_axes |
  * falcon_core::math::discrete_spaces::DiscreteSpace::axes */
 /**
  * @brief Return the stored axes.
  */
-AxesCoupledLabelledDomainHandle DiscreteSpace_axes(DiscreteSpaceHandle handle);
+FALCON_CORE_C_API AxesCoupledLabelledDomainHandle
+DiscreteSpace_axes(DiscreteSpaceHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: DiscreteSpace_increasing |
  * falcon_core::math::discrete_spaces::DiscreteSpace::increasing */
 /**
  * @brief Return the increasing properties.
  */
-AxesMapStringBoolHandle DiscreteSpace_increasing(DiscreteSpaceHandle handle);
+FALCON_CORE_C_API AxesMapStringBoolHandle
+DiscreteSpace_increasing(DiscreteSpaceHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: DiscreteSpace_knobs |
  * falcon_core::math::discrete_spaces::DiscreteSpace::knobs */
 /**
  * @brief Return the knobs.
  */
-PortsHandle DiscreteSpace_knobs(DiscreteSpaceHandle handle);
+FALCON_CORE_C_API PortsHandle DiscreteSpace_knobs(DiscreteSpaceHandle handle);
 // @category:write
 /* AUTO-DOC from cpp:
  * DiscreteSpace_validate_unit_space_dimensionality_matches_knobs |
@@ -82,7 +92,8 @@ PortsHandle DiscreteSpace_knobs(DiscreteSpaceHandle handle);
  * @brief Validate that the unit space dimensionality matches the number of
  * knobs.
  */
-void DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(
+FALCON_CORE_C_API void
+DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(
     DiscreteSpaceHandle handle);
 // @category:write
 /* AUTO-DOC from cpp: DiscreteSpace_validate_knob_uniqueness |
@@ -91,7 +102,8 @@ void DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(
 /**
  * @brief Validate that the knobs are unique.
  */
-void DiscreteSpace_validate_knob_uniqueness(DiscreteSpaceHandle handle);
+FALCON_CORE_C_API void DiscreteSpace_validate_knob_uniqueness(
+    DiscreteSpaceHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: DiscreteSpace_get_axis |
  * falcon_core::math::discrete_spaces::DiscreteSpace::get_axis */
@@ -101,8 +113,8 @@ void DiscreteSpace_validate_knob_uniqueness(DiscreteSpaceHandle handle);
  * @return The index of the axis containing the knob.
  * @throws std::runtime_error if the knob is not found.
  */
-int DiscreteSpace_get_axis(DiscreteSpaceHandle  handle,
-                           InstrumentPortHandle knob);
+FALCON_CORE_C_API int DiscreteSpace_get_axis(DiscreteSpaceHandle  handle,
+                                             InstrumentPortHandle knob);
 // @category:read
 /* AUTO-DOC from cpp: DiscreteSpace_get_domain |
  * falcon_core::math::discrete_spaces::DiscreteSpace::get_domain */
@@ -111,8 +123,8 @@ int DiscreteSpace_get_axis(DiscreteSpaceHandle  handle,
  * @param knob The knob to search for.
  * @return The domain of the knob.
  */
-DomainHandle DiscreteSpace_get_domain(DiscreteSpaceHandle  handle,
-                                      InstrumentPortHandle knob);
+FALCON_CORE_C_API DomainHandle
+DiscreteSpace_get_domain(DiscreteSpaceHandle handle, InstrumentPortHandle knob);
 // @category:read
 /* AUTO-DOC from cpp: DiscreteSpace_get_projection |
  * falcon_core::math::discrete_spaces::DiscreteSpace::get_projection */
@@ -121,7 +133,7 @@ DomainHandle DiscreteSpace_get_domain(DiscreteSpaceHandle  handle,
  * @param projection The axes to project onto.
  * @return The projection of th espace onto the given axes.
  */
-AxesLabelledControlArrayHandle DiscreteSpace_get_projection(
+FALCON_CORE_C_API AxesLabelledControlArrayHandle DiscreteSpace_get_projection(
     DiscreteSpaceHandle handle, AxesInstrumentPortHandle projection);
 
 #ifdef __cplusplus

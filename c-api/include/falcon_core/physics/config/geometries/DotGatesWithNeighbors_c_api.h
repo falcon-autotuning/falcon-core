@@ -9,27 +9,29 @@ extern "C" {
 typedef void* DotGatesWithNeighborsHandle;
 
 // @category:allocation
-DotGatesWithNeighborsHandle DotGatesWithNeighbors_copy(
-    DotGatesWithNeighborsHandle handle);
+FALCON_CORE_C_API DotGatesWithNeighborsHandle
+DotGatesWithNeighbors_copy(DotGatesWithNeighborsHandle handle);
 // @category:deallocation
-void DotGatesWithNeighbors_destroy(DotGatesWithNeighborsHandle handle);
-// @category:read
-bool DotGatesWithNeighbors_equal(DotGatesWithNeighborsHandle handle,
-                                 DotGatesWithNeighborsHandle other);
-// @category:read
-bool DotGatesWithNeighbors_not_equal(DotGatesWithNeighborsHandle handle,
-                                     DotGatesWithNeighborsHandle other);
-// @category:read
-StringHandle DotGatesWithNeighbors_to_json_string(
+FALCON_CORE_C_API void DotGatesWithNeighbors_destroy(
     DotGatesWithNeighborsHandle handle);
+// @category:read
+FALCON_CORE_C_API bool DotGatesWithNeighbors_equal(
+    DotGatesWithNeighborsHandle handle, DotGatesWithNeighborsHandle other);
+// @category:read
+FALCON_CORE_C_API bool DotGatesWithNeighbors_not_equal(
+    DotGatesWithNeighborsHandle handle, DotGatesWithNeighborsHandle other);
+// @category:read
+FALCON_CORE_C_API StringHandle
+DotGatesWithNeighbors_to_json_string(DotGatesWithNeighborsHandle handle);
 // @category:allocation
-DotGatesWithNeighborsHandle DotGatesWithNeighbors_from_json_string(
-    StringHandle json);
+FALCON_CORE_C_API DotGatesWithNeighborsHandle
+DotGatesWithNeighbors_from_json_string(StringHandle json);
 // @category:allocation
-DotGatesWithNeighborsHandle DotGatesWithNeighbors_create_empty();
+FALCON_CORE_C_API DotGatesWithNeighborsHandle
+DotGatesWithNeighbors_create_empty();
 // @category:allocation
-DotGatesWithNeighborsHandle DotGatesWithNeighbors_create(
-    ListDotGateWithNeighborsHandle items);
+FALCON_CORE_C_API DotGatesWithNeighborsHandle
+DotGatesWithNeighbors_create(ListDotGateWithNeighborsHandle items);
 // @category:read
 /* AUTO-DOC from cpp: DotGatesWithNeighbors_is_plunger_gates |
  * falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_plunger_gates
@@ -37,7 +39,8 @@ DotGatesWithNeighborsHandle DotGatesWithNeighbors_create(
 /**
  * @brief Check if all connections are plunger gates.
  */
-bool DotGatesWithNeighbors_is_plunger_gates(DotGatesWithNeighborsHandle handle);
+FALCON_CORE_C_API bool DotGatesWithNeighbors_is_plunger_gates(
+    DotGatesWithNeighborsHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: DotGatesWithNeighbors_is_barrier_gates |
  * falcon_core::physics::config::geometries::DotGatesWithNeighbors::is_barrier_gates
@@ -45,34 +48,39 @@ bool DotGatesWithNeighbors_is_plunger_gates(DotGatesWithNeighborsHandle handle);
 /**
  * @brief Check if all connections are barrier gates.
  */
-bool DotGatesWithNeighbors_is_barrier_gates(DotGatesWithNeighborsHandle handle);
-// @category:read
-DotGatesWithNeighborsHandle DotGatesWithNeighbors_intersection(
-    DotGatesWithNeighborsHandle handle, DotGatesWithNeighborsHandle other);
-// @category:write
-void DotGatesWithNeighbors_push_back(DotGatesWithNeighborsHandle handle,
-                                     DotGateWithNeighborsHandle  value);
-// @category:read
-size_t DotGatesWithNeighbors_size(DotGatesWithNeighborsHandle handle);
-// @category:read
-bool DotGatesWithNeighbors_empty(DotGatesWithNeighborsHandle handle);
-// @category:write
-void DotGatesWithNeighbors_erase_at(DotGatesWithNeighborsHandle handle,
-                                    size_t                      idx);
-// @category:write
-void DotGatesWithNeighbors_clear(DotGatesWithNeighborsHandle handle);
-// @category:read
-DotGateWithNeighborsHandle DotGatesWithNeighbors_at(
-    DotGatesWithNeighborsHandle handle, size_t idx);
-// @category:read
-ListDotGateWithNeighborsHandle DotGatesWithNeighbors_items(
+FALCON_CORE_C_API bool DotGatesWithNeighbors_is_barrier_gates(
     DotGatesWithNeighborsHandle handle);
 // @category:read
-bool DotGatesWithNeighbors_contains(DotGatesWithNeighborsHandle handle,
-                                    DotGateWithNeighborsHandle  value);
+FALCON_CORE_C_API DotGatesWithNeighborsHandle
+DotGatesWithNeighbors_intersection(DotGatesWithNeighborsHandle handle,
+                                   DotGatesWithNeighborsHandle other);
+// @category:write
+FALCON_CORE_C_API void DotGatesWithNeighbors_push_back(
+    DotGatesWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
 // @category:read
-size_t DotGatesWithNeighbors_index(DotGatesWithNeighborsHandle handle,
-                                   DotGateWithNeighborsHandle  value);
+FALCON_CORE_C_API size_t
+DotGatesWithNeighbors_size(DotGatesWithNeighborsHandle handle);
+// @category:read
+FALCON_CORE_C_API bool DotGatesWithNeighbors_empty(
+    DotGatesWithNeighborsHandle handle);
+// @category:write
+FALCON_CORE_C_API void DotGatesWithNeighbors_erase_at(
+    DotGatesWithNeighborsHandle handle, size_t idx);
+// @category:write
+FALCON_CORE_C_API void DotGatesWithNeighbors_clear(
+    DotGatesWithNeighborsHandle handle);
+// @category:read
+FALCON_CORE_C_API DotGateWithNeighborsHandle
+DotGatesWithNeighbors_at(DotGatesWithNeighborsHandle handle, size_t idx);
+// @category:read
+FALCON_CORE_C_API ListDotGateWithNeighborsHandle
+DotGatesWithNeighbors_items(DotGatesWithNeighborsHandle handle);
+// @category:read
+FALCON_CORE_C_API bool DotGatesWithNeighbors_contains(
+    DotGatesWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
+// @category:read
+FALCON_CORE_C_API size_t DotGatesWithNeighbors_index(
+    DotGatesWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
 
 #ifdef __cplusplus
 }

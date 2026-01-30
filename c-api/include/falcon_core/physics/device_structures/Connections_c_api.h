@@ -10,70 +10,75 @@ extern "C" {
 typedef void* ConnectionsHandle;
 
 // @category:allocation
-ConnectionsHandle Connections_copy(ConnectionsHandle handle);
+FALCON_CORE_C_API ConnectionsHandle Connections_copy(ConnectionsHandle handle);
 // @category:deallocation
-void Connections_destroy(ConnectionsHandle handle);
+FALCON_CORE_C_API void Connections_destroy(ConnectionsHandle handle);
 // @category:read
-bool Connections_equal(ConnectionsHandle handle, ConnectionsHandle other);
+FALCON_CORE_C_API bool Connections_equal(ConnectionsHandle handle,
+                                         ConnectionsHandle other);
 // @category:read
-bool Connections_not_equal(ConnectionsHandle handle, ConnectionsHandle other);
+FALCON_CORE_C_API bool Connections_not_equal(ConnectionsHandle handle,
+                                             ConnectionsHandle other);
 // @category:read
-StringHandle Connections_to_json_string(ConnectionsHandle handle);
+FALCON_CORE_C_API StringHandle
+Connections_to_json_string(ConnectionsHandle handle);
 // @category:allocation
-ConnectionsHandle Connections_from_json_string(StringHandle json);
+FALCON_CORE_C_API ConnectionsHandle
+Connections_from_json_string(StringHandle json);
 // @category:allocation
-ConnectionsHandle Connections_create_empty();
+FALCON_CORE_C_API ConnectionsHandle Connections_create_empty();
 // @category:allocation
-ConnectionsHandle Connections_create(ListConnectionHandle items);
+FALCON_CORE_C_API ConnectionsHandle
+Connections_create(ListConnectionHandle items);
 // @category:read
 /* AUTO-DOC from cpp: Connections_is_gates |
  * falcon_core::physics::device_structures::Connections::is_gates */
 /**
  * @brief Check if all connections are gates (not ohmics).
  */
-bool Connections_is_gates(ConnectionsHandle handle);
+FALCON_CORE_C_API bool Connections_is_gates(ConnectionsHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Connections_is_ohmics |
  * falcon_core::physics::device_structures::Connections::is_ohmics */
 /**
  * @brief Check if all connections are ohmics (not gates).
  */
-bool Connections_is_ohmics(ConnectionsHandle handle);
+FALCON_CORE_C_API bool Connections_is_ohmics(ConnectionsHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Connections_is_dot_gates |
  * falcon_core::physics::device_structures::Connections::is_dot_gates */
 /**
  * @brief Check if all connections are dot gates (plunger or barrier).
  */
-bool Connections_is_dot_gates(ConnectionsHandle handle);
+FALCON_CORE_C_API bool Connections_is_dot_gates(ConnectionsHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Connections_is_plunger_gates |
  * falcon_core::physics::device_structures::Connections::is_plunger_gates */
 /**
  * @brief Check if all connections are plunger gates.
  */
-bool Connections_is_plunger_gates(ConnectionsHandle handle);
+FALCON_CORE_C_API bool Connections_is_plunger_gates(ConnectionsHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Connections_is_barrier_gates |
  * falcon_core::physics::device_structures::Connections::is_barrier_gates */
 /**
  * @brief Check if all connections are barrier gates.
  */
-bool Connections_is_barrier_gates(ConnectionsHandle handle);
+FALCON_CORE_C_API bool Connections_is_barrier_gates(ConnectionsHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Connections_is_reservoir_gates |
  * falcon_core::physics::device_structures::Connections::is_reservoir_gates */
 /**
  * @brief Check if all connections are reservoir gates.
  */
-bool Connections_is_reservoir_gates(ConnectionsHandle handle);
+FALCON_CORE_C_API bool Connections_is_reservoir_gates(ConnectionsHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Connections_is_screening_gates |
  * falcon_core::physics::device_structures::Connections::is_screening_gates */
 /**
  * @brief Check if all connections are screening gates.
  */
-bool Connections_is_screening_gates(ConnectionsHandle handle);
+FALCON_CORE_C_API bool Connections_is_screening_gates(ConnectionsHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Connections_intersection |
  * falcon_core::physics::device_structures::Connections::intersection */
@@ -82,26 +87,32 @@ bool Connections_is_screening_gates(ConnectionsHandle handle);
  * @param other the other list to compare again.
  * @returns A list of values containing elements from both.
  */
-ConnectionsHandle Connections_intersection(ConnectionsHandle handle,
-                                           ConnectionsHandle other);
+FALCON_CORE_C_API ConnectionsHandle
+Connections_intersection(ConnectionsHandle handle, ConnectionsHandle other);
 // @category:write
-void Connections_push_back(ConnectionsHandle handle, ConnectionHandle value);
+FALCON_CORE_C_API void Connections_push_back(ConnectionsHandle handle,
+                                             ConnectionHandle  value);
 // @category:read
-size_t Connections_size(ConnectionsHandle handle);
+FALCON_CORE_C_API size_t Connections_size(ConnectionsHandle handle);
 // @category:read
-bool Connections_empty(ConnectionsHandle handle);
+FALCON_CORE_C_API bool Connections_empty(ConnectionsHandle handle);
 // @category:write
-void Connections_erase_at(ConnectionsHandle handle, size_t idx);
+FALCON_CORE_C_API void Connections_erase_at(ConnectionsHandle handle,
+                                            size_t            idx);
 // @category:write
-void Connections_clear(ConnectionsHandle handle);
+FALCON_CORE_C_API void Connections_clear(ConnectionsHandle handle);
 // @category:read
-ConnectionHandle Connections_at(ConnectionsHandle handle, size_t idx);
+FALCON_CORE_C_API ConnectionHandle Connections_at(ConnectionsHandle handle,
+                                                  size_t            idx);
 // @category:read
-ListConnectionHandle Connections_items(ConnectionsHandle handle);
+FALCON_CORE_C_API ListConnectionHandle
+Connections_items(ConnectionsHandle handle);
 // @category:read
-bool Connections_contains(ConnectionsHandle handle, ConnectionHandle value);
+FALCON_CORE_C_API bool Connections_contains(ConnectionsHandle handle,
+                                            ConnectionHandle  value);
 // @category:read
-size_t Connections_index(ConnectionsHandle handle, ConnectionHandle value);
+FALCON_CORE_C_API size_t Connections_index(ConnectionsHandle handle,
+                                           ConnectionHandle  value);
 
 #ifdef __cplusplus
 }

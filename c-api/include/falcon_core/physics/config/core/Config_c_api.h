@@ -22,26 +22,28 @@ extern "C" {
 typedef void* ConfigHandle;
 
 // @category:allocation
-ConfigHandle Config_copy(ConfigHandle handle);
+FALCON_CORE_C_API ConfigHandle Config_copy(ConfigHandle handle);
 // @category:deallocation
-void Config_destroy(ConfigHandle handle);
+FALCON_CORE_C_API void Config_destroy(ConfigHandle handle);
 // @category:read
-bool Config_equal(ConfigHandle handle, ConfigHandle other);
+FALCON_CORE_C_API bool Config_equal(ConfigHandle handle, ConfigHandle other);
 // @category:read
-bool Config_not_equal(ConfigHandle handle, ConfigHandle other);
+FALCON_CORE_C_API bool Config_not_equal(ConfigHandle handle,
+                                        ConfigHandle other);
 // @category:read
-StringHandle Config_to_json_string(ConfigHandle handle);
+FALCON_CORE_C_API StringHandle Config_to_json_string(ConfigHandle handle);
 // @category:allocation
-ConfigHandle Config_from_json_string(StringHandle json);
+FALCON_CORE_C_API ConfigHandle Config_from_json_string(StringHandle json);
 // @category:allocation
-ConfigHandle Config_create(ConnectionsHandle        screening_gates,
-                           ConnectionsHandle        plunger_gates,
-                           ConnectionsHandle        ohmics,
-                           ConnectionsHandle        barrier_gates,
-                           ConnectionsHandle        reservoir_gates,
-                           MapGnameGroupHandle      groups,
-                           ImpedancesHandle         wiring_DC,
-                           VoltageConstraintsHandle constraints);
+FALCON_CORE_C_API ConfigHandle
+Config_create(ConnectionsHandle        screening_gates,
+              ConnectionsHandle        plunger_gates,
+              ConnectionsHandle        ohmics,
+              ConnectionsHandle        barrier_gates,
+              ConnectionsHandle        reservoir_gates,
+              MapGnameGroupHandle      groups,
+              ImpedancesHandle         wiring_DC,
+              VoltageConstraintsHandle constraints);
 // @category:read
 /* AUTO-DOC from cpp: Config_num_unique_channels |
  * falcon_core::physics::config::core::Config::num_unique_channels */
@@ -49,30 +51,31 @@ ConfigHandle Config_create(ConnectionsHandle        screening_gates,
  * @brief Returns the number of unique channels associated with the current
  * sample.
  */
-int Config_num_unique_channels(ConfigHandle handle);
+FALCON_CORE_C_API int Config_num_unique_channels(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_voltage_constraints |
  * falcon_core::physics::config::core::Config::voltage_constraints */
 /**
  * @brief Return the voltage constraints for the physical layout.
  */
-VoltageConstraintsHandle Config_voltage_constraints(ConfigHandle handle);
+FALCON_CORE_C_API VoltageConstraintsHandle
+Config_voltage_constraints(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_groups |
  * falcon_core::physics::config::core::Config::groups */
 /**
  * @brief Return the DC wiring impedances for the physical layout.
  */
-MapGnameGroupHandle Config_groups(ConfigHandle handle);
+FALCON_CORE_C_API MapGnameGroupHandle Config_groups(ConfigHandle handle);
 // @category:read
-ImpedancesHandle Config_wiring_DC(ConfigHandle handle);
+FALCON_CORE_C_API ImpedancesHandle Config_wiring_DC(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_channels |
  * falcon_core::physics::config::core::Config::channels */
 /**
  * @brief Returns the channels of the config.
  */
-ChannelsHandle Config_channels(ConfigHandle handle);
+FALCON_CORE_C_API ChannelsHandle Config_channels(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_impedance |
  * falcon_core::physics::config::core::Config::get_impedance */
@@ -81,22 +84,22 @@ ChannelsHandle Config_channels(ConfigHandle handle);
  * @returns The impedance matching the connection in teh dcwiring. A nullptr
  * if no match is found.
  */
-ImpedanceHandle Config_get_impedance(ConfigHandle     handle,
-                                     ConnectionHandle connection);
+FALCON_CORE_C_API ImpedanceHandle
+Config_get_impedance(ConfigHandle handle, ConnectionHandle connection);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_all_gnames |
  * falcon_core::physics::config::core::Config::get_all_gnames */
 /**
  * @brief Returns all of the group names.
  */
-ListGnameHandle Config_get_all_gnames(ConfigHandle handle);
+FALCON_CORE_C_API ListGnameHandle Config_get_all_gnames(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_all_groups |
  * falcon_core::physics::config::core::Config::get_all_groups */
 /**
  * @brief Returns all of the groups.
  */
-ListGroupHandle Config_get_all_groups(ConfigHandle handle);
+FALCON_CORE_C_API ListGroupHandle Config_get_all_groups(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_has_channel |
  * falcon_core::physics::config::core::Config::has_channel */
@@ -106,7 +109,8 @@ ListGroupHandle Config_get_all_groups(ConfigHandle handle);
  * @param channel The channel to validate.
  * @returns true if the channel exists, false otherwise.
  */
-bool Config_has_channel(ConfigHandle handle, ChannelHandle channel);
+FALCON_CORE_C_API bool Config_has_channel(ConfigHandle  handle,
+                                          ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_has_gname |
  * falcon_core::physics::config::core::Config::has_gname */
@@ -115,7 +119,7 @@ bool Config_has_channel(ConfigHandle handle, ChannelHandle channel);
  * @param gname The gname to validate.
  * @returns true if the gname exists, false otherwise.
  */
-bool Config_has_gname(ConfigHandle handle, GnameHandle gname);
+FALCON_CORE_C_API bool Config_has_gname(ConfigHandle handle, GnameHandle gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_select_group |
  * falcon_core::physics::config::core::Config::select_group */
@@ -124,7 +128,8 @@ bool Config_has_gname(ConfigHandle handle, GnameHandle gname);
  * @param gname The name of the group to find.
  * @returns The group matching the name. A nullptr if no match is found.
  */
-GroupHandle Config_select_group(ConfigHandle handle, GnameHandle gname);
+FALCON_CORE_C_API GroupHandle Config_select_group(ConfigHandle handle,
+                                                  GnameHandle  gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_dot_number |
  * falcon_core::physics::config::core::Config::get_dot_number */
@@ -135,7 +140,8 @@ GroupHandle Config_select_group(ConfigHandle handle, GnameHandle gname);
  * @returns The number of dots associated with the channel. A 0 if there is no
  * match.
  */
-int Config_get_dot_number(ConfigHandle handle, ChannelHandle channel);
+FALCON_CORE_C_API int Config_get_dot_number(ConfigHandle  handle,
+                                            ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_charge_sense_groups |
  * falcon_core::physics::config::core::Config::get_charge_sense_groups */
@@ -144,7 +150,8 @@ int Config_get_dot_number(ConfigHandle handle, ChannelHandle channel);
  * one quantum dot per channel.
  * @returns A vector of gnames that are charge sensors.
  */
-ListGnameHandle Config_get_charge_sense_groups(ConfigHandle handle);
+FALCON_CORE_C_API ListGnameHandle
+Config_get_charge_sense_groups(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_ohmic_in_charge_sensor |
  * falcon_core::physics::config::core::Config::ohmic_in_charge_sensor */
@@ -153,7 +160,8 @@ ListGnameHandle Config_get_charge_sense_groups(ConfigHandle handle);
  * @param ohmic The ohmic to check
  * @returns true if the ohmic is inside a charge sensor channel
  */
-bool Config_ohmic_in_charge_sensor(ConfigHandle handle, ConnectionHandle ohmic);
+FALCON_CORE_C_API bool Config_ohmic_in_charge_sensor(ConfigHandle     handle,
+                                                     ConnectionHandle ohmic);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_associated_ohmic |
  * falcon_core::physics::config::core::Config::get_associated_ohmic */
@@ -164,8 +172,8 @@ bool Config_ohmic_in_charge_sensor(ConfigHandle handle, ConnectionHandle ohmic);
  * @returns The ohmic associated with the reservoir gate. A nullptr if no
  * match
  */
-ConnectionHandle Config_get_associated_ohmic(ConfigHandle     handle,
-                                             ConnectionHandle reservoir_gate);
+FALCON_CORE_C_API ConnectionHandle Config_get_associated_ohmic(
+    ConfigHandle handle, ConnectionHandle reservoir_gate);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_current_channels |
  * falcon_core::physics::config::core::Config::get_current_channels */
@@ -173,7 +181,8 @@ ConnectionHandle Config_get_associated_ohmic(ConfigHandle     handle,
  * @brief Gets all of the current channels from the config.
  * @returns All of the current channels from the config.
  */
-ChannelsHandle Config_get_current_channels(ConfigHandle handle);
+FALCON_CORE_C_API ChannelsHandle
+Config_get_current_channels(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_gname |
  * falcon_core::physics::config::core::Config::get_gname */
@@ -183,7 +192,8 @@ ChannelsHandle Config_get_current_channels(ConfigHandle handle);
  * @returns The Gname associated with the Channel. A nullptr if no match is
  * found.
  */
-GnameHandle Config_get_gname(ConfigHandle handle, ChannelHandle channel);
+FALCON_CORE_C_API GnameHandle Config_get_gname(ConfigHandle  handle,
+                                               ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_group_barrier_gates |
  * falcon_core::physics::config::core::Config::get_group_barrier_gates */
@@ -194,8 +204,8 @@ GnameHandle Config_get_gname(ConfigHandle handle, ChannelHandle channel);
  * @returns All of the gates of a gatetype assocated with the selected group.
  * Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_group_barrier_gates(ConfigHandle handle,
-                                                 GnameHandle  gname);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_group_barrier_gates(ConfigHandle handle, GnameHandle gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_group_plunger_gates |
  * falcon_core::physics::config::core::Config::get_group_plunger_gates */
@@ -206,8 +216,8 @@ ConnectionsHandle Config_get_group_barrier_gates(ConfigHandle handle,
  * @returns All of the gates of a gatetype assocated with the selected group.
  * Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_group_plunger_gates(ConfigHandle handle,
-                                                 GnameHandle  gname);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_group_plunger_gates(ConfigHandle handle, GnameHandle gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_group_reservoir_gates |
  * falcon_core::physics::config::core::Config::get_group_reservoir_gates */
@@ -218,8 +228,8 @@ ConnectionsHandle Config_get_group_plunger_gates(ConfigHandle handle,
  * @returns All of the gates of a gatetype assocated with the selected group.
  * Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_group_reservoir_gates(ConfigHandle handle,
-                                                   GnameHandle  gname);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_group_reservoir_gates(ConfigHandle handle, GnameHandle gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_group_screening_gates |
  * falcon_core::physics::config::core::Config::get_group_screening_gates */
@@ -230,8 +240,8 @@ ConnectionsHandle Config_get_group_reservoir_gates(ConfigHandle handle,
  * @returns All of the gates of a gatetype assocated with the selected group.
  * Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_group_screening_gates(ConfigHandle handle,
-                                                   GnameHandle  gname);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_group_screening_gates(ConfigHandle handle, GnameHandle gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_group_dot_gates |
  * falcon_core::physics::config::core::Config::get_group_dot_gates */
@@ -242,8 +252,8 @@ ConnectionsHandle Config_get_group_screening_gates(ConfigHandle handle,
  * @returns All of the gates of a gatetype assocated with the selected group.
  * Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_group_dot_gates(ConfigHandle handle,
-                                             GnameHandle  gname);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_group_dot_gates(ConfigHandle handle, GnameHandle gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_group_gates |
  * falcon_core::physics::config::core::Config::get_group_gates */
@@ -254,8 +264,8 @@ ConnectionsHandle Config_get_group_dot_gates(ConfigHandle handle,
  * @returns All of the gates of a gatetype assocated with the selected group.
  * Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_group_gates(ConfigHandle handle,
-                                         GnameHandle  gname);
+FALCON_CORE_C_API ConnectionsHandle Config_get_group_gates(ConfigHandle handle,
+                                                           GnameHandle  gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_channel_barrier_gates |
  * falcon_core::physics::config::core::Config::get_channel_barrier_gates */
@@ -266,8 +276,8 @@ ConnectionsHandle Config_get_group_gates(ConfigHandle handle,
  * @returns All of the gates of a gatetype assocated with the selected
  * channel. Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_channel_barrier_gates(ConfigHandle  handle,
-                                                   ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_channel_barrier_gates(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_channel_plunger_gates |
  * falcon_core::physics::config::core::Config::get_channel_plunger_gates */
@@ -278,8 +288,8 @@ ConnectionsHandle Config_get_channel_barrier_gates(ConfigHandle  handle,
  * @returns All of the gates of a gatetype assocated with the selected
  * channel. Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_channel_plunger_gates(ConfigHandle  handle,
-                                                   ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_channel_plunger_gates(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_channel_reservoir_gates |
  * falcon_core::physics::config::core::Config::get_channel_reservoir_gates */
@@ -289,8 +299,8 @@ ConnectionsHandle Config_get_channel_plunger_gates(ConfigHandle  handle,
  * @param channel The channel to find the gates for.
  * channel. Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_channel_reservoir_gates(ConfigHandle  handle,
-                                                     ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_channel_reservoir_gates(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_channel_screening_gates |
  * falcon_core::physics::config::core::Config::get_channel_screening_gates */
@@ -301,8 +311,8 @@ ConnectionsHandle Config_get_channel_reservoir_gates(ConfigHandle  handle,
  * @returns All of the gates of a gatetype assocated with the selected
  * channel. Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_channel_screening_gates(ConfigHandle  handle,
-                                                     ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_channel_screening_gates(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_channel_dot_gates |
  * falcon_core::physics::config::core::Config::get_channel_dot_gates */
@@ -313,8 +323,8 @@ ConnectionsHandle Config_get_channel_screening_gates(ConfigHandle  handle,
  * @returns All of the gates of a gatetype assocated with the selected
  * channel. Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_channel_dot_gates(ConfigHandle  handle,
-                                               ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_channel_dot_gates(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_channel_gates |
  * falcon_core::physics::config::core::Config::get_channel_gates */
@@ -326,8 +336,8 @@ ConnectionsHandle Config_get_channel_dot_gates(ConfigHandle  handle,
  * @returns All of the gates of a gatetype assocated with the selected
  * channel. Otherwise a nullptr if no match is found.
  */
-ConnectionsHandle Config_get_channel_gates(ConfigHandle  handle,
-                                           ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_channel_gates(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_channel_ohmics |
  * falcon_core::physics::config::core::Config::get_channel_ohmics */
@@ -337,8 +347,8 @@ ConnectionsHandle Config_get_channel_gates(ConfigHandle  handle,
  * @returns All of the ohmics assocated with the selected channel. Otherwise a
  * nullptr if no match is found.
  */
-ConnectionsHandle Config_get_channel_ohmics(ConfigHandle  handle,
-                                            ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_channel_ohmics(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_channel_order_no_ohmics |
  * falcon_core::physics::config::core::Config::get_channel_order_no_ohmics */
@@ -349,8 +359,8 @@ ConnectionsHandle Config_get_channel_ohmics(ConfigHandle  handle,
  * @returns All of the gates in the order at the selected channel. Otherwise a
  * nullptr
  */
-ConnectionsHandle Config_get_channel_order_no_ohmics(ConfigHandle  handle,
-                                                     ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_channel_order_no_ohmics(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_num_unique_channels |
  * falcon_core::physics::config::core::Config::get_num_unique_channels */
@@ -358,7 +368,7 @@ ConnectionsHandle Config_get_channel_order_no_ohmics(ConfigHandle  handle,
  * @brief Returns the number of unique channels associated with the current
  * sample.
  */
-int Config_get_num_unique_channels(ConfigHandle handle);
+FALCON_CORE_C_API int Config_get_num_unique_channels(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_return_channels_from_gate |
  * falcon_core::physics::config::core::Config::return_channels_from_gate */
@@ -368,8 +378,8 @@ int Config_get_num_unique_channels(ConfigHandle handle);
  * @returns All of the channels associated with a gate. Otherwise a nullptr if
  * no match is found.
  */
-ChannelsHandle Config_return_channels_from_gate(ConfigHandle     handle,
-                                                ConnectionHandle gate);
+FALCON_CORE_C_API ChannelsHandle
+Config_return_channels_from_gate(ConfigHandle handle, ConnectionHandle gate);
 // @category:read
 /* AUTO-DOC from cpp: Config_return_channel_from_gate |
  * falcon_core::physics::config::core::Config::return_channel_from_gate */
@@ -379,8 +389,8 @@ ChannelsHandle Config_return_channels_from_gate(ConfigHandle     handle,
  * @param gate The gate to find the channel for.
  * @returns The channel the gate belongs to. A nullptr if no match is found.
  */
-ChannelHandle Config_return_channel_from_gate(ConfigHandle     handle,
-                                              ConnectionHandle gate);
+FALCON_CORE_C_API ChannelHandle
+Config_return_channel_from_gate(ConfigHandle handle, ConnectionHandle gate);
 // @category:read
 /* AUTO-DOC from cpp: Config_ohmic_in_channel |
  * falcon_core::physics::config::core::Config::ohmic_in_channel */
@@ -390,9 +400,9 @@ ChannelHandle Config_return_channel_from_gate(ConfigHandle     handle,
  * @param channel The channel to check the ohmic against.
  * @returns true if the ohmic is connected to the channel, false otherwise.
  */
-bool Config_ohmic_in_channel(ConfigHandle     handle,
-                             ConnectionHandle ohmic,
-                             ChannelHandle    channel);
+FALCON_CORE_C_API bool Config_ohmic_in_channel(ConfigHandle     handle,
+                                               ConnectionHandle ohmic,
+                                               ChannelHandle    channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_dot_channel_neighbors |
  * falcon_core::physics::config::core::Config::get_dot_channel_neighbors */
@@ -401,134 +411,153 @@ bool Config_ohmic_in_channel(ConfigHandle     handle,
  * @param dotgate The gate of interest (must be in dot channel)
  * @return A pair of GateSP (left, right) if found, nullptr otherwise.
  */
-PairConnectionConnectionHandle Config_get_dot_channel_neighbors(
-    ConfigHandle handle, ConnectionHandle dot_gate);
+FALCON_CORE_C_API PairConnectionConnectionHandle
+Config_get_dot_channel_neighbors(ConfigHandle     handle,
+                                 ConnectionHandle dot_gate);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_barrier_gate_dict |
  * falcon_core::physics::config::core::Config::get_barrier_gate_dict */
 /**
  * @brief Returns barrier gates indexed by channel.
  */
-MapChannelConnectionsHandle Config_get_barrier_gate_dict(ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_barrier_gate_dict(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_plunger_gate_dict |
  * falcon_core::physics::config::core::Config::get_plunger_gate_dict */
 /**
  * @brief Returns plunger gates indexed by channel.
  */
-MapChannelConnectionsHandle Config_get_plunger_gate_dict(ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_plunger_gate_dict(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_reservoir_gate_dict |
  * falcon_core::physics::config::core::Config::get_reservoir_gate_dict */
 /**
  * @brief Returns reservoir gates indexed by channel.
  */
-MapChannelConnectionsHandle Config_get_reservoir_gate_dict(ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_reservoir_gate_dict(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_screening_gate_dict |
  * falcon_core::physics::config::core::Config::get_screening_gate_dict */
 /**
  * @brief Returns screening gates indexed by channel.
  */
-MapChannelConnectionsHandle Config_get_screening_gate_dict(ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_screening_gate_dict(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_dot_gate_dict |
  * falcon_core::physics::config::core::Config::get_dot_gate_dict */
 /**
  * @brief Returns dot gates indexed by channel.
  */
-MapChannelConnectionsHandle Config_get_dot_gate_dict(ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_dot_gate_dict(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_gate_dict |
  * falcon_core::physics::config::core::Config::get_gate_dict */
 /**
  * @brief Returns gates indexed by channel.
  */
-MapChannelConnectionsHandle Config_get_gate_dict(ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_gate_dict(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_barrier_gates |
  * falcon_core::physics::config::core::Config::get_isolated_barrier_gates */
 /**
  * @brief Task to find isolated barrier gates stored in the config.
  */
-ConnectionsHandle Config_get_isolated_barrier_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_isolated_barrier_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_plunger_gates |
  * falcon_core::physics::config::core::Config::get_isolated_plunger_gates */
 /**
  * @brief Task to find isolated plunger gates stored in the config.
  */
-ConnectionsHandle Config_get_isolated_plunger_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_isolated_plunger_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_reservoir_gates |
  * falcon_core::physics::config::core::Config::get_isolated_reservoir_gates */
 /**
  * @brief Task to find isolated reservoir gates stored in the config.
  */
-ConnectionsHandle Config_get_isolated_reservoir_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_isolated_reservoir_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_screening_gates |
  * falcon_core::physics::config::core::Config::get_isolated_screening_gates */
 /**
  * @brief Task to find isolated screening gates stored in the config.
  */
-ConnectionsHandle Config_get_isolated_screening_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_isolated_screening_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_dot_gates |
  * falcon_core::physics::config::core::Config::get_isolated_dot_gates */
 /**
  * @brief Task to find isolated dot gates stored in the config.
  */
-ConnectionsHandle Config_get_isolated_dot_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_isolated_dot_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_gates |
  * falcon_core::physics::config::core::Config::get_isolated_gates */
 /**
  * @brief Task to find isolated gates stored in the config.
  */
-ConnectionsHandle Config_get_isolated_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_isolated_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_barrier_gates |
  * falcon_core::physics::config::core::Config::get_shared_barrier_gates */
 /**
  * @brief Task to find shared barrier gates stored in the config.
  */
-ConnectionsHandle Config_get_shared_barrier_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_shared_barrier_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_plunger_gates |
  * falcon_core::physics::config::core::Config::get_shared_plunger_gates */
 /**
  * @brief Task to find shared plunger gates stored in the config.
  */
-ConnectionsHandle Config_get_shared_plunger_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_shared_plunger_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_reservoir_gates |
  * falcon_core::physics::config::core::Config::get_shared_reservoir_gates */
 /**
  * @brief Task to find shared reservoir gates stored in the config.
  */
-ConnectionsHandle Config_get_shared_reservoir_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_shared_reservoir_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_screening_gates |
  * falcon_core::physics::config::core::Config::get_shared_screening_gates */
 /**
  * @brief Task to find shared screening gates stored in the config.
  */
-ConnectionsHandle Config_get_shared_screening_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_shared_screening_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_dot_gates |
  * falcon_core::physics::config::core::Config::get_shared_dot_gates */
 /**
  * @brief Task to find shared dot gates stored in the config.
  */
-ConnectionsHandle Config_get_shared_dot_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_shared_dot_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_gates |
  * falcon_core::physics::config::core::Config::get_shared_gates */
 /**
  * @brief Task to find shared gates stored in the config.
  */
-ConnectionsHandle Config_get_shared_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_shared_gates(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_channel_barrier_gates |
  * falcon_core::physics::config::core::Config::get_shared_channel_barrier_gates
@@ -539,7 +568,7 @@ ConnectionsHandle Config_get_shared_gates(ConfigHandle handle);
  * @return ConnectionsSP list of all gates of the gateytpe that are shared in
  * the selected channel.
  */
-ConnectionsHandle Config_get_shared_channel_barrier_gates(
+FALCON_CORE_C_API ConnectionsHandle Config_get_shared_channel_barrier_gates(
     ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_channel_plunger_gates |
@@ -552,7 +581,7 @@ ConnectionsHandle Config_get_shared_channel_barrier_gates(
  * @return ConnectionsSP list of all gates of the gateytpe that are shared in
  * the selected channel.
  */
-ConnectionsHandle Config_get_shared_channel_plunger_gates(
+FALCON_CORE_C_API ConnectionsHandle Config_get_shared_channel_plunger_gates(
     ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_channel_reservoir_gates |
@@ -564,7 +593,7 @@ ConnectionsHandle Config_get_shared_channel_plunger_gates(
  * @return ConnectionsSP list of all gates of the gateytpe that are shared
  * in the selected channel.
  */
-ConnectionsHandle Config_get_shared_channel_reservoir_gates(
+FALCON_CORE_C_API ConnectionsHandle Config_get_shared_channel_reservoir_gates(
     ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_channel_screening_gates |
@@ -576,7 +605,7 @@ ConnectionsHandle Config_get_shared_channel_reservoir_gates(
  * @return ConnectionsSP list of all gates of the gateytpe that are shared
  * in the selected channel.
  */
-ConnectionsHandle Config_get_shared_channel_screening_gates(
+FALCON_CORE_C_API ConnectionsHandle Config_get_shared_channel_screening_gates(
     ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_channel_dot_gates |
@@ -587,8 +616,8 @@ ConnectionsHandle Config_get_shared_channel_screening_gates(
  * @return DotGatesSP list of all gates of the gateytpe that are shared in the
  * selected channel.
  */
-ConnectionsHandle Config_get_shared_channel_dot_gates(ConfigHandle  handle,
-                                                      ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_shared_channel_dot_gates(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_shared_channel_gates |
  * falcon_core::physics::config::core::Config::get_shared_channel_gates */
@@ -598,8 +627,8 @@ ConnectionsHandle Config_get_shared_channel_dot_gates(ConfigHandle  handle,
  * @return GatesSP<Gate> list of all gates of the gateytpe that are shared in
  * the selected channel.
  */
-ConnectionsHandle Config_get_shared_channel_gates(ConfigHandle  handle,
-                                                  ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_shared_channel_gates(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_channel_barrier_gates |
  * falcon_core::physics::config::core::Config::get_isolated_channel_barrier_gates
@@ -610,7 +639,7 @@ ConnectionsHandle Config_get_shared_channel_gates(ConfigHandle  handle,
  * @return ConnectionsSP list of all gates of the gatetype that are isolated
  * in the selected channel.
  */
-ConnectionsHandle Config_get_isolated_channel_barrier_gates(
+FALCON_CORE_C_API ConnectionsHandle Config_get_isolated_channel_barrier_gates(
     ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_channel_plunger_gates |
@@ -622,7 +651,7 @@ ConnectionsHandle Config_get_isolated_channel_barrier_gates(
  * @return ConnectionsSP list of all gates of the gatetype that are isolated
  * in the selected channel.
  */
-ConnectionsHandle Config_get_isolated_channel_plunger_gates(
+FALCON_CORE_C_API ConnectionsHandle Config_get_isolated_channel_plunger_gates(
     ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_channel_reservoir_gates |
@@ -634,7 +663,7 @@ ConnectionsHandle Config_get_isolated_channel_plunger_gates(
  * @return ConnectionsSP list of all gates of the gatetype that are
  * isolated in the selected channel.
  */
-ConnectionsHandle Config_get_isolated_channel_reservoir_gates(
+FALCON_CORE_C_API ConnectionsHandle Config_get_isolated_channel_reservoir_gates(
     ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_channel_screening_gates |
@@ -646,7 +675,7 @@ ConnectionsHandle Config_get_isolated_channel_reservoir_gates(
  * @return ConnectionsSP list of all gates of the gatetype that are
  * isolated in the selected channel.
  */
-ConnectionsHandle Config_get_isolated_channel_screening_gates(
+FALCON_CORE_C_API ConnectionsHandle Config_get_isolated_channel_screening_gates(
     ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_channel_dot_gates |
@@ -657,8 +686,8 @@ ConnectionsHandle Config_get_isolated_channel_screening_gates(
  * @return DotGatesSP list of all gates of the gatetype that are isolated in
  * the selected channel.
  */
-ConnectionsHandle Config_get_isolated_channel_dot_gates(ConfigHandle  handle,
-                                                        ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle Config_get_isolated_channel_dot_gates(
+    ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_channel_gates |
  * falcon_core::physics::config::core::Config::get_isolated_channel_gates */
@@ -668,8 +697,8 @@ ConnectionsHandle Config_get_isolated_channel_dot_gates(ConfigHandle  handle,
  * @return GatesSP<Gate> list of all gates of the gatetype that are isolated
  * in the selected channel.
  */
-ConnectionsHandle Config_get_isolated_channel_gates(ConfigHandle  handle,
-                                                    ChannelHandle channel);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_isolated_channel_gates(ConfigHandle handle, ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_barrier_gates_by_channel |
  * falcon_core::physics::config::core::Config::get_isolated_barrier_gates_by_channel
@@ -678,8 +707,8 @@ ConnectionsHandle Config_get_isolated_channel_gates(ConfigHandle  handle,
  * @brief Returns barrier gates indexed by channel which are
  * unshared.
  */
-MapChannelConnectionsHandle Config_get_isolated_barrier_gates_by_channel(
-    ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_isolated_barrier_gates_by_channel(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_plunger_gates_by_channel |
  * falcon_core::physics::config::core::Config::get_isolated_plunger_gates_by_channel
@@ -688,8 +717,8 @@ MapChannelConnectionsHandle Config_get_isolated_barrier_gates_by_channel(
  * @brief Returns plunger gates indexed by channel which are
  * unshared.
  */
-MapChannelConnectionsHandle Config_get_isolated_plunger_gates_by_channel(
-    ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_isolated_plunger_gates_by_channel(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_reservoir_gates_by_channel |
  * falcon_core::physics::config::core::Config::get_isolated_reservoir_gates_by_channel
@@ -698,8 +727,8 @@ MapChannelConnectionsHandle Config_get_isolated_plunger_gates_by_channel(
  * @brief Returns reservoir gates indexed by channel which are
  * unshared.
  */
-MapChannelConnectionsHandle Config_get_isolated_reservoir_gates_by_channel(
-    ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_isolated_reservoir_gates_by_channel(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_screening_gates_by_channel |
  * falcon_core::physics::config::core::Config::get_isolated_screening_gates_by_channel
@@ -708,8 +737,8 @@ MapChannelConnectionsHandle Config_get_isolated_reservoir_gates_by_channel(
  * @brief Returns screening gates indexed by channel which are
  * unshared.
  */
-MapChannelConnectionsHandle Config_get_isolated_screening_gates_by_channel(
-    ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_isolated_screening_gates_by_channel(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_dot_gates_by_channel |
  * falcon_core::physics::config::core::Config::get_isolated_dot_gates_by_channel
@@ -718,8 +747,8 @@ MapChannelConnectionsHandle Config_get_isolated_screening_gates_by_channel(
  * @brief Returns dot gates indexed by channel which are
  * unshared.
  */
-MapChannelConnectionsHandle Config_get_isolated_dot_gates_by_channel(
-    ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_isolated_dot_gates_by_channel(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_isolated_gates_by_channel |
  * falcon_core::physics::config::core::Config::get_isolated_gates_by_channel */
@@ -727,61 +756,67 @@ MapChannelConnectionsHandle Config_get_isolated_dot_gates_by_channel(
  * @brief Returns gates indexed by channel which are
  * unshared.
  */
-MapChannelConnectionsHandle Config_get_isolated_gates_by_channel(
-    ConfigHandle handle);
+FALCON_CORE_C_API MapChannelConnectionsHandle
+Config_get_isolated_gates_by_channel(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_generate_gate_relations |
  * falcon_core::physics::config::core::Config::generate_gate_relations */
 /**
  * @brief Returns the gate relations in the config.
  */
-GateRelationsHandle Config_generate_gate_relations(ConfigHandle handle);
+FALCON_CORE_C_API GateRelationsHandle
+Config_generate_gate_relations(ConfigHandle handle);
 // @category:read
 ConnectionsHandle Config_screening_gates(ConfigHandle handle);
 // @category:read
-ConnectionsHandle Config_reservoir_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle Config_reservoir_gates(ConfigHandle handle);
 // @category:read
-ConnectionsHandle Config_plunger_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle Config_plunger_gates(ConfigHandle handle);
 // @category:read
-ConnectionsHandle Config_barrier_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle Config_barrier_gates(ConfigHandle handle);
 // @category:read
-ConnectionsHandle Config_ohmics(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle Config_ohmics(ConfigHandle handle);
 // @category:read
-ConnectionsHandle Config_dot_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle Config_dot_gates(ConfigHandle handle);
 // @category:read
-ConnectionHandle Config_get_ohmic(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionHandle Config_get_ohmic(ConfigHandle handle);
 // @category:read
-ConnectionHandle Config_get_barrier_gate(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionHandle Config_get_barrier_gate(ConfigHandle handle);
 // @category:read
-ConnectionHandle Config_get_plunger_gate(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionHandle Config_get_plunger_gate(ConfigHandle handle);
 // @category:read
-ConnectionHandle Config_get_reservoir_gate(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionHandle
+Config_get_reservoir_gate(ConfigHandle handle);
 // @category:read
-ConnectionHandle Config_get_screening_gate(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionHandle
+Config_get_screening_gate(ConfigHandle handle);
 // @category:read
-ConnectionHandle Config_get_dot_gate(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionHandle Config_get_dot_gate(ConfigHandle handle);
 // @category:read
-ConnectionHandle Config_get_gate(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionHandle Config_get_gate(ConfigHandle handle);
 // @category:read
-ConnectionsHandle Config_get_all_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle Config_get_all_gates(ConfigHandle handle);
 // @category:read
-ConnectionsHandle Config_get_all_connections(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle
+Config_get_all_connections(ConfigHandle handle);
 // @category:read
-bool Config_has_ohmic(ConfigHandle handle, ConnectionHandle ohmic);
+FALCON_CORE_C_API bool Config_has_ohmic(ConfigHandle     handle,
+                                        ConnectionHandle ohmic);
 // @category:read
-bool Config_has_gate(ConfigHandle handle, ConnectionHandle gate);
+FALCON_CORE_C_API bool Config_has_gate(ConfigHandle     handle,
+                                       ConnectionHandle gate);
 // @category:read
-bool Config_has_barrier_gate(ConfigHandle     handle,
-                             ConnectionHandle barrier_gate);
+FALCON_CORE_C_API bool Config_has_barrier_gate(ConfigHandle     handle,
+                                               ConnectionHandle barrier_gate);
 // @category:read
-bool Config_has_plunger_gate(ConfigHandle     handle,
-                             ConnectionHandle plunger_gate);
+FALCON_CORE_C_API bool Config_has_plunger_gate(ConfigHandle     handle,
+                                               ConnectionHandle plunger_gate);
 // @category:read
-bool Config_has_reservoir_gate(ConfigHandle     handle,
-                               ConnectionHandle reservoir_gate);
+FALCON_CORE_C_API bool Config_has_reservoir_gate(
+    ConfigHandle handle, ConnectionHandle reservoir_gate);
 // @category:read
-bool Config_has_screening_gate(ConfigHandle     handle,
-                               ConnectionHandle screening_gate);
+FALCON_CORE_C_API bool Config_has_screening_gate(
+    ConfigHandle handle, ConnectionHandle screening_gate);
 
 #ifdef __cplusplus
 }
