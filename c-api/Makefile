@@ -33,10 +33,14 @@ ifeq ($(PLATFORM),windows)
   VCPKG_RELEASE_LIB := $(PWD)/vcpkg_installed/x64-windows/lib
   EXE_SUFFIX := .exe
   STRIP_CMD := # no-op (strip not usually present); set to "llvm-strip" if you have it
-	RUN_PREFIX := PATH=$(VCPKG_DEBUG_BIN):$(CORE_BUILD_DIR):$$PATH
-	VCPKG_TOOLCHAIN ?= $(CORE_ROOT)/../../../vcpkg/scripts/buildsystems/vcpkg.cmake
-	USE_VCPKG ?= 1
-	PYTHON_EXECUTABLE ?= python
+  # Normalize Windows/MSYS path formats (when possible) to avoid mixing C:/ and /c/ forms.
+  # Use cygpath if available to convert to MSYS (unix-style) paths for RUN_PREFIX.
+  VCPKG_DEBUG_BIN_MS := $(shell cygpath -u $(VCPKG_DEBUG_BIN) 2>/dev/null || echo $(VCPKG_DEBUG_BIN))
+  CORE_BUILD_DIR_MS := $(shell cygpath -u $(CORE_BUILD_DIR) 2>/dev/null || echo $(CORE_BUILD_DIR))
+  RUN_PREFIX := PATH=$(VCPKG_DEBUG_BIN_MS):$(CORE_BUILD_DIR_MS):$$PATH
+  VCPKG_TOOLCHAIN ?= $(CORE_ROOT)/../../../vcpkg/scripts/buildsystems/vcpkg.cmake
+  USE_VCPKG ?= 1
+  PYTHON_EXECUTABLE ?= python
   # On Windows, Ninja + clang-cl: still pass CMAKE_C_COMPILER / CMAKE_CXX_COMPILER
 else
   CC ?= clang
@@ -130,6 +134,7 @@ ifeq ($(PLATFORM), linux)
    	 -S . -B $(C_API_BUILD_DIR) 
 else
 	@echo "--- Running Windows-style cmake + ninja (using variables) ---"
+	@echo "-- the path prefix is $(RUN_PREFIX) --"
 	@$(RUN_PREFIX) $(VCPKG_ENV) cmake -G Ninja \
 		-DCMAKE_C_COMPILER=${CC} \
 		-DCMAKE_CXX_COMPILER=${CXX} \
@@ -138,6 +143,7 @@ else
 		-DVCPKG_INSTALLED_DIR=$(PWD)/build/vcpkg_installed \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DFALCON_CORE_DEV=ON \
+		-DCORE_ROOT=$(CORE_ROOT) \
 		-DUSE_VCPKG=$(USE_VCPKG) \
 		 -S . -B $(C_API_BUILD_DIR)
 endif
