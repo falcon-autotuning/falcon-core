@@ -27,8 +27,3 @@ LeftReservoirWithImplantedOhmic::LeftReservoirWithImplantedOhmic(
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(
-    falcon_core::physics::config::geometries::LeftReservoirWithImplantedOhmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::Connection,
-    falcon_core::physics::config::geometries::LeftReservoirWithImplantedOhmic)

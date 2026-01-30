@@ -18,7 +18,7 @@ DeviceVoltageState::DeviceVoltageState(const DeviceVoltageState& other)
 DeviceVoltageState& DeviceVoltageState::operator=(
     const DeviceVoltageState& other) {
   if (this != &other) {
-    math::Quantity::                          operator=(other);
+    math::Quantity::operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_c(_mu_connection);
     if (!other._connection) {
       throw std::invalid_argument(
@@ -63,9 +63,3 @@ bool DeviceVoltageState::operator!=(const DeviceVoltageState& other) const {
 }  // namespace voltage_states
 }  // namespace communications
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::communications::voltage_states::DeviceVoltageState)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::Quantity,
-    falcon_core::communications::voltage_states::DeviceVoltageState)

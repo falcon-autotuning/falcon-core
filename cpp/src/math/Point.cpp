@@ -208,8 +208,3 @@ bool Point::operator!=(const Point& other) const { return !(*this == other); }
 
 }  // namespace math
 }  // namespace falcon_core
-using MapP = falcon_core::generic::Map<
-    falcon_core::physics::device_structures::Connection,
-    falcon_core::math::Quantity>;
-CEREAL_REGISTER_TYPE(falcon_core::math::Point)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(MapP, falcon_core::math::Point)

@@ -129,7 +129,7 @@ LabelledControlArraySP LabelledControlArray::operator-(
 
 LabelledControlArraySP LabelledControlArray::operator-() const {
   return std::make_shared<LabelledControlArray>(
-      generic::FArray<double>::operator-(), this -> label());
+      generic::FArray<double>::operator-(), this->label());
 }
 
 LabelledControlArraySP LabelledControlArray::operator*(
@@ -240,7 +240,3 @@ bool LabelledControlArray::operator!=(const LabelledControlArray& other) const {
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledControlArray)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::arrays::ControlArray,
-    falcon_core::math::arrays::LabelledControlArray)

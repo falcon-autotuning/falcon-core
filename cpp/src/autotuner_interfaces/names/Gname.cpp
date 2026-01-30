@@ -17,7 +17,3 @@ bool Gname::operator!=(const Gname& other) const { return !(*this == other); }
 }  // namespace names
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::names::Gname)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::autotuner_interfaces::names::NameBase,
-    falcon_core::autotuner_interfaces::names::Gname)

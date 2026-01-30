@@ -194,7 +194,3 @@ bool Domain::operator!=(const Domain& other) const { return !(*this == other); }
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::math::domains::Domain)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::math::domains::Domain)

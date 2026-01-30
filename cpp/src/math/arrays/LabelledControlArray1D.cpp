@@ -83,7 +83,7 @@ LabelledControlArray1DSP LabelledControlArray1D::operator-(
 
 LabelledControlArray1DSP LabelledControlArray1D::operator-() const {
   return std::make_shared<LabelledControlArray1D>(
-      generic::FArray<double>::operator-(), this -> label());
+      generic::FArray<double>::operator-(), this->label());
 }
 
 LabelledControlArray1DSP LabelledControlArray1D::operator*(
@@ -189,7 +189,3 @@ generic::ListSP<generic::FArray<double>> LabelledControlArray1D::gradient()
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledControlArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::FArray<double>,
-    falcon_core::math::arrays::LabelledControlArray1D)

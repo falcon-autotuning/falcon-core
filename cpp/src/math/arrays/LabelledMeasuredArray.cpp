@@ -141,7 +141,7 @@ LabelledMeasuredArraySP LabelledMeasuredArray::operator-(
 
 LabelledMeasuredArraySP LabelledMeasuredArray::operator-() const {
   return std::make_shared<LabelledMeasuredArray>(
-      generic::FArray<double>::operator-(), this -> label());
+      generic::FArray<double>::operator-(), this->label());
 }
 
 LabelledMeasuredArraySP LabelledMeasuredArray::operator*(
@@ -315,7 +315,3 @@ bool LabelledMeasuredArray::operator!=(
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledMeasuredArray)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::arrays::MeasuredArray,
-    falcon_core::math::arrays::LabelledMeasuredArray)

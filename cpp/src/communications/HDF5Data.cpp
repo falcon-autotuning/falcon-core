@@ -238,7 +238,7 @@ void HDF5Data::to_file(const std::string& path) const {
     H5::Group   sub_domain_group = domains_group.createGroup(dim_name);
 
     // Data
-    const auto& arr          = (*unit_domain())[i] -> data();
+    const auto& arr          = (*unit_domain())[i]->data();
     std::string dataset_path = "/domains/dim" + std::to_string(i) + "/data";
     xt::dump_hdf5(file.getFileName(), dataset_path, arr);
     // prepare string dataspace/type for labels
@@ -247,7 +247,7 @@ void HDF5Data::to_file(const std::string& path) const {
     H5::StrType   str_type(H5::PredType::C_S1, H5T_VARIABLE);
 
     // Labels
-    const auto& domains   = (*domain_labels())[i] -> domains();
+    const auto& domains   = (*domain_labels())[i]->domains();
     size_t      label_idx = 0;
     for (const auto& domain : domains) {
       std::string label_name = domain->port()->instrument_facing_name();
@@ -582,7 +582,3 @@ bool HDF5Data::operator==(const HDF5Data& other) {
 bool HDF5Data::operator!=(const HDF5Data& other) { return !(*this == other); }
 }  // namespace communications
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::communications::HDF5Data)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::communications::HDF5Data)

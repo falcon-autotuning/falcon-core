@@ -19,8 +19,3 @@ bool Impedances::operator!=(const Impedances& other) const {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Impedances)
-using LII = falcon_core::generic::List<
-    falcon_core::physics::device_structures::Impedance>;
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    LII, falcon_core::physics::device_structures::Impedances)

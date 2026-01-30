@@ -14,8 +14,8 @@ DotGateWithNeighbors::DotGateWithNeighbors(const DotGateWithNeighbors& other)
 DotGateWithNeighbors& DotGateWithNeighbors::operator=(
     const DotGateWithNeighbors& other) {
   if (this != &other) {
-    Connection::      operator=(other);
-    HasLeftNeighbor:: operator=(other);
+    Connection::operator=(other);
+    HasLeftNeighbor::operator=(other);
     HasRightNeighbor::operator=(other);
   }
   return *this;
@@ -94,14 +94,3 @@ bool DotGateWithNeighbors::operator!=(const DotGateWithNeighbors& other) const {
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(
-    falcon_core::physics::config::geometries::DotGateWithNeighbors)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::Connection,
-    falcon_core::physics::config::geometries::DotGateWithNeighbors)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::config::geometries::HasLeftNeighbor,
-    falcon_core::physics::config::geometries::DotGateWithNeighbors)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::config::geometries::HasRightNeighbor,
-    falcon_core::physics::config::geometries::DotGateWithNeighbors)

@@ -90,8 +90,3 @@ bool Connections::operator!=(const Connections& other) const {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::Connections)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::List<
-        falcon_core::physics::device_structures::Connection>,
-    falcon_core::physics::device_structures::Connections)

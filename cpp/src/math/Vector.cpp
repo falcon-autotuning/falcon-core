@@ -351,10 +351,3 @@ bool Vector::operator==(const Vector& other) const {
 bool Vector::operator!=(const Vector& other) const { return !(*this == other); }
 }  // namespace math
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::math::Vector)
-using PQQ = falcon_core::generic::Pair<falcon_core::math::Quantity,
-                                       falcon_core::math::Quantity>;
-using MBD = falcon_core::generic::
-    Map<falcon_core::physics::device_structures::Connection, PQQ>;
-CEREAL_REGISTER_POLYMORPHIC_RELATION(MBD, falcon_core::math::Vector)

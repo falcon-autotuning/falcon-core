@@ -46,12 +46,3 @@ bool DotGatesWithNeighbors::operator!=(
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(
-    falcon_core::physics::config::geometries::DotGatesWithNeighbors)
-CEREAL_REGISTER_TYPE(
-    falcon_core::generic::List<
-        falcon_core::physics::config::geometries::DotGatesWithNeighbors>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::List<
-        falcon_core::physics::config::geometries::DotGateWithNeighbors>,
-    falcon_core::physics::config::geometries::DotGatesWithNeighbors)

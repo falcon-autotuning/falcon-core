@@ -48,7 +48,3 @@ device_structures::ConnectionSP HasLeftNeighbor::left_neighbor() const {
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::physics::config::geometries::HasLeftNeighbor)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::physics::config::geometries::HasLeftNeighbor)

@@ -26,10 +26,3 @@ const generic::ListSP<PortTransform> PortTransforms::transforms() const {
 }  // namespace port_transforms
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::instrument_interfaces::port_transforms::PortTransforms)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::List<
-        falcon_core::instrument_interfaces::port_transforms::PortTransform>,
-    falcon_core::instrument_interfaces::port_transforms::PortTransforms)

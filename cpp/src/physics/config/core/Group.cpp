@@ -133,9 +133,3 @@ bool Group::operator!=(const Group& other) const { return !(*this == other); }
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Group)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::config::core::StandardConfigConnections,
-    falcon_core::physics::config::core::Group)
-
-extern "C" FALCON_CORE_CPP_API void cereal_register_group() {}

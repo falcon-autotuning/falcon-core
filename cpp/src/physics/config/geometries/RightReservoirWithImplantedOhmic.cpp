@@ -36,22 +36,10 @@ RightReservoirWithImplantedOhmic::RightReservoirWithImplantedOhmic(
         "the right neighbor but got " +
         left_neighbor->type());
   }
-  HasLeftNeighbor::  operator=(HasLeftNeighbor(left_neighbor));
+  HasLeftNeighbor::operator=(HasLeftNeighbor(left_neighbor));
   HasImplantedOhmic::operator=(HasImplantedOhmic(ohmic));
 }
 }  // namespace geometries
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::device_structures::Connection,
-    falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::config::geometries::HasImplantedOhmic,
-    falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmic)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::physics::config::geometries::HasLeftNeighbor,
-    falcon_core::physics::config::geometries::RightReservoirWithImplantedOhmic)

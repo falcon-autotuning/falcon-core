@@ -327,7 +327,7 @@ LeftReservoirWithImplantedOhmicSP GateGeometryArray1D::left_reservoir() const {
 }
 RightReservoirWithImplantedOhmicSP GateGeometryArray1D::right_reservoir()
     const {
-  std::string name = (*lineararray())[lineararray()->size() - 2] -> name();
+  std::string name = (*lineararray())[lineararray()->size() - 2]->name();
   device_structures::ConnectionSP ohmic =
       (*lineararray())[lineararray()->size() - 1];
   device_structures::ConnectionSP barrier_gate =
@@ -371,8 +371,3 @@ bool GateGeometryArray1D::operator!=(const GateGeometryArray1D& other) const {
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(
-    falcon_core::physics::config::geometries::GateGeometryArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::physics::config::geometries::GateGeometryArray1D)

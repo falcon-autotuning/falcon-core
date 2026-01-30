@@ -455,6 +455,3 @@ bool SymbolUnit::operator!=(const SymbolUnit& other) const {
 }  // namespace units
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::physics::units::SymbolUnit)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::physics::units::SymbolUnit)

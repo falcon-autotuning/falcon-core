@@ -46,7 +46,7 @@ MeasurementRequest::MeasurementRequest(const MeasurementRequest& other)
 MeasurementRequest& MeasurementRequest::operator=(
     const MeasurementRequest& other) {
   if (this != &other) {
-    BaseMessage::                             operator=(other);
+    BaseMessage::operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_measurement_name(
         _mu_measurement_name, std::defer_lock);
     std::unique_lock<std::shared_timed_mutex> lock_waveforms(_mu_waveforms,
@@ -149,8 +149,3 @@ bool MeasurementRequest::operator!=(const MeasurementRequest& other) const {
 }  // namespace messages
 }  // namespace communications
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementRequest)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::communications::messages::BaseMessage,
-    falcon_core::communications::messages::MeasurementRequest)

@@ -1,8 +1,6 @@
 #include <falcon_core/communications/messages/BaseMessage.hpp>
 #include <mutex>
 
-#include "cereal/types/polymorphic.hpp"
-
 namespace falcon_core {
 namespace communications {
 namespace messages {
@@ -35,8 +33,3 @@ bool BaseMessage::operator!=(const BaseMessage& other) const {
 }  // namespace messages
 }  // namespace communications
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::communications::messages::BaseMessage)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::communications::messages::BaseMessage)

@@ -65,13 +65,3 @@ const math::PointSP DeviceVoltageStates::to_point() const {
 }  // namespace voltage_states
 }  // namespace communications
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::communications::voltage_states::DeviceVoltageStates)
-CEREAL_REGISTER_TYPE(
-    falcon_core::generic::List<
-        falcon_core::communications::voltage_states::DeviceVoltageState>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::List<
-        falcon_core::communications::voltage_states::DeviceVoltageState>,
-    falcon_core::communications::voltage_states::DeviceVoltageStates)

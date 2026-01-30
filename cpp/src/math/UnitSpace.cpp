@@ -238,8 +238,3 @@ bool UnitSpace::operator!=(const UnitSpace& other) const {
 
 }  // namespace math
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::math::UnitSpace)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::Axes<falcon_core::math::discrete_spaces::Discretizer>,
-    falcon_core::math::UnitSpace)

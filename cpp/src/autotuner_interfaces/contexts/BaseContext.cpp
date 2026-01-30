@@ -76,7 +76,3 @@ bool BaseContext::operator!=(const BaseContext& other) const {
 }  // namespace contexts
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::contexts::BaseContext)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::autotuner_interfaces::contexts::BaseContext)

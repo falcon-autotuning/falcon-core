@@ -52,6 +52,3 @@ bool Time::operator==(const Time& other) {
 bool Time::operator!=(const Time& other) { return !(*this == other); }
 }  // namespace communications
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::communications::Time)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::communications::Time)

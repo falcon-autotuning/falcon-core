@@ -23,7 +23,7 @@ Waveform::Waveform(const Waveform& other)
 }
 Waveform& Waveform::operator=(const Waveform& other) {
   if (this != &other) {
-    port_transforms::PortTransforms::         operator=(other);
+    port_transforms::PortTransforms::operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_o(_mu_dspace);
     if (!other._space) {
       throw std::invalid_argument(
@@ -204,10 +204,3 @@ bool Waveform::operator!=(const Waveform& other) const {
 
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::instrument_interfaces::Waveform)
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<bool>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::instrument_interfaces::port_transforms::PortTransforms,
-    falcon_core::instrument_interfaces::Waveform)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::generic::List<bool>)

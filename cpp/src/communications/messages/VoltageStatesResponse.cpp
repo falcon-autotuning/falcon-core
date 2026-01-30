@@ -63,9 +63,3 @@ bool VoltageStatesResponse::operator!=(
 }  // namespace messages
 }  // namespace communications
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::communications::messages::VoltageStatesResponse)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::communications::messages::BaseMessage,
-    falcon_core::communications::messages::VoltageStatesResponse)

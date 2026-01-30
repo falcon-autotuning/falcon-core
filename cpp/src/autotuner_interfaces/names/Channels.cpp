@@ -20,7 +20,3 @@ bool Channels::operator!=(const Channels& other) const {
 }  // namespace names
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::autotuner_interfaces::names::Channels)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::autotuner_interfaces::names::Channels)

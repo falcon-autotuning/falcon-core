@@ -121,9 +121,3 @@ bool VoltageConstraints::operator!=(const VoltageConstraints& other) const {
 }  // namespace config
 }  // namespace physics
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::VoltageConstraints)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::physics::config::core::VoltageConstraints)
-
-extern "C" FALCON_CORE_CPP_API void cereal_register_voltage_constraints() {}

@@ -2,7 +2,6 @@
 
 #include <stdexcept>
 
-#include "cereal/types/polymorphic.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/instrument_interfaces/names/Ports.hpp"
 #include "falcon_core/math/domains/LabelledDomain.hpp"
@@ -66,7 +65,3 @@ bool CoupledLabelledDomain::operator!=(
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::List<falcon_core::math::domains::LabelledDomain>,
-    falcon_core::math::domains::CoupledLabelledDomain)

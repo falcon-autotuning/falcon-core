@@ -153,7 +153,3 @@ bool LabelledDomain::operator!=(const LabelledDomain& other) const {
 }  // namespace domains
 }  // namespace math
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::math::domains::LabelledDomain)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::math::domains::Domain,
-                                     falcon_core::math::domains::LabelledDomain)

@@ -203,9 +203,3 @@ generic::ListSP<generic::FArray<double>> ControlArray::gradient() const {
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::ControlArray)
-CEREAL_REGISTER_TYPE(falcon_core::generic::FArray<double>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
-                                     falcon_core::generic::FArray<double>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::FArray<double>,
-                                     falcon_core::math::arrays::ControlArray)

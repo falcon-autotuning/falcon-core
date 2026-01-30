@@ -132,9 +132,10 @@ if(WIN32)
   message(STATUS "Windows detected: Unity Build DISABLED for ${CPP_LIB_NAME}")
 else()
   # Linux/macOS: Keep Unity Build enabled for faster compilation
-  set_target_properties(${CPP_LIB_NAME} PROPERTIES 
-    UNITY_BUILD ON
-    UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
+  set_target_properties(${CPP_LIB_NAME} PROPERTIES
+    UNITY_BUILD OFF
+    # UNITY_BUILD ON
+    # UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
   )
   message(STATUS "Unix detected: Unity Build ENABLED for ${CPP_LIB_NAME}")
 endif()
@@ -164,28 +165,29 @@ if(FALCON_CORE_DEV)
   enable_testing()
   file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
   add_executable(falcon_core_cpp_run_tests ${RUN_TESTS_SOURCES})
-if(WIN32)
-  # Windows: Disable Unity Build to avoid duplicate symbol errors
-  set_target_properties(falcon_core_cpp_run_tests PROPERTIES
+  if(WIN32)
+    # Windows: Disable Unity Build to avoid duplicate symbol errors
+    set_target_properties(falcon_core_cpp_run_tests PROPERTIES
     WINDOWS_EXPORT_ALL_SYMBOLS OFF
     UNITY_BUILD OFF
   )
-  # Windows with DLLs and templates: inline methods in template classes cause duplicate
-  # symbols because extern template doesn't fully suppress instantiation of inline methods.
-  # Use /FORCE:MULTIPLE to allow the linker to resolve these identical duplicates.
-  # Note: This is safe here because all duplicates are identical template instantiations.
-  # The alternative would be to refactor all template classes to move method definitions
-  # out of the class body, which would be a significant change to the codebase.
-  target_link_options(falcon_core_cpp_run_tests PRIVATE /FORCE:MULTIPLE)
-  message(STATUS "Windows detected: Unity Build DISABLED, /FORCE:MULTIPLE enabled for falcon_core_cpp_run_tests")
-else()
-  # Linux/macOS: Keep Unity Build enabled for faster compilation
-  set_target_properties(falcon_core_cpp_run_tests PROPERTIES 
-    UNITY_BUILD ON
-    UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
+    # Windows with DLLs and templates: inline methods in template classes cause duplicate
+    # symbols because extern template doesn't fully suppress instantiation of inline methods.
+    # Use /FORCE:MULTIPLE to allow the linker to resolve these identical duplicates.
+    # Note: This is safe here because all duplicates are identical template instantiations.
+    # The alternative would be to refactor all template classes to move method definitions
+    # out of the class body, which would be a significant change to the codebase.
+    target_link_options(falcon_core_cpp_run_tests PRIVATE /FORCE:MULTIPLE)
+    message(STATUS "Windows detected: Unity Build DISABLED, /FORCE:MULTIPLE enabled for falcon_core_cpp_run_tests")
+  else()
+    # Linux/macOS: Keep Unity Build enabled for faster compilation
+    set_target_properties(falcon_core_cpp_run_tests PROPERTIES
+    UNITY_BUILD OFF
+    # UNITY_BUILD ON
+    # UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
   )
-  message(STATUS "Unix detected: Unity Build ENABLED for falcon_core_cpp_run_tests")
-endif()
+    message(STATUS "Unix detected: Unity Build ENABLED for falcon_core_cpp_run_tests")
+  endif()
   set_target_properties(
     falcon_core_cpp_run_tests
     PROPERTIES SKIP_BUILD_RPATH FALSE

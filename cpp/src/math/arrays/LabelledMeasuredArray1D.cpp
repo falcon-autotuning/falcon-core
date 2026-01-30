@@ -68,7 +68,7 @@ std::shared_ptr<LabelledMeasuredArray1D> LabelledMeasuredArray1D::operator-(
 std::shared_ptr<LabelledMeasuredArray1D> LabelledMeasuredArray1D::operator-()
     const {
   return std::make_shared<LabelledMeasuredArray1D>(
-      generic::FArray<double>::operator-(), this -> label());
+      generic::FArray<double>::operator-(), this->label());
 }
 
 std::shared_ptr<LabelledMeasuredArray1D> LabelledMeasuredArray1D::operator*(
@@ -182,7 +182,3 @@ generic::ListSP<generic::FArray<double>> LabelledMeasuredArray1D::gradient()
 }  // namespace arrays
 }  // namespace math
 }  // namespace falcon_core
-CEREAL_REGISTER_TYPE(falcon_core::math::arrays::LabelledMeasuredArray1D)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::FArray<double>,
-    falcon_core::math::arrays::LabelledMeasuredArray1D)

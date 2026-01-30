@@ -45,9 +45,3 @@ bool GateRelations::operator!=(const GateRelations& other) const {
 }  // namespace device_structures
 }  // namespace physics
 }  // namespace falcon_core
-using MapGR = falcon_core::generic::Map<
-    falcon_core::physics::device_structures::Connection,
-    falcon_core::physics::device_structures::Connections>;
-CEREAL_REGISTER_TYPE(falcon_core::physics::device_structures::GateRelations)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    MapGR, falcon_core::physics::device_structures::GateRelations)

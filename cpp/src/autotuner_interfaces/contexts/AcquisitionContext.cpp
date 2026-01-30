@@ -22,7 +22,7 @@ AcquisitionContext::AcquisitionContext(const AcquisitionContext& other)
 AcquisitionContext& AcquisitionContext::operator=(
     const AcquisitionContext& other) {
   if (this != &other) {
-    BaseContext::                             operator=(other);
+    BaseContext::operator=(other);
     std::unique_lock<std::shared_timed_mutex> lock_units(_mu_units,
                                                          std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_other_units(other._mu_units,
@@ -121,9 +121,3 @@ bool AcquisitionContext::operator!=(const AcquisitionContext& other) const {
 }  // namespace contexts
 }  // namespace autotuner_interfaces
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::autotuner_interfaces::contexts::AcquisitionContext)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::autotuner_interfaces::contexts::BaseContext,
-    falcon_core::autotuner_interfaces::contexts::AcquisitionContext)

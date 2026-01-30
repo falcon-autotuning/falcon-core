@@ -62,8 +62,3 @@ bool MeasurementResponse::operator!=(const MeasurementResponse& other) const {
 }  // namespace messages
 }  // namespace communications
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementResponse)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::communications::messages::BaseMessage,
-    falcon_core::communications::messages::MeasurementResponse)

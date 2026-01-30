@@ -74,9 +74,3 @@ bool PortTransform::operator!=(const PortTransform& other) const {
 }  // namespace port_transforms
 }  // namespace instrument_interfaces
 }  // namespace falcon_core
-
-CEREAL_REGISTER_TYPE(
-    falcon_core::instrument_interfaces::port_transforms::PortTransform)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::math::AnalyticFunction,
-    falcon_core::instrument_interfaces::port_transforms::PortTransform)
