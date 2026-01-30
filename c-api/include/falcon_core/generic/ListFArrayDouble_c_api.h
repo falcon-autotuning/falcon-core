@@ -12,45 +12,45 @@ typedef void* ListFArrayDoubleHandle;
 // Function declarations
 
 // @category:allocation
-ListFArrayDoubleHandle ListFArrayDouble_create_empty();
+FALCON_CORE_C_API ListFArrayDoubleHandle ListFArrayDouble_create_empty();
 // @category:allocation
-ListFArrayDoubleHandle ListFArrayDouble_copy(ListFArrayDoubleHandle handle);
+FALCON_CORE_C_API ListFArrayDoubleHandle ListFArrayDouble_copy(ListFArrayDoubleHandle handle);
 
 // @category:allocation
-ListFArrayDoubleHandle ListFArrayDouble_fill_value(size_t count, FArrayDoubleHandle value);
+FALCON_CORE_C_API ListFArrayDoubleHandle ListFArrayDouble_fill_value(size_t count, FArrayDoubleHandle value);
 // @category:allocation
-ListFArrayDoubleHandle ListFArrayDouble_create(FArrayDoubleHandle* data, size_t count);
+FALCON_CORE_C_API ListFArrayDoubleHandle ListFArrayDouble_create(FArrayDoubleHandle* data, size_t count);
 // @category:deallocation
-void ListFArrayDouble_destroy(ListFArrayDoubleHandle handle);
+FALCON_CORE_C_API void ListFArrayDouble_destroy(ListFArrayDoubleHandle handle);
 // @category:write
-void ListFArrayDouble_push_back(ListFArrayDoubleHandle handle, FArrayDoubleHandle value);
+FALCON_CORE_C_API void ListFArrayDouble_push_back(ListFArrayDoubleHandle handle, FArrayDoubleHandle value);
 // @category:read
-size_t ListFArrayDouble_size(ListFArrayDoubleHandle handle);
+FALCON_CORE_C_API size_t ListFArrayDouble_size(ListFArrayDoubleHandle handle);
 // @category:read
-bool ListFArrayDouble_empty(ListFArrayDoubleHandle handle);
+FALCON_CORE_C_API bool ListFArrayDouble_empty(ListFArrayDoubleHandle handle);
 // @category:write
-void ListFArrayDouble_erase_at(ListFArrayDoubleHandle handle, size_t idx);
+FALCON_CORE_C_API void ListFArrayDouble_erase_at(ListFArrayDoubleHandle handle, size_t idx);
 // @category:write
-void ListFArrayDouble_clear(ListFArrayDoubleHandle handle);
+FALCON_CORE_C_API void ListFArrayDouble_clear(ListFArrayDoubleHandle handle);
 // @category:read
-FArrayDoubleHandle ListFArrayDouble_at(ListFArrayDoubleHandle handle, size_t idx);
+FALCON_CORE_C_API FArrayDoubleHandle ListFArrayDouble_at(ListFArrayDoubleHandle handle, size_t idx);
 // @category:read
-size_t ListFArrayDouble_items(ListFArrayDoubleHandle handle, FArrayDoubleHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t ListFArrayDouble_items(ListFArrayDoubleHandle handle, FArrayDoubleHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool ListFArrayDouble_contains(ListFArrayDoubleHandle handle, FArrayDoubleHandle value);
+FALCON_CORE_C_API bool ListFArrayDouble_contains(ListFArrayDoubleHandle handle, FArrayDoubleHandle value);
 // @category:read
-size_t ListFArrayDouble_index(ListFArrayDoubleHandle handle, FArrayDoubleHandle value);
+FALCON_CORE_C_API size_t ListFArrayDouble_index(ListFArrayDoubleHandle handle, FArrayDoubleHandle value);
 // @category:read
-ListFArrayDoubleHandle ListFArrayDouble_intersection(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
+FALCON_CORE_C_API ListFArrayDoubleHandle ListFArrayDouble_intersection(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
 // @category:read
-bool ListFArrayDouble_equal(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
+FALCON_CORE_C_API bool ListFArrayDouble_equal(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
 // @category:read
-bool ListFArrayDouble_not_equal(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
+FALCON_CORE_C_API bool ListFArrayDouble_not_equal(ListFArrayDoubleHandle handle, ListFArrayDoubleHandle other);
 
 // @category:read
-StringHandle      ListFArrayDouble_to_json_string(ListFArrayDoubleHandle handle);
+FALCON_CORE_C_API StringHandle      ListFArrayDouble_to_json_string(ListFArrayDoubleHandle handle);
 // @category:allocation
-ListFArrayDoubleHandle ListFArrayDouble_from_json_string(StringHandle json);
+FALCON_CORE_C_API ListFArrayDoubleHandle ListFArrayDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

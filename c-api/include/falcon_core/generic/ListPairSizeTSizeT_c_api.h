@@ -12,45 +12,45 @@ typedef void* ListPairSizeTSizeTHandle;
 // Function declarations
 
 // @category:allocation
-ListPairSizeTSizeTHandle ListPairSizeTSizeT_create_empty();
+FALCON_CORE_C_API ListPairSizeTSizeTHandle ListPairSizeTSizeT_create_empty();
 // @category:allocation
-ListPairSizeTSizeTHandle ListPairSizeTSizeT_copy(ListPairSizeTSizeTHandle handle);
+FALCON_CORE_C_API ListPairSizeTSizeTHandle ListPairSizeTSizeT_copy(ListPairSizeTSizeTHandle handle);
 
 // @category:allocation
-ListPairSizeTSizeTHandle ListPairSizeTSizeT_fill_value(size_t count, PairSizeTSizeTHandle value);
+FALCON_CORE_C_API ListPairSizeTSizeTHandle ListPairSizeTSizeT_fill_value(size_t count, PairSizeTSizeTHandle value);
 // @category:allocation
-ListPairSizeTSizeTHandle ListPairSizeTSizeT_create(PairSizeTSizeTHandle* data, size_t count);
+FALCON_CORE_C_API ListPairSizeTSizeTHandle ListPairSizeTSizeT_create(PairSizeTSizeTHandle* data, size_t count);
 // @category:deallocation
-void ListPairSizeTSizeT_destroy(ListPairSizeTSizeTHandle handle);
+FALCON_CORE_C_API void ListPairSizeTSizeT_destroy(ListPairSizeTSizeTHandle handle);
 // @category:write
-void ListPairSizeTSizeT_push_back(ListPairSizeTSizeTHandle handle, PairSizeTSizeTHandle value);
+FALCON_CORE_C_API void ListPairSizeTSizeT_push_back(ListPairSizeTSizeTHandle handle, PairSizeTSizeTHandle value);
 // @category:read
-size_t ListPairSizeTSizeT_size(ListPairSizeTSizeTHandle handle);
+FALCON_CORE_C_API size_t ListPairSizeTSizeT_size(ListPairSizeTSizeTHandle handle);
 // @category:read
-bool ListPairSizeTSizeT_empty(ListPairSizeTSizeTHandle handle);
+FALCON_CORE_C_API bool ListPairSizeTSizeT_empty(ListPairSizeTSizeTHandle handle);
 // @category:write
-void ListPairSizeTSizeT_erase_at(ListPairSizeTSizeTHandle handle, size_t idx);
+FALCON_CORE_C_API void ListPairSizeTSizeT_erase_at(ListPairSizeTSizeTHandle handle, size_t idx);
 // @category:write
-void ListPairSizeTSizeT_clear(ListPairSizeTSizeTHandle handle);
+FALCON_CORE_C_API void ListPairSizeTSizeT_clear(ListPairSizeTSizeTHandle handle);
 // @category:read
-PairSizeTSizeTHandle ListPairSizeTSizeT_at(ListPairSizeTSizeTHandle handle, size_t idx);
+FALCON_CORE_C_API PairSizeTSizeTHandle ListPairSizeTSizeT_at(ListPairSizeTSizeTHandle handle, size_t idx);
 // @category:read
-size_t ListPairSizeTSizeT_items(ListPairSizeTSizeTHandle handle, PairSizeTSizeTHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t ListPairSizeTSizeT_items(ListPairSizeTSizeTHandle handle, PairSizeTSizeTHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool ListPairSizeTSizeT_contains(ListPairSizeTSizeTHandle handle, PairSizeTSizeTHandle value);
+FALCON_CORE_C_API bool ListPairSizeTSizeT_contains(ListPairSizeTSizeTHandle handle, PairSizeTSizeTHandle value);
 // @category:read
-size_t ListPairSizeTSizeT_index(ListPairSizeTSizeTHandle handle, PairSizeTSizeTHandle value);
+FALCON_CORE_C_API size_t ListPairSizeTSizeT_index(ListPairSizeTSizeTHandle handle, PairSizeTSizeTHandle value);
 // @category:read
-ListPairSizeTSizeTHandle ListPairSizeTSizeT_intersection(ListPairSizeTSizeTHandle handle, ListPairSizeTSizeTHandle other);
+FALCON_CORE_C_API ListPairSizeTSizeTHandle ListPairSizeTSizeT_intersection(ListPairSizeTSizeTHandle handle, ListPairSizeTSizeTHandle other);
 // @category:read
-bool ListPairSizeTSizeT_equal(ListPairSizeTSizeTHandle handle, ListPairSizeTSizeTHandle other);
+FALCON_CORE_C_API bool ListPairSizeTSizeT_equal(ListPairSizeTSizeTHandle handle, ListPairSizeTSizeTHandle other);
 // @category:read
-bool ListPairSizeTSizeT_not_equal(ListPairSizeTSizeTHandle handle, ListPairSizeTSizeTHandle other);
+FALCON_CORE_C_API bool ListPairSizeTSizeT_not_equal(ListPairSizeTSizeTHandle handle, ListPairSizeTSizeTHandle other);
 
 // @category:read
-StringHandle      ListPairSizeTSizeT_to_json_string(ListPairSizeTSizeTHandle handle);
+FALCON_CORE_C_API StringHandle      ListPairSizeTSizeT_to_json_string(ListPairSizeTSizeTHandle handle);
 // @category:allocation
-ListPairSizeTSizeTHandle ListPairSizeTSizeT_from_json_string(StringHandle json);
+FALCON_CORE_C_API ListPairSizeTSizeTHandle ListPairSizeTSizeT_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "falcon_core/export_c_api.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -169,8 +170,8 @@ FALCON_CORE_C_API double MeasuredArray_max(MeasuredArrayHandle handle);
 FALCON_CORE_C_API MeasuredArrayHandle
 MeasuredArray_max_farray(MeasuredArrayHandle handle, FArrayDoubleHandle other);
 // @category:read
-MeasuredArrayHandle MeasuredArray_max_measured_array(MeasuredArrayHandle handle,
-                                                     MeasuredArrayHandle other);
+FALCON_CORE_C_API MeasuredArrayHandle MeasuredArray_max_measured_array(
+    MeasuredArrayHandle handle, MeasuredArrayHandle other);
 // @category:read
 FALCON_CORE_C_API bool MeasuredArray_greater_than(MeasuredArrayHandle handle,
                                                   double              value);

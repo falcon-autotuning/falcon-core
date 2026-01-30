@@ -14,43 +14,43 @@ typedef void* MapStringBoolHandle;
 // Function declarations
 
 // @category:allocation
-MapStringBoolHandle MapStringBool_create_empty();
+FALCON_CORE_C_API MapStringBoolHandle MapStringBool_create_empty();
 // @category:allocation
-MapStringBoolHandle MapStringBool_copy(MapStringBoolHandle handle);
+FALCON_CORE_C_API MapStringBoolHandle MapStringBool_copy(MapStringBoolHandle handle);
 // @category:allocation
-MapStringBoolHandle MapStringBool_create(PairStringBoolHandle* data, size_t count);
+FALCON_CORE_C_API MapStringBoolHandle MapStringBool_create(PairStringBoolHandle* data, size_t count);
 // @category:deallocation
-void MapStringBool_destroy(MapStringBoolHandle handle);
+FALCON_CORE_C_API void MapStringBool_destroy(MapStringBoolHandle handle);
 // @category:write
-void MapStringBool_insert_or_assign(MapStringBoolHandle handle, StringHandle key, bool value);
+FALCON_CORE_C_API void MapStringBool_insert_or_assign(MapStringBoolHandle handle, StringHandle key, bool value);
 // @category:write
-void MapStringBool_insert(MapStringBoolHandle handle, StringHandle key, bool value);
+FALCON_CORE_C_API void MapStringBool_insert(MapStringBoolHandle handle, StringHandle key, bool value);
 // @category:read
-bool MapStringBool_at(MapStringBoolHandle handle, StringHandle key);
+FALCON_CORE_C_API bool MapStringBool_at(MapStringBoolHandle handle, StringHandle key);
 // @category:write
-void MapStringBool_erase(MapStringBoolHandle handle, StringHandle key);
+FALCON_CORE_C_API void MapStringBool_erase(MapStringBoolHandle handle, StringHandle key);
 // @category:read
-size_t MapStringBool_size(MapStringBoolHandle handle);
+FALCON_CORE_C_API size_t MapStringBool_size(MapStringBoolHandle handle);
 // @category:read
-bool MapStringBool_empty(MapStringBoolHandle handle);
+FALCON_CORE_C_API bool MapStringBool_empty(MapStringBoolHandle handle);
 // @category:write
-void MapStringBool_clear(MapStringBoolHandle handle);
+FALCON_CORE_C_API void MapStringBool_clear(MapStringBoolHandle handle);
 // @category:read
-bool MapStringBool_contains(MapStringBoolHandle handle, StringHandle key);
+FALCON_CORE_C_API bool MapStringBool_contains(MapStringBoolHandle handle, StringHandle key);
 // @category:read
-ListStringHandle MapStringBool_keys(MapStringBoolHandle handle);
+FALCON_CORE_C_API ListStringHandle MapStringBool_keys(MapStringBoolHandle handle);
 // @category:read
-ListBoolHandle MapStringBool_values(MapStringBoolHandle handle);
+FALCON_CORE_C_API ListBoolHandle MapStringBool_values(MapStringBoolHandle handle);
 // @category:read
-ListPairStringBoolHandle MapStringBool_items(MapStringBoolHandle handle);
+FALCON_CORE_C_API  ListPairStringBoolHandle MapStringBool_items(MapStringBoolHandle handle);
 // @category:read
-bool MapStringBool_equal(MapStringBoolHandle handle, MapStringBoolHandle other);
+FALCON_CORE_C_API bool MapStringBool_equal(MapStringBoolHandle handle, MapStringBoolHandle other);
 // @category:read
-bool MapStringBool_not_equal(MapStringBoolHandle handle, MapStringBoolHandle other);
+FALCON_CORE_C_API bool MapStringBool_not_equal(MapStringBoolHandle handle, MapStringBoolHandle other);
 // @category:read
-StringHandle      MapStringBool_to_json_string(MapStringBoolHandle handle);
+FALCON_CORE_C_API StringHandle      MapStringBool_to_json_string(MapStringBoolHandle handle);
 // @category:allocation
-MapStringBoolHandle MapStringBool_from_json_string(StringHandle json);
+FALCON_CORE_C_API MapStringBoolHandle MapStringBool_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

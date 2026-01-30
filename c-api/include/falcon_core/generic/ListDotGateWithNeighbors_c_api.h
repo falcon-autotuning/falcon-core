@@ -12,45 +12,45 @@ typedef void* ListDotGateWithNeighborsHandle;
 // Function declarations
 
 // @category:allocation
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create_empty();
+FALCON_CORE_C_API ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create_empty();
 // @category:allocation
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_copy(ListDotGateWithNeighborsHandle handle);
+FALCON_CORE_C_API ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_copy(ListDotGateWithNeighborsHandle handle);
 
 // @category:allocation
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_fill_value(size_t count, DotGateWithNeighborsHandle value);
+FALCON_CORE_C_API ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_fill_value(size_t count, DotGateWithNeighborsHandle value);
 // @category:allocation
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(DotGateWithNeighborsHandle* data, size_t count);
+FALCON_CORE_C_API ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(DotGateWithNeighborsHandle* data, size_t count);
 // @category:deallocation
-void ListDotGateWithNeighbors_destroy(ListDotGateWithNeighborsHandle handle);
+FALCON_CORE_C_API void ListDotGateWithNeighbors_destroy(ListDotGateWithNeighborsHandle handle);
 // @category:write
-void ListDotGateWithNeighbors_push_back(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
+FALCON_CORE_C_API void ListDotGateWithNeighbors_push_back(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
 // @category:read
-size_t ListDotGateWithNeighbors_size(ListDotGateWithNeighborsHandle handle);
+FALCON_CORE_C_API size_t ListDotGateWithNeighbors_size(ListDotGateWithNeighborsHandle handle);
 // @category:read
-bool ListDotGateWithNeighbors_empty(ListDotGateWithNeighborsHandle handle);
+FALCON_CORE_C_API bool ListDotGateWithNeighbors_empty(ListDotGateWithNeighborsHandle handle);
 // @category:write
-void ListDotGateWithNeighbors_erase_at(ListDotGateWithNeighborsHandle handle, size_t idx);
+FALCON_CORE_C_API void ListDotGateWithNeighbors_erase_at(ListDotGateWithNeighborsHandle handle, size_t idx);
 // @category:write
-void ListDotGateWithNeighbors_clear(ListDotGateWithNeighborsHandle handle);
+FALCON_CORE_C_API void ListDotGateWithNeighbors_clear(ListDotGateWithNeighborsHandle handle);
 // @category:read
-DotGateWithNeighborsHandle ListDotGateWithNeighbors_at(ListDotGateWithNeighborsHandle handle, size_t idx);
+FALCON_CORE_C_API DotGateWithNeighborsHandle ListDotGateWithNeighbors_at(ListDotGateWithNeighborsHandle handle, size_t idx);
 // @category:read
-size_t ListDotGateWithNeighbors_items(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t ListDotGateWithNeighbors_items(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool ListDotGateWithNeighbors_contains(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
+FALCON_CORE_C_API bool ListDotGateWithNeighbors_contains(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
 // @category:read
-size_t ListDotGateWithNeighbors_index(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
+FALCON_CORE_C_API size_t ListDotGateWithNeighbors_index(ListDotGateWithNeighborsHandle handle, DotGateWithNeighborsHandle value);
 // @category:read
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_intersection(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
+FALCON_CORE_C_API ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_intersection(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
 // @category:read
-bool ListDotGateWithNeighbors_equal(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
+FALCON_CORE_C_API bool ListDotGateWithNeighbors_equal(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
 // @category:read
-bool ListDotGateWithNeighbors_not_equal(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
+FALCON_CORE_C_API bool ListDotGateWithNeighbors_not_equal(ListDotGateWithNeighborsHandle handle, ListDotGateWithNeighborsHandle other);
 
 // @category:read
-StringHandle      ListDotGateWithNeighbors_to_json_string(ListDotGateWithNeighborsHandle handle);
+FALCON_CORE_C_API StringHandle      ListDotGateWithNeighbors_to_json_string(ListDotGateWithNeighborsHandle handle);
 // @category:allocation
-ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_from_json_string(StringHandle json);
+FALCON_CORE_C_API ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

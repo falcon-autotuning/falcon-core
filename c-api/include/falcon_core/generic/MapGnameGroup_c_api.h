@@ -13,43 +13,43 @@ typedef void* MapGnameGroupHandle;
 // Function declarations
 
 // @category:allocation
-MapGnameGroupHandle MapGnameGroup_create_empty();
+FALCON_CORE_C_API MapGnameGroupHandle MapGnameGroup_create_empty();
 // @category:allocation
-MapGnameGroupHandle MapGnameGroup_copy(MapGnameGroupHandle handle);
+FALCON_CORE_C_API MapGnameGroupHandle MapGnameGroup_copy(MapGnameGroupHandle handle);
 // @category:allocation
-MapGnameGroupHandle MapGnameGroup_create(PairGnameGroupHandle* data, size_t count);
+FALCON_CORE_C_API MapGnameGroupHandle MapGnameGroup_create(PairGnameGroupHandle* data, size_t count);
 // @category:deallocation
-void MapGnameGroup_destroy(MapGnameGroupHandle handle);
+FALCON_CORE_C_API void MapGnameGroup_destroy(MapGnameGroupHandle handle);
 // @category:write
-void MapGnameGroup_insert_or_assign(MapGnameGroupHandle handle, GnameHandle key, GroupHandle value);
+FALCON_CORE_C_API void MapGnameGroup_insert_or_assign(MapGnameGroupHandle handle, GnameHandle key, GroupHandle value);
 // @category:write
-void MapGnameGroup_insert(MapGnameGroupHandle handle, GnameHandle key, GroupHandle value);
+FALCON_CORE_C_API void MapGnameGroup_insert(MapGnameGroupHandle handle, GnameHandle key, GroupHandle value);
 // @category:read
-GroupHandle MapGnameGroup_at(MapGnameGroupHandle handle, GnameHandle key);
+FALCON_CORE_C_API GroupHandle MapGnameGroup_at(MapGnameGroupHandle handle, GnameHandle key);
 // @category:write
-void MapGnameGroup_erase(MapGnameGroupHandle handle, GnameHandle key);
+FALCON_CORE_C_API void MapGnameGroup_erase(MapGnameGroupHandle handle, GnameHandle key);
 // @category:read
-size_t MapGnameGroup_size(MapGnameGroupHandle handle);
+FALCON_CORE_C_API size_t MapGnameGroup_size(MapGnameGroupHandle handle);
 // @category:read
-bool MapGnameGroup_empty(MapGnameGroupHandle handle);
+FALCON_CORE_C_API bool MapGnameGroup_empty(MapGnameGroupHandle handle);
 // @category:write
-void MapGnameGroup_clear(MapGnameGroupHandle handle);
+FALCON_CORE_C_API void MapGnameGroup_clear(MapGnameGroupHandle handle);
 // @category:read
-bool MapGnameGroup_contains(MapGnameGroupHandle handle, GnameHandle key);
+FALCON_CORE_C_API bool MapGnameGroup_contains(MapGnameGroupHandle handle, GnameHandle key);
 // @category:read
-ListGnameHandle MapGnameGroup_keys(MapGnameGroupHandle handle);
+FALCON_CORE_C_API ListGnameHandle MapGnameGroup_keys(MapGnameGroupHandle handle);
 // @category:read
-ListGroupHandle MapGnameGroup_values(MapGnameGroupHandle handle);
+FALCON_CORE_C_API ListGroupHandle MapGnameGroup_values(MapGnameGroupHandle handle);
 // @category:read
-ListPairGnameGroupHandle MapGnameGroup_items(MapGnameGroupHandle handle);
+FALCON_CORE_C_API  ListPairGnameGroupHandle MapGnameGroup_items(MapGnameGroupHandle handle);
 // @category:read
-bool MapGnameGroup_equal(MapGnameGroupHandle handle, MapGnameGroupHandle other);
+FALCON_CORE_C_API bool MapGnameGroup_equal(MapGnameGroupHandle handle, MapGnameGroupHandle other);
 // @category:read
-bool MapGnameGroup_not_equal(MapGnameGroupHandle handle, MapGnameGroupHandle other);
+FALCON_CORE_C_API bool MapGnameGroup_not_equal(MapGnameGroupHandle handle, MapGnameGroupHandle other);
 // @category:read
-StringHandle      MapGnameGroup_to_json_string(MapGnameGroupHandle handle);
+FALCON_CORE_C_API StringHandle      MapGnameGroup_to_json_string(MapGnameGroupHandle handle);
 // @category:allocation
-MapGnameGroupHandle MapGnameGroup_from_json_string(StringHandle json);
+FALCON_CORE_C_API MapGnameGroupHandle MapGnameGroup_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -12,45 +12,45 @@ typedef void* ListCoupledLabelledDomainHandle;
 // Function declarations
 
 // @category:allocation
-ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create_empty();
+FALCON_CORE_C_API ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create_empty();
 // @category:allocation
-ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_copy(ListCoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_copy(ListCoupledLabelledDomainHandle handle);
 
 // @category:allocation
-ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_fill_value(size_t count, CoupledLabelledDomainHandle value);
+FALCON_CORE_C_API ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_fill_value(size_t count, CoupledLabelledDomainHandle value);
 // @category:allocation
-ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create(CoupledLabelledDomainHandle* data, size_t count);
+FALCON_CORE_C_API ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create(CoupledLabelledDomainHandle* data, size_t count);
 // @category:deallocation
-void ListCoupledLabelledDomain_destroy(ListCoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API void ListCoupledLabelledDomain_destroy(ListCoupledLabelledDomainHandle handle);
 // @category:write
-void ListCoupledLabelledDomain_push_back(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle value);
+FALCON_CORE_C_API void ListCoupledLabelledDomain_push_back(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle value);
 // @category:read
-size_t ListCoupledLabelledDomain_size(ListCoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API size_t ListCoupledLabelledDomain_size(ListCoupledLabelledDomainHandle handle);
 // @category:read
-bool ListCoupledLabelledDomain_empty(ListCoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API bool ListCoupledLabelledDomain_empty(ListCoupledLabelledDomainHandle handle);
 // @category:write
-void ListCoupledLabelledDomain_erase_at(ListCoupledLabelledDomainHandle handle, size_t idx);
+FALCON_CORE_C_API void ListCoupledLabelledDomain_erase_at(ListCoupledLabelledDomainHandle handle, size_t idx);
 // @category:write
-void ListCoupledLabelledDomain_clear(ListCoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API void ListCoupledLabelledDomain_clear(ListCoupledLabelledDomainHandle handle);
 // @category:read
-CoupledLabelledDomainHandle ListCoupledLabelledDomain_at(ListCoupledLabelledDomainHandle handle, size_t idx);
+FALCON_CORE_C_API CoupledLabelledDomainHandle ListCoupledLabelledDomain_at(ListCoupledLabelledDomainHandle handle, size_t idx);
 // @category:read
-size_t ListCoupledLabelledDomain_items(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t ListCoupledLabelledDomain_items(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool ListCoupledLabelledDomain_contains(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle value);
+FALCON_CORE_C_API bool ListCoupledLabelledDomain_contains(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle value);
 // @category:read
-size_t ListCoupledLabelledDomain_index(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle value);
+FALCON_CORE_C_API size_t ListCoupledLabelledDomain_index(ListCoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle value);
 // @category:read
-ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_intersection(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
+FALCON_CORE_C_API ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_intersection(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
 // @category:read
-bool ListCoupledLabelledDomain_equal(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
+FALCON_CORE_C_API bool ListCoupledLabelledDomain_equal(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
 // @category:read
-bool ListCoupledLabelledDomain_not_equal(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
+FALCON_CORE_C_API bool ListCoupledLabelledDomain_not_equal(ListCoupledLabelledDomainHandle handle, ListCoupledLabelledDomainHandle other);
 
 // @category:read
-StringHandle      ListCoupledLabelledDomain_to_json_string(ListCoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API StringHandle      ListCoupledLabelledDomain_to_json_string(ListCoupledLabelledDomainHandle handle);
 // @category:allocation
-ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_from_json_string(StringHandle json);
+FALCON_CORE_C_API ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

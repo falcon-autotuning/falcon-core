@@ -19,72 +19,72 @@ typedef void* InterpretationContainerStringHandle;
 // Function declarations
 
 // @category:allocation
-InterpretationContainerStringHandle InterpretationContainerString_create(MapInterpretationContextStringHandle contextDoubleMap);
+FALCON_CORE_C_API InterpretationContainerStringHandle InterpretationContainerString_create(MapInterpretationContextStringHandle contextDoubleMap);
 // @category:allocation
 InterpretationContainerStringHandle InterpretationContainerString_copy(InterpretationContainerStringHandle handle);
-// @category:deallocation
+FALCON_CORE_C_API // @category:deallocation
 void InterpretationContainerString_destroy(InterpretationContainerStringHandle handle);
 // @category:read
-SymbolUnitHandle InterpretationContainerString_unit(
+FALCON_CORE_C_API SymbolUnitHandle InterpretationContainerString_unit(
      InterpretationContainerStringHandle handle);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerString_select_by_connection(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerString_select_by_connection(
     InterpretationContainerStringHandle handle, ConnectionHandle connection);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerString_select_by_connections(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerString_select_by_connections(
                     InterpretationContainerStringHandle handle, ConnectionsHandle connections);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerString_select_by_independent_connection(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerString_select_by_independent_connection(
                     InterpretationContainerStringHandle handle, ConnectionHandle connection);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerString_select_by_dependent_connection(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerString_select_by_dependent_connection(
                     InterpretationContainerStringHandle handle, ConnectionHandle connection);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerString_select_contexts(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerString_select_contexts(
     InterpretationContainerStringHandle handle,
     ListConnectionHandle                independent_connections,
     ListConnectionHandle                dependent_connections);
 // @category:write
-void InterpretationContainerString_insert_or_assign(InterpretationContainerStringHandle handle,
+FALCON_CORE_C_API void InterpretationContainerString_insert_or_assign(InterpretationContainerStringHandle handle,
      InterpretationContextHandle   key,
      StringHandle value);
 // @category:write
-void InterpretationContainerString_insert(
+FALCON_CORE_C_API void InterpretationContainerString_insert(
     InterpretationContainerStringHandle handle,
      InterpretationContextHandle   key,
      StringHandle value);
 // @category:read
-StringHandle InterpretationContainerString_at(InterpretationContainerStringHandle handle,
+FALCON_CORE_C_API StringHandle InterpretationContainerString_at(InterpretationContainerStringHandle handle,
      InterpretationContextHandle   key);
 // @category:write
-void InterpretationContainerString_erase(InterpretationContainerStringHandle handle,
+FALCON_CORE_C_API void InterpretationContainerString_erase(InterpretationContainerStringHandle handle,
      InterpretationContextHandle   key);
 // @category:read
-size_t InterpretationContainerString_size(InterpretationContainerStringHandle handle);
+FALCON_CORE_C_API size_t InterpretationContainerString_size(InterpretationContainerStringHandle handle);
 // @category:read
-bool InterpretationContainerString_empty(InterpretationContainerStringHandle handle);
+FALCON_CORE_C_API bool InterpretationContainerString_empty(InterpretationContainerStringHandle handle);
 // @category:write
-void InterpretationContainerString_clear(InterpretationContainerStringHandle handle);
+FALCON_CORE_C_API void InterpretationContainerString_clear(InterpretationContainerStringHandle handle);
 // @category:read
-bool InterpretationContainerString_contains(InterpretationContainerStringHandle handle,
+FALCON_CORE_C_API bool InterpretationContainerString_contains(InterpretationContainerStringHandle handle,
      InterpretationContextHandle   key);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerString_keys(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerString_keys(
                     InterpretationContainerStringHandle handle);
 // @category:read
-ListStringHandle InterpretationContainerString_values(InterpretationContainerStringHandle handle);
+FALCON_CORE_C_API ListStringHandle InterpretationContainerString_values(InterpretationContainerStringHandle handle);
 // @category:read
-ListPairInterpretationContextStringHandle InterpretationContainerString_items(
+FALCON_CORE_C_API ListPairInterpretationContextStringHandle InterpretationContainerString_items(
                     InterpretationContainerStringHandle handle);
 // @category:read
-bool InterpretationContainerString_equal(InterpretationContainerStringHandle handle,InterpretationContainerStringHandle other);
+FALCON_CORE_C_API bool InterpretationContainerString_equal(InterpretationContainerStringHandle handle,InterpretationContainerStringHandle other);
 // @category:read
-bool InterpretationContainerString_not_equal(InterpretationContainerStringHandle handle,InterpretationContainerStringHandle other);
+FALCON_CORE_C_API bool InterpretationContainerString_not_equal(InterpretationContainerStringHandle handle,InterpretationContainerStringHandle other);
 
 // @category:read
-StringHandle      InterpretationContainerString_to_json_string(InterpretationContainerStringHandle handle);
+FALCON_CORE_C_API StringHandle      InterpretationContainerString_to_json_string(InterpretationContainerStringHandle handle);
 // @category:allocation
-InterpretationContainerStringHandle InterpretationContainerString_from_json_string(StringHandle json);
+FALCON_CORE_C_API InterpretationContainerStringHandle InterpretationContainerString_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

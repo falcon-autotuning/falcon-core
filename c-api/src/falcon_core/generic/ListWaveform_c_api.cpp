@@ -1,6 +1,7 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListWaveform_c_api.h"
 #include "falcon_core/Precompiled_c_api.h"
+#include "falcon_core/export_c_api.h"
 #include <falcon_core/instrument_interfaces/Waveform.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 

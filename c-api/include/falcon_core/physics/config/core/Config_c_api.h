@@ -767,7 +767,7 @@ Config_get_isolated_gates_by_channel(ConfigHandle handle);
 FALCON_CORE_C_API GateRelationsHandle
 Config_generate_gate_relations(ConfigHandle handle);
 // @category:read
-ConnectionsHandle Config_screening_gates(ConfigHandle handle);
+FALCON_CORE_C_API ConnectionsHandle Config_screening_gates(ConfigHandle handle);
 // @category:read
 FALCON_CORE_C_API ConnectionsHandle Config_reservoir_gates(ConfigHandle handle);
 // @category:read

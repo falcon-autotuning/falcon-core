@@ -12,23 +12,23 @@ typedef void* PairStringStringHandle;
 // Function declarations
 
 // @category:allocation
-PairStringStringHandle PairStringString_create(StringHandle first, StringHandle second);
+FALCON_CORE_C_API PairStringStringHandle PairStringString_create(StringHandle first, StringHandle second);
 // @category:allocation
-PairStringStringHandle PairStringString_copy(PairStringStringHandle handle);
+FALCON_CORE_C_API PairStringStringHandle PairStringString_copy(PairStringStringHandle handle);
 // @category:deallocation
-void PairStringString_destroy(PairStringStringHandle handle);
+FALCON_CORE_C_API void PairStringString_destroy(PairStringStringHandle handle);
 // @category:read
-StringHandle PairStringString_first(PairStringStringHandle handle);
+FALCON_CORE_C_API StringHandle PairStringString_first(PairStringStringHandle handle);
 // @category:read
-StringHandle PairStringString_second(PairStringStringHandle handle);
+FALCON_CORE_C_API StringHandle PairStringString_second(PairStringStringHandle handle);
 // @category:read
-bool PairStringString_equal(PairStringStringHandle handle, PairStringStringHandle other);
+FALCON_CORE_C_API bool PairStringString_equal(PairStringStringHandle handle, PairStringStringHandle other);
 // @category:read
-bool PairStringString_not_equal(PairStringStringHandle handle, PairStringStringHandle other);
+FALCON_CORE_C_API bool PairStringString_not_equal(PairStringStringHandle handle, PairStringStringHandle other);
 // @category:read
-StringHandle      PairStringString_to_json_string(PairStringStringHandle handle);
+FALCON_CORE_C_API StringHandle      PairStringString_to_json_string(PairStringStringHandle handle);
 // @category:allocation
-PairStringStringHandle PairStringString_from_json_string(StringHandle json);
+FALCON_CORE_C_API PairStringStringHandle PairStringString_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

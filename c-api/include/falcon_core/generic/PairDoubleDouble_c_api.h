@@ -10,23 +10,23 @@ typedef void* PairDoubleDoubleHandle;
 // Function declarations
 
 // @category:allocation
-PairDoubleDoubleHandle PairDoubleDouble_create(double first, double second);
+FALCON_CORE_C_API PairDoubleDoubleHandle PairDoubleDouble_create(double first, double second);
 // @category:allocation
-PairDoubleDoubleHandle PairDoubleDouble_copy(PairDoubleDoubleHandle handle);
+FALCON_CORE_C_API PairDoubleDoubleHandle PairDoubleDouble_copy(PairDoubleDoubleHandle handle);
 // @category:deallocation
-void PairDoubleDouble_destroy(PairDoubleDoubleHandle handle);
+FALCON_CORE_C_API void PairDoubleDouble_destroy(PairDoubleDoubleHandle handle);
 // @category:read
-double PairDoubleDouble_first(PairDoubleDoubleHandle handle);
+FALCON_CORE_C_API double PairDoubleDouble_first(PairDoubleDoubleHandle handle);
 // @category:read
-double PairDoubleDouble_second(PairDoubleDoubleHandle handle);
+FALCON_CORE_C_API double PairDoubleDouble_second(PairDoubleDoubleHandle handle);
 // @category:read
-bool PairDoubleDouble_equal(PairDoubleDoubleHandle handle, PairDoubleDoubleHandle other);
+FALCON_CORE_C_API bool PairDoubleDouble_equal(PairDoubleDoubleHandle handle, PairDoubleDoubleHandle other);
 // @category:read
-bool PairDoubleDouble_not_equal(PairDoubleDoubleHandle handle, PairDoubleDoubleHandle other);
+FALCON_CORE_C_API bool PairDoubleDouble_not_equal(PairDoubleDoubleHandle handle, PairDoubleDoubleHandle other);
 // @category:read
-StringHandle      PairDoubleDouble_to_json_string(PairDoubleDoubleHandle handle);
+FALCON_CORE_C_API StringHandle      PairDoubleDouble_to_json_string(PairDoubleDoubleHandle handle);
 // @category:allocation
-PairDoubleDoubleHandle PairDoubleDouble_from_json_string(StringHandle json);
+FALCON_CORE_C_API PairDoubleDoubleHandle PairDoubleDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -12,42 +12,42 @@ typedef void* AxesDoubleHandle;
 // Function declarations
 
 // @category:allocation
-AxesDoubleHandle AxesDouble_create_empty();
+FALCON_CORE_C_API AxesDoubleHandle AxesDouble_create_empty();
 // @category:allocation
-AxesDoubleHandle AxesDouble_copy(AxesDoubleHandle handle);
+FALCON_CORE_C_API AxesDoubleHandle AxesDouble_copy(AxesDoubleHandle handle);
 // @category:allocation
-AxesDoubleHandle AxesDouble_create(ListDoubleHandle data);
+FALCON_CORE_C_API AxesDoubleHandle AxesDouble_create(ListDoubleHandle data);
 // @category:deallocation
-void AxesDouble_destroy(AxesDoubleHandle handle);
+FALCON_CORE_C_API void AxesDouble_destroy(AxesDoubleHandle handle);
 // @category:write
-void AxesDouble_push_back(AxesDoubleHandle handle, double value);
+FALCON_CORE_C_API void AxesDouble_push_back(AxesDoubleHandle handle, double value);
 // @category:read
-size_t AxesDouble_size(AxesDoubleHandle handle);
+FALCON_CORE_C_API size_t AxesDouble_size(AxesDoubleHandle handle);
 // @category:read
-bool AxesDouble_empty(AxesDoubleHandle handle);
+FALCON_CORE_C_API bool AxesDouble_empty(AxesDoubleHandle handle);
 // @category:write
-void AxesDouble_erase_at(AxesDoubleHandle handle, size_t idx);
+FALCON_CORE_C_API void AxesDouble_erase_at(AxesDoubleHandle handle, size_t idx);
 // @category:write
-void AxesDouble_clear(AxesDoubleHandle handle);
+FALCON_CORE_C_API void AxesDouble_clear(AxesDoubleHandle handle);
 // @category:read
-double AxesDouble_at(AxesDoubleHandle handle, size_t idx);
+FALCON_CORE_C_API double AxesDouble_at(AxesDoubleHandle handle, size_t idx);
 // @category:read
-size_t AxesDouble_items(AxesDoubleHandle handle, double* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t AxesDouble_items(AxesDoubleHandle handle, double* out_buffer, size_t buffer_size);
 // @category:read
-bool AxesDouble_contains(AxesDoubleHandle handle, double value);
+FALCON_CORE_C_API bool AxesDouble_contains(AxesDoubleHandle handle, double value);
 // @category:read
-size_t AxesDouble_index(AxesDoubleHandle handle, double value);
+FALCON_CORE_C_API size_t AxesDouble_index(AxesDoubleHandle handle, double value);
 // @category:read
-AxesDoubleHandle AxesDouble_intersection(AxesDoubleHandle handle, AxesDoubleHandle other);
+FALCON_CORE_C_API AxesDoubleHandle AxesDouble_intersection(AxesDoubleHandle handle, AxesDoubleHandle other);
 // @category:read
-bool AxesDouble_equal(AxesDoubleHandle handle, AxesDoubleHandle other);
+FALCON_CORE_C_API bool AxesDouble_equal(AxesDoubleHandle handle, AxesDoubleHandle other);
 // @category:read
-bool AxesDouble_not_equal(AxesDoubleHandle handle, AxesDoubleHandle other);
+FALCON_CORE_C_API bool AxesDouble_not_equal(AxesDoubleHandle handle, AxesDoubleHandle other);
 
 // @category:read
-StringHandle      AxesDouble_to_json_string(AxesDoubleHandle handle);
+FALCON_CORE_C_API StringHandle      AxesDouble_to_json_string(AxesDoubleHandle handle);
 // @category:allocation
-AxesDoubleHandle AxesDouble_from_json_string(StringHandle json);
+FALCON_CORE_C_API AxesDoubleHandle AxesDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -85,9 +85,9 @@ class HeaderContext:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.file.write(f"""
 // @category:read
-StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle);
+FALCON_CORE_C_API StringHandle      {self.mangled_name()}_to_json_string({self.chandle()} handle);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_from_json_string(StringHandle json);
 """)
         self.file.write("\n#ifdef __cplusplus\n}\n#endif")
         self.file.close()
@@ -133,6 +133,7 @@ class ImplementationContext:
             f"#include <{self.remove_leftmost(self.path).parent}/{self.temp.name}.hpp>\n"
             f'#include "{self.remove_leftmost(self.header_path)}"\n'
             f'#include "falcon_core/Precompiled_c_api.h"\n'
+            f'#include "falcon_core/export_c_api.h"\n'
         )
         for header in self.impl_includes:
             self.file.write(f"#include {header}\n")
@@ -266,46 +267,46 @@ class Entry:
         c_type = self.combo[0]
         if c_type == "StringHandle" or (c_type in c_primitives):
             allocate_signature = f"""// @category:allocation
-{self.chandle()} {self.mangled_name()}_allocate(size_t count);"""
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_allocate(size_t count);"""
         else:
             allocate_signature = ""
         with self.edit_header() as f:
             f.write(f"""
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create_empty();
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create_empty();
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 {allocate_signature}
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_fill_value(size_t count, {c_type} value);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create({c_type}* data, size_t count);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create({c_type}* data, size_t count);
 // @category:deallocation
-void {self.mangled_name()}_destroy({self.chandle()} handle);
+FALCON_CORE_C_API void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value);
+FALCON_CORE_C_API void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value);
 // @category:read
-size_t {self.mangled_name()}_size({self.chandle()} handle);
+FALCON_CORE_C_API size_t {self.mangled_name()}_size({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_empty({self.chandle()} handle);
+FALCON_CORE_C_API bool {self.mangled_name()}_empty({self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx);
+FALCON_CORE_C_API void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx);
 // @category:write
-void {self.mangled_name()}_clear({self.chandle()} handle);
+FALCON_CORE_C_API void {self.mangled_name()}_clear({self.chandle()} handle);
 // @category:read
-{c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx);
+FALCON_CORE_C_API {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx);
 // @category:read
-size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size);
 // @category:read
-bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value);
+FALCON_CORE_C_API bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value);
 // @category:read
-size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
+FALCON_CORE_C_API size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
 // @category:read
-{self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);
 """)
 
     def generate_labelled_arrays_header(self):
@@ -314,63 +315,63 @@ bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} o
         with self.edit_header() as f:
             f.write(f"""
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create(
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create(
     List{c_type} arrays);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:deallocation
-void {self.mangled_name()}_destroy(
+FALCON_CORE_C_API void {self.mangled_name()}_destroy(
     {self.chandle()} handle);
 // @category:read
-List{c_type} {self.mangled_name()}_arrays(
+FALCON_CORE_C_API List{c_type} {self.mangled_name()}_arrays(
     {self.chandle()} handle);
 // @category:read
-ListAcquisitionContextHandle {self.mangled_name()}_labels(
+FALCON_CORE_C_API ListAcquisitionContextHandle {self.mangled_name()}_labels(
     {self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_is_control_arrays(
+FALCON_CORE_C_API bool {self.mangled_name()}_is_control_arrays(
     {self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_is_measured_arrays(
+FALCON_CORE_C_API bool {self.mangled_name()}_is_measured_arrays(
     {self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_push_back(
+FALCON_CORE_C_API void {self.mangled_name()}_push_back(
     {self.chandle()} handle,
     {c_type} value);
 // @category:read
-size_t {self.mangled_name()}_size(
+FALCON_CORE_C_API size_t {self.mangled_name()}_size(
     {self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_empty(
+FALCON_CORE_C_API bool {self.mangled_name()}_empty(
     {self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_erase_at(
+FALCON_CORE_C_API void {self.mangled_name()}_erase_at(
     {self.chandle()} handle, size_t idx);
 // @category:write
-void {self.mangled_name()}_clear(
+FALCON_CORE_C_API void {self.mangled_name()}_clear(
     {self.chandle()} handle);
 // @category:read
-{c_type} {self.mangled_name()}_at(
+FALCON_CORE_C_API {c_type} {self.mangled_name()}_at(
     {self.chandle()} handle, size_t idx);
 // @category:read
-bool {self.mangled_name()}_contains(
+FALCON_CORE_C_API bool {self.mangled_name()}_contains(
     {self.chandle()} handle,
     {c_type} value);
 // @category:read
-size_t {self.mangled_name()}_index(
+FALCON_CORE_C_API size_t {self.mangled_name()}_index(
     {self.chandle()} handle,
     {c_type} value);
 // @category:read
-{self.chandle()}
+FALCON_CORE_C_API {self.chandle()}
 {self.mangled_name()}_intersection(
     {self.chandle()} handle,
     {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_equal(
+FALCON_CORE_C_API bool {self.mangled_name()}_equal(
     {self.chandle()} handle,
     {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal(
+FALCON_CORE_C_API bool {self.mangled_name()}_not_equal(
     {self.chandle()} handle,
     {self.chandle()} other);
 """)
@@ -381,67 +382,67 @@ bool {self.mangled_name()}_not_equal(
         with self.edit_header() as f:
             f.write(f"""
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle contextDoubleMap);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle contextDoubleMap);
 // @category:allocation
 {self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
-// @category:deallocation
+FALCON_CORE_C_API // @category:deallocation
 void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:read
-SymbolUnitHandle {self.mangled_name()}_unit(
+FALCON_CORE_C_API SymbolUnitHandle {self.mangled_name()}_unit(
      {self.chandle()} handle);
 // @category:read
-ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
+FALCON_CORE_C_API ListInterpretationContextHandle {self.mangled_name()}_select_by_connection(
     {self.chandle()} handle, ConnectionHandle connection);
 // @category:read
-ListInterpretationContextHandle {self.mangled_name()}_select_by_connections(
+FALCON_CORE_C_API ListInterpretationContextHandle {self.mangled_name()}_select_by_connections(
                     {self.chandle()} handle, ConnectionsHandle connections);
 // @category:read
-ListInterpretationContextHandle {self.mangled_name()}_select_by_independent_connection(
+FALCON_CORE_C_API ListInterpretationContextHandle {self.mangled_name()}_select_by_independent_connection(
                     {self.chandle()} handle, ConnectionHandle connection);
 // @category:read
-ListInterpretationContextHandle {self.mangled_name()}_select_by_dependent_connection(
+FALCON_CORE_C_API ListInterpretationContextHandle {self.mangled_name()}_select_by_dependent_connection(
                     {self.chandle()} handle, ConnectionHandle connection);
 // @category:read
-ListInterpretationContextHandle {self.mangled_name()}_select_contexts(
+FALCON_CORE_C_API ListInterpretationContextHandle {self.mangled_name()}_select_contexts(
     {self.chandle()} handle,
     ListConnectionHandle                independent_connections,
     ListConnectionHandle                dependent_connections);
 // @category:write
-void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
+FALCON_CORE_C_API void {self.mangled_name()}_insert_or_assign({self.chandle()} handle,
      InterpretationContextHandle   key,
      {c_value_type} value);
 // @category:write
-void {self.mangled_name()}_insert(
+FALCON_CORE_C_API void {self.mangled_name()}_insert(
     {self.chandle()} handle,
      InterpretationContextHandle   key,
      {c_value_type} value);
 // @category:read
-{c_value_type} {self.mangled_name()}_at({self.chandle()} handle,
+FALCON_CORE_C_API {c_value_type} {self.mangled_name()}_at({self.chandle()} handle,
      InterpretationContextHandle   key);
 // @category:write
-void {self.mangled_name()}_erase({self.chandle()} handle,
+FALCON_CORE_C_API void {self.mangled_name()}_erase({self.chandle()} handle,
      InterpretationContextHandle   key);
 // @category:read
-size_t {self.mangled_name()}_size({self.chandle()} handle);
+FALCON_CORE_C_API size_t {self.mangled_name()}_size({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_empty({self.chandle()} handle);
+FALCON_CORE_C_API bool {self.mangled_name()}_empty({self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_clear({self.chandle()} handle);
+FALCON_CORE_C_API void {self.mangled_name()}_clear({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_contains({self.chandle()} handle,
+FALCON_CORE_C_API bool {self.mangled_name()}_contains({self.chandle()} handle,
      InterpretationContextHandle   key);
 // @category:read
-ListInterpretationContextHandle {self.mangled_name()}_keys(
+FALCON_CORE_C_API ListInterpretationContextHandle {self.mangled_name()}_keys(
                     {self.chandle()} handle);
 // @category:read
-List{self.name()}Handle {self.mangled_name()}_values({self.chandle()} handle);
+FALCON_CORE_C_API List{self.name()}Handle {self.mangled_name()}_values({self.chandle()} handle);
 // @category:read
-ListPairInterpretationContext{self.name()}Handle {self.mangled_name()}_items(
+FALCON_CORE_C_API ListPairInterpretationContext{self.name()}Handle {self.mangled_name()}_items(
                     {self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} handle,{self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_equal({self.chandle()} handle,{self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} handle,{self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_not_equal({self.chandle()} handle,{self.chandle()} other);
 """)
 
     def generate_axes_header(self):
@@ -449,37 +450,37 @@ bool {self.mangled_name()}_not_equal({self.chandle()} handle,{self.chandle()} ot
         with self.edit_header() as f:
             f.write(f"""
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create_empty();
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create_empty();
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create(List{self.name()}Handle data);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create(List{self.name()}Handle data);
 // @category:deallocation
-void {self.mangled_name()}_destroy({self.chandle()} handle);
+FALCON_CORE_C_API void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value);
+FALCON_CORE_C_API void {self.mangled_name()}_push_back({self.chandle()} handle, {c_type} value);
 // @category:read
-size_t {self.mangled_name()}_size({self.chandle()} handle);
+FALCON_CORE_C_API size_t {self.mangled_name()}_size({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_empty({self.chandle()} handle);
+FALCON_CORE_C_API bool {self.mangled_name()}_empty({self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx);
+FALCON_CORE_C_API void {self.mangled_name()}_erase_at({self.chandle()} handle, size_t idx);
 // @category:write
-void {self.mangled_name()}_clear({self.chandle()} handle);
+FALCON_CORE_C_API void {self.mangled_name()}_clear({self.chandle()} handle);
 // @category:read
-{c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx);
+FALCON_CORE_C_API {c_type} {self.mangled_name()}_at({self.chandle()} handle, size_t idx);
 // @category:read
-size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t {self.mangled_name()}_items({self.chandle()} handle, {c_type}* out_buffer, size_t buffer_size);
 // @category:read
-bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value);
+FALCON_CORE_C_API bool {self.mangled_name()}_contains({self.chandle()} handle, {c_type} value);
 // @category:read
-size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
+FALCON_CORE_C_API size_t {self.mangled_name()}_index({self.chandle()} handle, {c_type} value);
 // @category:read
-{self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_intersection({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);
 """)
 
     def generate_pair_header(self):
@@ -488,19 +489,19 @@ bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} o
         with self.edit_header() as f:
             f.write(f"""
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create({c_type_1} first, {c_type_2} second);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create({c_type_1} first, {c_type_2} second);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:deallocation
-void {self.mangled_name()}_destroy({self.chandle()} handle);
+FALCON_CORE_C_API void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:read
-{c_type_1} {self.mangled_name()}_first({self.chandle()} handle);
+FALCON_CORE_C_API {c_type_1} {self.mangled_name()}_first({self.chandle()} handle);
 // @category:read
-{c_type_2} {self.mangled_name()}_second({self.chandle()} handle);
+FALCON_CORE_C_API {c_type_2} {self.mangled_name()}_second({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);""")
+FALCON_CORE_C_API bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);""")
 
     def generate_farray_header(self):
         c_type = self.combo[0]
@@ -508,121 +509,121 @@ bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} o
         with self.edit_header() as f:
             f.write(f"""
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create_empty(const size_t* shape, size_t ndim);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create_empty(const size_t* shape, size_t ndim);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create_zeros(const size_t* shape, size_t ndim);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create_zeros(const size_t* shape, size_t ndim);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_from_shape(const size_t* shape, size_t ndim);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_from_data(const {c_type}* data, const size_t* shape, size_t ndim);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_from_data(const {c_type}* data, const size_t* shape, size_t ndim);
 // @category:deallocation
-void {self.mangled_name()}_destroy({self.chandle()} handle);
+FALCON_CORE_C_API void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:read
-size_t {self.mangled_name()}_size({self.chandle()} handle);
+FALCON_CORE_C_API size_t {self.mangled_name()}_size({self.chandle()} handle);
 // @category:read
-size_t {self.mangled_name()}_dimension({self.chandle()} handle);
+FALCON_CORE_C_API size_t {self.mangled_name()}_dimension({self.chandle()} handle);
 // @category:read
-size_t {self.mangled_name()}_shape({self.chandle()} handle,size_t* out_buffer, size_t ndim);
+FALCON_CORE_C_API size_t {self.mangled_name()}_shape({self.chandle()} handle,size_t* out_buffer, size_t ndim);
 // @category:read
-size_t {self.mangled_name()}_data({self.chandle()} handle, {c_type}* out_buffer, size_t numdata);
+FALCON_CORE_C_API size_t {self.mangled_name()}_data({self.chandle()} handle, {c_type}* out_buffer, size_t numdata);
 // @category:write
-void {self.mangled_name()}_plus_equals_farray({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API void {self.mangled_name()}_plus_equals_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:write
-void {self.mangled_name()}_plus_equals_double({self.chandle()} handle, double other);
+FALCON_CORE_C_API void {self.mangled_name()}_plus_equals_double({self.chandle()} handle, double other);
 // @category:write
-void {self.mangled_name()}_plus_equals_int({self.chandle()} handle, int other);
+FALCON_CORE_C_API void {self.mangled_name()}_plus_equals_int({self.chandle()} handle, int other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_plus_farray({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_plus_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_plus_double({self.chandle()} handle,  double other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_plus_double({self.chandle()} handle,  double other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle,  int other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_plus_int({self.chandle()} handle,  int other);
 // @category:write
-void {self.mangled_name()}_minus_equals_farray({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API void {self.mangled_name()}_minus_equals_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:write
-void {self.mangled_name()}_minus_equals_double({self.chandle()} handle,  double other);
+FALCON_CORE_C_API void {self.mangled_name()}_minus_equals_double({self.chandle()} handle,  double other);
 // @category:write
-void {self.mangled_name()}_minus_equals_int({self.chandle()} handle,  int other);
+FALCON_CORE_C_API void {self.mangled_name()}_minus_equals_int({self.chandle()} handle,  int other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_minus_farray({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_minus_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_minus_double({self.chandle()} handle,  double other);
+FALCON_CORE_C_API  {self.chandle()} {self.mangled_name()}_minus_double({self.chandle()} handle,  double other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_minus_int({self.chandle()} handle,  int other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_minus_int({self.chandle()} handle,  int other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_negation({self.chandle()} handle);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_negation({self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_times_equals_farray({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API void {self.mangled_name()}_times_equals_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:write
-void {self.mangled_name()}_times_equals_double({self.chandle()} handle,  double other);
+FALCON_CORE_C_API void {self.mangled_name()}_times_equals_double({self.chandle()} handle,  double other);
 // @category:write
-void {self.mangled_name()}_times_equals_int({self.chandle()} handle,  int other);
+FALCON_CORE_C_API void {self.mangled_name()}_times_equals_int({self.chandle()} handle,  int other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_times_farray({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_times_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_times_double({self.chandle()} handle,  double other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_times_double({self.chandle()} handle,  double other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle,  int other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_times_int({self.chandle()} handle,  int other);
 // @category:write
-void {self.mangled_name()}_divides_equals_farray({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API void {self.mangled_name()}_divides_equals_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:write
-void {self.mangled_name()}_divides_equals_double({self.chandle()} handle,  double other);
+FALCON_CORE_C_API void {self.mangled_name()}_divides_equals_double({self.chandle()} handle,  double other);
 // @category:write
-void {self.mangled_name()}_divides_equals_int({self.chandle()} handle,  int other);
+FALCON_CORE_C_API void {self.mangled_name()}_divides_equals_int({self.chandle()} handle,  int other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_divides_farray({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_divides_farray({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle,  double other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_divides_double({self.chandle()} handle,  double other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle,  int other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_divides_int({self.chandle()} handle,  int other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle,  {c_type} other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_pow({self.chandle()} handle,  {c_type} other);
 // @category:read
-FArrayDoubleHandle {self.mangled_name()}_double_pow({self.chandle()} handle,  double other);
+FALCON_CORE_C_API FArrayDoubleHandle {self.mangled_name()}_double_pow({self.chandle()} handle,  double other);
 // @category:write
-void {self.mangled_name()}_pow_inplace({self.chandle()} handle,  {c_type} other);
+FALCON_CORE_C_API void {self.mangled_name()}_pow_inplace({self.chandle()} handle,  {c_type} other);
 // @category:read
-{self.chandle()} {self.mangled_name()}_abs({self.chandle()} handle);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_abs({self.chandle()} handle);
 // @category:read
-{c_type} {self.mangled_name()}_min({self.chandle()} handle);
+FALCON_CORE_C_API {c_type} {self.mangled_name()}_min({self.chandle()} handle);
 // @category:read
-{self.chandle()} {self.mangled_name()}_min_arraywise({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_min_arraywise({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-{c_type} {self.mangled_name()}_max({self.chandle()} handle);
+FALCON_CORE_C_API {c_type} {self.mangled_name()}_max({self.chandle()} handle);
 // @category:read
-{self.chandle()} {self.mangled_name()}_max_arraywise({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_max_arraywise({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_greater_than({self.chandle()} handle,  {c_type} value);
+FALCON_CORE_C_API bool {self.mangled_name()}_greater_than({self.chandle()} handle,  {c_type} value);
 // @category:read
-bool {self.mangled_name()}_less_than({self.chandle()} handle,  {c_type} value);
+FALCON_CORE_C_API bool {self.mangled_name()}_less_than({self.chandle()} handle,  {c_type} value);
 // @category:write
-void {self.mangled_name()}_remove_offset({self.chandle()} handle,  {c_type} offset);
+FALCON_CORE_C_API void {self.mangled_name()}_remove_offset({self.chandle()} handle,  {c_type} offset);
 // @category:read
-{c_type} {self.mangled_name()}_sum({self.chandle()} handle);
+FALCON_CORE_C_API {c_type} {self.mangled_name()}_sum({self.chandle()} handle);
 // @category:read
-{self.chandle()} {self.mangled_name()}_reshape({self.chandle()} handle, const size_t* shape, size_t ndims);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_reshape({self.chandle()} handle, const size_t* shape, size_t ndims);
 // @category:read
-ListListSizeTHandle {self.mangled_name()}_where({self.chandle()} handle,  {c_type} value);
+FALCON_CORE_C_API ListListSizeTHandle {self.mangled_name()}_where({self.chandle()} handle,  {c_type} value);
 // @category:read
-{self.chandle()} {self.mangled_name()}_flip({self.chandle()} handle, size_t axis);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_flip({self.chandle()} handle, size_t axis);
 // @category:read
-size_t {self.mangled_name()}_full_gradient({self.chandle()} handle, {self.chandle()}* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t {self.mangled_name()}_full_gradient({self.chandle()} handle, {self.chandle()}* out_buffer, size_t buffer_size);
 // @category:read
-{self.chandle()} {self.mangled_name()}_gradient({self.chandle()} handle, size_t axis);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_gradient({self.chandle()} handle, size_t axis);
 // @category:read
-double {self.mangled_name()}_get_sum_of_squares({self.chandle()} handle);
+FALCON_CORE_C_API double {self.mangled_name()}_get_sum_of_squares({self.chandle()} handle);
 // @category:read
-double {self.mangled_name()}_get_summed_diff_int_of_squares({self.chandle()} handle,  int other);
+FALCON_CORE_C_API double {self.mangled_name()}_get_summed_diff_int_of_squares({self.chandle()} handle,  int other);
 // @category:read
-double {self.mangled_name()}_get_summed_diff_double_of_squares({self.chandle()} handle,  double other);
+FALCON_CORE_C_API double {self.mangled_name()}_get_summed_diff_double_of_squares({self.chandle()} handle,  double other);
 // @category:read
-double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} handle, {self.chandle()} other);""")
+FALCON_CORE_C_API double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} handle, {self.chandle()} other);""")
 
     def generate_map_header(self):
         c_key_type = self.combo[0]
@@ -633,39 +634,39 @@ double {self.mangled_name()}_get_summed_diff_array_of_squares({self.chandle()} h
         with self.edit_header() as f:
             f.write(f"""
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create_empty();
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create_empty();
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_create(Pair{name}Handle* data, size_t count);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create(Pair{name}Handle* data, size_t count);
 // @category:deallocation
-void {self.mangled_name()}_destroy({self.chandle()} handle);
+FALCON_CORE_C_API void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_insert_or_assign({self.chandle()} handle, {c_key_type} key, {c_value_type} value);
+FALCON_CORE_C_API void {self.mangled_name()}_insert_or_assign({self.chandle()} handle, {c_key_type} key, {c_value_type} value);
 // @category:write
-void {self.mangled_name()}_insert({self.chandle()} handle, {c_key_type} key, {c_value_type} value);
+FALCON_CORE_C_API void {self.mangled_name()}_insert({self.chandle()} handle, {c_key_type} key, {c_value_type} value);
 // @category:read
-{c_value_type} {self.mangled_name()}_at({self.chandle()} handle, {c_key_type} key);
+FALCON_CORE_C_API {c_value_type} {self.mangled_name()}_at({self.chandle()} handle, {c_key_type} key);
 // @category:write
-void {self.mangled_name()}_erase({self.chandle()} handle, {c_key_type} key);
+FALCON_CORE_C_API void {self.mangled_name()}_erase({self.chandle()} handle, {c_key_type} key);
 // @category:read
-size_t {self.mangled_name()}_size({self.chandle()} handle);
+FALCON_CORE_C_API size_t {self.mangled_name()}_size({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_empty({self.chandle()} handle);
+FALCON_CORE_C_API bool {self.mangled_name()}_empty({self.chandle()} handle);
 // @category:write
-void {self.mangled_name()}_clear({self.chandle()} handle);
+FALCON_CORE_C_API void {self.mangled_name()}_clear({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_contains({self.chandle()} handle, {c_key_type} key);
+FALCON_CORE_C_API bool {self.mangled_name()}_contains({self.chandle()} handle, {c_key_type} key);
 // @category:read
-List{key_name}Handle {self.mangled_name()}_keys({self.chandle()} handle);
+FALCON_CORE_C_API List{key_name}Handle {self.mangled_name()}_keys({self.chandle()} handle);
 // @category:read
-List{value_name}Handle {self.mangled_name()}_values({self.chandle()} handle);
+FALCON_CORE_C_API List{value_name}Handle {self.mangled_name()}_values({self.chandle()} handle);
 // @category:read
-ListPair{name}Handle {self.mangled_name()}_items({self.chandle()} handle);
+FALCON_CORE_C_API  ListPair{name}Handle {self.mangled_name()}_items({self.chandle()} handle);
 // @category:read
-bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
+FALCON_CORE_C_API bool {self.mangled_name()}_equal({self.chandle()} handle, {self.chandle()} other);
 // @category:read
-bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);""")
+FALCON_CORE_C_API bool {self.mangled_name()}_not_equal({self.chandle()} handle, {self.chandle()} other);""")
 
     def error_type_handling(self, type: str) -> str:
         if type == "bool":

@@ -13,43 +13,43 @@ typedef void* MapConnectionQuantityHandle;
 // Function declarations
 
 // @category:allocation
-MapConnectionQuantityHandle MapConnectionQuantity_create_empty();
+FALCON_CORE_C_API MapConnectionQuantityHandle MapConnectionQuantity_create_empty();
 // @category:allocation
-MapConnectionQuantityHandle MapConnectionQuantity_copy(MapConnectionQuantityHandle handle);
+FALCON_CORE_C_API MapConnectionQuantityHandle MapConnectionQuantity_copy(MapConnectionQuantityHandle handle);
 // @category:allocation
-MapConnectionQuantityHandle MapConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count);
+FALCON_CORE_C_API MapConnectionQuantityHandle MapConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count);
 // @category:deallocation
-void MapConnectionQuantity_destroy(MapConnectionQuantityHandle handle);
+FALCON_CORE_C_API void MapConnectionQuantity_destroy(MapConnectionQuantityHandle handle);
 // @category:write
-void MapConnectionQuantity_insert_or_assign(MapConnectionQuantityHandle handle, ConnectionHandle key, QuantityHandle value);
+FALCON_CORE_C_API void MapConnectionQuantity_insert_or_assign(MapConnectionQuantityHandle handle, ConnectionHandle key, QuantityHandle value);
 // @category:write
-void MapConnectionQuantity_insert(MapConnectionQuantityHandle handle, ConnectionHandle key, QuantityHandle value);
+FALCON_CORE_C_API void MapConnectionQuantity_insert(MapConnectionQuantityHandle handle, ConnectionHandle key, QuantityHandle value);
 // @category:read
-QuantityHandle MapConnectionQuantity_at(MapConnectionQuantityHandle handle, ConnectionHandle key);
+FALCON_CORE_C_API QuantityHandle MapConnectionQuantity_at(MapConnectionQuantityHandle handle, ConnectionHandle key);
 // @category:write
-void MapConnectionQuantity_erase(MapConnectionQuantityHandle handle, ConnectionHandle key);
+FALCON_CORE_C_API void MapConnectionQuantity_erase(MapConnectionQuantityHandle handle, ConnectionHandle key);
 // @category:read
-size_t MapConnectionQuantity_size(MapConnectionQuantityHandle handle);
+FALCON_CORE_C_API size_t MapConnectionQuantity_size(MapConnectionQuantityHandle handle);
 // @category:read
-bool MapConnectionQuantity_empty(MapConnectionQuantityHandle handle);
+FALCON_CORE_C_API bool MapConnectionQuantity_empty(MapConnectionQuantityHandle handle);
 // @category:write
-void MapConnectionQuantity_clear(MapConnectionQuantityHandle handle);
+FALCON_CORE_C_API void MapConnectionQuantity_clear(MapConnectionQuantityHandle handle);
 // @category:read
-bool MapConnectionQuantity_contains(MapConnectionQuantityHandle handle, ConnectionHandle key);
+FALCON_CORE_C_API bool MapConnectionQuantity_contains(MapConnectionQuantityHandle handle, ConnectionHandle key);
 // @category:read
-ListConnectionHandle MapConnectionQuantity_keys(MapConnectionQuantityHandle handle);
+FALCON_CORE_C_API ListConnectionHandle MapConnectionQuantity_keys(MapConnectionQuantityHandle handle);
 // @category:read
-ListQuantityHandle MapConnectionQuantity_values(MapConnectionQuantityHandle handle);
+FALCON_CORE_C_API ListQuantityHandle MapConnectionQuantity_values(MapConnectionQuantityHandle handle);
 // @category:read
-ListPairConnectionQuantityHandle MapConnectionQuantity_items(MapConnectionQuantityHandle handle);
+FALCON_CORE_C_API  ListPairConnectionQuantityHandle MapConnectionQuantity_items(MapConnectionQuantityHandle handle);
 // @category:read
-bool MapConnectionQuantity_equal(MapConnectionQuantityHandle handle, MapConnectionQuantityHandle other);
+FALCON_CORE_C_API bool MapConnectionQuantity_equal(MapConnectionQuantityHandle handle, MapConnectionQuantityHandle other);
 // @category:read
-bool MapConnectionQuantity_not_equal(MapConnectionQuantityHandle handle, MapConnectionQuantityHandle other);
+FALCON_CORE_C_API bool MapConnectionQuantity_not_equal(MapConnectionQuantityHandle handle, MapConnectionQuantityHandle other);
 // @category:read
-StringHandle      MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle);
+FALCON_CORE_C_API StringHandle      MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle);
 // @category:allocation
-MapConnectionQuantityHandle MapConnectionQuantity_from_json_string(StringHandle json);
+FALCON_CORE_C_API MapConnectionQuantityHandle MapConnectionQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

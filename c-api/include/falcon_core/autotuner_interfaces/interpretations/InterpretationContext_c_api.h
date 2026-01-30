@@ -1,5 +1,4 @@
 #pragma once
-#include <fstream>
 #ifdef __cplusplus
 extern "C" {
 #endif

@@ -12,45 +12,45 @@ typedef void* ListPairConnectionConnectionsHandle;
 // Function declarations
 
 // @category:allocation
-ListPairConnectionConnectionsHandle ListPairConnectionConnections_create_empty();
+FALCON_CORE_C_API ListPairConnectionConnectionsHandle ListPairConnectionConnections_create_empty();
 // @category:allocation
-ListPairConnectionConnectionsHandle ListPairConnectionConnections_copy(ListPairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API ListPairConnectionConnectionsHandle ListPairConnectionConnections_copy(ListPairConnectionConnectionsHandle handle);
 
 // @category:allocation
-ListPairConnectionConnectionsHandle ListPairConnectionConnections_fill_value(size_t count, PairConnectionConnectionsHandle value);
+FALCON_CORE_C_API ListPairConnectionConnectionsHandle ListPairConnectionConnections_fill_value(size_t count, PairConnectionConnectionsHandle value);
 // @category:allocation
-ListPairConnectionConnectionsHandle ListPairConnectionConnections_create(PairConnectionConnectionsHandle* data, size_t count);
+FALCON_CORE_C_API ListPairConnectionConnectionsHandle ListPairConnectionConnections_create(PairConnectionConnectionsHandle* data, size_t count);
 // @category:deallocation
-void ListPairConnectionConnections_destroy(ListPairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API void ListPairConnectionConnections_destroy(ListPairConnectionConnectionsHandle handle);
 // @category:write
-void ListPairConnectionConnections_push_back(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
+FALCON_CORE_C_API void ListPairConnectionConnections_push_back(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
 // @category:read
-size_t ListPairConnectionConnections_size(ListPairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API size_t ListPairConnectionConnections_size(ListPairConnectionConnectionsHandle handle);
 // @category:read
-bool ListPairConnectionConnections_empty(ListPairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API bool ListPairConnectionConnections_empty(ListPairConnectionConnectionsHandle handle);
 // @category:write
-void ListPairConnectionConnections_erase_at(ListPairConnectionConnectionsHandle handle, size_t idx);
+FALCON_CORE_C_API void ListPairConnectionConnections_erase_at(ListPairConnectionConnectionsHandle handle, size_t idx);
 // @category:write
-void ListPairConnectionConnections_clear(ListPairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API void ListPairConnectionConnections_clear(ListPairConnectionConnectionsHandle handle);
 // @category:read
-PairConnectionConnectionsHandle ListPairConnectionConnections_at(ListPairConnectionConnectionsHandle handle, size_t idx);
+FALCON_CORE_C_API PairConnectionConnectionsHandle ListPairConnectionConnections_at(ListPairConnectionConnectionsHandle handle, size_t idx);
 // @category:read
-size_t ListPairConnectionConnections_items(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t ListPairConnectionConnections_items(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool ListPairConnectionConnections_contains(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
+FALCON_CORE_C_API bool ListPairConnectionConnections_contains(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
 // @category:read
-size_t ListPairConnectionConnections_index(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
+FALCON_CORE_C_API size_t ListPairConnectionConnections_index(ListPairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle value);
 // @category:read
-ListPairConnectionConnectionsHandle ListPairConnectionConnections_intersection(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other);
+FALCON_CORE_C_API ListPairConnectionConnectionsHandle ListPairConnectionConnections_intersection(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other);
 // @category:read
-bool ListPairConnectionConnections_equal(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other);
+FALCON_CORE_C_API bool ListPairConnectionConnections_equal(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other);
 // @category:read
-bool ListPairConnectionConnections_not_equal(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other);
+FALCON_CORE_C_API bool ListPairConnectionConnections_not_equal(ListPairConnectionConnectionsHandle handle, ListPairConnectionConnectionsHandle other);
 
 // @category:read
-StringHandle      ListPairConnectionConnections_to_json_string(ListPairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API StringHandle      ListPairConnectionConnections_to_json_string(ListPairConnectionConnectionsHandle handle);
 // @category:allocation
-ListPairConnectionConnectionsHandle ListPairConnectionConnections_from_json_string(StringHandle json);
+FALCON_CORE_C_API ListPairConnectionConnectionsHandle ListPairConnectionConnections_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -12,23 +12,23 @@ typedef void* PairGnameGroupHandle;
 // Function declarations
 
 // @category:allocation
-PairGnameGroupHandle PairGnameGroup_create(GnameHandle first, GroupHandle second);
+FALCON_CORE_C_API PairGnameGroupHandle PairGnameGroup_create(GnameHandle first, GroupHandle second);
 // @category:allocation
-PairGnameGroupHandle PairGnameGroup_copy(PairGnameGroupHandle handle);
+FALCON_CORE_C_API PairGnameGroupHandle PairGnameGroup_copy(PairGnameGroupHandle handle);
 // @category:deallocation
-void PairGnameGroup_destroy(PairGnameGroupHandle handle);
+FALCON_CORE_C_API void PairGnameGroup_destroy(PairGnameGroupHandle handle);
 // @category:read
-GnameHandle PairGnameGroup_first(PairGnameGroupHandle handle);
+FALCON_CORE_C_API GnameHandle PairGnameGroup_first(PairGnameGroupHandle handle);
 // @category:read
-GroupHandle PairGnameGroup_second(PairGnameGroupHandle handle);
+FALCON_CORE_C_API GroupHandle PairGnameGroup_second(PairGnameGroupHandle handle);
 // @category:read
-bool PairGnameGroup_equal(PairGnameGroupHandle handle, PairGnameGroupHandle other);
+FALCON_CORE_C_API bool PairGnameGroup_equal(PairGnameGroupHandle handle, PairGnameGroupHandle other);
 // @category:read
-bool PairGnameGroup_not_equal(PairGnameGroupHandle handle, PairGnameGroupHandle other);
+FALCON_CORE_C_API bool PairGnameGroup_not_equal(PairGnameGroupHandle handle, PairGnameGroupHandle other);
 // @category:read
-StringHandle      PairGnameGroup_to_json_string(PairGnameGroupHandle handle);
+FALCON_CORE_C_API StringHandle      PairGnameGroup_to_json_string(PairGnameGroupHandle handle);
 // @category:allocation
-PairGnameGroupHandle PairGnameGroup_from_json_string(StringHandle json);
+FALCON_CORE_C_API PairGnameGroupHandle PairGnameGroup_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

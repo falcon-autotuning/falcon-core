@@ -11,23 +11,23 @@ typedef void* PairConnectionFloatHandle;
 // Function declarations
 
 // @category:allocation
-PairConnectionFloatHandle PairConnectionFloat_create(ConnectionHandle first, float second);
+FALCON_CORE_C_API PairConnectionFloatHandle PairConnectionFloat_create(ConnectionHandle first, float second);
 // @category:allocation
-PairConnectionFloatHandle PairConnectionFloat_copy(PairConnectionFloatHandle handle);
+FALCON_CORE_C_API PairConnectionFloatHandle PairConnectionFloat_copy(PairConnectionFloatHandle handle);
 // @category:deallocation
-void PairConnectionFloat_destroy(PairConnectionFloatHandle handle);
+FALCON_CORE_C_API void PairConnectionFloat_destroy(PairConnectionFloatHandle handle);
 // @category:read
-ConnectionHandle PairConnectionFloat_first(PairConnectionFloatHandle handle);
+FALCON_CORE_C_API ConnectionHandle PairConnectionFloat_first(PairConnectionFloatHandle handle);
 // @category:read
-float PairConnectionFloat_second(PairConnectionFloatHandle handle);
+FALCON_CORE_C_API float PairConnectionFloat_second(PairConnectionFloatHandle handle);
 // @category:read
-bool PairConnectionFloat_equal(PairConnectionFloatHandle handle, PairConnectionFloatHandle other);
+FALCON_CORE_C_API bool PairConnectionFloat_equal(PairConnectionFloatHandle handle, PairConnectionFloatHandle other);
 // @category:read
-bool PairConnectionFloat_not_equal(PairConnectionFloatHandle handle, PairConnectionFloatHandle other);
+FALCON_CORE_C_API bool PairConnectionFloat_not_equal(PairConnectionFloatHandle handle, PairConnectionFloatHandle other);
 // @category:read
-StringHandle      PairConnectionFloat_to_json_string(PairConnectionFloatHandle handle);
+FALCON_CORE_C_API StringHandle      PairConnectionFloat_to_json_string(PairConnectionFloatHandle handle);
 // @category:allocation
-PairConnectionFloatHandle PairConnectionFloat_from_json_string(StringHandle json);
+FALCON_CORE_C_API PairConnectionFloatHandle PairConnectionFloat_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

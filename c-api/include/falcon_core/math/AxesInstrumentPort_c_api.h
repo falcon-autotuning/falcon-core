@@ -13,42 +13,42 @@ typedef void* AxesInstrumentPortHandle;
 // Function declarations
 
 // @category:allocation
-AxesInstrumentPortHandle AxesInstrumentPort_create_empty();
+FALCON_CORE_C_API AxesInstrumentPortHandle AxesInstrumentPort_create_empty();
 // @category:allocation
-AxesInstrumentPortHandle AxesInstrumentPort_copy(AxesInstrumentPortHandle handle);
+FALCON_CORE_C_API AxesInstrumentPortHandle AxesInstrumentPort_copy(AxesInstrumentPortHandle handle);
 // @category:allocation
-AxesInstrumentPortHandle AxesInstrumentPort_create(ListInstrumentPortHandle data);
+FALCON_CORE_C_API AxesInstrumentPortHandle AxesInstrumentPort_create(ListInstrumentPortHandle data);
 // @category:deallocation
-void AxesInstrumentPort_destroy(AxesInstrumentPortHandle handle);
+FALCON_CORE_C_API void AxesInstrumentPort_destroy(AxesInstrumentPortHandle handle);
 // @category:write
-void AxesInstrumentPort_push_back(AxesInstrumentPortHandle handle, InstrumentPortHandle value);
+FALCON_CORE_C_API void AxesInstrumentPort_push_back(AxesInstrumentPortHandle handle, InstrumentPortHandle value);
 // @category:read
-size_t AxesInstrumentPort_size(AxesInstrumentPortHandle handle);
+FALCON_CORE_C_API size_t AxesInstrumentPort_size(AxesInstrumentPortHandle handle);
 // @category:read
-bool AxesInstrumentPort_empty(AxesInstrumentPortHandle handle);
+FALCON_CORE_C_API bool AxesInstrumentPort_empty(AxesInstrumentPortHandle handle);
 // @category:write
-void AxesInstrumentPort_erase_at(AxesInstrumentPortHandle handle, size_t idx);
+FALCON_CORE_C_API void AxesInstrumentPort_erase_at(AxesInstrumentPortHandle handle, size_t idx);
 // @category:write
-void AxesInstrumentPort_clear(AxesInstrumentPortHandle handle);
+FALCON_CORE_C_API void AxesInstrumentPort_clear(AxesInstrumentPortHandle handle);
 // @category:read
-InstrumentPortHandle AxesInstrumentPort_at(AxesInstrumentPortHandle handle, size_t idx);
+FALCON_CORE_C_API InstrumentPortHandle AxesInstrumentPort_at(AxesInstrumentPortHandle handle, size_t idx);
 // @category:read
-size_t AxesInstrumentPort_items(AxesInstrumentPortHandle handle, InstrumentPortHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t AxesInstrumentPort_items(AxesInstrumentPortHandle handle, InstrumentPortHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool AxesInstrumentPort_contains(AxesInstrumentPortHandle handle, InstrumentPortHandle value);
+FALCON_CORE_C_API bool AxesInstrumentPort_contains(AxesInstrumentPortHandle handle, InstrumentPortHandle value);
 // @category:read
-size_t AxesInstrumentPort_index(AxesInstrumentPortHandle handle, InstrumentPortHandle value);
+FALCON_CORE_C_API size_t AxesInstrumentPort_index(AxesInstrumentPortHandle handle, InstrumentPortHandle value);
 // @category:read
-AxesInstrumentPortHandle AxesInstrumentPort_intersection(AxesInstrumentPortHandle handle, AxesInstrumentPortHandle other);
+FALCON_CORE_C_API AxesInstrumentPortHandle AxesInstrumentPort_intersection(AxesInstrumentPortHandle handle, AxesInstrumentPortHandle other);
 // @category:read
-bool AxesInstrumentPort_equal(AxesInstrumentPortHandle handle, AxesInstrumentPortHandle other);
+FALCON_CORE_C_API bool AxesInstrumentPort_equal(AxesInstrumentPortHandle handle, AxesInstrumentPortHandle other);
 // @category:read
-bool AxesInstrumentPort_not_equal(AxesInstrumentPortHandle handle, AxesInstrumentPortHandle other);
+FALCON_CORE_C_API bool AxesInstrumentPort_not_equal(AxesInstrumentPortHandle handle, AxesInstrumentPortHandle other);
 
 // @category:read
-StringHandle      AxesInstrumentPort_to_json_string(AxesInstrumentPortHandle handle);
+FALCON_CORE_C_API StringHandle      AxesInstrumentPort_to_json_string(AxesInstrumentPortHandle handle);
 // @category:allocation
-AxesInstrumentPortHandle AxesInstrumentPort_from_json_string(StringHandle json);
+FALCON_CORE_C_API AxesInstrumentPortHandle AxesInstrumentPort_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

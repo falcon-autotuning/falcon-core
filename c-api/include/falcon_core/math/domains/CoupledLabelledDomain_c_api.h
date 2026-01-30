@@ -12,35 +12,37 @@ extern "C" {
 typedef void* CoupledLabelledDomainHandle;
 
 // @category:allocation
-CoupledLabelledDomainHandle CoupledLabelledDomain_copy(
-    CoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API CoupledLabelledDomainHandle
+CoupledLabelledDomain_copy(CoupledLabelledDomainHandle handle);
 // @category:deallocation
-void CoupledLabelledDomain_destroy(CoupledLabelledDomainHandle handle);
-// @category:read
-bool CoupledLabelledDomain_equal(CoupledLabelledDomainHandle handle,
-                                 CoupledLabelledDomainHandle other);
-// @category:read
-bool CoupledLabelledDomain_not_equal(CoupledLabelledDomainHandle handle,
-                                     CoupledLabelledDomainHandle other);
-// @category:read
-StringHandle CoupledLabelledDomain_to_json_string(
+FALCON_CORE_C_API void CoupledLabelledDomain_destroy(
     CoupledLabelledDomainHandle handle);
+// @category:read
+FALCON_CORE_C_API bool CoupledLabelledDomain_equal(
+    CoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle other);
+// @category:read
+FALCON_CORE_C_API bool CoupledLabelledDomain_not_equal(
+    CoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle other);
+// @category:read
+FALCON_CORE_C_API StringHandle
+CoupledLabelledDomain_to_json_string(CoupledLabelledDomainHandle handle);
 // @category:allocation
-CoupledLabelledDomainHandle CoupledLabelledDomain_from_json_string(
-    StringHandle json);
+FALCON_CORE_C_API CoupledLabelledDomainHandle
+CoupledLabelledDomain_from_json_string(StringHandle json);
 // @category:allocation
-CoupledLabelledDomainHandle CoupledLabelledDomain_create_empty();
+FALCON_CORE_C_API CoupledLabelledDomainHandle
+CoupledLabelledDomain_create_empty();
 // @category:allocation
-CoupledLabelledDomainHandle CoupledLabelledDomain_create(
-    ListLabelledDomainHandle items);
+FALCON_CORE_C_API CoupledLabelledDomainHandle
+CoupledLabelledDomain_create(ListLabelledDomainHandle items);
 // @category:read
 /* AUTO-DOC from cpp: CoupledLabelledDomain_domains |
  * falcon_core::math::domains::CoupledLabelledDomain::domains */
 /**
  * @brief Get all domains.
  */
-ListLabelledDomainHandle CoupledLabelledDomain_domains(
-    CoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API ListLabelledDomainHandle
+CoupledLabelledDomain_domains(CoupledLabelledDomainHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: CoupledLabelledDomain_labels |
  * falcon_core::math::domains::CoupledLabelledDomain::labels */
@@ -48,7 +50,8 @@ ListLabelledDomainHandle CoupledLabelledDomain_domains(
  * @brief Get all labels.
  * @return Vector of shared pointers to labels.
  */
-PortsHandle CoupledLabelledDomain_labels(CoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API PortsHandle
+CoupledLabelledDomain_labels(CoupledLabelledDomainHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: CoupledLabelledDomain_get_domain |
  * falcon_core::math::domains::CoupledLabelledDomain::get_domain */
@@ -58,38 +61,42 @@ PortsHandle CoupledLabelledDomain_labels(CoupledLabelledDomainHandle handle);
  * @return Shared pointer to the matching domain.
  * @throws std::runtime_error if not found.
  */
-LabelledDomainHandle CoupledLabelledDomain_get_domain(
+FALCON_CORE_C_API LabelledDomainHandle CoupledLabelledDomain_get_domain(
     CoupledLabelledDomainHandle handle, InstrumentPortHandle search);
 // @category:read
-CoupledLabelledDomainHandle CoupledLabelledDomain_intersection(
-    CoupledLabelledDomainHandle handle, CoupledLabelledDomainHandle other);
+FALCON_CORE_C_API CoupledLabelledDomainHandle
+CoupledLabelledDomain_intersection(CoupledLabelledDomainHandle handle,
+                                   CoupledLabelledDomainHandle other);
 // @category:write
-void CoupledLabelledDomain_push_back(CoupledLabelledDomainHandle handle,
-                                     LabelledDomainHandle        value);
+FALCON_CORE_C_API void CoupledLabelledDomain_push_back(
+    CoupledLabelledDomainHandle handle, LabelledDomainHandle value);
 // @category:read
-size_t CoupledLabelledDomain_size(CoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API size_t
+CoupledLabelledDomain_size(CoupledLabelledDomainHandle handle);
 // @category:read
-bool CoupledLabelledDomain_empty(CoupledLabelledDomainHandle handle);
+FALCON_CORE_C_API bool CoupledLabelledDomain_empty(
+    CoupledLabelledDomainHandle handle);
 // @category:write
-void CoupledLabelledDomain_erase_at(CoupledLabelledDomainHandle handle,
-                                    size_t                      idx);
-// @category:write
-void CoupledLabelledDomain_clear(CoupledLabelledDomainHandle handle);
-// @category:read
-LabelledDomainHandle CoupledLabelledDomain_const_at(
+FALCON_CORE_C_API void CoupledLabelledDomain_erase_at(
     CoupledLabelledDomainHandle handle, size_t idx);
-// @category:read
-LabelledDomainHandle CoupledLabelledDomain_at(
-    CoupledLabelledDomainHandle handle, size_t idx);
-// @category:read
-ListLabelledDomainHandle CoupledLabelledDomain_items(
+// @category:write
+FALCON_CORE_C_API void CoupledLabelledDomain_clear(
     CoupledLabelledDomainHandle handle);
 // @category:read
-bool CoupledLabelledDomain_contains(CoupledLabelledDomainHandle handle,
-                                    LabelledDomainHandle        value);
+FALCON_CORE_C_API LabelledDomainHandle
+CoupledLabelledDomain_const_at(CoupledLabelledDomainHandle handle, size_t idx);
 // @category:read
-size_t CoupledLabelledDomain_index(CoupledLabelledDomainHandle handle,
-                                   LabelledDomainHandle        value);
+FALCON_CORE_C_API LabelledDomainHandle
+CoupledLabelledDomain_at(CoupledLabelledDomainHandle handle, size_t idx);
+// @category:read
+FALCON_CORE_C_API ListLabelledDomainHandle
+CoupledLabelledDomain_items(CoupledLabelledDomainHandle handle);
+// @category:read
+FALCON_CORE_C_API bool CoupledLabelledDomain_contains(
+    CoupledLabelledDomainHandle handle, LabelledDomainHandle value);
+// @category:read
+FALCON_CORE_C_API size_t CoupledLabelledDomain_index(
+    CoupledLabelledDomainHandle handle, LabelledDomainHandle value);
 
 #ifdef __cplusplus
 }

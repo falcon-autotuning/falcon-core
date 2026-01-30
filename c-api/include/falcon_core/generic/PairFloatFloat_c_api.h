@@ -10,23 +10,23 @@ typedef void* PairFloatFloatHandle;
 // Function declarations
 
 // @category:allocation
-PairFloatFloatHandle PairFloatFloat_create(float first, float second);
+FALCON_CORE_C_API PairFloatFloatHandle PairFloatFloat_create(float first, float second);
 // @category:allocation
-PairFloatFloatHandle PairFloatFloat_copy(PairFloatFloatHandle handle);
+FALCON_CORE_C_API PairFloatFloatHandle PairFloatFloat_copy(PairFloatFloatHandle handle);
 // @category:deallocation
-void PairFloatFloat_destroy(PairFloatFloatHandle handle);
+FALCON_CORE_C_API void PairFloatFloat_destroy(PairFloatFloatHandle handle);
 // @category:read
-float PairFloatFloat_first(PairFloatFloatHandle handle);
+FALCON_CORE_C_API float PairFloatFloat_first(PairFloatFloatHandle handle);
 // @category:read
-float PairFloatFloat_second(PairFloatFloatHandle handle);
+FALCON_CORE_C_API float PairFloatFloat_second(PairFloatFloatHandle handle);
 // @category:read
-bool PairFloatFloat_equal(PairFloatFloatHandle handle, PairFloatFloatHandle other);
+FALCON_CORE_C_API bool PairFloatFloat_equal(PairFloatFloatHandle handle, PairFloatFloatHandle other);
 // @category:read
-bool PairFloatFloat_not_equal(PairFloatFloatHandle handle, PairFloatFloatHandle other);
+FALCON_CORE_C_API bool PairFloatFloat_not_equal(PairFloatFloatHandle handle, PairFloatFloatHandle other);
 // @category:read
-StringHandle      PairFloatFloat_to_json_string(PairFloatFloatHandle handle);
+FALCON_CORE_C_API StringHandle      PairFloatFloat_to_json_string(PairFloatFloatHandle handle);
 // @category:allocation
-PairFloatFloatHandle PairFloatFloat_from_json_string(StringHandle json);
+FALCON_CORE_C_API PairFloatFloatHandle PairFloatFloat_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

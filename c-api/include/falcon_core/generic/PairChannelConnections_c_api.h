@@ -12,23 +12,23 @@ typedef void* PairChannelConnectionsHandle;
 // Function declarations
 
 // @category:allocation
-PairChannelConnectionsHandle PairChannelConnections_create(ChannelHandle first, ConnectionsHandle second);
+FALCON_CORE_C_API PairChannelConnectionsHandle PairChannelConnections_create(ChannelHandle first, ConnectionsHandle second);
 // @category:allocation
-PairChannelConnectionsHandle PairChannelConnections_copy(PairChannelConnectionsHandle handle);
+FALCON_CORE_C_API PairChannelConnectionsHandle PairChannelConnections_copy(PairChannelConnectionsHandle handle);
 // @category:deallocation
-void PairChannelConnections_destroy(PairChannelConnectionsHandle handle);
+FALCON_CORE_C_API void PairChannelConnections_destroy(PairChannelConnectionsHandle handle);
 // @category:read
-ChannelHandle PairChannelConnections_first(PairChannelConnectionsHandle handle);
+FALCON_CORE_C_API ChannelHandle PairChannelConnections_first(PairChannelConnectionsHandle handle);
 // @category:read
-ConnectionsHandle PairChannelConnections_second(PairChannelConnectionsHandle handle);
+FALCON_CORE_C_API ConnectionsHandle PairChannelConnections_second(PairChannelConnectionsHandle handle);
 // @category:read
-bool PairChannelConnections_equal(PairChannelConnectionsHandle handle, PairChannelConnectionsHandle other);
+FALCON_CORE_C_API bool PairChannelConnections_equal(PairChannelConnectionsHandle handle, PairChannelConnectionsHandle other);
 // @category:read
-bool PairChannelConnections_not_equal(PairChannelConnectionsHandle handle, PairChannelConnectionsHandle other);
+FALCON_CORE_C_API bool PairChannelConnections_not_equal(PairChannelConnectionsHandle handle, PairChannelConnectionsHandle other);
 // @category:read
-StringHandle      PairChannelConnections_to_json_string(PairChannelConnectionsHandle handle);
+FALCON_CORE_C_API StringHandle      PairChannelConnections_to_json_string(PairChannelConnectionsHandle handle);
 // @category:allocation
-PairChannelConnectionsHandle PairChannelConnections_from_json_string(StringHandle json);
+FALCON_CORE_C_API PairChannelConnectionsHandle PairChannelConnections_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

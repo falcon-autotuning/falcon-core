@@ -1,6 +1,7 @@
 #include <falcon_core/generic/Map.hpp>
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/Precompiled_c_api.h"
+#include "falcon_core/export_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/math/Quantity.hpp>
 #include <falcon_core/autotuner_interfaces/interpretations/InterpretationContext.hpp>

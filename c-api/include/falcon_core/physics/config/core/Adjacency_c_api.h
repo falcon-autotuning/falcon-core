@@ -13,9 +13,9 @@ extern "C" {
 typedef void* AdjacencyHandle;
 
 // @category:allocation
-AdjacencyHandle Adjacency_copy(AdjacencyHandle handle);
+FALCON_CORE_C_API AdjacencyHandle Adjacency_copy(AdjacencyHandle handle);
 // @category:deallocation
-void Adjacency_destroy(AdjacencyHandle handle);
+FALCON_CORE_C_API void Adjacency_destroy(AdjacencyHandle handle);
 // @category:read
 FALCON_CORE_C_API bool Adjacency_equal(AdjacencyHandle handle,
                                        AdjacencyHandle other);

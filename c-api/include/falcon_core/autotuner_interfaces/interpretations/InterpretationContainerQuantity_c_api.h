@@ -19,72 +19,72 @@ typedef void* InterpretationContainerQuantityHandle;
 // Function declarations
 
 // @category:allocation
-InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(MapInterpretationContextQuantityHandle contextDoubleMap);
+FALCON_CORE_C_API InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(MapInterpretationContextQuantityHandle contextDoubleMap);
 // @category:allocation
 InterpretationContainerQuantityHandle InterpretationContainerQuantity_copy(InterpretationContainerQuantityHandle handle);
-// @category:deallocation
+FALCON_CORE_C_API // @category:deallocation
 void InterpretationContainerQuantity_destroy(InterpretationContainerQuantityHandle handle);
 // @category:read
-SymbolUnitHandle InterpretationContainerQuantity_unit(
+FALCON_CORE_C_API SymbolUnitHandle InterpretationContainerQuantity_unit(
      InterpretationContainerQuantityHandle handle);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerQuantity_select_by_connection(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerQuantity_select_by_connection(
     InterpretationContainerQuantityHandle handle, ConnectionHandle connection);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerQuantity_select_by_connections(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerQuantity_select_by_connections(
                     InterpretationContainerQuantityHandle handle, ConnectionsHandle connections);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerQuantity_select_by_independent_connection(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerQuantity_select_by_independent_connection(
                     InterpretationContainerQuantityHandle handle, ConnectionHandle connection);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerQuantity_select_by_dependent_connection(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerQuantity_select_by_dependent_connection(
                     InterpretationContainerQuantityHandle handle, ConnectionHandle connection);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerQuantity_select_contexts(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerQuantity_select_contexts(
     InterpretationContainerQuantityHandle handle,
     ListConnectionHandle                independent_connections,
     ListConnectionHandle                dependent_connections);
 // @category:write
-void InterpretationContainerQuantity_insert_or_assign(InterpretationContainerQuantityHandle handle,
+FALCON_CORE_C_API void InterpretationContainerQuantity_insert_or_assign(InterpretationContainerQuantityHandle handle,
      InterpretationContextHandle   key,
      QuantityHandle value);
 // @category:write
-void InterpretationContainerQuantity_insert(
+FALCON_CORE_C_API void InterpretationContainerQuantity_insert(
     InterpretationContainerQuantityHandle handle,
      InterpretationContextHandle   key,
      QuantityHandle value);
 // @category:read
-QuantityHandle InterpretationContainerQuantity_at(InterpretationContainerQuantityHandle handle,
+FALCON_CORE_C_API QuantityHandle InterpretationContainerQuantity_at(InterpretationContainerQuantityHandle handle,
      InterpretationContextHandle   key);
 // @category:write
-void InterpretationContainerQuantity_erase(InterpretationContainerQuantityHandle handle,
+FALCON_CORE_C_API void InterpretationContainerQuantity_erase(InterpretationContainerQuantityHandle handle,
      InterpretationContextHandle   key);
 // @category:read
-size_t InterpretationContainerQuantity_size(InterpretationContainerQuantityHandle handle);
+FALCON_CORE_C_API size_t InterpretationContainerQuantity_size(InterpretationContainerQuantityHandle handle);
 // @category:read
-bool InterpretationContainerQuantity_empty(InterpretationContainerQuantityHandle handle);
+FALCON_CORE_C_API bool InterpretationContainerQuantity_empty(InterpretationContainerQuantityHandle handle);
 // @category:write
-void InterpretationContainerQuantity_clear(InterpretationContainerQuantityHandle handle);
+FALCON_CORE_C_API void InterpretationContainerQuantity_clear(InterpretationContainerQuantityHandle handle);
 // @category:read
-bool InterpretationContainerQuantity_contains(InterpretationContainerQuantityHandle handle,
+FALCON_CORE_C_API bool InterpretationContainerQuantity_contains(InterpretationContainerQuantityHandle handle,
      InterpretationContextHandle   key);
 // @category:read
-ListInterpretationContextHandle InterpretationContainerQuantity_keys(
+FALCON_CORE_C_API ListInterpretationContextHandle InterpretationContainerQuantity_keys(
                     InterpretationContainerQuantityHandle handle);
 // @category:read
-ListQuantityHandle InterpretationContainerQuantity_values(InterpretationContainerQuantityHandle handle);
+FALCON_CORE_C_API ListQuantityHandle InterpretationContainerQuantity_values(InterpretationContainerQuantityHandle handle);
 // @category:read
-ListPairInterpretationContextQuantityHandle InterpretationContainerQuantity_items(
+FALCON_CORE_C_API ListPairInterpretationContextQuantityHandle InterpretationContainerQuantity_items(
                     InterpretationContainerQuantityHandle handle);
 // @category:read
-bool InterpretationContainerQuantity_equal(InterpretationContainerQuantityHandle handle,InterpretationContainerQuantityHandle other);
+FALCON_CORE_C_API bool InterpretationContainerQuantity_equal(InterpretationContainerQuantityHandle handle,InterpretationContainerQuantityHandle other);
 // @category:read
-bool InterpretationContainerQuantity_not_equal(InterpretationContainerQuantityHandle handle,InterpretationContainerQuantityHandle other);
+FALCON_CORE_C_API bool InterpretationContainerQuantity_not_equal(InterpretationContainerQuantityHandle handle,InterpretationContainerQuantityHandle other);
 
 // @category:read
-StringHandle      InterpretationContainerQuantity_to_json_string(InterpretationContainerQuantityHandle handle);
+FALCON_CORE_C_API StringHandle      InterpretationContainerQuantity_to_json_string(InterpretationContainerQuantityHandle handle);
 // @category:allocation
-InterpretationContainerQuantityHandle InterpretationContainerQuantity_from_json_string(StringHandle json);
+FALCON_CORE_C_API InterpretationContainerQuantityHandle InterpretationContainerQuantity_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

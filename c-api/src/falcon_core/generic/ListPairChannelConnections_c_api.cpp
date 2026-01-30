@@ -1,6 +1,7 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListPairChannelConnections_c_api.h"
 #include "falcon_core/Precompiled_c_api.h"
+#include "falcon_core/export_c_api.h"
 #include <falcon_core/generic/Pair.hpp>
 #include <falcon_core/autotuner_interfaces/names/Channel.hpp>
 #include <falcon_core/physics/device_structures/Connections.hpp>

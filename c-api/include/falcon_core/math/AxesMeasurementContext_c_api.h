@@ -13,42 +13,42 @@ typedef void* AxesMeasurementContextHandle;
 // Function declarations
 
 // @category:allocation
-AxesMeasurementContextHandle AxesMeasurementContext_create_empty();
+FALCON_CORE_C_API AxesMeasurementContextHandle AxesMeasurementContext_create_empty();
 // @category:allocation
-AxesMeasurementContextHandle AxesMeasurementContext_copy(AxesMeasurementContextHandle handle);
+FALCON_CORE_C_API AxesMeasurementContextHandle AxesMeasurementContext_copy(AxesMeasurementContextHandle handle);
 // @category:allocation
-AxesMeasurementContextHandle AxesMeasurementContext_create(ListMeasurementContextHandle data);
+FALCON_CORE_C_API AxesMeasurementContextHandle AxesMeasurementContext_create(ListMeasurementContextHandle data);
 // @category:deallocation
-void AxesMeasurementContext_destroy(AxesMeasurementContextHandle handle);
+FALCON_CORE_C_API void AxesMeasurementContext_destroy(AxesMeasurementContextHandle handle);
 // @category:write
-void AxesMeasurementContext_push_back(AxesMeasurementContextHandle handle, MeasurementContextHandle value);
+FALCON_CORE_C_API void AxesMeasurementContext_push_back(AxesMeasurementContextHandle handle, MeasurementContextHandle value);
 // @category:read
-size_t AxesMeasurementContext_size(AxesMeasurementContextHandle handle);
+FALCON_CORE_C_API size_t AxesMeasurementContext_size(AxesMeasurementContextHandle handle);
 // @category:read
-bool AxesMeasurementContext_empty(AxesMeasurementContextHandle handle);
+FALCON_CORE_C_API bool AxesMeasurementContext_empty(AxesMeasurementContextHandle handle);
 // @category:write
-void AxesMeasurementContext_erase_at(AxesMeasurementContextHandle handle, size_t idx);
+FALCON_CORE_C_API void AxesMeasurementContext_erase_at(AxesMeasurementContextHandle handle, size_t idx);
 // @category:write
-void AxesMeasurementContext_clear(AxesMeasurementContextHandle handle);
+FALCON_CORE_C_API void AxesMeasurementContext_clear(AxesMeasurementContextHandle handle);
 // @category:read
-MeasurementContextHandle AxesMeasurementContext_at(AxesMeasurementContextHandle handle, size_t idx);
+FALCON_CORE_C_API MeasurementContextHandle AxesMeasurementContext_at(AxesMeasurementContextHandle handle, size_t idx);
 // @category:read
-size_t AxesMeasurementContext_items(AxesMeasurementContextHandle handle, MeasurementContextHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t AxesMeasurementContext_items(AxesMeasurementContextHandle handle, MeasurementContextHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool AxesMeasurementContext_contains(AxesMeasurementContextHandle handle, MeasurementContextHandle value);
+FALCON_CORE_C_API bool AxesMeasurementContext_contains(AxesMeasurementContextHandle handle, MeasurementContextHandle value);
 // @category:read
-size_t AxesMeasurementContext_index(AxesMeasurementContextHandle handle, MeasurementContextHandle value);
+FALCON_CORE_C_API size_t AxesMeasurementContext_index(AxesMeasurementContextHandle handle, MeasurementContextHandle value);
 // @category:read
-AxesMeasurementContextHandle AxesMeasurementContext_intersection(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
+FALCON_CORE_C_API AxesMeasurementContextHandle AxesMeasurementContext_intersection(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
 // @category:read
-bool AxesMeasurementContext_equal(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
+FALCON_CORE_C_API bool AxesMeasurementContext_equal(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
 // @category:read
-bool AxesMeasurementContext_not_equal(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
+FALCON_CORE_C_API bool AxesMeasurementContext_not_equal(AxesMeasurementContextHandle handle, AxesMeasurementContextHandle other);
 
 // @category:read
-StringHandle      AxesMeasurementContext_to_json_string(AxesMeasurementContextHandle handle);
+FALCON_CORE_C_API StringHandle      AxesMeasurementContext_to_json_string(AxesMeasurementContextHandle handle);
 // @category:allocation
-AxesMeasurementContextHandle AxesMeasurementContext_from_json_string(StringHandle json);
+FALCON_CORE_C_API AxesMeasurementContextHandle AxesMeasurementContext_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

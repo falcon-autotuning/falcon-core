@@ -13,70 +13,70 @@ typedef void* LabelledArraysLabelledControlArrayHandle;
 // Function declarations
 
 // @category:allocation
-LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_create(
+FALCON_CORE_C_API LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_create(
     ListLabelledControlArrayHandle arrays);
 // @category:allocation
-LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_copy(LabelledArraysLabelledControlArrayHandle handle);
+FALCON_CORE_C_API LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_copy(LabelledArraysLabelledControlArrayHandle handle);
 // @category:deallocation
-void LabelledArraysLabelledControlArray_destroy(
+FALCON_CORE_C_API void LabelledArraysLabelledControlArray_destroy(
     LabelledArraysLabelledControlArrayHandle handle);
 // @category:read
-ListLabelledControlArrayHandle LabelledArraysLabelledControlArray_arrays(
+FALCON_CORE_C_API ListLabelledControlArrayHandle LabelledArraysLabelledControlArray_arrays(
     LabelledArraysLabelledControlArrayHandle handle);
 // @category:read
-ListAcquisitionContextHandle LabelledArraysLabelledControlArray_labels(
+FALCON_CORE_C_API ListAcquisitionContextHandle LabelledArraysLabelledControlArray_labels(
     LabelledArraysLabelledControlArrayHandle handle);
 // @category:read
-bool LabelledArraysLabelledControlArray_is_control_arrays(
+FALCON_CORE_C_API bool LabelledArraysLabelledControlArray_is_control_arrays(
     LabelledArraysLabelledControlArrayHandle handle);
 // @category:read
-bool LabelledArraysLabelledControlArray_is_measured_arrays(
+FALCON_CORE_C_API bool LabelledArraysLabelledControlArray_is_measured_arrays(
     LabelledArraysLabelledControlArrayHandle handle);
 // @category:write
-void LabelledArraysLabelledControlArray_push_back(
+FALCON_CORE_C_API void LabelledArraysLabelledControlArray_push_back(
     LabelledArraysLabelledControlArrayHandle handle,
     LabelledControlArrayHandle value);
 // @category:read
-size_t LabelledArraysLabelledControlArray_size(
+FALCON_CORE_C_API size_t LabelledArraysLabelledControlArray_size(
     LabelledArraysLabelledControlArrayHandle handle);
 // @category:read
-bool LabelledArraysLabelledControlArray_empty(
+FALCON_CORE_C_API bool LabelledArraysLabelledControlArray_empty(
     LabelledArraysLabelledControlArrayHandle handle);
 // @category:write
-void LabelledArraysLabelledControlArray_erase_at(
+FALCON_CORE_C_API void LabelledArraysLabelledControlArray_erase_at(
     LabelledArraysLabelledControlArrayHandle handle, size_t idx);
 // @category:write
-void LabelledArraysLabelledControlArray_clear(
+FALCON_CORE_C_API void LabelledArraysLabelledControlArray_clear(
     LabelledArraysLabelledControlArrayHandle handle);
 // @category:read
-LabelledControlArrayHandle LabelledArraysLabelledControlArray_at(
+FALCON_CORE_C_API LabelledControlArrayHandle LabelledArraysLabelledControlArray_at(
     LabelledArraysLabelledControlArrayHandle handle, size_t idx);
 // @category:read
-bool LabelledArraysLabelledControlArray_contains(
+FALCON_CORE_C_API bool LabelledArraysLabelledControlArray_contains(
     LabelledArraysLabelledControlArrayHandle handle,
     LabelledControlArrayHandle value);
 // @category:read
-size_t LabelledArraysLabelledControlArray_index(
+FALCON_CORE_C_API size_t LabelledArraysLabelledControlArray_index(
     LabelledArraysLabelledControlArrayHandle handle,
     LabelledControlArrayHandle value);
 // @category:read
-LabelledArraysLabelledControlArrayHandle
+FALCON_CORE_C_API LabelledArraysLabelledControlArrayHandle
 LabelledArraysLabelledControlArray_intersection(
     LabelledArraysLabelledControlArrayHandle handle,
     LabelledArraysLabelledControlArrayHandle other);
 // @category:read
-bool LabelledArraysLabelledControlArray_equal(
+FALCON_CORE_C_API bool LabelledArraysLabelledControlArray_equal(
     LabelledArraysLabelledControlArrayHandle handle,
     LabelledArraysLabelledControlArrayHandle other);
 // @category:read
-bool LabelledArraysLabelledControlArray_not_equal(
+FALCON_CORE_C_API bool LabelledArraysLabelledControlArray_not_equal(
     LabelledArraysLabelledControlArrayHandle handle,
     LabelledArraysLabelledControlArrayHandle other);
 
 // @category:read
-StringHandle      LabelledArraysLabelledControlArray_to_json_string(LabelledArraysLabelledControlArrayHandle handle);
+FALCON_CORE_C_API StringHandle      LabelledArraysLabelledControlArray_to_json_string(LabelledArraysLabelledControlArrayHandle handle);
 // @category:allocation
-LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_from_json_string(StringHandle json);
+FALCON_CORE_C_API LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

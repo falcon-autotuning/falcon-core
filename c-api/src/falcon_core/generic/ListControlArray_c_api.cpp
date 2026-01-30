@@ -1,6 +1,7 @@
 #include <falcon_core/generic/List.hpp>
 #include "falcon_core/generic/ListControlArray_c_api.h"
 #include "falcon_core/Precompiled_c_api.h"
+#include "falcon_core/export_c_api.h"
 #include <falcon_core/math/arrays/ControlArray.hpp>
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 

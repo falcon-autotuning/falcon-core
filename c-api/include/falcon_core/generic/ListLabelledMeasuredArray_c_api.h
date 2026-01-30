@@ -12,45 +12,45 @@ typedef void* ListLabelledMeasuredArrayHandle;
 // Function declarations
 
 // @category:allocation
-ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_create_empty();
+FALCON_CORE_C_API ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_create_empty();
 // @category:allocation
-ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_copy(ListLabelledMeasuredArrayHandle handle);
+FALCON_CORE_C_API ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_copy(ListLabelledMeasuredArrayHandle handle);
 
 // @category:allocation
-ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_fill_value(size_t count, LabelledMeasuredArrayHandle value);
+FALCON_CORE_C_API ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_fill_value(size_t count, LabelledMeasuredArrayHandle value);
 // @category:allocation
-ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_create(LabelledMeasuredArrayHandle* data, size_t count);
+FALCON_CORE_C_API ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_create(LabelledMeasuredArrayHandle* data, size_t count);
 // @category:deallocation
-void ListLabelledMeasuredArray_destroy(ListLabelledMeasuredArrayHandle handle);
+FALCON_CORE_C_API void ListLabelledMeasuredArray_destroy(ListLabelledMeasuredArrayHandle handle);
 // @category:write
-void ListLabelledMeasuredArray_push_back(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value);
+FALCON_CORE_C_API void ListLabelledMeasuredArray_push_back(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value);
 // @category:read
-size_t ListLabelledMeasuredArray_size(ListLabelledMeasuredArrayHandle handle);
+FALCON_CORE_C_API size_t ListLabelledMeasuredArray_size(ListLabelledMeasuredArrayHandle handle);
 // @category:read
-bool ListLabelledMeasuredArray_empty(ListLabelledMeasuredArrayHandle handle);
+FALCON_CORE_C_API bool ListLabelledMeasuredArray_empty(ListLabelledMeasuredArrayHandle handle);
 // @category:write
-void ListLabelledMeasuredArray_erase_at(ListLabelledMeasuredArrayHandle handle, size_t idx);
+FALCON_CORE_C_API void ListLabelledMeasuredArray_erase_at(ListLabelledMeasuredArrayHandle handle, size_t idx);
 // @category:write
-void ListLabelledMeasuredArray_clear(ListLabelledMeasuredArrayHandle handle);
+FALCON_CORE_C_API void ListLabelledMeasuredArray_clear(ListLabelledMeasuredArrayHandle handle);
 // @category:read
-LabelledMeasuredArrayHandle ListLabelledMeasuredArray_at(ListLabelledMeasuredArrayHandle handle, size_t idx);
+FALCON_CORE_C_API LabelledMeasuredArrayHandle ListLabelledMeasuredArray_at(ListLabelledMeasuredArrayHandle handle, size_t idx);
 // @category:read
-size_t ListLabelledMeasuredArray_items(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t ListLabelledMeasuredArray_items(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool ListLabelledMeasuredArray_contains(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value);
+FALCON_CORE_C_API bool ListLabelledMeasuredArray_contains(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value);
 // @category:read
-size_t ListLabelledMeasuredArray_index(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value);
+FALCON_CORE_C_API size_t ListLabelledMeasuredArray_index(ListLabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle value);
 // @category:read
-ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_intersection(ListLabelledMeasuredArrayHandle handle, ListLabelledMeasuredArrayHandle other);
+FALCON_CORE_C_API ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_intersection(ListLabelledMeasuredArrayHandle handle, ListLabelledMeasuredArrayHandle other);
 // @category:read
-bool ListLabelledMeasuredArray_equal(ListLabelledMeasuredArrayHandle handle, ListLabelledMeasuredArrayHandle other);
+FALCON_CORE_C_API bool ListLabelledMeasuredArray_equal(ListLabelledMeasuredArrayHandle handle, ListLabelledMeasuredArrayHandle other);
 // @category:read
-bool ListLabelledMeasuredArray_not_equal(ListLabelledMeasuredArrayHandle handle, ListLabelledMeasuredArrayHandle other);
+FALCON_CORE_C_API bool ListLabelledMeasuredArray_not_equal(ListLabelledMeasuredArrayHandle handle, ListLabelledMeasuredArrayHandle other);
 
 // @category:read
-StringHandle      ListLabelledMeasuredArray_to_json_string(ListLabelledMeasuredArrayHandle handle);
+FALCON_CORE_C_API StringHandle      ListLabelledMeasuredArray_to_json_string(ListLabelledMeasuredArrayHandle handle);
 // @category:allocation
-ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_from_json_string(StringHandle json);
+FALCON_CORE_C_API ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

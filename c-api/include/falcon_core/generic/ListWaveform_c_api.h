@@ -12,45 +12,45 @@ typedef void* ListWaveformHandle;
 // Function declarations
 
 // @category:allocation
-ListWaveformHandle ListWaveform_create_empty();
+FALCON_CORE_C_API ListWaveformHandle ListWaveform_create_empty();
 // @category:allocation
-ListWaveformHandle ListWaveform_copy(ListWaveformHandle handle);
+FALCON_CORE_C_API ListWaveformHandle ListWaveform_copy(ListWaveformHandle handle);
 
 // @category:allocation
-ListWaveformHandle ListWaveform_fill_value(size_t count, WaveformHandle value);
+FALCON_CORE_C_API ListWaveformHandle ListWaveform_fill_value(size_t count, WaveformHandle value);
 // @category:allocation
-ListWaveformHandle ListWaveform_create(WaveformHandle* data, size_t count);
+FALCON_CORE_C_API ListWaveformHandle ListWaveform_create(WaveformHandle* data, size_t count);
 // @category:deallocation
-void ListWaveform_destroy(ListWaveformHandle handle);
+FALCON_CORE_C_API void ListWaveform_destroy(ListWaveformHandle handle);
 // @category:write
-void ListWaveform_push_back(ListWaveformHandle handle, WaveformHandle value);
+FALCON_CORE_C_API void ListWaveform_push_back(ListWaveformHandle handle, WaveformHandle value);
 // @category:read
-size_t ListWaveform_size(ListWaveformHandle handle);
+FALCON_CORE_C_API size_t ListWaveform_size(ListWaveformHandle handle);
 // @category:read
-bool ListWaveform_empty(ListWaveformHandle handle);
+FALCON_CORE_C_API bool ListWaveform_empty(ListWaveformHandle handle);
 // @category:write
-void ListWaveform_erase_at(ListWaveformHandle handle, size_t idx);
+FALCON_CORE_C_API void ListWaveform_erase_at(ListWaveformHandle handle, size_t idx);
 // @category:write
-void ListWaveform_clear(ListWaveformHandle handle);
+FALCON_CORE_C_API void ListWaveform_clear(ListWaveformHandle handle);
 // @category:read
-WaveformHandle ListWaveform_at(ListWaveformHandle handle, size_t idx);
+FALCON_CORE_C_API WaveformHandle ListWaveform_at(ListWaveformHandle handle, size_t idx);
 // @category:read
-size_t ListWaveform_items(ListWaveformHandle handle, WaveformHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t ListWaveform_items(ListWaveformHandle handle, WaveformHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool ListWaveform_contains(ListWaveformHandle handle, WaveformHandle value);
+FALCON_CORE_C_API bool ListWaveform_contains(ListWaveformHandle handle, WaveformHandle value);
 // @category:read
-size_t ListWaveform_index(ListWaveformHandle handle, WaveformHandle value);
+FALCON_CORE_C_API size_t ListWaveform_index(ListWaveformHandle handle, WaveformHandle value);
 // @category:read
-ListWaveformHandle ListWaveform_intersection(ListWaveformHandle handle, ListWaveformHandle other);
+FALCON_CORE_C_API ListWaveformHandle ListWaveform_intersection(ListWaveformHandle handle, ListWaveformHandle other);
 // @category:read
-bool ListWaveform_equal(ListWaveformHandle handle, ListWaveformHandle other);
+FALCON_CORE_C_API bool ListWaveform_equal(ListWaveformHandle handle, ListWaveformHandle other);
 // @category:read
-bool ListWaveform_not_equal(ListWaveformHandle handle, ListWaveformHandle other);
+FALCON_CORE_C_API bool ListWaveform_not_equal(ListWaveformHandle handle, ListWaveformHandle other);
 
 // @category:read
-StringHandle      ListWaveform_to_json_string(ListWaveformHandle handle);
+FALCON_CORE_C_API StringHandle      ListWaveform_to_json_string(ListWaveformHandle handle);
 // @category:allocation
-ListWaveformHandle ListWaveform_from_json_string(StringHandle json);
+FALCON_CORE_C_API ListWaveformHandle ListWaveform_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

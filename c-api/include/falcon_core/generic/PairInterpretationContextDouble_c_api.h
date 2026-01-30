@@ -11,23 +11,23 @@ typedef void* PairInterpretationContextDoubleHandle;
 // Function declarations
 
 // @category:allocation
-PairInterpretationContextDoubleHandle PairInterpretationContextDouble_create(InterpretationContextHandle first, double second);
+FALCON_CORE_C_API PairInterpretationContextDoubleHandle PairInterpretationContextDouble_create(InterpretationContextHandle first, double second);
 // @category:allocation
-PairInterpretationContextDoubleHandle PairInterpretationContextDouble_copy(PairInterpretationContextDoubleHandle handle);
+FALCON_CORE_C_API PairInterpretationContextDoubleHandle PairInterpretationContextDouble_copy(PairInterpretationContextDoubleHandle handle);
 // @category:deallocation
-void PairInterpretationContextDouble_destroy(PairInterpretationContextDoubleHandle handle);
+FALCON_CORE_C_API void PairInterpretationContextDouble_destroy(PairInterpretationContextDoubleHandle handle);
 // @category:read
-InterpretationContextHandle PairInterpretationContextDouble_first(PairInterpretationContextDoubleHandle handle);
+FALCON_CORE_C_API InterpretationContextHandle PairInterpretationContextDouble_first(PairInterpretationContextDoubleHandle handle);
 // @category:read
-double PairInterpretationContextDouble_second(PairInterpretationContextDoubleHandle handle);
+FALCON_CORE_C_API double PairInterpretationContextDouble_second(PairInterpretationContextDoubleHandle handle);
 // @category:read
-bool PairInterpretationContextDouble_equal(PairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle other);
+FALCON_CORE_C_API bool PairInterpretationContextDouble_equal(PairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle other);
 // @category:read
-bool PairInterpretationContextDouble_not_equal(PairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle other);
+FALCON_CORE_C_API bool PairInterpretationContextDouble_not_equal(PairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle other);
 // @category:read
-StringHandle      PairInterpretationContextDouble_to_json_string(PairInterpretationContextDoubleHandle handle);
+FALCON_CORE_C_API StringHandle      PairInterpretationContextDouble_to_json_string(PairInterpretationContextDoubleHandle handle);
 // @category:allocation
-PairInterpretationContextDoubleHandle PairInterpretationContextDouble_from_json_string(StringHandle json);
+FALCON_CORE_C_API PairInterpretationContextDoubleHandle PairInterpretationContextDouble_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

@@ -11,23 +11,23 @@ typedef void* PairConnectionConnectionsHandle;
 // Function declarations
 
 // @category:allocation
-PairConnectionConnectionsHandle PairConnectionConnections_create(ConnectionHandle first, ConnectionsHandle second);
+FALCON_CORE_C_API PairConnectionConnectionsHandle PairConnectionConnections_create(ConnectionHandle first, ConnectionsHandle second);
 // @category:allocation
-PairConnectionConnectionsHandle PairConnectionConnections_copy(PairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API PairConnectionConnectionsHandle PairConnectionConnections_copy(PairConnectionConnectionsHandle handle);
 // @category:deallocation
-void PairConnectionConnections_destroy(PairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API void PairConnectionConnections_destroy(PairConnectionConnectionsHandle handle);
 // @category:read
-ConnectionHandle PairConnectionConnections_first(PairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API ConnectionHandle PairConnectionConnections_first(PairConnectionConnectionsHandle handle);
 // @category:read
-ConnectionsHandle PairConnectionConnections_second(PairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API ConnectionsHandle PairConnectionConnections_second(PairConnectionConnectionsHandle handle);
 // @category:read
-bool PairConnectionConnections_equal(PairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle other);
+FALCON_CORE_C_API bool PairConnectionConnections_equal(PairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle other);
 // @category:read
-bool PairConnectionConnections_not_equal(PairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle other);
+FALCON_CORE_C_API bool PairConnectionConnections_not_equal(PairConnectionConnectionsHandle handle, PairConnectionConnectionsHandle other);
 // @category:read
-StringHandle      PairConnectionConnections_to_json_string(PairConnectionConnectionsHandle handle);
+FALCON_CORE_C_API StringHandle      PairConnectionConnections_to_json_string(PairConnectionConnectionsHandle handle);
 // @category:allocation
-PairConnectionConnectionsHandle PairConnectionConnections_from_json_string(StringHandle json);
+FALCON_CORE_C_API PairConnectionConnectionsHandle PairConnectionConnections_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }

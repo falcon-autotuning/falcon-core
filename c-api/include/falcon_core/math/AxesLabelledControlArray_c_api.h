@@ -13,42 +13,42 @@ typedef void* AxesLabelledControlArrayHandle;
 // Function declarations
 
 // @category:allocation
-AxesLabelledControlArrayHandle AxesLabelledControlArray_create_empty();
+FALCON_CORE_C_API AxesLabelledControlArrayHandle AxesLabelledControlArray_create_empty();
 // @category:allocation
-AxesLabelledControlArrayHandle AxesLabelledControlArray_copy(AxesLabelledControlArrayHandle handle);
+FALCON_CORE_C_API AxesLabelledControlArrayHandle AxesLabelledControlArray_copy(AxesLabelledControlArrayHandle handle);
 // @category:allocation
-AxesLabelledControlArrayHandle AxesLabelledControlArray_create(ListLabelledControlArrayHandle data);
+FALCON_CORE_C_API AxesLabelledControlArrayHandle AxesLabelledControlArray_create(ListLabelledControlArrayHandle data);
 // @category:deallocation
-void AxesLabelledControlArray_destroy(AxesLabelledControlArrayHandle handle);
+FALCON_CORE_C_API void AxesLabelledControlArray_destroy(AxesLabelledControlArrayHandle handle);
 // @category:write
-void AxesLabelledControlArray_push_back(AxesLabelledControlArrayHandle handle, LabelledControlArrayHandle value);
+FALCON_CORE_C_API void AxesLabelledControlArray_push_back(AxesLabelledControlArrayHandle handle, LabelledControlArrayHandle value);
 // @category:read
-size_t AxesLabelledControlArray_size(AxesLabelledControlArrayHandle handle);
+FALCON_CORE_C_API size_t AxesLabelledControlArray_size(AxesLabelledControlArrayHandle handle);
 // @category:read
-bool AxesLabelledControlArray_empty(AxesLabelledControlArrayHandle handle);
+FALCON_CORE_C_API bool AxesLabelledControlArray_empty(AxesLabelledControlArrayHandle handle);
 // @category:write
-void AxesLabelledControlArray_erase_at(AxesLabelledControlArrayHandle handle, size_t idx);
+FALCON_CORE_C_API void AxesLabelledControlArray_erase_at(AxesLabelledControlArrayHandle handle, size_t idx);
 // @category:write
-void AxesLabelledControlArray_clear(AxesLabelledControlArrayHandle handle);
+FALCON_CORE_C_API void AxesLabelledControlArray_clear(AxesLabelledControlArrayHandle handle);
 // @category:read
-LabelledControlArrayHandle AxesLabelledControlArray_at(AxesLabelledControlArrayHandle handle, size_t idx);
+FALCON_CORE_C_API LabelledControlArrayHandle AxesLabelledControlArray_at(AxesLabelledControlArrayHandle handle, size_t idx);
 // @category:read
-size_t AxesLabelledControlArray_items(AxesLabelledControlArrayHandle handle, LabelledControlArrayHandle* out_buffer, size_t buffer_size);
+FALCON_CORE_C_API size_t AxesLabelledControlArray_items(AxesLabelledControlArrayHandle handle, LabelledControlArrayHandle* out_buffer, size_t buffer_size);
 // @category:read
-bool AxesLabelledControlArray_contains(AxesLabelledControlArrayHandle handle, LabelledControlArrayHandle value);
+FALCON_CORE_C_API bool AxesLabelledControlArray_contains(AxesLabelledControlArrayHandle handle, LabelledControlArrayHandle value);
 // @category:read
-size_t AxesLabelledControlArray_index(AxesLabelledControlArrayHandle handle, LabelledControlArrayHandle value);
+FALCON_CORE_C_API size_t AxesLabelledControlArray_index(AxesLabelledControlArrayHandle handle, LabelledControlArrayHandle value);
 // @category:read
-AxesLabelledControlArrayHandle AxesLabelledControlArray_intersection(AxesLabelledControlArrayHandle handle, AxesLabelledControlArrayHandle other);
+FALCON_CORE_C_API AxesLabelledControlArrayHandle AxesLabelledControlArray_intersection(AxesLabelledControlArrayHandle handle, AxesLabelledControlArrayHandle other);
 // @category:read
-bool AxesLabelledControlArray_equal(AxesLabelledControlArrayHandle handle, AxesLabelledControlArrayHandle other);
+FALCON_CORE_C_API bool AxesLabelledControlArray_equal(AxesLabelledControlArrayHandle handle, AxesLabelledControlArrayHandle other);
 // @category:read
-bool AxesLabelledControlArray_not_equal(AxesLabelledControlArrayHandle handle, AxesLabelledControlArrayHandle other);
+FALCON_CORE_C_API bool AxesLabelledControlArray_not_equal(AxesLabelledControlArrayHandle handle, AxesLabelledControlArrayHandle other);
 
 // @category:read
-StringHandle      AxesLabelledControlArray_to_json_string(AxesLabelledControlArrayHandle handle);
+FALCON_CORE_C_API StringHandle      AxesLabelledControlArray_to_json_string(AxesLabelledControlArrayHandle handle);
 // @category:allocation
-AxesLabelledControlArrayHandle AxesLabelledControlArray_from_json_string(StringHandle json);
+FALCON_CORE_C_API AxesLabelledControlArrayHandle AxesLabelledControlArray_from_json_string(StringHandle json);
 
 #ifdef __cplusplus
 }
