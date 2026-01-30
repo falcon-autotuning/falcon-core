@@ -33,8 +33,8 @@ FALCON_CORE_C_API ControlArrayHandle ControlArray_from_data(const double* data,
                                                             const size_t* shape,
                                                             size_t        ndim);
 // @category:allocation
-FALCON_CORE_C_APIControlArrayHandle ControlArray_from_farray(
-    FArrayDoubleHandle farray);
+FALCON_CORE_C_API ControlArrayHandle
+ControlArray_from_farray(FArrayDoubleHandle farray);
 // @category:read
 FALCON_CORE_C_API size_t ControlArray_size(ControlArrayHandle handle);
 // @category:read
@@ -54,10 +54,10 @@ FALCON_CORE_C_API void ControlArray_plus_equals_farray(
 FALCON_CORE_C_API void ControlArray_plus_equals_double(
     ControlArrayHandle handle, double other);
 // @category:write
-FALCON_CORE_C_APIvoid ControlArray_plus_equals_int(ControlArrayHandle handle,
-                                                   int                other);
+FALCON_CORE_C_API void ControlArray_plus_equals_int(ControlArrayHandle handle,
+                                                    int                other);
 // @category:read
-FALCON_CORE_C_APIControlArrayHandle ControlArray_plus_control_array(
+FALCON_CORE_C_API ControlArrayHandle ControlArray_plus_control_array(
     ControlArrayHandle handle, ControlArrayHandle other);
 // @category:read
 FALCON_CORE_C_API ControlArrayHandle

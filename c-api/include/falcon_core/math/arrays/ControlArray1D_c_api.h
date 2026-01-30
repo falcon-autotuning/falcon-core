@@ -1,5 +1,4 @@
 #pragma once
-#include <filesystem>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -226,7 +225,7 @@ ControlArray1D_gradient(ControlArray1DHandle handle, size_t axis);
 FALCON_CORE_C_API double ControlArray1D_get_sum_of_squares(
     ControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_APIdouble ControlArray1D_get_summed_diff_int_of_squares(
+FALCON_CORE_C_API double ControlArray1D_get_summed_diff_int_of_squares(
     ControlArray1DHandle handle, int other);
 // @category:read
 FALCON_CORE_C_API double ControlArray1D_get_summed_diff_double_of_squares(

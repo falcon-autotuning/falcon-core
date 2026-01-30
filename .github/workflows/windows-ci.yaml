@@ -187,7 +187,7 @@ jobs:
           Write-Host "`n=== DLL Verification ==="
           $dlls = @("zlib1.dll", "hdf5.dll", "yaml-cpp.dll", "falcon_core_cpp.dll")
           foreach ($dll in $dlls) {
-            Write-Host "`nLooking for $dll:"
+            Write-Host "`nLooking for ${dll}:"
             $found = Get-ChildItem -Path $vcpkgBin,$buildDir -Filter $dll -ErrorAction SilentlyContinue | Select-Object -First 1
             if ($found) {
               Write-Host "  ✓ $($found.FullName)"
