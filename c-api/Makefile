@@ -36,6 +36,7 @@ ifeq ($(PLATFORM),windows)
 	RUN_PREFIX := PATH=$(VCPKG_DEBUG_BIN):$(CORE_BUILD_DIR):$$PATH
 	VCPKG_TOOLCHAIN ?= $(CORE_ROOT)/../../../vcpkg/scripts/buildsystems/vcpkg.cmake
 	USE_VCPKG ?= 1
+	PYTHON_EXECUTABLE ?= python
   # On Windows, Ninja + clang-cl: still pass CMAKE_C_COMPILER / CMAKE_CXX_COMPILER
 else
   CC ?= clang
@@ -48,6 +49,7 @@ else
   VCPKG_TOOLCHAIN ?= $(shell which vcpkg >/dev/null 2>&1 && vcpkg integrate install --triplet=$(VCPKG_TRIPLET) 2>/dev/null | grep -o '/.*\.cmake' | head -n1 || echo $(PWD)/vcpkg/scripts/buildsystems/vcpkg.cmake)
 	RUN_PREFIX := LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(CORE_BUILD_DIR):$$LD_LIBRARY_PATH
 	USE_VCPKG ?= 0
+	PYTHON_EXECUTABLE ?= python3
 endif
 
 ifeq ($(USE_VCPKG),1)
@@ -76,7 +78,7 @@ setup-vcpkg:
 
 generate_types:
 	@test -f ${GENERATED_MANIFEST} || touch ${GENERATED_MANIFEST} 
-	@python3 ./generate_templated_types.py --manifest $(GENERATED_MANIFEST)
+		@$(PYTHON_EXECUTABLE) ./generate_templated_types.py --manifest $(GENERATED_MANIFEST)
 
 build: generate_types 
 	@if [ ! -d "$(CORE_BUILD_DIR)" ]; then \
@@ -95,7 +97,7 @@ ifeq ($(PLATFORM), linux)
    	-S . -B $(C_API_BUILD_DIR)
 else
 	@echo "--- Running Windows-style cmake + ninja (using variables) ---"
-	@$(VCPKG_ENV) cmake -B build -S . -G "Ninja" \
+	@$(VCPKG_ENV) cmake -B build -S . -G Ninja \
 		-DCMAKE_C_COMPILER=${CC} \
 		-DCMAKE_CXX_COMPILER=${CXX} \
 		-DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
@@ -128,7 +130,7 @@ ifeq ($(PLATFORM), linux)
    	 -S . -B $(C_API_BUILD_DIR) 
 else
 	@echo "--- Running Windows-style cmake + ninja (using variables) ---"
-	@$(RUN_PREFIX) $(VCPKG_ENV) cmake -B build -S . -G "Ninja" \
+	@$(RUN_PREFIX) $(VCPKG_ENV) cmake -G Ninja \
 		-DCMAKE_C_COMPILER=${CC} \
 		-DCMAKE_CXX_COMPILER=${CXX} \
 		-DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
@@ -136,7 +138,8 @@ else
 		-DVCPKG_INSTALLED_DIR=$(PWD)/build/vcpkg_installed \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DFALCON_CORE_DEV=ON \
-		-DUSE_VCPKG=$(USE_VCPKG)
+		-DUSE_VCPKG=$(USE_VCPKG) \
+		 -S . -B $(C_API_BUILD_DIR)
 endif
 	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi
 	@$(RUN_PREFIX) ninja -C $(C_API_BUILD_DIR) -j $(shell nproc 2>/dev/null || echo 1) -d stats
