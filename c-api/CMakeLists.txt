@@ -204,7 +204,7 @@ set_target_properties(
 if(FALCON_CORE_DEV)
   find_package(GTest CONFIG REQUIRED)
   enable_testing()
-  file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
+  file(GLOB RUN_TESTS_SOURCES tests/*.cpp)
   add_executable(falcon_core_c_api_run_tests ${RUN_TESTS_SOURCES})
   target_link_directories(falcon_core_c_api_run_tests PRIVATE ${CORE_BUILD_ABS})
 

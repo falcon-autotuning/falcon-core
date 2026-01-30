@@ -103,7 +103,7 @@ endif
 #check coverage of all the modles listed in the test_filter.txt
 run-subset-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
-	@LLVM_PROFILE_FILE="$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(BUILD_DIR)/falcon_core_c_api_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
+	@LLVM_PROFILE_FILE="$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"
 	@llvm-profdata merge -sparse $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw -o $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata
 else
 	@GCOV_PREFIX="$(C_API_BUILD_DIR)" LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests --gtest_filter="$$(paste -sd: test_filter.txt)"

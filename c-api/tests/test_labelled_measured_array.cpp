@@ -449,6 +449,9 @@ TEST_F(LabelledMeasuredArrayTest, SumOfSquares) {
 TEST_F(LabelledMeasuredArrayTest, ToJsonFromJson) {
   auto json = LabelledMeasuredArray_to_json_string(lma);
   auto lma3 = LabelledMeasuredArray_from_json_string(json);
+  std::cout << "JSON: " << json->raw << std::endl;
+  std::cout << "LMA: " << LabelledMeasuredArray_to_json_string(lma3)->raw
+            << std::endl;
   EXPECT_TRUE(LabelledMeasuredArray_equal(lma, lma3));
   LabelledMeasuredArray_destroy(lma3);
   String_destroy(json);

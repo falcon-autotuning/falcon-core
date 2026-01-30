@@ -163,7 +163,7 @@ if(FALCON_CORE_DEV)
   find_package(GTest CONFIG REQUIRED)
   message(STATUS "Setting up C++ tests")
   enable_testing()
-  file(GLOB RUN_TESTS_SOURCES tests/test_*.cpp)
+  file(GLOB RUN_TESTS_SOURCES tests/*.cpp)
   add_executable(falcon_core_cpp_run_tests ${RUN_TESTS_SOURCES})
   if(WIN32)
     # Windows: Disable Unity Build to avoid duplicate symbol errors

@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include "falcon_core/CerealRegistry.hpp"
 #include "falcon_core/physics/config/core/Adjacency.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 #include "falcon_core/physics/device_structures/Connections.hpp"
