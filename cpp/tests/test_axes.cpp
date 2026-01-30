@@ -4,13 +4,9 @@
 #include <stdexcept>
 #include <vector>
 
-#include "cereal/types/polymorphic.hpp"
 #include "falcon_core/generic/List.hpp"
 #include "falcon_core/generic/Song.hpp"
 #include "falcon_core/math/Axes.hpp"
-CEREAL_REGISTER_TYPE(falcon_core::math::Axes<int>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::List<int>,
-                                     falcon_core::math::Axes<int>)
 namespace {
 using namespace falcon_core::math;
 using namespace falcon_core::generic;

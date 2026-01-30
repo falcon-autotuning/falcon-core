@@ -133,9 +133,8 @@ if(WIN32)
 else()
   # Linux/macOS: Keep Unity Build enabled for faster compilation
   set_target_properties(${CPP_LIB_NAME} PROPERTIES
-    UNITY_BUILD OFF
-    # UNITY_BUILD ON
-    # UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
+    UNITY_BUILD ON
+    UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
   )
   message(STATUS "Unix detected: Unity Build ENABLED for ${CPP_LIB_NAME}")
 endif()
@@ -182,9 +181,8 @@ if(FALCON_CORE_DEV)
   else()
     # Linux/macOS: Keep Unity Build enabled for faster compilation
     set_target_properties(falcon_core_cpp_run_tests PROPERTIES
-    UNITY_BUILD OFF
-    # UNITY_BUILD ON
-    # UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
+    UNITY_BUILD ON
+    UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
   )
     message(STATUS "Unix detected: Unity Build ENABLED for falcon_core_cpp_run_tests")
   endif()
