@@ -13,16 +13,13 @@ permissions:
 
 jobs:
   build-and-test-windows:
-    name: Build and Test on Windows (clang + Ninja)
+    name: Build and Test on Windows (clang-cl + Ninja)
     runs-on: windows-latest
 
     # vcpkg binary caching
     env:
       VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
       VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
-      # CRITICAL: Use x64-win-llvm triplet for Clang compatibility
-      VCPKG_DEFAULT_TRIPLET: x64-win-llvm
-      VCPKG_OVERLAY_TRIPLETS: ${{ github.workspace }}/vcpkg-triplets
 
     steps:
       - name: Checkout repository
@@ -31,63 +28,15 @@ jobs:
           submodules: recursive
           ref: dev
 
-      # NEW STEP: Clone Neumann-A vcpkg triplets repository
-      - name: Clone Neumann-A vcpkg triplets
-        shell: pwsh
-        run: |
-          Write-Host "=== Cloning custom vcpkg triplets repository ==="
-
-          # Clone the entire repository to get all dependencies
-          git clone --depth 1 https://github.com/Neumann-A/my-vcpkg-triplets.git vcpkg-triplets-repo
-
-          # Move the triplets to our overlay directory
-          New-Item -ItemType Directory -Force -Path vcpkg-triplets | Out-Null
-
-          # Copy all triplet files (we only need x64-win-llvm but copy all for dependencies)
-          Copy-Item -Path vcpkg-triplets-repo/* -Destination vcpkg-triplets/ -Recurse -Force
-
-          # Verify the triplet and its dependencies exist
-          Write-Host "`n=== Verifying triplet files ==="
-          $requiredFiles = @(
-            "vcpkg-triplets/x64-win-llvm.cmake",
-            "vcpkg-triplets/x64-win-llvm/x64-win-llvm.toolchain.cmake",
-            "vcpkg-triplets/x64-win-llvm/extra_setup.cmake",
-            "vcpkg-triplets/x64-win-llvm/port_specialization.cmake"
-          )
-
-          $allFilesExist = $true
-          foreach ($file in $requiredFiles) {
-            if (Test-Path $file) {
-              Write-Host "✓ Found: $file"
-            } else {
-              Write-Error "✗ Missing: $file"
-              $allFilesExist = $false
-            }
-          }
-
-          if (-not $allFilesExist) {
-            Write-Error "Required triplet files are missing!"
-            exit 1
-          }
-
-          # Show the main triplet file contents
-          Write-Host "`n=== x64-win-llvm.cmake Contents (first 30 lines) ==="
-          Get-Content vcpkg-triplets/x64-win-llvm.cmake | Select-Object -First 30
-
-          # Cleanup the cloned repo (we've copied what we need)
-          Remove-Item -Path vcpkg-triplets-repo -Recurse -Force
-
-          Write-Host "`n✓ Custom triplets installed successfully"
-
       - name: Attempt to restore vcpkg binary cache
         uses: actions/cache@v4
         with:
           path: |
             .vcpkg/bincache
             .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-llvm-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          key: vcpkg-${{ runner.os }}-clang-cl-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            vcpkg-${{ runner.os }}-llvm-
+            vcpkg-${{ runner.os }}-clang-cl-
             vcpkg-${{ runner.os }}-
 
       - name: Setup vcpkg
@@ -123,47 +72,36 @@ jobs:
           # Refresh PATH
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-          Write-Host "`nClang version:"
-          clang --version
-
-          Write-Host "`nClang++ version:"
-          clang++ --version
+          Write-Host "`nClang-cl version:"
+          clang-cl --version
 
           Write-Host "`nNinja version:"
           ninja --version
 
-          Write-Host "`nLinker (lld-link):"
-          if (Get-Command lld-link -ErrorAction SilentlyContinue) {
-            lld-link --version
-          } else {
-            Write-Warning "lld-link not found in PATH"
-          }
+          Write-Host "`nVCPKG Root:"
+          Write-Host "  VCPKG_ROOT = $env:VCPKG_ROOT"
 
-          Write-Host "`nVCPKG Configuration:"
-          Write-Host "  VCPKG_DEFAULT_TRIPLET = $env:VCPKG_DEFAULT_TRIPLET"
-          Write-Host "  VCPKG_OVERLAY_TRIPLETS = $env:VCPKG_OVERLAY_TRIPLETS"
-
-          Write-Host "`nTriplet overlay directory contents:"
-          Get-ChildItem -Path "$env:VCPKG_OVERLAY_TRIPLETS" -Recurse | Select-Object FullName
-
-      - name: Configure CMake with Ninja + Clang + Custom Triplet
+      - name: Clean and Configure CMake with Ninja + clang-cl
         working-directory: cpp
         shell: pwsh
         run: |
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-          Write-Host "=== CMake Configuration ==="
+          Write-Host "=== Cleaning build directory ==="
+          if (Test-Path build) {
+            Remove-Item -Recurse -Force build
+            Write-Host "✓ Build directory cleaned"
+          }
+
+          Write-Host "`n=== CMake Configuration ==="
           cmake -B build `
             -S . `
             -G "Ninja" `
-            -DCMAKE_C_COMPILER=clang `
-            -DCMAKE_CXX_COMPILER=clang++ `
+            -DCMAKE_C_COMPILER=clang-cl `
+            -DCMAKE_CXX_COMPILER=clang-cl `
             -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
             -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/cpp" `
             -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/cpp/build/vcpkg_installed" `
-            -DVCPKG_TARGET_TRIPLET=x64-win-llvm `
-            -DVCPKG_HOST_TRIPLET=x64-win-llvm `
-            -DVCPKG_OVERLAY_TRIPLETS="${env:GITHUB_WORKSPACE}/vcpkg-triplets" `
             -DCMAKE_BUILD_TYPE=Release `
             -DFALCON_CORE_DEV=ON `
             -DUSE_VCPKG=ON
@@ -182,7 +120,7 @@ jobs:
           path: |
             .vcpkg/bincache
             .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-llvm-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}-${{ github.run_id }}
+          key: vcpkg-${{ runner.os }}-clang-cl-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}-${{ github.run_id }}
 
       - name: Build falcon-core-cpp
         working-directory: cpp
@@ -214,11 +152,10 @@ jobs:
         run: |
           Write-Host "=== Test Execution Setup ==="
 
-          # Determine vcpkg bin path (x64-win-llvm or x64-windows)
+          # Determine vcpkg bin path
           $vcpkgBinPaths = @(
-            "build/vcpkg_installed/x64-win-llvm/bin",
-            "build/vcpkg_installed/x64-win-llvm/debug/bin",
-            "build/vcpkg_installed/x64-windows/bin"
+            "build/vcpkg_installed/x64-windows/bin",
+            "build/vcpkg_installed/x64-windows/debug/bin"
           )
 
           $vcpkgBin = $null
@@ -251,11 +188,11 @@ jobs:
           $dlls = @("zlib1.dll", "hdf5.dll", "yaml-cpp.dll", "falcon_core_cpp.dll")
           foreach ($dll in $dlls) {
             Write-Host "`nLooking for $dll:"
-            $found = where.exe $dll 2>&1 | Select-Object -First 1
+            $found = Get-ChildItem -Path $vcpkgBin,$buildDir -Filter $dll -ErrorAction SilentlyContinue | Select-Object -First 1
             if ($found) {
-              Write-Host "  ✓ $found"
+              Write-Host "  ✓ $($found.FullName)"
             } else {
-              Write-Warning "  ✗ Not found in PATH"
+              Write-Warning "  ✗ Not found"
             }
           }
 
@@ -271,9 +208,10 @@ jobs:
 
           Write-Host "`n=== Running Tests ==="
           Write-Host "Test executable: $($testExe.FullName)"
+          Write-Host "Running from directory: $(Get-Location)"
 
-          # Run tests
-          & $testExe.FullName --gtest_color=yes --gtest_output=xml:test-results.xml
+          # Run tests (matching your exact command: ./build/falcon_core_cpp_run_tests.exe)
+          & ".\$($testExe.FullName.Replace("$PWD\", ''))" --gtest_color=yes --gtest_output=xml:test-results.xml
           $exitCode = $LASTEXITCODE
 
           Write-Host "`nTest exit code: $exitCode"
@@ -289,7 +227,7 @@ jobs:
             Write-Error "ACCESS VIOLATION ERROR (0xC0000005)"
             Write-Host "Memory access violation. Possible causes:"
             Write-Host "  - NULL pointer dereference"
-            Write-Host "  - ABI mismatch (check triplet is x64-win-llvm)"
+            Write-Host "  - ABI mismatch"
             Write-Host "  - Stack corruption"
             exit 1
           } elseif ($exitCode -eq -1073741571 -or $exitCode -eq 3221225725) {
@@ -317,10 +255,20 @@ jobs:
           if ($testExe) {
             Write-Host "`nTest executable: $($testExe.FullName)"
             
-            # Check if we have dumpbin (from MSVC build tools)
-            if (Get-Command "dumpbin.exe" -ErrorAction SilentlyContinue) {
-              Write-Host "`n=== DLL Dependencies (dumpbin) ==="
-              dumpbin.exe /DEPENDENTS $testExe.FullName
+            # Use Dependencies.exe (better than dumpbin) or fallback to dumpbin
+            Write-Host "`n=== Checking for dependency analysis tools ==="
+            
+            # Try to find Visual Studio's dumpbin
+            $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+            if (Test-Path $vswhere) {
+              $vsPath = & $vswhere -latest -property installationPath
+              $dumpbin = "$vsPath\VC\Tools\MSVC\*\bin\Hostx64\x64\dumpbin.exe"
+              $dumpbinPath = Get-Item $dumpbin -ErrorAction SilentlyContinue | Select-Object -First 1
+              
+              if ($dumpbinPath) {
+                Write-Host "`n=== DLL Dependencies (dumpbin) ==="
+                & $dumpbinPath.FullName /DEPENDENTS $testExe.FullName
+              }
             }
             
             # List all DLLs in vcpkg bin
@@ -329,7 +277,7 @@ jobs:
             
             # Try to list tests without running them
             Write-Host "`n=== Test List (if executable loads) ==="
-            $vcpkgBin = Get-ChildItem -Path "build/vcpkg_installed" -Recurse -Directory -Filter "bin" | Select-Object -First 1
+            $vcpkgBin = Get-ChildItem -Path "build/vcpkg_installed/x64-windows/bin" -ErrorAction SilentlyContinue
             if ($vcpkgBin) {
               $env:PATH = "$($vcpkgBin.FullName);$(Resolve-Path 'build');$env:PATH"
             }
@@ -353,14 +301,6 @@ jobs:
           path: |
             cpp/build/**/*.log
             cpp/build/CMakeFiles/*.log
-          if-no-files-found: ignore
-
-      - name: Upload triplet files (for debugging)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: vcpkg-triplet-files
-          path: vcpkg-triplets/**
           if-no-files-found: ignore
 
       - name: Setup tmate session for debugging (on failure)
