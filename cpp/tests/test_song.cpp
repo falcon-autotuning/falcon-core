@@ -82,10 +82,10 @@ class TheDestroyerSong : public falcon_core::generic::Song {
        _even_more);
   }
 };
+#if !defined(_WIN32)
 bool operator==(const Strsong& lhs, const Strsong& rhs) {
   return lhs._value == rhs._value;
 }
-#if !defined(_WIN32)
 bool operator==(const ListSong& lhs, const ListSong& rhs) {
   return lhs._value == rhs._value;
 }

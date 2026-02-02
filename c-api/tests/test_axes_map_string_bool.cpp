@@ -62,7 +62,6 @@ TEST_F(AxesMapStringBoolTest, CreateDestroy) {
   set_last_error(0, nullptr);
   AxesMapStringBool_destroy(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
-  StringHandle str3 = String_wrap("key3");
 }
 
 TEST_F(AxesMapStringBoolTest, AccessorsAndMutators) {
