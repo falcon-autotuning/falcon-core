@@ -42,7 +42,7 @@ ConnectionHandle DeviceVoltageState_connection(
     throw std::invalid_argument(
         "DeviceVoltageState_connection: handle cannot be null");
   const auto conn = (*static_cast<DeviceVoltageStateSP*>(handle))->connection();
-  return new falcon_core::physics::device_structures::Connection(*conn);
+  return new falcon_core::physics::device_structures::ConnectionSP(conn);
   FALCON_C_API_END(nullptr)
 }
 
