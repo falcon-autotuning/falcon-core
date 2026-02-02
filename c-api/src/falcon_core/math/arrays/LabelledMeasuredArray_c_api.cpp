@@ -856,8 +856,9 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_gradient(
         "Null handle passed to LabelledMeasuredArray_gradient");
   }
   auto labelled_measured_array = *static_cast<LabelledMeasuredArraySP*>(handle);
-  return new LabelledMeasuredArray(labelled_measured_array->gradient(axis),
-                                   labelled_measured_array->label());
+  return new std::make_shared<LabelledMeasuredArray>(
+      labelled_measured_array->gradient(axis),
+      labelled_measured_array->label());
   FALCON_C_API_END(nullptr)
 }
 
