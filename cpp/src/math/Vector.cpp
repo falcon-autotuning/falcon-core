@@ -13,11 +13,6 @@ namespace math {
 Vector::Vector(const Vector& other)
     : generic::Map<physics::device_structures::Connection,
                    generic::Pair<Quantity, Quantity>>(other) {
-  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
-                                                      std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_connections(_mu_connections,
-                                                             std::defer_lock);
-  std::lock(lock_unit, lock_connections);
   if (!other.unit() || !other.connections()) {
     throw std::invalid_argument(
         "Vector copy constructor: Other Vector contains null shared pointers.");

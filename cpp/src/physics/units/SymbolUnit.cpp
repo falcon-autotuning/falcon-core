@@ -18,13 +18,6 @@ const std::map<std::string, std::string> Dimension_Symbols{
 };
 
 SymbolUnit::SymbolUnit(const SymbolUnit& other) {
-  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit,
-                                                      std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_symbol(_mu_symbol,
-                                                        std::defer_lock);
-  std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
-                                                      std::defer_lock);
-  std::lock(lock_unit, lock_symbol, lock_name);
   if (!other.unit()) {
     throw std::invalid_argument("SymbolUnit: other.unit() cannot be null.");
   }
@@ -283,8 +276,7 @@ const double SymbolUnit::convert_value_to(
   if (!target_unit) {
     throw std::invalid_argument("SymbolUnit: Cannot convert to null.");
   }
-  auto                                      unit = target_unit->unit();
-  std::unique_lock<std::shared_timed_mutex> lock_this(_mu_unit);
+  auto unit = target_unit->unit();
   return _unit->convert_value_to(value, unit);
 }
 const bool SymbolUnit::is_compatible_with(const SymbolUnitSP& other) const {

@@ -159,7 +159,7 @@ ConnectionHandle InstrumentPort_psuedo_name(InstrumentPortHandle handle) {
   }
   falcon_core::physics::device_structures::ConnectionSP psuedo_name =
       (*static_cast<InstrumentPortSP*>(handle))->pseudo_name();
-  return new falcon_core::physics::device_structures::Connection(*psuedo_name);
+  return new falcon_core::physics::device_structures::ConnectionSP(psuedo_name);
   FALCON_C_API_END(nullptr)
 }
 

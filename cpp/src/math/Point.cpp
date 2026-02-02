@@ -2,7 +2,6 @@
 
 #include <stdexcept>
 
-#include "cereal/types/polymorphic.hpp"
 #include "falcon_core/math/Quantity.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
@@ -10,7 +9,6 @@ namespace falcon_core {
 namespace math {
 Point::Point(const Point& other)
     : generic::Map<physics::device_structures::Connection, Quantity>(other) {
-  std::unique_lock<std::shared_timed_mutex> lock_unit(_mu_unit);
   if (!other.unit()) {
     throw std::invalid_argument(
         "Point copy constructor: Other Point contains null shared pointer.");
@@ -43,7 +41,8 @@ Point::Point(
   }
   auto map = *init;
   for (const auto pair : map) {
-    insert(pair->first(), std::make_shared<Quantity>(pair->second(), unit));
+    Map::insert(pair->first(),
+                std::make_shared<Quantity>(pair->second(), unit));
   }
 }
 Point::Point(const generic::MapSP<physics::device_structures::Connection,
@@ -70,6 +69,7 @@ void Point::insert_or_assign(
     this->_unit = value->unit();
   }
   value->convert_to(this->_unit);
+  lock_unit.unlock();
   return Map::insert_or_assign(key, value);
 }
 std::pair<Point::iterator, bool> Point::insert(
@@ -85,6 +85,7 @@ std::pair<Point::iterator, bool> Point::insert(
     this->_unit = value->unit();
   }
   value->convert_to(this->_unit);
+  lock_unit.unlock();
   return Map::insert(key, value);
 }
 

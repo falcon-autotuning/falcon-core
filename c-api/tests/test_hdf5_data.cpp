@@ -59,6 +59,7 @@ class HDF5DataTest : public ::testing::Test {
                              measurement_title,
                              unique_id + 1,
                              timestamp + 1);
+    set_last_error(0, nullptr);
   }
   void TearDown() override {
     ListLabelledMeasuredArray_destroy(measured_arrays);

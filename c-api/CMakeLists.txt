@@ -5,9 +5,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-set(CMAKE_C_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
+# set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+# set(CMAKE_C_VISIBILITY_PRESET hidden)
+# set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
 set(C_API_LIB_NAME "falcon_core_c_api")
 set(C_API_TARGET "falcon_core_c_api")
 set(BATCH_SIZE 20)
@@ -30,7 +30,7 @@ if(CMAKE_C_COMPILER_ID MATCHES "Clang")
       set(C_FLAGS "/Od -fprofile-instr-generate -fcoverage-mapping")
     else()
       # native Clang (POSIX flags)
-      set(C_FLAGS "-O0 -fprofile-instr-generate -fcoverage-mapping")
+      set(C_FLAGS "-O0 -fprofile-instr-generate -fcoverage-mapping -fsanitize=thread")
     endif()
   else()
     message("Clang detected.")
@@ -58,7 +58,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
       # Add debug info and coverage flags in MSVC syntax where appropriate
       set(CPP_FLAGS "/Zi /Od -fprofile-instr-generate -fcoverage-mapping")
     else()
-      set(CPP_FLAGS "-g -O0 -fprofile-instr-generate -fcoverage-mapping")
+      set(CPP_FLAGS "-g -O0 -fprofile-instr-generate -fcoverage-mapping -fsanitize=thread")
     endif()
   else()
     if(COMPILER_IS_MSVC)
@@ -233,28 +233,28 @@ if(FALCON_CORE_DEV)
   if(WIN32)
     # Windows: Disable Unity Build to avoid duplicate symbol errors
     set_target_properties(falcon_core_c_api_run_tests PROPERTIES
-      UNITY_BUILD OFF
-      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
+      WINDOWS_EXPORT_ALL_SYMBOLS OFF
+      UNITY_BUILD ON
+      UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
     )
     # Windows with DLLs and templates: inline methods in template classes cause duplicate
     # symbols because extern template doesn't fully suppress instantiation of inline methods.
     # Use /FORCE:MULTIPLE to allow the linker to resolve these identical duplicates.
     # Note: This is safe here because all duplicates are identical template instantiations.
     target_link_options(falcon_core_c_api_run_tests PRIVATE /FORCE:MULTIPLE)
-    message(STATUS "Windows detected: Unity Build DISABLED, /FORCE:MULTIPLE enabled for falcon_core_c_api_run_tests")
+    message(STATUS "Windows detected: /FORCE:MULTIPLE enabled for falcon_core_c_api_run_tests")
   else()
     set_target_properties(falcon_core_c_api_run_tests PROPERTIES
       UNITY_BUILD ON
       UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
-      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build"
-      BUILD_RPATH ${RPATH}
-      INSTALL_RPATH ${RPATH}
     )
   endif()
 
-  # Define FALCON_CORE_USE_EXTERN_TEMPLATES to use extern template declarations.
-  # This prevents tests from instantiating templates that are already provided by the DLL,
-  # which is essential on Windows and improves link times on all platforms.
+  set_target_properties(
+    falcon_core_c_api_run_tests
+    PROPERTIES SKIP_BUILD_RPATH FALSE
+               SKIP_INSTALL_RPATH FALSE
+               BUILD_WITH_INSTALL_RPATH FALSE)
   target_compile_definitions(falcon_core_c_api_run_tests PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES)
 
   if(USE_VCPKG)
@@ -268,6 +268,7 @@ if(FALCON_CORE_DEV)
                                           ${C_API_LIB_NAME})
   endif()
 
+  target_link_libraries(falcon_core_cpp_run_tests PUBLIC yaml-cpp::yaml-cpp)
   include(GoogleTest)
   gtest_discover_tests(falcon_core_c_api_run_tests)
 endif()

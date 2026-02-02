@@ -26,7 +26,7 @@ if(CMAKE_C_COMPILER_ID MATCHES "Clang")
       set(C_FLAGS "/Od -fprofile-instr-generate -fcoverage-mapping")
     else()
       # native Clang (POSIX flags)
-      set(C_FLAGS "-O0 -fprofile-instr-generate -fcoverage-mapping")
+      set(C_FLAGS "-O0 -fprofile-instr-generate -fcoverage-mapping -fsanitize=thread")
     endif()
   else()
     message("Clang detected.")
@@ -54,7 +54,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
       # Add debug info and coverage flags in MSVC syntax where appropriate
       set(CPP_FLAGS "/Zi /Od -fprofile-instr-generate -fcoverage-mapping")
     else()
-      set(CPP_FLAGS "-g -O0 -fprofile-instr-generate -fcoverage-mapping")
+      set(CPP_FLAGS "-g -O0 -fprofile-instr-generate -fcoverage-mapping -fsanitize=thread")
     endif()
   else()
     if(COMPILER_IS_MSVC)
@@ -215,14 +215,13 @@ if(FALCON_CORE_DEV)
     # The alternative would be to refactor all template classes to move method definitions
     # out of the class body, which would be a significant change to the codebase.
     target_link_options(falcon_core_cpp_run_tests PRIVATE /FORCE:MULTIPLE)
-    message(STATUS "Windows detected: Unity Build DISABLED, /FORCE:MULTIPLE enabled for falcon_core_cpp_run_tests")
+    message(STATUS "Windows detected: /FORCE:MULTIPLE enabled for falcon_core_cpp_run_tests")
   else()
     # Linux/macOS: Keep Unity Build enabled for faster compilation
     set_target_properties(falcon_core_cpp_run_tests PROPERTIES
     UNITY_BUILD ON
     UNITY_BUILD_BATCH_SIZE ${BATCH_SIZE}
   )
-    message(STATUS "Unix detected: Unity Build ENABLED for falcon_core_cpp_run_tests")
   endif()
   set_target_properties(
     falcon_core_cpp_run_tests

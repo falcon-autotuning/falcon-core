@@ -161,12 +161,15 @@ COVERAGE_TOOL = $(shell [ -f $(C_API_BUILD_DIR)/compiler.env ] && . $(C_API_BUIL
 PROFDATA_TOOL = $(shell [ -f $(C_API_BUILD_DIR)/compiler.env ] && . $(C_API_BUILD_DIR)/compiler.env; \
 	[ "$$(basename $${CXX:-clang++})" = "clang++" ] && echo llvm-profdata || echo gcov-tool)
 
+# test runner targets
+RUN_TEST_EXE := $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests$(EXE_SUFFIX)
+
 # check coverage of entire module
 run-all-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@echo "--- Running all tests (llvm-cov path) on $(PLATFORM) ---"
 	@LLVM_PROFILE_FILE="$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw" \
-		$(RUN_PREFIX) $(RUN_TEST_EXE)
+		$(RUN_PREFIX) $(RUN_TEST_EXE) --gtest_shuffle=101
 	@llvm-profdata merge -sparse $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw -o $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata
 else
 	@echo "--- Running all tests (gcov path) on $(PLATFORM) ---"
@@ -255,4 +258,4 @@ rebuild-dev: clean-all build-dev
 
 debug-gtest:
 	LD_LIBRARY_PATH=$(C_API_BUILD_DIR):$(CORE_BUILD_DIR):$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH \
-	gdb --args $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests --gtest_filter="$(TEST)"
+	gdb --args $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests --gtest_filter="$(TEST)" --gtest_shuffle=101

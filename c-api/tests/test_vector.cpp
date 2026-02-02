@@ -23,6 +23,7 @@ class VectorTest : public ::testing::Test {
     start  = Point_create(map_cd, unit);
     end    = Point_create(map_cq, unit);
     vector = Vector_create(start, end);
+    set_last_error(0, nullptr);
   }
   void TearDown() override {
     Vector_destroy(vector);
@@ -239,7 +240,6 @@ TEST_F(VectorTest, SizeEmptyClear) {
 
 TEST_F(VectorTest, ContainsKeysValuesItems) {
   EXPECT_TRUE(Vector_contains(vector, conn));
-  set_last_error(0, nullptr);
   Vector_contains(nullptr, conn);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
@@ -317,7 +317,6 @@ TEST_F(VectorTest,
   auto                      v1  = Vector_update_start_from_states(vector, dvs);
   Vector_destroy(v1);
   DeviceVoltageStates_destroy(dvs);
-  set_last_error(0, nullptr);
   Vector_update_start_from_states(nullptr, dvs);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
