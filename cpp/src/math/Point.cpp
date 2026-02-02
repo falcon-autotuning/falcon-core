@@ -52,7 +52,7 @@ Point::Point(const generic::MapSP<physics::device_structures::Connection,
     throw std::invalid_argument("Point: The initial map cannot be null.");
   }
   auto map = *init;
-  for (const auto pair : map) {
+  for (const auto& pair : map) {
     insert(pair->first(), pair->second());
   }
 }

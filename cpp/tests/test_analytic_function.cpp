@@ -171,10 +171,8 @@ TEST(AnalyticFunctionTest, CustomQuadraticTimeArray) {
 }
 TEST(AnalyticFunctionTest, BrokenHardestPrompt) {
   double                       delta      = 0.1;
-  double                       start      = 0.0;
   double                       end        = 2.0;
   double                       gate_value = 0.3;
-  const double                 tolerance  = 1e-6;
   generic::ListSP<std::string> labels =
       std::make_shared<generic::List<std::string>>(
           std::vector<std::string>{"gate"});

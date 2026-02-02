@@ -8,9 +8,6 @@
 class PairConnectionFloatTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    ConnectionHandle arr1[2] = {
-        Connection_create_plunger_gate(String_wrap("gate1")),
-        Connection_create_plunger_gate(String_wrap("gate2"))};
     t1    = Connection_create_plunger_gate(String_wrap("A"));
     t2    = 1.0;
     pair1 = PairConnectionFloat_create(t1, t2);

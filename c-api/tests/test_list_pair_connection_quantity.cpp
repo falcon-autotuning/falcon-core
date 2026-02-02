@@ -1,10 +1,10 @@
 #include <falcon_core/generic/ListPairConnectionQuantity_c_api.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
 
 class ListPairConnectionQuantityTest : public ::testing::Test {
@@ -23,12 +23,6 @@ class ListPairConnectionQuantityTest : public ::testing::Test {
     return s;
   }
   void SetUp() override {
-    ConnectionHandle arr[2] = {
-        Connection_create_plunger_gate(String_wrap("gate1")),
-        Connection_create_barrier_gate(String_wrap("gate2"))};
-    ConnectionHandle arr2[2] = {
-        Connection_create_reservoir_gate(String_wrap("gate3")),
-        Connection_create_screening_gate(String_wrap("gate4"))};
     sh1 = track_quantity(PairConnectionQuantity_create(
         Connection_create_plunger_gate(String_wrap("Connection1")),
         Quantity_create(1.0, SymbolUnit_create_volt())));

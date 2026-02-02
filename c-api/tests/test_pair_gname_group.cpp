@@ -7,41 +7,22 @@
 class PairGnameGroupTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    ConnectionHandle s1raw[2] = {
-        Connection_create_screening_gate(String_wrap("S1")),
-        Connection_create_screening_gate(String_wrap("S2"))};
     ConnectionHandle s2raw[2] = {
         Connection_create_screening_gate(String_wrap("S3")),
         Connection_create_screening_gate(String_wrap("S4"))};
     ListConnectionHandle s2       = ListConnection_create(s2raw, 2);
-    ConnectionHandle     r1raw[2] = {
-        Connection_create_reservoir_gate(String_wrap("R1")),
-        Connection_create_reservoir_gate(String_wrap("R2"))};
-    ConnectionHandle r2raw[2] = {
+    ConnectionHandle     r2raw[2] = {
         Connection_create_reservoir_gate(String_wrap("R3")),
         Connection_create_reservoir_gate(String_wrap("R4"))};
     ListConnectionHandle r2       = ListConnection_create(r2raw, 2);
-    ConnectionHandle     b1raw[2] = {
-        Connection_create_barrier_gate(String_wrap("B1")),
-        Connection_create_barrier_gate(String_wrap("B2"))};
-    ConnectionHandle b2raw[2] = {
+    ConnectionHandle     b2raw[2] = {
         Connection_create_barrier_gate(String_wrap("B3")),
         Connection_create_barrier_gate(String_wrap("B4"))};
     ListConnectionHandle b2       = ListConnection_create(b2raw, 2);
-    ConnectionHandle     p1raw[1] = {
-        Connection_create_plunger_gate(String_wrap("P1"))};
-    ConnectionHandle p2raw[1] = {
+    ConnectionHandle     p2raw[1] = {
         Connection_create_plunger_gate(String_wrap("P2"))};
     ListConnectionHandle p2       = ListConnection_create(p2raw, 1);
-    ConnectionHandle     o1raw[7] = {
-        Connection_create_ohmic(String_wrap("O1")),
-        Connection_create_reservoir_gate(String_wrap("R1")),
-        Connection_create_barrier_gate(String_wrap("B1")),
-        Connection_create_plunger_gate(String_wrap("P1")),
-        Connection_create_barrier_gate(String_wrap("B2")),
-        Connection_create_reservoir_gate(String_wrap("R2")),
-        Connection_create_ohmic(String_wrap("O2"))};
-    ConnectionHandle o2raw[7] = {
+    ConnectionHandle     o2raw[7] = {
         Connection_create_ohmic(String_wrap("O3")),
         Connection_create_reservoir_gate(String_wrap("R3")),
         Connection_create_barrier_gate(String_wrap("B3")),

@@ -85,6 +85,7 @@ class TheDestroyerSong : public falcon_core::generic::Song {
 bool operator==(const Strsong& lhs, const Strsong& rhs) {
   return lhs._value == rhs._value;
 }
+#if !defined(_WIN32)
 bool operator==(const ListSong& lhs, const ListSong& rhs) {
   return lhs._value == rhs._value;
 }
@@ -99,6 +100,7 @@ bool operator==(const ComplexSong& lhs, const ComplexSong& rhs) {
                 const std::shared_ptr<Strsong>& b) { return *a == *b; }) &&
          lhs._other == rhs._other;
 }
+#endif
 
 }  // namespace
 
