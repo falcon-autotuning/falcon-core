@@ -212,7 +212,9 @@ get_filename_component(CORE_BUILD_ABS "${CORE_ROOT}/build" ABSOLUTE)
 message(STATUS "CORE_BUILD_ABS: ${CORE_BUILD_ABS}")
 
 add_subdirectory(${CORE_ROOT} ${CORE_ROOT}/build)
-target_link_libraries(${C_API_LIB_NAME} PUBLIC falcon_core_cpp)
+if(WIN32)
+  target_link_options(${C_API_LIB_NAME} PRIVATE /FORCE:MULTIPLE)
+endif()
 
 set_target_properties(
   ${C_API_LIB_NAME}
