@@ -93,23 +93,15 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=lld")
 
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
 set(BOOST_FILESYSTEM_TARGET Boost::filesystem)
-
 if(USE_VCPKG)
-  # Determine platform-specific vcpkg triplet
+  # Use the vcpkg toolchain (preferred) so we don't manually add include dirs.
+  # But when a vcpkg_installed layout is inspected, choose the appropriate triplet
   if(WIN32)
-    set(VCPKG_TRIPLET "x64-windows")
-    set(VCPKG_INCLUDE_DIR
-        "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/${VCPKG_TRIPLET}/include")
-    set(RPATH
-        "$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
-    )
+    set(VCPKG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/include")
+    set(RPATH "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/x64-windows-dynamic/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>")
   else()
-    set(VCPKG_TRIPLET "x64-linux-dynamic")
-    set(VCPKG_INCLUDE_DIR
-        "${CMAKE_SOURCE_DIR}/vcpkg_installed/${VCPKG_TRIPLET}/include")
-    set(RPATH
-        "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/${VCPKG_TRIPLET}/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>"
-    )
+    set(VCPKG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux/include")
+    set(RPATH "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/x64-linux-dynamic/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>")
   endif()
 
   set(HDF5_TARGET hdf5::hdf5-shared)
@@ -207,10 +199,8 @@ target_include_directories(
          $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
          $<INSTALL_INTERFACE:include>)
 
-message(STATUS "CORE_ROOT is: ${CORE_ROOT}")
 get_filename_component(CORE_BUILD_ABS "${CORE_ROOT}/build" ABSOLUTE)
-message(STATUS "CORE_BUILD_ABS: ${CORE_BUILD_ABS}")
-
+target_link_libraries(${C_API_LIB_NAME} PUBLIC falcon_core_cpp)
 add_subdirectory(${CORE_ROOT} ${CORE_ROOT}/build)
 if(WIN32)
   target_link_options(${C_API_LIB_NAME} PRIVATE /FORCE:MULTIPLE)
