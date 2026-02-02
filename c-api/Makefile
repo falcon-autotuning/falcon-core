@@ -169,7 +169,7 @@ run-all-tests:
 ifeq ($(COVERAGE_TOOL),llvm-cov)
 	@echo "--- Running all tests (llvm-cov path) on $(PLATFORM) ---"
 	@LLVM_PROFILE_FILE="$(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw" \
-		$(RUN_PREFIX) $(RUN_TEST_EXE) --gtest_shuffle=101
+		$(RUN_PREFIX) $(RUN_TEST_EXE) --gtest_shuffle --gtest_repeat=100
 	@llvm-profdata merge -sparse $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profraw -o $(C_API_BUILD_DIR)/falcon_core_c_api_run_tests.profdata
 else
 	@echo "--- Running all tests (gcov path) on $(PLATFORM) ---"

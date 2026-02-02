@@ -234,7 +234,7 @@ InstrumentPortHandle Ports_at(PortsHandle handle, size_t idx) {
     throw std::invalid_argument("Ports_at: handle cannot be null");
   }
   PortsSP self = *static_cast<PortsSP*>(handle);
-  return new InstrumentPort(*self->at(idx));
+  return new InstrumentPortSP(self->at(idx));
   FALCON_C_API_END(nullptr)
 }
 

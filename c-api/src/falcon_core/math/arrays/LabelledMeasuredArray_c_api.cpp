@@ -797,8 +797,8 @@ LabelledMeasuredArrayHandle LabelledMeasuredArray_reshape(
   LabelledMeasuredArraySP labelled_measured_array =
       *static_cast<LabelledMeasuredArraySP*>(handle);
   std::vector<size_t> new_shape(shape, shape + ndims);
-  return new LabelledMeasuredArray(
-      *labelled_measured_array->reshape(new_shape));
+  return new LabelledMeasuredArraySP(
+      labelled_measured_array->reshape(new_shape));
   FALCON_C_API_END(nullptr)
 }
 ListListSizeTHandle LabelledMeasuredArray_where(
