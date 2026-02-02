@@ -134,7 +134,6 @@ ifeq ($(PLATFORM), linux)
    	 -S . -B $(C_API_BUILD_DIR) 
 else
 	@echo "--- Running Windows-style cmake + ninja (using variables) ---"
-	@echo "-- the path prefix is $(RUN_PREFIX) --"
 	@$(RUN_PREFIX) $(VCPKG_ENV) cmake -G Ninja \
 		-DCMAKE_C_COMPILER=${CC} \
 		-DCMAKE_CXX_COMPILER=${CXX} \
