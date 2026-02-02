@@ -335,8 +335,7 @@ TEST_F(LabelledControlArrayTest, ComparisonOperators) {
 TEST_F(LabelledControlArrayTest, OffsetSumWhereFlipGradient) {
   LabelledControlArray_remove_offset(lca, 1.0);
   EXPECT_DOUBLE_EQ(LabelledControlArray_sum(lca), 15.0);
-  size_t new_shape[1] = {6};
-  auto   where        = LabelledControlArray_where(lca, 2.0);
+  auto where = LabelledControlArray_where(lca, 2.0);
   ListListSizeT_destroy(where);
   auto flipped = LabelledControlArray_flip(lca, 0);
   LabelledControlArray_destroy(flipped);

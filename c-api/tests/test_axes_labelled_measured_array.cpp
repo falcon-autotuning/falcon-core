@@ -125,9 +125,7 @@ TEST_F(AxesLabelledMeasuredArrayTest, AccessorsAndMutators) {
       SymbolUnit_create_volt());
   auto lca = LabelledMeasuredArray_from_measured_array(
       MeasuredArray_from_data(data2d, shape2d, 2), label);
-  LabelledMeasuredArrayHandle out[1] = {lca};
   ListLabelledMeasuredArray_destroy(handle);
-  //
   AxesLabelledMeasuredArray_push_back(axes, lca);
   LabelledMeasuredArrayHandle out2[3];
   EXPECT_EQ(AxesLabelledMeasuredArray_items(axes, out2, 3), 3u);

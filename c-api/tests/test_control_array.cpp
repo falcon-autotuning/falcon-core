@@ -299,7 +299,7 @@ TEST_F(ControlArrayTest, ComparisonOperators) {
 TEST_F(ControlArrayTest, OffsetSumWhereFlipGradient) {
   ControlArray_remove_offset(ca2d, 1.0);
   EXPECT_DOUBLE_EQ(ControlArray_sum(ca2d), 6.0);
-  auto where   = ControlArray_where(ca2d, 2.0);
+  ControlArray_where(ca2d, 2.0);
   auto flipped = ControlArray_flip(ca2d, 0);
   ControlArray_destroy(flipped);
   FArrayDoubleHandle grad_buffer[2];

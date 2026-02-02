@@ -121,9 +121,9 @@ const instrument_interfaces::names::PortsSP DiscreteSpace::knobs() const {
   instrument_interfaces::names::PortsSP knobs =
       std::make_shared<instrument_interfaces::names::Ports>();
   auto axes = *this->axes();
-  for (const domains::CoupledLabelledDomainSP axis : axes) {
+  for (const domains::CoupledLabelledDomainSP& axis : axes) {
     auto labels = *axis->labels();
-    for (const instrument_interfaces::names::InstrumentPortSP knob : labels) {
+    for (const instrument_interfaces::names::InstrumentPortSP& knob : labels) {
       knobs->push_back(knob);
     }
   }

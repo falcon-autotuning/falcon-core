@@ -353,9 +353,8 @@ TEST_F(ControlArray1DTest, ComparisonOperators) {
 TEST_F(ControlArray1DTest, OffsetSumWhereFlipGradient) {
   ControlArray1D_remove_offset(ca, 1.0);
   EXPECT_DOUBLE_EQ(ControlArray1D_sum(ca), 3.0);
-  size_t               new_shape[1] = {3};
-  ListListSizeTHandle  where        = ControlArray1D_where(ca, 2.0);
-  ControlArray1DHandle flipped      = ControlArray1D_flip(ca, 0);
+  ListListSizeTHandle  where   = ControlArray1D_where(ca, 2.0);
+  ControlArray1DHandle flipped = ControlArray1D_flip(ca, 0);
   ControlArray1D_destroy(flipped);
   ListListSizeT_destroy(where);
   FArrayDoubleHandle grad_buffer[1];

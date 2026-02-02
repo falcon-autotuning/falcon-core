@@ -480,7 +480,7 @@ TEST_F(ListTest, MultiThreadedAt) {
   List<StrSong>            list(song_data);
   std::shared_ptr<StrSong> b = list.at(0);
 
-  std::thread t1([&list, this] {
+  std::thread t1([this] {
     std::shared_ptr<StrSong> song1 = std::make_shared<StrSong>("Changed");
     song_data[0]                   = song1;
   });

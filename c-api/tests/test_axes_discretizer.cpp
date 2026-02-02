@@ -63,9 +63,6 @@ TEST_F(AxesDiscretizerTest, CreateDestroy) {
 
 TEST_F(AxesDiscretizerTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesDiscretizer_size(axes), 2u);
-
-  DiscretizerHandle out[1] = {AxesDiscretizer_create_empty()};
-
   AxesDiscretizer_push_back(
       axes, track_discretizer(Discretizer_create_cartesian_discretizer(0.5)));
   DiscretizerHandle out2[3];

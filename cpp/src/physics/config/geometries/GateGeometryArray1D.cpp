@@ -92,9 +92,9 @@ GateGeometryArray1D::GateGeometryArray1D() = default;
 GateGeometryArray1D::GateGeometryArray1D(
     device_structures::ConnectionsSP lineararray,
     device_structures::ConnectionsSP screening_gates)
-    : _linear_array(lineararray),
+    : _central_dot_gates(std::make_shared<DotGatesWithNeighbors>()),
       _screening_gates(screening_gates),
-      _central_dot_gates(std::make_shared<DotGatesWithNeighbors>()) {
+      _linear_array(lineararray) {
   if (!lineararray) {
     throw std::invalid_argument(
         "GateGeometryArray1D: The lineararray cannot be null.");

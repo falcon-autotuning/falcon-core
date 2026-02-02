@@ -112,7 +112,7 @@ TEST_F(MeasuredArray1DTest, ReverseAndClosestIndex) {
 }
 
 TEST_F(MeasuredArray1DTest, EvenDivisions) {
-  auto list = MeasuredArray1D_even_divisions(ma, 2);
+  MeasuredArray1D_even_divisions(ma, 2);
   // ListFArrayDouble_destroy(list); // implement destroy if needed
   set_last_error(0, nullptr);
   MeasuredArray1D_even_divisions(nullptr, 2);

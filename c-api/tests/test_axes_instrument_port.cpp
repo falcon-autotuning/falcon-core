@@ -85,14 +85,6 @@ TEST_F(AxesInstrumentPortTest, CreateDestroy) {
 
 TEST_F(AxesInstrumentPortTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesInstrumentPort_size(axes), 2u);
-
-  InstrumentPortHandle out[1] = {track_instrument_port(
-      InstrumentPort_create_port(String_wrap("port1"),
-                                 NULL,
-                                 InstrumentTypes_voltmeter(),
-                                 SymbolUnit_create_volt(),
-                                 String_wrap("")))};
-
   AxesInstrumentPort_push_back(axes,
                                track_instrument_port(InstrumentPort_create_port(
                                    String_wrap("port1"),

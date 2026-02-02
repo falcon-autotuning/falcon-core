@@ -361,7 +361,7 @@ TEST_F(MeasuredArrayTest, OffsetSumReshapeWhereFlipGradient) {
   size_t new_shape[1] = {6};
   auto   reshaped     = MeasuredArray_reshape(ma, new_shape, 1);
   MeasuredArray_destroy(reshaped);
-  auto where   = MeasuredArray_where(ma, 2.0);
+  MeasuredArray_where(ma, 2.0);
   auto flipped = MeasuredArray_flip(ma, 0);
   MeasuredArray_destroy(flipped);
   MeasuredArrayHandle grad_buffer[1];

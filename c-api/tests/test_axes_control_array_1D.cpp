@@ -74,9 +74,6 @@ TEST_F(AxesControlArray1DTest, CreateDestroy) {
 
 TEST_F(AxesControlArray1DTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesControlArray1D_size(axes), 2u);
-
-  ControlArray1DHandle out[1] = {ControlArray1D_from_data(data, shape, 1)};
-
   AxesControlArray1D_push_back(axes, ControlArray1D_from_data(data, shape, 1));
   ControlArray1DHandle out2[3];
   EXPECT_EQ(AxesControlArray1D_items(axes, out2, 3), 3u);

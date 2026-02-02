@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/PairIntInt_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 
@@ -39,8 +39,6 @@ TEST_F(PairIntIntTest, CreateDestroy) {
 }
 
 TEST_F(PairIntIntTest, Accessors) {
-  auto f = PairIntInt_first(pair1);
-  auto s = PairIntInt_second(pair1);
   set_last_error(0, nullptr);
   PairIntInt_first(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);

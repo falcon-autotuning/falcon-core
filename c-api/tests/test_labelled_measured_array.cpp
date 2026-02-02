@@ -387,8 +387,7 @@ TEST_F(LabelledMeasuredArrayTest, OffsetSumReshapeWhereFlipGradient) {
   size_t new_shape[1] = {6};
   auto   reshaped     = LabelledMeasuredArray_reshape(lma, new_shape, 1);
   LabelledMeasuredArray_destroy(reshaped);
-  auto where = LabelledMeasuredArray_where(lma, 2.0);
-  // ListListSizeT_destroy(where); // implement destroy if needed
+  LabelledMeasuredArray_where(lma, 2.0);
   auto flipped = LabelledMeasuredArray_flip(lma, 0);
   LabelledMeasuredArray_destroy(flipped);
   LabelledMeasuredArrayHandle grad_buffer[1];

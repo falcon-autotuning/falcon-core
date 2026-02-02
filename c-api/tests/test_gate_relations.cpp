@@ -1,6 +1,4 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
@@ -80,7 +78,7 @@ TEST_F(GateRelationsTest, InsertOrAssign) {
   GateRelations_insert_or_assign(gr, gate1, neighbors1);
   EXPECT_EQ(GateRelations_size(gr), 1);
 
-  ConnectionsHandle     conns  = GateRelations_at(gr, gate1);
+  GateRelations_at(gr, gate1);
   ListConnectionsHandle values = GateRelations_values(gr);
   ConnectionsHandle     val    = ListConnections_at(values, 0);
   EXPECT_STREQ(Connection_name(Connections_at(val, 0))->raw, "n1");
@@ -94,7 +92,7 @@ TEST_F(GateRelationsTest, Insert) {
   GateRelations_insert(gr, gate1, neighbors1);
   EXPECT_EQ(GateRelations_size(gr), 1);
 
-  ConnectionsHandle     conns  = GateRelations_at(gr, gate1);
+  GateRelations_at(gr, gate1);
   ListConnectionsHandle values = GateRelations_values(gr);
   ConnectionsHandle     val    = ListConnections_at(values, 0);
   EXPECT_STREQ(Connection_name(Connections_at(val, 0))->raw, "n1");
@@ -111,7 +109,7 @@ TEST_F(GateRelationsTest, SerializationRoundTrip) {
   GateRelationsHandle gr2  = GateRelations_from_json_string(json);
 
   EXPECT_EQ(GateRelations_size(gr2), 1);
-  ConnectionsHandle     conns  = GateRelations_at(gr, gate1);
+  GateRelations_at(gr, gate1);
   ListConnectionsHandle values = GateRelations_values(gr2);
   ConnectionsHandle     val    = ListConnections_at(values, 0);
   EXPECT_STREQ(Connection_name(Connections_at(val, 0))->raw, "n1");

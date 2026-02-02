@@ -115,8 +115,7 @@ TEST_F(LabelledMeasuredArray1DTest, ReverseAndClosestIndex) {
 }
 
 TEST_F(LabelledMeasuredArray1DTest, EvenDivisions) {
-  auto list = LabelledMeasuredArray1D_even_divisions(lma, 2);
-  // ListFArrayDouble_destroy(list); // implement destroy if needed
+  LabelledMeasuredArray1D_even_divisions(lma, 2);
   set_last_error(0, nullptr);
   LabelledMeasuredArray1D_even_divisions(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
@@ -531,7 +530,7 @@ TEST_F(LabelledMeasuredArray1DTest, ConnectionAccess) {
 }
 
 TEST_F(LabelledMeasuredArray1DTest, InstrumentTypeAccess) {
-  auto inst_type = LabelledMeasuredArray1D_instrument_type(lma);
+  LabelledMeasuredArray1D_instrument_type(lma);
   set_last_error(0, nullptr);
   LabelledMeasuredArray1D_instrument_type(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);

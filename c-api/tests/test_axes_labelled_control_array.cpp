@@ -124,9 +124,7 @@ TEST_F(AxesLabelledControlArrayTest, AccessorsAndMutators) {
       SymbolUnit_create_volt());
   auto lca = LabelledControlArray_from_control_array(
       ControlArray_from_data(data2d, shape2d, 2), label);
-  LabelledControlArrayHandle out[1] = {lca};
   ListLabelledControlArray_destroy(handle);
-  //
   AxesLabelledControlArray_push_back(axes, lca);
   LabelledControlArrayHandle out2[3];
   EXPECT_EQ(AxesLabelledControlArray_items(axes, out2, 3), 3u);

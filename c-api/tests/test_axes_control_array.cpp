@@ -80,10 +80,6 @@ TEST_F(AxesControlArrayTest, CreateDestroy) {
 
 TEST_F(AxesControlArrayTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesControlArray_size(axes), 2u);
-
-  // ListControlArrayHandle out1[1] = {ListControlArray_create_empty()};
-  ControlArrayHandle out[1] = {ControlArray_from_data(data2d, shape2d, 2)};
-
   AxesControlArray_push_back(axes, ControlArray_from_data(data2d, shape2d, 2));
   ControlArrayHandle out2[3];
   EXPECT_EQ(AxesControlArray_items(axes, out2, 3), 3u);

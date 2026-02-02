@@ -33,14 +33,14 @@ Point::Point()
 Point::Point(
     const generic::MapSP<physics::device_structures::Connection, double>& init,
     const physics::units::SymbolUnitSP&                                   unit)
-    : _unit(unit),
-      generic::Map<physics::device_structures::Connection, Quantity>() {
+    : generic::Map<physics::device_structures::Connection, Quantity>(),
+      _unit(unit) {
   if (!init || !unit) {
     throw std::invalid_argument(
         "Point: The initial map and unit cannot be null.");
   }
   auto map = *init;
-  for (const auto pair : map) {
+  for (const auto& pair : map) {
     Map::insert(pair->first(),
                 std::make_shared<Quantity>(pair->second(), unit));
   }

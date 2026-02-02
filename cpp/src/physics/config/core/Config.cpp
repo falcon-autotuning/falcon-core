@@ -98,10 +98,10 @@ Config::Config(
                                 plunger_gates,
                                 barrier_gates,
                                 ohmics),
-      _groups(groups),
       _wiring_DC(wiring_DC),
+      _channels(std::make_shared<autotuner_interfaces::names::Channels>()),
       _voltage_constraints(constraints),
-      _channels(std::make_shared<autotuner_interfaces::names::Channels>()) {
+      _groups(groups) {
   if (!constraints || !wiring_DC || !groups) {
     throw std::invalid_argument(
         "Config: The constraints, wiring, and groups are not permitted to be "

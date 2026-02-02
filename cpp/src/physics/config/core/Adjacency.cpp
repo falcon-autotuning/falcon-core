@@ -27,7 +27,7 @@ Adjacency& Adjacency::operator=(const Adjacency& other) {
 }
 Adjacency::Adjacency() = default;
 Adjacency::Adjacency(const xt::xarray<int>& matrix, const Indexes indexes)
-    : _indexes(indexes), generic::FArray<int>(matrix) {
+    : generic::FArray<int>(matrix), _indexes(indexes) {
   if (!indexes) {
     throw std::invalid_argument("Adjacency: The indexes cannot be null.");
   }

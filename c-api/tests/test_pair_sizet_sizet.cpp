@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/PairSizeTSizeT_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 
@@ -39,8 +39,6 @@ TEST_F(PairSizeTSizeTTest, CreateDestroy) {
 }
 
 TEST_F(PairSizeTSizeTTest, Accessors) {
-  auto f = PairSizeTSizeT_first(pair1);
-  auto s = PairSizeTSizeT_second(pair1);
   set_last_error(0, nullptr);
   PairSizeTSizeT_first(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);

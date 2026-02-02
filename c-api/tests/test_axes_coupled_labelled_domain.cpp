@@ -63,9 +63,6 @@ TEST_F(AxesCoupledLabelledDomainTest, CreateDestroy) {
 
 TEST_F(AxesCoupledLabelledDomainTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesCoupledLabelledDomain_size(axes), 2u);
-
-  CoupledLabelledDomainHandle out[1] = {CoupledLabelledDomain_create_empty()};
-
   AxesCoupledLabelledDomain_push_back(axes,
                                       CoupledLabelledDomain_create_empty());
   CoupledLabelledDomainHandle out2[3];

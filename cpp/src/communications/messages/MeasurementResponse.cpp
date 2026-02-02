@@ -39,7 +39,7 @@ MeasurementResponse::MeasurementResponse() = default;
 MeasurementResponse::MeasurementResponse(
     const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
         arrays)
-    : _arrays(arrays), BaseMessage() {
+    : BaseMessage(), _arrays(arrays) {
   if (!arrays) {
     throw std::invalid_argument(
         "MeasurementResponse: The arrays must not be null.");

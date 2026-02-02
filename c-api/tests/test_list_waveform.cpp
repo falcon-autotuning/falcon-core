@@ -21,8 +21,6 @@ class ListWaveformTest : public ::testing::Test {
     return s;
   }
   void SetUp() override {
-    StringHandle         msg          = String_wrap("msg");
-    StringHandle         name         = String_wrap("measurement");
     DomainHandle         domain       = Domain_create(0, 1.0, true, true);
     StringHandle         default_name = String_wrap("A");
     InstrumentPortHandle port =
@@ -31,12 +29,6 @@ class ListWaveformTest : public ::testing::Test {
                                    InstrumentTypes_voltmeter(),
                                    SymbolUnit_create_volt(),
                                    String_wrap(""));
-    InstrumentPortHandle getter = InstrumentPort_create_meter(
-        String_wrap("ohm1"),
-        Connection_create_ohmic(String_wrap("ohm1")),
-        InstrumentTypes_amnmeter(),
-        SymbolUnit_create_ampere(),
-        String_wrap(""));
     ListLabelledDomainHandle domain_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
         domain_list, LabelledDomain_create_from_port_and_domain(port, domain));

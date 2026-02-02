@@ -46,9 +46,8 @@ TEST_F(PortTransformsTest, CreateDestroy) {
   auto t = PortTransforms_create_empty();
   PortTransforms_destroy(t);
 
-  PortTransformHandle arr[2] = {pt, pt2};
-  auto                list   = PortTransforms_items(transforms);
-  auto                t3     = PortTransforms_create(list);
+  auto list = PortTransforms_items(transforms);
+  auto t3   = PortTransforms_create(list);
   PortTransforms_destroy(t3);
   ListPortTransform_destroy(list);
 

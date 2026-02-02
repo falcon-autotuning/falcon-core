@@ -15,9 +15,9 @@ Unit::Unit(TotalDimensions dimensions,
            double          offset,
            std::string     prefix)
     : _scale_factor(scale_factor),
-      _dimensions(dimensions),
       _offset(offset),
-      _prefix(prefix) {}
+      _prefix(prefix),
+      _dimensions(dimensions) {}
 
 UnitSP Unit::Meter() { return std::make_shared<Unit>(SI::DIMENSIONS_METER); }
 UnitSP Unit::Kilogram() {

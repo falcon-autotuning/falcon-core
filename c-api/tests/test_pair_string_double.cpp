@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include <string>
 
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/PairStringDouble_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 
@@ -44,7 +44,6 @@ TEST_F(PairStringDoubleTest, CreateDestroy) {
 
 TEST_F(PairStringDoubleTest, Accessors) {
   auto f = PairStringDouble_first(pair1);
-  auto s = PairStringDouble_second(pair1);
   EXPECT_TRUE(String_equal(f, t1));
   set_last_error(0, nullptr);
   PairStringDouble_first(nullptr);

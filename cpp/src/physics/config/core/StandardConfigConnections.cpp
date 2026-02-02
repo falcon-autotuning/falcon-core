@@ -217,7 +217,7 @@ StandardConfigConnections::get_all_gates() const {
       std::make_shared<device_structures::Connections>();
   auto total_collection = std::vector<device_structures::ConnectionsSP>{
       barrier_gates(), plunger_gates(), screening_gates(), reservoir_gates()};
-  for (const auto collection : total_collection) {
+  for (const auto& collection : total_collection) {
     auto coll = *collection;
     for (const device_structures::ConnectionSP& connection : coll) {
       combination->push_back(connection);
@@ -231,7 +231,7 @@ StandardConfigConnections::get_all_connections() const {
       std::make_shared<device_structures::Connections>();
   auto total_collection =
       std::vector<device_structures::ConnectionsSP>{get_all_gates(), ohmics()};
-  for (const auto collection : total_collection) {
+  for (const auto& collection : total_collection) {
     for (const device_structures::ConnectionSP& connection : *collection) {
       combination->push_back(connection);
     }

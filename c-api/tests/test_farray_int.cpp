@@ -304,9 +304,6 @@ TEST_F(FArrayIntTest, ArithmeticAndComparison) {
   FArrayIntHandle arr16 = FArrayInt_divides_int(arr1, 2);
   FArrayIntHandle arr17 = FArrayInt_pow(arr1, 2.0);
   FArrayIntHandle arr18 = FArrayInt_abs(arr1);
-  int             num1  = FArrayInt_min(arr1);
-  FArrayIntHandle arr19 = FArrayInt_min_arraywise(arr1, arr4);
-  int             num2  = FArrayInt_max(arr1);
   FArrayIntHandle arr20 = FArrayInt_max_arraywise(arr1, arr4);
   FArrayIntHandle arr21 = FArrayInt_negation(arr1);
   FArrayIntHandle arr22 = FArrayInt_reshape(arr1, shape, 2);
@@ -343,7 +340,7 @@ TEST_F(FArrayIntTest, Miscellaneous) {
   EXPECT_NO_THROW(FArrayInt_get_summed_diff_int_of_squares(arr3, 1));
   EXPECT_NO_THROW(FArrayInt_get_summed_diff_double_of_squares(arr3, 1.0));
   EXPECT_NO_THROW(FArrayInt_get_summed_diff_array_of_squares(arr3, arr2));
-  ListListSizeTHandle where = FArrayInt_where(arr3, 0.0);
+  FArrayInt_where(arr3, 0.0);
   EXPECT_NO_THROW({
     FArrayIntHandle grads[2];
     size_t          n = FArrayInt_full_gradient(arr3, grads, 2);

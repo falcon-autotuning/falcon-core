@@ -314,9 +314,6 @@ TEST_F(ConfigTest, JsonRoundTrip) {
   ASSERT_EQ(o1, o2);
   ASSERT_EQ(deserialized_config.wiring_DC()->size(),
             original_config.wiring_DC()->size());
-  auto sort_by_conn = [](const ImpedanceSP& a, const ImpedanceSP& b) {
-    return a->connection()->name() < b->connection()->name();
-  };
   ASSERT_TRUE(*(deserialized_config.wiring_DC()) ==
               *(original_config.wiring_DC()));
 }

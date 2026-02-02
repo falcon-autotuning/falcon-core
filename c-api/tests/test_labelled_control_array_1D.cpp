@@ -116,8 +116,7 @@ TEST_F(LabelledControlArray1DTest, ReverseAndClosestIndex) {
 }
 
 TEST_F(LabelledControlArray1DTest, EvenDivisions) {
-  auto list = LabelledControlArray1D_even_divisions(lca, 2);
-  // ListFArrayDouble_destroy(list); // implement destroy if needed
+  LabelledControlArray1D_even_divisions(lca, 2);
   set_last_error(0, nullptr);
   LabelledControlArray1D_even_divisions(nullptr, 2);
   EXPECT_EQ(get_last_error_code(), 1);
@@ -376,9 +375,7 @@ TEST_F(LabelledControlArray1DTest, ComparisonOperators) {
 TEST_F(LabelledControlArray1DTest, OffsetSumWhereFlipGradient) {
   LabelledControlArray1D_remove_offset(lca, 1.0);
   EXPECT_DOUBLE_EQ(LabelledControlArray1D_sum(lca), 15.0);
-  size_t new_shape[1] = {6};
-  auto   where        = LabelledControlArray1D_where(lca, 2.0);
-  // ListListSizeT_destroy(where); // implement destroy if needed
+  LabelledControlArray1D_where(lca, 2.0);
   auto flipped = LabelledControlArray1D_flip(lca, 0);
   LabelledControlArray1D_destroy(flipped);
   LabelledControlArray1DHandle grad_buffer[1];

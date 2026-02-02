@@ -64,11 +64,8 @@ TEST_F(AxesMapStringBoolTest, CreateDestroy) {
   EXPECT_EQ(get_last_error_code(), 1);
   StringHandle         str3     = String_wrap("key3");
   PairStringBoolHandle pair3[1] = {PairStringBool_create(str3, true)};
-
-  MapStringBoolHandle map_pair3[1] = {MapStringBool_create(pair3, 1)};
-  //
 }
-//
+
 TEST_F(AxesMapStringBoolTest, AccessorsAndMutators) {
   MapStringBoolHandle rawbuffer[1];
   EXPECT_NO_THROW(AxesMapStringBool_items(sh1, rawbuffer, 1));

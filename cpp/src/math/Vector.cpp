@@ -41,15 +41,17 @@ Vector& Vector::operator=(const Vector& other) {
 }
 
 Vector::Vector()
-    : _unit(physics::units::SymbolUnit::Dimensionless()),
-      _connections(std::make_shared<physics::device_structures::Connections>()),
-      generic::Map<physics::device_structures::Connection,
-                   generic::Pair<Quantity, Quantity>>() {}
+    : generic::Map<physics::device_structures::Connection,
+                   generic::Pair<Quantity, Quantity>>(),
+      _unit(physics::units::SymbolUnit::Dimensionless()),
+      _connections(
+          std::make_shared<physics::device_structures::Connections>()) {}
 Vector::Vector(const PointSP& start, const PointSP& end)
-    : _unit(end ? end->unit() : nullptr),
-      _connections(std::make_shared<physics::device_structures::Connections>()),
-      generic::Map<physics::device_structures::Connection,
-                   generic::Pair<Quantity, Quantity>>() {
+    : generic::Map<physics::device_structures::Connection,
+                   generic::Pair<Quantity, Quantity>>(),
+      _unit(end ? end->unit() : nullptr),
+      _connections(
+          std::make_shared<physics::device_structures::Connections>()) {
   if (!start || !end) {
     throw std::invalid_argument(
         "Vector: The start and end points must not be null.");
@@ -67,7 +69,7 @@ Vector::Vector(const PointSP& start, const PointSP& end)
     }
   }
   auto conns = *connections();
-  for (const physics::device_structures::ConnectionSP connectionSP : conns) {
+  for (const physics::device_structures::ConnectionSP& connectionSP : conns) {
     QuantitySP first, second;
     if (start->contains(connectionSP)) {
       first = start->at(connectionSP);
@@ -123,7 +125,7 @@ Vector::Vector(const generic::MapSP<physics::device_structures::Connection,
 const PointSP Vector::endPoint() const {
   PointSP result = std::make_shared<Point>();
   auto    items  = *this->items();
-  for (const auto pair : items) {
+  for (const auto& pair : items) {
     result->insert(pair->first(), pair->second()->second());
   }
   return result;
@@ -131,7 +133,7 @@ const PointSP Vector::endPoint() const {
 const PointSP Vector::startPoint() const {
   PointSP result = std::make_shared<Point>();
   auto    items  = *this->items();
-  for (const auto pair : items) {
+  for (const auto& pair : items) {
     result->insert(pair->first(), pair->second()->first());
   }
   return result;
@@ -141,7 +143,7 @@ Vector::end_quantities() const {
   generic::MapSP<physics::device_structures::Connection, Quantity> result =
       std::make_shared<Map<physics::device_structures::Connection, Quantity>>();
   auto items = *this->items();
-  for (const auto pair : items) {
+  for (const auto& pair : items) {
     result->insert(pair->first(), pair->second()->second());
   }
   return result;
@@ -151,7 +153,7 @@ Vector::start_quantities() const {
   generic::MapSP<physics::device_structures::Connection, Quantity> result =
       std::make_shared<Map<physics::device_structures::Connection, Quantity>>();
   auto items = *this->items();
-  for (const auto pair : items) {
+  for (const auto& pair : items) {
     result->insert(pair->first(), pair->second()->first());
   }
   return result;
@@ -161,7 +163,7 @@ Vector::end_map() const {
   generic::MapSP<physics::device_structures::Connection, double> result =
       std::make_shared<Map<physics::device_structures::Connection, double>>();
   auto items = *this->items();
-  for (const auto pair : items) {
+  for (const auto& pair : items) {
     result->insert(pair->first(), pair->second()->second()->value());
   }
   return result;
@@ -171,7 +173,7 @@ Vector::start_map() const {
   generic::MapSP<physics::device_structures::Connection, double> result =
       std::make_shared<Map<physics::device_structures::Connection, double>>();
   auto items = *this->items();
-  for (const auto pair : items) {
+  for (const auto& pair : items) {
     result->insert(pair->first(), pair->second()->first()->value());
   }
   return result;

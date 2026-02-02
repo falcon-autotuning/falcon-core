@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
-#include "falcon_core/generic/ListConnection_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/PairConnectionFloat_c_api.h"
 #include "falcon_core/generic/String_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
@@ -12,7 +11,6 @@ class PairConnectionFloatTest : public ::testing::Test {
     ConnectionHandle arr1[2] = {
         Connection_create_plunger_gate(String_wrap("gate1")),
         Connection_create_plunger_gate(String_wrap("gate2"))};
-    ListConnectionHandle lch1 = ListConnection_create(arr1, 2);
     t1    = Connection_create_plunger_gate(String_wrap("A"));
     t2    = 1.0;
     pair1 = PairConnectionFloat_create(t1, t2);
