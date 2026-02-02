@@ -1,0 +1,57 @@
+#pragma once
+#ifdef __cplusplus
+    extern "C" {
+#endif
+#include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
+#include <stddef.h>
+#include <stdbool.h>
+#include "falcon_core/generic/String_c_api.h"
+
+// Forward declarations for opaque handles
+typedef void* ListPairInterpretationContextDoubleHandle;
+// Function declarations
+
+// @category:allocation
+FALCON_CORE_C_API ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create_empty();
+// @category:allocation
+FALCON_CORE_C_API ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_copy(ListPairInterpretationContextDoubleHandle handle);
+
+// @category:allocation
+FALCON_CORE_C_API ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_fill_value(size_t count, PairInterpretationContextDoubleHandle value);
+// @category:allocation
+FALCON_CORE_C_API ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create(PairInterpretationContextDoubleHandle* data, size_t count);
+// @category:deallocation
+FALCON_CORE_C_API void ListPairInterpretationContextDouble_destroy(ListPairInterpretationContextDoubleHandle handle);
+// @category:write
+FALCON_CORE_C_API void ListPairInterpretationContextDouble_push_back(ListPairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle value);
+// @category:read
+FALCON_CORE_C_API size_t ListPairInterpretationContextDouble_size(ListPairInterpretationContextDoubleHandle handle);
+// @category:read
+FALCON_CORE_C_API bool ListPairInterpretationContextDouble_empty(ListPairInterpretationContextDoubleHandle handle);
+// @category:write
+FALCON_CORE_C_API void ListPairInterpretationContextDouble_erase_at(ListPairInterpretationContextDoubleHandle handle, size_t idx);
+// @category:write
+FALCON_CORE_C_API void ListPairInterpretationContextDouble_clear(ListPairInterpretationContextDoubleHandle handle);
+// @category:read
+FALCON_CORE_C_API PairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_at(ListPairInterpretationContextDoubleHandle handle, size_t idx);
+// @category:read
+FALCON_CORE_C_API size_t ListPairInterpretationContextDouble_items(ListPairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle* out_buffer, size_t buffer_size);
+// @category:read
+FALCON_CORE_C_API bool ListPairInterpretationContextDouble_contains(ListPairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle value);
+// @category:read
+FALCON_CORE_C_API size_t ListPairInterpretationContextDouble_index(ListPairInterpretationContextDoubleHandle handle, PairInterpretationContextDoubleHandle value);
+// @category:read
+FALCON_CORE_C_API ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_intersection(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other);
+// @category:read
+FALCON_CORE_C_API bool ListPairInterpretationContextDouble_equal(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other);
+// @category:read
+FALCON_CORE_C_API bool ListPairInterpretationContextDouble_not_equal(ListPairInterpretationContextDoubleHandle handle, ListPairInterpretationContextDoubleHandle other);
+
+// @category:read
+FALCON_CORE_C_API StringHandle      ListPairInterpretationContextDouble_to_json_string(ListPairInterpretationContextDoubleHandle handle);
+// @category:allocation
+FALCON_CORE_C_API ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_from_json_string(StringHandle json);
+
+#ifdef __cplusplus
+}
+#endif

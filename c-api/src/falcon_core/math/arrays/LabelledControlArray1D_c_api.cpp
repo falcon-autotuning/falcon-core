@@ -77,7 +77,7 @@ FArrayDoubleHandle LabelledControlArray1D_as_1D(
   }
   auto labelled_control_array = *static_cast<LabelledControlArray1DSP*>(handle);
   generic::FArraySP<double> data = labelled_control_array->as_1D();
-  return new generic::FArray<double>(*data);
+  return new generic::FArraySP<double>(data);
   FALCON_C_API_END(nullptr)
 }
 
