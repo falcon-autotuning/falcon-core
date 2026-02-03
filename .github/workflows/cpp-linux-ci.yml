@@ -149,6 +149,15 @@ jobs:
           path: cpp/build/cpp_linux_cross.json
           retention-days: 1
 
+      - name: Upload C++ build artifacts for C-API CI
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-linux-build
+          path: |
+            cpp/build/libfalcon_core_cpp.so
+            cpp/build/CMakeCache.txt
+          retention-days: 1
+
       - name: Upload integration test executable for cross-platform tests
         uses: actions/upload-artifact@v4
         with:

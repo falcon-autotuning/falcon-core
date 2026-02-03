@@ -182,7 +182,34 @@ jobs:
           path: cpp/build/cpp_windows_cross.json
           retention-days: 1
 
-      - name: Prepare integration test executable with dependencies
+      - name: Prepare C++ build artifacts for C-API CI
+        working-directory: cpp/build
+        shell: pwsh
+        run: |
+          Write-Host "=== Preparing C++ build artifacts for C-API ==="
+
+          $artifactDir = "cpp-build-for-capi"
+          New-Item -ItemType Directory -Force -Path $artifactDir
+
+          # Copy DLL and LIB
+          Copy-Item "falcon_core_cpp.dll" $artifactDir
+          Copy-Item "falcon_core_cpp.lib" $artifactDir
+
+          # Copy CMake files
+          Copy-Item "CMakeCache.txt" $artifactDir -ErrorAction SilentlyContinue
+
+          Write-Host "`n=== Artifacts for C-API ==="
+          Get-ChildItem $artifactDir | Select-Object Name, Length
+
+      - name: Upload C++ build artifacts for C-API CI
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-windows-build
+          path: cpp/build/cpp-build-for-capi/**
+          retention-days: 1
+          compression-level: 0
+
+      - name: Prepare integration test executable with dependencies for cross-platform tests
         working-directory: cpp/build
         shell: pwsh
         run: |
@@ -206,7 +233,7 @@ jobs:
             }
           }
 
-          Write-Host "`n=== Package Contents ==="
+          Write-Host "`n=== Integration Test Package Contents ==="
           Get-ChildItem $artifactDir | Select-Object Name, Length
 
       - name: Upload integration test executable for cross-platform tests

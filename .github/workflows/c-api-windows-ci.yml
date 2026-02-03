@@ -55,28 +55,37 @@ jobs:
           name: cpp-windows-build
           path: cpp/build
 
-      - name: Verify C++ artifacts
+      - name: Verify and organize C++ artifacts
         shell: pwsh
         run: |
           Write-Host "=== Downloaded C++ Artifacts ==="
           Get-ChildItem cpp/build -Recurse
 
-          if (-not (Test-Path "cpp/build/falcon_core_cpp.dll")) {
-            Write-Error "ERROR: falcon_core_cpp.dll not found!"
-            exit 1
-          }
-
-          Write-Host "✓ C++ artifacts verified"
-
-      - name: Copy C++ DLLs to predictable location
-        shell: pwsh
-        run: |
-          if (-not (Test-Path "cpp/build/falcon_core_cpp.dll")) {
+          # Check if files are in root or subdirectory
+          if (Test-Path "cpp/build/falcon_core_cpp.dll") {
+            Write-Host "✓ falcon_core_cpp.dll found in root"
+          } else {
+            # Look for DLL in subdirectories
             $dllLocation = Get-ChildItem "cpp/build" -Recurse -Filter "falcon_core_cpp.dll" | Select-Object -First 1
             if ($dllLocation) {
+              Write-Host "Found DLL at: $($dllLocation.FullName)"
               Copy-Item $dllLocation.FullName "cpp/build/"
+              
+              # Also copy lib file
+              $libLocation = Get-ChildItem "cpp/build" -Recurse -Filter "falcon_core_cpp.lib" | Select-Object -First 1
+              if ($libLocation) {
+                Copy-Item $libLocation.FullName "cpp/build/"
+              }
+              
+              Write-Host "✓ Reorganized artifacts to cpp/build root"
+            } else {
+              Write-Error "ERROR: falcon_core_cpp.dll not found!"
+              exit 1
             }
           }
+
+          Write-Host "`n=== Final cpp/build contents ==="
+          Get-ChildItem cpp/build -Filter "*.*" | Select-Object Name, Length
 
       - name: Configure CMake for C-API
         working-directory: c-api
@@ -118,6 +127,7 @@ jobs:
         run: |
           Get-ChildItem "cpp/build" -Filter "*.dll" | ForEach-Object {
             Copy-Item $_.FullName "c-api/build/" -Force
+            Write-Host "Copied: $($_.Name)"
           }
 
       - name: Verify C-API build
@@ -179,7 +189,7 @@ jobs:
           path: c-api/build/capi_windows_cross.json
           retention-days: 1
 
-      - name: Prepare integration test executable with dependencies
+      - name: Prepare integration test executable with dependencies for cross-platform tests
         working-directory: c-api/build
         shell: pwsh
         run: |
@@ -188,16 +198,10 @@ jobs:
           $artifactDir = "integration-test-package"
           New-Item -ItemType Directory -Force -Path $artifactDir
 
-          # Copy C-API executable
           Copy-Item "integration_deserialize_connection_c.exe" $artifactDir
-
-          # Copy C-API DLL
           Copy-Item "falcon_core_c_api.dll" $artifactDir
-
-          # Copy C++ DLL
           Copy-Item "../../cpp/build/falcon_core_cpp.dll" $artifactDir
 
-          # Copy vcpkg DLLs
           $vcpkgBin = "vcpkg_installed/x64-windows/bin"
           if (Test-Path $vcpkgBin) {
             Get-ChildItem $vcpkgBin -Filter "*.dll" | ForEach-Object {
