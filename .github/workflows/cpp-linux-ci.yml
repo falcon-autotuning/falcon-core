@@ -41,8 +41,8 @@ jobs:
 
       - name: Install system dependencies
         run: |
-          sudo pacman -Syu --noconfirm
-          sudo pacman -S --noconfirm \
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm \
             base-devel \
             git \
             wget \
