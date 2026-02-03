@@ -21,6 +21,24 @@ jobs:
           echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           chown -R builduser:builduser .
 
+      - name: Cache pacman packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/pacman/pkg
+          key: ${{ runner.os }}-pacman-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-pacman-
+
+      - name: Cache AUR packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            packaging/highfive/*.pkg.tar.zst
+            packaging/exprtk/*.pkg.tar.zst
+          key: ${{ runner.os }}-aur-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-aur-
+
       - name: Install system dependencies
         run: |
           pacman -Syu --noconfirm
