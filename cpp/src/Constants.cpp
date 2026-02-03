@@ -93,53 +93,114 @@ const char* const ALL_DIMENSIONS[] = {DIMENSION_LENGTH,
                                       DIMENSION_LUMINOSITY};
 
 // The following (maps and std::string objects) cannot be  const char*:
-const std::map<std::string, int> DIMENSIONS_DIMENSIONLESS = {};
-const std::map<std::string, int> DIMENSIONS_METER    = {{DIMENSION_LENGTH, 1}};
-const std::map<std::string, int> DIMENSIONS_KILOGRAM = {{DIMENSION_MASS, 1}};
-const std::map<std::string, int> DIMENSIONS_SECOND   = {{DIMENSION_TIME, 1}};
-const std::map<std::string, int> DIMENSIONS_AMPERE   = {{DIMENSION_CURRENT, 1}};
-const std::map<std::string, int> DIMENSIONS_KELVIN   = {
-    {DIMENSION_TEMPERATURE, 1}};
-const std::map<std::string, int> DIMENSIONS_MOLE    = {{DIMENSION_AMOUNT, 1}};
-const std::map<std::string, int> DIMENSIONS_CANDELA = {
-    {DIMENSION_LUMINOSITY, 1}};
-const std::map<std::string, int> DIMENSIONS_HERTZ  = {{DIMENSION_TIME, -1}};
-const std::map<std::string, int> DIMENSIONS_NEWTON = {
-    {DIMENSION_MASS, 1}, {DIMENSION_LENGTH, 1}, {DIMENSION_TIME, -2}};
-const std::map<std::string, int> DIMENSIONS_PASCAL = {
-    {DIMENSION_MASS, 1}, {DIMENSION_LENGTH, -1}, {DIMENSION_TIME, -2}};
-const std::map<std::string, int> DIMENSIONS_JOULE = {
-    {DIMENSION_MASS, 1}, {DIMENSION_LENGTH, 2}, {DIMENSION_TIME, -2}};
-const std::map<std::string, int> DIMENSIONS_WATT = {
-    {DIMENSION_MASS, 1}, {DIMENSION_LENGTH, 2}, {DIMENSION_TIME, -3}};
-const std::map<std::string, int> DIMENSIONS_COULOMB = {{DIMENSION_TIME, 1},
-                                                       {DIMENSION_CURRENT, 1}};
-const std::map<std::string, int> DIMENSIONS_VOLT    = {{DIMENSION_MASS, 1},
-                                                       {DIMENSION_LENGTH, 2},
-                                                       {DIMENSION_TIME, -3},
-                                                       {DIMENSION_CURRENT, -1}};
-const std::map<std::string, int> DIMENSIONS_FARAD   = {{DIMENSION_MASS, -1},
-                                                       {DIMENSION_LENGTH, -2},
-                                                       {DIMENSION_TIME, 4},
-                                                       {DIMENSION_CURRENT, 2}};
-const std::map<std::string, int> DIMENSIONS_OHM     = {{DIMENSION_MASS, 1},
-                                                       {DIMENSION_LENGTH, 2},
-                                                       {DIMENSION_TIME, -3},
-                                                       {DIMENSION_CURRENT, -2}};
-const std::map<std::string, int> DIMENSIONS_SIEMENS = {{DIMENSION_MASS, -1},
-                                                       {DIMENSION_LENGTH, -2},
-                                                       {DIMENSION_TIME, 3},
-                                                       {DIMENSION_CURRENT, 2}};
-const std::map<std::string, int> DIMENSIONS_WEBER   = {{DIMENSION_MASS, 1},
-                                                       {DIMENSION_LENGTH, 2},
-                                                       {DIMENSION_TIME, -2},
-                                                       {DIMENSION_CURRENT, -1}};
-const std::map<std::string, int> DIMENSIONS_TESLA   = {
-    {DIMENSION_MASS, 1}, {DIMENSION_TIME, -2}, {DIMENSION_CURRENT, -1}};
-const std::map<std::string, int> DIMENSIONS_HENRY = {{DIMENSION_MASS, 1},
-                                                     {DIMENSION_LENGTH, 2},
-                                                     {DIMENSION_TIME, -2},
-                                                     {DIMENSION_CURRENT, -2}};
+const std::map<std::string, int>& DIMENSIONS_DIMENSIONLESS() {
+  static const std::map<std::string, int> m = {};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_METER() {
+  static const std::map<std::string, int> m = {{DIMENSION_LENGTH, 1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_KILOGRAM() {
+  static const std::map<std::string, int> m = {{DIMENSION_MASS, 1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_SECOND() {
+  static const std::map<std::string, int> m = {{DIMENSION_TIME, 1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_AMPERE() {
+  static const std::map<std::string, int> m = {{DIMENSION_CURRENT, 1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_KELVIN() {
+  static const std::map<std::string, int> m = {{DIMENSION_TEMPERATURE, 1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_MOLE() {
+  static const std::map<std::string, int> m = {{DIMENSION_AMOUNT, 1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_CANDELA() {
+  static const std::map<std::string, int> m = {{DIMENSION_LUMINOSITY, 1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_HERTZ() {
+  static const std::map<std::string, int> m = {{DIMENSION_TIME, -1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_NEWTON() {
+  static const std::map<std::string, int> m = {
+      {DIMENSION_MASS, 1}, {DIMENSION_LENGTH, 1}, {DIMENSION_TIME, -2}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_PASCAL() {
+  static const std::map<std::string, int> m = {
+      {DIMENSION_MASS, 1}, {DIMENSION_LENGTH, -1}, {DIMENSION_TIME, -2}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_JOULE() {
+  static const std::map<std::string, int> m = {
+      {DIMENSION_MASS, 1}, {DIMENSION_LENGTH, 2}, {DIMENSION_TIME, -2}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_WATT() {
+  static const std::map<std::string, int> m = {
+      {DIMENSION_MASS, 1}, {DIMENSION_LENGTH, 2}, {DIMENSION_TIME, -3}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_COULOMB() {
+  static const std::map<std::string, int> m = {{DIMENSION_TIME, 1},
+                                               {DIMENSION_CURRENT, 1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_VOLT() {
+  static const std::map<std::string, int> m = {{DIMENSION_MASS, 1},
+                                               {DIMENSION_LENGTH, 2},
+                                               {DIMENSION_TIME, -3},
+                                               {DIMENSION_CURRENT, -1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_FARAD() {
+  static const std::map<std::string, int> m = {{DIMENSION_MASS, -1},
+                                               {DIMENSION_LENGTH, -2},
+                                               {DIMENSION_TIME, 4},
+                                               {DIMENSION_CURRENT, 2}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_OHM() {
+  static const std::map<std::string, int> m = {{DIMENSION_MASS, 1},
+                                               {DIMENSION_LENGTH, 2},
+                                               {DIMENSION_TIME, -3},
+                                               {DIMENSION_CURRENT, -2}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_SIEMENS() {
+  static const std::map<std::string, int> m = {{DIMENSION_MASS, -1},
+                                               {DIMENSION_LENGTH, -2},
+                                               {DIMENSION_TIME, 3},
+                                               {DIMENSION_CURRENT, 2}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_WEBER() {
+  static const std::map<std::string, int> m = {{DIMENSION_MASS, 1},
+                                               {DIMENSION_LENGTH, 2},
+                                               {DIMENSION_TIME, -2},
+                                               {DIMENSION_CURRENT, -1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_TESLA() {
+  static const std::map<std::string, int> m = {
+      {DIMENSION_MASS, 1}, {DIMENSION_TIME, -2}, {DIMENSION_CURRENT, -1}};
+  return m;
+}
+const std::map<std::string, int>& DIMENSIONS_HENRY() {
+  static const std::map<std::string, int> m = {{DIMENSION_MASS, 1},
+                                               {DIMENSION_LENGTH, 2},
+                                               {DIMENSION_TIME, -2},
+                                               {DIMENSION_CURRENT, -2}};
+  return m;
+}
 
 // Unit symbols
 const char* const UNIT_SYMBOL_METER         = "m";

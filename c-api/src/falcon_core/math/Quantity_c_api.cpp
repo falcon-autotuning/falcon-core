@@ -39,7 +39,7 @@ SymbolUnitHandle Quantity_unit(QuantityHandle handle) {
     throw std::invalid_argument("Quantity_unit: handle cannot be null");
   }
   QuantitySP self = *static_cast<QuantitySP*>(handle);
-  return new falcon_core::physics::units::SymbolUnit(*self->unit());
+  return new falcon_core::physics::units::SymbolUnitSP(self->unit());
   FALCON_C_API_END(nullptr)
 }
 

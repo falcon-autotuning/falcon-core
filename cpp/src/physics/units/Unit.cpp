@@ -19,68 +19,78 @@ Unit::Unit(TotalDimensions dimensions,
       _prefix(prefix),
       _dimensions(dimensions) {}
 
-UnitSP Unit::Meter() { return std::make_shared<Unit>(SI::DIMENSIONS_METER); }
+UnitSP Unit::Meter() { return std::make_shared<Unit>(SI::DIMENSIONS_METER()); }
 UnitSP Unit::Kilogram() {
-  return std::make_shared<Unit>(SI::DIMENSIONS_KILOGRAM);
+  return std::make_shared<Unit>(SI::DIMENSIONS_KILOGRAM());
 }
-UnitSP Unit::Second() { return std::make_shared<Unit>(SI::DIMENSIONS_SECOND); }
-UnitSP Unit::Ampere() { return std::make_shared<Unit>(SI::DIMENSIONS_AMPERE); }
-UnitSP Unit::Kelvin() { return std::make_shared<Unit>(SI::DIMENSIONS_KELVIN); }
-UnitSP Unit::Mole() { return std::make_shared<Unit>(SI::DIMENSIONS_MOLE); }
+UnitSP Unit::Second() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_SECOND());
+}
+UnitSP Unit::Ampere() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_AMPERE());
+}
+UnitSP Unit::Kelvin() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_KELVIN());
+}
+UnitSP Unit::Mole() { return std::make_shared<Unit>(SI::DIMENSIONS_MOLE()); }
 UnitSP Unit::Candela() {
-  return std::make_shared<Unit>(SI::DIMENSIONS_CANDELA);
+  return std::make_shared<Unit>(SI::DIMENSIONS_CANDELA());
 }
-UnitSP Unit::Hertz() { return std::make_shared<Unit>(SI::DIMENSIONS_HERTZ); }
-UnitSP Unit::Newton() { return std::make_shared<Unit>(SI::DIMENSIONS_NEWTON); }
-UnitSP Unit::Pascal() { return std::make_shared<Unit>(SI::DIMENSIONS_PASCAL); }
-UnitSP Unit::Joule() { return std::make_shared<Unit>(SI::DIMENSIONS_JOULE); }
-UnitSP Unit::Watt() { return std::make_shared<Unit>(SI::DIMENSIONS_WATT); }
+UnitSP Unit::Hertz() { return std::make_shared<Unit>(SI::DIMENSIONS_HERTZ()); }
+UnitSP Unit::Newton() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_NEWTON());
+}
+UnitSP Unit::Pascal() {
+  return std::make_shared<Unit>(SI::DIMENSIONS_PASCAL());
+}
+UnitSP Unit::Joule() { return std::make_shared<Unit>(SI::DIMENSIONS_JOULE()); }
+UnitSP Unit::Watt() { return std::make_shared<Unit>(SI::DIMENSIONS_WATT()); }
 UnitSP Unit::Coulomb() {
-  return std::make_shared<Unit>(SI::DIMENSIONS_COULOMB);
+  return std::make_shared<Unit>(SI::DIMENSIONS_COULOMB());
 }
-UnitSP Unit::Volt() { return std::make_shared<Unit>(SI::DIMENSIONS_VOLT); }
-UnitSP Unit::Farad() { return std::make_shared<Unit>(SI::DIMENSIONS_FARAD); }
-UnitSP Unit::Ohm() { return std::make_shared<Unit>(SI::DIMENSIONS_OHM); }
+UnitSP Unit::Volt() { return std::make_shared<Unit>(SI::DIMENSIONS_VOLT()); }
+UnitSP Unit::Farad() { return std::make_shared<Unit>(SI::DIMENSIONS_FARAD()); }
+UnitSP Unit::Ohm() { return std::make_shared<Unit>(SI::DIMENSIONS_OHM()); }
 UnitSP Unit::Siemens() {
-  return std::make_shared<Unit>(SI::DIMENSIONS_SIEMENS);
+  return std::make_shared<Unit>(SI::DIMENSIONS_SIEMENS());
 }
-UnitSP Unit::Weber() { return std::make_shared<Unit>(SI::DIMENSIONS_WEBER); }
-UnitSP Unit::Tesla() { return std::make_shared<Unit>(SI::DIMENSIONS_TESLA); }
-UnitSP Unit::Henry() { return std::make_shared<Unit>(SI::DIMENSIONS_HENRY); }
+UnitSP Unit::Weber() { return std::make_shared<Unit>(SI::DIMENSIONS_WEBER()); }
+UnitSP Unit::Tesla() { return std::make_shared<Unit>(SI::DIMENSIONS_TESLA()); }
+UnitSP Unit::Henry() { return std::make_shared<Unit>(SI::DIMENSIONS_HENRY()); }
 UnitSP Unit::Minute() {
   return std::make_shared<Unit>(
-      SI::DIMENSIONS_SECOND, SECONDS_PER_MINUTE, 0.0, SI::UNIT_SYMBOL);
+      SI::DIMENSIONS_SECOND(), SECONDS_PER_MINUTE, 0.0, SI::UNIT_SYMBOL);
 }
 UnitSP Unit::Hour() {
-  return std::make_shared<Unit>(SI::DIMENSIONS_SECOND,
+  return std::make_shared<Unit>(SI::DIMENSIONS_SECOND(),
                                 SECONDS_PER_MINUTE * MINUTES_PER_HOUR,
                                 0.0,
                                 SI::UNIT_SYMBOL);
 }
 UnitSP Unit::ElectronVolt() {
   return std::make_shared<Unit>(
-      SI::DIMENSIONS_JOULE, ELECTRON_CHARGE, 0.0, SI::UNIT_SYMBOL);
+      SI::DIMENSIONS_JOULE(), ELECTRON_CHARGE, 0.0, SI::UNIT_SYMBOL);
 }
 UnitSP Unit::Celsius() {
   return std::make_shared<Unit>(
-      SI::DIMENSIONS_KELVIN, 1.0, CELSIUS_OFFSET, SI::UNIT_SYMBOL);
+      SI::DIMENSIONS_KELVIN(), 1.0, CELSIUS_OFFSET, SI::UNIT_SYMBOL);
 }
 UnitSP Unit::Fahrenheit() {
-  return std::make_shared<Unit>(SI::DIMENSIONS_KELVIN,
+  return std::make_shared<Unit>(SI::DIMENSIONS_KELVIN(),
                                 UNIT_SCALE_FAHRENHEIT,
                                 FAHRENHEIT_OFFSET,
                                 SI::UNIT_SYMBOL);
 }
 UnitSP Unit::Dimensionless() {
-  return std::make_shared<Unit>(SI::DIMENSIONS_DIMENSIONLESS);
+  return std::make_shared<Unit>(SI::DIMENSIONS_DIMENSIONLESS());
 }
 UnitSP Unit::Percent() {
   return std::make_shared<Unit>(
-      SI::DIMENSIONS_DIMENSIONLESS, 0.01, 0.0, SI::UNIT_SYMBOL);
+      SI::DIMENSIONS_DIMENSIONLESS(), 0.01, 0.0, SI::UNIT_SYMBOL);
 }
 UnitSP Unit::Radian() {
   return std::make_shared<Unit>(
-      SI::DIMENSIONS_DIMENSIONLESS, 1 / (2 * PI), 0.0, SI::UNIT_SYMBOL);
+      SI::DIMENSIONS_DIMENSIONLESS(), 1 / (2 * PI), 0.0, SI::UNIT_SYMBOL);
 }
 UnitSP Unit::operator*(const UnitSP& other) const {
   if (!other) {

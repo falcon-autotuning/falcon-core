@@ -73,28 +73,28 @@ extern FALCON_CORE_CPP_API const char* const DIMENSION_LUMINOSITY;
 extern FALCON_CORE_CPP_API const char* const ALL_DIMENSIONS[7];
 
 // The following (maps and std::string objects) cannot be extern const char*:
-extern FALCON_CORE_CPP_API const std::map<std::string, int>
-                                 DIMENSIONS_DIMENSIONLESS;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_METER;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_KILOGRAM;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_SECOND;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_AMPERE;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_KELVIN;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_MOLE;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_CANDELA;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_HERTZ;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_NEWTON;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_PASCAL;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_JOULE;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_WATT;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_COULOMB;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_VOLT;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_FARAD;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_OHM;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_SIEMENS;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_WEBER;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_TESLA;
-extern FALCON_CORE_CPP_API const std::map<std::string, int> DIMENSIONS_HENRY;
+extern FALCON_CORE_CPP_API const std::map<std::string, int>&
+                                 DIMENSIONS_DIMENSIONLESS();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_METER();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_KILOGRAM();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_SECOND();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_AMPERE();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_KELVIN();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_MOLE();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_CANDELA();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_HERTZ();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_NEWTON();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_PASCAL();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_JOULE();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_WATT();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_COULOMB();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_VOLT();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_FARAD();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_OHM();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_SIEMENS();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_WEBER();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_TESLA();
+FALCON_CORE_CPP_API const std::map<std::string, int>& DIMENSIONS_HENRY();
 
 // Unit symbols
 extern FALCON_CORE_CPP_API const char* const UNIT_SYMBOL_METER;

@@ -804,7 +804,7 @@ ListListSizeTHandle MeasuredArray1D_where(MeasuredArray1DHandle handle,
   }
   MeasuredArray1DSP measured_array = *static_cast<MeasuredArray1DSP*>(handle);
   auto              locations      = measured_array->where(value);
-  return new generic::List<generic::List<size_t>>(*locations);
+  return new generic::ListSP<generic::List<size_t>>(locations);
   FALCON_C_API_END(nullptr)
 }
 

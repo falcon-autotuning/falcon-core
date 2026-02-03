@@ -182,7 +182,7 @@ SymbolUnitHandle InstrumentPort_units(InstrumentPortHandle handle) {
   }
   falcon_core::physics::units::SymbolUnitSP units =
       (*static_cast<InstrumentPortSP*>(handle))->units();
-  return new falcon_core::physics::units::SymbolUnit(*units);
+  return new falcon_core::physics::units::SymbolUnitSP(units);
   FALCON_C_API_END(nullptr)
 }
 

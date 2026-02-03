@@ -532,7 +532,7 @@ ListListSizeTHandle ControlArray_where(ControlArrayHandle handle,
   ControlArraySP control_array = *static_cast<ControlArraySP*>(handle);
   generic::ListSP<generic::List<size_t>> indices_sp =
       control_array->where(value);
-  return new generic::List<generic::List<size_t>>(*indices_sp);
+  return new generic::ListSP<generic::List<size_t>>(indices_sp);
   FALCON_C_API_END(nullptr)
 }
 

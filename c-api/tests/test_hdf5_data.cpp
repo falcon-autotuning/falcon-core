@@ -242,18 +242,23 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   StringHandle         name         = String_wrap("measurement");
   DomainHandle         domain       = Domain_create(0, 1.0, true, true);
   StringHandle         default_name = String_wrap("A");
+  StringHandle         desc         = String_wrap("");
+  StringHandle         metername    = String_wrap("ohm1");
   InstrumentPortHandle port =
       InstrumentPort_create_knob(default_name,
                                  Connection_create_barrier_gate(default_name),
                                  InstrumentTypes_voltmeter(),
                                  SymbolUnit_create_volt(),
-                                 String_wrap(""));
+                                 desc);
+
   InstrumentPortHandle getter =
-      InstrumentPort_create_meter(String_wrap("ohm1"),
-                                  Connection_create_ohmic(String_wrap("ohm1")),
+      InstrumentPort_create_meter(metername,
+                                  Connection_create_ohmic(metername),
                                   InstrumentTypes_amnmeter(),
                                   SymbolUnit_create_ampere(),
-                                  String_wrap(""));
+                                  desc);
+  String_destroy(desc);
+  String_destroy(metername);
   ListLabelledDomainHandle domain_list = ListLabelledDomain_create_empty();
   ListLabelledDomain_push_back(
       domain_list, LabelledDomain_create_from_port_and_domain(port, domain));

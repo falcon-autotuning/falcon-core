@@ -320,12 +320,13 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   AxesCoupledLabelledDomain_push_back(
       axes2D, CoupledLabelledDomain_create(labelled_domain));
   StringHandle         other_name = String_wrap("B");
+  StringHandle         desc1      = String_wrap("");
   InstrumentPortHandle other_port =
       InstrumentPort_create_knob(other_name,
                                  Connection_create_barrier_gate(default_name),
                                  InstrumentTypes_voltmeter(),
                                  SymbolUnit_create_volt(),
-                                 String_wrap(""));
+                                 desc1);
   ListLabelledDomainHandle other_domain_list =
       ListLabelledDomain_create_empty();
   ListLabelledDomain_push_back(
@@ -425,4 +426,6 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   Waveform_create_cartesian_identity_waveform_1D(
       2, labelled_domain, map, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
+  String_destroy(other_name);
+  String_destroy(desc1);
 }

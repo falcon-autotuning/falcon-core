@@ -689,17 +689,9 @@ ListListSizeTHandle ControlArray1D_where(ControlArray1DHandle handle,
   if (!handle) {
     throw std::invalid_argument("Null handle passed to ControlArray1D_where");
   }
-  ControlArray1DSP control_array = *static_cast<ControlArray1DSP*>(handle);
-  generic::ListSP<generic::List<size_t>> where_result =
-      control_array->where(value);
-  ListListSizeTHandle out_handle = new generic::ListSP<generic::List<size_t>>(
-      std::make_shared<generic::List<generic::List<size_t>>>());
-  generic::ListSP<generic::List<size_t>> out_list =
-      *static_cast<generic::ListSP<generic::List<size_t>>*>(out_handle);
-  for (const auto& lst : where_result->items()) {
-    out_list->push_back(lst);
-  }
-  return out_handle;
+  ControlArray1DSP measured_array = *static_cast<ControlArray1DSP*>(handle);
+  auto             locations      = measured_array->where(value);
+  return new generic::ListSP<generic::List<size_t>>(locations);
   FALCON_C_API_END(nullptr)
 }
 ControlArray1DHandle ControlArray1D_flip(ControlArray1DHandle handle,

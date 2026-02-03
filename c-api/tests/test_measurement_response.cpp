@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "falcon_core/generic/ErrorHandling_c_api.h"
 
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/generic/ErrorHandling_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
 #include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
 
@@ -103,7 +103,10 @@ TEST_F(MeasurementResponseTest, ToJsonFromJson) {
 }
 
 TEST_F(MeasurementResponseTest, Messages) {
-  EXPECT_NO_THROW(MeasurementResponse_message(resp));
+  EXPECT_NO_THROW({
+    auto msg = MeasurementResponse_message(resp);
+    String_destroy(msg);
+  });
   set_last_error(0, nullptr);
   MeasurementResponse_message(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);

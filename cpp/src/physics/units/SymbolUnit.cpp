@@ -7,15 +7,19 @@
 namespace falcon_core {
 namespace physics {
 namespace units {
-const std::map<std::string, std::string> Dimension_Symbols{
-    {SI::DIMENSION_LENGTH, SI::UNIT_SYMBOL_METER},
-    {SI::DIMENSION_MASS, SI::UNIT_SYMBOL_KILOGRAM},
-    {SI::DIMENSION_TIME, SI::UNIT_SYMBOL_SECOND},
-    {SI::DIMENSION_CURRENT, SI::UNIT_SYMBOL_AMPERE},
-    {SI::DIMENSION_TEMPERATURE, SI::UNIT_SYMBOL_KELVIN},
-    {SI::DIMENSION_AMOUNT, SI::UNIT_SYMBOL_MOLE},
-    {SI::DIMENSION_LUMINOSITY, SI::UNIT_SYMBOL_CANDELA},
-};
+const std::map<std::string, std::string> SymbolUnit::get_dimension_symbols()
+    const {
+  static const std::map<std::string, std::string> symbols = {
+      {SI::DIMENSION_LENGTH, SI::UNIT_SYMBOL_METER},
+      {SI::DIMENSION_MASS, SI::UNIT_SYMBOL_KILOGRAM},
+      {SI::DIMENSION_TIME, SI::UNIT_SYMBOL_SECOND},
+      {SI::DIMENSION_CURRENT, SI::UNIT_SYMBOL_AMPERE},
+      {SI::DIMENSION_TEMPERATURE, SI::UNIT_SYMBOL_KELVIN},
+      {SI::DIMENSION_AMOUNT, SI::UNIT_SYMBOL_MOLE},
+      {SI::DIMENSION_LUMINOSITY, SI::UNIT_SYMBOL_CANDELA},
+  };
+  return symbols;
+}
 
 SymbolUnit::SymbolUnit(const SymbolUnit& other) {
   if (!other.unit()) {
@@ -419,10 +423,6 @@ SymbolUnit::get_unit_symbols() const {
   };
 }
 
-const std::map<std::string, std::string> SymbolUnit::get_dimension_symbols()
-    const {
-  return Dimension_Symbols;
-}
 const std::string SymbolUnit::_get_dimension_symbol(
     std::string dimension) const {
   // Check if the dimension is in the common units map

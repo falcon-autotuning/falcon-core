@@ -811,7 +811,7 @@ ListListSizeTHandle LabelledMeasuredArray_where(
   LabelledMeasuredArraySP labelled_measured_array =
       *static_cast<LabelledMeasuredArraySP*>(handle);
   auto indices = labelled_measured_array->where(value);
-  return new generic::List<generic::List<size_t>>(*indices);
+  return new generic::ListSP<generic::List<size_t>>(indices);
   FALCON_C_API_END(nullptr)
 }
 LabelledMeasuredArrayHandle LabelledMeasuredArray_flip(

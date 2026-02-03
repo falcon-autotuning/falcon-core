@@ -85,13 +85,18 @@ TEST_F(AxesInstrumentPortTest, CreateDestroy) {
 
 TEST_F(AxesInstrumentPortTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesInstrumentPort_size(axes), 2u);
-  AxesInstrumentPort_push_back(axes,
-                               track_instrument_port(InstrumentPort_create_port(
-                                   String_wrap("port1"),
-                                   NULL,
-                                   InstrumentTypes_voltmeter(),
-                                   SymbolUnit_create_volt(),
-                                   String_wrap(""))));
+  StringHandle         name1 = String_wrap("port1");
+  StringHandle         desc1 = String_wrap("");
+  InstrumentPortHandle sp1 =
+      InstrumentPort_create_port(name1,
+                                 NULL,
+                                 InstrumentTypes_voltmeter(),
+                                 SymbolUnit_create_volt(),
+                                 desc1);
+  auto item1 = track_instrument_port(sp1);
+  String_destroy(name1);
+  String_destroy(desc1);
+  AxesInstrumentPort_push_back(axes, sp1);
   InstrumentPortHandle out2[3];
   EXPECT_EQ(AxesInstrumentPort_items(axes, out2, 3), 3u);
   // items(...) writes copies/handles into out2; caller must free them if they
