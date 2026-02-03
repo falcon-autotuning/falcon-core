@@ -161,31 +161,31 @@ class Pair : public generic::Song {
   inline typename std::enable_if<is_primitive<U1>::value &&
                                  is_primitive<U2>::value>::type
   copy_impl_deferred(const Pair<U1, U2>& other) {
-    _first  = other.first();
-    _second = other.second();
+    _first  = other._first;
+    _second = other._second;
   }
 
   template <typename U1, typename U2>
   inline typename std::enable_if<is_primitive<U1>::value &&
                                  std::is_base_of<Song, U2>::value>::type
   copy_impl_deferred(const Pair<U1, U2>& other) {
-    if (!other.second()) {
+    if (!other._second) {
       throw std::invalid_argument(
           "Pair copy constructor: Other Pair contains null shared pointer.");
     }
-    _first  = other.first();
-    _second = std::make_shared<U2>(*other.second());
+    _first  = other._first;
+    _second = std::make_shared<U2>(*other._second);
   }
 
   template <typename U1, typename U2>
   inline typename std::enable_if<std::is_base_of<Song, U1>::value &&
                                  is_primitive<U2>::value>::type
   copy_impl_deferred(const Pair<U1, U2>& other) {
-    if (!other.first()) {
+    if (!other._first) {
       throw std::invalid_argument(
           "Pair copy constructor: Other Pair contains null shared pointer.");
     }
-    _first  = std::make_shared<U1>(*other.first());
+    _first  = std::make_shared<U1>(*other._first);
     _second = other._second;
   }
 
@@ -193,12 +193,12 @@ class Pair : public generic::Song {
   inline typename std::enable_if<std::is_base_of<Song, U1>::value &&
                                  std::is_base_of<Song, U2>::value>::type
   copy_impl_deferred(const Pair<U1, U2>& other) {
-    if (!other.first() || !other.second()) {
+    if (!other._first || !other._second) {
       throw std::invalid_argument(
           "Pair copy constructor: Other Pair contains null shared pointer.");
     }
-    _first  = std::make_shared<U1>(*other.first());
-    _second = std::make_shared<U2>(*other.second());
+    _first  = std::make_shared<U1>(*other._first);
+    _second = std::make_shared<U2>(*other._second);
   }
 };
 

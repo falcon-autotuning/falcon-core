@@ -32,8 +32,9 @@ class Map : public virtual generic::Song {
   using const_iterator = typename Container::const_iterator;
 
  public:
+  // Line 35-37
   Map<Key, Value>(const Map<Key, Value>& other) {
-    _items = std::make_shared<Container>(*other.items());
+    _items = std::make_shared<Container>(*other._items);
   }
   inline Map<Key, Value>& operator=(const Map<Key, Value>& other) {
     if (this != &other) {

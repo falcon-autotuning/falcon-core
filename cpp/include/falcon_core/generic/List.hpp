@@ -39,9 +39,8 @@ class List : public generic::Song {
   using const_iterator = typename Container::const_iterator;
 
   inline List<Value>(const List<Value>& other) {
-    std::shared_lock<std::shared_timed_mutex> lock_other(other._mu_items);
-    _items.reserve(other.size());
-    copy_items_from_container(other.items());
+    _items.reserve(other._items.size());
+    copy_items_from_container(other._items);
   }
 
   inline List operator=(const List<Value>& other) {
