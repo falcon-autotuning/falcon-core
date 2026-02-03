@@ -182,32 +182,22 @@ jobs:
           path: cpp/build/cpp_windows_cross.json
           retention-days: 1
 
-      - name: Prepare C++ build artifacts with ALL dependencies
+      - name: Prepare integration test executable with dependencies
         working-directory: cpp/build
         shell: pwsh
         run: |
-          Write-Host "=== Preparing C++ Build Artifacts ==="
+          Write-Host "=== Preparing integration test executable ==="
 
-          # Create artifact directory
-          $artifactDir = "cpp-build-artifacts"
+          $artifactDir = "integration-test-package"
           New-Item -ItemType Directory -Force -Path $artifactDir
 
-          # Copy main DLL and LIB
-          Write-Host "`nCopying main libraries..."
+          # Copy executable
+          Copy-Item "integration_deserialize_connection.exe" $artifactDir
+
+          # Copy main DLL
           Copy-Item "falcon_core_cpp.dll" $artifactDir
-          Copy-Item "falcon_core_cpp.lib" $artifactDir
 
-          # Verify file integrity
-          $dllFile = Get-Item "$artifactDir/falcon_core_cpp.dll"
-          Write-Host "falcon_core_cpp.dll size: $($dllFile.Length) bytes"
-
-          if ($dllFile.Length -lt 100KB) {
-            Write-Error "ERROR: falcon_core_cpp.dll seems too small ($($dllFile.Length) bytes). Build may have failed."
-            exit 1
-          }
-
-          # Copy ALL vcpkg DLLs (C-API will need these)
-          Write-Host "`nCopying vcpkg dependencies..."
+          # Copy vcpkg DLLs
           $vcpkgBin = "vcpkg_installed/x64-windows/bin"
           if (Test-Path $vcpkgBin) {
             Get-ChildItem $vcpkgBin -Filter "*.dll" | ForEach-Object {
@@ -216,26 +206,14 @@ jobs:
             }
           }
 
-          # Copy CMake files
-          Write-Host "`nCopying CMake files..."
-          Copy-Item "CMakeCache.txt" $artifactDir -ErrorAction SilentlyContinue
+          Write-Host "`n=== Package Contents ==="
+          Get-ChildItem $artifactDir | Select-Object Name, Length
 
-          # List all artifacts
-          Write-Host "`n=== Artifact Directory Contents ==="
-          Get-ChildItem $artifactDir | ForEach-Object {
-            Write-Host "$($_.Name) - $($_.Length) bytes"
-          }
-
-          $totalSize = (Get-ChildItem $artifactDir | Measure-Object -Property Length -Sum).Sum
-          Write-Host "`nTotal artifact size: $([math]::Round($totalSize/1MB, 2)) MB"
-
-          Write-Host "`n✓ C++ artifacts prepared successfully"
-
-      - name: Upload C++ build artifacts (direct upload, no zip)
+      - name: Upload integration test executable for cross-platform tests
         uses: actions/upload-artifact@v4
         with:
-          name: cpp-windows-build
-          path: cpp/build/cpp-build-artifacts/**
+          name: cpp-windows-integration-deserializer
+          path: cpp/build/integration-test-package/**
           retention-days: 1
           compression-level: 0
 

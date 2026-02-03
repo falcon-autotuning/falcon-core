@@ -18,6 +18,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Attempt to restore vcpkg binary cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-clang-cl-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          restore-keys: |
+            vcpkg-${{ runner.os }}-clang-cl-
+            vcpkg-${{ runner.os }}-
+
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
         with:
@@ -29,42 +40,73 @@ jobs:
           choco install llvm -y
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-      - name: Install Ninja
-        shell: pwsh
-        run: |
-          choco install ninja -y
-
-      - name: Build C++ deserializer
+      - name: Install vcpkg dependencies for runtime
         working-directory: cpp
         shell: pwsh
         run: |
-          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+          Write-Host "=== Installing runtime dependencies ==="
+          C:\vcpkg\vcpkg.exe install --triplet=x64-windows
 
-          cmake -B build `
-            -S . `
-            -G "Ninja" `
-            -DCMAKE_C_COMPILER=clang-cl `
-            -DCMAKE_CXX_COMPILER=clang-cl `
-            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
-            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/cpp" `
-            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/cpp/build/vcpkg_installed" `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DFALCON_CORE_DEV=ON `
-            -DUSE_VCPKG=ON
-
-          ninja -C build integration_deserialize_connection
+      - name: Download Windows deserializer
+        uses: actions/download-artifact@v4
+        with:
+          name: cpp-windows-integration-deserializer
+          path: deserializer
 
       - name: Download Linux serialized artifact
         uses: actions/download-artifact@v4
         with:
           name: cpp-linux-serialized
-          path: cpp/build
+          path: data
+
+      - name: Verify downloaded files
+        shell: pwsh
+        run: |
+          Write-Host "=== Deserializer Contents ==="
+          Get-ChildItem deserializer -Recurse | Select-Object FullName, Length
+
+          Write-Host "`n=== Data Contents ==="
+          Get-ChildItem data -Recurse | Select-Object FullName, Length
+
+          Write-Host "`n=== Verifying DLL dependencies ==="
+          $requiredDlls = @("falcon_core_cpp.dll", "integration_deserialize_connection.exe")
+          foreach ($dll in $requiredDlls) {
+            if (Test-Path "deserializer/$dll") {
+              Write-Host "[OK] $dll"
+            } else {
+              Write-Error "[MISSING] $dll"
+            }
+          }
+
+      - name: Setup runtime environment
+        shell: pwsh
+        run: |
+          $deserializerPath = (Resolve-Path "deserializer").Path
+
+          # Add deserializer directory to PATH (has all DLLs)
+          $env:PATH = "$deserializerPath;$env:PATH"
+
+          Write-Host "Runtime PATH includes: $deserializerPath"
+
+          # Verify DLLs are accessible
+          Write-Host "`n=== Available DLLs ==="
+          Get-ChildItem $deserializerPath -Filter "*.dll" | Select-Object Name
 
       - name: Deserialize on Windows
         shell: pwsh
         run: |
-          cd cpp/build
-          .\integration_deserialize_connection.exe --input cpp_linux_cross.json --name "LinuxToWindowsTest" --type BarrierGate --verbose
+          $deserializerPath = (Resolve-Path "deserializer").Path
+          $env:PATH = "$deserializerPath;$env:PATH"
+
+          cd deserializer
+          .\integration_deserialize_connection.exe --input ../data/cpp_linux_cross.json --name "LinuxToWindowsTest" --type BarrierGate --verbose
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Deserialization failed with exit code: $LASTEXITCODE"
+            exit $LASTEXITCODE
+          }
+
+          Write-Host "`n[SUCCESS] C++ Linux → Windows cross-platform test passed!"
 
       - name: Setup tmate session on failure
         if: failure()
@@ -88,10 +130,53 @@ jobs:
           echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           chown -R builduser:builduser .
 
+      - name: Cache pacman packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/pacman/pkg
+          key: ${{ runner.os }}-pacman-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-pacman-
+
+      - name: Cache AUR packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            packaging/highfive/*.pkg.tar.zst
+            packaging/exprtk/*.pkg.tar.zst
+          key: ${{ runner.os }}-aur-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-aur-
+
       - name: Install system dependencies
         run: |
-          sudo pacman -Syu --noconfirm
-          sudo pacman -S --noconfirm base-devel git clang cmake ninja cereal hdf5 boost yaml-cpp gtest lld
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm \
+            base-devel \
+            git \
+            wget \
+            curl \
+            pkg-config \
+            openssh \
+            cereal \
+            hdf5 \
+            boost \
+            bzip2 \
+            expat \
+            nlohmann-json \
+            openssl \
+            python \
+            sqlite \
+            yaml-cpp \
+            zlib \
+            ninja \
+            llvm \
+            ccache \
+            clang \
+            gtest \
+            glibc \
+            cmake \
+            lld
 
       - name: Install AUR packages
         run: |
@@ -101,16 +186,16 @@ jobs:
               if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
               if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
               cd packaging/highfive
-              if ! ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              else
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
                 sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
               fi
               cd ../exprtk
-              if ! ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              else
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
                 sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
               fi
             "
 
@@ -123,22 +208,67 @@ jobs:
             cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
           "
 
-      - name: Build C++ deserializer
-        run: |
-          cd cpp
-          CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev
+      - name: Download Linux deserializer
+        uses: actions/download-artifact@v4
+        with:
+          name: cpp-linux-integration-deserializer
+          path: deserializer
 
       - name: Download Windows serialized artifact
         uses: actions/download-artifact@v4
         with:
           name: cpp-windows-serialized
-          path: cpp/build
+          path: data
+
+      - name: Verify downloaded files
+        run: |
+          echo "=== Deserializer Contents ==="
+          ls -lhR deserializer
+
+          echo ""
+          echo "=== Data Contents ==="
+          ls -lhR data
+
+          echo ""
+          echo "=== Verifying shared libraries ==="
+          if [ -f deserializer/libfalcon_core_cpp.so ]; then
+            echo "[OK] libfalcon_core_cpp.so"
+            file deserializer/libfalcon_core_cpp.so
+          else
+            echo "[MISSING] libfalcon_core_cpp.so"
+          fi
+
+          if [ -f deserializer/integration_deserialize_connection ]; then
+            echo "[OK] integration_deserialize_connection"
+            file deserializer/integration_deserialize_connection
+          else
+            echo "[MISSING] integration_deserialize_connection"
+          fi
+
+      - name: Make executable runnable
+        run: |
+          chmod +x deserializer/integration_deserialize_connection
+
+          # Verify library dependencies
+          echo "=== Library dependencies ==="
+          ldd deserializer/integration_deserialize_connection || true
 
       - name: Deserialize on Linux
         run: |
-          cd cpp/build
+          cd deserializer
           export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
-          ./integration_deserialize_connection --input cpp_windows_cross.json --name "WindowsToLinuxTest" --type ReservoirGate --verbose
+
+          echo "=== Running deserialization test ==="
+          ./integration_deserialize_connection --input ../data/cpp_windows_cross.json --name "WindowsToLinuxTest" --type ReservoirGate --verbose
+
+          if [ $? -eq 0 ]; then
+            echo ""
+            echo "[SUCCESS] C++ Windows → Linux cross-platform test passed!"
+          else
+            echo ""
+            echo "[FAILED] Deserialization failed!"
+            exit 1
+          fi
 
       - name: Setup tmate session on failure
         if: failure()
@@ -158,6 +288,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Attempt to restore vcpkg binary cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-clang-cl-capi-${{ hashFiles('c-api/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          restore-keys: |
+            vcpkg-${{ runner.os }}-clang-cl-capi-
+            vcpkg-${{ runner.os }}-clang-cl-
+            vcpkg-${{ runner.os }}-
+
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
         with:
@@ -166,66 +308,79 @@ jobs:
       - name: Install LLVM/Clang
         shell: pwsh
         run: |
+          Write-Host "=== Installing LLVM/Clang ==="
           choco install llvm -y
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+          Write-Host "✓ LLVM/Clang installed"
 
-      - name: Install Ninja
-        shell: pwsh
-        run: |
-          choco install ninja -y
-
-      - name: Build C++ library
-        working-directory: cpp
-        shell: pwsh
-        run: |
-          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-
-          cmake -B build `
-            -S . `
-            -G "Ninja" `
-            -DCMAKE_C_COMPILER=clang-cl `
-            -DCMAKE_CXX_COMPILER=clang-cl `
-            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
-            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/cpp" `
-            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/cpp/build/vcpkg_installed" `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DFALCON_CORE_DEV=ON `
-            -DUSE_VCPKG=ON
-
-          ninja -C build
-
-      - name: Build C-API deserializer
+      - name: Install vcpkg dependencies for runtime
         working-directory: c-api
         shell: pwsh
         run: |
-          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+          Write-Host "=== Installing runtime dependencies ==="
+          C:\vcpkg\vcpkg.exe install --triplet=x64-windows
 
-          cmake -B build `
-            -S . `
-            -G "Ninja" `
-            -DCMAKE_C_COMPILER=clang-cl `
-            -DCMAKE_CXX_COMPILER=clang-cl `
-            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
-            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/c-api" `
-            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/c-api/build/vcpkg_installed" `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DFALCON_CORE_DEV=ON `
-            -DUSE_VCPKG=ON `
-            -DCORE_ROOT="${env:GITHUB_WORKSPACE}/cpp"
-
-          ninja -C build integration_deserialize_connection_c
+      - name: Download Windows deserializer
+        uses: actions/download-artifact@v4
+        with:
+          name: capi-windows-integration-deserializer
+          path: deserializer
 
       - name: Download Linux serialized artifact
         uses: actions/download-artifact@v4
         with:
           name: capi-linux-serialized
-          path: c-api/build
+          path: data
+
+      - name: Verify downloaded files
+        shell: pwsh
+        run: |
+          Write-Host "=== Deserializer Contents ==="
+          Get-ChildItem deserializer -Recurse | Select-Object FullName, Length
+
+          Write-Host "`n=== Data Contents ==="
+          Get-ChildItem data -Recurse | Select-Object FullName, Length
+
+          Write-Host "`n=== Verifying DLL dependencies ==="
+          $requiredDlls = @(
+            "falcon_core_c_api.dll",
+            "falcon_core_cpp.dll",
+            "integration_deserialize_connection_c.exe"
+          )
+          foreach ($dll in $requiredDlls) {
+            if (Test-Path "deserializer/$dll") {
+              Write-Host "[OK] $dll"
+            } else {
+              Write-Error "[MISSING] $dll"
+            }
+          }
+
+      - name: Setup runtime environment
+        shell: pwsh
+        run: |
+          $deserializerPath = (Resolve-Path "deserializer").Path
+          $env:PATH = "$deserializerPath;$env:PATH"
+
+          Write-Host "Runtime PATH includes: $deserializerPath"
+
+          Write-Host "`n=== Available DLLs ==="
+          Get-ChildItem $deserializerPath -Filter "*.dll" | Select-Object Name
 
       - name: Deserialize on Windows
         shell: pwsh
         run: |
-          cd c-api/build
-          .\integration_deserialize_connection_c.exe --input capi_linux_cross.json --name "CApiLinuxToWindowsTest" --type ScreeningGate --verbose
+          $deserializerPath = (Resolve-Path "deserializer").Path
+          $env:PATH = "$deserializerPath;$env:PATH"
+
+          cd deserializer
+          .\integration_deserialize_connection_c.exe --input ../data/capi_linux_cross.json --name "CApiLinuxToWindowsTest" --type ScreeningGate --verbose
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Deserialization failed with exit code: $LASTEXITCODE"
+            exit $LASTEXITCODE
+          }
+
+          Write-Host "`n[SUCCESS] C-API Linux → Windows cross-platform test passed!"
 
       - name: Setup tmate session on failure
         if: failure()
@@ -249,10 +404,71 @@ jobs:
           echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           chown -R builduser:builduser .
 
+      - name: Cache pacman packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/pacman/pkg
+          key: ${{ runner.os }}-pacman-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-pacman-
+
+      - name: Cache AUR packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            packaging/highfive/*.pkg.tar.zst
+            packaging/exprtk/*.pkg.tar.zst
+          key: ${{ runner.os }}-aur-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-aur-
+
       - name: Install system dependencies
         run: |
-          sudo pacman -Syu --noconfirm
-          sudo pacman -S --noconfirm base-devel git clang cmake ninja cereal hdf5 boost yaml-cpp gtest lld
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm \
+            base-devel \
+            git \
+            wget \
+            curl \
+            pkg-config \
+            openssh \
+            cereal \
+            hdf5 \
+            boost \
+            bzip2 \
+            expat \
+            nlohmann-json \
+            openssl \
+            python \
+            sqlite \
+            yaml-cpp \
+            zlib \
+            ninja \
+            llvm \
+            ccache \
+            clang \
+            glibc \
+            cmake \
+            lld
+
+      - name: Set clang as default compiler
+        run: |
+          grep -q '^CC=' /etc/makepkg.conf && \
+          sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || \
+          echo 'CC=/usr/bin/clang' >> /etc/makepkg.conf
+
+          grep -q '^CXX=' /etc/makepkg.conf && \
+          sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || \
+          echo 'CXX=/usr/bin/clang++' >> /etc/makepkg.conf
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-${{ github.ref }}-
+            ${{ runner.os }}-ccache-
 
       - name: Install AUR packages
         run: |
@@ -262,16 +478,16 @@ jobs:
               if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
               if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
               cd packaging/highfive
-              if ! ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              else
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
                 sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
               fi
               cd ../exprtk
-              if ! ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              else
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
                 sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
               fi
             "
 
@@ -284,27 +500,61 @@ jobs:
             cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
           "
 
-      - name: Build C++ library
-        run: |
-          cd cpp
-          CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev
-
-      - name: Build C-API deserializer
-        run: |
-          cd c-api
-          CC=/usr/bin/clang CXX=/usr/bin/clang++ CORE_ROOT=../cpp make build-dev
+      - name: Download Linux deserializer
+        uses: actions/download-artifact@v4
+        with:
+          name: capi-linux-integration-deserializer
+          path: deserializer
 
       - name: Download Windows serialized artifact
         uses: actions/download-artifact@v4
         with:
           name: capi-windows-serialized
-          path: c-api/build
+          path: data
+
+      - name: Verify downloaded files
+        run: |
+          echo "=== Deserializer Contents ==="
+          ls -lhR deserializer
+
+          echo ""
+          echo "=== Data Contents ==="
+          ls -lhR data
+
+          echo ""
+          echo "=== Verifying shared libraries ==="
+          for lib in libfalcon_core_c_api.so libfalcon_core_cpp.so integration_deserialize_connection_c; do
+            if [ -f "deserializer/$lib" ]; then
+              echo "[OK] $lib"
+              file "deserializer/$lib"
+            else
+              echo "[MISSING] $lib"
+            fi
+          done
+
+      - name: Make executable runnable
+        run: |
+          chmod +x deserializer/integration_deserialize_connection_c
+
+          echo "=== Library dependencies ==="
+          ldd deserializer/integration_deserialize_connection_c || true
 
       - name: Deserialize on Linux
         run: |
-          cd c-api/build
-          export LD_LIBRARY_PATH=$(pwd):$(pwd)/../../cpp/build:$LD_LIBRARY_PATH
-          ./integration_deserialize_connection_c --input capi_windows_cross.json --name "CApiWindowsToLinuxTest" --type Ohmic --verbose
+          cd deserializer
+          export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
+
+          echo "=== Running C-API deserialization test ==="
+          ./integration_deserialize_connection_c --input ../data/capi_windows_cross.json --name "CApiWindowsToLinuxTest" --type Ohmic --verbose
+
+          if [ $? -eq 0 ]; then
+            echo ""
+            echo "[SUCCESS] C-API Windows → Linux cross-platform test passed!"
+          else
+            echo ""
+            echo "[FAILED] Deserialization failed!"
+            exit 1
+          fi
 
       - name: Setup tmate session on failure
         if: failure()
@@ -332,4 +582,12 @@ jobs:
           echo "[PASS] C++ Windows → Linux"
           echo "[PASS] C-API Linux → Windows"
           echo "[PASS] C-API Windows → Linux"
+          echo "=================================================="
+          echo ""
+          echo "Cross-platform serialization validation complete!"
+          echo "Binary compatibility confirmed across:"
+          echo "  - Different operating systems (Linux ↔ Windows)"
+          echo "  - Different compilers (Clang ↔ Clang-CL)"
+          echo "  - Different architectures (handled by x64)"
+          echo "  - Multiple API layers (C++ and C-API)"
           echo "=================================================="

@@ -109,17 +109,13 @@ jobs:
               fi
             "
 
-      - name: Build and test PKGBUILDs
+      - name: Build xtensor packages
         run: |
           runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-            cd packaging/xtl
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xsimd
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor-io
-            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd packaging/xtl && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xsimd && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
           "
 
       - name: Build C++ library (dev mode with tests)
@@ -153,25 +149,13 @@ jobs:
           path: cpp/build/cpp_linux_cross.json
           retention-days: 1
 
-      - name: Prepare C++ build artifacts for C-API (no compression)
-        run: |
-          cd cpp/build
-          echo "=== C++ Build Artifacts ==="
-          ls -lh libfalcon_core_cpp.so
-          file libfalcon_core_cpp.so
-
-          # Verify the .so is valid
-          ldd libfalcon_core_cpp.so || true
-
-          echo "✓ C++ artifacts prepared"
-
-      - name: Upload C++ build artifacts (direct upload, no tar)
+      - name: Upload integration test executable for cross-platform tests
         uses: actions/upload-artifact@v4
         with:
-          name: cpp-linux-build
+          name: cpp-linux-integration-deserializer
           path: |
+            cpp/build/integration_deserialize_connection
             cpp/build/libfalcon_core_cpp.so
-            cpp/build/CMakeCache.txt
           retention-days: 1
 
       - name: Setup tmate session on failure

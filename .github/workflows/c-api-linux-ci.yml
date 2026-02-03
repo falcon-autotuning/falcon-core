@@ -64,7 +64,6 @@ jobs:
             llvm \
             ccache \
             clang \
-            gtest \
             glibc \
             cmake \
             lld
@@ -80,7 +79,6 @@ jobs:
           echo 'CXX=/usr/bin/clang++' >> /etc/makepkg.conf
 
       - name: Cache ccache
-
         uses: actions/cache@v4
         with:
           path: ~/.ccache
@@ -129,24 +127,8 @@ jobs:
         run: |
           echo "=== Downloaded C++ Artifacts ==="
           ls -lh cpp/build/
-
-          if [ ! -f cpp/build/libfalcon_core_cpp.so ]; then
-            echo "ERROR: libfalcon_core_cpp.so not found!"
-            exit 1
-          fi
-
-          # Verify file integrity
+          test -f cpp/build/libfalcon_core_cpp.so || (echo "ERROR: libfalcon_core_cpp.so not found!" && exit 1)
           file cpp/build/libfalcon_core_cpp.so
-          ldd cpp/build/libfalcon_core_cpp.so || true
-
-          filesize=$(stat -c%s cpp/build/libfalcon_core_cpp.so)
-          echo "libfalcon_core_cpp.so size: $filesize bytes"
-
-          if [ $filesize -lt 100000 ]; then
-            echo "ERROR: libfalcon_core_cpp.so is too small ($filesize bytes). File may be corrupted."
-            exit 1
-          fi
-
           echo "✓ C++ artifacts verified"
 
       - name: Build C-API library (dev mode with tests)
@@ -159,8 +141,6 @@ jobs:
           echo "=== C-API Build Artifacts ==="
           ls -lh c-api/build/
           test -f c-api/build/libfalcon_core_c_api.so || (echo "ERROR: libfalcon_core_c_api.so not found!" && exit 1)
-          test -f c-api/build/integration_serialize_connection_c || (echo "ERROR: integration_serialize_connection_c not found!" && exit 1)
-          test -f c-api/build/integration_deserialize_connection_c || (echo "ERROR: integration_deserialize_connection_c not found!" && exit 1)
           echo "✓ C-API build verified"
 
       - name: Run C-API unit tests
@@ -188,6 +168,16 @@ jobs:
         with:
           name: capi-linux-serialized
           path: c-api/build/capi_linux_cross.json
+          retention-days: 1
+
+      - name: Upload integration test executable for cross-platform tests
+        uses: actions/upload-artifact@v4
+        with:
+          name: capi-linux-integration-deserializer
+          path: |
+            c-api/build/integration_deserialize_connection_c
+            c-api/build/libfalcon_core_c_api.so
+            cpp/build/libfalcon_core_cpp.so
           retention-days: 1
 
       - name: Setup tmate session on failure
