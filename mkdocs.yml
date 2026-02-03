@@ -85,10 +85,10 @@ plugins:
       projects:
         # rename project key from `cpp` -> `cpp-core` so mkdoxy generates docs/cpp-core/
         cpp-core:
-          src-dirs: cpp/include
+          src_dirs: cpp/include
           full-doc: true
         c-api:
-          src-dirs: c-api/include
+          src_dirs: c-api/include
           full-doc: true
 
 extra:
