@@ -200,6 +200,10 @@ if(FALCON_CORE_DEV)
   message(STATUS "Setting up C++ tests")
   enable_testing()
   file(GLOB RUN_TESTS_SOURCES tests/*.cpp)
+  list(REMOVE_ITEM RUN_TESTS_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/tests/integration_serialize_connection.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/tests/integration_deserialize_connection.cpp
+)
   add_executable(falcon_core_cpp_run_tests ${RUN_TESTS_SOURCES})
   if(WIN32)
     # Windows: Disable Unity Build to avoid duplicate symbol errors
@@ -243,4 +247,66 @@ if(FALCON_CORE_DEV)
   target_link_libraries(falcon_core_cpp_run_tests PUBLIC yaml-cpp::yaml-cpp)
   include(GoogleTest)
   gtest_discover_tests(falcon_core_cpp_run_tests)
+
+  # ---- Integration Tests for Cross-Platform Serialization ----
+  message(STATUS "Setting up cross-platform serialization integration tests")
+
+  # Serialization integration test
+  add_executable(integration_serialize_connection tests/integration_serialize_connection.cpp)
+  set_target_properties(integration_serialize_connection PROPERTIES
+    UNITY_BUILD OFF  # Don't use unity build for standalone programs
+    BUILD_RPATH "${CMAKE_BINARY_DIR}"
+    INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib"
+    BUILD_WITH_INSTALL_RPATH FALSE
+    SKIP_BUILD_RPATH FALSE
+  )
+  if(WIN32)
+    set_target_properties(integration_serialize_connection PROPERTIES
+      WINDOWS_EXPORT_ALL_SYMBOLS OFF
+    )
+    target_link_options(integration_serialize_connection PRIVATE /FORCE:MULTIPLE)
+  endif()
+  target_compile_definitions(integration_serialize_connection PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES)
+  if(USE_VCPKG)
+    target_link_libraries(
+      integration_serialize_connection
+      PRIVATE Boost::filesystem Boost::system yaml-cpp::yaml-cpp ${CPP_LIB_NAME}
+    )
+  else()
+    target_link_libraries(
+      integration_serialize_connection
+      PRIVATE Boost::filesystem yaml-cpp::yaml-cpp ${CPP_LIB_NAME}
+    )
+  endif()
+
+  # Deserialization integration test
+  add_executable(integration_deserialize_connection tests/integration_deserialize_connection.cpp)
+  set_target_properties(integration_deserialize_connection PROPERTIES
+    UNITY_BUILD OFF  # Don't use unity build for standalone programs
+    BUILD_RPATH "${CMAKE_BINARY_DIR}"
+    INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib"
+    BUILD_WITH_INSTALL_RPATH FALSE
+    SKIP_BUILD_RPATH FALSE
+  )
+  if(WIN32)
+    set_target_properties(integration_deserialize_connection PROPERTIES
+      WINDOWS_EXPORT_ALL_SYMBOLS OFF
+    )
+    target_link_options(integration_deserialize_connection PRIVATE /FORCE:MULTIPLE)
+  endif()
+  target_compile_definitions(integration_deserialize_connection PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES)
+  if(USE_VCPKG)
+    target_link_libraries(
+      integration_deserialize_connection
+      PRIVATE Boost::filesystem Boost::system yaml-cpp::yaml-cpp ${CPP_LIB_NAME}
+    )
+  else()
+    target_link_libraries(
+      integration_deserialize_connection
+      PRIVATE Boost::filesystem yaml-cpp::yaml-cpp ${CPP_LIB_NAME}
+    )
+  endif()
+
+  message(STATUS "Integration test executables: integration_serialize_connection, integration_deserialize_connection")
+
 endif()

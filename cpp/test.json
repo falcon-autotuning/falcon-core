@@ -1,0 +1,14 @@
+{
+    "value0": {
+        "polymorphic_id": 2147483649,
+        "polymorphic_name": "falcon_core::physics::device_structures::Connection",
+        "ptr_wrapper": {
+            "id": 2147483649,
+            "data": {
+                "value0": {},
+                "value1": "MyGate",
+                "value2": 1
+            }
+        }
+    }
+}
