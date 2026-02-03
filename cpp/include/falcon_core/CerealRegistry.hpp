@@ -463,18 +463,6 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MIPT);
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::math::Quantity)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
-        double>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
-        std::string>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
-    falcon_core::generic::Song,
-    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
-        falcon_core::math::Quantity>)
-CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::FArray<int>,
     falcon_core::physics::config::core::Adjacency)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
@@ -810,3 +798,24 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::Song,
     falcon_core::physics::device_structures::Connection)
+using MICD = falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    double>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    MICD,
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
+        double>)
+using MICS = falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    std::string>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    MICS,
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
+        std::string>)
+using MICQ = falcon_core::generic::Map<
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
+    falcon_core::math::Quantity>;
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    MICQ,
+    falcon_core::autotuner_interfaces::interpretations::InterpretationContainer<
+        falcon_core::math::Quantity>)
