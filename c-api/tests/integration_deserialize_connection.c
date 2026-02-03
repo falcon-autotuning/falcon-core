@@ -53,7 +53,12 @@ Args parse_args(int argc, char* argv[]) {
 }
 
 char* read_file(const char* filename, size_t* out_size) {
+#ifdef _WIN32
+  FILE* file;
+  fopen_s(&file, filename, "rb");
+#else
   FILE* file = fopen(filename, "rb");
+#endif
   if (!file) {
     return NULL;
   }
@@ -159,63 +164,63 @@ int main(int argc, char* argv[]) {
   if (strncmp(deser_name->raw, args.expected_name, deser_name->length) != 0 ||
       strlen(args.expected_name) != deser_name->length) {
     fprintf(stderr,
-            "  ✗ Name mismatch! Expected '%s', got '%.*s'\n",
+            "  [FAIL] Name mismatch! Expected '%s', got '%.*s'\n",
             args.expected_name,
             (int)deser_name->length,
             deser_name->raw);
     validation_passed = false;
   } else {
-    printf("  ✓ Name matches\n");
+    printf("  [PASS] Name matches\n");
   }
 
   // Check type
   if (strncmp(deser_type->raw, args.expected_type, deser_type->length) != 0 ||
       strlen(args.expected_type) != deser_type->length) {
     fprintf(stderr,
-            "  ✗ Type mismatch! Expected '%s', got '%.*s'\n",
+            "  [FAIL] Type mismatch! Expected '%s', got '%.*s'\n",
             args.expected_type,
             (int)deser_type->length,
             deser_type->raw);
     validation_passed = false;
   } else {
-    printf("  ✓ Type matches\n");
+    printf("  [PASS] Type matches\n");
   }
 
   // Verify type-specific methods work
   if (strcmp(args.expected_type, "PlungerGate") == 0) {
     if (!Connection_is_plunger_gate(deserialized_connection)) {
-      fprintf(stderr, "  ✗ is_plunger_gate() returned false!\n");
+      fprintf(stderr, "  [FAIL] is_plunger_gate() returned false!\n");
       validation_passed = false;
     } else {
-      printf("  ✓ is_plunger_gate() confirmed\n");
+      printf("  [PASS] is_plunger_gate() confirmed\n");
     }
   } else if (strcmp(args.expected_type, "BarrierGate") == 0) {
     if (!Connection_is_barrier_gate(deserialized_connection)) {
-      fprintf(stderr, "  ✗ is_barrier_gate() returned false!\n");
+      fprintf(stderr, "  [FAIL] is_barrier_gate() returned false!\n");
       validation_passed = false;
     } else {
-      printf("  ✓ is_barrier_gate() confirmed\n");
+      printf("  [PASS] is_barrier_gate() confirmed\n");
     }
   } else if (strcmp(args.expected_type, "ReservoirGate") == 0) {
     if (!Connection_is_reservoir_gate(deserialized_connection)) {
-      fprintf(stderr, "  ✗ is_reservoir_gate() returned false!\n");
+      fprintf(stderr, "  [FAIL] is_reservoir_gate() returned false!\n");
       validation_passed = false;
     } else {
-      printf("  ✓ is_reservoir_gate() confirmed\n");
+      printf("  [PASS] is_reservoir_gate() confirmed\n");
     }
   } else if (strcmp(args.expected_type, "ScreeningGate") == 0) {
     if (!Connection_is_screening_gate(deserialized_connection)) {
-      fprintf(stderr, "  ✗ is_screening_gate() returned false!\n");
+      fprintf(stderr, "  [FAIL] is_screening_gate() returned false!\n");
       validation_passed = false;
     } else {
-      printf("  ✓ is_screening_gate() confirmed\n");
+      printf("  [PASS] is_screening_gate() confirmed\n");
     }
   } else if (strcmp(args.expected_type, "Ohmic") == 0) {
     if (!Connection_is_ohmic(deserialized_connection)) {
-      fprintf(stderr, "  ✗ is_ohmic() returned false!\n");
+      fprintf(stderr, "  [FAIL] is_ohmic() returned false!\n");
       validation_passed = false;
     } else {
-      printf("  ✓ is_ohmic() confirmed\n");
+      printf("  [PASS] is_ohmic() confirmed\n");
     }
   }
 
@@ -238,10 +243,10 @@ int main(int argc, char* argv[]) {
 #endif
 
   if (validation_passed) {
-    printf("\n✓✓✓ Cross-platform deserialization test PASSED ✓✓✓\n");
+    printf("\n[SUCCESS] Cross-platform deserialization test PASSED\n");
     return 0;
   } else {
-    fprintf(stderr, "\n✗✗✗ Cross-platform deserialization test FAILED ✗✗✗\n");
+    fprintf(stderr, "\n[FAILED] Cross-platform deserialization test FAILED\n");
     return 1;
   }
 }

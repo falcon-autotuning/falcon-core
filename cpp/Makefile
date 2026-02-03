@@ -196,7 +196,7 @@ coverage-overview: coverage
 run-serialization-test:
 	@$(BUILD_DIR)/integration_serialize_connection --output test.json --name "MyGate" --type PlungerGate
 	@$(BUILD_DIR)/integration_deserialize_connection --input test.json --name "MyGate" --type PlungerGate
-	@rm test.json
+	@rm -rf test.json
 
 # Clean up build artifacts
 clean:

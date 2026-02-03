@@ -266,7 +266,7 @@ if(FALCON_CORE_DEV)
 
   # ---- Integration Tests for Cross-Platform Serialization (C-API) ----
   message(STATUS "Setting up C-API cross-platform serialization integration tests")
-
+  
   # C-API Serialization integration test
   add_executable(integration_serialize_connection_c tests/integration_serialize_connection.c)
   set_target_properties(integration_serialize_connection_c PROPERTIES
@@ -275,6 +275,7 @@ if(FALCON_CORE_DEV)
   if(WIN32)
     set_target_properties(integration_serialize_connection_c PROPERTIES
       WINDOWS_EXPORT_ALL_SYMBOLS OFF
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
     )
     target_link_options(integration_serialize_connection_c PRIVATE /FORCE:MULTIPLE)
   else()
@@ -285,12 +286,12 @@ if(FALCON_CORE_DEV)
       SKIP_BUILD_RPATH FALSE
     )
   endif()
-  target_include_directories(integration_serialize_connection_c PRIVATE
+  target_include_directories(integration_serialize_connection_c PRIVATE 
     ${CMAKE_SOURCE_DIR}/include
     ${CORE_ROOT}/include
   )
   target_link_libraries(integration_serialize_connection_c PRIVATE ${C_API_LIB_NAME})
-
+  
   # C-API Deserialization integration test
   add_executable(integration_deserialize_connection_c tests/integration_deserialize_connection.c)
   set_target_properties(integration_deserialize_connection_c PROPERTIES
@@ -299,6 +300,7 @@ if(FALCON_CORE_DEV)
   if(WIN32)
     set_target_properties(integration_deserialize_connection_c PROPERTIES
       WINDOWS_EXPORT_ALL_SYMBOLS OFF
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
     )
     target_link_options(integration_deserialize_connection_c PRIVATE /FORCE:MULTIPLE)
   else()
@@ -309,11 +311,66 @@ if(FALCON_CORE_DEV)
       SKIP_BUILD_RPATH FALSE
     )
   endif()
-  target_include_directories(integration_deserialize_connection_c PRIVATE
+  target_include_directories(integration_deserialize_connection_c PRIVATE 
     ${CMAKE_SOURCE_DIR}/include
     ${CORE_ROOT}/include
   )
   target_link_libraries(integration_deserialize_connection_c PRIVATE ${C_API_LIB_NAME})
-
+  
   message(STATUS "C-API Integration test executables: integration_serialize_connection_c, integration_deserialize_connection_c")
+  
+  # ---- Windows: Copy DLLs to executable directory ----
+  if(WIN32)
+    message(STATUS "Configuring automatic DLL copying for Windows")
+    
+    # Function to copy DLLs for a target
+    function(copy_runtime_dlls target_name)
+      # Copy falcon_core_cpp.dll
+      add_custom_command(TARGET ${target_name} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          "$<TARGET_FILE:falcon_core_cpp>"
+          "$<TARGET_FILE_DIR:${target_name}>"
+        COMMENT "Copying falcon_core_cpp.dll for ${target_name}"
+      )
+      
+      # Copy falcon_core_c_api.dll
+      add_custom_command(TARGET ${target_name} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          "$<TARGET_FILE:${C_API_LIB_NAME}>"
+          "$<TARGET_FILE_DIR:${target_name}>"
+        COMMENT "Copying falcon_core_c_api.dll for ${target_name}"
+      )
+      
+      # Copy vcpkg DLLs
+      if(USE_VCPKG)
+        # Determine vcpkg bin directory based on build type
+        set(VCPKG_BIN_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/bin")
+        set(VCPKG_DEBUG_BIN_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/debug/bin")
+        
+        # Copy from release bin for Release builds
+        if(EXISTS "${VCPKG_BIN_DIR}")
+          add_custom_command(TARGET ${target_name} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+              "${VCPKG_BIN_DIR}"
+              "$<TARGET_FILE_DIR:${target_name}>"
+            COMMENT "Copying vcpkg DLLs (release) for ${target_name}"
+          )
+        endif()
+        
+        # Also copy debug DLLs if they exist (for Debug builds)
+        if(EXISTS "${VCPKG_DEBUG_BIN_DIR}")
+          add_custom_command(TARGET ${target_name} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+              "${VCPKG_DEBUG_BIN_DIR}"
+              "$<TARGET_FILE_DIR:${target_name}>"
+            COMMENT "Copying vcpkg DLLs (debug) for ${target_name}"
+          )
+        endif()
+      endif()
+    endfunction()
+    
+    # Apply to both integration test executables
+    copy_runtime_dlls(integration_serialize_connection_c)
+    copy_runtime_dlls(integration_deserialize_connection_c)
+  endif()
 endif()

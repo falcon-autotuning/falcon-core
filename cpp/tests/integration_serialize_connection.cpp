@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 
+#include "falcon_core/CerealRegistry.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
 using namespace falcon_core::physics::device_structures;
@@ -108,7 +109,7 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  std::cout << "\n✓ Serialization completed successfully\n";
+  std::cout << "\n[SUCCESS] Serialization completed successfully\n";
   std::cout << "Platform: ";
 #ifdef _WIN32
   std::cout << "Windows\n";

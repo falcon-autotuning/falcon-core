@@ -1,3 +1,4 @@
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -116,11 +117,15 @@ int main(int argc, char* argv[]) {
 
   printf("Serialized to JSON (%zu bytes)\n", json_handle->length);
 
-  // Write to file
-  FILE* file = fopen(args.output_file, "w");
-  if (!file) {
-    fprintf(
-        stderr, "ERROR: Could not open output file '%s'\n", args.output_file);
+  // Write to file (cross-platform)
+  FILE* file = NULL;
+#ifdef _WIN32
+  errno_t ferr = fopen_s(&file, args.output_file, "wb");
+  if (ferr != 0 || file == NULL) {
+    fprintf(stderr,
+            "ERROR: Could not open output file '%s' (fopen_s error %d)\n",
+            args.output_file,
+            (int)ferr);
     String_destroy(json_handle);
     Connection_destroy(connection);
     String_destroy(name_handle);
@@ -128,12 +133,30 @@ int main(int argc, char* argv[]) {
     if (conn_name) String_destroy(conn_name);
     return 1;
   }
+#else
+  file = fopen(args.output_file, "wb");
+  if (!file) {
+    fprintf(stderr,
+            "ERROR: Could not open output file '%s' (%s)\n",
+            args.output_file,
+            strerror(errno));
+    String_destroy(json_handle);
+    Connection_destroy(connection);
+    String_destroy(name_handle);
+    if (type_handle) String_destroy(type_handle);
+    if (conn_name) String_destroy(conn_name);
+    return 1;
+  }
+#endif
 
   size_t written = fwrite(json_handle->raw, 1, json_handle->length, file);
   fclose(file);
 
   if (written != json_handle->length) {
-    fprintf(stderr, "ERROR: Failed to write complete file\n");
+    fprintf(stderr,
+            "ERROR: Failed to write complete file (wrote %zu of %zu)\n",
+            written,
+            json_handle->length);
     String_destroy(json_handle);
     Connection_destroy(connection);
     String_destroy(name_handle);
@@ -151,7 +174,7 @@ int main(int argc, char* argv[]) {
   if (type_handle) String_destroy(type_handle);
   if (conn_name) String_destroy(conn_name);
 
-  printf("\n✓ Serialization completed successfully\n");
+  printf("\n[SUCCESS] Serialization completed successfully\n");
   printf("Platform: ");
 #ifdef _WIN32
   printf("Windows\n");

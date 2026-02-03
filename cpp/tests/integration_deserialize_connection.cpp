@@ -4,6 +4,7 @@
 #include <sstream>
 #include <string>
 
+#include "falcon_core/CerealRegistry.hpp"
 #include "falcon_core/physics/device_structures/Connection.hpp"
 
 using namespace falcon_core::physics::device_structures;
@@ -111,57 +112,57 @@ int main(int argc, char* argv[]) {
 
   // Check name
   if (deserialized_connection->name() != args.expected_name) {
-    std::cerr << "  ✗ Name mismatch! Expected '" << args.expected_name
+    std::cerr << "  [FAIL] Name mismatch! Expected '" << args.expected_name
               << "', got '" << deserialized_connection->name() << "'\n";
     validation_passed = false;
   } else {
-    std::cout << "  ✓ Name matches\n";
+    std::cout << "  [PASS] Name matches\n";
   }
 
   // Check type
   if (deserialized_connection->type() != args.expected_type) {
-    std::cerr << "  ✗ Type mismatch! Expected '" << args.expected_type
+    std::cerr << "  [FAIL] Type mismatch! Expected '" << args.expected_type
               << "', got '" << deserialized_connection->type() << "'\n";
     validation_passed = false;
   } else {
-    std::cout << "  ✓ Type matches\n";
+    std::cout << "  [PASS] Type matches\n";
   }
 
   // Verify type-specific methods work
   if (args.expected_type == "PlungerGate") {
     if (!deserialized_connection->is_plunger_gate()) {
-      std::cerr << "  ✗ is_plunger_gate() returned false!\n";
+      std::cerr << "  [FAIL] is_plunger_gate() returned false!\n";
       validation_passed = false;
     } else {
-      std::cout << "  ✓ is_plunger_gate() confirmed\n";
+      std::cout << "  [PASS] is_plunger_gate() confirmed\n";
     }
   } else if (args.expected_type == "BarrierGate") {
     if (!deserialized_connection->is_barrier_gate()) {
-      std::cerr << "  ✗ is_barrier_gate() returned false!\n";
+      std::cerr << "  [FAIL] is_barrier_gate() returned false!\n";
       validation_passed = false;
     } else {
-      std::cout << "  ✓ is_barrier_gate() confirmed\n";
+      std::cout << "  [PASS] is_barrier_gate() confirmed\n";
     }
   } else if (args.expected_type == "ReservoirGate") {
     if (!deserialized_connection->is_reservoir_gate()) {
-      std::cerr << "  ✗ is_reservoir_gate() returned false!\n";
+      std::cerr << "  [FAIL] is_reservoir_gate() returned false!\n";
       validation_passed = false;
     } else {
-      std::cout << "  ✓ is_reservoir_gate() confirmed\n";
+      std::cout << "  [PASS] is_reservoir_gate() confirmed\n";
     }
   } else if (args.expected_type == "ScreeningGate") {
     if (!deserialized_connection->is_screening_gate()) {
-      std::cerr << "  ✗ is_screening_gate() returned false!\n";
+      std::cerr << "  [FAIL] is_screening_gate() returned false!\n";
       validation_passed = false;
     } else {
-      std::cout << "  ✓ is_screening_gate() confirmed\n";
+      std::cout << "  [PASS] is_screening_gate() confirmed\n";
     }
   } else if (args.expected_type == "Ohmic") {
     if (!deserialized_connection->is_ohmic()) {
-      std::cerr << "  ✗ is_ohmic() returned false!\n";
+      std::cerr << "  [FAIL] is_ohmic() returned false!\n";
       validation_passed = false;
     } else {
-      std::cout << "  ✓ is_ohmic() confirmed\n";
+      std::cout << "  [PASS] is_ohmic() confirmed\n";
     }
   }
 
@@ -177,10 +178,10 @@ int main(int argc, char* argv[]) {
 #endif
 
   if (validation_passed) {
-    std::cout << "\n✓✓✓ Cross-platform deserialization test PASSED ✓✓✓\n";
+    std::cout << "\n[SUCCESS] Cross-platform deserialization test PASSED\n";
     return 0;
   } else {
-    std::cerr << "\n✗✗✗ Cross-platform deserialization test FAILED ✗✗✗\n";
+    std::cerr << "\n[FAILED] Cross-platform deserialization test FAILED\n";
     return 1;
   }
 }

@@ -93,7 +93,7 @@ TEST_F(AxesInstrumentPortTest, AccessorsAndMutators) {
                                  InstrumentTypes_voltmeter(),
                                  SymbolUnit_create_volt(),
                                  desc1);
-  auto item1 = track_instrument_port(sp1);
+  track_instrument_port(sp1);
   String_destroy(name1);
   String_destroy(desc1);
   AxesInstrumentPort_push_back(axes, sp1);
