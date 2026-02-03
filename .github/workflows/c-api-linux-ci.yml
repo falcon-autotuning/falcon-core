@@ -1,0 +1,183 @@
+name: C-API Linux CI
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build and Test C-API (Linux)
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create build user
+        run: |
+          useradd -m builduser
+          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          chown -R builduser:builduser .
+
+      - name: Cache pacman packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/pacman/pkg
+          key: ${{ runner.os }}-pacman-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-pacman-
+
+      - name: Cache AUR packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            packaging/highfive/*.pkg.tar.zst
+            packaging/exprtk/*.pkg.tar.zst
+          key: ${{ runner.os }}-aur-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-aur-
+
+      - name: Install system dependencies
+        run: |
+          sudo pacman -Syu --noconfirm
+          sudo pacman -S --noconfirm \
+            base-devel \
+            git \
+            wget \
+            curl \
+            pkg-config \
+            openssh \
+            cereal \
+            hdf5 \
+            boost \
+            bzip2 \
+            expat \
+            nlohmann-json \
+            openssl \
+            python \
+            sqlite \
+            yaml-cpp \
+            zlib \
+            ninja \
+            llvm \
+            ccache \
+            clang \
+            gtest \
+            glibc \
+            cmake \
+            lld
+
+      - name: Set clang as default compiler
+        run: |
+          grep -q '^CC=' /etc/makepkg.conf && \
+          sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || \
+          echo 'CC=/usr/bin/clang' >> /etc/makepkg.conf
+
+          grep -q '^CXX=' /etc/makepkg.conf && \
+          sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || \
+          echo 'CXX=/usr/bin/clang++' >> /etc/makepkg.conf
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-${{ github.ref }}-
+            ${{ runner.os }}-ccache-
+
+      - name: Install AUR packages (minimal for C-API)
+        run: |
+          mkdir -p packaging
+          chown builduser:builduser packaging
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
+              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
+              cd packaging/highfive
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
+              fi
+              cd ../exprtk
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
+              fi
+            "
+
+      - name: Build xtensor packages
+        run: |
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+            cd packaging/xtl && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xsimd && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
+          "
+
+      - name: Download C++ build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: cpp-linux-build
+          path: cpp/build
+
+      - name: Extract C++ build artifacts
+        run: |
+          cd cpp/build
+          tar -xzf cpp-linux-build.tar.gz
+          ls -lh
+          echo "✓ C++ build artifacts extracted"
+
+      - name: Verify C++ library
+        run: |
+          test -f cpp/build/libfalcon_core_cpp.so || (echo "ERROR: libfalcon_core_cpp.so not found!" && exit 1)
+          echo "✓ C++ library verified"
+
+      - name: Build C-API library (dev mode with tests)
+        run: |
+          cd c-api
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ CORE_ROOT=../cpp make build-dev
+
+      - name: Verify C-API library build
+        run: |
+          echo "== C-API build artifacts =="
+          ls -lh c-api/build/
+          test -f c-api/build/libfalcon_core_c_api.so || (echo "ERROR: libfalcon_core_c_api.so not found!" && exit 1)
+          test -f c-api/build/integration_serialize_connection_c || (echo "ERROR: integration_serialize_connection_c not found!" && exit 1)
+          test -f c-api/build/integration_deserialize_connection_c || (echo "ERROR: integration_deserialize_connection_c not found!" && exit 1)
+          echo "✓ C-API library built successfully"
+
+      - name: Run C-API unit tests
+        run: |
+          cd c-api
+          export LD_LIBRARY_PATH=$(pwd)/build:$(pwd)/../cpp/build:$LD_LIBRARY_PATH
+          make run-all-tests
+
+      - name: Run C-API integration tests (same platform)
+        run: |
+          cd c-api/build
+          export LD_LIBRARY_PATH=$(pwd):$(pwd)/../../cpp/build:$LD_LIBRARY_PATH
+          ./integration_serialize_connection_c --output capi_linux_local.json --name "CApiLinuxLocalTest" --type PlungerGate
+          ./integration_deserialize_connection_c --input capi_linux_local.json --name "CApiLinuxLocalTest" --type PlungerGate --verbose
+
+      - name: Serialize for cross-platform test
+        run: |
+          cd c-api/build
+          export LD_LIBRARY_PATH=$(pwd):$(pwd)/../../cpp/build:$LD_LIBRARY_PATH
+          ./integration_serialize_connection_c --output capi_linux_cross.json --name "CApiLinuxToWindowsTest" --type ScreeningGate
+          cat capi_linux_cross.json
+
+      - name: Upload cross-platform test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: capi-linux-serialized
+          path: c-api/build/capi_linux_cross.json
+          retention-days: 1
+
+      - name: Setup tmate session on failure
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30

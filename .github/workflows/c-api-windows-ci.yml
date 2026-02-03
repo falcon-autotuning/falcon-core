@@ -1,0 +1,220 @@
+name: C-API Windows CI
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build and Test C-API (Windows)
+    runs-on: windows-latest
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Attempt to restore vcpkg binary cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-clang-cl--${{ hashFiles('c-api/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          restore-keys: |
+            vcpkg-${{ runner.os }}-clang-cl-
+            vcpkg-${{ runner.os }}-
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      - name: Install LLVM/Clang
+        shell: pwsh
+        run: |
+          Write-Host "=== Installing LLVM/Clang ==="
+          choco install llvm -y
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+          Write-Host "✓ LLVM/Clang installed"
+
+      - name: Install Ninja
+        shell: pwsh
+        run: |
+          Write-Host "=== Installing Ninja ==="
+          choco install ninja -y
+          Write-Host "✓ Ninja installed"
+
+      - name: Download C++ build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: cpp-windows-build
+          path: cpp/build
+
+      - name: Extract C++ build artifacts
+        shell: pwsh
+        run: |
+          cd cpp/build
+          Expand-Archive -Path "cpp-windows-build.zip" -DestinationPath "." -Force
+          Write-Host "Extracted files:"
+          Get-ChildItem
+          Write-Host "✓ C++ build artifacts extracted"
+
+      - name: Verify C++ library
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "cpp/build/falcon_core_cpp.dll")) {
+            Write-Error "ERROR: falcon_core_cpp.dll not found!"
+            exit 1
+          }
+          Write-Host "✓ C++ library verified"
+
+      - name: Configure CMake for C-API
+        working-directory: c-api
+        shell: pwsh
+        run: |
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+          Write-Host "=== CMake Configuration for C-API ==="
+          cmake -B build `
+            -S . `
+            -G "Ninja" `
+            -DCMAKE_C_COMPILER=clang-cl `
+            -DCMAKE_CXX_COMPILER=clang-cl `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/c-api" `
+            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/c-api/build/vcpkg_installed" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DFALCON_CORE_DEV=ON `
+            -DUSE_VCPKG=ON `
+            -DCORE_ROOT="${env:GITHUB_WORKSPACE}/cpp"
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "C-API CMake configuration failed!"
+            exit $LASTEXITCODE
+          }
+
+          Write-Host "✓ C-API CMake configuration successful"
+
+      - name: Build C-API library
+        working-directory: c-api
+        shell: pwsh
+        run: |
+          Write-Host "=== Building C-API with Ninja ==="
+          ninja -C build -v
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "C-API build failed!"
+            exit $LASTEXITCODE
+          }
+
+          Write-Host "✓ C-API build successful"
+
+      - name: Verify C-API library build
+        working-directory: c-api
+        shell: pwsh
+        run: |
+          Write-Host "== C-API build artifacts =="
+          Get-ChildItem -Path build -Include *.dll,*.lib,*.exe -Recurse | Select-Object FullName
+
+          if (-not (Test-Path "build/falcon_core_c_api.dll")) {
+            Write-Error "ERROR: falcon_core_c_api.dll not found!"
+            exit 1
+          }
+
+          if (-not (Test-Path "build/integration_serialize_connection_c.exe")) {
+            Write-Error "ERROR: integration_serialize_connection_c.exe not found!"
+            exit 1
+          }
+
+          if (-not (Test-Path "build/integration_deserialize_connection_c.exe")) {
+            Write-Error "ERROR: integration_deserialize_connection_c.exe not found!"
+            exit 1
+          }
+
+          Write-Host "✓ C-API library built successfully"
+
+      - name: Run C-API tests
+        working-directory: c-api
+        shell: pwsh
+        run: |
+          Write-Host "=== C-API Test Execution Setup ==="
+
+          # Determine vcpkg bin path
+          $vcpkgBinPaths = @(
+            "build/vcpkg_installed/x64-windows/bin",
+            "build/vcpkg_installed/x64-windows/debug/bin"
+          )
+
+          $vcpkgBin = $null
+          foreach ($path in $vcpkgBinPaths) {
+            if (Test-Path $path) {
+              $vcpkgBin = (Resolve-Path $path).Path
+              Write-Host "Found vcpkg bin: $vcpkgBin"
+              break
+            }
+          }
+
+          if (-not $vcpkgBin) {
+            Write-Error "Could not find vcpkg bin directory!"
+            exit 1
+          }
+
+          $buildDir = (Resolve-Path "build").Path
+          $cppBuildDir = (Resolve-Path "../cpp/build").Path
+
+          Write-Host "`nEnvironment:"
+          Write-Host "  VcpkgBin: $vcpkgBin"
+          Write-Host "  C-API BuildDir: $buildDir"
+          Write-Host "  C++ BuildDir: $cppBuildDir"
+
+          # Add DLL directories to PATH
+          $env:PATH = "$vcpkgBin;$buildDir;$cppBuildDir;$env:PATH"
+
+          # Find test executable
+          $testExe = Get-ChildItem -Path "build" -Filter "falcon_core_c_api_run_tests.exe" -Recurse | Select-Object -First 1
+
+          if (-not $testExe) {
+            Write-Error "Test executable not found!"
+            exit 1
+          }
+
+          Write-Host "`n=== Running C-API Tests ==="
+          & ".\$($testExe.FullName.Replace("$PWD\", ''))" --gtest_color=yes --gtest_output=xml:test-results.xml
+          $exitCode = $LASTEXITCODE
+
+          if ($exitCode -ne 0) {
+            Write-Error "Tests failed with exit code: $exitCode"
+            exit $exitCode
+          }
+
+          Write-Host "`n✓ All C-API tests passed successfully"
+
+      - name: Run C-API integration tests (same platform)
+        shell: pwsh
+        run: |
+          cd c-api/build
+          .\integration_serialize_connection_c.exe --output capi_windows_local.json --name "CApiWindowsLocalTest" --type PlungerGate
+          .\integration_deserialize_connection_c.exe --input capi_windows_local.json --name "CApiWindowsLocalTest" --type PlungerGate --verbose
+
+      - name: Serialize for cross-platform test
+        shell: pwsh
+        run: |
+          cd c-api/build
+          .\integration_serialize_connection_c.exe --output capi_windows_cross.json --name "CApiWindowsToLinuxTest" --type Ohmic
+          Get-Content capi_windows_cross.json
+
+      - name: Upload cross-platform test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: capi-windows-serialized
+          path: c-api/build/capi_windows_cross.json
+          retention-days: 1
+
+      - name: Setup tmate session on failure
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30

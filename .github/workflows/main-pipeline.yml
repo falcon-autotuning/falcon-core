@@ -1,0 +1,51 @@
+name: Main Pipeline (CI + CD)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  # Stage 1: Run full CI pipeline
+  ci-pipeline:
+    name: Run CI Pipeline
+    uses: ./.github/workflows/ci-pipeline.yml
+    secrets: inherit
+
+  # Stage 2: Build release artifacts (only if CI passes)
+  cpp-linux-release:
+    name: C++ Linux Release Build
+    needs: [ci-pipeline]
+    uses: ./.github/workflows/cpp-linux-release.yml
+    secrets: inherit
+
+  cpp-windows-release:
+    name: C++ Windows Release Build
+    needs: [ci-pipeline]
+    uses: ./.github/workflows/cpp-windows-release.yml
+    secrets: inherit
+
+  c-api-linux-release:
+    name: C-API Linux Release Build
+    needs: [ci-pipeline]
+    uses: ./.github/workflows/c-api-linux-release.yml
+    secrets: inherit
+
+  c-api-windows-release:
+    name: C-API Windows Release Build
+    needs: [ci-pipeline]
+    uses: ./.github/workflows/c-api-windows-release.yml
+    secrets: inherit
+
+  # Stage 3: Create GitHub release with all artifacts
+  create-release:
+    name: Create GitHub Release
+    needs:
+      [
+        cpp-linux-release,
+        cpp-windows-release,
+        c-api-linux-release,
+        c-api-windows-release,
+      ]
+    uses: ./.github/workflows/create-release.yml
+    secrets: inherit

@@ -1,0 +1,65 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+  workflow_dispatch:
+
+jobs:
+  # Stage 1: Build and test C++ library on both platforms
+  cpp-linux:
+    name: C++ Linux CI
+    uses: ./.github/workflows/cpp-linux-ci.yml
+    secrets: inherit
+
+  cpp-windows:
+    name: C++ Windows CI
+    uses: ./.github/workflows/cpp-windows-ci.yml
+    secrets: inherit
+
+  # Stage 2: Build and test C-API on both platforms (depends on cpp)
+  c-api-linux:
+    name: C-API Linux CI
+    needs: [cpp-linux]
+    uses: ./.github/workflows/c-api-linux-ci.yml
+    secrets: inherit
+
+  c-api-windows:
+    name: C-API Windows CI
+    needs: [cpp-windows]
+    uses: ./.github/workflows/c-api-windows-ci.yml
+    secrets: inherit
+
+  # Stage 3: Cross-platform integration tests (depends on all platform tests)
+  cross-platform-integration:
+    name: Cross-Platform Integration Tests
+    needs: [cpp-linux, cpp-windows, c-api-linux, c-api-windows]
+    uses: ./.github/workflows/cross-platform-integration.yml
+    secrets: inherit
+
+  # Final status check
+  ci-complete:
+    name: CI Pipeline Complete
+    needs:
+      [
+        cpp-linux,
+        cpp-windows,
+        c-api-linux,
+        c-api-windows,
+        cross-platform-integration,
+      ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: CI Success
+        run: |
+          echo "=================================================="
+          echo "All CI checks passed successfully!"
+          echo "=================================================="
+          echo "[PASS] C++ Linux build and tests"
+          echo "[PASS] C++ Windows build and tests"
+          echo "[PASS] C-API Linux build and tests"
+          echo "[PASS] C-API Windows build and tests"
+          echo "[PASS] Cross-platform integration tests"
+          echo "=================================================="

@@ -1,0 +1,335 @@
+name: Cross-Platform Integration Tests
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  # Test C++ Linux → Windows
+  cpp-linux-to-windows:
+    name: C++ Linux → Windows
+    runs-on: windows-latest
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      - name: Install LLVM/Clang
+        shell: pwsh
+        run: |
+          choco install llvm -y
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+      - name: Install Ninja
+        shell: pwsh
+        run: |
+          choco install ninja -y
+
+      - name: Build C++ deserializer
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+          cmake -B build `
+            -S . `
+            -G "Ninja" `
+            -DCMAKE_C_COMPILER=clang-cl `
+            -DCMAKE_CXX_COMPILER=clang-cl `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/cpp" `
+            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/cpp/build/vcpkg_installed" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DFALCON_CORE_DEV=ON `
+            -DUSE_VCPKG=ON
+
+          ninja -C build integration_deserialize_connection
+
+      - name: Download Linux serialized artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cpp-linux-serialized
+          path: cpp/build
+
+      - name: Deserialize on Windows
+        shell: pwsh
+        run: |
+          cd cpp/build
+          .\integration_deserialize_connection.exe --input cpp_linux_cross.json --name "LinuxToWindowsTest" --type BarrierGate --verbose
+
+      - name: Setup tmate session on failure
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30
+
+  # Test C++ Windows → Linux
+  cpp-windows-to-linux:
+    name: C++ Windows → Linux
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create build user
+        run: |
+          useradd -m builduser
+          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          chown -R builduser:builduser .
+
+      - name: Install system dependencies
+        run: |
+          sudo pacman -Syu --noconfirm
+          sudo pacman -S --noconfirm base-devel git clang cmake ninja cereal hdf5 boost yaml-cpp gtest lld
+
+      - name: Install AUR packages
+        run: |
+          mkdir -p packaging
+          chown builduser:builduser packaging
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
+              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
+              cd packaging/highfive
+              if ! ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
+              else
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              fi
+              cd ../exprtk
+              if ! ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
+              else
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              fi
+            "
+
+      - name: Build xtensor packages
+        run: |
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+            cd packaging/xtl && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xsimd && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
+          "
+
+      - name: Build C++ deserializer
+        run: |
+          cd cpp
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev
+
+      - name: Download Windows serialized artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cpp-windows-serialized
+          path: cpp/build
+
+      - name: Deserialize on Linux
+        run: |
+          cd cpp/build
+          export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
+          ./integration_deserialize_connection --input cpp_windows_cross.json --name "WindowsToLinuxTest" --type ReservoirGate --verbose
+
+      - name: Setup tmate session on failure
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30
+
+  # Test C-API Linux → Windows
+  capi-linux-to-windows:
+    name: C-API Linux → Windows
+    runs-on: windows-latest
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      - name: Install LLVM/Clang
+        shell: pwsh
+        run: |
+          choco install llvm -y
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+      - name: Install Ninja
+        shell: pwsh
+        run: |
+          choco install ninja -y
+
+      - name: Build C++ library
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+          cmake -B build `
+            -S . `
+            -G "Ninja" `
+            -DCMAKE_C_COMPILER=clang-cl `
+            -DCMAKE_CXX_COMPILER=clang-cl `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/cpp" `
+            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/cpp/build/vcpkg_installed" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DFALCON_CORE_DEV=ON `
+            -DUSE_VCPKG=ON
+
+          ninja -C build
+
+      - name: Build C-API deserializer
+        working-directory: c-api
+        shell: pwsh
+        run: |
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+          cmake -B build `
+            -S . `
+            -G "Ninja" `
+            -DCMAKE_C_COMPILER=clang-cl `
+            -DCMAKE_CXX_COMPILER=clang-cl `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/c-api" `
+            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/c-api/build/vcpkg_installed" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DFALCON_CORE_DEV=ON `
+            -DUSE_VCPKG=ON `
+            -DCORE_ROOT="${env:GITHUB_WORKSPACE}/cpp"
+
+          ninja -C build integration_deserialize_connection_c
+
+      - name: Download Linux serialized artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: capi-linux-serialized
+          path: c-api/build
+
+      - name: Deserialize on Windows
+        shell: pwsh
+        run: |
+          cd c-api/build
+          .\integration_deserialize_connection_c.exe --input capi_linux_cross.json --name "CApiLinuxToWindowsTest" --type ScreeningGate --verbose
+
+      - name: Setup tmate session on failure
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30
+
+  # Test C-API Windows → Linux
+  capi-windows-to-linux:
+    name: C-API Windows → Linux
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create build user
+        run: |
+          useradd -m builduser
+          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          chown -R builduser:builduser .
+
+      - name: Install system dependencies
+        run: |
+          sudo pacman -Syu --noconfirm
+          sudo pacman -S --noconfirm base-devel git clang cmake ninja cereal hdf5 boost yaml-cpp gtest lld
+
+      - name: Install AUR packages
+        run: |
+          mkdir -p packaging
+          chown builduser:builduser packaging
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
+              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
+              cd packaging/highfive
+              if ! ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
+              else
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              fi
+              cd ../exprtk
+              if ! ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
+              else
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              fi
+            "
+
+      - name: Build xtensor packages
+        run: |
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+            cd packaging/xtl && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xsimd && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
+          "
+
+      - name: Build C++ library
+        run: |
+          cd cpp
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev
+
+      - name: Build C-API deserializer
+        run: |
+          cd c-api
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ CORE_ROOT=../cpp make build-dev
+
+      - name: Download Windows serialized artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: capi-windows-serialized
+          path: c-api/build
+
+      - name: Deserialize on Linux
+        run: |
+          cd c-api/build
+          export LD_LIBRARY_PATH=$(pwd):$(pwd)/../../cpp/build:$LD_LIBRARY_PATH
+          ./integration_deserialize_connection_c --input capi_windows_cross.json --name "CApiWindowsToLinuxTest" --type Ohmic --verbose
+
+      - name: Setup tmate session on failure
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30
+
+  # Summary
+  cross-platform-complete:
+    name: Cross-Platform Tests Complete
+    needs:
+      [
+        cpp-linux-to-windows,
+        cpp-windows-to-linux,
+        capi-linux-to-windows,
+        capi-windows-to-linux,
+      ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Success Summary
+        run: |
+          echo "=================================================="
+          echo "All cross-platform integration tests passed!"
+          echo "=================================================="
+          echo "[PASS] C++ Linux → Windows"
+          echo "[PASS] C++ Windows → Linux"
+          echo "[PASS] C-API Linux → Windows"
+          echo "[PASS] C-API Windows → Linux"
+          echo "=================================================="

@@ -1,0 +1,238 @@
+name: C++ Linux CI
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build and Test C++ (Linux)
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create build user
+        run: |
+          useradd -m builduser
+          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          chown -R builduser:builduser .
+
+      - name: Cache pacman packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/pacman/pkg
+          key: ${{ runner.os }}-pacman-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-pacman-
+
+      - name: Cache AUR packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            packaging/highfive/*.pkg.tar.zst
+            packaging/exprtk/*.pkg.tar.zst
+          key: ${{ runner.os }}-aur-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-aur-
+
+      - name: Install system dependencies
+        run: |
+          sudo pacman -Syu --noconfirm
+          sudo pacman -S --noconfirm \
+            base-devel \
+            git \
+            wget \
+            curl \
+            pkg-config \
+            openssh \
+            cereal \
+            hdf5 \
+            boost \
+            bzip2 \
+            expat \
+            nlohmann-json \
+            openssl \
+            python \
+            sqlite \
+            yaml-cpp \
+            zlib \
+            ninja \
+            llvm \
+            ccache \
+            clang \
+            gtest \
+            glibc \
+            cmake \
+            lld
+
+      - name: Debug pthread and toolchain
+        run: |
+          echo "== glibc and pthread files =="
+          pacman -Qi glibc || true
+          ls -l /usr/lib/libpthread* || true
+          ls -l /usr/include/pthread.h || true
+
+          echo "== Compiler versions =="
+          clang --version
+          clang++ --version
+          gcc --version
+          g++ --version
+
+          echo "== Clang test compile =="
+          echo '#include <pthread.h>
+          void* f(void*) { return nullptr; }
+          int main() { pthread_t t; pthread_create(&t, 0, f, 0); pthread_join(t, 0); return 0; }' > test.cpp
+          clang++ test.cpp -pthread -v || echo "Clang failed"
+
+          echo "== GCC test compile =="
+          g++ test.cpp -pthread -v || echo "GCC failed"
+
+          echo "== ldd on clang =="
+          ldd /usr/bin/clang || true
+
+          echo "== ldd on clang++ =="
+          ldd /usr/bin/clang++ || true
+
+          echo "== Environment =="
+          env
+
+      - name: Set clang as default compiler for makepkg
+        run: |
+          grep -q '^CC=' /etc/makepkg.conf && \
+          sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || \
+          echo 'CC=/usr/bin/clang' >> /etc/makepkg.conf
+
+          grep -q '^CXX=' /etc/makepkg.conf && \
+          sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || \
+          echo 'CXX=/usr/bin/clang++' >> /etc/makepkg.conf
+
+          grep -E '^CC=|^CXX=' /etc/makepkg.conf
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-${{ github.ref }}-
+            ${{ runner.os }}-ccache-
+
+      - name: Minimal pthread CMake test
+        run: |
+          mkdir cmake-pthread-test
+          cd cmake-pthread-test
+          # Write CMakeLists.txt
+          cat > CMakeLists.txt <<EOF
+          cmake_minimum_required(VERSION 3.20)
+          project(PthreadTest LANGUAGES CXX)
+          find_package(Threads REQUIRED)
+          add_executable(pthread_test main.cpp)
+          target_link_libraries(pthread_test PRIVATE Threads::Threads)
+          EOF
+          # Write main.cpp
+          cat > main.cpp <<EOF
+          #include <pthread.h>
+          #include <iostream>
+          void* f(void*) { return nullptr; }
+          int main() {
+              pthread_t t;
+              pthread_create(&t, 0, f, 0);
+              pthread_join(t, 0);
+              std::cout << "Pthread test ran\\n";
+              return 0;
+          }
+          EOF
+          # Build and run
+          cmake -S . -B build -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang
+          cmake --build build
+          ./build/pthread_test
+
+      - name: Install AUR packages
+        run: |
+          mkdir -p packaging
+          chown builduser:builduser packaging
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
+              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
+              cd packaging/highfive
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
+              fi
+              cd ../exprtk
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
+              fi
+            "
+
+      - name: Build and test PKGBUILDs
+        run: |
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+            cd packaging/xtl
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xsimd
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor-io
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+          "
+
+      - name: Build C++ library (dev mode with tests)
+        run: |
+          cd cpp
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev
+
+      - name: Run C++ unit tests
+        run: |
+          cd cpp
+          make run-all-tests
+
+      - name: Run C++ integration tests (same platform)
+        run: |
+          cd cpp/build
+          export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
+          ./integration_serialize_connection --output cpp_linux_local.json --name "LinuxLocalTest" --type PlungerGate
+          ./integration_deserialize_connection --input cpp_linux_local.json --name "LinuxLocalTest" --type PlungerGate --verbose
+
+      - name: Serialize for cross-platform test
+        run: |
+          cd cpp/build
+          export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
+          ./integration_serialize_connection --output cpp_linux_cross.json --name "LinuxToWindowsTest" --type BarrierGate
+          cat cpp_linux_cross.json
+
+      - name: Upload cross-platform test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-linux-serialized
+          path: cpp/build/cpp_linux_cross.json
+          retention-days: 1
+
+      - name: Package C++ build artifacts for C-API
+        run: |
+          cd cpp/build
+          tar -czf cpp-linux-build.tar.gz \
+            libfalcon_core_cpp.so \
+            CMakeCache.txt \
+            *.cmake
+          ls -lh cpp-linux-build.tar.gz
+
+      - name: Upload C++ build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-linux-build
+          path: cpp/build/cpp-linux-build.tar.gz
+          retention-days: 1
+
+      - name: Setup tmate session on failure
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30

@@ -1,19 +1,12 @@
-name: Native Windows Build and Test
+name: C++ Windows CI
 
 on:
-  push:
-    branches: [none]
-  pull_request:
-    branches: [none]
-  workflow_dispatch:
   workflow_call:
-
-permissions:
-  contents: read
+  workflow_dispatch:
 
 jobs:
-  build-and-test-windows:
-    name: Build and Test on Windows (clang-cl + Ninja)
+  build-and-test:
+    name: Build and Test C++ (Windows)
     runs-on: windows-latest
 
     # vcpkg binary caching
@@ -22,11 +15,8 @@ jobs:
       VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          ref: dev
 
       - name: Attempt to restore vcpkg binary cache
         uses: actions/cache@v4
@@ -136,16 +126,6 @@ jobs:
 
           Write-Host "✓ Build successful"
 
-      - name: List build outputs
-        working-directory: cpp
-        shell: pwsh
-        run: |
-          Write-Host "=== Build Directory Structure ==="
-          Get-ChildItem -Path "build" -Recurse -Include *.exe,*.dll | ForEach-Object {
-            $size = "{0:N2}" -f ($_.Length / 1MB)
-            Write-Host "$($_.FullName) - $size MB"
-          }
-
       - name: Run CPP tests
         working-directory: cpp
         shell: pwsh
@@ -210,7 +190,7 @@ jobs:
           Write-Host "Test executable: $($testExe.FullName)"
           Write-Host "Running from directory: $(Get-Location)"
 
-          # Run tests (matching your exact command: ./build/falcon_core_cpp_run_tests.exe)
+          # Run tests
           & ".\$($testExe.FullName.Replace("$PWD\", ''))" --gtest_color=yes --gtest_output=xml:test-results.xml
           $exitCode = $LASTEXITCODE
 
@@ -242,70 +222,60 @@ jobs:
 
           Write-Host "`n✓ All tests passed successfully"
 
-      # Error handling and diagnostics
-      - name: Run tests with detailed diagnostics (on failure)
-        if: failure()
-        working-directory: cpp
+      - name: Run C++ integration tests (same platform)
         shell: pwsh
         run: |
-          Write-Host "=== Diagnostic Information ==="
+          cd cpp/build
+          .\integration_serialize_connection.exe --output cpp_windows_local.json --name "WindowsLocalTest" --type PlungerGate
+          .\integration_deserialize_connection.exe --input cpp_windows_local.json --name "WindowsLocalTest" --type PlungerGate --verbose
 
-          $testExe = Get-ChildItem -Path "build" -Filter "falcon_core_cpp_run_tests.exe" -Recurse | Select-Object -First 1
+      - name: Serialize for cross-platform test
+        shell: pwsh
+        run: |
+          cd cpp/build
+          .\integration_serialize_connection.exe --output cpp_windows_cross.json --name "WindowsToLinuxTest" --type ReservoirGate
+          Get-Content cpp_windows_cross.json
 
-          if ($testExe) {
-            Write-Host "`nTest executable: $($testExe.FullName)"
-            
-            # Use Dependencies.exe (better than dumpbin) or fallback to dumpbin
-            Write-Host "`n=== Checking for dependency analysis tools ==="
-            
-            # Try to find Visual Studio's dumpbin
-            $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-            if (Test-Path $vswhere) {
-              $vsPath = & $vswhere -latest -property installationPath
-              $dumpbin = "$vsPath\VC\Tools\MSVC\*\bin\Hostx64\x64\dumpbin.exe"
-              $dumpbinPath = Get-Item $dumpbin -ErrorAction SilentlyContinue | Select-Object -First 1
-              
-              if ($dumpbinPath) {
-                Write-Host "`n=== DLL Dependencies (dumpbin) ==="
-                & $dumpbinPath.FullName /DEPENDENTS $testExe.FullName
-              }
-            }
-            
-            # List all DLLs in vcpkg bin
-            Write-Host "`n=== Available vcpkg DLLs ==="
-            Get-ChildItem -Path "build/vcpkg_installed" -Recurse -Filter *.dll | Select-Object FullName
-            
-            # Try to list tests without running them
-            Write-Host "`n=== Test List (if executable loads) ==="
-            $vcpkgBin = Get-ChildItem -Path "build/vcpkg_installed/x64-windows/bin" -ErrorAction SilentlyContinue
-            if ($vcpkgBin) {
-              $env:PATH = "$($vcpkgBin.FullName);$(Resolve-Path 'build');$env:PATH"
-            }
-            
-            & $testExe.FullName --gtest_list_tests 2>&1 | Tee-Object -Variable output
-          }
-
-      - name: Upload test results
-        if: always()
+      - name: Upload cross-platform test artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows-test-results
-          path: cpp/test-results.xml
-          if-no-files-found: ignore
+          name: cpp-windows-serialized
+          path: cpp/build/cpp_windows_cross.json
+          retention-days: 1
 
-      - name: Upload build logs
+      - name: Package C++ build artifacts for C-API
+        shell: pwsh
+        run: |
+          cd cpp/build
+
+          # Create package directory
+          $packageDir = "cpp-windows-build-package"
+          New-Item -ItemType Directory -Force -Path $packageDir
+
+          # Copy essential DLLs and libs
+          Copy-Item "falcon_core_cpp.dll" $packageDir
+          Copy-Item "falcon_core_cpp.lib" $packageDir
+
+          # Copy CMake files
+          Copy-Item "CMakeCache.txt" $packageDir -ErrorAction SilentlyContinue
+          Get-ChildItem -Filter "*.cmake" | Copy-Item -Destination $packageDir -ErrorAction SilentlyContinue
+
+          # Create archive
+          Compress-Archive -Path "$packageDir\*" -DestinationPath "cpp-windows-build.zip" -Force
+
+          Write-Host "Package contents:"
+          Get-ChildItem $packageDir
+          Write-Host "`nArchive created:"
+          Get-Item "cpp-windows-build.zip" | Select-Object Name, Length
+
+      - name: Upload C++ build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-windows-build
+          path: cpp/build/cpp-windows-build.zip
+          retention-days: 1
+
+      - name: Setup tmate session on failure
         if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-build-logs
-          path: |
-            cpp/build/**/*.log
-            cpp/build/CMakeFiles/*.log
-          if-no-files-found: ignore
-
-      - name: Setup tmate session for debugging (on failure)
-        if: failure() && github.event_name == 'workflow_dispatch'
         uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 60
-        with:
-          limit-access-to-actor: true
+        timeout-minutes: 30
