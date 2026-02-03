@@ -237,6 +237,11 @@ else
 	@gcovr src/ . --txt --exclude 'vcpkg_installed|tests/'
 endif
 
+run-serialization-test:
+	@$(BUILD_DIR)/integration_serialize_connection_c --output test.json --name "MyGate" --type PlungerGate
+	@$(BUILD_DIR)/integration_deserialize_connection_c --input test.json --name "MyGate" --type PlungerGate
+	@rm test.json
+
 clean:
 	@echo "--- Cleaning build directory and compiled extension ---"
 	@rm -rf $(C_API_BUILD_DIR)

@@ -263,4 +263,57 @@ if(FALCON_CORE_DEV)
   target_link_libraries(falcon_core_cpp_run_tests PUBLIC yaml-cpp::yaml-cpp)
   include(GoogleTest)
   gtest_discover_tests(falcon_core_c_api_run_tests)
+
+  # ---- Integration Tests for Cross-Platform Serialization (C-API) ----
+  message(STATUS "Setting up C-API cross-platform serialization integration tests")
+
+  # C-API Serialization integration test
+  add_executable(integration_serialize_connection_c tests/integration_serialize_connection.c)
+  set_target_properties(integration_serialize_connection_c PROPERTIES
+    UNITY_BUILD OFF  # Don't use unity build for standalone programs
+  )
+  if(WIN32)
+    set_target_properties(integration_serialize_connection_c PROPERTIES
+      WINDOWS_EXPORT_ALL_SYMBOLS OFF
+    )
+    target_link_options(integration_serialize_connection_c PRIVATE /FORCE:MULTIPLE)
+  else()
+    set_target_properties(integration_serialize_connection_c PROPERTIES
+      BUILD_RPATH "${CMAKE_BINARY_DIR};${CORE_BUILD_ABS}"
+      INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib"
+      BUILD_WITH_INSTALL_RPATH FALSE
+      SKIP_BUILD_RPATH FALSE
+    )
+  endif()
+  target_include_directories(integration_serialize_connection_c PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CORE_ROOT}/include
+  )
+  target_link_libraries(integration_serialize_connection_c PRIVATE ${C_API_LIB_NAME})
+
+  # C-API Deserialization integration test
+  add_executable(integration_deserialize_connection_c tests/integration_deserialize_connection.c)
+  set_target_properties(integration_deserialize_connection_c PROPERTIES
+    UNITY_BUILD OFF  # Don't use unity build for standalone programs
+  )
+  if(WIN32)
+    set_target_properties(integration_deserialize_connection_c PROPERTIES
+      WINDOWS_EXPORT_ALL_SYMBOLS OFF
+    )
+    target_link_options(integration_deserialize_connection_c PRIVATE /FORCE:MULTIPLE)
+  else()
+    set_target_properties(integration_deserialize_connection_c PROPERTIES
+      BUILD_RPATH "${CMAKE_BINARY_DIR};${CORE_BUILD_ABS}"
+      INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib"
+      BUILD_WITH_INSTALL_RPATH FALSE
+      SKIP_BUILD_RPATH FALSE
+    )
+  endif()
+  target_include_directories(integration_deserialize_connection_c PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CORE_ROOT}/include
+  )
+  target_link_libraries(integration_deserialize_connection_c PRIVATE ${C_API_LIB_NAME})
+
+  message(STATUS "C-API Integration test executables: integration_serialize_connection_c, integration_deserialize_connection_c")
 endif()
