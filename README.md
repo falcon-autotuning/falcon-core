@@ -9,7 +9,7 @@ This repository contains the main datatypes that can be used for serialization w
 ## Key Features
 
 - 🚀 **High Performance**: Optimized C++ core with minimal overhead
-- 📊 **Data Serialization**: Comprehensive support for HDF5, JSON, and YAML
+- 📊 **Data Serialization**: Comprehensive support for HDF5
 - 🧪 **Quantum Device Control**: Built for quantum hardware autotuning
 - 🖥️ **Cross-Platform**: Supports Windows and Linux
 
