@@ -212,6 +212,14 @@ jobs:
           retention-days: 1
           compression-level: 0
 
+      - name: Generate checksum
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          $hash = Get-FileHash "falcon-core-cpp-windows-x64.zip" -Algorithm SHA256
+          "$($hash.Hash.ToLower())  falcon-core-cpp-windows-x64.zip" | Out-File -FilePath "falcon-core-cpp-windows-x64.zip.sha256" -Encoding ASCII
+          Get-Content "falcon-core-cpp-windows-x64.zip.sha256"
+
       - name: Upload release package
         uses: actions/upload-artifact@v4
         with:
