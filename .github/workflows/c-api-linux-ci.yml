@@ -65,6 +65,7 @@ jobs:
             ccache \
             clang \
             glibc \
+            gtest \
             cmake \
             lld
 
