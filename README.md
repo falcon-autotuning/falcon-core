@@ -1,6 +1,7 @@
 # Falcon Core
 
-[![Linux CI](https://github.com/falcon-autotuning/falcon-core/actions/workflows/ci-linux.yml/badge.svg?branch=dev)](https://github.com/falcon-autotuning/falcon-core/actions/workflows/ci-linux.yml?query=branch:dev)[![Windows CI](https://github.com/falcon-autotuning/falcon-core/actions/workflows/ci-windows.yml/badge.svg?branch=dev)](https://github.com/falcon-autotuning/falcon-core/actions/workflows/ci-windows.yml?query=branch:dev)
+[![Linux CI](https://github.com/falcon-autotuning/falcon-core/actions/workflows/ci-linux.yml/badge.svg?branch=dev)](https://github.com/falcon-autotuning/falcon-core/actions/workflows/ci-linux.yml?query=branch:dev)
+[![Windows CI](https://github.com/falcon-autotuning/falcon-core/actions/workflows/ci-windows.yml/badge.svg?branch=dev)](https://github.com/falcon-autotuning/falcon-core/actions/workflows/ci-windows.yml?query=branch:dev)
 Core utilities for all falcon applications used for autotuning of quantum devices.
 
 This repository contains the main datatypes that can be used for serialization within falcon. All of the source code is written in C++14. It can be found at /cpp.
