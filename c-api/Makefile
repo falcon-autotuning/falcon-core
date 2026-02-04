@@ -111,7 +111,7 @@ else
 		-DUSE_VCPKG=$(USE_VCPKG)
 endif
 	ninja -C $(C_API_BUILD_DIR) -j $(shell nproc 2>/dev/null || echo 1)
-	@if [ -n "$(STRIP_CMD)" ]; then $(STRIP_CMD) $(BUILD_DIR)/libfalcon_core_cpp.so 2>/dev/null || true; fi
+	@if [ -n "$(STRIP_CMD)" ]; then $(STRIP_CMD) $(BUILD_DIR)/libfalcon_core_c_api.so 2>/dev/null || true; fi
 	@echo "--- Build complete. C API library is now in $(C_API_BUILD_DIR) ---"
 
 build-dev: generate_types 
