@@ -61,17 +61,14 @@ jobs:
           Write-Host "=== Downloaded C++ Artifacts ==="
           Get-ChildItem cpp/build -Recurse
 
-          # Check if files are in root or subdirectory
           if (Test-Path "cpp/build/falcon_core_cpp.dll") {
             Write-Host "✓ falcon_core_cpp.dll found in root"
           } else {
-            # Look for DLL in subdirectories
             $dllLocation = Get-ChildItem "cpp/build" -Recurse -Filter "falcon_core_cpp.dll" | Select-Object -First 1
             if ($dllLocation) {
               Write-Host "Found DLL at: $($dllLocation.FullName)"
               Copy-Item $dllLocation.FullName "cpp/build/"
               
-              # Also copy lib file
               $libLocation = Get-ChildItem "cpp/build" -Recurse -Filter "falcon_core_cpp.lib" | Select-Object -First 1
               if ($libLocation) {
                 Copy-Item $libLocation.FullName "cpp/build/"
@@ -136,17 +133,21 @@ jobs:
         run: |
           $requiredFiles = @(
             "build/falcon_core_c_api.dll",
-            "build/falcon_core_cpp.dll"
+            "build/falcon_core_cpp.dll",
+            "build/integration_deserialize_connection_c.exe"
           )
 
           foreach ($file in $requiredFiles) {
             if (-not (Test-Path $file)) {
               Write-Error "ERROR: Required file not found: $file"
               exit 1
+            } else {
+              $fileInfo = Get-Item $file
+              Write-Host "[OK] $file ($($fileInfo.Length) bytes)"
             }
           }
 
-          Write-Host "✓ C-API build verified"
+          Write-Host "`n✓ C-API build verified"
 
       - name: Run C-API tests
         working-directory: c-api
@@ -189,7 +190,7 @@ jobs:
           path: c-api/build/capi_windows_cross.json
           retention-days: 1
 
-      - name: Prepare integration test executable with dependencies for cross-platform tests
+      - name: Prepare integration test executable with ALL dependencies for cross-platform tests
         working-directory: c-api/build
         shell: pwsh
         run: |
@@ -198,20 +199,60 @@ jobs:
           $artifactDir = "integration-test-package"
           New-Item -ItemType Directory -Force -Path $artifactDir
 
-          Copy-Item "integration_deserialize_connection_c.exe" $artifactDir
-          Copy-Item "falcon_core_c_api.dll" $artifactDir
-          Copy-Item "../../cpp/build/falcon_core_cpp.dll" $artifactDir
+          # Verify the executable exists before copying
+          if (-not (Test-Path "integration_deserialize_connection_c.exe")) {
+            Write-Error "ERROR: integration_deserialize_connection_c.exe not found!"
+            Get-ChildItem . -Recurse -Filter "*deserialize*.exe"
+            exit 1
+          }
 
+          # Copy C-API executable
+          Copy-Item "integration_deserialize_connection_c.exe" $artifactDir
+          Write-Host "✓ Copied integration_deserialize_connection_c.exe"
+
+          # Copy C-API DLL
+          if (Test-Path "falcon_core_c_api.dll") {
+            Copy-Item "falcon_core_c_api.dll" $artifactDir
+            Write-Host "✓ Copied falcon_core_c_api.dll"
+          } else {
+            Write-Warning "falcon_core_c_api.dll not found in build directory"
+          }
+
+          # Copy C++ DLL (dependency)
+          if (Test-Path "../../cpp/build/falcon_core_cpp.dll") {
+            Copy-Item "../../cpp/build/falcon_core_cpp.dll" $artifactDir
+            Write-Host "✓ Copied falcon_core_cpp.dll"
+          } elseif (Test-Path "falcon_core_cpp.dll") {
+            Copy-Item "falcon_core_cpp.dll" $artifactDir
+            Write-Host "✓ Copied falcon_core_cpp.dll (from local)"
+          } else {
+            Write-Warning "falcon_core_cpp.dll not found"
+          }
+
+          # Copy vcpkg DLLs (runtime dependencies)
           $vcpkgBin = "vcpkg_installed/x64-windows/bin"
           if (Test-Path $vcpkgBin) {
+            Write-Host "`nCopying vcpkg runtime dependencies..."
             Get-ChildItem $vcpkgBin -Filter "*.dll" | ForEach-Object {
               Copy-Item $_.FullName $artifactDir
               Write-Host "  Copied: $($_.Name)"
             }
+          } else {
+            Write-Warning "vcpkg bin directory not found at: $vcpkgBin"
           }
 
-          Write-Host "`n=== Package Contents ==="
-          Get-ChildItem $artifactDir | Select-Object Name, Length
+          Write-Host "`n=== Integration Test Package Contents ==="
+          Get-ChildItem $artifactDir | ForEach-Object {
+            Write-Host "$($_.Name) - $($_.Length) bytes"
+          }
+
+          # Verify the executable is in the package
+          if (-not (Test-Path "$artifactDir/integration_deserialize_connection_c.exe")) {
+            Write-Error "CRITICAL: Executable not in artifact package!"
+            exit 1
+          }
+
+          Write-Host "`n✓ Integration test package prepared successfully"
 
       - name: Upload integration test executable for cross-platform tests
         uses: actions/upload-artifact@v4

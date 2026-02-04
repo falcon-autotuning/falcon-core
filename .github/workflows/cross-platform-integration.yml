@@ -408,8 +408,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /var/cache/pacman/pkg
-          key: ${{ runner.os }}-pacman-${{ github.ref }}
+          key: ${{ runner.os }}-pacman-cross-capi-${{ github.ref }}
           restore-keys: |
+            ${{ runner.os }}-pacman-cross-capi-
+            ${{ runner.os }}-pacman-cross-
             ${{ runner.os }}-pacman-
 
       - name: Cache AUR packages
@@ -418,8 +420,10 @@ jobs:
           path: |
             packaging/highfive/*.pkg.tar.zst
             packaging/exprtk/*.pkg.tar.zst
-          key: ${{ runner.os }}-aur-${{ github.ref }}
+          key: ${{ runner.os }}-aur-cross-capi-${{ github.ref }}
           restore-keys: |
+            ${{ runner.os }}-aur-cross-capi-
+            ${{ runner.os }}-aur-cross-
             ${{ runner.os }}-aur-
 
       - name: Install system dependencies
@@ -450,25 +454,6 @@ jobs:
             glibc \
             cmake \
             lld
-
-      - name: Set clang as default compiler
-        run: |
-          grep -q '^CC=' /etc/makepkg.conf && \
-          sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || \
-          echo 'CC=/usr/bin/clang' >> /etc/makepkg.conf
-
-          grep -q '^CXX=' /etc/makepkg.conf && \
-          sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || \
-          echo 'CXX=/usr/bin/clang++' >> /etc/makepkg.conf
-
-      - name: Cache ccache
-        uses: actions/cache@v4
-        with:
-          path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ github.ref }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-ccache-${{ github.ref }}-
-            ${{ runner.os }}-ccache-
 
       - name: Install AUR packages
         run: |
@@ -522,15 +507,16 @@ jobs:
           ls -lhR data
 
           echo ""
-          echo "=== Verifying shared libraries ==="
-          for lib in libfalcon_core_c_api.so libfalcon_core_cpp.so integration_deserialize_connection_c; do
-            if [ -f "deserializer/$lib" ]; then
-              echo "[OK] $lib"
-              file "deserializer/$lib"
-            else
-              echo "[MISSING] $lib"
-            fi
-          done
+          echo "=== Checking for executable ==="
+          if [ -f "deserializer/integration_deserialize_connection_c" ]; then
+            echo "[OK] integration_deserialize_connection_c found"
+            file deserializer/integration_deserialize_connection_c
+          else
+            echo "[MISSING] integration_deserialize_connection_c not found!"
+            echo "Searching for any deserialize executables..."
+            find deserializer -name "*deserialize*" -type f
+            exit 1
+          fi
 
       - name: Make executable runnable
         run: |
@@ -582,12 +568,4 @@ jobs:
           echo "[PASS] C++ Windows → Linux"
           echo "[PASS] C-API Linux → Windows"
           echo "[PASS] C-API Windows → Linux"
-          echo "=================================================="
-          echo ""
-          echo "Cross-platform serialization validation complete!"
-          echo "Binary compatibility confirmed across:"
-          echo "  - Different operating systems (Linux ↔ Windows)"
-          echo "  - Different compilers (Clang ↔ Clang-CL)"
-          echo "  - Different architectures (handled by x64)"
-          echo "  - Multiple API layers (C++ and C-API)"
           echo "=================================================="
