@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/tylerk/falcon-dev/falcon-core/c-api/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
