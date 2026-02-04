@@ -66,7 +66,7 @@ jobs:
         id: tag
         run: |
           # Use semantic versioning with date
-          VERSION="v$(date +'%Y.%m.%d')-$(git rev-parse --short HEAD)"
+          VERSION="$(git rev-parse --short HEAD)"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Generated version: $VERSION"
 
@@ -94,7 +94,7 @@ jobs:
           - **Windows x64** (`falcon-core-cpp-windows-x64.zip`)
             - Optimized release build
             - Clang-CL compiled
-            - Includes DLL, import library, headers, and all runtime dependencies
+            - Includes headers and DLL
 
           ### C-API Library
 
@@ -105,7 +105,7 @@ jobs:
 
           - **Windows x64** (`falcon-core-c-api-windows-x64.zip`)
             - C interface to C++ library
-            - Includes both C-API and C++ libraries with all dependencies
+            - Includes both C-API and C++ libraries 
             - Clang-CL compiled
 
           ## ✅ Verification
@@ -133,7 +133,7 @@ jobs:
           ### Windows
           - Windows 10/11 (x64)
           - Visual C++ Redistributable (if needed)
-          - All dependencies included in package
+          - System dependencies: Boost, HDF5, yaml-cpp, cereal, xtensor
 
           ## 🚀 Quick Start
 
@@ -151,11 +151,6 @@ jobs:
           ## 🔗 Documentation
 
           For full documentation, visit the [repository](https://github.com/$GITHUB_REPOSITORY)
-
-          ## ⚠️ Known Issues
-
-          - Windows packages are larger due to included dependencies
-          - Linux packages require system dependencies to be installed separately
 
           EOF
 
