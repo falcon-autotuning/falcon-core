@@ -22,8 +22,8 @@ typedef void* InterpretationContainerStringHandle;
 FALCON_CORE_C_API InterpretationContainerStringHandle InterpretationContainerString_create(MapInterpretationContextStringHandle contextDoubleMap);
 // @category:allocation
 InterpretationContainerStringHandle InterpretationContainerString_copy(InterpretationContainerStringHandle handle);
-FALCON_CORE_C_API // @category:deallocation
-void InterpretationContainerString_destroy(InterpretationContainerStringHandle handle);
+// @category:deallocation
+FALCON_CORE_C_API void InterpretationContainerString_destroy(InterpretationContainerStringHandle handle);
 // @category:read
 FALCON_CORE_C_API SymbolUnitHandle InterpretationContainerString_unit(
      InterpretationContainerStringHandle handle);
