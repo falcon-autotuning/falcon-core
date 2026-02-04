@@ -45,6 +45,7 @@ jobs:
             ninja \
             llvm \
             ccache \
+            gtest \
             clang \
             glibc \
             cmake \
