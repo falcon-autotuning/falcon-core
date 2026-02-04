@@ -9,7 +9,6 @@ jobs:
     name: Build and Test C++ (Windows)
     runs-on: windows-latest
 
-    # vcpkg binary caching
     env:
       VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
       VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
@@ -34,19 +33,14 @@ jobs:
         with:
           vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
 
-      # Ensure we have LLVM/Clang
       - name: Install LLVM/Clang via Chocolatey
         shell: pwsh
         run: |
           Write-Host "=== Installing LLVM/Clang ==="
           choco install llvm -y
-
-          # Refresh environment
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-
           Write-Host "✓ LLVM/Clang installed"
 
-      # Install Ninja
       - name: Install Ninja
         shell: pwsh
         run: |
@@ -58,16 +52,11 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "=== Toolchain Verification ==="
-
-          # Refresh PATH
           $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-
           Write-Host "`nClang-cl version:"
           clang-cl --version
-
           Write-Host "`nNinja version:"
           ninja --version
-
           Write-Host "`nVCPKG Root:"
           Write-Host "  VCPKG_ROOT = $env:VCPKG_ROOT"
 
@@ -132,7 +121,6 @@ jobs:
         run: |
           Write-Host "=== Test Execution Setup ==="
 
-          # Determine vcpkg bin path
           $vcpkgBinPaths = @(
             "build/vcpkg_installed/x64-windows/bin",
             "build/vcpkg_installed/x64-windows/debug/bin"
@@ -149,71 +137,22 @@ jobs:
 
           if (-not $vcpkgBin) {
             Write-Error "Could not find vcpkg bin directory!"
-            Write-Host "Searched paths:"
-            $vcpkgBinPaths | ForEach-Object { Write-Host "  - $_" }
             exit 1
           }
 
           $buildDir = (Resolve-Path "build").Path
-
-          Write-Host "`nEnvironment:"
-          Write-Host "  VcpkgBin: $vcpkgBin"
-          Write-Host "  BuildDir: $buildDir"
-
-          # Add DLL directories to PATH
           $env:PATH = "$vcpkgBin;$buildDir;$env:PATH"
 
-          # Verify DLL locations
-          Write-Host "`n=== DLL Verification ==="
-          $dlls = @("zlib1.dll", "hdf5.dll", "yaml-cpp.dll", "falcon_core_cpp.dll")
-          foreach ($dll in $dlls) {
-            Write-Host "`nLooking for ${dll}:"
-            $found = Get-ChildItem -Path $vcpkgBin,$buildDir -Filter $dll -ErrorAction SilentlyContinue | Select-Object -First 1
-            if ($found) {
-              Write-Host "  ✓ $($found.FullName)"
-            } else {
-              Write-Warning "  ✗ Not found"
-            }
-          }
-
-          # Find test executable
           $testExe = Get-ChildItem -Path "build" -Filter "falcon_core_cpp_run_tests.exe" -Recurse | Select-Object -First 1
 
           if (-not $testExe) {
             Write-Error "Test executable not found!"
-            Write-Host "Build directory contents:"
-            Get-ChildItem -Path "build" -Recurse -Include *.exe | Select-Object FullName
             exit 1
           }
 
           Write-Host "`n=== Running Tests ==="
-          Write-Host "Test executable: $($testExe.FullName)"
-          Write-Host "Running from directory: $(Get-Location)"
-
-          # Run tests
           & ".\$($testExe.FullName.Replace("$PWD\", ''))" --gtest_color=yes --gtest_output=xml:test-results.xml
           $exitCode = $LASTEXITCODE
-
-          Write-Host "`nTest exit code: $exitCode"
-
-          # Decode exit codes
-          if ($exitCode -eq -1073741515 -or $exitCode -eq 3221225781) {
-            Write-Error "DLL NOT FOUND ERROR (0xC0000135)"
-            Write-Host "Missing DLL dependencies. Checked locations:"
-            Write-Host "  - $vcpkgBin"
-            Write-Host "  - $buildDir"
-            exit 1
-          } elseif ($exitCode -eq -1073741819 -or $exitCode -eq 3221225477) {
-            Write-Error "ACCESS VIOLATION ERROR (0xC0000005)"
-            Write-Host "Memory access violation. Possible causes:"
-            Write-Host "  - NULL pointer dereference"
-            Write-Host "  - ABI mismatch"
-            Write-Host "  - Stack corruption"
-            exit 1
-          } elseif ($exitCode -eq -1073741571 -or $exitCode -eq 3221225725) {
-            Write-Error "STACK OVERFLOW ERROR (0xC00000FD)"
-            exit 1
-          }
 
           if ($exitCode -ne 0) {
             Write-Error "Tests failed with exit code: $exitCode"
@@ -243,37 +182,62 @@ jobs:
           path: cpp/build/cpp_windows_cross.json
           retention-days: 1
 
-      - name: Package C++ build artifacts for C-API
+      - name: Prepare C++ build artifacts with ALL dependencies
+        working-directory: cpp/build
         shell: pwsh
         run: |
-          cd cpp/build
+          Write-Host "=== Preparing C++ Build Artifacts ==="
 
-          # Create package directory
-          $packageDir = "cpp-windows-build-package"
-          New-Item -ItemType Directory -Force -Path $packageDir
+          # Create artifact directory
+          $artifactDir = "cpp-build-artifacts"
+          New-Item -ItemType Directory -Force -Path $artifactDir
 
-          # Copy essential DLLs and libs
-          Copy-Item "falcon_core_cpp.dll" $packageDir
-          Copy-Item "falcon_core_cpp.lib" $packageDir
+          # Copy main DLL and LIB
+          Write-Host "`nCopying main libraries..."
+          Copy-Item "falcon_core_cpp.dll" $artifactDir
+          Copy-Item "falcon_core_cpp.lib" $artifactDir
+
+          # Verify file integrity
+          $dllFile = Get-Item "$artifactDir/falcon_core_cpp.dll"
+          Write-Host "falcon_core_cpp.dll size: $($dllFile.Length) bytes"
+
+          if ($dllFile.Length -lt 100KB) {
+            Write-Error "ERROR: falcon_core_cpp.dll seems too small ($($dllFile.Length) bytes). Build may have failed."
+            exit 1
+          }
+
+          # Copy ALL vcpkg DLLs (C-API will need these)
+          Write-Host "`nCopying vcpkg dependencies..."
+          $vcpkgBin = "vcpkg_installed/x64-windows/bin"
+          if (Test-Path $vcpkgBin) {
+            Get-ChildItem $vcpkgBin -Filter "*.dll" | ForEach-Object {
+              Copy-Item $_.FullName $artifactDir
+              Write-Host "  Copied: $($_.Name)"
+            }
+          }
 
           # Copy CMake files
-          Copy-Item "CMakeCache.txt" $packageDir -ErrorAction SilentlyContinue
-          Get-ChildItem -Filter "*.cmake" | Copy-Item -Destination $packageDir -ErrorAction SilentlyContinue
+          Write-Host "`nCopying CMake files..."
+          Copy-Item "CMakeCache.txt" $artifactDir -ErrorAction SilentlyContinue
 
-          # Create archive
-          Compress-Archive -Path "$packageDir\*" -DestinationPath "cpp-windows-build.zip" -Force
+          # List all artifacts
+          Write-Host "`n=== Artifact Directory Contents ==="
+          Get-ChildItem $artifactDir | ForEach-Object {
+            Write-Host "$($_.Name) - $($_.Length) bytes"
+          }
 
-          Write-Host "Package contents:"
-          Get-ChildItem $packageDir
-          Write-Host "`nArchive created:"
-          Get-Item "cpp-windows-build.zip" | Select-Object Name, Length
+          $totalSize = (Get-ChildItem $artifactDir | Measure-Object -Property Length -Sum).Sum
+          Write-Host "`nTotal artifact size: $([math]::Round($totalSize/1MB, 2)) MB"
 
-      - name: Upload C++ build artifacts
+          Write-Host "`n✓ C++ artifacts prepared successfully"
+
+      - name: Upload C++ build artifacts (direct upload, no zip)
         uses: actions/upload-artifact@v4
         with:
           name: cpp-windows-build
-          path: cpp/build/cpp-windows-build.zip
+          path: cpp/build/cpp-build-artifacts/**
           retention-days: 1
+          compression-level: 0
 
       - name: Setup tmate session on failure
         if: failure()

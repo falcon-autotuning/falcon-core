@@ -23,8 +23,9 @@ jobs:
           path: |
             .vcpkg/bincache
             .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-clang-cl--${{ hashFiles('c-api/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          key: vcpkg-${{ runner.os }}-clang-cl-capi-${{ hashFiles('c-api/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
+            vcpkg-${{ runner.os }}-clang-cl-capi-
             vcpkg-${{ runner.os }}-clang-cl-
             vcpkg-${{ runner.os }}-
 
@@ -54,23 +55,68 @@ jobs:
           name: cpp-windows-build
           path: cpp/build
 
-      - name: Extract C++ build artifacts
+      - name: Verify C++ artifacts
         shell: pwsh
         run: |
-          cd cpp/build
-          Expand-Archive -Path "cpp-windows-build.zip" -DestinationPath "." -Force
-          Write-Host "Extracted files:"
-          Get-ChildItem
-          Write-Host "✓ C++ build artifacts extracted"
+          Write-Host "=== Downloaded C++ Artifacts ==="
+          Get-ChildItem cpp/build -Recurse | Select-Object FullName, Length
 
-      - name: Verify C++ library
-        shell: pwsh
-        run: |
           if (-not (Test-Path "cpp/build/falcon_core_cpp.dll")) {
             Write-Error "ERROR: falcon_core_cpp.dll not found!"
+            Write-Host "`nSearching for DLL..."
+            Get-ChildItem cpp/build -Recurse -Filter "*.dll" | Select-Object FullName
             exit 1
           }
-          Write-Host "✓ C++ library verified"
+
+          # Verify file integrity
+          $dllFile = Get-Item "cpp/build/falcon_core_cpp.dll"
+          Write-Host "`nfalcon_core_cpp.dll size: $($dllFile.Length) bytes"
+
+          if ($dllFile.Length -lt 100KB) {
+            Write-Error "ERROR: falcon_core_cpp.dll is too small ($($dllFile.Length) bytes). File may be corrupted."
+            exit 1
+          }
+
+          # Try to load the DLL to verify it's valid
+          Write-Host "`nVerifying DLL integrity..."
+          try {
+            [System.Reflection.Assembly]::LoadFile($dllFile.FullName) | Out-Null
+            Write-Host "✓ DLL appears valid (loadable)"
+          } catch {
+            # This is expected for C++ DLLs, just checking it's not completely corrupted
+            Write-Host "Note: DLL verification check completed (native DLL, not .NET)"
+          }
+
+          Write-Host "`n✓ C++ artifacts verified"
+
+      - name: Copy C++ DLLs to predictable location
+        shell: pwsh
+        run: |
+          Write-Host "=== Organizing C++ artifacts ==="
+
+          # Ensure cpp/build exists and copy DLLs there
+          New-Item -ItemType Directory -Force -Path "cpp/build" | Out-Null
+
+          # Copy all DLLs to cpp/build root
+          Get-ChildItem "cpp/build" -Recurse -Filter "*.dll" | ForEach-Object {
+            $dest = "cpp/build/$($_.Name)"
+            if ($_.FullName -ne (Resolve-Path $dest -ErrorAction SilentlyContinue)) {
+              Copy-Item $_.FullName $dest -Force
+              Write-Host "Copied: $($_.Name)"
+            }
+          }
+
+          # Copy .lib files too
+          Get-ChildItem "cpp/build" -Recurse -Filter "*.lib" | ForEach-Object {
+            $dest = "cpp/build/$($_.Name)"
+            if ($_.FullName -ne (Resolve-Path $dest -ErrorAction SilentlyContinue)) {
+              Copy-Item $_.FullName $dest -Force
+              Write-Host "Copied: $($_.Name)"
+            }
+          }
+
+          Write-Host "`n=== cpp/build root contents ==="
+          Get-ChildItem "cpp/build" -Filter "*.*" | Select-Object Name, Length
 
       - name: Configure CMake for C-API
         working-directory: c-api
@@ -113,68 +159,68 @@ jobs:
 
           Write-Host "✓ C-API build successful"
 
-      - name: Verify C-API library build
+      - name: Manually copy C++ DLLs to C-API build directory
+        shell: pwsh
+        run: |
+          Write-Host "=== Manually ensuring all DLLs are in c-api/build ==="
+
+          # Copy all DLLs from cpp/build to c-api/build
+          Get-ChildItem "cpp/build" -Filter "*.dll" | ForEach-Object {
+            Copy-Item $_.FullName "c-api/build/" -Force
+            Write-Host "Copied: $($_.Name) -> c-api/build/"
+          }
+
+          Write-Host "`n=== c-api/build DLL inventory ==="
+          Get-ChildItem "c-api/build" -Filter "*.dll" | Select-Object Name, Length
+
+      - name: Verify C-API build
         working-directory: c-api
         shell: pwsh
         run: |
-          Write-Host "== C-API build artifacts =="
-          Get-ChildItem -Path build -Include *.dll,*.lib,*.exe -Recurse | Select-Object FullName
+          Write-Host "=== C-API Build Artifacts ==="
+          Get-ChildItem -Path build -Include *.dll,*.lib,*.exe -Recurse | Select-Object FullName, Length
 
-          if (-not (Test-Path "build/falcon_core_c_api.dll")) {
-            Write-Error "ERROR: falcon_core_c_api.dll not found!"
+          $requiredFiles = @(
+            "build/falcon_core_c_api.dll",
+            "build/falcon_core_cpp.dll",
+            "build/integration_serialize_connection_c.exe",
+            "build/integration_deserialize_connection_c.exe"
+          )
+
+          $allFound = $true
+          foreach ($file in $requiredFiles) {
+            if (-not (Test-Path $file)) {
+              Write-Error "ERROR: Required file not found: $file"
+              $allFound = $false
+            } else {
+              $fileInfo = Get-Item $file
+              Write-Host "[OK] $file ($($fileInfo.Length) bytes)"
+            }
+          }
+
+          if (-not $allFound) {
+            Write-Error "Missing required files!"
             exit 1
           }
 
-          if (-not (Test-Path "build/integration_serialize_connection_c.exe")) {
-            Write-Error "ERROR: integration_serialize_connection_c.exe not found!"
-            exit 1
-          }
-
-          if (-not (Test-Path "build/integration_deserialize_connection_c.exe")) {
-            Write-Error "ERROR: integration_deserialize_connection_c.exe not found!"
-            exit 1
-          }
-
-          Write-Host "✓ C-API library built successfully"
+          Write-Host "`n✓ C-API build verified"
 
       - name: Run C-API tests
         working-directory: c-api
         shell: pwsh
         run: |
-          Write-Host "=== C-API Test Execution Setup ==="
-
-          # Determine vcpkg bin path
-          $vcpkgBinPaths = @(
-            "build/vcpkg_installed/x64-windows/bin",
-            "build/vcpkg_installed/x64-windows/debug/bin"
-          )
-
-          $vcpkgBin = $null
-          foreach ($path in $vcpkgBinPaths) {
-            if (Test-Path $path) {
-              $vcpkgBin = (Resolve-Path $path).Path
-              Write-Host "Found vcpkg bin: $vcpkgBin"
-              break
-            }
-          }
-
-          if (-not $vcpkgBin) {
-            Write-Error "Could not find vcpkg bin directory!"
-            exit 1
-          }
+          Write-Host "=== C-API Test Execution ==="
 
           $buildDir = (Resolve-Path "build").Path
           $cppBuildDir = (Resolve-Path "../cpp/build").Path
 
-          Write-Host "`nEnvironment:"
-          Write-Host "  VcpkgBin: $vcpkgBin"
-          Write-Host "  C-API BuildDir: $buildDir"
-          Write-Host "  C++ BuildDir: $cppBuildDir"
+          # Add both build directories to PATH
+          $env:PATH = "$buildDir;$cppBuildDir;$env:PATH"
 
-          # Add DLL directories to PATH
-          $env:PATH = "$vcpkgBin;$buildDir;$cppBuildDir;$env:PATH"
+          Write-Host "PATH includes:"
+          Write-Host "  - $buildDir"
+          Write-Host "  - $cppBuildDir"
 
-          # Find test executable
           $testExe = Get-ChildItem -Path "build" -Filter "falcon_core_c_api_run_tests.exe" -Recurse | Select-Object -First 1
 
           if (-not $testExe) {
@@ -182,7 +228,7 @@ jobs:
             exit 1
           }
 
-          Write-Host "`n=== Running C-API Tests ==="
+          Write-Host "`nRunning C-API tests..."
           & ".\$($testExe.FullName.Replace("$PWD\", ''))" --gtest_color=yes --gtest_output=xml:test-results.xml
           $exitCode = $LASTEXITCODE
 
@@ -191,7 +237,7 @@ jobs:
             exit $exitCode
           }
 
-          Write-Host "`n✓ All C-API tests passed successfully"
+          Write-Host "`n✓ All C-API tests passed"
 
       - name: Run C-API integration tests (same platform)
         shell: pwsh

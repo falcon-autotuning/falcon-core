@@ -1,0 +1,228 @@
+name: C++ Windows Release Build
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  build-release:
+    name: Build C++ Release (Windows)
+    runs-on: windows-latest
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Attempt to restore vcpkg binary cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-clang-cl-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          restore-keys: |
+            vcpkg-${{ runner.os }}-clang-cl-
+            vcpkg-${{ runner.os }}-
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      - name: Install LLVM/Clang
+        shell: pwsh
+        run: |
+          Write-Host "=== Installing LLVM/Clang ==="
+          choco install llvm -y
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+          Write-Host "✓ LLVM/Clang installed"
+
+      - name: Install Ninja
+        shell: pwsh
+        run: |
+          Write-Host "=== Installing Ninja ==="
+          choco install ninja -y
+          Write-Host "✓ Ninja installed"
+
+      - name: Configure CMake for OPTIMIZED RELEASE
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+          Write-Host "=== Cleaning build directory ==="
+          if (Test-Path build) {
+            Remove-Item -Recurse -Force build
+          }
+
+          Write-Host "`n=== CMake Configuration (RELEASE) ==="
+          cmake -B build `
+            -S . `
+            -G "Ninja" `
+            -DCMAKE_C_COMPILER=clang-cl `
+            -DCMAKE_CXX_COMPILER=clang-cl `
+            -DCMAKE_TOOLCHAIN_FILE="${env:VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" `
+            -DVCPKG_MANIFEST_DIR="${env:GITHUB_WORKSPACE}/cpp" `
+            -DVCPKG_INSTALLED_DIR="${env:GITHUB_WORKSPACE}/cpp/build/vcpkg_installed" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DFALCON_CORE_DEV=OFF `
+            -DUSE_VCPKG=ON
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "CMake configuration failed!"
+            exit $LASTEXITCODE
+          }
+
+          Write-Host "✓ CMake configuration successful"
+
+      - name: Build C++ library (OPTIMIZED RELEASE)
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          Write-Host "=== Building RELEASE with Ninja ==="
+          ninja -C build falcon_core_cpp -v
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Build failed!"
+            exit $LASTEXITCODE
+          }
+
+          Write-Host "✓ Build successful"
+
+      - name: Verify release build
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "build/falcon_core_cpp.dll")) {
+            Write-Error "ERROR: falcon_core_cpp.dll not found!"
+            exit 1
+          }
+
+          if (-not (Test-Path "build/falcon_core_cpp.lib")) {
+            Write-Error "ERROR: falcon_core_cpp.lib not found!"
+            exit 1
+          }
+
+          $dllFile = Get-Item "build/falcon_core_cpp.dll"
+          Write-Host "falcon_core_cpp.dll size: $($dllFile.Length) bytes"
+
+          if ($dllFile.Length -lt 100KB) {
+            Write-Error "ERROR: DLL seems too small"
+            exit 1
+          }
+
+          Write-Host "✓ Release build verified"
+
+      - name: Copy vcpkg.json for distribution
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          Copy-Item "vcpkg.json" "build/"
+
+      - name: Package release artifact
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          Write-Host "=== Creating Release Package ==="
+
+          $pkgDir = "release-package"
+          New-Item -ItemType Directory -Force -Path "$pkgDir/lib"
+          New-Item -ItemType Directory -Force -Path "$pkgDir/include"
+
+          Copy-Item "build/falcon_core_cpp.dll" "$pkgDir/lib/"
+          Copy-Item "build/falcon_core_cpp.lib" "$pkgDir/lib/"
+          Copy-Item "build/vcpkg.json" "$pkgDir/"
+          Copy-Item -Recurse "include/falcon_core" "$pkgDir/include/"
+
+          Set-Content -Path "$pkgDir/README.md" -Encoding UTF8 -Value @"
+          # Falcon Core C++ Library - Windows x64
+
+          ## Contents
+
+          - `lib/falcon_core_cpp.dll` - Optimized shared library
+          - `lib/falcon_core_cpp.lib` - Import library
+          - `include/falcon_core/` - Public header files
+          - `vcpkg.json` - Dependency manifest
+
+          ## Installation
+
+          1. Copy library files to your project or system path
+          2. Copy headers to your include path
+          3. Install dependencies using vcpkg (see below)
+
+          ## Dependencies
+
+          Install all dependencies using vcpkg:
+
+              vcpkg install --triplet=x64-windows
+
+          This will read the included vcpkg.json and install:
+          - boost-filesystem
+          - boost-system
+          - boost-uuid
+          - hdf5
+          - yaml-cpp
+          - cereal
+          - xtensor
+          - xtensor-io
+          - xsimd
+          - xtl
+
+          ## Build Information
+          - Platform: Windows x86_64
+          - Compiler: Clang-CL (LLVM)
+          - C++ Standard: C++14
+          - Build Type: Release (Optimized)
+
+          ## Note
+
+          You must have the vcpkg dependencies installed and available in your system PATH or application directory for this library to work.
+          "@
+
+          Set-Content -Path "$pkgDir/VERSION.txt" -Encoding UTF8 -Value $("falcon-core-cpp-windows-x64 Built: " + (Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC") + " Commit: $env:GITHUB_SHA")
+
+          Write-Host "`n=== Package Contents ==="
+          Get-ChildItem $pkgDir -Recurse -File | Select-Object FullName, Length
+
+          Compress-Archive -Path "$pkgDir/*" -DestinationPath "falcon-core-cpp-windows-x64.zip" -CompressionLevel Optimal
+
+          Write-Host "`n=== ZIP Info ==="
+          Get-Item "falcon-core-cpp-windows-x64.zip" | Select-Object Name, Length
+
+      - name: Prepare C++ build artifacts for C-API
+        working-directory: cpp/build
+        shell: pwsh
+        run: |
+          Write-Host "=== Preparing artifacts for C-API ==="
+          $artifactDir = "cpp-release-artifacts"
+          New-Item -ItemType Directory -Force -Path $artifactDir
+          Copy-Item "falcon_core_cpp.dll" $artifactDir
+          Copy-Item "falcon_core_cpp.lib" $artifactDir
+          Get-ChildItem $artifactDir
+
+      - name: Upload release artifacts for C-API
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-windows-release-build
+          path: cpp/build/cpp-release-artifacts/**
+          retention-days: 1
+          compression-level: 0
+
+      - name: Upload release package
+        uses: actions/upload-artifact@v4
+        with:
+          name: falcon-core-cpp-windows-x64
+          path: |
+            cpp/falcon-core-cpp-windows-x64.zip
+            cpp/falcon-core-cpp-windows-x64.zip.sha256
+          retention-days: 90
+          compression-level: 0
+
+      - name: Setup tmate session on failure
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 30

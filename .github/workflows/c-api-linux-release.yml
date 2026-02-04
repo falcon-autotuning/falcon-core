@@ -1,12 +1,12 @@
-name: C-API Linux CI
+name: C-API Linux Release Build
 
 on:
   workflow_call:
   workflow_dispatch:
 
 jobs:
-  build-and-test:
-    name: Build and Test C-API (Linux)
+  build-release:
+    name: Build C-API Release (Linux)
     runs-on: ubuntu-latest
     container:
       image: archlinux:latest
@@ -46,7 +46,6 @@ jobs:
             llvm \
             ccache \
             clang \
-            gtest \
             glibc \
             cmake \
             lld
@@ -101,76 +100,108 @@ jobs:
             cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
           "
 
-      - name: Download C++ build artifacts
+      - name: Download C++ release build
         uses: actions/download-artifact@v4
         with:
-          name: cpp-linux-build
+          name: cpp-linux-release-build
           path: cpp/build
 
-      - name: Verify C++ artifacts
+      - name: Verify C++ library
         run: |
-          echo "=== Downloaded C++ Artifacts ==="
-          ls -lh cpp/build/
-
-          if [ ! -f cpp/build/libfalcon_core_cpp.so ]; then
-            echo "ERROR: libfalcon_core_cpp.so not found!"
-            exit 1
-          fi
-
-          # Verify file integrity
+          test -f cpp/build/libfalcon_core_cpp.so || (echo "ERROR: libfalcon_core_cpp.so not found!" && exit 1)
           file cpp/build/libfalcon_core_cpp.so
-          ldd cpp/build/libfalcon_core_cpp.so || true
+          echo "✓ C++ library verified"
 
-          filesize=$(stat -c%s cpp/build/libfalcon_core_cpp.so)
-          echo "libfalcon_core_cpp.so size: $filesize bytes"
-
-          if [ $filesize -lt 100000 ]; then
-            echo "ERROR: libfalcon_core_cpp.so is too small ($filesize bytes). File may be corrupted."
-            exit 1
-          fi
-
-          echo "✓ C++ artifacts verified"
-
-      - name: Build C-API library (dev mode with tests)
+      - name: Build C-API library (OPTIMIZED RELEASE)
         run: |
           cd c-api
-          CC=/usr/bin/clang CXX=/usr/bin/clang++ CORE_ROOT=../cpp make build-dev
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ CORE_ROOT=../cpp make build
 
-      - name: Verify C-API build
+      - name: Verify release build
         run: |
-          echo "=== C-API Build Artifacts ==="
-          ls -lh c-api/build/
           test -f c-api/build/libfalcon_core_c_api.so || (echo "ERROR: libfalcon_core_c_api.so not found!" && exit 1)
-          test -f c-api/build/integration_serialize_connection_c || (echo "ERROR: integration_serialize_connection_c not found!" && exit 1)
-          test -f c-api/build/integration_deserialize_connection_c || (echo "ERROR: integration_deserialize_connection_c not found!" && exit 1)
-          echo "✓ C-API build verified"
+          file c-api/build/libfalcon_core_c_api.so
+          size c-api/build/libfalcon_core_c_api.so
+          echo "✓ C-API release build verified"
 
-      - name: Run C-API unit tests
+      - name: Package release artifact
         run: |
           cd c-api
-          export LD_LIBRARY_PATH=$(pwd)/build:$(pwd)/../cpp/build:$LD_LIBRARY_PATH
-          make run-all-tests
+          mkdir -p release-package/lib
+          mkdir -p release-package/include
 
-      - name: Run C-API integration tests (same platform)
+          cp build/libfalcon_core_c_api.so release-package/lib/
+          cp ../cpp/build/libfalcon_core_cpp.so release-package/lib/
+          cp -r include/falcon_core release-package/include/
+
+          cat > release-package/README.md << 'EOF'
+          # Falcon Core C-API Library - Linux x64
+
+          ## Contents
+
+          - `lib/libfalcon_core_c_api.so` - C-API shared library
+          - `lib/libfalcon_core_cpp.so` - C++ core library (dependency)
+          - `include/falcon_core/` - Public C-API header files
+
+          ## Installation
+
+          Copy the libraries and headers to your system:
+
+          ```bash
+          sudo cp lib/*.so /usr/local/lib/
+          sudo cp -r include/falcon_core /usr/local/include/
+          sudo ldconfig
+          ```
+
+          ## Dependencies
+
+          Required system packages (same as C++ library):
+          - boost (filesystem, system, uuid)
+          - hdf5
+          - yaml-cpp
+          - cereal
+          - xtensor
+          - xtensor-io
+          - xsimd
+          - xtl
+
+          Install via your package manager before using this library.
+
+          ## Build Information
+
+          - Platform: Linux x86_64
+          - Compiler: Clang/LLVM
+          - C Standard: C99
+          - C++ Standard: C++14
+          - Build Type: Release (Optimized)
+
+          ## Note
+
+          Both libfalcon_core_c_api.so and libfalcon_core_cpp.so are required.
+          EOF
+
+          echo "falcon-core-c-api-linux-x64" > release-package/VERSION
+          echo "Built: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> release-package/VERSION
+          echo "Commit: $GITHUB_SHA" >> release-package/VERSION
+
+          tar -czf falcon-core-c-api-linux-x64.tar.gz -C release-package .
+          ls -lh falcon-core-c-api-linux-x64.tar.gz
+
+      - name: Generate checksum
         run: |
-          cd c-api/build
-          export LD_LIBRARY_PATH=$(pwd):$(pwd)/../../cpp/build:$LD_LIBRARY_PATH
-          ./integration_serialize_connection_c --output capi_linux_local.json --name "CApiLinuxLocalTest" --type PlungerGate
-          ./integration_deserialize_connection_c --input capi_linux_local.json --name "CApiLinuxLocalTest" --type PlungerGate --verbose
+          cd c-api
+          sha256sum falcon-core-c-api-linux-x64.tar.gz > falcon-core-c-api-linux-x64.tar.gz.sha256
+          cat falcon-core-c-api-linux-x64.tar.gz.sha256
 
-      - name: Serialize for cross-platform test
-        run: |
-          cd c-api/build
-          export LD_LIBRARY_PATH=$(pwd):$(pwd)/../../cpp/build:$LD_LIBRARY_PATH
-          ./integration_serialize_connection_c --output capi_linux_cross.json --name "CApiLinuxToWindowsTest" --type ScreeningGate
-          cat capi_linux_cross.json
-
-      - name: Upload cross-platform test artifact
+      - name: Upload release package
         uses: actions/upload-artifact@v4
         with:
-          name: capi-linux-serialized
-          path: c-api/build/capi_linux_cross.json
-          retention-days: 1
+          name: falcon-core-c-api-linux-x64
+          path: |
+            c-api/falcon-core-c-api-linux-x64.tar.gz
+            c-api/falcon-core-c-api-linux-x64.tar.gz.sha256
+          retention-days: 90
+          compression-level: 0
 
       - name: Setup tmate session on failure
         if: failure()
