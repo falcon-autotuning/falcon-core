@@ -11,21 +11,20 @@ jobs:
 
     env:
       VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
-      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create vcpkg binary cache directory
+      - name: Create vcpkg cache directories
         run: |
           mkdir -p "${{ github.workspace }}/.vcpkg-binary-cache"
+          mkdir -p "${{ github.workspace }}/.vcpkg/downloads"
 
-      - name: Cache vcpkg binary packages (SHARED ACROSS ALL LINUX WORKFLOWS)
+      - name: Cache vcpkg binary packages
         uses: actions/cache@v4
         with:
           path: .vcpkg-binary-cache
-          # This key is SHARED by all Linux workflows
           key: vcpkg-binaries-linux-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
             vcpkg-binaries-linux-
@@ -33,10 +32,8 @@ jobs:
       - name: Cache vcpkg downloads
         uses: actions/cache@v4
         with:
-          path: ~/.cache/vcpkg/archives
+          path: .vcpkg/downloads
           key: vcpkg-downloads-${{ runner.os }}
-          restore-keys: |
-            vcpkg-downloads-
 
       - name: Install build dependencies (MUST be before vcpkg setup)
         run: |
