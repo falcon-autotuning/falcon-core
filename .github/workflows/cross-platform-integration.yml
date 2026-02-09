@@ -45,8 +45,11 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "=== Installing runtime dependencies ==="
-          # Use proper PowerShell path syntax
-          & "$env:VCPKG_ROOT\vcpkg.exe" install --triplet=x64-windows
+          # Create build directory first
+          New-Item -ItemType Directory -Force -Path "build"
+
+          # Install to build/vcpkg_installed to match CMake builds
+          & "$env:VCPKG_ROOT\vcpkg.exe" install --triplet=x64-windows --x-install-root="$PWD\build\vcpkg_installed"
 
       - name: Download Windows deserializer
         uses: actions/download-artifact@v4
@@ -84,20 +87,19 @@ jobs:
         run: |
           $deserializerPath = (Resolve-Path "deserializer").Path
 
-          # Also add vcpkg DLLs to PATH
+          # Add vcpkg DLLs to PATH
           $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "cpp\build\vcpkg_installed\x64-windows\bin"
           if (Test-Path $vcpkgBinPath) {
             $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
             Write-Host "Added vcpkg bin path: $vcpkgBinPath"
+            Write-Host "`n=== vcpkg DLLs available ==="
+            Get-ChildItem $vcpkgBinPath -Filter "*.dll" | Select-Object Name | Select-Object -First 10
           } else {
-            $env:PATH = "$deserializerPath;$env:PATH"
             Write-Host "Warning: vcpkg bin path not found: $vcpkgBinPath"
           }
 
-          Write-Host "Runtime PATH includes: $deserializerPath"
-
-          Write-Host "`n=== Available DLLs ==="
-          Get-ChildItem $deserializerPath -Filter "*.dll" | Select-Object Name
+          Write-Host "`n=== Runtime PATH includes ==="
+          Write-Host $env:PATH
 
       - name: Deserialize on Windows
         shell: pwsh
@@ -167,11 +169,15 @@ jobs:
         working-directory: cpp
         run: |
           echo "=== Installing runtime dependencies with vcpkg ==="
-          ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic
+          # Create build directory first
+          mkdir -p build
+
+          # Install to build/vcpkg_installed to match CMake builds
+          ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic --x-install-root="${PWD}/build/vcpkg_installed"
 
           echo ""
           echo "=== Verifying vcpkg installation ==="
-          ls -la build/vcpkg_installed/x64-linux-dynamic/lib/ || echo "vcpkg lib directory not found!"
+          ls -la build/vcpkg_installed/x64-linux-dynamic/lib/ | head -20
 
       - name: Download Linux deserializer
         uses: actions/download-artifact@v4
@@ -227,9 +233,12 @@ jobs:
           echo ""
           echo "=== Checking if vcpkg libs exist ==="
           if [ -d "${VCPKG_LIB_PATH}" ]; then
+            echo "Found vcpkg lib directory"
             ls -la ${VCPKG_LIB_PATH} | head -20
           else
             echo "ERROR: vcpkg lib path not found!"
+            echo "Looking for vcpkg_installed directories..."
+            find ${GITHUB_WORKSPACE}/cpp -type d -name "vcpkg_installed"
             exit 1
           fi
 
@@ -291,8 +300,11 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "=== Installing runtime dependencies ==="
-          # Use proper PowerShell path syntax
-          & "$env:VCPKG_ROOT\vcpkg.exe" install --triplet=x64-windows
+          # Create build directory first
+          New-Item -ItemType Directory -Force -Path "build"
+
+          # Install to build/vcpkg_installed to match CMake builds
+          & "$env:VCPKG_ROOT\vcpkg.exe" install --triplet=x64-windows --x-install-root="$PWD\build\vcpkg_installed"
 
       - name: Download Windows deserializer
         uses: actions/download-artifact@v4
@@ -332,19 +344,19 @@ jobs:
         run: |
           $deserializerPath = (Resolve-Path "deserializer").Path
 
-          # Also add vcpkg DLLs to PATH
+          # Add vcpkg DLLs to PATH
           $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "c-api\build\vcpkg_installed\x64-windows\bin"
           if (Test-Path $vcpkgBinPath) {
             $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
             Write-Host "Added vcpkg bin path: $vcpkgBinPath"
+            Write-Host "`n=== vcpkg DLLs available ==="
+            Get-ChildItem $vcpkgBinPath -Filter "*.dll" | Select-Object Name | Select-Object -First 10
           } else {
-            $env:PATH = "$deserializerPath;$env:PATH"
             Write-Host "Warning: vcpkg bin path not found: $vcpkgBinPath"
           }
 
-          Write-Host "Runtime PATH includes: $deserializerPath"
-          Write-Host "`n=== Available DLLs ==="
-          Get-ChildItem $deserializerPath -Filter "*.dll" | Select-Object Name
+          Write-Host "`n=== Runtime PATH includes ==="
+          Write-Host $env:PATH
 
       - name: Deserialize on Windows
         shell: pwsh
@@ -414,11 +426,15 @@ jobs:
         working-directory: c-api
         run: |
           echo "=== Installing runtime dependencies with vcpkg ==="
-          ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic
+          # Create build directory first
+          mkdir -p build
+
+          # Install to build/vcpkg_installed to match CMake builds
+          ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic --x-install-root="${PWD}/build/vcpkg_installed"
 
           echo ""
           echo "=== Verifying vcpkg installation ==="
-          ls -la build/vcpkg_installed/x64-linux-dynamic/lib/ || echo "vcpkg lib directory not found!"
+          ls -la build/vcpkg_installed/x64-linux-dynamic/lib/ | head -20
 
       - name: Download Linux deserializer
         uses: actions/download-artifact@v4
@@ -471,6 +487,7 @@ jobs:
           echo ""
           echo "=== Checking if vcpkg libs exist ==="
           if [ -d "${VCPKG_LIB_PATH}" ]; then
+            echo "Found vcpkg lib directory"
             ls -la ${VCPKG_LIB_PATH} | head -20
             echo ""
             echo "=== Boost libraries available ==="
@@ -479,7 +496,7 @@ jobs:
             echo "ERROR: vcpkg lib path not found at: ${VCPKG_LIB_PATH}"
             echo ""
             echo "=== Looking for vcpkg_installed directory ==="
-            find ${GITHUB_WORKSPACE}/c-api -type d -name "vcpkg_installed" || echo "No vcpkg_installed found"
+            find ${GITHUB_WORKSPACE}/c-api -type d -name "vcpkg_installed"
             exit 1
           fi
 
