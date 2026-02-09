@@ -45,7 +45,8 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "=== Installing runtime dependencies ==="
-          ${env:VCPKG_ROOT}/vcpkg.exe install --triplet=x64-windows
+          # Use proper PowerShell path syntax
+          & "$env:VCPKG_ROOT\vcpkg.exe" install --triplet=x64-windows
 
       - name: Download Windows deserializer
         uses: actions/download-artifact@v4
@@ -82,8 +83,19 @@ jobs:
         shell: pwsh
         run: |
           $deserializerPath = (Resolve-Path "deserializer").Path
-          $env:PATH = "$deserializerPath;$env:PATH"
+
+          # Also add vcpkg DLLs to PATH
+          $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "cpp\build\vcpkg_installed\x64-windows\bin"
+          if (Test-Path $vcpkgBinPath) {
+            $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
+            Write-Host "Added vcpkg bin path: $vcpkgBinPath"
+          } else {
+            $env:PATH = "$deserializerPath;$env:PATH"
+            Write-Host "Warning: vcpkg bin path not found: $vcpkgBinPath"
+          }
+
           Write-Host "Runtime PATH includes: $deserializerPath"
+
           Write-Host "`n=== Available DLLs ==="
           Get-ChildItem $deserializerPath -Filter "*.dll" | Select-Object Name
 
@@ -91,7 +103,14 @@ jobs:
         shell: pwsh
         run: |
           $deserializerPath = (Resolve-Path "deserializer").Path
-          $env:PATH = "$deserializerPath;$env:PATH"
+
+          # Add vcpkg DLLs to PATH
+          $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "cpp\build\vcpkg_installed\x64-windows\bin"
+          if (Test-Path $vcpkgBinPath) {
+            $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
+          } else {
+            $env:PATH = "$deserializerPath;$env:PATH"
+          }
 
           cd deserializer
           .\integration_deserialize_connection.exe --input ../data/cpp_linux_cross.json --name "LinuxToWindowsTest" --type BarrierGate --verbose
@@ -150,6 +169,10 @@ jobs:
           echo "=== Installing runtime dependencies with vcpkg ==="
           ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic
 
+          echo ""
+          echo "=== Verifying vcpkg installation ==="
+          ls -la build/vcpkg_installed/x64-linux-dynamic/lib/ || echo "vcpkg lib directory not found!"
+
       - name: Download Linux deserializer
         uses: actions/download-artifact@v4
         with:
@@ -203,7 +226,12 @@ jobs:
 
           echo ""
           echo "=== Checking if vcpkg libs exist ==="
-          ls -la ${VCPKG_LIB_PATH} || echo "vcpkg lib path not found!"
+          if [ -d "${VCPKG_LIB_PATH}" ]; then
+            ls -la ${VCPKG_LIB_PATH} | head -20
+          else
+            echo "ERROR: vcpkg lib path not found!"
+            exit 1
+          fi
 
           echo ""
           echo "=== Running deserialization test ==="
@@ -263,7 +291,8 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "=== Installing runtime dependencies ==="
-          ${env:VCPKG_ROOT}/vcpkg.exe install --triplet=x64-windows
+          # Use proper PowerShell path syntax
+          & "$env:VCPKG_ROOT\vcpkg.exe" install --triplet=x64-windows
 
       - name: Download Windows deserializer
         uses: actions/download-artifact@v4
@@ -302,7 +331,17 @@ jobs:
         shell: pwsh
         run: |
           $deserializerPath = (Resolve-Path "deserializer").Path
-          $env:PATH = "$deserializerPath;$env:PATH"
+
+          # Also add vcpkg DLLs to PATH
+          $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "c-api\build\vcpkg_installed\x64-windows\bin"
+          if (Test-Path $vcpkgBinPath) {
+            $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
+            Write-Host "Added vcpkg bin path: $vcpkgBinPath"
+          } else {
+            $env:PATH = "$deserializerPath;$env:PATH"
+            Write-Host "Warning: vcpkg bin path not found: $vcpkgBinPath"
+          }
+
           Write-Host "Runtime PATH includes: $deserializerPath"
           Write-Host "`n=== Available DLLs ==="
           Get-ChildItem $deserializerPath -Filter "*.dll" | Select-Object Name
@@ -311,7 +350,14 @@ jobs:
         shell: pwsh
         run: |
           $deserializerPath = (Resolve-Path "deserializer").Path
-          $env:PATH = "$deserializerPath;$env:PATH"
+
+          # Add vcpkg DLLs to PATH
+          $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "c-api\build\vcpkg_installed\x64-windows\bin"
+          if (Test-Path $vcpkgBinPath) {
+            $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
+          } else {
+            $env:PATH = "$deserializerPath;$env:PATH"
+          }
 
           cd deserializer
           .\integration_deserialize_connection_c.exe --input ../data/capi_linux_cross.json --name "CApiLinuxToWindowsTest" --type ScreeningGate --verbose
@@ -370,6 +416,10 @@ jobs:
           echo "=== Installing runtime dependencies with vcpkg ==="
           ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic
 
+          echo ""
+          echo "=== Verifying vcpkg installation ==="
+          ls -la build/vcpkg_installed/x64-linux-dynamic/lib/ || echo "vcpkg lib directory not found!"
+
       - name: Download Linux deserializer
         uses: actions/download-artifact@v4
         with:
@@ -420,11 +470,18 @@ jobs:
 
           echo ""
           echo "=== Checking if vcpkg libs exist ==="
-          ls -la ${VCPKG_LIB_PATH} || echo "vcpkg lib path not found!"
-
-          echo ""
-          echo "=== Boost libraries available ==="
-          find ${VCPKG_LIB_PATH} -name "libboost*" || echo "No boost libs found!"
+          if [ -d "${VCPKG_LIB_PATH}" ]; then
+            ls -la ${VCPKG_LIB_PATH} | head -20
+            echo ""
+            echo "=== Boost libraries available ==="
+            find ${VCPKG_LIB_PATH} -name "libboost*" | head -10
+          else
+            echo "ERROR: vcpkg lib path not found at: ${VCPKG_LIB_PATH}"
+            echo ""
+            echo "=== Looking for vcpkg_installed directory ==="
+            find ${GITHUB_WORKSPACE}/c-api -type d -name "vcpkg_installed" || echo "No vcpkg_installed found"
+            exit 1
+          fi
 
           echo ""
           echo "=== Running C-API deserialization test ==="
