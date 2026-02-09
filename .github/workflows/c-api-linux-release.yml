@@ -17,6 +17,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create vcpkg cache directories
+        run: |
+          mkdir -p "${{ github.workspace }}/.vcpkg/bincache"
+          mkdir -p "${{ github.workspace }}/.vcpkg/downloads"
+          echo "Created cache directories:"
+          ls -la "${{ github.workspace }}/.vcpkg/"
+
       - name: Attempt to restore vcpkg binary cache
         uses: actions/cache@v4
         with:
