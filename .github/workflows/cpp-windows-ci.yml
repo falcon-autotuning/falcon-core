@@ -204,13 +204,43 @@ jobs:
           Write-Host "`n=== Artifacts for C-API ==="
           Get-ChildItem $artifactDir | Select-Object Name, Length
 
+      - name: Verify C++ library before upload
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          $dllPath = "build/falcon_core_cpp.dll"
+          if (-not (Test-Path $dllPath)) {
+            Write-Error "DLL not found!"
+            exit 1
+          }
+
+          $dllFile = Get-Item $dllPath
+          Write-Host "DLL size: $($dllFile.Length) bytes"
+
+          if ($dllFile.Length -lt 1000) {
+            Write-Error "DLL seems too small - likely corrupt!"
+            exit 1
+          }
+
+          # Verify it's a valid PE file
+          $bytes = [System.IO.File]::ReadAllBytes($dllPath)
+          if ($bytes[0] -ne 0x4D -or $bytes[1] -ne 0x5A) {
+            Write-Error "Not a valid PE file!"
+            exit 1
+          }
+
+          Write-Host "✓ DLL verification passed"
+
       - name: Upload C++ build artifacts for C-API CI
         uses: actions/upload-artifact@v4
         with:
           name: cpp-windows-build
-          path: cpp/build/cpp-build-for-capi/**
+          path: |
+            cpp/build/falcon_core_cpp.dll
+            cpp/build/falcon_core_cpp.lib
+            cpp/build/CMakeCache.txt
           retention-days: 1
-          compression-level: 0
+          compression-level: 0 # Don't compress - might cause corruption
 
       - name: Prepare integration test executable with dependencies for cross-platform tests
         working-directory: cpp/build
