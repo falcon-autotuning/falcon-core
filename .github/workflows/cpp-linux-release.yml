@@ -8,198 +8,297 @@ jobs:
   build-release:
     name: Build C++ Release (Linux)
     runs-on: ubuntu-latest
-    container:
-      image: archlinux:latest
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create build user
-        run: |
-          useradd -m builduser
-          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          chown -R builduser:builduser .
-
-      - name: Cache pacman packages
-        uses: actions/cache@v4
-        with:
-          path: /var/cache/pacman/pkg
-          key: ${{ runner.os }}-pacman-release-${{ github.ref }}
-          restore-keys: |
-            ${{ runner.os }}-pacman-release-
-            ${{ runner.os }}-pacman-
-
-      - name: Cache AUR packages
+      - name: Attempt to restore vcpkg binary cache
         uses: actions/cache@v4
         with:
           path: |
-            packaging/highfive/*.pkg.tar.zst
-            packaging/exprtk/*.pkg.tar.zst
-          key: ${{ runner.os }}-aur-release-${{ github.ref }}
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-linux-release-cpp-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            ${{ runner.os }}-aur-release-
-            ${{ runner.os }}-aur-
+            vcpkg-${{ runner.os }}-linux-release-cpp-
+            vcpkg-${{ runner.os }}-linux-
 
-      - name: Install system dependencies
-        run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm \
-            base-devel \
-            git \
-            wget \
-            curl \
-            pkg-config \
-            cereal \
-            hdf5 \
-            boost \
-            bzip2 \
-            expat \
-            nlohmann-json \
-            openssl \
-            python \
-            sqlite \
-            yaml-cpp \
-            zlib \
-            ninja \
-            llvm \
-            ccache \
-            clang \
-            cmake \
-            lld \
-            tar \
-            gzip
-
-      - name: Set clang as default compiler
-        run: |
-          grep -q '^CC=' /etc/makepkg.conf && \
-          sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || \
-          echo 'CC=/usr/bin/clang' >> /etc/makepkg.conf
-
-          grep -q '^CXX=' /etc/makepkg.conf && \
-          sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || \
-          echo 'CXX=/usr/bin/clang++' >> /etc/makepkg.conf
-
-      - name: Cache ccache
-        uses: actions/cache@v4
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
         with:
-          path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ github.ref }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-ccache-${{ github.ref }}-
-            ${{ runner.os }}-ccache-
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
 
-      - name: Install AUR packages
+      - name: Install build dependencies for Makefile
         run: |
-          mkdir -p packaging
-          chown builduser:builduser packaging
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
-              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
-              cd packaging/highfive
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              fi
-              cd ../exprtk
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              fi
-            "
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            make \
+            ninja-build \
+            clang \
+            llvm \
+            lld \
+            pkg-config \
+            cmake \
+            curl \
+            zip \
+            unzip \
+            tar \
+            git \
+            rsync
 
-      - name: Build xtensor packages
+      - name: Build C++ library (OPTIMIZED RELEASE using Makefile)
+        working-directory: cpp
         run: |
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-            cd packaging/xtl && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xsimd && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
-          "
+          echo "=== Building RELEASE with Makefile ==="
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=1 VCPKG_TRIPLET=x64-linux-dynamic make build-release
 
-      - name: Build C++ library (OPTIMIZED RELEASE)
-        run: |
-          cd cpp
-          CC=/usr/bin/clang CXX=/usr/bin/clang++ make build
-          echo "=== Build completed ==="
-          ls -lh build/
+          if [ $? -ne 0 ]; then
+            echo "ERROR: Build failed!"
+            exit 1
+          fi
+
+          echo "✓ Build successful"
 
       - name: Verify release build
+        working-directory: cpp
         run: |
-          test -f cpp/build/libfalcon_core_cpp.so || (echo "ERROR: libfalcon_core_cpp.so not found!" && exit 1)
-          file cpp/build/libfalcon_core_cpp.so
-          size cpp/build/libfalcon_core_cpp.so
+          test -f build/libfalcon_core_cpp.so || (echo "ERROR: libfalcon_core_cpp.so not found!" && exit 1)
+
+          echo "=== Library Info ==="
+          ls -lh build/libfalcon_core_cpp.so
+          file build/libfalcon_core_cpp.so
           echo "✓ Release build verified"
 
-      - name: Package release artifact
+      - name: Copy vcpkg.json for distribution
+        working-directory: cpp
         run: |
-          cd cpp
+          cp vcpkg.json build/
+
+      - name: Collect vcpkg licenses
+        working-directory: cpp
+        run: |
+          echo "=== Collecting vcpkg licenses ==="
+
+          VCPKG_INSTALLED="build/vcpkg_installed/x64-linux-dynamic"
+          LICENSES_DIR="build/collected_licenses"
+          mkdir -p "$LICENSES_DIR"
+
+          # vcpkg stores licenses in share/<package>/copyright
+          if [ -d "$VCPKG_INSTALLED/share" ]; then
+            for pkg_dir in "$VCPKG_INSTALLED/share"/*; do
+              if [ -d "$pkg_dir" ]; then
+                pkg_name=$(basename "$pkg_dir")
+                
+                # Skip gtest/gmock packages
+                if [[ "$pkg_name" == *"gtest"* ]] || [[ "$pkg_name" == *"gmock"* ]]; then
+                  echo "Skipping $pkg_name (test dependency)"
+                  continue
+                fi
+
+                # Look for copyright/license files
+                if [ -f "$pkg_dir/copyright" ]; then
+                  echo "Found license for: $pkg_name"
+                  mkdir -p "$LICENSES_DIR/$pkg_name"
+                  cp "$pkg_dir/copyright" "$LICENSES_DIR/$pkg_name/LICENSE"
+                fi
+                
+                # Some packages have additional license files
+                for license_file in "$pkg_dir"/LICENSE* "$pkg_dir"/COPYING*; do
+                  if [ -f "$license_file" ]; then
+                    cp "$license_file" "$LICENSES_DIR/$pkg_name/"
+                  fi
+                done
+              fi
+            done
+          fi
+
+          # Create a LICENSE_INDEX.txt documenting all licenses
+          cat > "$LICENSES_DIR/LICENSE_INDEX.txt" << 'EOF'
+          THIRD-PARTY SOFTWARE LICENSES
+          ==============================
+
+          This distribution includes third-party software packages managed by vcpkg.
+          Each package's license is included in its respective subdirectory.
+
+          Packages included:
+          EOF
+
+          # List all collected licenses
+          for pkg_dir in "$LICENSES_DIR"/*; do
+            if [ -d "$pkg_dir" ]; then
+              pkg_name=$(basename "$pkg_dir")
+              echo "  - $pkg_name/ - License for $pkg_name" >> "$LICENSES_DIR/LICENSE_INDEX.txt"
+            fi
+          done
+
+          echo ""
+          echo "=== Collected Licenses ==="
+          find "$LICENSES_DIR" -type f | sort
+
+      - name: Package release artifact with vcpkg dependencies
+        working-directory: cpp
+        run: |
+          echo "=== Creating Release Package ==="
+
           mkdir -p release-package/lib
           mkdir -p release-package/include
+          mkdir -p release-package/LICENSES
 
+          # Copy main library
           cp build/libfalcon_core_cpp.so release-package/lib/
+
+          # Copy headers
           cp -r include/falcon_core release-package/include/
 
+          # Copy vcpkg.json (without gtest for production use)
+          cp build/vcpkg.json release-package/
+
+          # Copy vcpkg installed dependencies (excluding gtest) - all to lib/
+          echo "=== Collecting vcpkg dependencies ==="
+          VCPKG_INSTALLED="build/vcpkg_installed/x64-linux-dynamic"
+
+          # Copy all shared libraries (.so files)
+          if [ -d "$VCPKG_INSTALLED/lib" ]; then
+            echo "Copying libraries from $VCPKG_INSTALLED/lib"
+            find "$VCPKG_INSTALLED/lib" -name "*.so*" ! -name "*gtest*" ! -name "*gmock*" -exec cp -P {} release-package/lib/ \;
+            find "$VCPKG_INSTALLED/lib" -name "*.a" ! -name "*gtest*" ! -name "*gmock*" -exec cp -P {} release-package/lib/ \;
+          fi
+
+          # Also check in bin/ (some packages put shared libs there)
+          if [ -d "$VCPKG_INSTALLED/bin" ]; then
+            echo "Copying binaries from $VCPKG_INSTALLED/bin"
+            find "$VCPKG_INSTALLED/bin" -name "*.so*" ! -name "*gtest*" ! -name "*gmock*" -exec cp -P {} release-package/lib/ \;
+          fi
+
+          # Copy all include files (excluding gtest)
+          if [ -d "$VCPKG_INSTALLED/include" ]; then
+            echo "Copying headers from $VCPKG_INSTALLED/include"
+            rsync -av --exclude='gtest' --exclude='gmock' "$VCPKG_INSTALLED/include/" release-package/include/
+          fi
+
+          # Copy all collected licenses
+          cp -r build/collected_licenses/* release-package/LICENSES/
+
+          # Create README
           cat > release-package/README.md << 'EOF'
           # Falcon Core C++ Library - Linux x64
 
           ## Contents
 
-          - `lib/libfalcon_core_cpp.so` - Optimized shared library
-          - `include/falcon_core/` - Public header files
+          - `lib/libfalcon_core_cpp.so` - Main C++ shared library
+          - `lib/*.so*` - All required vcpkg dependency shared libraries
+          - `lib/*.a` - All required vcpkg dependency static libraries
+          - `include/falcon_core/` - Public C++ header files
+          - `include/` - All required vcpkg dependency headers
+          - `LICENSES/` - Third-party software licenses (see below)
+          - `vcpkg.json` - Dependency manifest
+
+          ## Third-Party Software Licenses
+
+          This distribution includes third-party software packages. All licenses are located in the `LICENSES/` directory.
+
+          **Important**: This software is distributed with dependencies that have their own licenses. Please review the `LICENSES/LICENSE_INDEX.txt` file for a complete list of included packages and their respective licenses.
+
+          Each package has its own subdirectory under `LICENSES/` containing:
+          - LICENSE file with the full license text
+          - Any additional copyright or attribution files
 
           ## Installation
 
-          Copy the library and headers to your system:
+          ### Option 1: Use bundled dependencies (Recommended)
+
+          All required libraries are included in `lib/`. Set your library path:
 
           ```bash
-          sudo cp lib/libfalcon_core_cpp.so /usr/local/lib/
-          sudo cp -r include/falcon_core /usr/local/include/
-          sudo ldconfig
+          export LD_LIBRARY_PATH=/path/to/release-package/lib:$LD_LIBRARY_PATH
           ```
 
-          ## Dependencies
+          ### Option 2: Build dependencies yourself
 
-          Required system packages:
-          - boost (filesystem, system, uuid)
-          - hdf5
+          If you prefer to build dependencies yourself, use vcpkg with the x64-linux-dynamic triplet:
+
+          ```bash
+          vcpkg install --triplet=x64-linux-dynamic
+          ```
+
+          This will read the included vcpkg.json and install:
+          - boost-filesystem, boost-system, boost-uuid
+          - hdf5 (with cpp features)
           - yaml-cpp
           - cereal
-          - xtensor
-          - xtensor-io
-          - xsimd
-          - xtl
+          - xtensor, xtensor-io, xsimd, xtl
+          - exprtk, highfive
 
-          Install via your package manager before using this library.
+          **Note**: The `x64-linux-dynamic` triplet ensures dynamic linking, which is what this release uses.
 
           ## Build Information
-
           - Platform: Linux x86_64
           - Compiler: Clang/LLVM
           - C++ Standard: C++14
           - Build Type: Release (Optimized)
+          - vcpkg Triplet: x64-linux-dynamic
+
+          ## Usage
+
+          Link against the library and ensure the runtime can find all dependencies:
+
+          ```bash
+          clang++ -o myapp myapp.cpp \
+            -I/path/to/release-package/include \
+            -L/path/to/release-package/lib \
+            -lfalcon_core_cpp \
+            -Wl,-rpath,/path/to/release-package/lib
+          ```
+
+          The `-Wl,-rpath` option ensures the runtime linker can find the shared libraries.
+
+          ## License Compliance
+
+          When distributing software that uses this library, you must comply with:
+          1. The Falcon Core library license
+          2. All third-party licenses in the `LICENSES/` directory
+
+          Please ensure you understand and comply with all license requirements.
           EOF
 
-          echo "falcon-core-cpp-linux-x64" > release-package/VERSION
-          echo "Built: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> release-package/VERSION
-          echo "Commit: $GITHUB_SHA" >> release-package/VERSION
+          echo "$(date -u '+%Y-%m-%d %H:%M:%S UTC') - Commit: $GITHUB_SHA" > release-package/VERSION.txt
 
+          echo ""
+          echo "=== Package Structure ==="
+          tree release-package || find release-package -type f -ls
+
+          echo ""
+          echo "=== Library Dependencies Check ==="
+          echo "Main library dependencies:"
+          ldd release-package/lib/libfalcon_core_cpp.so || true
+
+          echo ""
+          echo "=== Creating tarball ==="
           tar -czf falcon-core-cpp-linux-x64.tar.gz -C release-package .
+
+          echo ""
+          echo "=== Tarball Info ==="
           ls -lh falcon-core-cpp-linux-x64.tar.gz
 
       - name: Generate checksum
+        working-directory: cpp
         run: |
-          cd cpp
           sha256sum falcon-core-cpp-linux-x64.tar.gz > falcon-core-cpp-linux-x64.tar.gz.sha256
           cat falcon-core-cpp-linux-x64.tar.gz.sha256
 
-      - name: Upload release artifacts for C-API
+      - name: Upload build artifact for C-API release
         uses: actions/upload-artifact@v4
         with:
           name: cpp-linux-release-build
-          path: cpp/build/libfalcon_core_cpp.so
+          path: |
+            cpp/build/libfalcon_core_cpp.so
+            cpp/build/vcpkg_installed/
           retention-days: 1
 
       - name: Upload release package

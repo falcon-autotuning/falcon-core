@@ -8,137 +8,87 @@ jobs:
   build-and-test:
     name: Build and Test C++ (Linux)
     runs-on: ubuntu-latest
-    container:
-      image: archlinux:latest
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create build user
-        run: |
-          useradd -m builduser
-          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          chown -R builduser:builduser .
-
-      - name: Cache pacman packages
-        uses: actions/cache@v4
-        with:
-          path: /var/cache/pacman/pkg
-          key: ${{ runner.os }}-pacman-${{ github.ref }}
-          restore-keys: |
-            ${{ runner.os }}-pacman-
-
-      - name: Cache AUR packages
+      - name: Attempt to restore vcpkg binary cache
         uses: actions/cache@v4
         with:
           path: |
-            packaging/highfive/*.pkg.tar.zst
-            packaging/exprtk/*.pkg.tar.zst
-          key: ${{ runner.os }}-aur-${{ github.ref }}
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-linux-cpp-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            ${{ runner.os }}-aur-
+            vcpkg-${{ runner.os }}-linux-cpp-
+            vcpkg-${{ runner.os }}-linux-
 
-      - name: Install system dependencies
-        run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm \
-            base-devel \
-            git \
-            wget \
-            curl \
-            pkg-config \
-            openssh \
-            cereal \
-            hdf5 \
-            boost \
-            bzip2 \
-            expat \
-            nlohmann-json \
-            openssl \
-            python \
-            sqlite \
-            yaml-cpp \
-            zlib \
-            ninja \
-            llvm \
-            ccache \
-            clang \
-            gtest \
-            glibc \
-            cmake \
-            lld
-
-      - name: Set clang as default compiler for makepkg
-        run: |
-          grep -q '^CC=' /etc/makepkg.conf && \
-          sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || \
-          echo 'CC=/usr/bin/clang' >> /etc/makepkg.conf
-
-          grep -q '^CXX=' /etc/makepkg.conf && \
-          sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || \
-          echo 'CXX=/usr/bin/clang++' >> /etc/makepkg.conf
-
-      - name: Cache ccache
-        uses: actions/cache@v4
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
         with:
-          path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ github.ref }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-ccache-${{ github.ref }}-
-            ${{ runner.os }}-ccache-
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
 
-      - name: Install AUR packages
+      - name: Install build dependencies for Makefile
         run: |
-          mkdir -p packaging
-          chown builduser:builduser packaging
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
-              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
-              cd packaging/highfive
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              fi
-              cd ../exprtk
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              fi
-            "
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            make \
+            ninja-build \
+            clang \
+            llvm \
+            lld \
+            pkg-config \
+            cmake \
+            curl \
+            zip \
+            unzip \
+            tar \
+            git
 
-      - name: Build xtensor packages
+      - name: Build C++ library (dev mode with tests using Makefile)
+        working-directory: cpp
         run: |
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-            cd packaging/xtl && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xsimd && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
-          "
+          echo "=== Building with Makefile (dev mode) ==="
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=1 VCPKG_TRIPLET=x64-linux-dynamic make build-dev
 
-      - name: Build C++ library (dev mode with tests)
+          if [ $? -ne 0 ]; then
+            echo "ERROR: Build failed!"
+            exit 1
+          fi
+
+          echo "✓ Build successful"
+
+      - name: Verify build artifacts
+        working-directory: cpp/build
         run: |
-          cd cpp
-          CC=/usr/bin/clang CXX=/usr/bin/clang++ make build-dev
+          echo "=== Build Artifacts ==="
+          ls -lh
+          test -f libfalcon_core_cpp.so || (echo "ERROR: libfalcon_core_cpp.so not found!" && exit 1)
+          echo "✓ Build artifacts verified"
 
       - name: Run C++ unit tests
+        working-directory: cpp
         run: |
-          cd cpp
+          echo "=== Running Unit Tests ==="
           make run-all-tests
 
       - name: Run C++ integration tests (same platform)
+        working-directory: cpp/build
         run: |
-          cd cpp/build
-          export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
+          export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
           ./integration_serialize_connection --output cpp_linux_local.json --name "LinuxLocalTest" --type PlungerGate
           ./integration_deserialize_connection --input cpp_linux_local.json --name "LinuxLocalTest" --type PlungerGate --verbose
 
       - name: Serialize for cross-platform test
+        working-directory: cpp/build
         run: |
-          cd cpp/build
-          export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
+          export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
           ./integration_serialize_connection --output cpp_linux_cross.json --name "LinuxToWindowsTest" --type BarrierGate
           cat cpp_linux_cross.json
 

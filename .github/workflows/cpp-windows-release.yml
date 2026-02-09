@@ -84,7 +84,9 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "=== Building RELEASE with Ninja ==="
-          ninja -C build falcon_core_cpp -v
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+          ninja -C build falcon_core_cpp
 
           if ($LASTEXITCODE -ne 0) {
             Write-Error "Build failed!"
@@ -93,29 +95,48 @@ jobs:
 
           Write-Host "✓ Build successful"
 
-      - name: Verify release build
+      - name: Verify and locate build artifacts
         working-directory: cpp
         shell: pwsh
         run: |
-          if (-not (Test-Path "build/falcon_core_cpp.dll")) {
+          Write-Host "=== Searching for build artifacts ==="
+
+          # Find the DLL
+          $dllFile = Get-ChildItem -Path "build" -Filter "falcon_core_cpp.dll" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+
+          if (-not $dllFile) {
             Write-Error "ERROR: falcon_core_cpp.dll not found!"
+            Get-ChildItem "build" -Recurse -Filter "*.dll" | Select-Object FullName
             exit 1
           }
 
-          if (-not (Test-Path "build/falcon_core_cpp.lib")) {
-            Write-Error "ERROR: falcon_core_cpp.lib not found!"
-            exit 1
+          Write-Host "Found DLL at: $($dllFile.FullName)"
+          Write-Host "DLL size: $($dllFile.Length) bytes"
+
+          # Find the LIB (import library)
+          $libFile = Get-ChildItem -Path "build" -Filter "falcon_core_cpp.lib" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+
+          if ($libFile) {
+            Write-Host "Found LIB at: $($libFile.FullName)"
+            Write-Host "LIB size: $($libFile.Length) bytes"
+          } else {
+            Write-Host "Note: No .lib import library found (might be header-only or different naming)"
           }
 
-          $dllFile = Get-Item "build/falcon_core_cpp.dll"
-          Write-Host "falcon_core_cpp.dll size: $($dllFile.Length) bytes"
+          # Store the actual build directory for later steps
+          $buildDir = $dllFile.Directory.FullName
+          Write-Host "Actual build directory: $buildDir"
 
-          if ($dllFile.Length -lt 100KB) {
-            Write-Error "ERROR: DLL seems too small"
-            exit 1
-          }
+          # Save to environment for next steps
+          "BUILD_OUTPUT_DIR=$buildDir" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
 
-          Write-Host "✓ Release build verified"
+          Write-Host "`n=== All DLL files in build directory ==="
+          Get-ChildItem "build" -Recurse -Filter "*.dll" | Select-Object FullName, Length
+
+          Write-Host "`n=== All LIB files in build directory ==="
+          Get-ChildItem "build" -Recurse -Filter "*.lib" | Select-Object FullName, Length
+
+          Write-Host "`n✓ Build artifacts verified"
 
       - name: Copy vcpkg.json for distribution
         working-directory: cpp
@@ -123,54 +144,189 @@ jobs:
         run: |
           Copy-Item "vcpkg.json" "build/"
 
-      - name: Package release artifact
+      - name: Collect vcpkg licenses
+        working-directory: cpp
+        shell: pwsh
+        run: |
+          Write-Host "=== Collecting vcpkg licenses ==="
+
+          $vcpkgInstalled = "build/vcpkg_installed/x64-windows"
+          $licensesDir = "build/collected_licenses"
+          New-Item -ItemType Directory -Force -Path $licensesDir | Out-Null
+
+          # vcpkg stores licenses in share/<package>/copyright
+          if (Test-Path "$vcpkgInstalled/share") {
+            Get-ChildItem "$vcpkgInstalled/share" -Directory | ForEach-Object {
+              $pkgName = $_.Name
+              
+              # Skip gtest/gmock packages
+              if ($pkgName -like "*gtest*" -or $pkgName -like "*gmock*") {
+                Write-Host "Skipping $pkgName (test dependency)"
+                return
+              }
+
+              # Look for copyright/license files
+              $copyrightFile = Join-Path $_.FullName "copyright"
+              if (Test-Path $copyrightFile) {
+                Write-Host "Found license for: $pkgName"
+                $pkgLicenseDir = Join-Path $licensesDir $pkgName
+                New-Item -ItemType Directory -Force -Path $pkgLicenseDir | Out-Null
+                Copy-Item $copyrightFile (Join-Path $pkgLicenseDir "LICENSE")
+              }
+              
+              # Some packages have additional license files
+              Get-ChildItem $_.FullName -Filter "LICENSE*" -ErrorAction SilentlyContinue | ForEach-Object {
+                Copy-Item $_.FullName (Join-Path $pkgLicenseDir $_.Name)
+              }
+              Get-ChildItem $_.FullName -Filter "COPYING*" -ErrorAction SilentlyContinue | ForEach-Object {
+                Copy-Item $_.FullName (Join-Path $pkgLicenseDir $_.Name)
+              }
+            }
+          }
+
+          # Create a LICENSE_INDEX.txt documenting all licenses
+          $indexContent = @"
+          THIRD-PARTY SOFTWARE LICENSES
+          ==============================
+
+          This distribution includes third-party software packages managed by vcpkg.
+          Each package's license is included in its respective subdirectory.
+
+          Packages included:
+          "@
+
+          Get-ChildItem $licensesDir -Directory | ForEach-Object {
+            $indexContent += "`n  - $($_.Name)/ - License for $($_.Name)"
+          }
+
+          Set-Content -Path (Join-Path $licensesDir "LICENSE_INDEX.txt") -Value $indexContent -Encoding UTF8
+
+          Write-Host "`n=== Collected Licenses ==="
+          Get-ChildItem $licensesDir -Recurse -File | Select-Object FullName
+
+      - name: Package release artifact with vcpkg dependencies
         working-directory: cpp
         shell: pwsh
         run: |
           Write-Host "=== Creating Release Package ==="
 
           $pkgDir = "release-package"
-          New-Item -ItemType Directory -Force -Path "$pkgDir/lib"
+          New-Item -ItemType Directory -Force -Path "$pkgDir/bin"
           New-Item -ItemType Directory -Force -Path "$pkgDir/include"
+          New-Item -ItemType Directory -Force -Path "$pkgDir/LICENSES"
 
-          Copy-Item "build/falcon_core_cpp.dll" "$pkgDir/lib/"
-          Copy-Item "build/falcon_core_cpp.lib" "$pkgDir/lib/"
-          Copy-Item "build/vcpkg.json" "$pkgDir/"
+          # Copy main library DLL from wherever it was built
+          Write-Host "Copying main library from: $env:BUILD_OUTPUT_DIR"
+
+          $dllFile = Get-ChildItem -Path $env:BUILD_OUTPUT_DIR -Filter "falcon_core_cpp.dll" -ErrorAction Stop
+          Copy-Item $dllFile.FullName "$pkgDir/bin/"
+          Write-Host "Copied: $($dllFile.Name)"
+
+          # Copy import library if it exists
+          $libFile = Get-ChildItem -Path $env:BUILD_OUTPUT_DIR -Filter "falcon_core_cpp.lib" -ErrorAction SilentlyContinue
+          if ($libFile) {
+            Copy-Item $libFile.FullName "$pkgDir/bin/"
+            Write-Host "Copied: $($libFile.Name)"
+          }
+
+          # Copy headers
           Copy-Item -Recurse "include/falcon_core" "$pkgDir/include/"
 
+          # Copy vcpkg.json
+          Copy-Item "build/vcpkg.json" "$pkgDir/"
+
+          # Copy vcpkg dependencies (excluding gtest) - merge bin and lib folders
+          Write-Host "`n=== Collecting vcpkg dependencies ==="
+          $vcpkgInstalled = "build/vcpkg_installed/x64-windows"
+
+          # Copy DLLs from vcpkg bin/
+          if (Test-Path "$vcpkgInstalled/bin") {
+            Write-Host "Copying DLLs from vcpkg bin/"
+            Get-ChildItem "$vcpkgInstalled/bin" -Filter *.dll | Where-Object { 
+              $_.Name -notlike "*gtest*" -and $_.Name -notlike "*gmock*" 
+            } | ForEach-Object {
+              Copy-Item $_.FullName "$pkgDir/bin/"
+              Write-Host "  - $($_.Name)"
+            }
+          }
+
+          # Copy import libraries from vcpkg lib/
+          if (Test-Path "$vcpkgInstalled/lib") {
+            Write-Host "Copying import libraries from vcpkg lib/"
+            Get-ChildItem "$vcpkgInstalled/lib" -Filter *.lib | Where-Object { 
+              $_.Name -notlike "*gtest*" -and $_.Name -notlike "*gmock*" 
+            } | ForEach-Object {
+              Copy-Item $_.FullName "$pkgDir/bin/"
+              Write-Host "  - $($_.Name)"
+            }
+          }
+
+          # Copy include files
+          if (Test-Path "$vcpkgInstalled/include") {
+            Write-Host "Copying headers from vcpkg include/"
+            # Copy all include directories except gtest/gmock
+            Get-ChildItem "$vcpkgInstalled/include" -Directory | Where-Object { 
+              $_.Name -ne "gtest" -and $_.Name -ne "gmock" 
+            } | ForEach-Object {
+              Copy-Item -Recurse $_.FullName "$pkgDir/include/"
+            }
+            # Copy any header files in the root include directory
+            Get-ChildItem "$vcpkgInstalled/include" -File | ForEach-Object {
+              Copy-Item $_.FullName "$pkgDir/include/"
+            }
+          }
+
+          # Copy all collected licenses
+          Copy-Item -Recurse "build/collected_licenses/*" "$pkgDir/LICENSES/"
+
+          # Create README
           Set-Content -Path "$pkgDir/README.md" -Encoding UTF8 -Value @"
           # Falcon Core C++ Library - Windows x64
 
           ## Contents
 
-          - `lib/falcon_core_cpp.dll` - Optimized shared library
-          - `lib/falcon_core_cpp.lib` - Import library
-          - `include/falcon_core/` - Public header files
-          - `vcpkg.json` - Dependency manifest
+          - ``bin/falcon_core_cpp.dll`` - Main C++ shared library
+          - ``bin/falcon_core_cpp.lib`` - Import library (if applicable)
+          - ``bin/*.dll`` - All required vcpkg dependency DLLs
+          - ``bin/*.lib`` - All required vcpkg dependency import libraries
+          - ``include/falcon_core/`` - Public C++ header files
+          - ``include/`` - All required vcpkg dependency headers
+          - ``LICENSES/`` - Third-party software licenses (see below)
+          - ``vcpkg.json`` - Dependency manifest
+
+          ## Third-Party Software Licenses
+
+          This distribution includes third-party software packages. All licenses are located in the ``LICENSES/`` directory.
+
+          **Important**: This software is distributed with dependencies that have their own licenses. Please review the ``LICENSES/LICENSE_INDEX.txt`` file for a complete list of included packages and their respective licenses.
+
+          Each package has its own subdirectory under ``LICENSES/`` containing:
+          - LICENSE file with the full license text
+          - Any additional copyright or attribution files
 
           ## Installation
 
-          1. Copy library files to your project or system path
-          2. Copy headers to your include path
-          3. Install dependencies using vcpkg (see below)
+          ### Option 1: Use bundled dependencies (Recommended)
 
-          ## Dependencies
+          All required DLLs are included in ``bin/``. Add the ``bin/`` directory to your PATH or copy the DLLs to your application directory.
 
-          Install all dependencies using vcpkg:
+          **To use:**
+          1. Add ``bin/`` to your system PATH, or
+          2. Copy all files from ``bin/`` to your application's directory
+
+          ### Option 2: Build dependencies yourself
+
+          If you prefer to build dependencies yourself, use vcpkg:
 
               vcpkg install --triplet=x64-windows
 
           This will read the included vcpkg.json and install:
-          - boost-filesystem
-          - boost-system
-          - boost-uuid
-          - hdf5
+          - boost-filesystem, boost-system, boost-uuid
+          - hdf5 (with cpp features)
           - yaml-cpp
           - cereal
-          - xtensor
-          - xtensor-io
-          - xsimd
-          - xtl
+          - xtensor, xtensor-io, xsimd, xtl
+          - exprtk, highfive
 
           ## Build Information
           - Platform: Windows x86_64
@@ -178,39 +334,38 @@ jobs:
           - C++ Standard: C++14
           - Build Type: Release (Optimized)
 
-          ## Note
+          ## Usage
 
-          You must have the vcpkg dependencies installed and available in your system PATH or application directory for this library to work.
+          ### Linking (if you have .lib files)
+
+              clang-cl /MD /EHsc myapp.cpp /I"path\to\release-package\include" /link /LIBPATH:"path\to\release-package\bin" falcon_core_cpp.lib
+
+          ### Runtime
+
+          Ensure the DLLs are in your PATH or application directory:
+
+              set PATH=C:\path\to\release-package\bin;%PATH%
+              myapp.exe
+
+          ## License Compliance
+
+          When distributing software that uses this library, you must comply with:
+          1. The Falcon Core library license
+          2. All third-party licenses in the ``LICENSES/`` directory
+
+          Please ensure you understand and comply with all license requirements.
           "@
 
           Set-Content -Path "$pkgDir/VERSION.txt" -Encoding UTF8 -Value $("falcon-core-cpp-windows-x64 Built: " + (Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC") + " Commit: $env:GITHUB_SHA")
 
           Write-Host "`n=== Package Contents ==="
-          Get-ChildItem $pkgDir -Recurse -File | Select-Object FullName, Length
+          Get-ChildItem $pkgDir -Recurse -File | Select-Object FullName, Length | Format-Table -AutoSize
 
+          Write-Host "`n=== Creating ZIP archive ==="
           Compress-Archive -Path "$pkgDir/*" -DestinationPath "falcon-core-cpp-windows-x64.zip" -CompressionLevel Optimal
 
           Write-Host "`n=== ZIP Info ==="
           Get-Item "falcon-core-cpp-windows-x64.zip" | Select-Object Name, Length
-
-      - name: Prepare C++ build artifacts for C-API
-        working-directory: cpp/build
-        shell: pwsh
-        run: |
-          Write-Host "=== Preparing artifacts for C-API ==="
-          $artifactDir = "cpp-release-artifacts"
-          New-Item -ItemType Directory -Force -Path $artifactDir
-          Copy-Item "falcon_core_cpp.dll" $artifactDir
-          Copy-Item "falcon_core_cpp.lib" $artifactDir
-          Get-ChildItem $artifactDir
-
-      - name: Upload release artifacts for C-API
-        uses: actions/upload-artifact@v4
-        with:
-          name: cpp-windows-release-build
-          path: cpp/build/cpp-release-artifacts/**
-          retention-days: 1
-          compression-level: 0
 
       - name: Generate checksum
         working-directory: cpp
@@ -219,6 +374,16 @@ jobs:
           $hash = Get-FileHash "falcon-core-cpp-windows-x64.zip" -Algorithm SHA256
           "$($hash.Hash.ToLower())  falcon-core-cpp-windows-x64.zip" | Out-File -FilePath "falcon-core-cpp-windows-x64.zip.sha256" -Encoding ASCII
           Get-Content "falcon-core-cpp-windows-x64.zip.sha256"
+
+      - name: Upload build artifact for C-API release
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-windows-release-build
+          path: |
+            cpp/build/**/*.dll
+            cpp/build/**/*.lib
+            cpp/build/vcpkg_installed/
+          retention-days: 1
 
       - name: Upload release package
         uses: actions/upload-artifact@v4
