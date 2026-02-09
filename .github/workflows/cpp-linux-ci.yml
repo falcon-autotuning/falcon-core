@@ -129,5 +129,5 @@ jobs:
 
       - name: Setup tmate session on failure
         if: failure()
-        uses: mxsckmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@v3
         timeout-minutes: 30
