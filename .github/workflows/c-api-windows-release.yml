@@ -10,23 +10,26 @@ jobs:
     runs-on: windows-latest
 
     env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
       VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Attempt to restore vcpkg binary cache
+      - name: Create vcpkg binary cache directory
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path ".vcpkg-binary-cache"
+
+      - name: Cache vcpkg binary packages (SHARED ACROSS ALL WINDOWS WORKFLOWS)
         uses: actions/cache@v4
         with:
-          path: |
-            .vcpkg/bincache
-            .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-release-capi-${{ hashFiles('c-api/vcpkg.json') }}
+          path: .vcpkg-binary-cache
+          # This key is SHARED by all Windows workflows
+          key: vcpkg-binaries-windows-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            vcpkg-${{ runner.os }}-release-capi-
-            vcpkg-${{ runner.os }}-release-
+            vcpkg-binaries-windows-
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11

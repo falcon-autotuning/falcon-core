@@ -11,23 +11,24 @@ jobs:
     runs-on: windows-latest
 
     env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
-      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Attempt to restore vcpkg binary cache
+      - name: Create vcpkg binary cache directory
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path ".vcpkg-binary-cache"
+
+      - name: Cache vcpkg binary packages
         uses: actions/cache@v4
         with:
-          path: |
-            .vcpkg/bincache
-            .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-clang-cl-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          path: .vcpkg-binary-cache
+          key: vcpkg-binaries-windows-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            vcpkg-${{ runner.os }}-clang-cl-
-            vcpkg-${{ runner.os }}-
+            vcpkg-binaries-windows-
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
@@ -38,14 +39,13 @@ jobs:
         shell: pwsh
         run: |
           choco install llvm -y
-          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
       - name: Install vcpkg dependencies for runtime
         working-directory: cpp
         shell: pwsh
         run: |
           Write-Host "=== Installing runtime dependencies ==="
-          C:\vcpkg\vcpkg.exe install --triplet=x64-windows
+          ${env:VCPKG_ROOT}/vcpkg.exe install --triplet=x64-windows
 
       - name: Download Windows deserializer
         uses: actions/download-artifact@v4
@@ -82,13 +82,8 @@ jobs:
         shell: pwsh
         run: |
           $deserializerPath = (Resolve-Path "deserializer").Path
-
-          # Add deserializer directory to PATH (has all DLLs)
           $env:PATH = "$deserializerPath;$env:PATH"
-
           Write-Host "Runtime PATH includes: $deserializerPath"
-
-          # Verify DLLs are accessible
           Write-Host "`n=== Available DLLs ==="
           Get-ChildItem $deserializerPath -Filter "*.dll" | Select-Object Name
 
@@ -119,46 +114,30 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
-      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create vcpkg cache directories
+      - name: Create vcpkg binary cache directory
         run: |
-          mkdir -p "${{ github.workspace }}/.vcpkg/bincache"
-          mkdir -p "${{ github.workspace }}/.vcpkg/downloads"
+          mkdir -p "${{ github.workspace }}/.vcpkg-binary-cache"
 
-      - name: Attempt to restore vcpkg binary cache
+      - name: Cache vcpkg binary packages
         uses: actions/cache@v4
         with:
-          path: |
-            .vcpkg/bincache
-            .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-linux-cross-cpp-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          path: .vcpkg-binary-cache
+          key: vcpkg-binaries-linux-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            vcpkg-${{ runner.os }}-linux-cross-cpp-
-            vcpkg-${{ runner.os }}-linux-
+            vcpkg-binaries-linux-
 
       - name: Install build dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            build-essential \
-            clang \
-            llvm \
-            pkg-config \
-            cmake \
-            curl \
-            zip \
-            unzip \
-            tar \
-            git \
-            autoconf \
-            automake \
-            libtool
+            build-essential clang llvm pkg-config cmake \
+            curl zip unzip tar git autoconf automake libtool
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
@@ -187,11 +166,9 @@ jobs:
         run: |
           echo "=== Deserializer Contents ==="
           ls -lhR deserializer
-
           echo ""
           echo "=== Data Contents ==="
           ls -lhR data
-
           echo ""
           echo "=== Verifying shared libraries ==="
           if [ -f deserializer/libfalcon_core_cpp.so ]; then
@@ -200,7 +177,6 @@ jobs:
           else
             echo "[MISSING] libfalcon_core_cpp.so"
           fi
-
           if [ -f deserializer/integration_deserialize_connection ]; then
             echo "[OK] integration_deserialize_connection"
             file deserializer/integration_deserialize_connection
@@ -211,8 +187,6 @@ jobs:
       - name: Make executable runnable
         run: |
           chmod +x deserializer/integration_deserialize_connection
-
-          # Verify library dependencies
           echo "=== Library dependencies ==="
           ldd deserializer/integration_deserialize_connection || true
 
@@ -220,12 +194,16 @@ jobs:
         run: |
           cd deserializer
 
-          # Set up library path to include vcpkg dependencies
-          VCPKG_LIB_PATH="${VCPKG_ROOT}/installed/x64-linux-dynamic/lib"
+          # Set up library path
+          VCPKG_LIB_PATH="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/lib"
           export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_PATH}:$LD_LIBRARY_PATH
 
           echo "=== LD_LIBRARY_PATH ==="
           echo $LD_LIBRARY_PATH
+
+          echo ""
+          echo "=== Checking if vcpkg libs exist ==="
+          ls -la ${VCPKG_LIB_PATH} || echo "vcpkg lib path not found!"
 
           echo ""
           echo "=== Running deserialization test ==="
@@ -251,24 +229,24 @@ jobs:
     runs-on: windows-latest
 
     env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
-      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Attempt to restore vcpkg binary cache
+      - name: Create vcpkg binary cache directory
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path ".vcpkg-binary-cache"
+
+      - name: Cache vcpkg binary packages
         uses: actions/cache@v4
         with:
-          path: |
-            .vcpkg/bincache
-            .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-clang-cl-capi-${{ hashFiles('c-api/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          path: .vcpkg-binary-cache
+          key: vcpkg-binaries-windows-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            vcpkg-${{ runner.os }}-clang-cl-capi-
-            vcpkg-${{ runner.os }}-clang-cl-
-            vcpkg-${{ runner.os }}-
+            vcpkg-binaries-windows-
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
@@ -278,17 +256,14 @@ jobs:
       - name: Install LLVM/Clang
         shell: pwsh
         run: |
-          Write-Host "=== Installing LLVM/Clang ==="
           choco install llvm -y
-          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-          Write-Host "✓ LLVM/Clang installed"
 
       - name: Install vcpkg dependencies for runtime
         working-directory: c-api
         shell: pwsh
         run: |
           Write-Host "=== Installing runtime dependencies ==="
-          C:\vcpkg\vcpkg.exe install --triplet=x64-windows
+          ${env:VCPKG_ROOT}/vcpkg.exe install --triplet=x64-windows
 
       - name: Download Windows deserializer
         uses: actions/download-artifact@v4
@@ -307,10 +282,8 @@ jobs:
         run: |
           Write-Host "=== Deserializer Contents ==="
           Get-ChildItem deserializer -Recurse | Select-Object FullName, Length
-
           Write-Host "`n=== Data Contents ==="
           Get-ChildItem data -Recurse | Select-Object FullName, Length
-
           Write-Host "`n=== Verifying DLL dependencies ==="
           $requiredDlls = @(
             "falcon_core_c_api.dll",
@@ -330,9 +303,7 @@ jobs:
         run: |
           $deserializerPath = (Resolve-Path "deserializer").Path
           $env:PATH = "$deserializerPath;$env:PATH"
-
           Write-Host "Runtime PATH includes: $deserializerPath"
-
           Write-Host "`n=== Available DLLs ==="
           Get-ChildItem $deserializerPath -Filter "*.dll" | Select-Object Name
 
@@ -363,46 +334,30 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
-      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create vcpkg cache directories
+      - name: Create vcpkg binary cache directory
         run: |
-          mkdir -p "${{ github.workspace }}/.vcpkg/bincache"
-          mkdir -p "${{ github.workspace }}/.vcpkg/downloads"
+          mkdir -p "${{ github.workspace }}/.vcpkg-binary-cache"
 
-      - name: Attempt to restore vcpkg binary cache
+      - name: Cache vcpkg binary packages
         uses: actions/cache@v4
         with:
-          path: |
-            .vcpkg/bincache
-            .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-linux-cross-capi-${{ hashFiles('c-api/vcpkg.json', 'cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          path: .vcpkg-binary-cache
+          key: vcpkg-binaries-linux-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            vcpkg-${{ runner.os }}-linux-cross-capi-
-            vcpkg-${{ runner.os }}-linux-
+            vcpkg-binaries-linux-
 
       - name: Install build dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            build-essential \
-            clang \
-            llvm \
-            pkg-config \
-            cmake \
-            curl \
-            zip \
-            unzip \
-            tar \
-            git \
-            autoconf \
-            automake \
-            libtool
+            build-essential clang llvm pkg-config cmake \
+            curl zip unzip tar git autoconf automake libtool
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
@@ -431,11 +386,9 @@ jobs:
         run: |
           echo "=== Deserializer Contents ==="
           ls -lhR deserializer
-
           echo ""
           echo "=== Data Contents ==="
           ls -lhR data
-
           echo ""
           echo "=== Checking for executable ==="
           if [ -f "deserializer/integration_deserialize_connection_c" ]; then
@@ -451,7 +404,6 @@ jobs:
       - name: Make executable runnable
         run: |
           chmod +x deserializer/integration_deserialize_connection_c
-
           echo "=== Library dependencies ==="
           ldd deserializer/integration_deserialize_connection_c || true
 
@@ -459,12 +411,20 @@ jobs:
         run: |
           cd deserializer
 
-          # Set up library path to include vcpkg dependencies
-          VCPKG_LIB_PATH="${VCPKG_ROOT}/installed/x64-linux-dynamic/lib"
+          # Set up library path
+          VCPKG_LIB_PATH="${GITHUB_WORKSPACE}/c-api/build/vcpkg_installed/x64-linux-dynamic/lib"
           export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_PATH}:$LD_LIBRARY_PATH
 
           echo "=== LD_LIBRARY_PATH ==="
           echo $LD_LIBRARY_PATH
+
+          echo ""
+          echo "=== Checking if vcpkg libs exist ==="
+          ls -la ${VCPKG_LIB_PATH} || echo "vcpkg lib path not found!"
+
+          echo ""
+          echo "=== Boost libraries available ==="
+          find ${VCPKG_LIB_PATH} -name "libboost*" || echo "No boost libs found!"
 
           echo ""
           echo "=== Running C-API deserialization test ==="

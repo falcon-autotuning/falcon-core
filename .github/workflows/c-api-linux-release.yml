@@ -10,30 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
       VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create vcpkg cache directories
+      - name: Create vcpkg binary cache directory
         run: |
-          mkdir -p "${{ github.workspace }}/.vcpkg/bincache"
-          mkdir -p "${{ github.workspace }}/.vcpkg/downloads"
-          echo "Created cache directories:"
-          ls -la "${{ github.workspace }}/.vcpkg/"
+          mkdir -p "${{ github.workspace }}/.vcpkg-binary-cache"
 
-      - name: Attempt to restore vcpkg binary cache
+      - name: Cache vcpkg binary packages (SHARED ACROSS ALL LINUX WORKFLOWS)
         uses: actions/cache@v4
         with:
-          path: |
-            .vcpkg/bincache
-            .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-linux-release-capi-${{ hashFiles('c-api/vcpkg.json', 'cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
+          path: .vcpkg-binary-cache
+          # This key is SHARED by all Linux workflows
+          key: vcpkg-binaries-linux-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            vcpkg-${{ runner.os }}-linux-release-capi-
-            vcpkg-${{ runner.os }}-linux-
+            vcpkg-binaries-linux-
+
+      - name: Cache vcpkg downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/vcpkg/archives
+          key: vcpkg-downloads-${{ runner.os }}
+          restore-keys: |
+            vcpkg-downloads-
 
       - name: Install build dependencies (MUST be before vcpkg setup)
         run: |
