@@ -28,12 +28,7 @@ jobs:
             vcpkg-${{ runner.os }}-linux-capi-
             vcpkg-${{ runner.os }}-linux-
 
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
-
-      - name: Install build dependencies for Makefile
+      - name: Install build dependencies (MUST be before vcpkg setup)
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -49,7 +44,22 @@ jobs:
             zip \
             unzip \
             tar \
-            git
+            git \
+            autoconf \
+            automake \
+            libtool
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+
+      - name: Verify vcpkg is ready
+        run: |
+          echo "=== Verifying vcpkg installation ==="
+          echo "VCPKG_ROOT: ${VCPKG_ROOT}"
+          ls -la "${VCPKG_ROOT}"
+          ${VCPKG_ROOT}/vcpkg version
 
       - name: Download C++ build artifacts
         uses: actions/download-artifact@v4
