@@ -117,96 +117,59 @@ jobs:
   cpp-windows-to-linux:
     name: C++ Windows → Linux
     runs-on: ubuntu-latest
-    container:
-      image: archlinux:latest
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create build user
+      - name: Create vcpkg cache directories
         run: |
-          useradd -m builduser
-          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          chown -R builduser:builduser .
+          mkdir -p "${{ github.workspace }}/.vcpkg/bincache"
+          mkdir -p "${{ github.workspace }}/.vcpkg/downloads"
 
-      - name: Cache pacman packages
-        uses: actions/cache@v4
-        with:
-          path: /var/cache/pacman/pkg
-          key: ${{ runner.os }}-pacman-${{ github.ref }}
-          restore-keys: |
-            ${{ runner.os }}-pacman-
-
-      - name: Cache AUR packages
+      - name: Attempt to restore vcpkg binary cache
         uses: actions/cache@v4
         with:
           path: |
-            packaging/highfive/*.pkg.tar.zst
-            packaging/exprtk/*.pkg.tar.zst
-          key: ${{ runner.os }}-aur-${{ github.ref }}
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-linux-cross-cpp-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            ${{ runner.os }}-aur-
+            vcpkg-${{ runner.os }}-linux-cross-cpp-
+            vcpkg-${{ runner.os }}-linux-
 
-      - name: Install system dependencies
+      - name: Install build dependencies
         run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm \
-            base-devel \
-            git \
-            wget \
-            curl \
-            pkg-config \
-            openssh \
-            cereal \
-            hdf5 \
-            boost \
-            bzip2 \
-            expat \
-            nlohmann-json \
-            openssl \
-            python \
-            sqlite \
-            yaml-cpp \
-            zlib \
-            ninja \
-            llvm \
-            ccache \
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
             clang \
-            gtest \
-            glibc \
+            llvm \
+            pkg-config \
             cmake \
-            lld
+            curl \
+            zip \
+            unzip \
+            tar \
+            git \
+            autoconf \
+            automake \
+            libtool
 
-      - name: Install AUR packages
-        run: |
-          mkdir -p packaging
-          chown builduser:builduser packaging
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
-              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
-              cd packaging/highfive
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              fi
-              cd ../exprtk
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              fi
-            "
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
 
-      - name: Build xtensor packages
+      - name: Install vcpkg dependencies for runtime
+        working-directory: cpp
         run: |
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-            cd packaging/xtl && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xsimd && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
-          "
+          echo "=== Installing runtime dependencies with vcpkg ==="
+          ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic
 
       - name: Download Linux deserializer
         uses: actions/download-artifact@v4
@@ -256,8 +219,15 @@ jobs:
       - name: Deserialize on Linux
         run: |
           cd deserializer
-          export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
 
+          # Set up library path to include vcpkg dependencies
+          VCPKG_LIB_PATH="${VCPKG_ROOT}/installed/x64-linux-dynamic/lib"
+          export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_PATH}:$LD_LIBRARY_PATH
+
+          echo "=== LD_LIBRARY_PATH ==="
+          echo $LD_LIBRARY_PATH
+
+          echo ""
           echo "=== Running deserialization test ==="
           ./integration_deserialize_connection --input ../data/cpp_windows_cross.json --name "WindowsToLinuxTest" --type ReservoirGate --verbose
 
@@ -391,99 +361,59 @@ jobs:
   capi-windows-to-linux:
     name: C-API Windows → Linux
     runs-on: ubuntu-latest
-    container:
-      image: archlinux:latest
+
+    env:
+      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg/bincache,readwrite"
+      VCPKG_DOWNLOADS: "${{ github.workspace }}/.vcpkg/downloads"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create build user
+      - name: Create vcpkg cache directories
         run: |
-          useradd -m builduser
-          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          chown -R builduser:builduser .
+          mkdir -p "${{ github.workspace }}/.vcpkg/bincache"
+          mkdir -p "${{ github.workspace }}/.vcpkg/downloads"
 
-      - name: Cache pacman packages
-        uses: actions/cache@v4
-        with:
-          path: /var/cache/pacman/pkg
-          key: ${{ runner.os }}-pacman-cross-capi-${{ github.ref }}
-          restore-keys: |
-            ${{ runner.os }}-pacman-cross-capi-
-            ${{ runner.os }}-pacman-cross-
-            ${{ runner.os }}-pacman-
-
-      - name: Cache AUR packages
+      - name: Attempt to restore vcpkg binary cache
         uses: actions/cache@v4
         with:
           path: |
-            packaging/highfive/*.pkg.tar.zst
-            packaging/exprtk/*.pkg.tar.zst
-          key: ${{ runner.os }}-aur-cross-capi-${{ github.ref }}
+            .vcpkg/bincache
+            .vcpkg/downloads
+          key: vcpkg-${{ runner.os }}-linux-cross-capi-${{ hashFiles('c-api/vcpkg.json', 'cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}
           restore-keys: |
-            ${{ runner.os }}-aur-cross-capi-
-            ${{ runner.os }}-aur-cross-
-            ${{ runner.os }}-aur-
+            vcpkg-${{ runner.os }}-linux-cross-capi-
+            vcpkg-${{ runner.os }}-linux-
 
-      - name: Install system dependencies
+      - name: Install build dependencies
         run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm \
-            base-devel \
-            git \
-            wget \
-            curl \
-            pkg-config \
-            openssh \
-            cereal \
-            hdf5 \
-            boost \
-            bzip2 \
-            expat \
-            nlohmann-json \
-            openssl \
-            python \
-            sqlite \
-            yaml-cpp \
-            zlib \
-            ninja \
-            llvm \
-            ccache \
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
             clang \
-            glibc \
+            llvm \
+            pkg-config \
             cmake \
-            lld
+            curl \
+            zip \
+            unzip \
+            tar \
+            git \
+            autoconf \
+            automake \
+            libtool
 
-      - name: Install AUR packages
-        run: |
-          mkdir -p packaging
-          chown builduser:builduser packaging
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
-              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
-              cd packaging/highfive
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              fi
-              cd ../exprtk
-              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
-                sudo pacman -U --noconfirm ./*.pkg.tar.zst
-              else
-                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
-              fi
-            "
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
 
-      - name: Build xtensor packages
+      - name: Install vcpkg dependencies for runtime
+        working-directory: c-api
         run: |
-          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
-            cd packaging/xtl && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xsimd && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor && makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
-          "
+          echo "=== Installing runtime dependencies with vcpkg ==="
+          ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic
 
       - name: Download Linux deserializer
         uses: actions/download-artifact@v4
@@ -528,8 +458,15 @@ jobs:
       - name: Deserialize on Linux
         run: |
           cd deserializer
-          export LD_LIBRARY_PATH=$(pwd):$LD_LIBRARY_PATH
 
+          # Set up library path to include vcpkg dependencies
+          VCPKG_LIB_PATH="${VCPKG_ROOT}/installed/x64-linux-dynamic/lib"
+          export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_PATH}:$LD_LIBRARY_PATH
+
+          echo "=== LD_LIBRARY_PATH ==="
+          echo $LD_LIBRARY_PATH
+
+          echo ""
           echo "=== Running C-API deserialization test ==="
           ./integration_deserialize_connection_c --input ../data/capi_windows_cross.json --name "CApiWindowsToLinuxTest" --type Ohmic --verbose
 
