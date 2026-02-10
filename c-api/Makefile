@@ -46,8 +46,8 @@ else
   CC ?= clang
   CXX ?= clang++
   VCPKG_TRIPLET := x64-linux-dynamic
-  VCPKG_DEBUG_LIB := $(PWD)/vcpkg_installed/x64-linux-dynamic/debug/lib
-  VCPKG_RELEASE_LIB := $(PWD)/vcpkg_installed/x64-linux-dynamic/lib
+  VCPKG_DEBUG_LIB := $(C_API_BUILD_DIR)/vcpkg_installed/x64-linux-dynamic/debug/lib
+  VCPKG_RELEASE_LIB := $(C_API_BUILD_DIR)/vcpkg_installed/x64-linux-dynamic/lib
   EXE_SUFFIX :=
   STRIP_CMD := strip
   VCPKG_TOOLCHAIN ?= $(shell which vcpkg >/dev/null 2>&1 && vcpkg integrate install --triplet=$(VCPKG_TRIPLET) 2>/dev/null | grep -o '/.*\.cmake' | head -n1 || echo $(PWD)/vcpkg/scripts/buildsystems/vcpkg.cmake)
@@ -57,12 +57,12 @@ else
 endif
 
 ifeq ($(USE_VCPKG),1)
-  VCPKG_INSTALLED := vcpkg_installed
+  VCPKG_INSTALLED := $(C_API_BUILD_DIR)/vcpkg_installed
   # attempt to discover a usable vcpkg toolchain file (may differ by platform)
-  TOOLCHAIN_ARG = -DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
-									-DVCPKG_TARGET_TRIPLET=x64-linux-dynamic \
-									-DVCPKG_INSTALLED_DIR=$(C_API_BUILD_DIR)/vcpkg_installed \
-									-DCMAKE_PREFIX_PATH="$(CORE_BUILD_DIR);$(VCPKG_INSTALLED)/x64-linux-dynamic"
+TOOLCHAIN_ARG := -DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
+                 -DVCPKG_TARGET_TRIPLET=$(VCPKG_TRIPLET) \
+                 -DVCPKG_INSTALLED_DIR=$(C_API_BUILD_DIR)/vcpkg_installed \
+                 -DCMAKE_PREFIX_PATH="$(CORE_BUILD_DIR);$(C_API_BUILD_DIR)/vcpkg_installed/$(VCPKG_TRIPLET)"
   VCPKG_ENV := VCPKG_FEATURE_FLAGS=fail-on-unavailable
 else
   TOOLCHAIN_ARG :=

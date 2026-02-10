@@ -5,11 +5,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-# set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-# set(CMAKE_C_VISIBILITY_PRESET hidden)
-# set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_C_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN YES)
 set(C_API_LIB_NAME "falcon_core_c_api")
-set(C_API_TARGET "falcon_core_c_api")
 set(BATCH_SIZE 20)
 option(FALCON_CORE_DEV "Dev mode generates coverage and testing" OFF)
 if(FALCON_CORE_DEV)
@@ -94,14 +93,12 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -fuse-ld=lld")
 option(USE_VCPKG "Use vcpkg for dependencies" ON)
 set(BOOST_FILESYSTEM_TARGET Boost::filesystem)
 if(USE_VCPKG)
-  # Use the vcpkg toolchain (preferred) so we don't manually add include dirs.
-  # But when a vcpkg_installed layout is inspected, choose the appropriate triplet
   if(WIN32)
-    set(VCPKG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/include")
-    set(RPATH "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/x64-windows-dynamic/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>")
+    set(VCPKG_INCLUDE_DIR "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-windows/include")
+    set(RPATH "${CMAKE_BINARY_DIR}/build/vcpkg_installed/x64-windows-dynamic/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>")
   else()
-    set(VCPKG_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux/include")
-    set(RPATH "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/x64-linux-dynamic/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>")
+    set(VCPKG_INCLUDE_DIR "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux-dynamic/include")
+    set(RPATH "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux-dynamic/debug/lib;$<TARGET_FILE_DIR:${C_API_LIB_NAME}>;$<TARGET_FILE_DIR:GTest::gtest_main>;$<TARGET_FILE_DIR:GTest::gtest>")
   endif()
 
   set(HDF5_TARGET hdf5::hdf5-shared)
@@ -117,7 +114,7 @@ else()
 endif()
 
 set(C_API_LIB_NAME
-    "${C_API_TARGET}"
+    "${C_API_LIB_NAME}"
     CACHE STRING "ChangeMe")
 
 if(POLICY CMP0167)
@@ -199,11 +196,42 @@ target_include_directories(
          $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
          $<INSTALL_INTERFACE:include>)
 
-get_filename_component(CORE_BUILD_ABS "${CORE_ROOT}/build" ABSOLUTE)
-target_link_libraries(${C_API_LIB_NAME} PUBLIC falcon_core_cpp)
-add_subdirectory(${CORE_ROOT} ${CORE_ROOT}/build)
+# Import the pre-built falcon_core_cpp library
+find_library(FALCON_CORE_CPP_LIB
+  NAMES falcon_core_cpp libfalcon_core_cpp
+  PATHS ${CORE_ROOT}/build
+  NO_DEFAULT_PATH
+  REQUIRED
+)
+
+# Create an imported target
+add_library(falcon_core_cpp SHARED IMPORTED)
+set_target_properties(falcon_core_cpp PROPERTIES
+  IMPORTED_LOCATION ${FALCON_CORE_CPP_LIB}
+  INTERFACE_INCLUDE_DIRECTORIES "${CORE_ROOT}/include"
+)
+
+# Link against it
+target_link_libraries(${C_API_LIB_NAME} PUBLIC
+  falcon_core_cpp
+  ${HDF5_CPP_TARGET}
+  ${HDF5_TARGET}
+  yaml-cpp::yaml-cpp
+  xtensor
+  ${BOOST_FILESYSTEM_TARGET}
+)
 if(WIN32)
   target_link_options(${C_API_LIB_NAME} PRIVATE /FORCE:MULTIPLE)
+  set_target_properties(falcon_core_cpp PROPERTIES
+  IMPORTED_LOCATION ${CORE_ROOT}/build/falcon_core_cpp.dll
+  IMPORTED_IMPLIB ${CORE_ROOT}/build/falcon_core_cpp.lib
+  INTERFACE_INCLUDE_DIRECTORIES ${CORE_ROOT}/include
+)
+else()
+  set_target_properties(falcon_core_cpp PROPERTIES
+  IMPORTED_LOCATION ${CORE_ROOT}/build/libfalcon_core_cpp.so
+  INTERFACE_INCLUDE_DIRECTORIES ${CORE_ROOT}/include
+)
 endif()
 
 set_target_properties(
@@ -260,13 +288,12 @@ if(FALCON_CORE_DEV)
                                           ${C_API_LIB_NAME})
   endif()
 
-  target_link_libraries(falcon_core_cpp_run_tests PUBLIC yaml-cpp::yaml-cpp)
   include(GoogleTest)
   gtest_discover_tests(falcon_core_c_api_run_tests)
 
   # ---- Integration Tests for Cross-Platform Serialization (C-API) ----
   message(STATUS "Setting up C-API cross-platform serialization integration tests")
-  
+
   # C-API Serialization integration test
   add_executable(integration_serialize_connection_c tests/integration_serialize_connection.c)
   set_target_properties(integration_serialize_connection_c PROPERTIES
@@ -286,12 +313,12 @@ if(FALCON_CORE_DEV)
       SKIP_BUILD_RPATH FALSE
     )
   endif()
-  target_include_directories(integration_serialize_connection_c PRIVATE 
+  target_include_directories(integration_serialize_connection_c PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CORE_ROOT}/include
   )
   target_link_libraries(integration_serialize_connection_c PRIVATE ${C_API_LIB_NAME})
-  
+
   # C-API Deserialization integration test
   add_executable(integration_deserialize_connection_c tests/integration_deserialize_connection.c)
   set_target_properties(integration_deserialize_connection_c PROPERTIES
@@ -311,18 +338,18 @@ if(FALCON_CORE_DEV)
       SKIP_BUILD_RPATH FALSE
     )
   endif()
-  target_include_directories(integration_deserialize_connection_c PRIVATE 
+  target_include_directories(integration_deserialize_connection_c PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${CORE_ROOT}/include
   )
   target_link_libraries(integration_deserialize_connection_c PRIVATE ${C_API_LIB_NAME})
-  
+
   message(STATUS "C-API Integration test executables: integration_serialize_connection_c, integration_deserialize_connection_c")
-  
+
   # ---- Windows: Copy DLLs to executable directory ----
   if(WIN32)
     message(STATUS "Configuring automatic DLL copying for Windows")
-    
+
     # Function to copy DLLs for a target
     function(copy_runtime_dlls target_name)
       # Copy falcon_core_cpp.dll
@@ -332,7 +359,7 @@ if(FALCON_CORE_DEV)
           "$<TARGET_FILE_DIR:${target_name}>"
         COMMENT "Copying falcon_core_cpp.dll for ${target_name}"
       )
-      
+
       # Copy falcon_core_c_api.dll
       add_custom_command(TARGET ${target_name} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
@@ -340,13 +367,13 @@ if(FALCON_CORE_DEV)
           "$<TARGET_FILE_DIR:${target_name}>"
         COMMENT "Copying falcon_core_c_api.dll for ${target_name}"
       )
-      
+
       # Copy vcpkg DLLs
       if(USE_VCPKG)
         # Determine vcpkg bin directory based on build type
         set(VCPKG_BIN_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/bin")
         set(VCPKG_DEBUG_BIN_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/debug/bin")
-        
+
         # Copy from release bin for Release builds
         if(EXISTS "${VCPKG_BIN_DIR}")
           add_custom_command(TARGET ${target_name} POST_BUILD
@@ -356,7 +383,7 @@ if(FALCON_CORE_DEV)
             COMMENT "Copying vcpkg DLLs (release) for ${target_name}"
           )
         endif()
-        
+
         # Also copy debug DLLs if they exist (for Debug builds)
         if(EXISTS "${VCPKG_DEBUG_BIN_DIR}")
           add_custom_command(TARGET ${target_name} POST_BUILD
@@ -368,7 +395,7 @@ if(FALCON_CORE_DEV)
         endif()
       endif()
     endfunction()
-    
+
     # Apply to both integration test executables
     copy_runtime_dlls(integration_serialize_connection_c)
     copy_runtime_dlls(integration_deserialize_connection_c)

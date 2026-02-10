@@ -42,7 +42,7 @@ else
   EXE_SUFFIX :=
   STRIP_CMD := strip
   VCPKG_TOOLCHAIN ?= $(shell which vcpkg >/dev/null 2>&1 && vcpkg integrate install --triplet=$(VCPKG_TRIPLET) 2>/dev/null | grep -o '/.*\.cmake' | head -n1 || echo $(PWD)/vcpkg/scripts/buildsystems/vcpkg.cmake)
-  RUN_PREFIX := LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$$LD_LIBRARY_PATH
+	RUN_PREFIX := LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(VCPKG_RELEASE_LIB):$$LD_LIBRARY_PATH
 	USE_VCPKG ?= 0
 endif
 
@@ -117,10 +117,8 @@ else
 		-DFALCON_CORE_DEV=ON \
 		-DUSE_VCPKG=$(USE_VCPKG)
 endif
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi;
-	@echo "--- Build complete ---"
-	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi;
 	ninja -C $(BUILD_DIR) -j $(shell nproc 2>/dev/null || echo 1) -d stats
+	@if [ ! -e compile_commands.json ]; then ln -s build/compile_commands.json .; fi;
 	@echo "--- Build complete ---"
 
 # Shell helper to load compiler.env if present (used inside $(shell ...))

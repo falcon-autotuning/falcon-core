@@ -38,13 +38,13 @@ if(CMAKE_C_COMPILER_ID MATCHES "Clang")
   endif()
 elseif(CMAKE_C_COMPILER_ID MATCHES "GNU")
   message("GNU detected. In dev mode so coverage will be built.")
-  set(C_FLAGS "-O0 -fprofile-arcs -ftest-coverage")
+  set(C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
 else()
   # Fallback for other compilers
   if(COMPILER_IS_MSVC)
     set(C_FLAGS "/O2")
   else()
-    set(C_FLAGS "-Oz")
+    set(C_FLAGS "-g -Oz")
   endif()
 endif()
 
@@ -206,7 +206,6 @@ if(FALCON_CORE_DEV)
 )
   add_executable(falcon_core_cpp_run_tests ${RUN_TESTS_SOURCES})
   if(WIN32)
-    # Windows: Disable Unity Build to avoid duplicate symbol errors
     set_target_properties(falcon_core_cpp_run_tests PROPERTIES
     WINDOWS_EXPORT_ALL_SYMBOLS OFF
     UNITY_BUILD ON
