@@ -95,15 +95,6 @@ jobs:
 
           Write-Host "✓ CMake configuration successful"
 
-      - name: Save vcpkg binary cache (early)
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            .vcpkg/bincache
-            .vcpkg/downloads
-          key: vcpkg-${{ runner.os }}-clang-cl-${{ hashFiles('cpp/vcpkg.json', 'vcpkg-lock.json', '**/vcpkg-configuration.json') }}-${{ github.run_id }}
-
       - name: Build falcon-core-cpp
         working-directory: cpp
         shell: pwsh
@@ -277,24 +268,16 @@ jobs:
           $hash.Hash | Out-File -FilePath "../dll-upload/falcon_core_cpp.dll.sha256" -Encoding ASCII -NoNewline
           Write-Host "SHA256: $($hash.Hash)"
 
-      - name: Upload C++ DLL separately
+      - name: Upload C++ build artifacts for C-API CI
         uses: actions/upload-artifact@v4
         with:
-          name: cpp-windows-dll
-          path: cpp/dll-upload/*
-          retention-days: 1
-          compression-level: 0
-          if-no-files-found: error
-
-      - name: Upload C++ lib and cache
-        uses: actions/upload-artifact@v4
-        with:
-          name: cpp-windows-support
+          name: cpp-windows-build
           path: |
+            cpp/build/falcon_core_cpp.dll
             cpp/build/falcon_core_cpp.lib
             cpp/build/CMakeCache.txt
           retention-days: 1
-          compression-level: 0
+          if-no-files-found: error
 
       - name: Prepare integration test executable with dependencies for cross-platform tests
         working-directory: cpp/build

@@ -51,109 +51,28 @@ jobs:
           choco install ninja -y
           Write-Host "✓ Ninja installed"
 
-      - name: Download C++ DLL
+      - name: Download C++ build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: cpp-windows-dll
+          name: cpp-windows-build
           path: cpp/build
 
-      - name: Download C++ support files
-        uses: actions/download-artifact@v4
-        with:
-          name: cpp-windows-support
-          path: cpp/build
-
-      - name: Verify downloaded DLL
+      - name: Verify DLL exists
         shell: pwsh
         run: |
-          Write-Host "=== Verifying downloaded DLL ==="
-
-          $dllPath = "cpp\build\falcon_core_cpp.dll"
-          $checksumPath = "cpp\build\falcon_core_cpp.dll.sha256"
-
-          # Check files exist
-          if (-not (Test-Path $dllPath)) {
-            Write-Error "ERROR: DLL not found after download!"
-            Write-Host "`nFiles that were downloaded:"
-            Get-ChildItem "cpp\build" -Recurse | Select-Object FullName, Length
+          if (-not (Test-Path "cpp\build\falcon_core_cpp.dll")) {
+            Write-Error "DLL not found!"
+            Get-ChildItem "cpp\build" -Recurse
             exit 1
           }
 
-          if (-not (Test-Path $checksumPath)) {
-            Write-Error "ERROR: Checksum file not found!"
+          $dll = Get-Item "cpp\build\falcon_core_cpp.dll"
+          Write-Host "DLL size: $($dll.Length) bytes"
+
+          if ($dll.Length -lt 1000000) {
+            Write-Error "DLL suspiciously small!"
             exit 1
           }
-
-          # Check file size
-          $dllFile = Get-Item $dllPath
-          Write-Host "Downloaded DLL size: $($dllFile.Length) bytes"
-
-          if ($dllFile.Length -lt 100000) {
-            Write-Error "ERROR: Downloaded DLL is too small ($($dllFile.Length) bytes) - corrupted!"
-            
-            # Show hex dump for debugging
-            Write-Host "`nFirst 100 bytes (hex):"
-            $bytes = [System.IO.File]::ReadAllBytes($dllPath)
-            $hexDump = ($bytes[0..[Math]::Min(99, $bytes.Length-1)] | ForEach-Object { $_.ToString("X2") }) -join " "
-            Write-Host $hexDump
-            exit 1
-          }
-
-          # Verify PE signature
-          $bytes = [System.IO.File]::ReadAllBytes($dllPath)
-          $mzSignature = [System.BitConverter]::ToUInt16($bytes, 0)
-          if ($mzSignature -ne 0x5A4D) {
-            Write-Error "ERROR: Downloaded file is not a valid PE file (missing MZ signature)!"
-            Write-Host "First 4 bytes: $($bytes[0..3] -join ', ')"
-            exit 1
-          }
-
-          # Verify checksum
-          $expectedHash = (Get-Content $checksumPath -Raw).Trim()
-          $actualHash = (Get-FileHash $dllPath -Algorithm SHA256).Hash
-
-          Write-Host "`nChecksum verification:"
-          Write-Host "  Expected: $expectedHash"
-          Write-Host "  Actual:   $actualHash"
-
-          if ($expectedHash -ne $actualHash) {
-            Write-Error "ERROR: Checksum mismatch! DLL was corrupted during artifact transfer!"
-            exit 1
-          }
-
-          Write-Host "`n✓ All DLL verification checks passed"
-          Write-Host "  - Valid PE file"
-          Write-Host "  - Correct size"
-          Write-Host "  - Checksum matches"
-
-      - name: Verify and organize C++ artifacts
-        shell: pwsh
-        run: |
-          Write-Host "=== Downloaded C++ Artifacts ==="
-          Get-ChildItem cpp/build -Recurse
-
-          if (Test-Path "cpp/build/falcon_core_cpp.dll") {
-            Write-Host "✓ falcon_core_cpp.dll found in root"
-          } else {
-            $dllLocation = Get-ChildItem "cpp/build" -Recurse -Filter "falcon_core_cpp.dll" | Select-Object -First 1
-            if ($dllLocation) {
-              Write-Host "Found DLL at: $($dllLocation.FullName)"
-              Copy-Item $dllLocation.FullName "cpp/build/"
-              
-              $libLocation = Get-ChildItem "cpp/build" -Recurse -Filter "falcon_core_cpp.lib" | Select-Object -First 1
-              if ($libLocation) {
-                Copy-Item $libLocation.FullName "cpp/build/"
-              }
-              
-              Write-Host "✓ Reorganized artifacts to cpp/build root"
-            } else {
-              Write-Error "ERROR: falcon_core_cpp.dll not found!"
-              exit 1
-            }
-          }
-
-          Write-Host "`n=== Final cpp/build contents ==="
-          Get-ChildItem cpp/build -Filter "*.*" | Select-Object Name, Length
 
       - name: Configure CMake for C-API
         working-directory: c-api
