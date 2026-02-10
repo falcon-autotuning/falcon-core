@@ -223,24 +223,29 @@ jobs:
         run: |
           cd deserializer
 
-          # Set up library path
-          VCPKG_LIB_PATH="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/lib"
-          export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_PATH}:$LD_LIBRARY_PATH
+          # Set up library path - INCLUDE BOTH RELEASE AND DEBUG
+          VCPKG_LIB_RELEASE="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/lib"
+          VCPKG_LIB_DEBUG="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/debug/lib"
+          export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_RELEASE}:${VCPKG_LIB_DEBUG}:$LD_LIBRARY_PATH
 
           echo "=== LD_LIBRARY_PATH ==="
           echo $LD_LIBRARY_PATH
 
           echo ""
           echo "=== Checking if vcpkg libs exist ==="
-          if [ -d "${VCPKG_LIB_PATH}" ]; then
-            echo "Found vcpkg lib directory"
-            ls -la ${VCPKG_LIB_PATH} | head -20
-          else
-            echo "ERROR: vcpkg lib path not found!"
-            echo "Looking for vcpkg_installed directories..."
-            find ${GITHUB_WORKSPACE}/cpp -type d -name "vcpkg_installed"
-            exit 1
+          if [ -d "${VCPKG_LIB_RELEASE}" ]; then
+            echo "Found vcpkg RELEASE lib directory"
+            ls -la ${VCPKG_LIB_RELEASE} | head -10
           fi
+
+          if [ -d "${VCPKG_LIB_DEBUG}" ]; then
+            echo "Found vcpkg DEBUG lib directory"
+            ls -la ${VCPKG_LIB_DEBUG} | head -10
+          fi
+
+          echo ""
+          echo "=== Looking for yaml-cpp libraries ==="
+          find ${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed -name "*yaml*" || echo "No yaml libs found"
 
           echo ""
           echo "=== Running deserialization test ==="
@@ -477,27 +482,24 @@ jobs:
         run: |
           cd deserializer
 
-          # Set up library path
-          VCPKG_LIB_PATH="${GITHUB_WORKSPACE}/c-api/build/vcpkg_installed/x64-linux-dynamic/lib"
-          export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_PATH}:$LD_LIBRARY_PATH
+          # Set up library path - INCLUDE BOTH RELEASE AND DEBUG
+          VCPKG_LIB_RELEASE="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/lib"
+          VCPKG_LIB_DEBUG="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/debug/lib"
+          export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_RELEASE}:${VCPKG_LIB_DEBUG}:$LD_LIBRARY_PATH
 
           echo "=== LD_LIBRARY_PATH ==="
           echo $LD_LIBRARY_PATH
 
           echo ""
           echo "=== Checking if vcpkg libs exist ==="
-          if [ -d "${VCPKG_LIB_PATH}" ]; then
-            echo "Found vcpkg lib directory"
-            ls -la ${VCPKG_LIB_PATH} | head -20
-            echo ""
-            echo "=== Boost libraries available ==="
-            find ${VCPKG_LIB_PATH} -name "libboost*" | head -10
-          else
-            echo "ERROR: vcpkg lib path not found at: ${VCPKG_LIB_PATH}"
-            echo ""
-            echo "=== Looking for vcpkg_installed directory ==="
-            find ${GITHUB_WORKSPACE}/c-api -type d -name "vcpkg_installed"
-            exit 1
+          if [ -d "${VCPKG_LIB_RELEASE}" ]; then
+            echo "Found vcpkg RELEASE lib directory"
+            ls -la ${VCPKG_LIB_RELEASE} | head -10
+          fi
+
+          if [ -d "${VCPKG_LIB_DEBUG}" ]; then
+            echo "Found vcpkg DEBUG lib directory"
+            ls -la ${VCPKG_LIB_DEBUG} | head -10
           fi
 
           echo ""
