@@ -96,7 +96,6 @@ jobs:
             $bytes = [System.IO.File]::ReadAllBytes($dllPath)
             $hexDump = ($bytes[0..[Math]::Min(99, $bytes.Length-1)] | ForEach-Object { $_.ToString("X2") }) -join " "
             Write-Host $hexDump
-            
             exit 1
           }
 
