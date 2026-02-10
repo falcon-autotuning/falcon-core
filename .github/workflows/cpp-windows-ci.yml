@@ -204,43 +204,97 @@ jobs:
           Write-Host "`n=== Artifacts for C-API ==="
           Get-ChildItem $artifactDir | Select-Object Name, Length
 
-      - name: Verify C++ library before upload
+      - name: Verify C++ library integrity before upload
         working-directory: cpp
         shell: pwsh
         run: |
-          $dllPath = "build/falcon_core_cpp.dll"
+          Write-Host "=== Verifying DLL integrity ==="
+
+          $dllPath = "build\falcon_core_cpp.dll"
           if (-not (Test-Path $dllPath)) {
-            Write-Error "DLL not found!"
+            Write-Error "ERROR: falcon_core_cpp.dll not found!"
             exit 1
           }
 
           $dllFile = Get-Item $dllPath
           Write-Host "DLL size: $($dllFile.Length) bytes"
 
-          if ($dllFile.Length -lt 1000) {
-            Write-Error "DLL seems too small - likely corrupt!"
+          # Check minimum size
+          if ($dllFile.Length -lt 100000) {
+            Write-Error "ERROR: DLL is too small - likely corrupt!"
             exit 1
           }
 
-          # Verify it's a valid PE file
+          # Verify PE signature
           $bytes = [System.IO.File]::ReadAllBytes($dllPath)
-          if ($bytes[0] -ne 0x4D -or $bytes[1] -ne 0x5A) {
-            Write-Error "Not a valid PE file!"
+          $mzSignature = [System.BitConverter]::ToUInt16($bytes, 0)
+          if ($mzSignature -ne 0x5A4D) {
+            Write-Error "ERROR: Not a valid PE file!"
             exit 1
           }
 
           Write-Host "✓ DLL verification passed"
 
-      - name: Upload C++ build artifacts for C-API CI
+      - name: Generate DLL checksum
+        working-directory: cpp/build
+        shell: pwsh
+        run: |
+          Write-Host "=== Generating checksum ==="
+          $hash = Get-FileHash "falcon_core_cpp.dll" -Algorithm SHA256
+          $hash.Hash | Out-File -FilePath "falcon_core_cpp.dll.sha256" -Encoding ASCII -NoNewline
+          Write-Host "DLL SHA256: $($hash.Hash)"
+          Write-Host "DLL Size: $((Get-Item 'falcon_core_cpp.dll').Length) bytes"
+
+      - name: Prepare DLL for upload
+        working-directory: cpp/build
+        shell: pwsh
+        run: |
+          Write-Host "=== Preparing DLL for upload ==="
+
+          # Wait for file system
+          Start-Sleep -Seconds 3
+
+          # Create clean directory
+          New-Item -ItemType Directory -Force -Path "../dll-upload"
+
+          # Copy DLL
+          Copy-Item "falcon_core_cpp.dll" "../dll-upload/" -Force
+
+          # Verify
+          $original = Get-Item "falcon_core_cpp.dll"
+          $copy = Get-Item "../dll-upload/falcon_core_cpp.dll"
+
+          Write-Host "Original size: $($original.Length) bytes"
+          Write-Host "Copy size: $($copy.Length) bytes"
+
+          if ($original.Length -ne $copy.Length) {
+            Write-Error "Copy size mismatch!"
+            exit 1
+          }
+
+          # Generate checksum of the COPY
+          $hash = Get-FileHash "../dll-upload/falcon_core_cpp.dll" -Algorithm SHA256
+          $hash.Hash | Out-File -FilePath "../dll-upload/falcon_core_cpp.dll.sha256" -Encoding ASCII -NoNewline
+          Write-Host "SHA256: $($hash.Hash)"
+
+      - name: Upload C++ DLL separately
         uses: actions/upload-artifact@v4
         with:
-          name: cpp-windows-build
+          name: cpp-windows-dll
+          path: cpp/dll-upload/*
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
+
+      - name: Upload C++ lib and cache
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-windows-support
           path: |
-            cpp/build/falcon_core_cpp.dll
             cpp/build/falcon_core_cpp.lib
             cpp/build/CMakeCache.txt
           retention-days: 1
-          compression-level: 0 # Don't compress - might cause corruption
+          compression-level: 0
 
       - name: Prepare integration test executable with dependencies for cross-platform tests
         working-directory: cpp/build
