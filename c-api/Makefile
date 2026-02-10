@@ -98,6 +98,7 @@ ifeq ($(PLATFORM), linux)
 		$(TOOLCHAIN_ARG) \
 		-DCORE_ROOT=$(CORE_ROOT) \
 		-DUSE_VCPKG=$(USE_VCPKG) \
+		-DCMAKE_BUILD_TYPE=Release \
    	-S . -B $(C_API_BUILD_DIR)
 else
 	@echo "--- Running Windows-style cmake + ninja (using variables) ---"

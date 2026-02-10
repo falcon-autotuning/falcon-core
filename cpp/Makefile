@@ -75,6 +75,7 @@ ifeq ($(PLATFORM),linux)
 		-DCMAKE_CXX_COMPILER=${CXX} \
 		$(TOOLCHAIN_ARG) \
 		-DUSE_VCPKG=$(USE_VCPKG) \
+		-DCMAKE_BUILD_TYPE=Release \
 		. -S . -B $(BUILD_DIR)
 else
 	@echo "--- Running Windows-style cmake + ninja (using variables) ---"
