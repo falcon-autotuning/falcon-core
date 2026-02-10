@@ -21,7 +21,7 @@ typedef void* InterpretationContainerQuantityHandle;
 // @category:allocation
 FALCON_CORE_C_API InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(MapInterpretationContextQuantityHandle contextDoubleMap);
 // @category:allocation
-InterpretationContainerQuantityHandle InterpretationContainerQuantity_copy(InterpretationContainerQuantityHandle handle);
+FALCON_CORE_C_API InterpretationContainerQuantityHandle InterpretationContainerQuantity_copy(InterpretationContainerQuantityHandle handle);
 // @category:deallocation
 FALCON_CORE_C_API void InterpretationContainerQuantity_destroy(InterpretationContainerQuantityHandle handle);
 // @category:read

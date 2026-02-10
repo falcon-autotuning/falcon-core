@@ -384,7 +384,7 @@ FALCON_CORE_C_API bool {self.mangled_name()}_not_equal(
 // @category:allocation
 FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_create(MapInterpretationContext{self.name()}Handle contextDoubleMap);
 // @category:allocation
-{self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
+FALCON_CORE_C_API {self.chandle()} {self.mangled_name()}_copy({self.chandle()} handle);
 // @category:deallocation
 FALCON_CORE_C_API void {self.mangled_name()}_destroy({self.chandle()} handle);
 // @category:read

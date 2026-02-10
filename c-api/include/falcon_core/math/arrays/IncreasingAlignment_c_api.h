@@ -11,8 +11,8 @@ extern "C" {
 typedef void* IncreasingAlignmentHandle;
 
 // @category:allocation
-IncreasingAlignmentHandle IncreasingAlignment_copy(
-    IncreasingAlignmentHandle handle);
+FALCON_CORE_C_API IncreasingAlignmentHandle
+IncreasingAlignment_copy(IncreasingAlignmentHandle handle);
 // @category:deallocation
 FALCON_CORE_C_API void IncreasingAlignment_destroy(
     IncreasingAlignmentHandle handle);

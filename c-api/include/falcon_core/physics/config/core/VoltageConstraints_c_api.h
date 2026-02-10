@@ -12,8 +12,8 @@ extern "C" {
 typedef void* VoltageConstraintsHandle;
 
 // @category:allocation
-VoltageConstraintsHandle VoltageConstraints_copy(
-    VoltageConstraintsHandle handle);
+FALCON_CORE_C_API VoltageConstraintsHandle
+VoltageConstraints_copy(VoltageConstraintsHandle handle);
 // @category:deallocation
 FALCON_CORE_C_API void VoltageConstraints_destroy(
     VoltageConstraintsHandle handle);
