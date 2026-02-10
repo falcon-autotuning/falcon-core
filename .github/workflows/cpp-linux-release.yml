@@ -97,16 +97,28 @@ jobs:
         run: |
           cp vcpkg.json build/
 
-      - name: Collect vcpkg licenses
+      - name: Collect vcpkg licenses and Falcon Core license
         working-directory: cpp
         run: |
-          echo "=== Collecting vcpkg licenses ==="
+          echo "=== Collecting licenses ==="
 
           VCPKG_INSTALLED="build/vcpkg_installed/x64-linux-dynamic"
           LICENSES_DIR="build/collected_licenses"
           mkdir -p "$LICENSES_DIR"
 
-          # vcpkg stores licenses in share/<package>/copyright
+          # Copy Falcon Core license FIRST
+          echo "=== Copying Falcon Core license ==="
+          mkdir -p "$LICENSES_DIR/falcon-core"
+          if [ -f "../LICENSE.txt" ]; then
+            cp ../LICENSE.txt "$LICENSES_DIR/falcon-core/LICENSE"
+            echo "✓ Copied LICENSE.txt"
+          else
+            echo "WARNING: No LICENSE file found in repository root!"
+          fi
+
+          # Collect vcpkg licenses
+          echo ""
+          echo "=== Collecting vcpkg licenses ==="
           if [ -d "$VCPKG_INSTALLED/share" ]; then
             for pkg_dir in "$VCPKG_INSTALLED/share"/*; do
               if [ -d "$pkg_dir" ]; then
@@ -173,12 +185,18 @@ jobs:
           # Copy headers
           cp -r include/falcon_core release-package/include/
 
-          # Copy vcpkg.json (without gtest for production use)
+          # Copy vcpkg.json
           cp build/vcpkg.json release-package/
+
+          # Copy Falcon Core LICENSE to root of release
+          if [ -f "../LICENSE.txt" ]; then
+            cp ../LICENSE.txt release-package/LICENSE.txt
+            echo "✓ Copied LICENSE.txt to release root"
+          fi
 
           # Copy vcpkg installed dependencies (excluding gtest) - all to lib/
           echo "=== Collecting vcpkg dependencies ==="
-          VCPKG_INSTALLED="build/vcpkg_installed/x64-linux-dynamic"
+          VCPKG_INSTALLED="vcpkg_installed/x64-linux-dynamic"
 
           # Copy all shared libraries (.so files)
           if [ -d "$VCPKG_INSTALLED/lib" ]; then

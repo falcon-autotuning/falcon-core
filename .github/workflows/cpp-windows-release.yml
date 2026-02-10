@@ -157,6 +157,16 @@ jobs:
           $licensesDir = "build/collected_licenses"
           New-Item -ItemType Directory -Force -Path $licensesDir | Out-Null
 
+          # Copy Falcon Core license FIRST
+          Write-Host "=== Copying Falcon Core license ==="
+          New-Item -ItemType Directory -Force -Path "$licensesDir/falcon-core" | Out-Null
+          if (Test-Path "../LICENSE.txt") {
+              Copy-Item "../LICENSE.txt" "$licensesDir/falcon-core/LICENSE"
+              Write-Host "✓ Copied LICENSE.txt"
+          } else {
+              Write-Host "WARNING: No LICENSE file found in repository root!"
+          }
+
           # vcpkg stores licenses in share/<package>/copyright
           if (Test-Path "$vcpkgInstalled/share") {
             Get-ChildItem "$vcpkgInstalled/share" -Directory | ForEach-Object {
@@ -237,6 +247,12 @@ jobs:
 
           # Copy vcpkg.json
           Copy-Item "build/vcpkg.json" "$pkgDir/"
+
+          # Copy Falcon Core LICENSE to root of release
+          if (Test-Path "../LICENSE.txt") {
+              Copy-Item "../LICENSE.txt" "release-package/LICENSE.txt"
+              Write-Host "✓ Copied LICENSE.txt to release root"
+          }
 
           # Copy vcpkg dependencies (excluding gtest) - merge bin and lib folders
           Write-Host "`n=== Collecting vcpkg dependencies ==="
