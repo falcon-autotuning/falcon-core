@@ -73,7 +73,7 @@ jobs:
         working-directory: cpp
         run: |
           echo "=== Building RELEASE with Makefile ==="
-          CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=1 VCPKG_TRIPLET=x64-linux-dynamic make build-release
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=1 VCPKG_TRIPLET=x64-linux-dynamic make build
 
           if [ $? -ne 0 ]; then
             echo "ERROR: Build failed!"

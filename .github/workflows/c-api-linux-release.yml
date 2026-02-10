@@ -87,7 +87,7 @@ jobs:
         working-directory: c-api
         run: |
           echo "=== Building RELEASE with Makefile ==="
-          CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=1 VCPKG_TRIPLET=x64-linux-dynamic CORE_ROOT=../cpp make build-release
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ USE_VCPKG=1 VCPKG_TRIPLET=x64-linux-dynamic CORE_ROOT=../cpp make build
 
           if [ $? -ne 0 ]; then
             echo "ERROR: Build failed!"
