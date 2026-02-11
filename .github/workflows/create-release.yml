@@ -65,12 +65,21 @@ jobs:
       - name: Generate release tag
         id: tag
         run: |
-          # Use semantic versioning with date
-          VERSION="$(git rev-parse --short HEAD)"
+          # Check if this is a tag push
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            # Extract tag name from GITHUB_REF
+            VERSION="${GITHUB_REF#refs/tags/}"
+            echo "Detected tag push: $VERSION"
+          else
+            # Use commit hash for non-tag pushes
+            VERSION="$(git rev-parse --short HEAD)"
+            echo "Using commit hash for non-tag push: $VERSION"
+          fi
+          
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Generated version: $VERSION"
 
-          # Also create a friendly name
+          # Create a friendly name
           RELEASE_NAME="Falcon Core $VERSION"
           echo "release_name=$RELEASE_NAME" >> $GITHUB_OUTPUT
 

@@ -1,8 +1,61 @@
 cmake_minimum_required(VERSION 3.20)
-project(FalconCore LANGUAGES CXX C)
+project(FalconCore VERSION 1.0.0 LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+# Git version detection
+find_package(Git QUIET)
+set(FALCON_CORE_VERSION "${PROJECT_VERSION}")
+set(FALCON_CORE_GIT_COMMIT "unknown")
+set(FALCON_CORE_GIT_TAG "")
+
+if(GIT_FOUND)
+  execute_process(
+    COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE FALCON_CORE_GIT_COMMIT
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_QUIET
+    RESULT_VARIABLE GIT_COMMIT_RESULT)
+  
+  if(NOT GIT_COMMIT_RESULT EQUAL 0)
+    set(FALCON_CORE_GIT_COMMIT "unknown")
+  endif()
+  
+  execute_process(
+    COMMAND ${GIT_EXECUTABLE} describe --tags --exact-match HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE FALCON_CORE_GIT_TAG
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_QUIET
+    RESULT_VARIABLE GIT_TAG_RESULT)
+  
+  # If we're not on a tagged commit, check if we have tags at all
+  if(NOT GIT_TAG_RESULT EQUAL 0)
+    execute_process(
+      COMMAND ${GIT_EXECUTABLE} describe --tags --abbrev=0 HEAD
+      WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+      OUTPUT_VARIABLE FALCON_CORE_GIT_TAG
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      ERROR_QUIET
+      RESULT_VARIABLE GIT_TAG_ABBREV_RESULT)
+    
+    if(NOT GIT_TAG_ABBREV_RESULT EQUAL 0)
+      set(FALCON_CORE_GIT_TAG "")
+    endif()
+  endif()
+endif()
+
+message(STATUS "Falcon Core Version: ${FALCON_CORE_VERSION}")
+if(NOT FALCON_CORE_GIT_COMMIT STREQUAL "unknown")
+  message(STATUS "Git commit: ${FALCON_CORE_GIT_COMMIT}")
+endif()
+if(FALCON_CORE_GIT_TAG)
+  message(STATUS "Git tag: ${FALCON_CORE_GIT_TAG}")
+else()
+  message(STATUS "Git tag: (none found)")
+endif()
 set(CPP_TARGET "falcon_core_cpp")
 option(FALCON_CORE_DEV "Dev mode generates coverage and testing" OFF)
 set(BATCH_SIZE 4)
@@ -193,6 +246,14 @@ target_link_libraries(
          Threads::Threads)
 target_link_libraries(${CPP_LIB_NAME} PUBLIC yaml-cpp::yaml-cpp)
 # target_link_options(${CPP_LIB_NAME} PRIVATE /FORCE:MULTIPLE)
+
+# Add version information
+target_compile_definitions(
+  ${CPP_LIB_NAME}
+  PRIVATE
+  FALCON_CORE_VERSION="${FALCON_CORE_VERSION}"
+  FALCON_CORE_GIT_COMMIT="${FALCON_CORE_GIT_COMMIT}"
+  FALCON_CORE_GIT_TAG="${FALCON_CORE_GIT_TAG}")
 
 # ---- Optional test build ----
 if(FALCON_CORE_DEV)
