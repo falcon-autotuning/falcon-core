@@ -303,6 +303,52 @@ set_target_properties(
              ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build") # For import
 # libs
 
+# Function to copy DLLs for a target
+function(copy_runtime_dlls target_name)
+  # Copy falcon_core_cpp.dll
+  add_custom_command(TARGET ${target_name} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "$<TARGET_FILE:falcon_core_cpp>"
+      "$<TARGET_FILE_DIR:${target_name}>"
+    COMMENT "Copying falcon_core_cpp.dll for ${target_name}"
+  )
+
+  # Copy falcon_core_c_api.dll
+  add_custom_command(TARGET ${target_name} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "$<TARGET_FILE:${C_API_LIB_NAME}>"
+      "$<TARGET_FILE_DIR:${target_name}>"
+    COMMENT "Copying falcon_core_c_api.dll for ${target_name}"
+  )
+
+  # Copy vcpkg DLLs
+  if(USE_VCPKG)
+    # Determine vcpkg bin directory based on build type
+    set(VCPKG_BIN_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/bin")
+    set(VCPKG_DEBUG_BIN_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/debug/bin")
+
+    # Copy from release bin for Release builds
+    if(EXISTS "${VCPKG_BIN_DIR}")
+      add_custom_command(TARGET ${target_name} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+          "${VCPKG_BIN_DIR}"
+          "$<TARGET_FILE_DIR:${target_name}>"
+        COMMENT "Copying vcpkg DLLs (release) for ${target_name}"
+      )
+    endif()
+
+    # Also copy debug DLLs if they exist (for Debug builds)
+    if(EXISTS "${VCPKG_DEBUG_BIN_DIR}")
+      add_custom_command(TARGET ${target_name} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+          "${VCPKG_DEBUG_BIN_DIR}"
+          "$<TARGET_FILE_DIR:${target_name}>"
+        COMMENT "Copying vcpkg DLLs (debug) for ${target_name}"
+      )
+    endif()
+  endif()
+endfunction()
+
 # ---- Optional test build ----
 if(FALCON_CORE_DEV)
   find_package(GTest CONFIG REQUIRED)
@@ -410,52 +456,6 @@ if(FALCON_CORE_DEV)
   # ---- Windows: Copy DLLs to executable directory ----
   if(WIN32)
     message(STATUS "Configuring automatic DLL copying for Windows")
-
-    # Function to copy DLLs for a target
-    function(copy_runtime_dlls target_name)
-      # Copy falcon_core_cpp.dll
-      add_custom_command(TARGET ${target_name} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-          "$<TARGET_FILE:falcon_core_cpp>"
-          "$<TARGET_FILE_DIR:${target_name}>"
-        COMMENT "Copying falcon_core_cpp.dll for ${target_name}"
-      )
-
-      # Copy falcon_core_c_api.dll
-      add_custom_command(TARGET ${target_name} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-          "$<TARGET_FILE:${C_API_LIB_NAME}>"
-          "$<TARGET_FILE_DIR:${target_name}>"
-        COMMENT "Copying falcon_core_c_api.dll for ${target_name}"
-      )
-
-      # Copy vcpkg DLLs
-      if(USE_VCPKG)
-        # Determine vcpkg bin directory based on build type
-        set(VCPKG_BIN_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/bin")
-        set(VCPKG_DEBUG_BIN_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows/debug/bin")
-
-        # Copy from release bin for Release builds
-        if(EXISTS "${VCPKG_BIN_DIR}")
-          add_custom_command(TARGET ${target_name} POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory
-              "${VCPKG_BIN_DIR}"
-              "$<TARGET_FILE_DIR:${target_name}>"
-            COMMENT "Copying vcpkg DLLs (release) for ${target_name}"
-          )
-        endif()
-
-        # Also copy debug DLLs if they exist (for Debug builds)
-        if(EXISTS "${VCPKG_DEBUG_BIN_DIR}")
-          add_custom_command(TARGET ${target_name} POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory
-              "${VCPKG_DEBUG_BIN_DIR}"
-              "$<TARGET_FILE_DIR:${target_name}>"
-            COMMENT "Copying vcpkg DLLs (debug) for ${target_name}"
-          )
-        endif()
-      endif()
-    endfunction()
 
     # Apply to both integration test executables
     copy_runtime_dlls(integration_serialize_connection_c)
