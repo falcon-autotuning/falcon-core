@@ -211,3 +211,12 @@ endif
 
 rebuild-dev: clean-all build-dev
 	@echo "--- Cleaning and building (dev) ---"
+
+install: build
+	@echo "Installing falcon-comms to $(INSTALL_PREFIX)..."
+	$(SUDO) cmake --install $(BUILD_DIR_RELEASE) --prefix $(INSTALL_PREFIX)
+	@echo "Copying vcpkg headers and libraries..."
+	$(SUDO) cp -r $(VCPKG_INSTALLED_DIR)/$(VCPKG_TRIPLET)/include/* $(INSTALL_INCLUDEDIR)/
+	$(SUDO) cp -r $(VCPKG_INSTALLED_DIR)/$(VCPKG_TRIPLET)/lib/* $(INSTALL_LIBDIR)/
+	$(SUDO) cp -r $(VCPKG_INSTALLED_DIR)/$(VCPKG_TRIPLET)/bin/* $(INSTALL_LIBDIR)/ || true
+	@echo "✓ Installation complete"
