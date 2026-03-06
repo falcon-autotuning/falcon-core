@@ -34,7 +34,7 @@ class FALCON_CORE_CPP_API IsControl : public virtual generic::IFArray<T> {
     return _alignment;
   }
   /**
-   * @brief Recalculates the alignments zmerinobased on current data.
+   * @brief Recalculates the alignments on current data.
    */
   inline void update_alignments() {
     std::unique_lock<std::shared_timed_mutex> lock_a(_mu_alignment);

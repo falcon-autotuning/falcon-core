@@ -1,0 +1,17 @@
+
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(cereal CONFIG REQUIRED)
+find_dependency(xtl CONFIG REQUIRED)
+find_dependency(xtensor CONFIG REQUIRED)
+find_dependency(xsimd CONFIG REQUIRED)
+find_dependency(yaml-cpp CONFIG REQUIRED)
+find_dependency(hdf5 CONFIG REQUIRED)
+find_dependency(Boost CONFIG REQUIRED filesystem)
+find_dependency(Threads CONFIG REQUIRED)
+
+include("${CMAKE_CURRENT_LIST_DIR}/falcon_core_cpp-targets.cmake")
+
+check_required_components(falcon_core_cpp)

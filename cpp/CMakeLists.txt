@@ -18,11 +18,11 @@ if(GIT_FOUND)
     OUTPUT_STRIP_TRAILING_WHITESPACE
     ERROR_QUIET
     RESULT_VARIABLE GIT_COMMIT_RESULT)
-  
+
   if(NOT GIT_COMMIT_RESULT EQUAL 0)
     set(FALCON_CORE_GIT_COMMIT "unknown")
   endif()
-  
+
   execute_process(
     COMMAND ${GIT_EXECUTABLE} describe --tags --exact-match HEAD
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -30,7 +30,7 @@ if(GIT_FOUND)
     OUTPUT_STRIP_TRAILING_WHITESPACE
     ERROR_QUIET
     RESULT_VARIABLE GIT_TAG_RESULT)
-  
+
   # If we're not on a tagged commit, check if we have tags at all
   if(NOT GIT_TAG_RESULT EQUAL 0)
     execute_process(
@@ -40,7 +40,7 @@ if(GIT_FOUND)
       OUTPUT_STRIP_TRAILING_WHITESPACE
       ERROR_QUIET
       RESULT_VARIABLE GIT_TAG_ABBREV_RESULT)
-    
+
     if(NOT GIT_TAG_ABBREV_RESULT EQUAL 0)
       set(FALCON_CORE_GIT_TAG "")
     endif()
@@ -370,3 +370,21 @@ if(FALCON_CORE_DEV)
   message(STATUS "Integration test executables: integration_serialize_connection, integration_deserialize_connection")
 
 endif()
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/falcon_core_cpp-config-version.cmake"
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY AnyNewerVersion
+)
+
+
+configure_file(cmake/falcon_core_cpp-config.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/falcon_core_cpp-config.cmake"
+  @ONLY
+)
+
+install(FILES
+  "${CMAKE_CURRENT_BINARY_DIR}/falcon_core_cpp-config.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/falcon_core_cpp-config-version.cmake"
+  DESTINATION lib/cmake/falcon_core_cpp
+)

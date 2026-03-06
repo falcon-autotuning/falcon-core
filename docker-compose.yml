@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  falcon-core-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # Mount the entire project directory
+      - .:/workspace
+      # Mount ccache directory for faster rebuilds
+      - ccache:/root/.ccache
+      # Persist vcpkg packages across container rebuilds
+      - vcpkg-packages:/opt/vcpkg/packages
+      - vcpkg-buildtrees:/opt/vcpkg/buildtrees
+    working_dir: /workspace/cpp
+    environment:
+      - CCACHE_DIR=/root/.ccache
+      - CC=clang
+      - CXX=clang++
+      - VCPKG_ROOT=/opt/vcpkg
+      - VCPKG_TRIPLET=x64-linux-dynamic
+    # Keep container running
+    tty: true
+    stdin_open: true
+
+volumes:
+  ccache:
+    driver: local
+  vcpkg-packages:
+    driver: local
+  vcpkg-buildtrees:
+    driver: local
