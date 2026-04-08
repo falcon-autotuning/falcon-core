@@ -93,6 +93,7 @@ vcpkg-install-deps: setup-nuget-auth
 	@echo "Installing vcpkg dependencies" 
 	@CC=clang CXX=clang++ VCPKG_FEATURE_FLAGS=binarycaching MAKELEVEL=0 \
 		$(VCPKG_ROOT)/vcpkg install \
+		--overlay-ports=./ports \
 		--binarysource="$(VCPKG_BINARY_SOURCES)" \
 		--triplet="$(VCPKG_TRIPLET)" \
 		--debug
@@ -129,6 +130,7 @@ configure-debug: check-vcpkg generate_types
 		-DCMAKE_CXX_COMPILER=clang++ \
 		-DVCPKG_BINARY_SOURCES="$(VCPKG_BINARY_SOURCES)" \
 		-DFALCON_CORE_BUILD_C_API=ON \
+		-DVCPKG_OVERLAY_PORTS=../../ports \
 		-G $(CMAKE_GENERATOR)
 	@echo "✓ Debug build configured"
 
@@ -147,6 +149,7 @@ configure-release: check-vcpkg generate_types
 		-DCMAKE_CXX_COMPILER=clang++ \
 		-DVCPKG_BINARY_SOURCES="$(VCPKG_BINARY_SOURCES)" \
 		-DFALCON_CORE_BUILD_C_API=ON \
+		-DVCPKG_OVERLAY_PORTS=../../ports \
 		-G $(CMAKE_GENERATOR)
 	@echo "✓ Release build configured"
 .PHONY: all build build-dev build-devl test test-cpp test-c-api clean clean-all prepare-release

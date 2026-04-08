@@ -1,9 +1,0 @@
-# ignore cmake artifacts
-CMakeFiles
-run_tests.*
-CMakeCache.txt
-vcpkg-manifest-install.log
-.cache
-
-
-
