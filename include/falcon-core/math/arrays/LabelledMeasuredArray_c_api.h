@@ -1,0 +1,291 @@
+#pragma once
+#ifdef __cplusplus
+extern "C" {
+#endif
+#include <stddef.h>
+
+#include "falcon-core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
+#include "falcon-core/generic/FArrayDouble_c_api.h"
+#include "falcon-core/generic/ListListSizeT_c_api.h"
+#include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/math/arrays/MeasuredArray_c_api.h"
+
+typedef void* LabelledMeasuredArrayHandle;
+
+// @category:allocation
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_copy(LabelledMeasuredArrayHandle handle);
+// @category:deallocation
+FALCON_CORE_C_API void LabelledMeasuredArray_destroy(
+    LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API bool LabelledMeasuredArray_equal(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:read
+FALCON_CORE_C_API bool LabelledMeasuredArray_not_equal(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:read
+FALCON_CORE_C_API StringHandle
+LabelledMeasuredArray_to_json_string(LabelledMeasuredArrayHandle handle);
+// @category:allocation
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_from_json_string(StringHandle json);
+// @category:allocation
+FALCON_CORE_C_API LabelledMeasuredArrayHandle LabelledMeasuredArray_from_farray(
+    FArrayDoubleHandle farray, AcquisitionContextHandle label);
+// @category:allocation
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_from_measured_array(MeasuredArrayHandle measuredarray,
+                                          AcquisitionContextHandle label);
+// @category:read
+FALCON_CORE_C_API AcquisitionContextHandle
+LabelledMeasuredArray_label(LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API ConnectionHandle
+LabelledMeasuredArray_connection(LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API StringHandle
+LabelledMeasuredArray_instrument_type(LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API SymbolUnitHandle
+LabelledMeasuredArray_units(LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API size_t
+LabelledMeasuredArray_size(LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API size_t
+LabelledMeasuredArray_dimension(LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API size_t LabelledMeasuredArray_shape(
+    LabelledMeasuredArrayHandle handle, size_t* out_buffer, size_t ndim);
+// @category:read
+FALCON_CORE_C_API size_t LabelledMeasuredArray_data(
+    LabelledMeasuredArrayHandle handle, double* out_buffer, size_t numdata);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_plus_equals_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_plus_equals_double(
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_plus_equals_int(
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_plus_measured_array(LabelledMeasuredArrayHandle handle,
+                                          LabelledMeasuredArrayHandle other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle LabelledMeasuredArray_plus_double(
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_plus_int(LabelledMeasuredArrayHandle handle, int other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_minus_equals_measured_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_minus_equals_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_minus_equals_double(
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_minus_equals_int(
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_minus_measured_array(LabelledMeasuredArrayHandle handle,
+                                           MeasuredArrayHandle         other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_minus_farray(LabelledMeasuredArrayHandle handle,
+                                   FArrayDoubleHandle          other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_minus_double(LabelledMeasuredArrayHandle handle,
+                                   double                      other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_minus_int(LabelledMeasuredArrayHandle handle, int other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_negation(LabelledMeasuredArrayHandle handle);
+// @category:write
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_times_equals_measured_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:write
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_times_equals_farray(LabelledMeasuredArrayHandle handle,
+                                          FArrayDoubleHandle          other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_times_equals_double(
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_times_equals_int(
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_times_measured_array(LabelledMeasuredArrayHandle handle,
+                                           LabelledMeasuredArrayHandle other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_times_farray(LabelledMeasuredArrayHandle handle,
+                                   FArrayDoubleHandle          other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_times_double(LabelledMeasuredArrayHandle handle,
+                                   double                      other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_times_int(LabelledMeasuredArrayHandle handle, int other);
+// @category:write
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_divides_equals_measured_array(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+// @category:write
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_divides_equals_farray(LabelledMeasuredArrayHandle handle,
+                                            FArrayDoubleHandle          other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_divides_equals_double(
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_divides_equals_int(
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_divides_measured_array(LabelledMeasuredArrayHandle handle,
+                                             LabelledMeasuredArrayHandle other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_divides_farray(LabelledMeasuredArrayHandle handle,
+                                     FArrayDoubleHandle          other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_divides_double(LabelledMeasuredArrayHandle handle,
+                                     double                      other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle LabelledMeasuredArray_divides_int(
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_pow(LabelledMeasuredArrayHandle handle, double other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_abs(LabelledMeasuredArrayHandle handle);
+// @category:read
+/* AUTO-DOC from cpp: LabelledMeasuredArray_min |
+ * falcon_core::math::arrays::LabelledMeasuredArray::min */
+/**
+ * @brief Return the minimum value of the array.
+ */
+FALCON_CORE_C_API double LabelledMeasuredArray_min(
+    LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle LabelledMeasuredArray_min_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_min_measured_array(LabelledMeasuredArrayHandle handle,
+                                         LabelledMeasuredArrayHandle other);
+// @category:read
+/* AUTO-DOC from cpp: LabelledMeasuredArray_max |
+ * falcon_core::math::arrays::LabelledMeasuredArray::max */
+/**
+ * @brief Return the maximum value of the array.
+ */
+FALCON_CORE_C_API double LabelledMeasuredArray_max(
+    LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle LabelledMeasuredArray_max_farray(
+    LabelledMeasuredArrayHandle handle, FArrayDoubleHandle other);
+// @category:read
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_max_measured_array(LabelledMeasuredArrayHandle handle,
+                                         LabelledMeasuredArrayHandle other);
+// @category:read
+FALCON_CORE_C_API bool LabelledMeasuredArray_greater_than(
+    LabelledMeasuredArrayHandle handle, double value);
+// @category:read
+FALCON_CORE_C_API bool LabelledMeasuredArray_less_than(
+    LabelledMeasuredArrayHandle handle, double value);
+// @category:write
+FALCON_CORE_C_API void LabelledMeasuredArray_remove_offset(
+    LabelledMeasuredArrayHandle handle, double offset);
+// @category:read
+FALCON_CORE_C_API double LabelledMeasuredArray_sum(
+    LabelledMeasuredArrayHandle handle);
+// @category:read
+/* AUTO-DOC from cpp: LabelledMeasuredArray_reshape |
+ * falcon_core::math::arrays::LabelledMeasuredArray::reshape */
+/**
+ * @brief Return a new Array with the given shape.
+ * @param shape The new shape.
+ * @return A reshaped LabelledMeasuredArray.
+ */
+FALCON_CORE_C_API LabelledMeasuredArrayHandle LabelledMeasuredArray_reshape(
+    LabelledMeasuredArrayHandle handle, const size_t* shape, size_t ndims);
+// @category:read
+FALCON_CORE_C_API ListListSizeTHandle
+LabelledMeasuredArray_where(LabelledMeasuredArrayHandle handle, double value);
+// @category:read
+/* AUTO-DOC from cpp: LabelledMeasuredArray_flip |
+ * falcon_core::math::arrays::LabelledMeasuredArray::flip */
+/**
+ * @brief Flip the data along the given axis.
+ * @param axis The axis to flip.
+ * @return A flipped LabelledMeasuredArray.
+ */
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_flip(LabelledMeasuredArrayHandle handle, size_t axis);
+// @category:read
+FALCON_CORE_C_API size_t
+LabelledMeasuredArray_full_gradient(LabelledMeasuredArrayHandle  handle,
+                                    LabelledMeasuredArrayHandle* out_buffer,
+                                    size_t                       buffer_size);
+// @category:read
+/* AUTO-DOC from cpp: LabelledMeasuredArray_gradient |
+ * falcon_core::math::arrays::LabelledMeasuredArray::gradient */
+/**
+ * @brief Return the gradient of the data along a given axis.
+ * Computes the gradient along the specified axis using finite differences:
+ * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+ * - For boundary points, uses forward (first element) or backward (last
+ * element) difference.
+ * @param axis The axis to compute the gradient.
+ * @return The gradient FArray.
+ */
+/* AUTO-DOC from cpp: LabelledMeasuredArray_gradient |
+ * falcon_core::math::arrays::LabelledMeasuredArray::gradient */
+/**
+ * @brief Return the gradient of the data along a given axis.
+ * Computes the gradient along the specified axis using finite differences:
+ * - For interior points, uses central difference: (f(x+1) - f(x-1)) / 2
+ * - For boundary points, uses forward (first element) or backward (last
+ * element) difference.
+ * @param axis The axis to compute the gradient.
+ * @return The gradient FArray.
+ */
+FALCON_CORE_C_API LabelledMeasuredArrayHandle
+LabelledMeasuredArray_gradient(LabelledMeasuredArrayHandle handle, size_t axis);
+// @category:read
+FALCON_CORE_C_API double LabelledMeasuredArray_get_sum_of_squares(
+    LabelledMeasuredArrayHandle handle);
+// @category:read
+FALCON_CORE_C_API double LabelledMeasuredArray_get_summed_diff_int_of_squares(
+    LabelledMeasuredArrayHandle handle, int other);
+// @category:read
+FALCON_CORE_C_API double
+LabelledMeasuredArray_get_summed_diff_double_of_squares(
+    LabelledMeasuredArrayHandle handle, double other);
+// @category:read
+FALCON_CORE_C_API double LabelledMeasuredArray_get_summed_diff_array_of_squares(
+    LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other);
+
+#ifdef __cplusplus
+}
+#endif

@@ -1,7 +1,0 @@
-src/
-falcon-core/
-pkg/
-*.tar.*
-*.pkg.tar.*
-*.log
-*.sig
