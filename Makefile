@@ -87,7 +87,7 @@ setup-nuget-auth:
 	fi
 	@API_KEY=$$(if [ -f .nuget_api_key ]; then cat .nuget_api_key; else echo $$NUGET_API_KEY; fi); \
 	NUGET_EXE=$$(vcpkg fetch nuget | tail -n1); \
-	@if [ "$$(uname -s 2>/dev/null)" = "Linux" ]; then \
+	if [ "$$(uname -s 2>/dev/null)" = "Linux" ]; then \
 		MONO_PREFIX="mono "; \
 	else \
 		MONO_PREFIX=""; \
