@@ -21,6 +21,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ninja-build cmake build-essential mono-complete
+      - name: Check NUGET_API_KEY presence
+        run: |
+          if [ -z "$NUGET_API_KEY" ]; then
+            echo "NUGET_API_KEY is not set!"
+            exit 1
+          else
+            echo "NUGET_API_KEY is set, length: ${#NUGET_API_KEY}"
+          fi
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Run tests
         env:

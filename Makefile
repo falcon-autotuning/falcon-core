@@ -79,14 +79,21 @@ setup-nuget-auth:
 		exit 0; \
 	fi
 	@echo "Setting up NuGet authentication for vcpkg binary caching..."
-	@if ! command -v mono >/dev/null 2>&1; then \
-		echo "Error: mono is not installed. Please install mono (e.g., 'sudo pacman -S mono' on Arch, 'sudo apt install mono-complete' on Ubuntu)."; \
-		exit 1; \
+	@if [ "$$(uname -s 2>/dev/null)" != "Windows_NT" ] && [ "$$(uname -o 2>/dev/null)" != "Msys" ] && [ "$$(uname -o 2>/dev/null)" != "Cygwin" ]; then \
+		if ! command -v mono >/dev/null 2>&1; then \
+			echo "Error: mono is not installed. Please install mono (e.g., 'sudo pacman -S mono' on Arch, 'sudo apt install mono-complete' on Ubuntu)."; \
+			exit 1; \
+		fi \
 	fi
 	@API_KEY=$$(if [ -f .nuget_api_key ]; then cat .nuget_api_key; else echo $$NUGET_API_KEY; fi); \
 	NUGET_EXE=$$(vcpkg fetch nuget | tail -n1); \
-	mono "$$NUGET_EXE" sources remove -Name "falcon-autotuning" || true; \
-	mono "$$NUGET_EXE" sources add -Name "falcon-autotuning" -Source "$(NUGET_FEED)" -Username "ADO" -Password "$$API_KEY"
+	@if [ "$$(uname -s 2>/dev/null)" = "Linux" ]; then \
+		MONO_PREFIX="mono "; \
+	else \
+		MONO_PREFIX=""; \
+	fi; \
+	$$MONO_PREFIX"$$NUGET_EXE" sources remove -Name "falcon-autotuning" || true; \
+	$$MONO_PREFIX"$$NUGET_EXE" sources add -Name "falcon-autotuning" -Source "$(NUGET_FEED)" -Username "ADO" -Password "$$API_KEY";
 
 .PHONY: vcpkg-install-deps
 vcpkg-install-deps: setup-nuget-auth 
