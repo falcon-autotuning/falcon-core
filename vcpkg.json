@@ -59,8 +59,8 @@
       "version>=": "10.0.0"
     },
     {
-      "name": "cereal",
-      "version>=": "1.3.2#1"
+      "name": "cereal-xtensor",
+      "version>=": "1.3.2"
     }
   ],
   "builtin-baseline": "7213cf8135c329c37c7e2778e40774489a0583a8",

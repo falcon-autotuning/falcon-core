@@ -1,8 +1,7 @@
 {
-  "name": "cereal",
+  "name": "cereal-xtensor",
   "version": "1.3.2",
-  "port-version": 1,
-  "description": "Serialization library",
+  "description": "cereal library with additional support for xtensor types",
   "dependencies": [
     {
       "name": "vcpkg-cmake"
@@ -13,6 +12,10 @@
     {
       "name": "xtensor",
       "version>=": "0.25.0"
+    },
+    {
+      "name": "cereal",
+      "version>=": "1.3.2#1"
     }
   ],
   "builtin-baseline": "7213cf8135c329c37c7e2778e40774489a0583a8",

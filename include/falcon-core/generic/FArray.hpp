@@ -1,8 +1,8 @@
 #pragma once
 
+#include <cereal-xtensor/types/xtensor.hpp>
 #include <cereal/types/memory.hpp>
 #include <cereal/types/vector.hpp>
-#include <cereal/types/xtensor.hpp>
 #include <xtensor/xarray.hpp>
 #include <xtensor/xio.hpp>
 #include <xtensor/xview.hpp>
