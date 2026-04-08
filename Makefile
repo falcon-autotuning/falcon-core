@@ -83,7 +83,7 @@ setup-nuget-auth:
 		if ! command -v mono >/dev/null 2>&1; then \
 			echo "Error: mono is not installed. Please install mono (e.g., 'sudo pacman -S mono' on Arch, 'sudo apt install mono-complete' on Ubuntu)."; \
 			exit 1; \
-		fi \
+		fi; \
 	fi
 	@API_KEY=$$(if [ -f .nuget_api_key ]; then cat .nuget_api_key; else echo $$NUGET_API_KEY; fi); \
 	NUGET_EXE=$$(vcpkg fetch nuget | tail -n1); \
