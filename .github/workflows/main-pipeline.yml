@@ -2,7 +2,7 @@ name: Main Pipeline (CI + CD)
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
     tags:
       - "v*"
   workflow_dispatch:
