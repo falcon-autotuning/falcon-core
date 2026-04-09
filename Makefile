@@ -1,6 +1,3 @@
-# Additional makefile(s)..
-
-# Include doc pipeline rules (ignore if missing)
 -include ./code_docs/capi_docs/capi_docs.mk
 
 # Platform detection (works on Linux, MINGW/MSYS, and native Windows)
@@ -117,7 +114,8 @@ setup-nuget-auth:
 .PHONY: vcpkg-install-deps
 vcpkg-install-deps: setup-nuget-auth 
 	@echo "Installing vcpkg dependencies" 
-	@VCPKG_FEATURE_FLAGS=binarycaching MAKELEVEL=0 \
+	@echo "The binary sources are: $(VCPKG_BINARY_SOURCES)"
+	VCPKG_FEATURE_FLAGS=binarycaching \
 		vcpkg install \
 		--overlay-ports=./ports \
 		--binarysource=$(VCPKG_BINARY_SOURCES) \
