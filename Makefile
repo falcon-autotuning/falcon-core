@@ -60,12 +60,12 @@ FEED_URL ?=
 NUGET_API_KEY ?=
 FEED_NAME ?= 
 USERNAME ?=
-VCPKG_BINARY_SOURCES ?= ""
+VCPKG_BINARY_SOURCES ?= 
 ifeq ($(strip $(FEED_URL)),)
   CMAKE_VCPKG_BINARY_SOURCES :=
 else
-	VCPKG_BINARY_SOURCES := "clear;nuget,$(FEED_URL),readwrite"
-  CMAKE_VCPKG_BINARY_SOURCES := -DVCPKG_BINARY_SOURCES=$(VCPKG_BINARY_SOURCES)
+	VCPKG_BINARY_SOURCES := clear;nuget,$(FEED_URL),readwrite
+  CMAKE_VCPKG_BINARY_SOURCES := -DVCPKG_BINARY_SOURCES="$(VCPKG_BINARY_SOURCES)"
 endif
 
 BUILD_DIR_DEBUG := build/debug
@@ -118,7 +118,7 @@ vcpkg-install-deps: setup-nuget-auth
 	VCPKG_FEATURE_FLAGS=binarycaching \
 		vcpkg install \
 		--overlay-ports=ports \
-		--binarysource=$(VCPKG_BINARY_SOURCES) \
+		--binarysource="$(VCPKG_BINARY_SOURCES)" \
 		--triplet="$(VCPKG_TRIPLET)"
 
 check-vcpkg: vcpkg-bootstrap  vcpkg-install-deps
