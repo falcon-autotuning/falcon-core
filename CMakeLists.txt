@@ -171,7 +171,7 @@ endif()
 # Generate and install the `falcon-core-targets.cmake` file
 install(EXPORT falcon-core-targets
   FILE falcon-core-targets.cmake
-  NAMESPACE falcon_core::
+  NAMESPACE falcon-core::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/falcon-core
 )
 
@@ -189,21 +189,13 @@ if(FALCON_CORE_BUILD_C_API)
   set(FALCON_CORE_C_API_CONFIG "check_required_components(falcon-core-c-api)")
 endif()
 
-configure_file(
-  "cmake/falcon-core-config.cmake.in"
+configure_package_config_file(
+  cmake/falcon-core-config.cmake.in
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config.cmake"
-  @ONLY
+  INSTALL_DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-core
 )
-# Generate the config file from the template
-configure_file(
-  "cmake/falcon-core-config.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config.cmake"
-  @ONLY
-)
-
-# Install the config and version files
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config-version.cmake"
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/falcon-core
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-core
 )
