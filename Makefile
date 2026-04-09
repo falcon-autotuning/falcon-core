@@ -117,7 +117,7 @@ vcpkg-install-deps: setup-nuget-auth
 	@echo "The binary sources are: $(VCPKG_BINARY_SOURCES)"
 	VCPKG_FEATURE_FLAGS=binarycaching \
 		vcpkg install \
-		--overlay-ports=./ports \
+		--overlay-ports=ports \
 		--binarysource=$(VCPKG_BINARY_SOURCES) \
 		--triplet="$(VCPKG_TRIPLET)"
 
