@@ -20,9 +20,12 @@ jobs:
       - name: Install build dependencies
         run: |
           choco install ninja cmake llvm mono make
-      - name: Bootstrap vcpkg (Windows)
-        run: vcpkg\bootstrap-vcpkg.bat
-        shell: cmd
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "7213cf8135c329c37c7e2778e40774489a0583a8"
+
       - name: Run tests
         env:
           PATH: C:/ProgramData/chocolatey/bin;${{ env.PATH }}
