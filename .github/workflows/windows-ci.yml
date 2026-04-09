@@ -22,6 +22,7 @@ jobs:
           choco install ninja cmake llvm mono
       - name: Run tests
         env:
+          PATH: C:/ProgramData/chocolatey/bin:${{ env.PATH }}
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
           FEED_URL: ${{ secrets.NUGET_FEED_URL }}
           FEED_NAME: ${{ secrets.NUGET_FEED_NAME }}

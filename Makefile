@@ -20,7 +20,7 @@ ifeq ($(PLATFORM),windows)
   # prefer clang-cl when available; user can pass CC/ CXX to override
   CC ?= clang-cl
   CXX ?= clang-cl
-  CMAKE_GENERATOR := "Visual Studio 17 2022"
+  CMAKE_GENERATOR := Ninja
   VCPKG_TRIPLET := x64-windows
   VCPKG_DEBUG_BIN := $(PWD)/vcpkg_installed/x64-windows/bin
   VCPKG_RELEASE_LIB := $(PWD)/vcpkg_installed/x64-windows/lib
