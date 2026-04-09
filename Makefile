@@ -135,8 +135,10 @@ check-vcpkg: vcpkg-bootstrap  vcpkg-install-deps
 	@echo "✓ vcpkg configuration OK"
 
 generate_types:
-	@test -f ${GENERATED_MANIFEST} || touch ${GENERATED_MANIFEST} 
-	$(PYTHON_EXECUTABLE) generate_templated_types.py --manifest $(GENERATED_MANIFEST)
+	@if [ "$$(uname -s 2>/dev/null)" = "Linux" ]; then \
+		@test -f ${GENERATED_MANIFEST} || touch ${GENERATED_MANIFEST}; \
+		$(PYTHON_EXECUTABLE) generate_templated_types.py --manifest $(GENERATED_MANIFEST); \
+	fi
 
 configure-debug: check-vcpkg generate_types
 	@echo "Configuring debug build..."
