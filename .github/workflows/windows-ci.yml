@@ -30,7 +30,7 @@ jobs:
         run: echo "VCPKG_ROOT=$(echo "${{ github.workspace }}/vcpkg" | sed 's|\\|/|g')" >> $GITHUB_ENV
       - name: Run tests
         env:
-          PATH: "C:/Program Files/CMake/bin;C:/ProgramData/chocolatey/bin;${{ env.PATH }}"
+          PATH: "C:/Program Files/LLVM/bin;C:/Program Files/CMake/bin;C:/ProgramData/chocolatey/bin;${{ env.PATH }}"
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
           FEED_URL: ${{ secrets.NUGET_FEED_URL }}
           FEED_NAME: ${{ secrets.NUGET_FEED_NAME }}
