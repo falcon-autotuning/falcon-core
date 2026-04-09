@@ -26,7 +26,7 @@ ifeq ($(PLATFORM),windows)
   STRIP_CMD := # no-op (strip not usually present); set to "llvm-strip" if you have it
 	RUN_PREFIX := PATH=$(VCPKG_DEBUG_BIN):$(VCPKG_RELEASE_LIB):$$PATH
 	SUDO ?= sudo
-  PYTHON_EXECUTABLE ?= python3
+  PYTHON_EXECUTABLE ?= python
   # On Windows, Ninja + clang-cl: still pass CMAKE_C_COMPILER / CMAKE_CXX_COMPILER
 else
   CMAKE_GENERATOR := Ninja
