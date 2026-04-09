@@ -49,11 +49,27 @@ else
 endif
 
 # Paths
+ENV_FILE := .nuget-credentials
+ifeq ($(wildcard $(ENV_FILE)),)
+  $(info [Makefile] $(ENV_FILE) not found, skipping environment sourcing)
+else
+  include $(ENV_FILE)
+  export $(shell sed 's/=.*//' $(ENV_FILE) | xargs)
+  $(info [Makefile] Loaded environment from $(ENV_FILE))
+endif
+# ── Paths ─────────────────────────────────────────────────────────────────────
 VCPKG_ROOT ?= $(CURDIR)/vcpkg
 VCPKG_TOOLCHAIN ?= $(VCPKG_ROOT)/scripts/buildsystems/vcpkg.cmake
 VCPKG_INSTALLED_DIR ?= $(CURDIR)/vcpkg_installed
-NUGET_FEED ?= https://pkgs.dev.azure.com/falcon-autotuning/_packaging/falcon-autotuning/nuget/v3/index.json
-VCPKG_BINARY_SOURCES ?= clear;nuget,$(NUGET_FEED),readwrite
+FEED_URL ?= 
+NUGET_API_KEY ?=
+FEED_NAME ?= 
+USERNAME ?=
+ifeq ($(strip $(FEED_URL)),)
+  CMAKE_VCPKG_BINARY_SOURCES :=
+else
+  CMAKE_VCPKG_BINARY_SOURCES := -DVCPKG_BINARY_SOURCES="clear;nuget,$(FEED_URL),readwrite"
+endif
 
 BUILD_DIR_DEBUG := build/debug
 BUILD_DIR_RELEASE := build/release
@@ -74,7 +90,7 @@ vcpkg-bootstrap:
 	fi
 
 setup-nuget-auth:
-	@if [ ! -f .nuget_api_key ] && [ -z "$$NUGET_API_KEY" ]; then \
+	@if [ -z "$$NUGET_API_KEY" ]; then \
 		echo "No .nuget_api_key or NUGET_API_KEY found, skipping NuGet setup (local-only build, no binary cache)."; \
 		exit 0; \
 	fi
@@ -85,25 +101,23 @@ setup-nuget-auth:
 			exit 1; \
 		fi; \
 	fi
-	@API_KEY=$$(if [ -f .nuget_api_key ]; then cat .nuget_api_key; else echo $$NUGET_API_KEY; fi); \
-	NUGET_EXE=$$(vcpkg fetch nuget | tail -n1); \
+	@NUGET_EXE=$$(vcpkg fetch nuget | tail -n1); \
 	if [ "$$(uname -s 2>/dev/null)" = "Linux" ]; then \
 		MONO_PREFIX="mono "; \
 	else \
 		MONO_PREFIX=""; \
 	fi; \
-	$$MONO_PREFIX"$$NUGET_EXE" sources remove -Name "falcon-autotuning" || true; \
-	$$MONO_PREFIX"$$NUGET_EXE" sources add -Name "falcon-autotuning" -Source "$(NUGET_FEED)" -Username "ADO" -Password "$$API_KEY";
+	$$MONO_PREFIX"$$NUGET_EXE" sources remove -Name "$(FEED_NAME)" || true; \
+	$$MONO_PREFIX"$$NUGET_EXE" sources add -Name "$(FEED_NAME)" -Source "$(FEED_URL)" -Username "$(USERNAME)" -Password "$(NUGET_API_KEY)";
 
 .PHONY: vcpkg-install-deps
 vcpkg-install-deps: setup-nuget-auth 
 	@echo "Installing vcpkg dependencies" 
-	@CC=clang CXX=clang++ VCPKG_FEATURE_FLAGS=binarycaching MAKELEVEL=0 \
+	@VCPKG_FEATURE_FLAGS=binarycaching MAKELEVEL=0 \
 		$(VCPKG_ROOT)/vcpkg install \
 		--overlay-ports=./ports \
 		--binarysource="$(VCPKG_BINARY_SOURCES)" \
-		--triplet="$(VCPKG_TRIPLET)" \
-		--debug
+		--triplet="$(VCPKG_TRIPLET)"
 
 check-vcpkg: vcpkg-bootstrap  vcpkg-install-deps
 	@echo "Checking vcpkg configuration..."
@@ -135,7 +149,7 @@ configure-debug: check-vcpkg generate_types
 		-DENABLE_PCH=ON \
 		-DCMAKE_C_COMPILER=clang \
 		-DCMAKE_CXX_COMPILER=clang++ \
-		-DVCPKG_BINARY_SOURCES="$(VCPKG_BINARY_SOURCES)" \
+		$(CMAKE_VCPKG_BINARY_SOURCES) \
 		-DFALCON_CORE_BUILD_C_API=ON \
 		-DVCPKG_OVERLAY_PORTS=../../ports \
 		-G $(CMAKE_GENERATOR)
@@ -154,7 +168,7 @@ configure-release: check-vcpkg generate_types
 		-DENABLE_PCH=ON \
 		-DCMAKE_C_COMPILER=clang \
 		-DCMAKE_CXX_COMPILER=clang++ \
-		-DVCPKG_BINARY_SOURCES="$(VCPKG_BINARY_SOURCES)" \
+		$(CMAKE_VCPKG_BINARY_SOURCES) \
 		-DFALCON_CORE_BUILD_C_API=ON \
 		-DVCPKG_OVERLAY_PORTS=../../ports \
 		-G $(CMAKE_GENERATOR)

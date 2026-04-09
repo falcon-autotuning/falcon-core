@@ -5,57 +5,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Test C++ Linux → Windows
-  cpp-linux-to-windows:
-    name: C++ Linux → Windows
-    runs-on: windows-latest
-
-    env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
+  linux-to-windows:
+    name: Linux → Windows
+    runs-on: windows-2022
+    defaults:
+      run:
+        shell: bash
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create vcpkg binary cache directory
-        shell: pwsh
+      - name: Install build dependencies
         run: |
-          New-Item -ItemType Directory -Force -Path ".vcpkg-binary-cache"
+          choco install ninja cmake llvm mono
 
-      - name: Cache vcpkg binary packages
-        uses: actions/cache@v4
-        with:
-          path: .vcpkg-binary-cache
-          key: vcpkg-binaries-windows-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
-          restore-keys: |
-            vcpkg-binaries-windows-
+      - name: Install vcpkg dependencies
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          FEED_URL: ${{ secrets.NUGET_FEED_URL }}
+          FEED_NAME: ${{ secrets.NUGET_FEED_NAME }}
+          USERNAME: $ {{ secrets.NUGET_USERNAME }}
+        run: make vcpkg-install-deps
 
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
-
-      - name: Install LLVM/Clang
-        shell: pwsh
-        run: |
-          choco install llvm -y
-
-      - name: Install vcpkg dependencies for runtime
-        working-directory: cpp
-        shell: pwsh
-        run: |
-          Write-Host "=== Installing runtime dependencies ==="
-          # Create build directory first
-          New-Item -ItemType Directory -Force -Path "build"
-
-          # Install to build/vcpkg_installed to match CMake builds
-          & "$env:VCPKG_ROOT\vcpkg.exe" install --triplet=x64-windows --x-install-root="$PWD\build\vcpkg_installed"
-
-      - name: Download Windows deserializer
+      - name: Download Windows build state
         uses: actions/download-artifact@v4
         with:
-          name: cpp-windows-integration-deserializer
-          path: deserializer
+          name: windows-build-release
+          path: build/release
 
       - name: Download Linux serialized artifact
         uses: actions/download-artifact@v4
@@ -63,127 +40,52 @@ jobs:
           name: cpp-linux-serialized
           path: data
 
-      - name: Verify downloaded files
-        shell: pwsh
-        run: |
-          Write-Host "=== Deserializer Contents ==="
-          Get-ChildItem deserializer -Recurse | Select-Object FullName, Length
-
-          Write-Host "`n=== Data Contents ==="
-          Get-ChildItem data -Recurse | Select-Object FullName, Length
-
-          Write-Host "`n=== Verifying DLL dependencies ==="
-          $requiredDlls = @("falcon_core_cpp.dll", "integration_deserialize_connection.exe")
-          foreach ($dll in $requiredDlls) {
-            if (Test-Path "deserializer/$dll") {
-              Write-Host "[OK] $dll"
-            } else {
-              Write-Error "[MISSING] $dll"
-            }
-          }
-
-      - name: Setup runtime environment
-        shell: pwsh
-        run: |
-          $deserializerPath = (Resolve-Path "deserializer").Path
-
-          # Add vcpkg DLLs to PATH
-          $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "cpp\build\vcpkg_installed\x64-windows\bin"
-          if (Test-Path $vcpkgBinPath) {
-            $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
-            Write-Host "Added vcpkg bin path: $vcpkgBinPath"
-            Write-Host "`n=== vcpkg DLLs available ==="
-            Get-ChildItem $vcpkgBinPath -Filter "*.dll" | Select-Object Name | Select-Object -First 10
-          } else {
-            Write-Host "Warning: vcpkg bin path not found: $vcpkgBinPath"
-          }
-
-          Write-Host "`n=== Runtime PATH includes ==="
-          Write-Host $env:PATH
+      - name: Download Second Linux serialized artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: capi-linux-serialized
+          path: data
 
       - name: Deserialize on Windows
-        shell: pwsh
+        working-directory: build/release/tests
+        env:
+          PATH: ${{ github.workspace }}/build/release;${{ github.workspace }}/vcpkg_installed/x64-windows/bin;${{ env.PATH }}
         run: |
-          $deserializerPath = (Resolve-Path "deserializer").Path
+          ./integration_deserialize_connection --input ../../../data/cpp_linux_cross.json --name "LinuxToWindowsTest" --type BarrierGate --verbose || { echo "Deserialization failed!"; exit 1; }
 
-          # Add vcpkg DLLs to PATH
-          $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "cpp\build\vcpkg_installed\x64-windows\bin"
-          if (Test-Path $vcpkgBinPath) {
-            $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
-          } else {
-            $env:PATH = "$deserializerPath;$env:PATH"
-          }
+      - name: Deserialize Again on Windows
+        working-directory: build/release/tests
+        env:
+          PATH: ${{ github.workspace }}/build/release;${{ github.workspace }}/vcpkg_installed/x64-windows/bin;${{ env.PATH }}
+        run: |
+          ./integration_deserialize_connection_c --input ../../../data/capi_linux_cross.json --name "CApiLinuxToWindowsTest" --type ScreeningGate --verbose || { echo "Deserialization failed!"; exit 1; }
 
-          cd deserializer
-          .\integration_deserialize_connection.exe --input ../data/cpp_linux_cross.json --name "LinuxToWindowsTest" --type BarrierGate --verbose
-
-          if ($LASTEXITCODE -ne 0) {
-            Write-Error "Deserialization failed with exit code: $LASTEXITCODE"
-            exit $LASTEXITCODE
-          }
-
-          Write-Host "`n[SUCCESS] C++ Linux → Windows cross-platform test passed!"
-
-      - name: Setup tmate session on failure
-        if: failure()
-        uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 30
-
-  # Test C++ Windows → Linux
-  cpp-windows-to-linux:
-    name: C++ Windows → Linux
-    runs-on: ubuntu-latest
-
-    env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
+  windows-to-linux:
+    name: Windows → Linux
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create vcpkg binary cache directory
-        run: |
-          mkdir -p "${{ github.workspace }}/.vcpkg-binary-cache"
-
-      - name: Cache vcpkg binary packages
-        uses: actions/cache@v4
-        with:
-          path: .vcpkg-binary-cache
-          key: vcpkg-binaries-linux-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
-          restore-keys: |
-            vcpkg-binaries-linux-
-
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            build-essential clang llvm pkg-config cmake \
-            curl zip unzip tar git autoconf automake libtool
+          sudo apt-get install -y ninja-build cmake build-essential mono-complete
 
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
+      - name: Install vcpkg dependencies
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          FEED_URL: ${{ secrets.NUGET_FEED_URL }}
+          FEED_NAME: ${{ secrets.NUGET_FEED_NAME }}
+          USERNAME: $ {{ secrets.NUGET_USERNAME }}
+        run: make vcpkg-install-deps
 
-      - name: Install vcpkg dependencies for runtime
-        working-directory: cpp
-        run: |
-          echo "=== Installing runtime dependencies with vcpkg ==="
-          # Create build directory first
-          mkdir -p build
-
-          # Install to build/vcpkg_installed to match CMake builds
-          ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic --x-install-root="${PWD}/build/vcpkg_installed"
-
-          echo ""
-          echo "=== Verifying vcpkg installation ==="
-          ls -la build/vcpkg_installed/x64-linux-dynamic/lib/ | head -20
-
-      - name: Download Linux deserializer
+      - name: Download Linux build state
         uses: actions/download-artifact@v4
         with:
-          name: cpp-linux-integration-deserializer
-          path: deserializer
+          name: linux-build-release
+          path: build/release
 
       - name: Download Windows serialized artifact
         uses: actions/download-artifact@v4
@@ -191,354 +93,35 @@ jobs:
           name: cpp-windows-serialized
           path: data
 
-      - name: Verify downloaded files
-        run: |
-          echo "=== Deserializer Contents ==="
-          ls -lhR deserializer
-          echo ""
-          echo "=== Data Contents ==="
-          ls -lhR data
-          echo ""
-          echo "=== Verifying shared libraries ==="
-          if [ -f deserializer/libfalcon_core_cpp.so ]; then
-            echo "[OK] libfalcon_core_cpp.so"
-            file deserializer/libfalcon_core_cpp.so
-          else
-            echo "[MISSING] libfalcon_core_cpp.so"
-          fi
-          if [ -f deserializer/integration_deserialize_connection ]; then
-            echo "[OK] integration_deserialize_connection"
-            file deserializer/integration_deserialize_connection
-          else
-            echo "[MISSING] integration_deserialize_connection"
-          fi
-
-      - name: Make executable runnable
-        run: |
-          chmod +x deserializer/integration_deserialize_connection
-          echo "=== Library dependencies ==="
-          ldd deserializer/integration_deserialize_connection || true
-
-      - name: Deserialize on Linux
-        run: |
-          cd deserializer
-
-          # Set up library path - INCLUDE BOTH RELEASE AND DEBUG
-          VCPKG_LIB_RELEASE="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/lib"
-          VCPKG_LIB_DEBUG="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/debug/lib"
-          export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_RELEASE}:${VCPKG_LIB_DEBUG}:$LD_LIBRARY_PATH
-
-          echo "=== LD_LIBRARY_PATH ==="
-          echo $LD_LIBRARY_PATH
-
-          echo ""
-          echo "=== Checking if vcpkg libs exist ==="
-          if [ -d "${VCPKG_LIB_RELEASE}" ]; then
-            echo "Found vcpkg RELEASE lib directory"
-            ls -la ${VCPKG_LIB_RELEASE} | head -10
-          fi
-
-          if [ -d "${VCPKG_LIB_DEBUG}" ]; then
-            echo "Found vcpkg DEBUG lib directory"
-            ls -la ${VCPKG_LIB_DEBUG} | head -10
-          fi
-
-          echo ""
-          echo "=== Looking for yaml-cpp libraries ==="
-          find ${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed -name "*yaml*" || echo "No yaml libs found"
-
-          echo ""
-          echo "=== Running deserialization test ==="
-          ./integration_deserialize_connection --input ../data/cpp_windows_cross.json --name "WindowsToLinuxTest" --type ReservoirGate --verbose
-
-          if [ $? -eq 0 ]; then
-            echo ""
-            echo "[SUCCESS] C++ Windows → Linux cross-platform test passed!"
-          else
-            echo ""
-            echo "[FAILED] Deserialization failed!"
-            exit 1
-          fi
-
-      - name: Setup tmate session on failure
-        if: failure()
-        uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 30
-
-  # Test C-API Linux → Windows
-  capi-linux-to-windows:
-    name: C-API Linux → Windows
-    runs-on: windows-latest
-
-    env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Create vcpkg binary cache directory
-        shell: pwsh
-        run: |
-          New-Item -ItemType Directory -Force -Path ".vcpkg-binary-cache"
-
-      - name: Cache vcpkg binary packages
-        uses: actions/cache@v4
-        with:
-          path: .vcpkg-binary-cache
-          key: vcpkg-binaries-windows-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
-          restore-keys: |
-            vcpkg-binaries-windows-
-
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
-
-      - name: Install LLVM/Clang
-        shell: pwsh
-        run: |
-          choco install llvm -y
-
-      - name: Install vcpkg dependencies for runtime
-        working-directory: c-api
-        shell: pwsh
-        run: |
-          Write-Host "=== Installing runtime dependencies ==="
-          # Create build directory first
-          New-Item -ItemType Directory -Force -Path "build"
-
-          # Install to build/vcpkg_installed to match CMake builds
-          & "$env:VCPKG_ROOT\vcpkg.exe" install --triplet=x64-windows --x-install-root="$PWD\build\vcpkg_installed"
-
-      - name: Download Windows deserializer
-        uses: actions/download-artifact@v4
-        with:
-          name: capi-windows-integration-deserializer
-          path: deserializer
-
-      - name: Download Linux serialized artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: capi-linux-serialized
-          path: data
-
-      - name: Verify downloaded files
-        shell: pwsh
-        run: |
-          Write-Host "=== Deserializer Contents ==="
-          Get-ChildItem deserializer -Recurse | Select-Object FullName, Length
-          Write-Host "`n=== Data Contents ==="
-          Get-ChildItem data -Recurse | Select-Object FullName, Length
-          Write-Host "`n=== Verifying DLL dependencies ==="
-          $requiredDlls = @(
-            "falcon_core_c_api.dll",
-            "falcon_core_cpp.dll",
-            "integration_deserialize_connection_c.exe"
-          )
-          foreach ($dll in $requiredDlls) {
-            if (Test-Path "deserializer/$dll") {
-              Write-Host "[OK] $dll"
-            } else {
-              Write-Error "[MISSING] $dll"
-            }
-          }
-
-      - name: Setup runtime environment
-        shell: pwsh
-        run: |
-          $deserializerPath = (Resolve-Path "deserializer").Path
-
-          # Add vcpkg DLLs to PATH
-          $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "c-api\build\vcpkg_installed\x64-windows\bin"
-          if (Test-Path $vcpkgBinPath) {
-            $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
-            Write-Host "Added vcpkg bin path: $vcpkgBinPath"
-            Write-Host "`n=== vcpkg DLLs available ==="
-            Get-ChildItem $vcpkgBinPath -Filter "*.dll" | Select-Object Name | Select-Object -First 10
-          } else {
-            Write-Host "Warning: vcpkg bin path not found: $vcpkgBinPath"
-          }
-
-          Write-Host "`n=== Runtime PATH includes ==="
-          Write-Host $env:PATH
-
-      - name: Deserialize on Windows
-        shell: pwsh
-        run: |
-          $deserializerPath = (Resolve-Path "deserializer").Path
-
-          # Add vcpkg DLLs to PATH
-          $vcpkgBinPath = Join-Path $env:GITHUB_WORKSPACE "c-api\build\vcpkg_installed\x64-windows\bin"
-          if (Test-Path $vcpkgBinPath) {
-            $env:PATH = "$deserializerPath;$vcpkgBinPath;$env:PATH"
-          } else {
-            $env:PATH = "$deserializerPath;$env:PATH"
-          }
-
-          cd deserializer
-          .\integration_deserialize_connection_c.exe --input ../data/capi_linux_cross.json --name "CApiLinuxToWindowsTest" --type ScreeningGate --verbose
-
-          if ($LASTEXITCODE -ne 0) {
-            Write-Error "Deserialization failed with exit code: $LASTEXITCODE"
-            exit $LASTEXITCODE
-          }
-
-          Write-Host "`n[SUCCESS] C-API Linux → Windows cross-platform test passed!"
-
-      - name: Setup tmate session on failure
-        if: failure()
-        uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 30
-
-  # Test C-API Windows → Linux
-  capi-windows-to-linux:
-    name: C-API Windows → Linux
-    runs-on: ubuntu-latest
-
-    env:
-      VCPKG_BINARY_SOURCES: "clear;files,${{ github.workspace }}/.vcpkg-binary-cache,readwrite"
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Create vcpkg binary cache directory
-        run: |
-          mkdir -p "${{ github.workspace }}/.vcpkg-binary-cache"
-
-      - name: Cache vcpkg binary packages
-        uses: actions/cache@v4
-        with:
-          path: .vcpkg-binary-cache
-          key: vcpkg-binaries-linux-${{ hashFiles('**/vcpkg.json', '**/vcpkg-configuration.json') }}
-          restore-keys: |
-            vcpkg-binaries-linux-
-
-      - name: Install build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            build-essential clang llvm pkg-config cmake \
-            curl zip unzip tar git autoconf automake libtool
-
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: "73af4de996897cb45dcf5034d16a551a3cf476f7"
-
-      - name: Install vcpkg dependencies for runtime
-        working-directory: c-api
-        run: |
-          echo "=== Installing runtime dependencies with vcpkg ==="
-          # Create build directory first
-          mkdir -p build
-
-          # Install to build/vcpkg_installed to match CMake builds
-          ${VCPKG_ROOT}/vcpkg install --triplet=x64-linux-dynamic --x-install-root="${PWD}/build/vcpkg_installed"
-
-          echo ""
-          echo "=== Verifying vcpkg installation ==="
-          ls -la build/vcpkg_installed/x64-linux-dynamic/lib/ | head -20
-
-      - name: Download Linux deserializer
-        uses: actions/download-artifact@v4
-        with:
-          name: capi-linux-integration-deserializer
-          path: deserializer
-
-      - name: Download Windows serialized artifact
+      - name: Download Second Windows serialized artifact
         uses: actions/download-artifact@v4
         with:
           name: capi-windows-serialized
           path: data
 
-      - name: Verify downloaded files
-        run: |
-          echo "=== Deserializer Contents ==="
-          ls -lhR deserializer
-          echo ""
-          echo "=== Data Contents ==="
-          ls -lhR data
-          echo ""
-          echo "=== Checking for executable ==="
-          if [ -f "deserializer/integration_deserialize_connection_c" ]; then
-            echo "[OK] integration_deserialize_connection_c found"
-            file deserializer/integration_deserialize_connection_c
-          else
-            echo "[MISSING] integration_deserialize_connection_c not found!"
-            echo "Searching for any deserialize executables..."
-            find deserializer -name "*deserialize*" -type f
-            exit 1
-          fi
-
-      - name: Make executable runnable
-        run: |
-          chmod +x deserializer/integration_deserialize_connection_c
-          echo "=== Library dependencies ==="
-          ldd deserializer/integration_deserialize_connection_c || true
-
       - name: Deserialize on Linux
+        working-directory: build/release/tests
         run: |
-          cd deserializer
+          export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
+          ./integration_deserialize_connection --input ../../../data/cpp_windows_cross.json --name "WindowsToLinuxTest" --type BarrierGate --verbose || { echo "Deserialization failed!"; exit 1; }
 
-          # Set up library path - INCLUDE BOTH RELEASE AND DEBUG
-          VCPKG_LIB_RELEASE="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/lib"
-          VCPKG_LIB_DEBUG="${GITHUB_WORKSPACE}/cpp/build/vcpkg_installed/x64-linux-dynamic/debug/lib"
-          export LD_LIBRARY_PATH=$(pwd):${VCPKG_LIB_RELEASE}:${VCPKG_LIB_DEBUG}:$LD_LIBRARY_PATH
-
-          echo "=== LD_LIBRARY_PATH ==="
-          echo $LD_LIBRARY_PATH
-
-          echo ""
-          echo "=== Checking if vcpkg libs exist ==="
-          if [ -d "${VCPKG_LIB_RELEASE}" ]; then
-            echo "Found vcpkg RELEASE lib directory"
-            ls -la ${VCPKG_LIB_RELEASE} | head -10
-          fi
-
-          if [ -d "${VCPKG_LIB_DEBUG}" ]; then
-            echo "Found vcpkg DEBUG lib directory"
-            ls -la ${VCPKG_LIB_DEBUG} | head -10
-          fi
-
-          echo ""
-          echo "=== Running C-API deserialization test ==="
-          ./integration_deserialize_connection_c --input ../data/capi_windows_cross.json --name "CApiWindowsToLinuxTest" --type Ohmic --verbose
-
-          if [ $? -eq 0 ]; then
-            echo ""
-            echo "[SUCCESS] C-API Windows → Linux cross-platform test passed!"
-          else
-            echo ""
-            echo "[FAILED] Deserialization failed!"
-            exit 1
-          fi
-
-      - name: Setup tmate session on failure
-        if: failure()
-        uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 30
+      - name: Deserialize Again on Linux
+        working-directory: build/release/tests
+        run: |
+          export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
+          ./integration_deserialize_connection_c --input ../../../data/capi_windows_cross.json --name "CApiWindowsToLinuxTest" --type ScreeningGate --verbose || { echo "Deserialization failed!"; exit 1; }
 
   # Summary
   cross-platform-complete:
     name: Cross-Platform Tests Complete
-    needs:
-      [
-        cpp-linux-to-windows,
-        cpp-windows-to-linux,
-        capi-linux-to-windows,
-        capi-windows-to-linux,
-      ]
-    runs-on: ubuntu-latest
+    needs: [linux-to-windows, windows-to-linux]
+    runs-on: ubuntu-24.04
     steps:
       - name: Success Summary
         run: |
           echo "=================================================="
           echo "All cross-platform integration tests passed!"
           echo "=================================================="
-          echo "[PASS] C++ Linux → Windows"
-          echo "[PASS] C++ Windows → Linux"
-          echo "[PASS] C-API Linux → Windows"
-          echo "[PASS] C-API Windows → Linux"
+          echo "[PASS] Linux → Windows"
+          echo "[PASS] Windows → Linux"
           echo "=================================================="
