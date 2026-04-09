@@ -87,7 +87,7 @@ vcpkg-bootstrap:
 	@if [ ! -f "$(VCPKG_ROOT)/vcpkg" ]; then \
 		echo "Bootstrapping vcpkg..."; \
 		if [ "$$(uname -s | grep -i 'mingw\|msys\|cygwin')" ]; then \
-			cd $(VCPKG_ROOT) && ./bootstrap-vcpkg.bat; \
+			echo "Skipping since on windows"; \
 		else \
 			cd $(VCPKG_ROOT) && ./bootstrap-vcpkg.sh; \
 		fi \
