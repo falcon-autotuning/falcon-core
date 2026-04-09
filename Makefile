@@ -118,7 +118,7 @@ setup-nuget-auth:
 vcpkg-install-deps: setup-nuget-auth 
 	@echo "Installing vcpkg dependencies" 
 	@VCPKG_FEATURE_FLAGS=binarycaching MAKELEVEL=0 \
-		$(VCPKG_ROOT)/vcpkg install \
+		vcpkg install \
 		--overlay-ports=./ports \
 		--binarysource=$(VCPKG_BINARY_SOURCES) \
 		--triplet="$(VCPKG_TRIPLET)"
@@ -230,4 +230,3 @@ run-serialization-test:
 	@$(C_API_BUILD_DIR)/integration_serialize_connection_c --output test.json --name "MyGate" --type PlungerGate
 	@$(C_API_BUILD_DIR)/integration_deserialize_connection_c --input test.json --name "MyGate" --type PlungerGate
 	@rm test.json
-
