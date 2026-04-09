@@ -27,8 +27,7 @@ ifeq ($(PLATFORM),windows)
   EXE_SUFFIX := .exe
   NPROC := 4
   STRIP_CMD := # no-op (strip not usually present); set to "llvm-strip" if you have it
-  RUN_PREFIX := PATH=$(VCPKG_DEBUG_BIN):$$PATH
-	VCPKG_TOOLCHAIN ?= $(CPP_DIR)/../../../vcpkg/scripts/buildsystems/vcpkg.cmake
+	RUN_PREFIX := PATH=$(VCPKG_DEBUG_BIN):$(VCPKG_RELEASE_LIB):$$PATH
 	SUDO ?= sudo
   PYTHON_EXECUTABLE ?= python
   # On Windows, Ninja + clang-cl: still pass CMAKE_C_COMPILER / CMAKE_CXX_COMPILER
@@ -40,7 +39,6 @@ else
   EXE_SUFFIX :=
   NPROC := $(shell nproc 2>/dev/null || echo 4)
   STRIP_CMD := strip
-  VCPKG_TOOLCHAIN ?= $(shell which vcpkg >/dev/null 2>&1 && vcpkg integrate install --triplet=$(VCPKG_TRIPLET) 2>/dev/null | grep -o '/.*\.cmake' | head -n1 || echo $(PWD)/vcpkg/scripts/buildsystems/vcpkg.cmake)
 	RUN_PREFIX := LD_LIBRARY_PATH=$(VCPKG_DEBUG_LIB):$(VCPKG_RELEASE_LIB):$$LD_LIBRARY_PATH
 	SUDO :=
 	PYTHON_EXECUTABLE ?= python3
