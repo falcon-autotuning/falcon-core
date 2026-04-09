@@ -63,10 +63,12 @@ FEED_URL ?=
 NUGET_API_KEY ?=
 FEED_NAME ?= 
 USERNAME ?=
+VCPKG_BINARY_SOURCES ?= ""
 ifeq ($(strip $(FEED_URL)),)
   CMAKE_VCPKG_BINARY_SOURCES :=
 else
-  CMAKE_VCPKG_BINARY_SOURCES := -DVCPKG_BINARY_SOURCES="clear;nuget,$(FEED_URL),readwrite"
+	VCPKG_BINARY_SOURCES := "clear;nuget,$(FEED_URL),readwrite"
+  CMAKE_VCPKG_BINARY_SOURCES := -DVCPKG_BINARY_SOURCES=$(VCPKG_BINARY_SOURCES)
 endif
 
 BUILD_DIR_DEBUG := build/debug
@@ -114,7 +116,7 @@ vcpkg-install-deps: setup-nuget-auth
 	@VCPKG_FEATURE_FLAGS=binarycaching MAKELEVEL=0 \
 		$(VCPKG_ROOT)/vcpkg install \
 		--overlay-ports=./ports \
-		--binarysource="$(VCPKG_BINARY_SOURCES)" \
+		--binarysource=$(VCPKG_BINARY_SOURCES) \
 		--triplet="$(VCPKG_TRIPLET)"
 
 check-vcpkg: vcpkg-bootstrap  vcpkg-install-deps
@@ -177,13 +179,13 @@ configure: configure-debug configure-release
 
 build-debug: configure-debug
 	@echo "Building debug..."
-	ninja -C $(BUILD_DIR_DEBUG) -j$(NPROC)
+	cmake --build $(BUILD_DIR_DEBUG) -- -j$(NPROC)
 	@echo "✓ Debug build complete"
 	@$(MAKE) clangd-helpers
 
 build-release: configure-release
 	@echo "Building release..."
-	ninja -C $(BUILD_DIR_RELEASE) -j$(NPROC)
+	cmake --build $(BUILD_DIR_RELEASE) -- -j$(NPROC)
 	@echo "✓ Release build complete"
 
 install: build-release
