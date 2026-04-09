@@ -26,9 +26,10 @@ jobs:
         with:
           vcpkgGitCommitId: "7213cf8135c329c37c7e2778e40774489a0583a8"
 
+      - name: Set VCPKG_ROOT as Unix-style path
+        run: echo "VCPKG_ROOT=$(echo "${{ github.workspace }}/vcpkg" | sed 's|\\|/|g')" >> $GITHUB_ENV
       - name: Run tests
         env:
-          VCPKG_ROOT: ${{ github.workspace }}/vcpkg
           PATH: "C:/Program Files/CMake/bin;C:/ProgramData/chocolatey/bin;${{ env.PATH }}"
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
           FEED_URL: ${{ secrets.NUGET_FEED_URL }}
