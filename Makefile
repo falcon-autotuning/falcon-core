@@ -16,7 +16,7 @@ endif
 ifeq ($(PLATFORM),windows)
   # prefer clang-cl when available; user can pass CC/ CXX to override
   CC ?= clang-cl
-  CXX ?= clang-cl
+	CXX ?= clang-cl
   CMAKE_GENERATOR := Ninja
   VCPKG_TRIPLET := x64-windows
   VCPKG_DEBUG_BIN := $(PWD)/vcpkg_installed/x64-windows/bin
@@ -151,8 +151,8 @@ configure-debug: check-vcpkg generate_types
 		-DBUILD_TESTS=ON \
 		-DUSE_CCACHE=ON \
 		-DENABLE_PCH=ON \
-		-DCMAKE_C_COMPILER=clang \
-		-DCMAKE_CXX_COMPILER=clang++ \
+		-DCMAKE_C_COMPILER=$(CC) \
+		-DCMAKE_CXX_COMPILER=$(CXX) \
 		$(CMAKE_VCPKG_BINARY_SOURCES) \
 		-DFALCON_CORE_BUILD_C_API=ON \
 		-DVCPKG_OVERLAY_PORTS=../../ports \
@@ -170,8 +170,8 @@ configure-release: check-vcpkg generate_types
 		-DBUILD_TESTS=ON \
 		-DUSE_CCACHE=ON \
 		-DENABLE_PCH=ON \
-		-DCMAKE_C_COMPILER=clang \
-		-DCMAKE_CXX_COMPILER=clang++ \
+		-DCMAKE_C_COMPILER=$(CC) \
+		-DCMAKE_CXX_COMPILER=$(CXX) \
 		$(CMAKE_VCPKG_BINARY_SOURCES) \
 		-DFALCON_CORE_BUILD_C_API=ON \
 		-DVCPKG_OVERLAY_PORTS=../../ports \
