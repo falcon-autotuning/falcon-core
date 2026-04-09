@@ -86,7 +86,11 @@ vcpkg-bootstrap:
 	fi
 	@if [ ! -f "$(VCPKG_ROOT)/vcpkg" ]; then \
 		echo "Bootstrapping vcpkg..."; \
-		cd $(VCPKG_ROOT) && ./bootstrap-vcpkg.sh; \
+		if [ "$$(uname -s | grep -i 'mingw\|msys\|cygwin')" ]; then \
+			cd $(VCPKG_ROOT) && ./bootstrap-vcpkg.bat; \
+		else \
+			cd $(VCPKG_ROOT) && ./bootstrap-vcpkg.sh; \
+		fi \
 	fi
 
 setup-nuget-auth:
