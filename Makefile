@@ -26,7 +26,7 @@ ifeq ($(PLATFORM),windows)
   STRIP_CMD := # no-op (strip not usually present); set to "llvm-strip" if you have it
 	RUN_PREFIX := PATH=$(VCPKG_DEBUG_BIN):$(VCPKG_RELEASE_LIB):$$PATH
 	SUDO ?= sudo
-  PYTHON_EXECUTABLE ?= python
+  PYTHON_EXECUTABLE ?= python3
   # On Windows, Ninja + clang-cl: still pass CMAKE_C_COMPILER / CMAKE_CXX_COMPILER
 else
   CMAKE_GENERATOR := Ninja
@@ -136,7 +136,7 @@ check-vcpkg: vcpkg-bootstrap  vcpkg-install-deps
 
 generate_types:
 	@test -f ${GENERATED_MANIFEST} || touch ${GENERATED_MANIFEST} 
-		@$(PYTHON_EXECUTABLE) generate_templated_types.py --manifest $(GENERATED_MANIFEST)
+	$(PYTHON_EXECUTABLE) generate_templated_types.py --manifest $(GENERATED_MANIFEST)
 
 configure-debug: check-vcpkg generate_types
 	@echo "Configuring debug build..."
