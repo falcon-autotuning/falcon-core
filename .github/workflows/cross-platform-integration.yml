@@ -93,6 +93,12 @@ jobs:
           FEED_URL: ${{ secrets.NUGET_FEED_URL }}
           FEED_NAME: ${{ secrets.NUGET_FEED_NAME }}
           USERNAME: $ {{ secrets.NUGET_USERNAME }}
+          CMAKE_C_COMPILER: clang
+          CMAKE_CXX_COMPILER: clang++
+          CMAKE_EXE_LINKER_FLAGS: -fuse-ld=lld
+          CMAKE_SHARED_LINKER_FLAGS: -fuse-ld=lld
+          CC: clang
+          CXX: clang++
         run: make configure-release
 
       - name: Download Linux build state
@@ -117,12 +123,14 @@ jobs:
         working-directory: build/release/bin
         run: |
           export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
+          chmod +x ./integration_deserialize_connection
           ./integration_deserialize_connection --input ../../../data/cpp_windows_cross.json --name "WindowsToLinuxTest" --type BarrierGate --verbose || { echo "Deserialization failed!"; exit 1; }
 
       - name: Deserialize Again on Linux
         working-directory: build/release/bin
         run: |
           export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
+          chmod +x ./integration_deserialize_connection_c
           ./integration_deserialize_connection_c --input ../../../data/capi_windows_cross.json --name "CApiWindowsToLinuxTest" --type ScreeningGate --verbose || { echo "Deserialization failed!"; exit 1; }
 
   # Summary

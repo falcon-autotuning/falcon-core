@@ -28,6 +28,12 @@ jobs:
           FEED_URL: ${{ secrets.NUGET_FEED_URL }}
           FEED_NAME: ${{ secrets.NUGET_FEED_NAME }}
           USERNAME: $ {{ secrets.NUGET_USERNAME }}
+          CMAKE_C_COMPILER: clang
+          CMAKE_CXX_COMPILER: clang++
+          CMAKE_EXE_LINKER_FLAGS: -fuse-ld=lld
+          CMAKE_SHARED_LINKER_FLAGS: -fuse-ld=lld
+          CC: clang
+          CXX: clang++
         run: make test
 
       - name: Run C++ integration tests (same platform)
