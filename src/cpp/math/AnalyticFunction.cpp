@@ -5,11 +5,13 @@
 #include <stdexcept>
 #include <string>
 
+#include "falcon-core/export.h"
 #include "xtensor/xadapt.hpp"
 
 namespace falcon_core {
 namespace math {
-AnalyticFunction::AnalyticFunction(const AnalyticFunction& other)
+FALCON_CORE_CPP_API AnalyticFunction::AnalyticFunction(
+    const AnalyticFunction& other)
     : List<VariableName>(other) {
   std::shared_lock<std::shared_timed_mutex> lock_expression(
       other._mu_expression, std::defer_lock);
@@ -18,7 +20,8 @@ AnalyticFunction::AnalyticFunction(const AnalyticFunction& other)
   std::lock(lock_this_expression, lock_expression);
   _expression = other._expression;
 }
-AnalyticFunction& AnalyticFunction::operator=(const AnalyticFunction& other) {
+FALCON_CORE_CPP_API AnalyticFunction& AnalyticFunction::operator=(
+    const AnalyticFunction& other) {
   if (this != &other) {
     List<VariableName>::operator=(other);
     std::shared_lock<std::shared_timed_mutex> lock_expression(
@@ -82,10 +85,10 @@ void populateXvector(std::vector<double>&                        x,
     }
   }
 }
-AnalyticFunction::AnalyticFunction()
+FALCON_CORE_CPP_API AnalyticFunction::AnalyticFunction()
     : generic::List<VariableName>(), _expression("") {}
-AnalyticFunction::AnalyticFunction(const generic::ListSP<VariableName>& labels,
-                                   const std::string& expression)
+FALCON_CORE_CPP_API AnalyticFunction::AnalyticFunction(
+    const generic::ListSP<VariableName>& labels, const std::string& expression)
     : generic::List<VariableName>(
           labels ? *labels
                  : throw std::invalid_argument(
@@ -104,20 +107,21 @@ AnalyticFunction::AnalyticFunction(const generic::ListSP<VariableName>& labels,
 const generic::ListSP<VariableName> AnalyticFunction::labels() const {
   return std::make_shared<generic::List<VariableName>>(items());
 }
-AnalyticFunctionSP AnalyticFunction::Identity() {
+FALCON_CORE_CPP_API AnalyticFunctionSP AnalyticFunction::Identity() {
   std::string                   expression = "x[0]";
   generic::ListSP<VariableName> labels =
       std::make_shared<generic::List<VariableName>>();
   labels->push_back(std::string("x"));
   return std::make_shared<AnalyticFunction>(labels, expression);
 }
-AnalyticFunctionSP AnalyticFunction::Constant(const double& value) {
+FALCON_CORE_CPP_API AnalyticFunctionSP
+AnalyticFunction::Constant(const double& value) {
   std::string                   expression = std::to_string(value);
   generic::ListSP<VariableName> labels =
       std::make_shared<generic::List<VariableName>>();
   return std::make_shared<AnalyticFunction>(labels, expression);
 }
-void AnalyticFunction::checkSafeEvaluateArgs(
+FALCON_CORE_CPP_API void AnalyticFunction::checkSafeEvaluateArgs(
     const generic::MapSP<VariableName, double>& args) const {
   if (!args) {
     throw std::invalid_argument(
@@ -131,7 +135,7 @@ void AnalyticFunction::checkSafeEvaluateArgs(
         std::to_string(labels()->size()));
   }
 }
-double AnalyticFunction::evaluate(
+FALCON_CORE_CPP_API double AnalyticFunction::evaluate(
     const generic::MapSP<VariableName, double>& args,
     const double&                               time) const {
   std::shared_lock<std::shared_timed_mutex> lock_expression(_mu_expression);
@@ -143,7 +147,7 @@ double AnalyticFunction::evaluate(
   compileExpression(_expression, tkExpression, t, x);
   return tkExpression.value();
 }
-generic::FArraySP<double> AnalyticFunction::evaluate(
+FALCON_CORE_CPP_API generic::FArraySP<double> AnalyticFunction::evaluate(
     const generic::MapSP<VariableName, double>& args,
     const double&                               deltaT,
     const double&                               maxTime) const {
@@ -161,12 +165,14 @@ generic::FArraySP<double> AnalyticFunction::evaluate(
   xt::xarray<double> rawArray = xt::adapt(rawVec);
   return std::make_shared<generic::FArray<double>>(rawArray);
 }
-bool AnalyticFunction::operator==(const AnalyticFunction& other) const {
+FALCON_CORE_CPP_API bool AnalyticFunction::operator==(
+    const AnalyticFunction& other) const {
   if (this == &other) return true;
   return (_expression == other._expression) &&
          generic::List<VariableName>::operator==(other);
 }
-bool AnalyticFunction::operator!=(const AnalyticFunction& other) const {
+FALCON_CORE_CPP_API bool AnalyticFunction::operator!=(
+    const AnalyticFunction& other) const {
   return !(*this == other);
 }
 }  // namespace math
