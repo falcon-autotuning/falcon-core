@@ -18,14 +18,28 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          choco install ninja cmake llvm mono
+          choco install cmake make
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "e5a1490e1409d175932ef6014519e9ae149ddb7c"
+
+      - name: Set VCPKG_ROOT as Unix-style path
+        run: echo "VCPKG_ROOT=$(echo "${{ github.workspace }}/vcpkg" | sed 's|\\|/|g')" >> $GITHUB_ENV
+
+      - name: Add PowerShell to PATH
+        run: echo "C:\Windows\System32\WindowsPowerShell\v1.0" >> $GITHUB_PATH
 
       - name: Install vcpkg dependencies
         env:
+          PATH: "C:/Program Files/LLVM/bin;C:/Program Files/CMake/bin;C:/ProgramData/chocolatey/bin;${{ env.PATH }}"
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
           FEED_URL: ${{ secrets.NUGET_FEED_URL }}
           FEED_NAME: ${{ secrets.NUGET_FEED_NAME }}
           USERNAME: $ {{ secrets.NUGET_USERNAME }}
+          CC: clang-cl
+          CXX: clang-cl
         run: make vcpkg-install-deps
 
       - name: Download Windows build state
@@ -73,20 +87,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ninja-build cmake build-essential mono-complete
 
-      - name: Set VCPKG_ROOT as Unix-style path
-        run: echo "VCPKG_ROOT=$(echo "${{ github.workspace }}/vcpkg" | sed 's|\\|/|g')" >> $GITHUB_ENV
-      - name: Add PowerShell to PATH
-        run: echo "C:\Windows\System32\WindowsPowerShell\v1.0" >> $GITHUB_PATH
       - name: Install vcpkg dependencies
         env:
-          PATH: "C:/Program Files/LLVM/bin;C:/Program Files/CMake/bin;C:/ProgramData/chocolatey/bin;${{ env.PATH }}"
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
           FEED_URL: ${{ secrets.NUGET_FEED_URL }}
           FEED_NAME: ${{ secrets.NUGET_FEED_NAME }}
           USERNAME: $ {{ secrets.NUGET_USERNAME }}
-          CC: clang-cl
-          CXX: clang-cl
-        run: make vcpkg-install-deps
+        run: make configure-release
 
       - name: Download Linux build state
         uses: actions/download-artifact@v4
