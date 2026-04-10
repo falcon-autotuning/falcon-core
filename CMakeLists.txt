@@ -199,5 +199,5 @@ configure_package_config_file(
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config-version.cmake"
-  DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-typing
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-core
 )
