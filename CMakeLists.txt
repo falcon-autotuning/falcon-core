@@ -103,7 +103,9 @@ set_target_properties(falcon-core PROPERTIES PUBLIC_HEADER "include/falcon_core/
 if(FALCON_CORE_BUILD_C_API)
   file(GLOB_RECURSE C_SOURCES "src/c/*.cpp" "src/c/*.c")
   add_library(falcon-core-c-api SHARED ${C_SOURCES})
-
+  if(WIN32)
+    target_link_options(falcon-core-c-api PRIVATE /FORCE:MULTIPLE)
+  endif()
   set_target_properties(falcon-core-c-api PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION 1
@@ -118,8 +120,6 @@ if(FALCON_CORE_BUILD_C_API)
 
   # CRITICAL: C-API links against the C++ core library
   target_link_libraries(falcon-core-c-api PUBLIC falcon-core)
-
-  set_target_properties(falcon-core-c-api PROPERTIES PUBLIC_HEADER "include/falcon_core/c_api.h")
 
 endif()
 

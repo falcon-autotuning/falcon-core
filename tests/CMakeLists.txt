@@ -14,6 +14,9 @@ target_link_libraries(falcon-core-cpp_tests
     GTest::gtest_main
     yaml-cpp::yaml-cpp
 )
+if(WIN32)
+  target_link_options(falcon-core-cpp_tests PRIVATE /FORCE:MULTIPLE)
+endif()
 target_compile_definitions(falcon-core-cpp_tests
   PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES
 )
@@ -87,6 +90,9 @@ if(FALCON_CORE_BUILD_C_API)
     falcon-core-c-api
     GTest::gtest_main
 )
+  if(WIN32)
+    target_link_options(falcon-core-c-api_tests PRIVATE /FORCE:MULTIPLE)
+  endif()
   target_compile_definitions(falcon-core-c-api_tests
   PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES
 )
