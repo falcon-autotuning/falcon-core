@@ -5,6 +5,9 @@
 #include "falcon-core/physics/device_structures/Impedance.hpp"
 
 namespace falcon_core {
+namespace generic {
+extern template class List<physics::device_structures::Impedance>;
+}
 namespace physics {
 namespace device_structures {
 

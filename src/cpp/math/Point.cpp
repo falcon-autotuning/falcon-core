@@ -6,6 +6,9 @@
 #include "falcon-core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core {
+namespace generic {
+template class Map<physics::device_structures::Connection, math::Quantity>;
+}
 namespace math {
 Point::Point(const Point& other)
     : generic::Map<physics::device_structures::Connection, Quantity>(other) {

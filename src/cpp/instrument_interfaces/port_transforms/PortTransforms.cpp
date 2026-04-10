@@ -3,6 +3,9 @@
 #include "falcon-core/instrument_interfaces/port_transforms/PortTransform.hpp"
 
 namespace falcon_core {
+namespace generic {
+template class List<instrument_interfaces::port_transforms::PortTransform>;
+}
 namespace instrument_interfaces {
 namespace port_transforms {
 

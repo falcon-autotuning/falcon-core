@@ -67,6 +67,10 @@ else
 	VCPKG_BINARY_SOURCES := clear;nuget,$(FEED_URL),readwrite
   CMAKE_VCPKG_BINARY_SOURCES := -DVCPKG_BINARY_SOURCES="$(VCPKG_BINARY_SOURCES)"
 endif
+LINKER_FLAGS ?=
+ifeq ($(PLATFORM),linux)
+	LINKER_FLAGS := -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld" -DCMAKE_SHARED_LINKER_FLAGS="-fuse-ld=lld"
+endif
 
 BUILD_DIR_DEBUG := build/debug
 BUILD_DIR_RELEASE := build/release
@@ -154,6 +158,7 @@ configure-debug: check-vcpkg generate_types
 		-DCMAKE_C_COMPILER=$(CC) \
 		-DCMAKE_CXX_COMPILER=$(CXX) \
 		$(CMAKE_VCPKG_BINARY_SOURCES) \
+		$(LINKER_FLAGS) \
 		-DFALCON_CORE_BUILD_C_API=ON \
 		-DVCPKG_OVERLAY_PORTS=../../ports \
 		-G $(CMAKE_GENERATOR)
@@ -173,6 +178,7 @@ configure-release: check-vcpkg generate_types
 		-DCMAKE_C_COMPILER=$(CC) \
 		-DCMAKE_CXX_COMPILER=$(CXX) \
 		$(CMAKE_VCPKG_BINARY_SOURCES) \
+		$(LINKER_FLAGS) \
 		-DFALCON_CORE_BUILD_C_API=ON \
 		-DVCPKG_OVERLAY_PORTS=../../ports \
 		-G $(CMAKE_GENERATOR)

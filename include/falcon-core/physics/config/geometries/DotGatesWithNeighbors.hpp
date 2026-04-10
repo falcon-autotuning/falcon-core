@@ -4,6 +4,9 @@
 #include "falcon-core/generic/List.hpp"
 #include "falcon-core/physics/config/geometries/DotGateWithNeighbors.hpp"
 namespace falcon_core {
+namespace generic {
+extern template class List<physics::config::geometries::DotGateWithNeighbors>;
+}
 namespace physics {
 namespace config {
 namespace geometries {

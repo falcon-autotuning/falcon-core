@@ -7,6 +7,9 @@
 #include "falcon-core/math/domains/LabelledDomain.hpp"
 
 namespace falcon_core {
+namespace generic {
+template class List<math::domains::LabelledDomain>;
+}
 namespace math {
 namespace domains {
 

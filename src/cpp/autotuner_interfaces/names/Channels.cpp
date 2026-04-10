@@ -1,6 +1,9 @@
 #include "falcon-core/autotuner_interfaces/names/Channels.hpp"
 
 namespace falcon_core {
+namespace generic {
+template class List<autotuner_interfaces::names::Channel>;
+}
 namespace autotuner_interfaces {
 namespace names {
 

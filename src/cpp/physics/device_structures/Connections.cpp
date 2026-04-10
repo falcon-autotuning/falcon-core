@@ -1,6 +1,9 @@
 #include "falcon-core/physics/device_structures/Connections.hpp"
 
 namespace falcon_core {
+namespace generic {
+template class List<physics::device_structures::Connection>;
+}
 namespace physics {
 namespace device_structures {
 

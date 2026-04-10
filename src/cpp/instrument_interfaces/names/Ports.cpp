@@ -6,6 +6,9 @@
 #include "falcon-core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core {
+namespace generic {
+template class List<instrument_interfaces::names::InstrumentPort>;
+}
 namespace instrument_interfaces {
 namespace names {
 

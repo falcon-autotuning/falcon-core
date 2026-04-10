@@ -67,9 +67,6 @@ find_package(Threads         REQUIRED)
 # It's the primary product of this package.
 file(GLOB_RECURSE CPP_SOURCES "src/cpp/*.cpp")
 add_library(falcon-core SHARED ${CPP_SOURCES})
-if(WIN32)
-  target_link_options(falcon-core PRIVATE /FORCE:MULTIPLE)
-endif()
 set_target_properties(falcon-core PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION 1
@@ -97,8 +94,6 @@ target_link_libraries(falcon-core
     Threads::Threads
 )
 
-set_target_properties(falcon-core PROPERTIES PUBLIC_HEADER "include/falcon_core/api.h")
-
 # ============================================================================
 # C API Wrapper Library (falcon-core-c-api)
 # ============================================================================
@@ -106,9 +101,6 @@ set_target_properties(falcon-core PROPERTIES PUBLIC_HEADER "include/falcon_core/
 if(FALCON_CORE_BUILD_C_API)
   file(GLOB_RECURSE C_SOURCES "src/c/*.cpp" "src/c/*.c")
   add_library(falcon-core-c-api SHARED ${C_SOURCES})
-  if(WIN32)
-    target_link_options(falcon-core-c-api PRIVATE /FORCE:MULTIPLE)
-  endif()
   set_target_properties(falcon-core-c-api PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION 1

@@ -4,6 +4,9 @@
 #include "falcon-core/generic/List.hpp"
 #include "falcon-core/physics/device_structures/Connection.hpp"
 namespace falcon_core {
+namespace generic {
+extern template class List<physics::device_structures::Connection>;
+}
 namespace physics {
 namespace device_structures {
 

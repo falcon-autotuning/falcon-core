@@ -14,9 +14,6 @@ target_link_libraries(falcon-core-cpp_tests
     GTest::gtest_main
     yaml-cpp::yaml-cpp
 )
-if(WIN32)
-  target_link_options(falcon-core-cpp_tests PRIVATE /FORCE:MULTIPLE)
-endif()
 target_compile_definitions(falcon-core-cpp_tests
   PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES
 )
@@ -36,7 +33,6 @@ if(WIN32)
   set_target_properties(integration_serialize_connection PROPERTIES
       WINDOWS_EXPORT_ALL_SYMBOLS OFF
     )
-  target_link_options(integration_serialize_connection PRIVATE /FORCE:MULTIPLE)
 endif()
 target_compile_definitions(integration_serialize_connection
   PRIVATE
@@ -60,7 +56,6 @@ if(WIN32)
   set_target_properties(integration_deserialize_connection PROPERTIES
       WINDOWS_EXPORT_ALL_SYMBOLS OFF
     )
-  target_link_options(integration_deserialize_connection PRIVATE /FORCE:MULTIPLE)
 endif()
 target_compile_definitions(integration_deserialize_connection PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES)
 target_link_libraries(integration_deserialize_connection
@@ -90,9 +85,6 @@ if(FALCON_CORE_BUILD_C_API)
     falcon-core-c-api
     GTest::gtest_main
 )
-  if(WIN32)
-    target_link_options(falcon-core-c-api_tests PRIVATE /FORCE:MULTIPLE)
-  endif()
   target_compile_definitions(falcon-core-c-api_tests
   PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES
 )
@@ -113,7 +105,6 @@ if(FALCON_CORE_BUILD_C_API)
       WINDOWS_EXPORT_ALL_SYMBOLS OFF
       RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
     )
-    target_link_options(integration_serialize_connection_c PRIVATE /FORCE:MULTIPLE)
   else()
     set_target_properties(integration_serialize_connection_c PROPERTIES
       BUILD_RPATH "${CMAKE_BINARY_DIR};${CORE_BUILD_ABS}"
@@ -141,7 +132,6 @@ if(FALCON_CORE_BUILD_C_API)
       WINDOWS_EXPORT_ALL_SYMBOLS OFF
       RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
     )
-    target_link_options(integration_deserialize_connection_c PRIVATE /FORCE:MULTIPLE)
   else()
     set_target_properties(integration_deserialize_connection_c PROPERTIES
       BUILD_RPATH "${CMAKE_BINARY_DIR};${CORE_BUILD_ABS}"

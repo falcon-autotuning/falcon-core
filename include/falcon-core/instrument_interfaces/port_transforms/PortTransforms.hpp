@@ -7,6 +7,10 @@
  * @brief Container for multiple PortTransform objects.
  */
 namespace falcon_core {
+namespace generic {
+extern template class List<
+    instrument_interfaces::port_transforms::PortTransform>;
+}
 namespace instrument_interfaces {
 namespace port_transforms {
 

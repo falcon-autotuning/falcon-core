@@ -5,6 +5,9 @@
 #include "falcon-core/instrument_interfaces/names/InstrumentPort.hpp"
 
 namespace falcon_core {
+namespace generic {
+extern template class List<instrument_interfaces::names::InstrumentPort>;
+}
 namespace instrument_interfaces {
 namespace names {
 

@@ -6,6 +6,9 @@
 #include "falcon-core/physics/device_structures/Connection.hpp"
 
 namespace falcon_core {
+namespace generic {
+template class List<communications::voltage_states::DeviceVoltageState>;
+}
 namespace communications {
 namespace voltage_states {
 

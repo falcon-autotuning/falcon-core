@@ -1,6 +1,9 @@
 #include "falcon-core/physics/config/geometries/DotGatesWithNeighbors.hpp"
 
 namespace falcon_core {
+namespace generic {
+template class List<physics::config::geometries::DotGateWithNeighbors>;
+}
 namespace physics {
 namespace config {
 namespace geometries {

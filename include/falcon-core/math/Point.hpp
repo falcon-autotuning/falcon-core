@@ -12,6 +12,10 @@
 #include "falcon-core/physics/device_structures/Connection.hpp"
 #include "falcon-core/physics/units/SymbolUnit.hpp"
 namespace falcon_core {
+namespace generic {
+extern template class Map<physics::device_structures::Connection,
+                          math::Quantity>;
+}
 namespace math {
 /**
  * @brief Represents a point in a multi-dimensional space, indexed by
