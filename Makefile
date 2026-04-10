@@ -22,7 +22,7 @@ ifeq ($(PLATFORM),windows)
   VCPKG_DEBUG_BIN := $(PWD)/vcpkg_installed/x64-windows/bin
   VCPKG_RELEASE_LIB := $(PWD)/vcpkg_installed/x64-windows/lib
   EXE_SUFFIX := .exe
-  NPROC := 4
+	NPROC := $(shell powershell -Command "[Environment]::ProcessorCount" 2>NUL || echo 4)
   STRIP_CMD := # no-op (strip not usually present); set to "llvm-strip" if you have it
 	RUN_PREFIX := PATH=$(VCPKG_DEBUG_BIN):$(VCPKG_RELEASE_LIB):$$PATH
 	SUDO ?= sudo
