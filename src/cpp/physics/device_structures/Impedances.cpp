@@ -2,7 +2,7 @@
 
 namespace falcon_core {
 namespace generic {
-template class List<physics::device_structures::Impedance>;
+template class FALCON_CORE_CPP_API List<physics::device_structures::Impedance>;
 }
 namespace physics {
 namespace device_structures {

@@ -2,7 +2,7 @@
 
 namespace falcon_core {
 namespace generic {
-template class List<physics::device_structures::Connection>;
+template class FALCON_CORE_CPP_API List<physics::device_structures::Connection>;
 }
 namespace physics {
 namespace device_structures {

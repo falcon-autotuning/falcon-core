@@ -3,6 +3,7 @@
 #include "falcon-core/Precompiled_c_api.h"
 #include "falcon-core/export_c_api.h"
 #include <falcon-core/math/discrete_spaces/Discretizer.hpp>
+#include <falcon-core/math/UnitSpace.hpp>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 
 extern "C" {

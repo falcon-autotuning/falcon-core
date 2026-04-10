@@ -2,7 +2,7 @@
 
 namespace falcon_core {
 namespace generic {
-template class FArray<double>;
-template class FArray<int>;
+template class FALCON_CORE_CPP_API FArray<double>;
+template class FALCON_CORE_CPP_API FArray<int>;
 }  // namespace generic
 }  // namespace falcon_core

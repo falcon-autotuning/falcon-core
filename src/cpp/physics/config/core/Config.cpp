@@ -11,7 +11,7 @@
 
 namespace falcon_core {
 namespace generic {
-template class Map<autotuner_interfaces::names::Channel,
+template class FALCON_CORE_CPP_API Map<autotuner_interfaces::names::Channel,
                    physics::device_structures::Connections>;
 }
 namespace physics {

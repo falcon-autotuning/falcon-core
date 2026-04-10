@@ -4131,6 +4131,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<falcon-core/math/discrete_spaces/Discretizer.hpp>",
+            "<falcon-core/math/UnitSpace.hpp>",
         ],
         Path("generic"),
     ),

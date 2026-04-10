@@ -2,7 +2,7 @@
 
 namespace falcon_core {
 namespace generic {
-template class List<physics::config::geometries::DotGateWithNeighbors>;
+template class FALCON_CORE_CPP_API List<physics::config::geometries::DotGateWithNeighbors>;
 }
 namespace physics {
 namespace config {

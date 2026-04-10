@@ -2,6 +2,6 @@
 
 namespace falcon_core {
 namespace generic {
-template class List<std::string>;
+template class FALCON_CORE_CPP_API List<std::string>;
 }
 }  // namespace falcon_core

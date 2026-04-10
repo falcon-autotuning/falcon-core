@@ -9,11 +9,11 @@
 
 namespace falcon_core {
 namespace generic {
-template class Map<instrument_interfaces::names::InstrumentPort,
+template class FALCON_CORE_CPP_API Map<instrument_interfaces::names::InstrumentPort,
                    instrument_interfaces::port_transforms::PortTransform>;
 }
 namespace math {
-template class Axes<instrument_interfaces::names::InstrumentPort>;
+template class FALCON_CORE_CPP_API Axes<instrument_interfaces::names::InstrumentPort>;
 }
 namespace instrument_interfaces {
 Waveform::Waveform(const Waveform& other)

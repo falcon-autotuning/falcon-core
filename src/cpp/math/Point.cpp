@@ -7,9 +7,9 @@
 
 namespace falcon_core {
 namespace generic {
-template class Map<physics::device_structures::Connection, math::Quantity>;
-template class Map<physics::device_structures::Connection, double>;
-template class Map<physics::device_structures::Connection, float>;
+template class FALCON_CORE_CPP_API Map<physics::device_structures::Connection, math::Quantity>;
+template class FALCON_CORE_CPP_API Map<physics::device_structures::Connection, double>;
+template class FALCON_CORE_CPP_API Map<physics::device_structures::Connection, float>;
 }  // namespace generic
 namespace math {
 Point::Point(const Point& other)

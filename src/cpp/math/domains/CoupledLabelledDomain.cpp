@@ -8,7 +8,7 @@
 
 namespace falcon_core {
 namespace generic {
-template class List<math::domains::LabelledDomain>;
+template class FALCON_CORE_CPP_API List<math::domains::LabelledDomain>;
 }
 namespace math {
 namespace domains {

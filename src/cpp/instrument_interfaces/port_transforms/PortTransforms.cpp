@@ -4,7 +4,7 @@
 
 namespace falcon_core {
 namespace generic {
-template class List<instrument_interfaces::port_transforms::PortTransform>;
+template class FALCON_CORE_CPP_API List<instrument_interfaces::port_transforms::PortTransform>;
 }
 namespace instrument_interfaces {
 namespace port_transforms {
