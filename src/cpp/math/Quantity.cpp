@@ -127,6 +127,7 @@ Quantity& Quantity::operator/=(const int& other) {
   _value /= other;
   return *this;
 }
+
 Quantity& Quantity::operator/=(const double& other) {
   std::unique_lock<std::shared_timed_mutex> lock_value(_mu_value);
   _value /= other;
