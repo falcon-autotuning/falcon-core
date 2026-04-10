@@ -73,12 +73,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ninja-build cmake build-essential mono-complete
 
+      - name: Set VCPKG_ROOT as Unix-style path
+        run: echo "VCPKG_ROOT=$(echo "${{ github.workspace }}/vcpkg" | sed 's|\\|/|g')" >> $GITHUB_ENV
+      - name: Add PowerShell to PATH
+        run: echo "C:\Windows\System32\WindowsPowerShell\v1.0" >> $GITHUB_PATH
       - name: Install vcpkg dependencies
         env:
+          PATH: "C:/Program Files/LLVM/bin;C:/Program Files/CMake/bin;C:/ProgramData/chocolatey/bin;${{ env.PATH }}"
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
           FEED_URL: ${{ secrets.NUGET_FEED_URL }}
           FEED_NAME: ${{ secrets.NUGET_FEED_NAME }}
           USERNAME: $ {{ secrets.NUGET_USERNAME }}
+          CC: clang-cl
+          CXX: clang-cl
         run: make vcpkg-install-deps
 
       - name: Download Linux build state
@@ -100,13 +107,13 @@ jobs:
           path: data
 
       - name: Deserialize on Linux
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         run: |
           export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
           ./integration_deserialize_connection --input ../../../data/cpp_windows_cross.json --name "WindowsToLinuxTest" --type BarrierGate --verbose || { echo "Deserialization failed!"; exit 1; }
 
       - name: Deserialize Again on Linux
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         run: |
           export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
           ./integration_deserialize_connection_c --input ../../../data/capi_windows_cross.json --name "CApiWindowsToLinuxTest" --type ScreeningGate --verbose || { echo "Deserialization failed!"; exit 1; }
