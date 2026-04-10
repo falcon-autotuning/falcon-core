@@ -8,7 +8,8 @@
 namespace falcon_core {
 namespace generic {
 template class Map<physics::device_structures::Connection, math::Quantity>;
-}
+template class Map<physics::device_structures::Connection, double>;
+}  // namespace generic
 namespace math {
 Point::Point(const Point& other)
     : generic::Map<physics::device_structures::Connection, Quantity>(other) {

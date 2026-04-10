@@ -11,7 +11,7 @@ namespace generic {
 template class List<math::discrete_spaces::Discretizer>;
 }
 namespace math {
-template class math::Axes<discrete_spaces::Discretizer>;
+template class Axes<discrete_spaces::Discretizer>;
 UnitSpace::UnitSpace(const UnitSpace& other)
     : math::Axes<discrete_spaces::Discretizer>(other) {
   std::unique_lock<std::shared_timed_mutex> lock_domain(_mu_domain,

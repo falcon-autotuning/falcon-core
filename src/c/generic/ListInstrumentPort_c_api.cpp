@@ -3,6 +3,7 @@
 #include "falcon-core/Precompiled_c_api.h"
 #include "falcon-core/export_c_api.h"
 #include <falcon-core/instrument_interfaces/names/InstrumentPort.hpp>
+#include <falcon-core/instrument_interfaces/names/Ports.hpp>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 
 extern "C" {

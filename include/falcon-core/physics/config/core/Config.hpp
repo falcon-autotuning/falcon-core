@@ -10,6 +10,10 @@
 #include "falcon-core/physics/device_structures/GateRelations.hpp"
 #include "falcon-core/physics/device_structures/Impedances.hpp"
 namespace falcon_core {
+namespace generic {
+extern template class Map<autotuner_interfaces::names::Channel,
+                          physics::device_structures::Connections>;
+}
 namespace physics {
 namespace config {
 namespace core {

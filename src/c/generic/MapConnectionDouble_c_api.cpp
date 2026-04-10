@@ -4,6 +4,7 @@
 #include "falcon-core/export_c_api.h"
 #include <falcon-core/generic/Pair.hpp>
 #include <falcon-core/physics/device_structures/Connection.hpp>
+#include <falcon-core/math/Point.hpp>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 
 extern "C" {

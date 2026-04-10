@@ -5,6 +5,7 @@
 #include <falcon-core/generic/Pair.hpp>
 #include <falcon-core/instrument_interfaces/names/InstrumentPort.hpp>
 #include <falcon-core/instrument_interfaces/port_transforms/PortTransform.hpp>
+#include <falcon-core/instrument_interfaces/Waveform.hpp>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 
 extern "C" {

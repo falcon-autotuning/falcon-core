@@ -3,6 +3,7 @@
 #include "falcon-core/Precompiled_c_api.h"
 #include "falcon-core/export_c_api.h"
 #include <falcon-core/physics/config/geometries/DotGateWithNeighbors.hpp>
+#include <falcon-core/physics/config/geometries/DotGatesWithNeighbors.hpp>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 
 extern "C" {

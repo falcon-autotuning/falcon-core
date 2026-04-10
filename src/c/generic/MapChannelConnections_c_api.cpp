@@ -5,6 +5,7 @@
 #include <falcon-core/generic/Pair.hpp>
 #include <falcon-core/autotuner_interfaces/names/Channel.hpp>
 #include <falcon-core/physics/device_structures/Connections.hpp>
+#include <falcon-core/physics/config/core/Config.hpp>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 
 extern "C" {

@@ -2490,7 +2490,10 @@ registry: dict[str, Entry] = {
             "<stddef.h>",
             "<stdbool.h>",
         ],
-        ["<falcon-core/physics/device_structures/Connection.hpp>"],
+        [
+            "<falcon-core/physics/device_structures/Connection.hpp>",
+            "<falcon-core/physics/device_structures/Connections.hpp>",
+        ],
         Path("generic"),
     ),
     "ChannelList": Entry(
@@ -2506,7 +2509,10 @@ registry: dict[str, Entry] = {
             "<stddef.h>",
             "<stdbool.h>",
         ],
-        ["<falcon-core/autotuner_interfaces/names/Channel.hpp>"],
+        [
+            "<falcon-core/autotuner_interfaces/names/Channel.hpp>",
+            "<falcon-core/autotuner_interfaces/names/Channels.hpp>",
+        ],
         Path("generic"),
     ),
     "InstrumentPortList": Entry(
@@ -2522,7 +2528,10 @@ registry: dict[str, Entry] = {
             "<stddef.h>",
             "<stdbool.h>",
         ],
-        ["<falcon-core/instrument_interfaces/names/InstrumentPort.hpp>"],
+        [
+            "<falcon-core/instrument_interfaces/names/InstrumentPort.hpp>",
+            "<falcon-core/instrument_interfaces/names/Ports.hpp>",
+        ],
         Path("generic"),
     ),
     "PortTransformList": Entry(
@@ -2538,7 +2547,10 @@ registry: dict[str, Entry] = {
             "<stddef.h>",
             "<stdbool.h>",
         ],
-        ["<falcon-core/instrument_interfaces/port_transforms/PortTransform.hpp>"],
+        [
+            "<falcon-core/instrument_interfaces/port_transforms/PortTransform.hpp>",
+            "<falcon-core/instrument_interfaces/port_transforms/PortTransforms.hpp>",
+        ],
         Path("generic"),
     ),
     "LabelledDomainList": Entry(
@@ -2554,7 +2566,10 @@ registry: dict[str, Entry] = {
             "<stddef.h>",
             "<stdbool.h>",
         ],
-        ["<falcon-core/math/domains/LabelledDomain.hpp>"],
+        [
+            "<falcon-core/math/domains/LabelledDomain.hpp>",
+            "<falcon-core/math/domains/CoupledLabelledDomain.hpp>",
+        ],
         Path("generic"),
     ),
     "QuantityList": Entry(
@@ -2615,7 +2630,10 @@ registry: dict[str, Entry] = {
             "<stddef.h>",
             "<stdbool.h>",
         ],
-        ["<falcon-core/physics/device_structures/Impedance.hpp>"],
+        [
+            "<falcon-core/physics/device_structures/Impedance.hpp>",
+            "<falcon-core/physics/device_structures/Impedances.hpp>",
+        ],
         Path("generic"),
     ),
     "DeviceVoltageStateList": Entry(
@@ -2631,7 +2649,10 @@ registry: dict[str, Entry] = {
             "<stddef.h>",
             "<stdbool.h>",
         ],
-        ["<falcon-core/communications/voltage_states/DeviceVoltageState.hpp>"],
+        [
+            "<falcon-core/communications/voltage_states/DeviceVoltageState.hpp>",
+            "<falcon-core/communications/voltage_states/DeviceVoltageStates.hpp>",
+        ],
         Path("generic"),
     ),
     "StringList": Entry(
@@ -3298,6 +3319,7 @@ registry: dict[str, Entry] = {
         ],
         [
             "<falcon-core/physics/config/geometries/DotGateWithNeighbors.hpp>",
+            "<falcon-core/physics/config/geometries/DotGatesWithNeighbors.hpp>",
         ],
         Path("generic"),
     ),
@@ -3795,6 +3817,7 @@ registry: dict[str, Entry] = {
         [
             "<falcon-core/generic/Pair.hpp>",
             "<falcon-core/physics/device_structures/Connection.hpp>",
+            "<falcon-core/math/Point.hpp>",
         ],
         Path("generic"),
     ),
@@ -3846,6 +3869,7 @@ registry: dict[str, Entry] = {
             "<falcon-core/generic/Pair.hpp>",
             "<falcon-core/math/Quantity.hpp>",
             "<falcon-core/physics/device_structures/Connection.hpp>",
+            "<falcon-core/math/Point.hpp>",
         ],
         Path("generic"),
     ),
@@ -3923,6 +3947,7 @@ registry: dict[str, Entry] = {
             "<falcon-core/generic/Pair.hpp>",
             "<falcon-core/autotuner_interfaces/names/Channel.hpp>",
             "<falcon-core/physics/device_structures/Connections.hpp>",
+            "<falcon-core/physics/config/core/Config.hpp>",
         ],
         Path("generic"),
     ),
@@ -3949,6 +3974,7 @@ registry: dict[str, Entry] = {
             "<falcon-core/generic/Pair.hpp>",
             "<falcon-core/instrument_interfaces/names/InstrumentPort.hpp>",
             "<falcon-core/instrument_interfaces/port_transforms/PortTransform.hpp>",
+            "<falcon-core/instrument_interfaces/Waveform.hpp>",
         ],
         Path("generic"),
     ),
@@ -4196,6 +4222,7 @@ registry: dict[str, Entry] = {
         [
             "<falcon-core/generic/List.hpp>",
             "<falcon-core/math/discrete_spaces/Discretizer.hpp>",
+            "<falcon-core/math/UnitSpace.hpp>",
         ],
         Path("math"),
     ),

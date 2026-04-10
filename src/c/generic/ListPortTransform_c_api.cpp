@@ -3,6 +3,7 @@
 #include "falcon-core/Precompiled_c_api.h"
 #include "falcon-core/export_c_api.h"
 #include <falcon-core/instrument_interfaces/port_transforms/PortTransform.hpp>
+#include <falcon-core/instrument_interfaces/port_transforms/PortTransforms.hpp>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 
 extern "C" {

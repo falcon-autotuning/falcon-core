@@ -8,6 +8,10 @@
 #include "falcon-core/math/domains/CoupledLabelledDomain.hpp"
 
 namespace falcon_core {
+namespace generic {
+template class Map<instrument_interfaces::names::InstrumentPort,
+                   instrument_interfaces::port_transforms::PortTransform>;
+}
 namespace instrument_interfaces {
 Waveform::Waveform(const Waveform& other)
     : port_transforms::PortTransforms(other) {

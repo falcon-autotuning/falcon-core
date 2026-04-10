@@ -10,6 +10,11 @@
  * @tparam T The discrete space type.
  */
 namespace falcon_core {
+namespace generic {
+extern template class Map<
+    instrument_interfaces::names::InstrumentPort,
+    instrument_interfaces::port_transforms::PortTransform>;
+}
 namespace instrument_interfaces {
 
 class FALCON_CORE_CPP_API Waveform : public port_transforms::PortTransforms {

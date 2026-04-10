@@ -3,6 +3,7 @@
 #include "falcon-core/Precompiled_c_api.h"
 #include "falcon-core/export_c_api.h"
 #include <falcon-core/communications/voltage_states/DeviceVoltageState.hpp>
+#include <falcon-core/communications/voltage_states/DeviceVoltageStates.hpp>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 
 extern "C" {

@@ -3,6 +3,7 @@
 #include "falcon-core/Precompiled_c_api.h"
 #include "falcon-core/export_c_api.h"
 #include <falcon-core/physics/device_structures/Impedance.hpp>
+#include <falcon-core/physics/device_structures/Impedances.hpp>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 
 extern "C" {
