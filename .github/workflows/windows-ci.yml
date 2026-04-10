@@ -42,7 +42,7 @@ jobs:
         run: make test
 
       - name: Run C++ integration tests (same platform)
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         env:
           PATH: ${{ github.workspace }}/build/release;${{ github.workspace }}/vcpkg_installed/x64-windows/bin;${{ env.PATH }}
         run: |
@@ -50,7 +50,7 @@ jobs:
           ./integration_deserialize_connection --input cpp_windows_local.json --name "WindowsLocalTest" --type PlungerGate --verbose
 
       - name: Serialize for cross-platform test
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         env:
           PATH: ${{ github.workspace }}/build/release;${{ github.workspace }}/vcpkg_installed/x64-windows/bin;${{ env.PATH }}
         run: |
@@ -65,7 +65,7 @@ jobs:
           retention-days: 1
 
       - name: Run C-API integration tests (same platform)
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         env:
           PATH: ${{ github.workspace }}/build/release;${{ github.workspace }}/vcpkg_installed/x64-windows/bin;${{ env.PATH }}
         run: |
@@ -73,7 +73,7 @@ jobs:
           ./integration_deserialize_connection_c --input capi_windows_local.json --name "CApiWindowsLocalTest" --type PlungerGate --verbose
 
       - name: Serialize for cross-platform test
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         env:
           PATH: ${{ github.workspace }}/build/release;${{ github.workspace }}/vcpkg_installed/x64-windows/bin;${{ env.PATH }}
         run: |
