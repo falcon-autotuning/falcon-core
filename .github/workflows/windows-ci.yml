@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cpp-windows-serialized
-          path: build/release/tests/cpp_windows_cross.json
+          path: build/release/bin/cpp_windows_cross.json
           retention-days: 1
 
       - name: Run C-API integration tests (same platform)
@@ -84,7 +84,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: capi-windows-serialized
-          path: build/release/tests/capi_windows_cross.json
+          path: build/release/bin/capi_windows_cross.json
           retention-days: 1
 
       - name: Upload windows build state
