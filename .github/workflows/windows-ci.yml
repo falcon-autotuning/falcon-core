@@ -28,6 +28,8 @@ jobs:
 
       - name: Set VCPKG_ROOT as Unix-style path
         run: echo "VCPKG_ROOT=$(echo "${{ github.workspace }}/vcpkg" | sed 's|\\|/|g')" >> $GITHUB_ENV
+      - name: Add PowerShell to PATH
+        run: echo "C:\Windows\System32\WindowsPowerShell\v1.0" >> $GITHUB_PATH
       - name: Run tests
         env:
           PATH: "C:/Program Files/LLVM/bin;C:/Program Files/CMake/bin;C:/ProgramData/chocolatey/bin;${{ env.PATH }}"
