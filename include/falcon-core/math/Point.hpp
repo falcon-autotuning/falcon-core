@@ -16,6 +16,7 @@ namespace generic {
 extern template class Map<physics::device_structures::Connection,
                           math::Quantity>;
 extern template class Map<physics::device_structures::Connection, double>;
+extern template class Map<physics::device_structures::Connection, float>;
 }  // namespace generic
 namespace math {
 /**

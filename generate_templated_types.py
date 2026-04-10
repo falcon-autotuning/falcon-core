@@ -3792,6 +3792,7 @@ registry: dict[str, Entry] = {
         [
             "<falcon-core/generic/Pair.hpp>",
             "<falcon-core/physics/device_structures/Connection.hpp>",
+            "<falcon-core/math/Point.hpp>",
         ],
         Path("generic"),
     ),
