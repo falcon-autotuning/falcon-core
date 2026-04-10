@@ -31,14 +31,14 @@ jobs:
         run: make test
 
       - name: Run C++ integration tests (same platform)
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         run: |
           export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
           ./integration_serialize_connection --output cpp_linux_local.json --name "LinuxLocalTest" --type PlungerGate
           ./integration_deserialize_connection --input cpp_linux_local.json --name "LinuxLocalTest" --type PlungerGate --verbose
 
       - name: Serialize for cross-platform test
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         run: |
           export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
           ./integration_serialize_connection --output cpp_linux_cross.json --name "LinuxToWindowsTest" --type BarrierGate
@@ -48,18 +48,18 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cpp-linux-serialized
-          path: build/release/tests/cpp_linux_cross.json
+          path: build/release/bin/cpp_linux_cross.json
           retention-days: 1
 
       - name: Run C-API integration tests (same platform)
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         run: |
           export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
           ./integration_serialize_connection_c --output capi_linux_local.json --name "CApiLinuxLocalTest" --type PlungerGate
           ./integration_deserialize_connection_c --input capi_linux_local.json --name "CApiLinuxLocalTest" --type PlungerGate --verbose
 
       - name: Serialize for cross-platform test
-        working-directory: build/release/tests
+        working-directory: build/release/bin
         run: |
           export LD_LIBRARY_PATH=$(pwd):$(pwd)/vcpkg_installed/x64-linux-dynamic/lib:$LD_LIBRARY_PATH
           ./integration_serialize_connection_c --output capi_linux_cross.json --name "CApiLinuxToWindowsTest" --type ScreeningGate
@@ -69,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: capi-linux-serialized
-          path: build/release/tests/capi_linux_cross.json
+          path: build/release/bin/capi_linux_cross.json
           retention-days: 1
 
       - name: Upload Linux build state
