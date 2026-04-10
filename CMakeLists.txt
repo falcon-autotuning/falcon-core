@@ -70,9 +70,6 @@ add_library(falcon-core SHARED ${CPP_SOURCES})
 set_target_properties(falcon-core PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION 1
-  # Let CMake handle default prefixes/suffixes per platform.
-  # Explicitly setting them can sometimes cause issues.
-  WINDOWS_EXPORT_ALL_SYMBOLS TRUE # Simplified export for shared libs on Windows
 )
 
 target_include_directories(falcon-core
@@ -110,7 +107,6 @@ if(FALCON_CORE_BUILD_C_API)
   set_target_properties(falcon-core-c-api PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION 1
-    WINDOWS_EXPORT_ALL_SYMBOLS TRUE
   )
 
   target_include_directories(falcon-core-c-api
@@ -197,5 +193,5 @@ configure_package_config_file(
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config-version.cmake"
-  DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-core
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-typing
 )
