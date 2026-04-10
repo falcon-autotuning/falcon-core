@@ -67,6 +67,9 @@ find_package(Threads         REQUIRED)
 # It's the primary product of this package.
 file(GLOB_RECURSE CPP_SOURCES "src/cpp/*.cpp")
 add_library(falcon-core SHARED ${CPP_SOURCES})
+if(WIN32)
+  target_link_options(falcon-core PRIVATE /FORCE:MULTIPLE)
+endif()
 set_target_properties(falcon-core PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION 1
