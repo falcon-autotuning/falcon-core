@@ -6,7 +6,8 @@
 
 namespace falcon_core {
 namespace generic {
-extern template class List<physics::device_structures::Impedance>;
+extern template class FALCON_CORE_CPP_API
+    List<physics::device_structures::Impedance>;
 }
 namespace physics {
 namespace device_structures {

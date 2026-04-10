@@ -6,7 +6,8 @@
 #include "falcon-core/math/Point.hpp"
 namespace falcon_core {
 namespace generic {
-extern template class List<communications::voltage_states::DeviceVoltageState>;
+extern template class FALCON_CORE_CPP_API
+    List<communications::voltage_states::DeviceVoltageState>;
 }
 namespace communications {
 namespace voltage_states {

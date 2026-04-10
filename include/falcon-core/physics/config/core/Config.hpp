@@ -11,8 +11,9 @@
 #include "falcon-core/physics/device_structures/Impedances.hpp"
 namespace falcon_core {
 namespace generic {
-extern template class Map<autotuner_interfaces::names::Channel,
-                          physics::device_structures::Connections>;
+extern template class FALCON_CORE_CPP_API
+    Map<autotuner_interfaces::names::Channel,
+        physics::device_structures::Connections>;
 }
 namespace physics {
 namespace config {

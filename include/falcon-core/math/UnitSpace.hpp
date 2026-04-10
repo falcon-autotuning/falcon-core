@@ -12,10 +12,11 @@
 
 namespace falcon_core {
 namespace generic {
-extern template class List<math::discrete_spaces::Discretizer>;
+extern template class FALCON_CORE_CPP_API
+    List<math::discrete_spaces::Discretizer>;
 }
 namespace math {
-extern template class Axes<discrete_spaces::Discretizer>;
+extern template class FALCON_CORE_CPP_API Axes<discrete_spaces::Discretizer>;
 /**
  * @brief Respresents a hypercube of measurement space. It is defined by a set
  * of axes, each of which can be discretized.

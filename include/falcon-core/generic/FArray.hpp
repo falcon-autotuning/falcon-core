@@ -7,6 +7,7 @@
 #include <xtensor/xio.hpp>
 #include <xtensor/xview.hpp>
 
+#include "falcon-core/export.h"
 #include "falcon-core/generic/FArrayProtocol.hpp"
 #include "falcon-core/generic/List.hpp"
 #include "falcon-core/generic/Song.hpp"
@@ -482,8 +483,8 @@ class FArray : public generic::Song, public virtual IFArray<T> {
 };
 template <typename T>
 using FArraySP = std::shared_ptr<FArray<T>>;
-extern template class FArray<double>;
-extern template class FArray<int>;
+extern template class FALCON_CORE_CPP_API FArray<double>;
+extern template class FALCON_CORE_CPP_API FArray<int>;
 
 }  // namespace generic
 }  // namespace falcon_core

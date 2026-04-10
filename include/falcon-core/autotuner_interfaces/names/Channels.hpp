@@ -5,7 +5,8 @@
 #include "falcon-core/generic/List.hpp"
 namespace falcon_core {
 namespace generic {
-extern template class List<autotuner_interfaces::names::Channel>;
+extern template class FALCON_CORE_CPP_API
+    List<autotuner_interfaces::names::Channel>;
 }
 namespace autotuner_interfaces {
 namespace names {

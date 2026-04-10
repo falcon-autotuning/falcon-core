@@ -9,6 +9,7 @@
 #include <type_traits>
 #include <vector>
 
+#include "falcon-core/export.h"
 #include "falcon-core/generic/IsPrimitive.hpp"
 #include "falcon-core/generic/Song.hpp"
 
@@ -505,6 +506,6 @@ class List : public generic::Song {
 
 template <typename Value>
 using ListSP = std::shared_ptr<List<Value>>;
-extern template class List<std::string>;
+extern template class FALCON_CORE_CPP_API List<std::string>;
 }  // namespace generic
 }  // namespace falcon_core

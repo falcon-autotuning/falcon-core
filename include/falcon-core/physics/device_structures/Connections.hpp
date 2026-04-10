@@ -5,7 +5,8 @@
 #include "falcon-core/physics/device_structures/Connection.hpp"
 namespace falcon_core {
 namespace generic {
-extern template class List<physics::device_structures::Connection>;
+extern template class FALCON_CORE_CPP_API
+    List<physics::device_structures::Connection>;
 }
 namespace physics {
 namespace device_structures {

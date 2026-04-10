@@ -13,10 +13,12 @@
 #include "falcon-core/physics/units/SymbolUnit.hpp"
 namespace falcon_core {
 namespace generic {
-extern template class Map<physics::device_structures::Connection,
-                          math::Quantity>;
-extern template class Map<physics::device_structures::Connection, double>;
-extern template class Map<physics::device_structures::Connection, float>;
+extern template class FALCON_CORE_CPP_API
+    Map<physics::device_structures::Connection, math::Quantity>;
+extern template class FALCON_CORE_CPP_API
+    Map<physics::device_structures::Connection, double>;
+extern template class FALCON_CORE_CPP_API
+    Map<physics::device_structures::Connection, float>;
 }  // namespace generic
 namespace math {
 /**

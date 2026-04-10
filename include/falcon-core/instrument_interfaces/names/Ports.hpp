@@ -7,7 +7,8 @@
 
 namespace falcon_core {
 namespace generic {
-extern template class List<instrument_interfaces::names::InstrumentPort>;
+extern template class FALCON_CORE_CPP_API
+    List<instrument_interfaces::names::InstrumentPort>;
 }
 namespace instrument_interfaces {
 namespace names {
