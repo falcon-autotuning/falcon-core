@@ -15,7 +15,8 @@ namespace falcon_core {
 namespace generic {
 extern template class Map<physics::device_structures::Connection,
                           math::Quantity>;
-}
+extern template class Map<physics::device_structures::Connection, double>;
+}  // namespace generic
 namespace math {
 /**
  * @brief Represents a point in a multi-dimensional space, indexed by

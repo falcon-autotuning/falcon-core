@@ -3,6 +3,7 @@
 #include "falcon-core/export.h"
 #include "falcon-core/generic/List.hpp"
 #include "falcon-core/instrument_interfaces/names/InstrumentPort.hpp"
+#include "falcon-core/physics/device_structures/Connections.hpp"
 
 namespace falcon_core {
 namespace generic {

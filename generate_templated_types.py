@@ -4363,6 +4363,7 @@ registry: dict[str, Entry] = {
         [
             "<falcon-core/generic/List.hpp>",
             "<falcon-core/instrument_interfaces/names/InstrumentPort.hpp>",
+            "<falcon-core/instrument_interfaces/Waveform.hpp>",
         ],
         Path("math"),
     ),

@@ -15,6 +15,9 @@ extern template class Map<
     instrument_interfaces::names::InstrumentPort,
     instrument_interfaces::port_transforms::PortTransform>;
 }
+namespace math {
+extern template class Axes<instrument_interfaces::names::InstrumentPort>;
+}
 namespace instrument_interfaces {
 
 class FALCON_CORE_CPP_API Waveform : public port_transforms::PortTransforms {
