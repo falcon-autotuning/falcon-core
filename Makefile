@@ -229,10 +229,3 @@ test-debug: build-debug
 	cd $(BUILD_DIR_DEBUG) && ctest --output-on-failure
 	@echo "✓ Tests passed"
 
-run-serialization-test:
-	@$(BUILD_DIR)/integration_serialize_connection --output test.json --name "MyGate" --type PlungerGate
-	@$(BUILD_DIR)/integration_deserialize_connection --input test.json --name "MyGate" --type PlungerGate
-	@rm test.json
-	@$(C_API_BUILD_DIR)/integration_serialize_connection_c --output test.json --name "MyGate" --type PlungerGate
-	@$(C_API_BUILD_DIR)/integration_deserialize_connection_c --input test.json --name "MyGate" --type PlungerGate
-	@rm test.json

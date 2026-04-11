@@ -506,6 +506,6 @@ class List : public generic::Song {
 
 template <typename Value>
 using ListSP = std::shared_ptr<List<Value>>;
-extern template class  List<std::string>;
+extern template class List<std::string>;
 }  // namespace generic
 }  // namespace falcon_core
