@@ -174,7 +174,7 @@ endif()
 install(EXPORT falcon-core-targets
   FILE falcon-core-targets.cmake
   NAMESPACE falcon-core::
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/falcon-core
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/falcon-core
 )
 
 # Generate the version file
