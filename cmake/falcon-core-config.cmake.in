@@ -8,7 +8,7 @@ find_dependency(xtensor)
 find_dependency(xsimd)
 find_dependency(yaml-cpp)
 find_dependency(hdf5)
-find_dependency(Boost)
+find_dependency(Boost COMPONENTS filesystem uuid)
 find_dependency(Threads)
 
 # This checks if the C-API was built and installed.
