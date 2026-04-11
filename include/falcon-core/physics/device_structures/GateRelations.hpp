@@ -5,6 +5,10 @@
 #include "falcon-core/physics/device_structures/Connection.hpp"
 #include "falcon-core/physics/device_structures/Connections.hpp"
 namespace falcon_core {
+namespace generic {
+extern template class Map<physics::device_structures::Connection,
+                          physics::device_structures::Connections>;
+}
 namespace physics {
 namespace device_structures {
 

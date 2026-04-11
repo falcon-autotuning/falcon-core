@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <stdexcept>
-
 #include "falcon-core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContainer.hpp"
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
@@ -9,6 +7,7 @@
 #include "falcon-core/generic/Map.hpp"
 #include "falcon-core/instrument_interfaces/names/InstrumentTypes.hpp"
 #include "falcon-core/physics/device_structures/Connection.hpp"
+#include "falcon-core/physics/device_structures/Connections.hpp"
 #include "falcon-core/physics/units/SymbolUnit.hpp"
 
 using namespace falcon_core;

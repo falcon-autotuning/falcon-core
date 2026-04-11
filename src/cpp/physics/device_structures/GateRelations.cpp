@@ -1,6 +1,12 @@
 #include "falcon-core/physics/device_structures/GateRelations.hpp"
 
+#include "falcon-core/export.h"
+
 namespace falcon_core {
+namespace generic {
+template class FALCON_CORE_CPP_API Map<physics::device_structures::Connection,
+                                       physics::device_structures::Connections>;
+}
 namespace physics {
 namespace device_structures {
 GateRelations::GateRelations() = default;

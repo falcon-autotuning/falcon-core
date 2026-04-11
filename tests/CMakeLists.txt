@@ -14,9 +14,6 @@ target_link_libraries(falcon-core-cpp_tests
     GTest::gtest_main
     yaml-cpp::yaml-cpp
 )
-target_compile_definitions(falcon-core-cpp_tests
-  PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES
-)
 set_target_properties(falcon-core-cpp_tests PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
@@ -34,10 +31,6 @@ if(WIN32)
       WINDOWS_EXPORT_ALL_SYMBOLS OFF
     )
 endif()
-target_compile_definitions(integration_serialize_connection
-  PRIVATE
-    FALCON_CORE_USE_EXTERN_TEMPLATES
-)
 target_link_libraries(integration_serialize_connection
   PRIVATE
     falcon-core
@@ -57,7 +50,6 @@ if(WIN32)
       WINDOWS_EXPORT_ALL_SYMBOLS OFF
     )
 endif()
-target_compile_definitions(integration_deserialize_connection PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES)
 target_link_libraries(integration_deserialize_connection
   PRIVATE
     falcon-core
@@ -84,9 +76,6 @@ if(FALCON_CORE_BUILD_C_API)
   PRIVATE
     falcon-core-c-api
     GTest::gtest_main
-)
-  target_compile_definitions(falcon-core-c-api_tests
-  PRIVATE FALCON_CORE_USE_EXTERN_TEMPLATES
 )
   set_target_properties(falcon-core-c-api_tests PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"

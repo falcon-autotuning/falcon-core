@@ -483,8 +483,9 @@ class FArray : public generic::Song, public virtual IFArray<T> {
 };
 template <typename T>
 using FArraySP = std::shared_ptr<FArray<T>>;
-extern template class  FArray<double>;
-extern template class  FArray<int>;
-
+#ifndef FALCON_CORE_BUILDING_LIBRARY
+extern template class FArray<double>;
+extern template class FArray<int>;
+#endif
 }  // namespace generic
 }  // namespace falcon_core

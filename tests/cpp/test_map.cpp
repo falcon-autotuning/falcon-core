@@ -8,6 +8,7 @@
 #include "falcon-core/math/Quantity.hpp"
 #include "falcon-core/physics/device_structures/Connection.hpp"
 #include "falcon-core/physics/device_structures/Connections.hpp"
+#include "falcon-core/physics/device_structures/GateRelations.hpp"
 namespace {
 using namespace falcon_core::generic;
 using namespace falcon_core::generic;

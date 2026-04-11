@@ -71,6 +71,8 @@ set_target_properties(falcon-core PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION 1
 )
+# Allows conditional control over template instatntiation and symbol export in headers
+target_compile_definitions(falcon-core PRIVATE FALCON_CORE_BUILDING_LIBRARY)
 
 target_include_directories(falcon-core
   PUBLIC
@@ -113,7 +115,6 @@ if(FALCON_CORE_BUILD_C_API)
       $<INSTALL_INTERFACE:include>
   )
 
-  # CRITICAL: C-API links against the C++ core library
   target_link_libraries(falcon-core-c-api PUBLIC falcon-core)
 
 endif()
