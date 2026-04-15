@@ -203,3 +203,21 @@ install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config-version.cmake"
   DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-core
 )
+configure_file(
+  cmake/falcon-core.pc.in
+  ${CMAKE_CURRENT_BINARY_DIR}/falcon-core.pc
+  @ONLY
+)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/falcon-core.pc
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+)
+if(FALCON_CORE_BUILD_C_API)
+  configure_file(
+    cmake/falcon-core-c-api.pc.in
+    ${CMAKE_CURRENT_BINARY_DIR}/falcon-core-c-api.pc
+    @ONLY
+  )
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/falcon-core-c-api.pc
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+  )
+endif()
