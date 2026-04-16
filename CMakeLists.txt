@@ -99,6 +99,7 @@ target_link_libraries(falcon-core
 )
 if(WIN32)
   # Use COMDAT folding to automatically merge identical template instantiations
+  target_compile_options(falcon-core PRIVATE /bigobj)
   target_link_options(falcon-core PRIVATE /OPT:ICF /OPT:REF)
   message(STATUS "Windows detected: /OPT:ICF enabled for COMDAT folding")
 endif()
@@ -125,6 +126,7 @@ if(FALCON_CORE_BUILD_C_API)
   target_link_libraries(falcon-core-c-api PUBLIC falcon-core)
   if(WIN32)
     # Use COMDAT folding to automatically merge identical template instantiations
+    target_compile_options(falcon-core-c-api PRIVATE /bigobj)
     target_link_options(falcon-core-c-api PRIVATE /OPT:ICF /OPT:REF)
     message(STATUS "Windows detected: /OPT:ICF enabled for COMDAT folding")
   endif()
