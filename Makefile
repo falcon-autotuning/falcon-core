@@ -15,8 +15,6 @@ endif
 # Default compilers (user can override from environment)
 ifeq ($(PLATFORM),windows)
   # prefer clang-cl when available; user can pass CC/ CXX to override
-  CC ?= clang-cl
-	CXX ?= clang-cl
   CMAKE_GENERATOR := Ninja
   VCPKG_TRIPLET := x64-windows
   VCPKG_DEBUG_BIN := $(PWD)/vcpkg_installed/x64-windows/bin
@@ -28,6 +26,8 @@ ifeq ($(PLATFORM),windows)
 	SUDO ?= sudo
   PYTHON_EXECUTABLE ?= python
   # On Windows, Ninja + clang-cl: still pass CMAKE_C_COMPILER / CMAKE_CXX_COMPILER
+  export CC=clang-cl
+	export CXX=clang-cl
 else
   CMAKE_GENERATOR := Ninja
   VCPKG_TRIPLET := x64-linux-dynamic
@@ -64,13 +64,18 @@ VCPKG_BINARY_SOURCES ?=
 ifeq ($(strip $(FEED_URL)),)
   CMAKE_VCPKG_BINARY_SOURCES :=
 else
-	VCPKG_BINARY_SOURCES := clear;nuget,$(FEED_URL),readwrite
-  CMAKE_VCPKG_BINARY_SOURCES := -DVCPKG_BINARY_SOURCES="$(VCPKG_BINARY_SOURCES)"
+	VCPKG_BINARY_SOURCES := "nuget,$(FEED_URL),readwrite"
+  CMAKE_VCPKG_BINARY_SOURCES := -DVCPKG_BINARY_SOURCES=$(VCPKG_BINARY_SOURCES)
 endif
 LINKER_FLAGS ?=
 ifeq ($(PLATFORM),linux)
 	LINKER_FLAGS := -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld" -DCMAKE_SHARED_LINKER_FLAGS="-fuse-ld=lld"
 endif
+ifeq ($(PLATFORM), windows)
+	VCPKG_CMD := vcpkg 
+else 
+	VCPKG_CMD := $(VCPKG_ROOT)/vcpkg
+endif 
 
 BUILD_DIR_DEBUG := build/debug
 BUILD_DIR_RELEASE := build/release
@@ -85,11 +90,15 @@ vcpkg-bootstrap:
 		echo "Cloning vcpkg..."; \
 		git clone https://github.com/microsoft/vcpkg.git $(VCPKG_ROOT); \
 	fi
-	@if [ ! -f "$(VCPKG_ROOT)/vcpkg" ]; then \
+	@if [ ! -f "$(VCPKG_ROOT)/vcpkg" ] && [ ! -f "$(VCPKG_ROOT)/vcpkg.exe" ]; then \
 		echo "Bootstrapping vcpkg..."; \
-		if [ "$$(uname -s | grep -i 'mingw\|msys\|cygwin')" ]; then \
-			echo "Skipping since on windows"; \
+		UNAME="$$(uname -s 2>/dev/null || echo Unknown)"; \
+		if echo "$$UNAME" | grep -i -q 'mingw\|msys\|cygwin'; then \
+			echo "Detected Windows bash environment ($$UNAME). Using cmd.exe to launch bootstrap-vcpkg.bat"; \
+			BAT_PATH="$$(cygpath -w "$(VCPKG_ROOT)/bootstrap-vcpkg.bat")"; \
+			cmd.exe //C "$$BAT_PATH"; \
 		else \
+			echo "Detected Unix environment ($$UNAME). Using bootstrap-vcpkg.sh"; \
 			cd $(VCPKG_ROOT) && ./bootstrap-vcpkg.sh; \
 		fi \
 	fi
@@ -118,9 +127,8 @@ setup-nuget-auth:
 .PHONY: vcpkg-install-deps
 vcpkg-install-deps: setup-nuget-auth 
 	@echo "Installing vcpkg dependencies" 
-	@echo "The binary sources are: $(VCPKG_BINARY_SOURCES)"
 	VCPKG_FEATURE_FLAGS=binarycaching \
-		vcpkg install \
+		$(VCPKG_CMD) install \
 		--overlay-ports=ports \
 		--binarysource="$(VCPKG_BINARY_SOURCES)" \
 		--triplet="$(VCPKG_TRIPLET)"
@@ -209,7 +217,7 @@ install: build-release
 
 clean:
 	@echo "Cleaning build artifacts and test containers..."
-	rm -rf $(BUILD_DIR_DEBUG) $(BUILD_DIR_RELEASE) build/ compile_commands.json ./vcpkg_installed/
+	rm -rf $(BUILD_DIR_DEBUG) $(BUILD_DIR_RELEASE) build/ compile_commands.json ./vcpkg_installed/ ./vcpkg/
 	@echo "✓ Clean complete"
 
 .PHONY: clangd-helpers
