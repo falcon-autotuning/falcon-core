@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(falcon-core
-  VERSION 1.2.1
+  VERSION 1.2.4
   LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 14)
