@@ -16,7 +16,7 @@ endif
 ifeq ($(PLATFORM),windows)
   # prefer clang-cl when available; user can pass CC/ CXX to override
   CMAKE_GENERATOR := Ninja
-  VCPKG_TRIPLET := x64-windows
+  VCPKG_TRIPLET := x64-win-llvm
   VCPKG_DEBUG_BIN := $(PWD)/vcpkg_installed/x64-windows/bin
   VCPKG_RELEASE_LIB := $(PWD)/vcpkg_installed/x64-windows/lib
   EXE_SUFFIX := .exe
@@ -71,11 +71,10 @@ LINKER_FLAGS ?=
 ifeq ($(PLATFORM),linux)
 	LINKER_FLAGS := -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld" -DCMAKE_SHARED_LINKER_FLAGS="-fuse-ld=lld"
 endif
-ifeq ($(PLATFORM), windows)
-	VCPKG_CMD := vcpkg 
-else 
-	VCPKG_CMD := $(VCPKG_ROOT)/vcpkg
-endif 
+VCPKG_OVERLAY_TRIPS ?=
+ifeq ($(PLATFORM),windows)
+	VCPKG_OVERLAY_TRIPS := -DVCPKG_OVERLAY_TRIPLETS=../../my-vcpkg-triplets
+endif
 
 BUILD_DIR_DEBUG := build/debug
 BUILD_DIR_RELEASE := build/release
@@ -97,6 +96,7 @@ vcpkg-bootstrap:
 			echo "Detected Windows bash environment ($$UNAME). Using cmd.exe to launch bootstrap-vcpkg.bat"; \
 			BAT_PATH="$$(cygpath -w "$(VCPKG_ROOT)/bootstrap-vcpkg.bat")"; \
 			cmd.exe //C "$$BAT_PATH"; \
+			git clone https://github.com/Neumann-A/my-vcpkg-triplets.git || true; \
 		else \
 			echo "Detected Unix environment ($$UNAME). Using bootstrap-vcpkg.sh"; \
 			cd $(VCPKG_ROOT) && ./bootstrap-vcpkg.sh; \
@@ -127,11 +127,12 @@ setup-nuget-auth:
 .PHONY: vcpkg-install-deps
 vcpkg-install-deps: setup-nuget-auth 
 	@echo "Installing vcpkg dependencies" 
-	VCPKG_FEATURE_FLAGS=binarycaching \
-		$(VCPKG_CMD) install \
+	VCPKG_FEATURE_FLAGS=binarycaching VCPKG_OVERLAY_TRIPLETS=my-vcpkg-triplets \
+		$(VCPKG_ROOT)/vcpkg install \
 		--overlay-ports=ports \
 		--binarysource="$(VCPKG_BINARY_SOURCES)" \
-		--triplet="$(VCPKG_TRIPLET)"
+		--triplet="$(VCPKG_TRIPLET)" \
+		--vcpkg-root="$(VCPKG_ROOT)"
 
 check-vcpkg: vcpkg-bootstrap  vcpkg-install-deps
 	@echo "Checking vcpkg configuration..."
@@ -159,6 +160,7 @@ configure-debug: check-vcpkg generate_types
 		-DCMAKE_BUILD_TYPE=Debug \
 		-DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
 		-DVCPKG_INSTALLED_DIR=$(VCPKG_INSTALLED_DIR) \
+		$(VCPKG_OVERLAY_TRIPS) \
 		-DVCPKG_TARGET_TRIPLET=$(VCPKG_TRIPLET) \
 		-DBUILD_TESTS=ON \
 		-DUSE_CCACHE=ON \
@@ -179,6 +181,7 @@ configure-release: check-vcpkg generate_types
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_TOOLCHAIN_FILE=$(VCPKG_TOOLCHAIN) \
 		-DVCPKG_INSTALLED_DIR=$(VCPKG_INSTALLED_DIR) \
+		$(VCPKG_OVERLAY_TRIPS) \
 		-DVCPKG_TARGET_TRIPLET=$(VCPKG_TRIPLET) \
 		-DBUILD_TESTS=ON \
 		-DUSE_CCACHE=ON \
@@ -217,7 +220,7 @@ install: build-release
 
 clean:
 	@echo "Cleaning build artifacts and test containers..."
-	rm -rf $(BUILD_DIR_DEBUG) $(BUILD_DIR_RELEASE) build/ compile_commands.json ./vcpkg_installed/ ./vcpkg/
+	rm -rf $(BUILD_DIR_DEBUG) $(BUILD_DIR_RELEASE) build/ compile_commands.json ./vcpkg_installed/ 
 	@echo "✓ Clean complete"
 
 .PHONY: clangd-helpers
