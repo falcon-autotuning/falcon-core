@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(falcon-core
-  VERSION 1.2.7
+  VERSION 1.2.8
   LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -57,7 +57,7 @@ find_package(xtl      CONFIG REQUIRED)
 find_package(xtensor  CONFIG REQUIRED)
 find_package(xsimd    CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
-find_package(hdf5     CONFIG REQUIRED COMPONENTS C HL)
+find_package(hdf5     CONFIG REQUIRED COMPONENTS HL CXX szip zlib)
 find_package(Boost    CONFIG REQUIRED COMPONENTS filesystem system uuid)
 find_package(Threads         REQUIRED)
 
