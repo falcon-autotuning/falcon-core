@@ -1,12 +1,8 @@
 find_package(GTest CONFIG REQUIRED)
 
-# Ensure bin directory exists
-file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
-# Build the complete DLL search path for ctest
-# Include all possible locations where DLLs might be
 set(DLL_SEARCH_PATHS
-  "${CMAKE_BINARY_DIR}/bin"
+  "${CMAKE_BINARY_DIR}/tests"
   "${CMAKE_BINARY_DIR}"
 )
 
@@ -33,7 +29,6 @@ target_link_libraries(falcon-core-cpp_tests
     yaml-cpp::yaml-cpp
 )
 set_target_properties(falcon-core-cpp_tests PROPERTIES
-  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 
 if(WIN32)
@@ -61,7 +56,6 @@ endif()
 add_executable(integration_serialize_connection cpp/integration_serialize_connection.cpp)
 set_target_properties(integration_serialize_connection PROPERTIES
   UNITY_BUILD OFF
-  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 if(WIN32)
   set_target_properties(integration_serialize_connection PROPERTIES
@@ -74,7 +68,6 @@ target_link_libraries(integration_serialize_connection PRIVATE falcon-core)
 add_executable(integration_deserialize_connection cpp/integration_deserialize_connection.cpp)
 set_target_properties(integration_deserialize_connection PROPERTIES
   UNITY_BUILD OFF
-  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 if(WIN32)
   set_target_properties(integration_deserialize_connection PROPERTIES
@@ -86,12 +79,12 @@ target_link_libraries(integration_deserialize_connection PRIVATE falcon-core)
 
 add_test(NAME serialize_deserialize_cpp
   COMMAND integration_serialize_connection --output test.json --name MyGate --type PlungerGate
-  WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+  WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/tests"
 )
 
 add_test(NAME deserialize_cpp
   COMMAND integration_deserialize_connection --input test.json --name MyGate --type PlungerGate
-  WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+  WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/tests"
 )
 
 if(WIN32)
@@ -119,10 +112,7 @@ if(FALCON_CORE_BUILD_C_API)
       falcon-core-c-api
       GTest::gtest_main
   )
-  set_target_properties(falcon-core-c-api_tests PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
-  )
-  
+
   if(WIN32)
     set_target_properties(falcon-core-c-api_tests PROPERTIES
       WINDOWS_EXPORT_ALL_SYMBOLS OFF
@@ -131,7 +121,7 @@ if(FALCON_CORE_BUILD_C_API)
   endif()
 
   add_test(NAME falcon-core-c-api_tests COMMAND falcon-core-c-api_tests)
-  
+
   if(WIN32)
     set_tests_properties(falcon-core-c-api_tests PROPERTIES
       ENVIRONMENT "PATH=${TEST_PATH_ENV}"
@@ -145,7 +135,6 @@ if(FALCON_CORE_BUILD_C_API)
   add_executable(integration_serialize_connection_c c/integration_serialize_connection.c)
   set_target_properties(integration_serialize_connection_c PROPERTIES
     UNITY_BUILD OFF
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
   )
   if(WIN32)
     set_target_properties(integration_serialize_connection_c PROPERTIES
@@ -168,7 +157,6 @@ if(FALCON_CORE_BUILD_C_API)
   add_executable(integration_deserialize_connection_c c/integration_deserialize_connection.c)
   set_target_properties(integration_deserialize_connection_c PROPERTIES
     UNITY_BUILD OFF
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
   )
   if(WIN32)
     set_target_properties(integration_deserialize_connection_c PROPERTIES
@@ -190,11 +178,11 @@ if(FALCON_CORE_BUILD_C_API)
 
   add_test(NAME serialize_deserialize_c
     COMMAND integration_serialize_connection_c --output test.json --name MyGate --type PlungerGate
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/tests"
   )
   add_test(NAME deserialize_c
     COMMAND integration_deserialize_connection_c --input test.json --name MyGate --type PlungerGate
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/tests"
   )
 
   if(WIN32)
