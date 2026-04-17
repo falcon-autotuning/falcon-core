@@ -28,8 +28,6 @@ target_link_libraries(falcon-core-cpp_tests
     GTest::gtest_main
     yaml-cpp::yaml-cpp
 )
-set_target_properties(falcon-core-cpp_tests PROPERTIES
-)
 
 if(WIN32)
   set_target_properties(falcon-core-cpp_tests PROPERTIES
