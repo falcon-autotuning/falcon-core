@@ -138,8 +138,6 @@ endif()
 # ============================================================================
 if(BUILD_TESTS)
   enable_testing()
-  # Use find_package here to ensure GTest is available before adding the subdirectory
-  find_package(GTest CONFIG REQUIRED)
   add_subdirectory(tests)
 endif()
 

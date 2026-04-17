@@ -1,4 +1,4 @@
-include(GoogleTest)
+find_package(GTest CONFIG REQUIRED)
 
 # Ensure bin directory exists
 file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
