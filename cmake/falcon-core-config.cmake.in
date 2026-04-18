@@ -7,7 +7,7 @@ find_dependency(xtl)
 find_dependency(xtensor)
 find_dependency(xsimd)
 find_dependency(yaml-cpp)
-find_dependency(HDF5 COMPONENTS HL CXX zlib szip)
+find_dependency(HDF5 COMPONENTS HL CXX)
 find_dependency(Boost COMPONENTS filesystem uuid)
 find_dependency(Threads)
 
