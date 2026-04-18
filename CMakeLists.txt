@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
+
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg.json" VCPKG_JSON)
+string(JSON PROJECT_VERSION GET "${VCPKG_JSON}" "version")
 project(falcon-core
-  VERSION 1.2.8
+  VERSION ${PROJECT_VERSION}
   LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -20,7 +23,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 option(FALCON_CORE_BUILD_C_API "Build optional C99 wrapper API" OFF)
 
 # Keep other options for local development
-option(BUILD_TESTS "Build tests" ON)
+option(BUILD_TESTS "Build tests" OFF)
 option(USE_CCACHE "Enable ccache or sccache if available" ON)
 option(ENABLE_PCH "Enable precompiled headers" ON)
 
