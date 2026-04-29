@@ -9,6 +9,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_ROOT": "${sourceDir}/vcpkg",
         "VCPKG_INSTALLED_DIR": "${sourceDir}/vcpkg_installed",
         "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/my-vcpkg-triplets",
         "VCPKG_OVERLAY_PORTS": "${sourceDir}/ports",
@@ -28,8 +29,8 @@
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "clang",
         "CMAKE_CXX_COMPILER": "clang++",
-        "VCPKG_TARGET_TRIPLET": "x64-linux-clang",
-        "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-clang/share;${sourceDir}/vcpkg_installed",
+        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
+        "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-dynamic/share;${sourceDir}/vcpkg_installed",
         "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
         "CMAKE_SHARED_LINKER_FLAGS": "-fuse-ld=lld"
       }
@@ -42,8 +43,8 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "clang",
         "CMAKE_CXX_COMPILER": "clang++",
-        "VCPKG_TARGET_TRIPLET": "x64-linux-clang",
-        "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-clang/share;${sourceDir}/vcpkg_installed",
+        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
+        "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-dynamic/share;${sourceDir}/vcpkg_installed",
         "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
         "CMAKE_SHARED_LINKER_FLAGS": "-fuse-ld=lld"
       }
@@ -56,8 +57,8 @@
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
-        "VCPKG_TARGET_TRIPLET": "x64-linux-gcc",
-        "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-gcc/share;${sourceDir}/vcpkg_installed"
+        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
+        "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-dynamic/share;${sourceDir}/vcpkg_installed"
       }
     },
     {
@@ -68,8 +69,8 @@
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
-        "VCPKG_TARGET_TRIPLET": "x64-linux-gcc",
-        "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-gcc/share;${sourceDir}/vcpkg_installed"
+        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
+        "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-dynamic/share;${sourceDir}/vcpkg_installed"
       }
     },
     {

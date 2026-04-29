@@ -47,6 +47,21 @@ endif()
 
 message(STATUS "✓ vcpkg executable found at: ${VCPKG_EXECUTABLE}")
 
+# Clone my-vcpkg-triplets if needed (for custom triplets like x64-win-llvm, x64-linux-clang)
+set(VCPKG_OVERLAY_TRIPLETS_DIR "${CMAKE_SOURCE_DIR}/my-vcpkg-triplets")
+if(NOT EXISTS "${VCPKG_OVERLAY_TRIPLETS_DIR}")
+  message(STATUS "Cloning my-vcpkg-triplets to ${VCPKG_OVERLAY_TRIPLETS_DIR}...")
+  execute_process(
+    COMMAND git clone https://github.com/Neumann-A/my-vcpkg-triplets.git "${VCPKG_OVERLAY_TRIPLETS_DIR}"
+    RESULT_VARIABLE GIT_RESULT
+  )
+  if(NOT GIT_RESULT EQUAL 0)
+    message(FATAL_ERROR "Failed to clone my-vcpkg-triplets")
+  endif()
+endif()
+
+message(STATUS "✓ vcpkg triplets found at: ${VCPKG_OVERLAY_TRIPLETS_DIR}")
+
 # Read CMakePresets.json to extract triplet for the given preset
 # If no PRESET is specified, default to linux-clang-release
 if(NOT DEFINED PRESET)
@@ -73,7 +88,7 @@ else()
   if(WIN32)
     set(VCPKG_TARGET_TRIPLET "x64-win-llvm")
   else()
-    set(VCPKG_TARGET_TRIPLET "x64-linux-clang")
+    set(VCPKG_TARGET_TRIPLET "x64-linux-dynamic")
   endif()
   message(STATUS "⚠ Could not find triplet in preset, using default: ${VCPKG_TARGET_TRIPLET}")
 endif()
@@ -162,8 +177,9 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/ports")
   list(APPEND VCPKG_INSTALL_CMD --overlay-ports=${CMAKE_SOURCE_DIR}/ports)
 endif()
 
-message(STATUS "Using overlay triplets from: ${CMAKE_SOURCE_DIR}/my-vcpkg-triplets")
-list(APPEND VCPKG_INSTALL_CMD --overlay-triplets=${CMAKE_SOURCE_DIR}/my-vcpkg-triplets)
+# Always add overlay triplets (my-vcpkg-triplets)
+message(STATUS "Using overlay triplets from: ${VCPKG_OVERLAY_TRIPLETS_DIR}")
+list(APPEND VCPKG_INSTALL_CMD --overlay-triplets=${VCPKG_OVERLAY_TRIPLETS_DIR})
 
 # Add binary sources if configured
 if(DEFINED VCPKG_BINARY_SOURCES)
