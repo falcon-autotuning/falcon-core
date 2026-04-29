@@ -1,9 +1,0 @@
-BasedOnStyle: Google
-SortIncludes: CaseSensitive
-IncludeBlocks: Regroup
-AlignConsecutiveAssignments: Consecutive
-AlignConsecutiveDeclarations: Consecutive
-AlignTrailingComments: true
-ReflowComments: true
-BinPackArguments: false
-BinPackParameters: false

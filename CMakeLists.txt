@@ -52,22 +52,19 @@ endif()
 # ============================================================================
 # Find Dependencies
 # ============================================================================
-# Using find_package in CONFIG mode is perfect for vcpkg.
 find_package(cereal   CONFIG REQUIRED)
 find_package(xtl      CONFIG REQUIRED)
 find_package(xtensor  CONFIG REQUIRED)
 find_package(xsimd    CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
-find_package(hdf5     CONFIG REQUIRED COMPONENTS HL CXX szip zlib)
 find_package(Boost    CONFIG REQUIRED COMPONENTS filesystem system uuid)
 find_package(Threads         REQUIRED)
+find_package(hdf5     CONFIG REQUIRED COMPONENTS HL CXX szip zlib)
 
 
 # ============================================================================
 # C++ Core Library (falcon-core)
 # ============================================================================
-# Renamed target to just 'falcon-core' for simplicity.
-# It's the primary product of this package.
 file(GLOB_RECURSE CPP_SOURCES "src/cpp/*.cpp")
 add_library(falcon-core SHARED ${CPP_SOURCES})
 set_target_properties(falcon-core PROPERTIES

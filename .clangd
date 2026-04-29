@@ -1,0 +1,25 @@
+CompileFlags:
+  CompilationDatabase: build/debug
+  Add:
+    - -I./vcpkg_installed/x64-linux-dynamic/include
+    - -I./include
+    - -I./tests/test_utils
+
+Diagnostics:
+  ClangTidy:
+    Add:
+      - modernize-*
+      - performance-*
+      - bugprone-*
+      - readability-*
+      - cppcoreguidelines-*
+      - misc-*
+      - clang-analyzer-*
+      - portability-*
+      - hicpp-*
+      - cert-*
+    Remove:
+      - modernize-use-trailing-return-type
+      - cppcoreguidelines-non-private-member-variables-in-classes
+      - misc-non-private-member-variables-in-classes
+  UnusedIncludes: Strict
