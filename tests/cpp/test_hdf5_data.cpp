@@ -54,7 +54,7 @@ using math::arrays::LabelledMeasuredArray;
 using math::domains::LabelledDomain;
 
 // Helper function to create a temporary file path
-boost::filesystem::path create_temp_path(const std::string& filename) {
+boost::filesystem::path create_temp_path(const std::string &filename) {
   boost::filesystem::path temp_dir = boost::filesystem::temp_directory_path();
   return temp_dir / filename;
 }
@@ -63,9 +63,9 @@ TEST(HDF5DataTest, FileRoundTripEmptyMetadata) {
   // Build minimal empty axes/domains/ranges and empty metadata to avoid
   // known parsing branches that expect datasets.
   auto shape_axes =
-      std::make_shared<Axes<int>>(std::vector<int>{});  // empty shape
+      std::make_shared<Axes<int>>(std::vector<int>{}); // empty shape
   auto unit_domain = std::make_shared<Axes<ControlArray>>(
-      std::vector<std::shared_ptr<ControlArray>>{});  // empty
+      std::vector<std::shared_ptr<ControlArray>>{}); // empty
   auto domain_labels =
       std::make_shared<Axes<math::domains::CoupledLabelledDomain>>(
           std::vector<std::shared_ptr<math::domains::CoupledLabelledDomain>>{});
@@ -75,14 +75,8 @@ TEST(HDF5DataTest, FileRoundTripEmptyMetadata) {
   std::vector<std::pair<std::string, std::string>> md_init;
   auto metadata = std::make_shared<Map<std::string, std::string>>(md_init);
 
-  HDF5Data hdf(shape_axes,
-               unit_domain,
-               domain_labels,
-               ranges,
-               metadata,
-               "test_title",
-               12345,
-               67890);
+  HDF5Data hdf(shape_axes, unit_domain, domain_labels, ranges, metadata,
+               "test_title", 12345, 67890);
 
   // Serialize to JSON (Song) before writing
   std::string orig_json = hdf.to_json_string();
@@ -107,7 +101,7 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
   // Construct minimal MeasurementRequest and MeasurementResponse objects.
   // Use empty/placeholder containers so their serialization still works.
   auto waveforms = std::make_shared<List<Waveform>>();
-  auto getters   = std::make_shared<instrument_interfaces::names::Ports>();
+  auto getters = std::make_shared<instrument_interfaces::names::Ports>();
   auto meter_transforms = std::make_shared<
       Map<instrument_interfaces::names::InstrumentPort,
           instrument_interfaces::port_transforms::PortTransform>>();
@@ -115,19 +109,15 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
   // Build a valid LabelledDomain using the public factory
   using namespace falcon_core::physics::device_structures;
   using namespace falcon_core::instrument_interfaces::names;
-  auto       pseudo_conn = Connection::PlungerGate("P1");
-  Instrument instr       = InstrumentTypes::DC_VOLTAGE_SOURCE;
+  auto pseudo_conn = Connection::PlungerGate("P1");
+  Instrument instr = InstrumentTypes::DC_VOLTAGE_SOURCE;
   auto port = std::make_shared<InstrumentPort>("port", pseudo_conn, instr);
   auto time_domain =
       math::domains::LabelledDomain::from_port(std::make_pair(0.0, 1.0), port);
 
-  auto request =
-      std::make_shared<MeasurementRequest>(std::string("msg"),
-                                           std::string("measurement_name"),
-                                           waveforms,
-                                           getters,
-                                           meter_transforms,
-                                           time_domain);
+  auto request = std::make_shared<MeasurementRequest>(
+      std::string("msg"), std::string("measurement_name"), waveforms, getters,
+      meter_transforms, time_domain);
 
   auto arrays = LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
   auto response = std::make_shared<MeasurementResponse>(arrays);
@@ -141,29 +131,23 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
   auto metadata = std::make_shared<Map<std::string, std::string>>(md_init);
 
   auto shape_axes =
-      std::make_shared<Axes<int>>(std::vector<int>{});  // empty shape
+      std::make_shared<Axes<int>>(std::vector<int>{}); // empty shape
   auto unit_domain = std::make_shared<Axes<ControlArray>>(
-      std::vector<std::shared_ptr<ControlArray>>{});  // empty
+      std::vector<std::shared_ptr<ControlArray>>{}); // empty
   auto domain_labels =
       std::make_shared<Axes<math::domains::CoupledLabelledDomain>>(
           std::vector<std::shared_ptr<math::domains::CoupledLabelledDomain>>{});
   auto ranges_sp =
       LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
 
-  HDF5Data hdf_with_meta(shape_axes,
-                         unit_domain,
-                         domain_labels,
-                         ranges_sp,
-                         metadata,
-                         "comm_test",
-                         1,
-                         2);
+  HDF5Data hdf_with_meta(shape_axes, unit_domain, domain_labels, ranges_sp,
+                         metadata, "comm_test", 1, 2);
 
   // to_communications should deserialize the stored JSON strings back into
   // MeasurementResponse and MeasurementRequest objects.
-  auto pair         = hdf_with_meta.to_communications();
+  auto pair = hdf_with_meta.to_communications();
   auto got_response = pair.first;
-  auto got_request  = pair.second;
+  auto got_request = pair.second;
 
   ASSERT_NE(got_response, nullptr);
   ASSERT_NE(got_request, nullptr);
@@ -181,15 +165,15 @@ TEST(HDF5DataTest, FileRoundTripFull) {
   auto shape_axes = std::make_shared<Axes<int>>(std::vector<int>{1});
 
   // unit_domain: one ControlArray containing a small xtensor
-  xt::xarray<double> ctrl_arr = {{0.0, 1.0}};  // 1 x 2
+  xt::xarray<double> ctrl_arr = {{0.0, 1.0}}; // 1 x 2
   auto control_array = std::make_shared<math::arrays::ControlArray>(ctrl_arr);
-  auto unit_domain   = std::make_shared<Axes<math::arrays::ControlArray>>(
+  auto unit_domain = std::make_shared<Axes<math::arrays::ControlArray>>(
       std::vector<std::shared_ptr<math::arrays::ControlArray>>{control_array});
 
   // domain_labels: one CoupledLabelledDomain with a single LabelledDomain from
   // a port
-  auto       pseudo_conn = Connection::PlungerGate("P1");
-  Instrument instr       = InstrumentTypes::DC_VOLTAGE_SOURCE;
+  auto pseudo_conn = Connection::PlungerGate("P1");
+  Instrument instr = InstrumentTypes::DC_VOLTAGE_SOURCE;
   auto port = std::make_shared<InstrumentPort>("port", pseudo_conn, instr);
   auto labelled =
       math::domains::LabelledDomain::from_port(std::make_pair(0.0, 1.0), port);
@@ -202,7 +186,7 @@ TEST(HDF5DataTest, FileRoundTripFull) {
 
   // ranges: one LabelledMeasuredArray (simple measured array with a port)
   xt::xarray<double> meas_arr = {{10.0, 20.0}};
-  auto               farr = std::make_shared<generic::FArray<double>>(meas_arr);
+  auto farr = std::make_shared<generic::FArray<double>>(meas_arr);
   auto lm = std::make_shared<math::arrays::LabelledMeasuredArray>(farr, port);
   auto ranges =
       math::arrays::LabelledArrays<math::arrays::LabelledMeasuredArray>::
@@ -215,14 +199,8 @@ TEST(HDF5DataTest, FileRoundTripFull) {
   auto metadata =
       std::make_shared<generic::Map<std::string, std::string>>(md_init);
 
-  HDF5Data hdf(shape_axes,
-               unit_domain,
-               domain_labels,
-               ranges,
-               metadata,
-               "full_test",
-               42,
-               123456);
+  HDF5Data hdf(shape_axes, unit_domain, domain_labels, ranges, metadata,
+               "full_test", 42, 123456);
 
   // write and read back
   boost::filesystem::path tmp_path = create_temp_path("test_hdf5_data_full.h5");
@@ -249,7 +227,7 @@ TEST(HDF5DataTest, FileRoundTripFull) {
 }
 
 TEST(HDF5DataTest, EqualityOperators) {
-  auto shape_axes  = std::make_shared<Axes<int>>(std::vector<int>{1});
+  auto shape_axes = std::make_shared<Axes<int>>(std::vector<int>{1});
   auto unit_domain = std::make_shared<Axes<ControlArray>>(
       std::vector<std::shared_ptr<ControlArray>>{});
   auto domain_labels =
@@ -258,12 +236,12 @@ TEST(HDF5DataTest, EqualityOperators) {
   auto ranges = LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
   auto metadata = std::make_shared<Map<std::string, std::string>>(
       std::vector<std::pair<std::string, std::string>>{});
-  HDF5Data hdf1(
-      shape_axes, unit_domain, domain_labels, ranges, metadata, "title", 1, 2);
-  HDF5Data hdf2(
-      shape_axes, unit_domain, domain_labels, ranges, metadata, "title", 1, 2);
-  HDF5Data hdf3(
-      shape_axes, unit_domain, domain_labels, ranges, metadata, "other", 1, 2);
+  HDF5Data hdf1(shape_axes, unit_domain, domain_labels, ranges, metadata,
+                "title", 1, 2);
+  HDF5Data hdf2(shape_axes, unit_domain, domain_labels, ranges, metadata,
+                "title", 1, 2);
+  HDF5Data hdf3(shape_axes, unit_domain, domain_labels, ranges, metadata,
+                "other", 1, 2);
   EXPECT_TRUE(hdf1 == hdf2);
   EXPECT_FALSE(hdf1 != hdf2);
   EXPECT_FALSE(hdf1 == hdf3);
@@ -307,22 +285,17 @@ TEST(HDF5DataTest, FromCommunicationsSetsFields) {
       "msg", "name", waveforms, getters, meter_transforms, time_domain);
   auto arrays = math::arrays::LabelledArrays<
       math::arrays::LabelledMeasuredArray>::LabelledMeasuredArrays();
-  auto               response = std::make_shared<MeasurementResponse>(arrays);
-  auto               voltage_states = std::make_shared<DeviceVoltageStates>();
-  boost::uuids::uuid session_id     = boost::uuids::random_generator()();
-  std::string        title          = "comm_title";
-  int                unique_id      = 123;
-  int                timestamp      = 456;
-  auto               request1       = std::make_shared<MeasurementRequest>(
+  auto response = std::make_shared<MeasurementResponse>(arrays);
+  auto voltage_states = std::make_shared<DeviceVoltageStates>();
+  boost::uuids::uuid session_id = boost::uuids::random_generator()();
+  std::string title = "comm_title";
+  int unique_id = 123;
+  int timestamp = 456;
+  auto request1 = std::make_shared<MeasurementRequest>(
       "msg", "name", waveforms, getters, meter_transforms, time_domain);
-  std::cout << "Request JSON: " << request1->to_json_string() << std::endl;
-  auto hdf = HDF5Data::from_communications(request,
-                                           response,
-                                           voltage_states,
-                                           session_id,
-                                           title,
-                                           unique_id,
-                                           timestamp);
+  auto hdf =
+      HDF5Data::from_communications(request, response, voltage_states,
+                                    session_id, title, unique_id, timestamp);
   ASSERT_NE(hdf, nullptr);
   EXPECT_EQ(hdf->measurement_title(), title);
   EXPECT_EQ(hdf->unique_id(), unique_id);
@@ -356,14 +329,8 @@ TEST(HDF5DataTest, MeasurementTitleRoundTrip) {
   auto metadata = std::make_shared<Map<std::string, std::string>>(
       std::vector<std::pair<std::string, std::string>>{});
   std::string title = "special_title";
-  HDF5Data    hdf(shape_axes,
-               unit_domain,
-               domain_labels,
-               ranges,
-               metadata,
-               title,
-               42,
-               123456);
+  HDF5Data hdf(shape_axes, unit_domain, domain_labels, ranges, metadata, title,
+               42, 123456);
   EXPECT_EQ(hdf.measurement_title(), title);
 
   boost::filesystem::path tmp_path =
@@ -377,4 +344,4 @@ TEST(HDF5DataTest, MeasurementTitleRoundTrip) {
   boost::filesystem::remove(tmp_path);
 }
 
-}  // namespace
+} // namespace

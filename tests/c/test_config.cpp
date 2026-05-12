@@ -1,28 +1,26 @@
+#include "falcon-core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
-#include "falcon-core/generic/ErrorHandling_c_api.h"
-#include "falcon-core/generic/ErrorHandling_c_api.h"
 
 #include "falcon-core/generic/String_c_api.h"
 #include "falcon-core/physics/config/core/Adjacency_c_api.h"
 #include "falcon-core/physics/config/core/Config_c_api.h"
 #include "falcon-core/physics/config/core/Group_c_api.h"
-#include "falcon-core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon-core/physics/device_structures//Impedances_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/device_structures/Connections_c_api.h"
 #include "falcon-core/physics/device_structures/Impedance_c_api.h"
 
 class ConfigTest : public ::testing::Test {
- protected:
-  ConnectionsHandle        screening_gates;
-  ConnectionsHandle        plunger_gates;
-  ConnectionsHandle        ohmics;
-  ConnectionsHandle        barrier_gates;
-  ConnectionsHandle        reservoir_gates;
-  MapGnameGroupHandle      groups;
-  ImpedancesHandle         wiring_DC;
-  VoltageConstraintsHandle constraints;
-  ConfigHandle             handle;
+protected:
+  ConnectionsHandle screening_gates;
+  ConnectionsHandle plunger_gates;
+  ConnectionsHandle ohmics;
+  ConnectionsHandle barrier_gates;
+  ConnectionsHandle reservoir_gates;
+  MapGnameGroupHandle groups;
+  ImpedancesHandle wiring_DC;
+  AdjacencyHandle adjacency;
+  ConfigHandle handle;
 
   void SetUp() override {
     screening_gates = Connections_create_empty();
@@ -56,7 +54,7 @@ class ConfigTest : public ::testing::Test {
                           Connection_create_reservoir_gate(String_wrap("R2")));
 
     // Create a group and map
-    ChannelHandle     channel         = Channel_create(String_wrap("CH1"));
+    ChannelHandle channel = Channel_create(String_wrap("CH1"));
     ConnectionsHandle group_screening = Connections_create_empty();
     Connections_push_back(group_screening,
                           Connection_create_screening_gate(String_wrap("SG1")));
@@ -98,69 +96,59 @@ class ConfigTest : public ::testing::Test {
                           Connection_create_reservoir_gate(String_wrap("R2")));
     Connections_push_back(group_order,
                           Connection_create_ohmic(String_wrap("O2")));
-    GroupHandle group = Group_create(channel,
-                                     2,
-                                     group_screening,
-                                     group_reservoir,
-                                     group_plunger,
-                                     group_barrier,
-                                     group_order);
+    GroupHandle group =
+        Group_create(channel, 2, group_screening, group_reservoir,
+                     group_plunger, group_barrier, group_order);
     GnameHandle gname = Gname_create(String_wrap("group1"));
-    groups            = MapGnameGroup_create_empty();
+    groups = MapGnameGroup_create_empty();
     MapGnameGroup_insert(groups, gname, group);
 
     // Impedances
     wiring_DC = Impedances_create_empty();
     Impedances_push_back(
-        wiring_DC,
-        Impedance_create(
-            Connection_create_ohmic(String_wrap("O1")), 1000.0, 1e-12));
+        wiring_DC, Impedance_create(Connection_create_ohmic(String_wrap("O1")),
+                                    1000.0, 1e-12));
+    Impedances_push_back(
+        wiring_DC, Impedance_create(Connection_create_ohmic(String_wrap("O2")),
+                                    1000.0, 1e-12));
     Impedances_push_back(
         wiring_DC,
-        Impedance_create(
-            Connection_create_ohmic(String_wrap("O2")), 1000.0, 1e-12));
+        Impedance_create(Connection_create_barrier_gate(String_wrap("B1")),
+                         10000.0, 1e-12));
     Impedances_push_back(
         wiring_DC,
-        Impedance_create(
-            Connection_create_barrier_gate(String_wrap("B1")), 10000.0, 1e-12));
+        Impedance_create(Connection_create_barrier_gate(String_wrap("B2")),
+                         10000.0, 1e-12));
     Impedances_push_back(
         wiring_DC,
-        Impedance_create(
-            Connection_create_barrier_gate(String_wrap("B2")), 10000.0, 1e-12));
+        Impedance_create(Connection_create_barrier_gate(String_wrap("B3")),
+                         10000.0, 1e-12));
     Impedances_push_back(
         wiring_DC,
-        Impedance_create(
-            Connection_create_barrier_gate(String_wrap("B3")), 10000.0, 1e-12));
+        Impedance_create(Connection_create_plunger_gate(String_wrap("P1")),
+                         10000.0, 1e-12));
     Impedances_push_back(
         wiring_DC,
-        Impedance_create(
-            Connection_create_plunger_gate(String_wrap("P1")), 10000.0, 1e-12));
-    Impedances_push_back(
-        wiring_DC,
-        Impedance_create(
-            Connection_create_plunger_gate(String_wrap("P2")), 10000.0, 1e-12));
+        Impedance_create(Connection_create_plunger_gate(String_wrap("P2")),
+                         10000.0, 1e-12));
     Impedances_push_back(
         wiring_DC,
         Impedance_create(Connection_create_reservoir_gate(String_wrap("R1")),
-                         10000.0,
-                         1e-12));
+                         10000.0, 1e-12));
     Impedances_push_back(
         wiring_DC,
         Impedance_create(Connection_create_reservoir_gate(String_wrap("R2")),
-                         10000.0,
-                         1e-12));
+                         10000.0, 1e-12));
     Impedances_push_back(
         wiring_DC,
         Impedance_create(Connection_create_screening_gate(String_wrap("SG1")),
-                         10000.0,
-                         1e-12));
+                         10000.0, 1e-12));
     Impedances_push_back(
         wiring_DC,
         Impedance_create(Connection_create_screening_gate(String_wrap("SG2")),
-                         10000.0,
-                         1e-12));
+                         10000.0, 1e-12));
 
-    // VoltageConstraints
+    // Adjacency
     ConnectionsHandle adj_indexes = Connections_create_empty();
     Connections_push_back(adj_indexes,
                           Connection_create_screening_gate(String_wrap("SG1")));
@@ -181,21 +169,14 @@ class ConfigTest : public ::testing::Test {
     Connections_push_back(adj_indexes,
                           Connection_create_reservoir_gate(String_wrap("R2")));
     int adj_data[81];
-    for (int i = 0; i < 81; ++i) adj_data[i] = (i % 10 == 0 ? 1 : 0);
-    size_t          adj_shape[2] = {9, 9};
-    AdjacencyHandle adjacency =
-        Adjacency_create(adj_data, adj_shape, 2, adj_indexes);
-    PairDoubleDoubleHandle bounds = PairDoubleDouble_create(-1.0, 1.0);
-    constraints = VoltageConstraints_create(adjacency, 1.0, bounds);
+    for (int i = 0; i < 81; ++i)
+      adj_data[i] = (i % 10 == 0 ? 1 : 0);
+    size_t adj_shape[2] = {9, 9};
+    adjacency = Adjacency_create(adj_data, adj_shape, 2, adj_indexes);
 
-    handle = Config_create(screening_gates,
-                           plunger_gates,
-                           ohmics,
-                           barrier_gates,
-                           reservoir_gates,
-                           groups,
-                           wiring_DC,
-                           constraints);
+    handle = Config_create(screening_gates, plunger_gates, ohmics,
+                           barrier_gates, reservoir_gates, groups, wiring_DC,
+                           adjacency, 0.5, -1.0, 1.0);
 
     // Clean up handles not owned by the fixture
     Channel_destroy(channel);
@@ -207,8 +188,6 @@ class ConfigTest : public ::testing::Test {
     Group_destroy(group);
     Gname_destroy(gname);
     Connections_destroy(adj_indexes);
-    Adjacency_destroy(adjacency);
-    PairDoubleDouble_destroy(bounds);
   }
 
   void TearDown() override {
@@ -220,7 +199,7 @@ class ConfigTest : public ::testing::Test {
     Connections_destroy(reservoir_gates);
     MapGnameGroup_destroy(groups);
     Impedances_destroy(wiring_DC);
-    VoltageConstraints_destroy(constraints);
+    Adjacency_destroy(adjacency);
   }
 };
 
@@ -246,14 +225,26 @@ TEST_F(ConfigTest, ChannelsGetter) {
   Channels_destroy(chs);
 }
 
-TEST_F(ConfigTest, VoltageConstraintsGetter) {
-  VoltageConstraintsHandle vc = Config_voltage_constraints(handle);
-  EXPECT_FALSE(vc == nullptr);
-  VoltageConstraints_destroy(vc);
+TEST_F(ConfigTest, AdjacencyGetter) {
+  AdjacencyHandle adj = Config_adjacency(handle);
+  EXPECT_EQ(Adjacency_size(adj), 81);
+  Adjacency_destroy(adj);
+}
+
+TEST_F(ConfigTest, MaxSafeDiffGetter) {
+  EXPECT_DOUBLE_EQ(Config_max_safe_diff(handle), 0.5);
+}
+
+TEST_F(ConfigTest, MinBoundGetter) {
+  EXPECT_DOUBLE_EQ(Config_min_bound(handle), -1.0);
+}
+
+TEST_F(ConfigTest, MaxBoundGetter) {
+  EXPECT_DOUBLE_EQ(Config_max_bound(handle), 1.0);
 }
 
 TEST_F(ConfigTest, SerializationRoundTrip) {
-  StringHandle json   = Config_to_json_string(handle);
+  StringHandle json = Config_to_json_string(handle);
   ConfigHandle loaded = Config_from_json_string(json);
   EXPECT_TRUE(Config_equal(handle, loaded));
   Config_destroy(loaded);
@@ -261,7 +252,7 @@ TEST_F(ConfigTest, SerializationRoundTrip) {
 }
 
 TEST_F(ConfigTest, GetSharedChannelBarrierGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_shared_channel_barrier_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 0);
@@ -270,7 +261,7 @@ TEST_F(ConfigTest, GetSharedChannelBarrierGates) {
 }
 
 TEST_F(ConfigTest, GetSharedChannelPlungerGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_shared_channel_plunger_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 0);
@@ -279,7 +270,7 @@ TEST_F(ConfigTest, GetSharedChannelPlungerGates) {
 }
 
 TEST_F(ConfigTest, GetSharedChannelReservoirGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_shared_channel_reservoir_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 0);
@@ -288,7 +279,7 @@ TEST_F(ConfigTest, GetSharedChannelReservoirGates) {
 }
 
 TEST_F(ConfigTest, GetSharedChannelScreeningGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_shared_channel_screening_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 0);
@@ -297,7 +288,7 @@ TEST_F(ConfigTest, GetSharedChannelScreeningGates) {
 }
 
 TEST_F(ConfigTest, GetSharedChannelDotGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_shared_channel_dot_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 0);
@@ -312,15 +303,15 @@ TEST_F(ConfigTest, GetSharedBarrierGates) {
 }
 
 TEST_F(ConfigTest, GetSharedChannelGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
-  ConnectionsHandle gates   = Config_get_shared_channel_gates(handle, channel);
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
+  ConnectionsHandle gates = Config_get_shared_channel_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 0);
   Connections_destroy(gates);
   Channel_destroy(channel);
 }
 
 TEST_F(ConfigTest, GetIsolatedChannelBarrierGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_isolated_channel_barrier_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 3);
@@ -329,7 +320,7 @@ TEST_F(ConfigTest, GetIsolatedChannelBarrierGates) {
 }
 
 TEST_F(ConfigTest, GetIsolatedChannelPlungerGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_isolated_channel_plunger_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 2);
@@ -338,7 +329,7 @@ TEST_F(ConfigTest, GetIsolatedChannelPlungerGates) {
 }
 
 TEST_F(ConfigTest, GetIsolatedChannelReservoirGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_isolated_channel_reservoir_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 2);
@@ -347,7 +338,7 @@ TEST_F(ConfigTest, GetIsolatedChannelReservoirGates) {
 }
 
 TEST_F(ConfigTest, GetIsolatedChannelScreeningGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_isolated_channel_screening_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 2);
@@ -356,7 +347,7 @@ TEST_F(ConfigTest, GetIsolatedChannelScreeningGates) {
 }
 
 TEST_F(ConfigTest, GetIsolatedChannelDotGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates =
       Config_get_isolated_channel_dot_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 5);
@@ -365,7 +356,7 @@ TEST_F(ConfigTest, GetIsolatedChannelDotGates) {
 }
 
 TEST_F(ConfigTest, GetIsolatedChannelGates) {
-  ChannelHandle     channel = Channel_create(String_wrap("CH1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
   ConnectionsHandle gates = Config_get_isolated_channel_gates(handle, channel);
   EXPECT_EQ(Connections_size(gates), 9);
   Connections_destroy(gates);
@@ -373,14 +364,9 @@ TEST_F(ConfigTest, GetIsolatedChannelGates) {
 }
 
 TEST_F(ConfigTest, EqualityAndInEqual) {
-  ConfigHandle handle2 = Config_create(screening_gates,
-                                       plunger_gates,
-                                       ohmics,
-                                       barrier_gates,
-                                       reservoir_gates,
-                                       groups,
-                                       wiring_DC,
-                                       constraints);
+  ConfigHandle handle2 = Config_create(screening_gates, plunger_gates, ohmics,
+                                       barrier_gates, reservoir_gates, groups,
+                                       wiring_DC, adjacency, 0.5, -1.0, 1.0);
   EXPECT_TRUE(Config_equal(handle, handle2));
   EXPECT_FALSE(Config_not_equal(handle, handle2));
   Config_destroy(handle2);
@@ -388,28 +374,36 @@ TEST_F(ConfigTest, EqualityAndInEqual) {
 
 TEST_F(ConfigTest, CreateThrowsOnNullArgs) {
   set_last_error(0, nullptr);
-  Config_create(nullptr,                             plunger_gates,                             ohmics,                             barrier_gates,                             reservoir_gates,                             groups,                             wiring_DC,                             constraints);
+  Config_create(nullptr, plunger_gates, ohmics, barrier_gates, reservoir_gates,
+                groups, wiring_DC, adjacency, 0.5, -1.0, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Config_create(screening_gates,                             nullptr,                             ohmics,                             barrier_gates,                             reservoir_gates,                             groups,                             wiring_DC,                             constraints);
+  Config_create(screening_gates, nullptr, ohmics, barrier_gates,
+                reservoir_gates, groups, wiring_DC, adjacency, 0.5, -1.0, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Config_create(screening_gates,                             plunger_gates,                             nullptr,                             barrier_gates,                             reservoir_gates,                             groups,                             wiring_DC,                             constraints);
+  Config_create(screening_gates, plunger_gates, nullptr, barrier_gates,
+                reservoir_gates, groups, wiring_DC, adjacency, 0.5, -1.0, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             nullptr,                             reservoir_gates,                             groups,                             wiring_DC,                             constraints);
+  Config_create(screening_gates, plunger_gates, ohmics, nullptr,
+                reservoir_gates, groups, wiring_DC, adjacency, 0.5, -1.0, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             barrier_gates,                             nullptr,                             groups,                             wiring_DC,                             constraints);
+  Config_create(screening_gates, plunger_gates, ohmics, barrier_gates, nullptr,
+                groups, wiring_DC, adjacency, 0.5, -1.0, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             barrier_gates,                             reservoir_gates,                             nullptr,                             wiring_DC,                             constraints);
+  Config_create(screening_gates, plunger_gates, ohmics, barrier_gates,
+                reservoir_gates, nullptr, wiring_DC, adjacency, 0.5, -1.0, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             barrier_gates,                             reservoir_gates,                             groups,                             nullptr,                             constraints);
+  Config_create(screening_gates, plunger_gates, ohmics, barrier_gates,
+                reservoir_gates, groups, nullptr, adjacency, 0.5, -1.0, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Config_create(screening_gates,                             plunger_gates,                             ohmics,                             barrier_gates,                             reservoir_gates,                             groups,                             wiring_DC,                             nullptr);
+  Config_create(screening_gates, plunger_gates, ohmics, barrier_gates,
+                reservoir_gates, groups, wiring_DC, nullptr, 0.5, -1.0, 1.0);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, DestroyThrowsOnNullHandle) {
@@ -658,7 +652,7 @@ TEST_F(ConfigTest, ReturnChannelFromGateThrowsOnNullHandle) {
 }
 TEST_F(ConfigTest, OhmicInChannelThrowsOnNullHandle) {
   ConnectionHandle conn = Connection_create_ohmic(String_wrap("O1"));
-  ChannelHandle    ch   = Channel_create(String_wrap("CH1"));
+  ChannelHandle ch = Channel_create(String_wrap("CH1"));
   set_last_error(0, nullptr);
   Config_ohmic_in_channel(nullptr, conn, ch);
   EXPECT_EQ(get_last_error_code(), 1);
@@ -1012,9 +1006,24 @@ TEST_F(ConfigTest, ChannelsThrowsOnNullHandle) {
   Config_channels(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
-TEST_F(ConfigTest, VoltageConstraintsThrowsOnNullHandle) {
+TEST_F(ConfigTest, AdjacencyThrowsOnNullHandle) {
   set_last_error(0, nullptr);
-  Config_voltage_constraints(nullptr);
+  Config_adjacency(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+TEST_F(ConfigTest, MaxSafeDiffThrowsOnNullHandle) {
+  set_last_error(0, nullptr);
+  Config_max_safe_diff(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+TEST_F(ConfigTest, MinBoundThrowsOnNullHandle) {
+  set_last_error(0, nullptr);
+  Config_min_bound(nullptr);
+  EXPECT_EQ(get_last_error_code(), 1);
+}
+TEST_F(ConfigTest, MaxBoundThrowsOnNullHandle) {
+  set_last_error(0, nullptr);
+  Config_max_bound(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 TEST_F(ConfigTest, EqualThrowsOnNullHandle) {
@@ -1143,10 +1152,10 @@ TEST_F(ConfigTest, GetAllGnamesThrowsOnNullHandle) {
 TEST_F(ConfigTest, GettersAndHasFunctionsWork) {
   // Use valid handles from the fixture
   // Get a channel, gname, and connection from the group
-  ChannelHandle    channel = Channel_create(String_wrap("CH1"));
-  GnameHandle      gname   = Gname_create(String_wrap("group1"));
-  ConnectionHandle gate    = Connection_create_barrier_gate(String_wrap("B1"));
-  ConnectionHandle ohmic   = Connection_create_ohmic(String_wrap("O1"));
+  ChannelHandle channel = Channel_create(String_wrap("CH1"));
+  GnameHandle gname = Gname_create(String_wrap("group1"));
+  ConnectionHandle gate = Connection_create_barrier_gate(String_wrap("B1"));
+  ConnectionHandle ohmic = Connection_create_ohmic(String_wrap("O1"));
   ConnectionHandle reservoir =
       Connection_create_reservoir_gate(String_wrap("R1"));
   ConnectionHandle screening =

@@ -19,7 +19,7 @@ extern "C" {
 #include "falcon-core/physics/device_structures/Connections_c_api.h"
 #include "falcon-core/physics/device_structures/GateRelations_c_api.h"
 #include "falcon-core/physics/device_structures/Impedances_c_api.h"
-typedef void* ConfigHandle;
+typedef void *ConfigHandle;
 
 // @category:allocation
 FALCON_CORE_C_API ConfigHandle Config_copy(ConfigHandle handle);
@@ -35,15 +35,12 @@ FALCON_CORE_C_API StringHandle Config_to_json_string(ConfigHandle handle);
 // @category:allocation
 FALCON_CORE_C_API ConfigHandle Config_from_json_string(StringHandle json);
 // @category:allocation
-FALCON_CORE_C_API ConfigHandle
-Config_create(ConnectionsHandle        screening_gates,
-              ConnectionsHandle        plunger_gates,
-              ConnectionsHandle        ohmics,
-              ConnectionsHandle        barrier_gates,
-              ConnectionsHandle        reservoir_gates,
-              MapGnameGroupHandle      groups,
-              ImpedancesHandle         wiring_DC,
-              VoltageConstraintsHandle constraints);
+FALCON_CORE_C_API ConfigHandle Config_create(
+    ConnectionsHandle screening_gates, ConnectionsHandle plunger_gates,
+    ConnectionsHandle ohmics, ConnectionsHandle barrier_gates,
+    ConnectionsHandle reservoir_gates, MapGnameGroupHandle groups,
+    ImpedancesHandle wiring_DC, AdjacencyHandle adjacency, double max_safe_diff,
+    double min_bound, double max_bound);
 // @category:read
 /* AUTO-DOC from cpp: Config_num_unique_channels |
  * falcon_core::physics::config::core::Config::num_unique_channels */
@@ -53,13 +50,13 @@ Config_create(ConnectionsHandle        screening_gates,
  */
 FALCON_CORE_C_API int Config_num_unique_channels(ConfigHandle handle);
 // @category:read
-/* AUTO-DOC from cpp: Config_voltage_constraints |
- * falcon_core::physics::config::core::Config::voltage_constraints */
-/**
- * @brief Return the voltage constraints for the physical layout.
- */
-FALCON_CORE_C_API VoltageConstraintsHandle
-Config_voltage_constraints(ConfigHandle handle);
+FALCON_CORE_C_API AdjacencyHandle Config_adjacency(ConfigHandle handle);
+// @category:read
+FALCON_CORE_C_API double Config_max_safe_diff(ConfigHandle handle);
+// @category:read
+FALCON_CORE_C_API double Config_min_bound(ConfigHandle handle);
+// @category:read
+FALCON_CORE_C_API double Config_max_bound(ConfigHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: Config_groups |
  * falcon_core::physics::config::core::Config::groups */
@@ -109,7 +106,7 @@ FALCON_CORE_C_API ListGroupHandle Config_get_all_groups(ConfigHandle handle);
  * @param channel The channel to validate.
  * @returns true if the channel exists, false otherwise.
  */
-FALCON_CORE_C_API bool Config_has_channel(ConfigHandle  handle,
+FALCON_CORE_C_API bool Config_has_channel(ConfigHandle handle,
                                           ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_has_gname |
@@ -129,7 +126,7 @@ FALCON_CORE_C_API bool Config_has_gname(ConfigHandle handle, GnameHandle gname);
  * @returns The group matching the name. A nullptr if no match is found.
  */
 FALCON_CORE_C_API GroupHandle Config_select_group(ConfigHandle handle,
-                                                  GnameHandle  gname);
+                                                  GnameHandle gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_dot_number |
  * falcon_core::physics::config::core::Config::get_dot_number */
@@ -140,7 +137,7 @@ FALCON_CORE_C_API GroupHandle Config_select_group(ConfigHandle handle,
  * @returns The number of dots associated with the channel. A 0 if there is no
  * match.
  */
-FALCON_CORE_C_API int Config_get_dot_number(ConfigHandle  handle,
+FALCON_CORE_C_API int Config_get_dot_number(ConfigHandle handle,
                                             ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_charge_sense_groups |
@@ -160,7 +157,7 @@ Config_get_charge_sense_groups(ConfigHandle handle);
  * @param ohmic The ohmic to check
  * @returns true if the ohmic is inside a charge sensor channel
  */
-FALCON_CORE_C_API bool Config_ohmic_in_charge_sensor(ConfigHandle     handle,
+FALCON_CORE_C_API bool Config_ohmic_in_charge_sensor(ConfigHandle handle,
                                                      ConnectionHandle ohmic);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_associated_ohmic |
@@ -192,7 +189,7 @@ Config_get_current_channels(ConfigHandle handle);
  * @returns The Gname associated with the Channel. A nullptr if no match is
  * found.
  */
-FALCON_CORE_C_API GnameHandle Config_get_gname(ConfigHandle  handle,
+FALCON_CORE_C_API GnameHandle Config_get_gname(ConfigHandle handle,
                                                ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_group_barrier_gates |
@@ -265,7 +262,7 @@ Config_get_group_dot_gates(ConfigHandle handle, GnameHandle gname);
  * Otherwise a nullptr if no match is found.
  */
 FALCON_CORE_C_API ConnectionsHandle Config_get_group_gates(ConfigHandle handle,
-                                                           GnameHandle  gname);
+                                                           GnameHandle gname);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_channel_barrier_gates |
  * falcon_core::physics::config::core::Config::get_channel_barrier_gates */
@@ -400,9 +397,9 @@ Config_return_channel_from_gate(ConfigHandle handle, ConnectionHandle gate);
  * @param channel The channel to check the ohmic against.
  * @returns true if the ohmic is connected to the channel, false otherwise.
  */
-FALCON_CORE_C_API bool Config_ohmic_in_channel(ConfigHandle     handle,
+FALCON_CORE_C_API bool Config_ohmic_in_channel(ConfigHandle handle,
                                                ConnectionHandle ohmic,
-                                               ChannelHandle    channel);
+                                               ChannelHandle channel);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_dot_channel_neighbors |
  * falcon_core::physics::config::core::Config::get_dot_channel_neighbors */
@@ -412,7 +409,7 @@ FALCON_CORE_C_API bool Config_ohmic_in_channel(ConfigHandle     handle,
  * @return A pair of GateSP (left, right) if found, nullptr otherwise.
  */
 FALCON_CORE_C_API PairConnectionConnectionHandle
-Config_get_dot_channel_neighbors(ConfigHandle     handle,
+Config_get_dot_channel_neighbors(ConfigHandle handle,
                                  ConnectionHandle dot_gate);
 // @category:read
 /* AUTO-DOC from cpp: Config_get_barrier_gate_dict |
@@ -800,23 +797,23 @@ FALCON_CORE_C_API ConnectionsHandle Config_get_all_gates(ConfigHandle handle);
 FALCON_CORE_C_API ConnectionsHandle
 Config_get_all_connections(ConfigHandle handle);
 // @category:read
-FALCON_CORE_C_API bool Config_has_ohmic(ConfigHandle     handle,
+FALCON_CORE_C_API bool Config_has_ohmic(ConfigHandle handle,
                                         ConnectionHandle ohmic);
 // @category:read
-FALCON_CORE_C_API bool Config_has_gate(ConfigHandle     handle,
+FALCON_CORE_C_API bool Config_has_gate(ConfigHandle handle,
                                        ConnectionHandle gate);
 // @category:read
-FALCON_CORE_C_API bool Config_has_barrier_gate(ConfigHandle     handle,
+FALCON_CORE_C_API bool Config_has_barrier_gate(ConfigHandle handle,
                                                ConnectionHandle barrier_gate);
 // @category:read
-FALCON_CORE_C_API bool Config_has_plunger_gate(ConfigHandle     handle,
+FALCON_CORE_C_API bool Config_has_plunger_gate(ConfigHandle handle,
                                                ConnectionHandle plunger_gate);
 // @category:read
-FALCON_CORE_C_API bool Config_has_reservoir_gate(
-    ConfigHandle handle, ConnectionHandle reservoir_gate);
+FALCON_CORE_C_API bool
+Config_has_reservoir_gate(ConfigHandle handle, ConnectionHandle reservoir_gate);
 // @category:read
-FALCON_CORE_C_API bool Config_has_screening_gate(
-    ConfigHandle handle, ConnectionHandle screening_gate);
+FALCON_CORE_C_API bool
+Config_has_screening_gate(ConfigHandle handle, ConnectionHandle screening_gate);
 
 #ifdef __cplusplus
 }
