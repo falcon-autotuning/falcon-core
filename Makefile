@@ -3,6 +3,7 @@
 # Detect the preset from CMAKE_PRESET environment variable or default to linux-clang-release
 PRESET ?= linux-clang-release
 CMAKE_BUILD_DIR := build/$(PRESET)
+VCPKG_BOOTSTRAP_MARKER := $(CMAKE_BUILD_DIR)/.vcpkg-bootstrap-done
 
 help:
 	@echo "Falcon Core Build System"
@@ -29,11 +30,15 @@ help:
 	@echo "  cmake --build --preset linux-clang-release"
 	@echo "  ctest --preset linux-clang-release"
 
-vcpkg-bootstrap:
+vcpkg-bootstrap: $(VCPKG_BOOTSTRAP_MARKER)
+
+$(VCPKG_BOOTSTRAP_MARKER):
+	@mkdir -p $(CMAKE_BUILD_DIR)
 	@echo "Bootstrapping vcpkg..."
 	cmake -P cmake/bootstrap/bootstrap-vcpkg.cmake
+	@touch $(VCPKG_BOOTSTRAP_MARKER)
 
-configure: vcpkg-bootstrap
+configure: $(VCPKG_BOOTSTRAP_MARKER)
 	@echo "Configuring $(PRESET)..."
 	cmake --preset $(PRESET)
 
