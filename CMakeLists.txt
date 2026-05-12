@@ -219,3 +219,7 @@ if(FALCON_CORE_BUILD_C_API)
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
   )
 endif()
+# Workaround for Ninja timestamp issue on Windows
+if(CMAKE_GENERATOR STREQUAL "Ninja" AND WIN32)
+  file(TOUCH "${CMAKE_BINARY_DIR}/build.ninja")
+endif()
