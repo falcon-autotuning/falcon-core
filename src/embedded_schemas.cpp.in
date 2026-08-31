@@ -1,0 +1,8 @@
+// Auto-generated file - do not edit manually
+
+namespace quantum_schema {
+
+extern const char QUANTUM_DOT_DEVICE_SCHEMA[] =
+    R"schema(@QUANTUM_DOT_DEVICE_SCHEMA@)schema";
+
+} // namespace quantum_schema

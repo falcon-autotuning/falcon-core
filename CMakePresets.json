@@ -33,6 +33,10 @@
         "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-dynamic/share;${sourceDir}/vcpkg_installed",
         "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
         "CMAKE_SHARED_LINKER_FLAGS": "-fuse-ld=lld"
+      },
+      "environment": {
+        "CC": "clang",
+        "CXX": "clang++"
       }
     },
     {
@@ -47,6 +51,10 @@
         "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-dynamic/share;${sourceDir}/vcpkg_installed",
         "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
         "CMAKE_SHARED_LINKER_FLAGS": "-fuse-ld=lld"
+      },
+      "environment": {
+        "CC": "clang",
+        "CXX": "clang++"
       }
     },
     {
@@ -59,6 +67,10 @@
         "CMAKE_CXX_COMPILER": "g++",
         "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
         "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-dynamic/share;${sourceDir}/vcpkg_installed"
+      },
+      "environment": {
+        "CC": "gcc",
+        "CXX": "gcc++"
       }
     },
     {
@@ -71,6 +83,10 @@
         "CMAKE_CXX_COMPILER": "g++",
         "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
         "CMAKE_PREFIX_PATH": "${sourceDir}/vcpkg_installed/x64-linux-dynamic/share;${sourceDir}/vcpkg_installed"
+      },
+      "environment": {
+        "CC": "gcc",
+        "CXX": "gcc++"
       }
     },
     {

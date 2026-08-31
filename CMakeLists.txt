@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(falcon-core
-  VERSION 1.2.13
+  VERSION 1.2.14
   LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -60,7 +60,52 @@ find_package(yaml-cpp CONFIG REQUIRED)
 find_package(Boost    CONFIG REQUIRED COMPONENTS filesystem system uuid)
 find_package(Threads         REQUIRED)
 find_package(hdf5     CONFIG REQUIRED COMPONENTS HL CXX szip zlib)
+find_package(yaml-config-validator CONFIG REQUIRED)
 
+set(QUANTUM_DOT_DEVICE_SCHEMA_FILE
+    "${CMAKE_SOURCE_DIR}/schemas/quantum_dot_device.schema.json")
+
+file(READ
+  "${QUANTUM_DOT_DEVICE_SCHEMA_FILE}"
+  QUANTUM_DOT_DEVICE_SCHEMA
+)
+
+function(validate_json_schema schema_name schema_contents)
+  string(
+    JSON schema_type
+    ERROR_VARIABLE json_error
+    TYPE
+    "${schema_contents}"
+  )
+
+  if(json_error)
+    message(FATAL_ERROR
+      "${schema_name} is not valid JSON: ${json_error}")
+  endif()
+
+  if(NOT schema_type STREQUAL "OBJECT")
+    message(FATAL_ERROR
+      "${schema_name} must contain a JSON object, got: ${schema_type}")
+  endif()
+endfunction()
+
+validate_json_schema(
+  "Quantum-dot device schema"
+  "${QUANTUM_DOT_DEVICE_SCHEMA}"
+)
+
+set_property(
+  DIRECTORY
+  APPEND
+  PROPERTY CMAKE_CONFIGURE_DEPENDS
+    "${QUANTUM_DOT_DEVICE_SCHEMA_FILE}"
+)
+
+configure_file(
+  "${CMAKE_SOURCE_DIR}/src/embedded_schemas.cpp.in"
+  "${CMAKE_BINARY_DIR}/embedded_schemas.cpp"
+  @ONLY
+)
 
 # ============================================================================
 # C++ Core Library (falcon-core)
@@ -131,6 +176,14 @@ if(FALCON_CORE_BUILD_C_API)
 
 endif()
 
+add_executable(validate-quantum-dot-config
+  src/config_validator.cpp
+  ${CMAKE_BINARY_DIR}/embedded_schemas.cpp
+)
+target_link_libraries(validate-quantum-dot-config
+  PRIVATE yaml-config-validator::yaml-config-validator
+)
+
 # ============================================================================
 # Testing
 # ============================================================================
@@ -175,6 +228,16 @@ install(EXPORT falcon-core-targets
   FILE falcon-core-targets.cmake
   NAMESPACE falcon-core::
   DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-core
+)
+
+set_target_properties(
+  validate-quantum-dot-config
+  PROPERTIES
+  EXPORT_NAME validate-quantum-dot-config
+)
+install(TARGETS validate-quantum-dot-config
+  EXPORT falcon-core-targets
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 # Generate the version file

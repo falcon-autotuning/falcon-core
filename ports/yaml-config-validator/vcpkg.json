@@ -1,0 +1,12 @@
+{
+  "name": "yaml-config-validator",
+  "version-string": "1.0.2",
+  "description": "A validator library to use when validating YAML files to json schema",
+  "dependencies": [
+    "vcpkg-cmake",
+    "vcpkg-cmake-config",
+    "nlohmann-json",
+    "yaml-cpp",
+    "json-schema-validator"
+  ]
+}

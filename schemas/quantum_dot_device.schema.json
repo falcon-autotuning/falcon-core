@@ -1,0 +1,189 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://falcon.io/schemas/device-config.json",
+  "title": "Quantum Dot Device Configuration",
+  "description": "Configuration for a one-dimensional quantum-dot device with parallel charge sensors, gate adjacency, safety limits, and DC wiring characteristics.",
+  "type": "object",
+  "required": [
+    "ScreeningGates",
+    "PlungerGates",
+    "Ohmics",
+    "BarrierGates",
+    "ReservoirGates",
+    "num-unique-channels",
+    "groups",
+    "adjacency",
+    "max_safe_diff",
+    "safe_voltage_bounds",
+    "wiringDC"
+  ],
+  "properties": {
+    "ScreeningGates": {
+      "$ref": "#/definitions/gateList",
+      "description": "Semicolon-delimited list of all screening gates in the device."
+    },
+    "PlungerGates": {
+      "$ref": "#/definitions/gateList",
+      "description": "Semicolon-delimited list of all plunger gates in the device."
+    },
+    "Ohmics": {
+      "$ref": "#/definitions/gateList",
+      "description": "Semicolon-delimited list of all ohmic contacts in the device."
+    },
+    "BarrierGates": {
+      "$ref": "#/definitions/gateList",
+      "description": "Semicolon-delimited list of all barrier gates in the device."
+    },
+    "ReservoirGates": {
+      "$ref": "#/definitions/gateList",
+      "description": "Semicolon-delimited list of all reservoir gates in the device."
+    },
+    "num-unique-channels": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of unique readout channels represented by the configured groups."
+    },
+    "groups": {
+      "type": "object",
+      "description": "Mapping from group identifiers to quantum-dot group configurations. Slowly being desprecated in favor of adjacency representation.",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^group[1-9][0-9]*$"
+      },
+      "patternProperties": {
+        "^group[1-9][0-9]*$": {
+          "$ref": "#/definitions/group"
+        }
+      },
+      "additionalProperties": false
+    },
+    "adjacency": {
+      "type": "object",
+      "description": "Mapping from a device connection to a semicolon-delimited list of directly adjacent connections. Adjacent connections only need to be listed once and the inverse is inferred.",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/definitions/connectionName"
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*$": {
+          "$ref": "#/definitions/connectionList"
+        }
+      },
+      "additionalProperties": false
+    },
+    "max_safe_diff": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Maximum permitted voltage difference between adjacent connections, in volts."
+    },
+    "safe_voltage_bounds": {
+      "type": "array",
+      "description": "Inclusive global voltage bounds in the form [minimum, maximum], in volts.",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "wiringDC": {
+      "type": "object",
+      "description": "Mapping from each wired connection to its equivalent DC resistance and capacitance.",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/definitions/connectionName"
+      },
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*$": {
+          "$ref": "#/definitions/dcWiring"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "connectionName": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+      "description": "Connection identifier beginning with a letter and containing only letters, digits, underscores, or hyphens."
+    },
+    "gateList": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*(;[A-Za-z][A-Za-z0-9_-]*)*$",
+      "description": "A nonempty semicolon-delimited list of connection identifiers. Empty entries, whitespace, periods, leading semicolons, and trailing semicolons are not permitted."
+    },
+    "connectionList": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*(;[A-Za-z][A-Za-z0-9_-]*)*$",
+      "description": "A nonempty semicolon-delimited list of adjacent connection identifiers."
+    },
+    "group": {
+      "type": "object",
+      "required": [
+        "Name",
+        "NumDots",
+        "ScreeningGates",
+        "ReservoirGates",
+        "PlungerGates",
+        "BarrierGates",
+        "Order"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+          "description": "Unique logical name of the group, for example I_O1."
+        },
+        "NumDots": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of quantum dots in the group."
+        },
+        "ScreeningGates": {
+          "$ref": "#/definitions/gateList",
+          "description": "Screening gates associated with the group."
+        },
+        "ReservoirGates": {
+          "$ref": "#/definitions/gateList",
+          "description": "Reservoir gates associated with the group."
+        },
+        "PlungerGates": {
+          "$ref": "#/definitions/gateList",
+          "description": "Plunger gates associated with the group."
+        },
+        "BarrierGates": {
+          "$ref": "#/definitions/gateList",
+          "description": "Barrier gates associated with the group."
+        },
+        "Order": {
+          "$ref": "#/definitions/gateList",
+          "description": "Physical connection order for the group, normally beginning and ending with ohmic contacts."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dcWiring": {
+      "type": "object",
+      "required": [
+        "resistance",
+        "capacitance"
+      ],
+      "properties": {
+        "resistance": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Equivalent bulk resistance in ohms."
+        },
+        "capacitance": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Equivalent bulk capacitance in farads."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

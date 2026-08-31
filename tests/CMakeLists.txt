@@ -192,4 +192,23 @@ if(FALCON_CORE_BUILD_C_API)
   message(STATUS "C-API Integration test executables: integration_serialize_connection_c, integration_deserialize_connection_c")
 endif()
 
-enable_testing()
+# ============================================================================
+# Validator testing
+# ============================================================================
+target_include_directories(integration_serialize_connection_c PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+  )
+
+add_executable(test_validator test_schema_validator.cpp)
+target_link_libraries(test_validator
+  PRIVATE
+    GTest::gtest
+    GTest::gtest_main
+)
+set_target_properties(test_validator PROPERTIES
+    UNITY_BUILD OFF
+)
+add_test(NAME test_validator COMMAND test_validator)
+set_tests_properties(test_validator PROPERTIES
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/tests
+)
