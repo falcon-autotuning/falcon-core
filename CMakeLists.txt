@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(falcon-core
-  VERSION 1.2.14
+  VERSION 1.2.15
   LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -236,7 +236,6 @@ set_target_properties(
   EXPORT_NAME validate-quantum-dot-config
 )
 install(TARGETS validate-quantum-dot-config
-  EXPORT falcon-core-targets
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
