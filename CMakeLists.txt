@@ -230,11 +230,6 @@ install(EXPORT falcon-core-targets
   DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-core
 )
 
-set_target_properties(
-  validate-quantum-dot-config
-  PROPERTIES
-  EXPORT_NAME validate-quantum-dot-config
-)
 install(TARGETS validate-quantum-dot-config
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
@@ -246,17 +241,12 @@ write_basic_package_version_file(
   COMPATIBILITY AnyNewerVersion
 )
 
-set(FALCON_CORE_C_API_CONFIG "")
-if(FALCON_CORE_BUILD_C_API)
-  # If the C-API is being built, we add a check for the 'c-api' component.
-  # A consumer can then use find_package(falcon-core COMPONENTS c-api)
-  set(FALCON_CORE_C_API_CONFIG "check_required_components(falcon-core-c-api)")
-endif()
+set(FALCON_CORE_HAS_C_API "${FALCON_CORE_BUILD_C_API}")
 
 configure_package_config_file(
-  cmake/falcon-core-config.cmake.in
+  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/falcon-core-config.cmake.in"
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config.cmake"
-  INSTALL_DESTINATION ${CMAKE_INSTALL_DATADIR}/falcon-core
+  INSTALL_DESTINATION "${CMAKE_INSTALL_DATADIR}/falcon-core"
 )
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/falcon-core-config.cmake"

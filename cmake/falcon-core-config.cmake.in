@@ -2,18 +2,13 @@
 
 include(CMakeFindDependencyMacro)
 
-find_dependency(cereal CONFIG REQUIRED)
-find_dependency(xtl CONFIG REQUIRED)
 find_dependency(xtensor CONFIG REQUIRED)
-find_dependency(xsimd CONFIG REQUIRED)
-find_dependency(yaml-cpp CONFIG REQUIRED)
-find_dependency(HDF5 CONFIG REQUIRED COMPONENTS HL CXX)
-find_dependency(Boost CONFIG REQUIRED COMPONENTS filesystem system uuid)
-find_dependency(Threads REQUIRED)
-find_dependency(yaml-config-validator CONFIG REQUIRED)
+find_dependency(Boost CONFIG REQUIRED COMPONENTS filesystem uuid)
 
-@FALCON_CORE_C_API_CONFIG@
+set("falcon-core_c-api_FOUND" @FALCON_CORE_HAS_C_API@)
 
-include("${CMAKE_CURRENT_LIST_DIR}/falcon-core-targets.cmake")
+include(
+  "${CMAKE_CURRENT_LIST_DIR}/falcon-core-targets.cmake"
+)
 
 check_required_components(falcon-core)
