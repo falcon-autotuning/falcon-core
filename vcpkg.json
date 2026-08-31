@@ -1,6 +1,6 @@
 {
   "name": "falcon-core",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "features": {
     "c-api": {
       "description": "Builds the optional C-API library for falcon-core."
