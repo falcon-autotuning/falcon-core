@@ -1,5 +1,5 @@
-#include <gtest/gtest.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include <gtest/gtest.h>
 
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
@@ -8,56 +8,51 @@
 #include "falcon-core/generic/ListQuantity_c_api.h"
 #include "falcon-core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon-core/generic/PairInterpretationContextQuantity_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class InterpretationContainerQuantityTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     ListMeasurementContextHandle axes_indp1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateA")),
-            InstrumentTypes_voltmeter()));
+        axes_indp1, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateA")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateB")),
-            InstrumentTypes_voltmeter()));
+        axes_dep1, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateB")),
+                       INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_indp2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateC")),
-            InstrumentTypes_voltmeter()));
+        axes_indp2, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateC")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateD")),
-            InstrumentTypes_voltmeter()));
+        axes_dep2, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateD")),
+                       INSTRUMENT_VOLTMETER));
     ctx1 =
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp1),
-                                     axes_dep1,
-                                     SymbolUnit_create_volt());
+                                     axes_dep1, SymbolUnit_create_volt());
     ctx2 =
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp2),
-                                     axes_dep2,
-                                     SymbolUnit_create_volt());
+                                     axes_dep2, SymbolUnit_create_volt());
     pair1 = PairInterpretationContextQuantity_create(
         ctx1, Quantity_create(1.0, SymbolUnit_create_volt()));
     pair2 = PairInterpretationContextQuantity_create(
         ctx2, Quantity_create(1.5, SymbolUnit_create_volt()));
     PairInterpretationContextQuantityHandle arr[2] = {pair1, pair2};
-    map       = MapInterpretationContextQuantity_create(arr, 2);
+    map = MapInterpretationContextQuantity_create(arr, 2);
     container = InterpretationContainerQuantity_create(map);
-    val1      = Quantity_create(2.5, SymbolUnit_create_volt());
-    val2      = Quantity_create(3.5, SymbolUnit_create_volt());
+    val1 = Quantity_create(2.5, SymbolUnit_create_volt());
+    val2 = Quantity_create(3.5, SymbolUnit_create_volt());
   }
   void TearDown() override {
     InterpretationContainerQuantity_destroy(container);
@@ -67,14 +62,14 @@ class InterpretationContainerQuantityTest : public ::testing::Test {
     InterpretationContext_destroy(ctx1);
     InterpretationContext_destroy(ctx2);
   }
-  QuantityHandle                          val1;
-  QuantityHandle                          val2;
-  InterpretationContextHandle             ctx1;
-  InterpretationContextHandle             ctx2;
+  QuantityHandle val1;
+  QuantityHandle val2;
+  InterpretationContextHandle ctx1;
+  InterpretationContextHandle ctx2;
   PairInterpretationContextQuantityHandle pair1;
   PairInterpretationContextQuantityHandle pair2;
-  MapInterpretationContextQuantityHandle  map;
-  InterpretationContainerQuantityHandle   container;
+  MapInterpretationContextQuantityHandle map;
+  InterpretationContainerQuantityHandle container;
 };
 
 TEST_F(InterpretationContainerQuantityTest, CreateDestroy) {
@@ -99,10 +94,10 @@ TEST_F(InterpretationContainerQuantityTest, InsertAssignAccessErase) {
   InterpretationContainerQuantity_insert_or_assign(nullptr, ctx1, val1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerQuantity_insert_or_assign(                   container, nullptr, val1);
+  InterpretationContainerQuantity_insert_or_assign(container, nullptr, val1);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerQuantity_insert_or_assign(                   container, ctx1, nullptr);
+  InterpretationContainerQuantity_insert_or_assign(container, ctx1, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   InterpretationContainerQuantity_insert(nullptr, ctx1, val1);
@@ -150,9 +145,9 @@ TEST_F(InterpretationContainerQuantityTest, SizeEmptyClearContains) {
 }
 
 TEST_F(InterpretationContainerQuantityTest, KeysValuesItems) {
-  auto keys   = InterpretationContainerQuantity_keys(container);
+  auto keys = InterpretationContainerQuantity_keys(container);
   auto values = InterpretationContainerQuantity_values(container);
-  auto items  = InterpretationContainerQuantity_items(container);
+  auto items = InterpretationContainerQuantity_items(container);
   EXPECT_NE(keys, nullptr);
   EXPECT_NE(values, nullptr);
   EXPECT_NE(items, nullptr);
@@ -197,7 +192,7 @@ TEST_F(InterpretationContainerQuantityTest, Equality) {
 
 TEST_F(InterpretationContainerQuantityTest, ToJsonFromJson) {
   auto json = InterpretationContainerQuantity_to_json_string(container);
-  auto c2   = InterpretationContainerQuantity_from_json_string(json);
+  auto c2 = InterpretationContainerQuantity_from_json_string(json);
   EXPECT_TRUE(InterpretationContainerQuantity_equal(container, c2));
   InterpretationContainerQuantity_destroy(c2);
   String_destroy(json);
@@ -256,10 +251,12 @@ TEST_F(InterpretationContainerQuantityTest, SelectByIndependentConnection) {
       container, conn);
   EXPECT_NE(list, nullptr);
   set_last_error(0, nullptr);
-  InterpretationContainerQuantity_select_by_independent_connection(                   nullptr, conn);
+  InterpretationContainerQuantity_select_by_independent_connection(nullptr,
+                                                                   conn);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerQuantity_select_by_independent_connection(                   container, nullptr);
+  InterpretationContainerQuantity_select_by_independent_connection(container,
+                                                                   nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   Connection_destroy(conn);
@@ -271,10 +268,11 @@ TEST_F(InterpretationContainerQuantityTest, SelectByDependentConnection) {
       container, conn);
   EXPECT_NE(list, nullptr);
   set_last_error(0, nullptr);
-  InterpretationContainerQuantity_select_by_dependent_connection(                   nullptr, conn);
+  InterpretationContainerQuantity_select_by_dependent_connection(nullptr, conn);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerQuantity_select_by_dependent_connection(                   container, nullptr);
+  InterpretationContainerQuantity_select_by_dependent_connection(container,
+                                                                 nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   Connection_destroy(conn);
@@ -286,18 +284,19 @@ TEST_F(InterpretationContainerQuantityTest, SelectContexts) {
   ConnectionHandle dep_raw[1] = {
       Connection_create_plunger_gate(String_wrap("gateB"))};
   auto indp_list = ListConnection_create(indp_raw, 1);
-  auto dep_list  = ListConnection_create(dep_raw, 1);
-  auto list      = InterpretationContainerQuantity_select_contexts(
+  auto dep_list = ListConnection_create(dep_raw, 1);
+  auto list = InterpretationContainerQuantity_select_contexts(
       container, indp_list, dep_list);
   EXPECT_NE(list, nullptr);
   set_last_error(0, nullptr);
-  InterpretationContainerQuantity_select_contexts(                   nullptr, indp_list, dep_list);
+  InterpretationContainerQuantity_select_contexts(nullptr, indp_list, dep_list);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerQuantity_select_contexts(                   container, nullptr, dep_list);
+  InterpretationContainerQuantity_select_contexts(container, nullptr, dep_list);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerQuantity_select_contexts(                   container, indp_list, nullptr);
+  InterpretationContainerQuantity_select_contexts(container, indp_list,
+                                                  nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   ListConnection_destroy(indp_list);

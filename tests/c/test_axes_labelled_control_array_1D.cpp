@@ -5,38 +5,35 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/ListLabelledControlArray1D_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/AxesLabelledControlArray1D_c_api.h"
 #include "falcon-core/math/arrays/ControlArray_c_api.h"
 #include "falcon-core/math/arrays/LabelledControlArray1D_c_api.h"
 
 class AxesLabelledControlArray1DTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     shape[0] = 3;
-    data[0]  = 1.0;
-    data[1]  = 2.0;
-    data[2]  = 3.0;
+    data[0] = 1.0;
+    data[1] = 2.0;
+    data[2] = 3.0;
     shape[0] = 3;
-    axes     = AxesLabelledControlArray1D_create_empty();
+    axes = AxesLabelledControlArray1D_create_empty();
 
     auto pre_item1 = ControlArray_from_data(data, shape, 1);
     auto pre_item2 = ControlArray_from_data(data, shape, 1);
 
     ca1d =
         track_labelled_control_array(LabelledControlArray1D_from_control_array(
-            pre_item1,
-            AcquisitionContext_create(
-                Connection_create_plunger_gate(String_wrap("A")),
-                InstrumentTypes_voltmeter(),
-                SymbolUnit_create_volt())));
+            pre_item1, AcquisitionContext_create(
+                           Connection_create_plunger_gate(String_wrap("A")),
+                           INSTRUMENT_VOLTMETER, SymbolUnit_create_volt())));
 
     ca2d =
         track_labelled_control_array(LabelledControlArray1D_from_control_array(
-            pre_item2,
-            AcquisitionContext_create(
-                Connection_create_plunger_gate(String_wrap("A")),
-                InstrumentTypes_voltmeter(),
-                SymbolUnit_create_volt())));
+            pre_item2, AcquisitionContext_create(
+                           Connection_create_plunger_gate(String_wrap("A")),
+                           INSTRUMENT_VOLTMETER, SymbolUnit_create_volt())));
 
     AxesLabelledControlArray1D_push_back(axes, ca1d);
     AxesLabelledControlArray1D_push_back(axes, ca2d);
@@ -56,7 +53,8 @@ class AxesLabelledControlArray1DTest : public ::testing::Test {
         owned_by_axes = true;
       if (axes2 && AxesLabelledControlArray1D_contains(axes2, h))
         owned_by_axes = true;
-      if (!owned_by_axes) remaining.push_back(h);
+      if (!owned_by_axes)
+        remaining.push_back(h);
     }
 
     if (axes) {
@@ -74,21 +72,21 @@ class AxesLabelledControlArray1DTest : public ::testing::Test {
     created_items.clear();
   }
 
-  LabelledControlArray1DHandle track_labelled_control_array(
-      LabelledControlArray1DHandle h) {
+  LabelledControlArray1DHandle
+  track_labelled_control_array(LabelledControlArray1DHandle h) {
     created_items.push_back(h);
     return h;
   }
 
-  AxesLabelledControlArray1DHandle axes  = nullptr;
+  AxesLabelledControlArray1DHandle axes = nullptr;
   AxesLabelledControlArray1DHandle axes2 = nullptr;
-  LabelledControlArray1DHandle     rawbuffer[2];
-  double                           data[3];
-  size_t                           shape[1];
-  LabelledControlArray1DHandle     ca2d;
-  LabelledControlArray1DHandle     ca1d;
-  LabelledControlArray1DHandle     ca2d_2;
-  FArrayDoubleHandle               fa2d;
+  LabelledControlArray1DHandle rawbuffer[2];
+  double data[3];
+  size_t shape[1];
+  LabelledControlArray1DHandle ca2d;
+  LabelledControlArray1DHandle ca1d;
+  LabelledControlArray1DHandle ca2d_2;
+  FArrayDoubleHandle fa2d;
 
   std::vector<LabelledControlArray1DHandle> created_items;
 };
@@ -102,7 +100,7 @@ TEST_F(AxesLabelledControlArray1DTest, CreateDestroy) {
   set_last_error(0, nullptr);
   AxesLabelledControlArray1D_destroy(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
-  LabelledControlArray1DHandle     arr[2] = {ca2d, ca1d};
+  LabelledControlArray1DHandle arr[2] = {ca2d, ca1d};
   ListLabelledControlArray1DHandle handle =
       ListLabelledControlArray1D_create(arr, 2);
   EXPECT_NO_THROW(AxesLabelledControlArray1D_create(handle));
@@ -111,12 +109,11 @@ TEST_F(AxesLabelledControlArray1DTest, CreateDestroy) {
 
 TEST_F(AxesLabelledControlArray1DTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesLabelledControlArray1D_size(axes), 2u);
-  LabelledControlArray1DHandle     arr[2] = {ca2d, ca1d};
+  LabelledControlArray1DHandle arr[2] = {ca2d, ca1d};
   ListLabelledControlArray1DHandle handle =
       ListLabelledControlArray1D_create(arr, 2);
   auto label = AcquisitionContext_create(
-      Connection_create_plunger_gate(String_wrap("A")),
-      InstrumentTypes_voltmeter(),
+      Connection_create_plunger_gate(String_wrap("A")), INSTRUMENT_VOLTMETER,
       SymbolUnit_create_volt());
   auto lca = LabelledControlArray1D_from_control_array(
       ControlArray_from_data(data, shape, 1), label);
@@ -149,7 +146,7 @@ TEST_F(AxesLabelledControlArray1DTest, SerializationRoundTrip) {
   AxesLabelledControlArray1D_to_json_string(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW({
-    auto json   = AxesLabelledControlArray1D_to_json_string(axes);
+    auto json = AxesLabelledControlArray1D_to_json_string(axes);
     auto loaded = AxesLabelledControlArray1D_from_json_string(json);
     AxesLabelledControlArray1D_destroy(loaded);
     String_destroy(json);

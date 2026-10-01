@@ -4,53 +4,46 @@
 #include "falcon-core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon-core/generic/PairInstrumentPortPortTransform_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class MapInstrumentPortPortTransformTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     p1 = PairInstrumentPortPortTransform_create(
         InstrumentPort_create_knob(
-            String_wrap("knob1"),
+            String_wrap("knob1"), String_wrap("inst"),
             Connection_create_barrier_gate(String_wrap("gate1")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt(),
-            String_wrap("")),
+            INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")),
         PortTransform_create(
             InstrumentPort_create_knob(
-                String_wrap("name1"),
+                String_wrap("name1"), String_wrap("inst"),
                 Connection_create_barrier_gate(String_wrap("gate1")),
-                InstrumentTypes_voltmeter(),
-                SymbolUnit_create_volt(),
+                INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(),
                 String_wrap("")),
             AnalyticFunction_create_identity()));
 
     p2 = PairInstrumentPortPortTransform_create(
         InstrumentPort_create_knob(
-            String_wrap("knob2"),
+            String_wrap("knob2"), String_wrap("inst"),
             Connection_create_barrier_gate(String_wrap("gate2")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt(),
-            String_wrap("")),
+            INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")),
         PortTransform_create(
             InstrumentPort_create_knob(
-                String_wrap("name2"),
+                String_wrap("name2"), String_wrap("inst"),
                 Connection_create_barrier_gate(String_wrap("gate2")),
-                InstrumentTypes_voltmeter(),
-                SymbolUnit_create_volt(),
+                INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(),
                 String_wrap("")),
             AnalyticFunction_create_identity()));
 
     PairInstrumentPortPortTransformHandle arr[2] = {p1, p2};
-    map  = MapInstrumentPortPortTransform_create(arr, 2);
+    map = MapInstrumentPortPortTransform_create(arr, 2);
     map2 = MapInstrumentPortPortTransform_create_empty();
     MapInstrumentPortPortTransform_insert_or_assign(
-        map2,
-        PairInstrumentPortPortTransform_first(p1),
+        map2, PairInstrumentPortPortTransform_first(p1),
         PairInstrumentPortPortTransform_second(p1));
     MapInstrumentPortPortTransform_insert(
-        map2,
-        PairInstrumentPortPortTransform_first(p2),
+        map2, PairInstrumentPortPortTransform_first(p2),
         PairInstrumentPortPortTransform_second(p2));
   }
   void TearDown() override {
@@ -60,8 +53,8 @@ class MapInstrumentPortPortTransformTest : public ::testing::Test {
   }
   PairInstrumentPortPortTransformHandle p1;
   PairInstrumentPortPortTransformHandle p2;
-  MapInstrumentPortPortTransformHandle  map;
-  MapInstrumentPortPortTransformHandle  map2;
+  MapInstrumentPortPortTransformHandle map;
+  MapInstrumentPortPortTransformHandle map2;
 };
 
 TEST_F(MapInstrumentPortPortTransformTest, CreateDestroy) {
@@ -84,8 +77,7 @@ TEST_F(MapInstrumentPortPortTransformTest, InsertAssignAccessErase) {
       map, PairInstrumentPortPortTransform_first(p1)));
   set_last_error(0, nullptr);
   MapInstrumentPortPortTransform_insert_or_assign(
-      nullptr,
-      PairInstrumentPortPortTransform_first(p1),
+      nullptr, PairInstrumentPortPortTransform_first(p1),
       PairInstrumentPortPortTransform_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
@@ -98,8 +90,7 @@ TEST_F(MapInstrumentPortPortTransformTest, InsertAssignAccessErase) {
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInstrumentPortPortTransform_insert(
-      nullptr,
-      PairInstrumentPortPortTransform_first(p1),
+      nullptr, PairInstrumentPortPortTransform_first(p1),
       PairInstrumentPortPortTransform_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
@@ -183,7 +174,7 @@ TEST_F(MapInstrumentPortPortTransformTest, Equality) {
 
 TEST_F(MapInstrumentPortPortTransformTest, ToJsonFromJson) {
   auto json = MapInstrumentPortPortTransform_to_json_string(map);
-  auto m2   = MapInstrumentPortPortTransform_from_json_string(json);
+  auto m2 = MapInstrumentPortPortTransform_from_json_string(json);
   EXPECT_TRUE(MapInstrumentPortPortTransform_equal(map, m2));
   MapInstrumentPortPortTransform_destroy(m2);
   String_destroy(json);

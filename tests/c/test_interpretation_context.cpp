@@ -4,16 +4,17 @@
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class InterpretationContextTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     conn = Connection_create_barrier_gate(String_wrap("A"));
     unit = SymbolUnit_create_volt();
-    mc1  = MeasurementContext_create(conn, String_wrap("oscilloscope"));
-    mc2  = MeasurementContext_create(conn, String_wrap("multimeter"));
+    mc1 = MeasurementContext_create(conn, INSTRUMENT_VOLTMETER);
+    mc2 = MeasurementContext_create(conn, INSTRUMENT_AMNMETER);
     axes = AxesMeasurementContext_create_empty();
     AxesMeasurementContext_push_back(axes, mc1);
     AxesMeasurementContext_push_back(axes, mc2);
@@ -30,13 +31,13 @@ class InterpretationContextTest : public ::testing::Test {
     AxesMeasurementContext_destroy(axes);
     ListMeasurementContext_destroy(list);
   }
-  ConnectionHandle             conn;
-  SymbolUnitHandle             unit;
-  MeasurementContextHandle     mc1;
-  MeasurementContextHandle     mc2;
+  ConnectionHandle conn;
+  SymbolUnitHandle unit;
+  MeasurementContextHandle mc1;
+  MeasurementContextHandle mc2;
   AxesMeasurementContextHandle axes;
   ListMeasurementContextHandle list;
-  InterpretationContextHandle  ctx;
+  InterpretationContextHandle ctx;
 };
 
 TEST_F(InterpretationContextTest, CreateDestroy) {
@@ -79,7 +80,7 @@ TEST_F(InterpretationContextTest, Accessors) {
 }
 
 TEST_F(InterpretationContextTest, DependentVariableOps) {
-  auto mc3 = MeasurementContext_create(conn, String_wrap("voltmeter"));
+  auto mc3 = MeasurementContext_create(conn, INSTRUMENT_VOLTMETER);
   InterpretationContext_add_dependent_variable(ctx, mc3);
   InterpretationContext_replace_dependent_variable(ctx, 0, mc3);
   MeasurementContext_destroy(mc3);
@@ -107,7 +108,7 @@ TEST_F(InterpretationContextTest, GetIndependentVariable) {
 
 TEST_F(InterpretationContextTest, WithUnit) {
   auto unit2 = SymbolUnit_create_millivolt();
-  auto ctx2  = InterpretationContext_with_unit(ctx, unit2);
+  auto ctx2 = InterpretationContext_with_unit(ctx, unit2);
   InterpretationContext_destroy(ctx2);
   SymbolUnit_destroy(unit2);
   set_last_error(0, nullptr);

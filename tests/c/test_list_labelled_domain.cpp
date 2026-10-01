@@ -1,45 +1,36 @@
 #include <falcon-core/generic/ListLabelledDomain_c_api.h>
 #include <gtest/gtest.h>
 
-#include <stdexcept>
 #include <vector>
 
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/domains/LabelledDomain_c_api.h"
 
 class ListLabelledDomainTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(LabelledDomainHandle sh) { LabelledDomain_destroy(sh); }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<LabelledDomainHandle> created_strings;
-  LabelledDomainHandle track_quantity(const LabelledDomainHandle& s) {
+  LabelledDomainHandle track_quantity(const LabelledDomainHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
     sh1 = track_quantity(LabelledDomain_create_primitive_knob(
-        String_wrap("knob1"),
-        0.0,
-        1.0,
-        Connection_create_plunger_gate(String_wrap("A")),
-        InstrumentTypes_voltmeter(),
-        true,
-        true,
-        SymbolUnit_create_volt(),
-        String_wrap("")));
+        String_wrap("knob1"), String_wrap("inst"), 0.0, 1.0,
+        SymbolUnit_create_volt(), String_wrap(""),
+        Connection_create_plunger_gate(String_wrap("A")), INSTRUMENT_VOLTMETER,
+        true, true));
     sh2 = track_quantity(LabelledDomain_create_primitive_knob(
-        String_wrap("knob1"),
-        0.0,
-        1.0,
-        Connection_create_plunger_gate(String_wrap("B")),
-        InstrumentTypes_voltmeter(),
-        true,
-        true,
-        SymbolUnit_create_volt(),
-        String_wrap("")));
+        String_wrap("knob1"), String_wrap("inst"), 0.0, 1.0,
+        SymbolUnit_create_volt(), String_wrap(""),
+        Connection_create_plunger_gate(String_wrap("B")), INSTRUMENT_VOLTMETER,
+        true, true));
   }
   LabelledDomainHandle sh1;
   LabelledDomainHandle sh2;
@@ -62,7 +53,7 @@ TEST_F(ListLabelledDomainTest, FillValue) {
 }
 
 TEST_F(ListLabelledDomainTest, CreateFromArray) {
-  LabelledDomainHandle     arr[2] = {sh1, sh2};
+  LabelledDomainHandle arr[2] = {sh1, sh2};
   ListLabelledDomainHandle handle = ListLabelledDomain_create(arr, 2);
   EXPECT_EQ(ListLabelledDomain_size(handle), 2);
   set_last_error(0, nullptr);
@@ -123,7 +114,7 @@ TEST_F(ListLabelledDomainTest, PushBackContainsIndex) {
 
 TEST_F(ListLabelledDomainTest, ItemsAt) {
   LabelledDomainHandle arr[2] = {sh1, sh2};
-  auto                 handle = ListLabelledDomain_create(arr, 2);
+  auto handle = ListLabelledDomain_create(arr, 2);
   LabelledDomainHandle out[2];
   EXPECT_EQ(ListLabelledDomain_items(handle, out, 2), 2);
   ListLabelledDomain_destroy(handle);
@@ -140,8 +131,8 @@ TEST_F(ListLabelledDomainTest, ItemsAt) {
 
 TEST_F(ListLabelledDomainTest, EqualNotEqualIntersection) {
   LabelledDomainHandle arr[2] = {sh1, sh2};
-  auto                 h1     = ListLabelledDomain_create(arr, 2);
-  auto                 h2     = ListLabelledDomain_create(arr, 2);
+  auto h1 = ListLabelledDomain_create(arr, 2);
+  auto h2 = ListLabelledDomain_create(arr, 2);
   EXPECT_TRUE(ListLabelledDomain_equal(h1, h2));
   EXPECT_FALSE(ListLabelledDomain_not_equal(h1, h2));
   auto h3 = ListLabelledDomain_intersection(h1, h2);
@@ -170,10 +161,10 @@ TEST_F(ListLabelledDomainTest, EqualNotEqualIntersection) {
 }
 
 TEST_F(ListLabelledDomainTest, ToJsonFromJson) {
-  LabelledDomainHandle arr[1]  = {sh1};
-  auto                 handle  = ListLabelledDomain_create(arr, 1);
-  auto                 json    = ListLabelledDomain_to_json_string(handle);
-  auto                 handle2 = ListLabelledDomain_from_json_string(json);
+  LabelledDomainHandle arr[1] = {sh1};
+  auto handle = ListLabelledDomain_create(arr, 1);
+  auto json = ListLabelledDomain_to_json_string(handle);
+  auto handle2 = ListLabelledDomain_from_json_string(json);
   EXPECT_TRUE(ListLabelledDomain_equal(handle, handle2));
   ListLabelledDomain_destroy(handle);
   ListLabelledDomain_destroy(handle2);
@@ -224,9 +215,9 @@ TEST_F(ListLabelledDomainTest, CreateNullArray) {
 
 TEST_F(ListLabelledDomainTest, At) {
   LabelledDomainHandle arr[2] = {sh1, sh2};
-  auto                 handle = ListLabelledDomain_create(arr, 2);
-  auto                 at0    = ListLabelledDomain_at(handle, 0);
-  auto                 at1    = ListLabelledDomain_at(handle, 1);
+  auto handle = ListLabelledDomain_create(arr, 2);
+  auto at0 = ListLabelledDomain_at(handle, 0);
+  auto at1 = ListLabelledDomain_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListLabelledDomain_destroy(handle);

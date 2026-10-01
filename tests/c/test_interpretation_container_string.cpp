@@ -1,5 +1,5 @@
-#include <gtest/gtest.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include <gtest/gtest.h>
 
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
@@ -9,53 +9,48 @@
 #include "falcon-core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon-core/generic/PairInterpretationContextString_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 
 class InterpretationContainerStringTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     ListMeasurementContextHandle axes_indp1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateA")),
-            InstrumentTypes_voltmeter()));
+        axes_indp1, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateA")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateB")),
-            InstrumentTypes_voltmeter()));
+        axes_dep1, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateB")),
+                       INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_indp2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateC")),
-            InstrumentTypes_voltmeter()));
+        axes_indp2, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateC")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateD")),
-            InstrumentTypes_voltmeter()));
+        axes_dep2, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateD")),
+                       INSTRUMENT_VOLTMETER));
     ctx1 =
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp1),
-                                     axes_dep1,
-                                     SymbolUnit_create_volt());
+                                     axes_dep1, SymbolUnit_create_volt());
     ctx2 =
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp2),
-                                     axes_dep2,
-                                     SymbolUnit_create_volt());
+                                     axes_dep2, SymbolUnit_create_volt());
     pair1 = PairInterpretationContextString_create(ctx1, String_wrap("hello"));
     pair2 = PairInterpretationContextString_create(ctx2, String_wrap("world"));
     PairInterpretationContextStringHandle arr[2] = {pair1, pair2};
-    map       = MapInterpretationContextString_create(arr, 2);
+    map = MapInterpretationContextString_create(arr, 2);
     container = InterpretationContainerString_create(map);
-    val1      = String_wrap("amazing");
-    val2      = String_wrap("woah");
+    val1 = String_wrap("amazing");
+    val2 = String_wrap("woah");
   }
   void TearDown() override {
     InterpretationContainerString_destroy(container);
@@ -73,14 +68,14 @@ class InterpretationContainerStringTest : public ::testing::Test {
     std::string str_b = std::string(b->raw, b->length);
     return std::string(str_a) == std::string(str_b);
   }
-  StringHandle                          val1;
-  StringHandle                          val2;
-  InterpretationContextHandle           ctx1;
-  InterpretationContextHandle           ctx2;
+  StringHandle val1;
+  StringHandle val2;
+  InterpretationContextHandle ctx1;
+  InterpretationContextHandle ctx2;
   PairInterpretationContextStringHandle pair1;
   PairInterpretationContextStringHandle pair2;
-  MapInterpretationContextStringHandle  map;
-  InterpretationContainerStringHandle   container;
+  MapInterpretationContextStringHandle map;
+  InterpretationContainerStringHandle container;
 };
 
 TEST_F(InterpretationContainerStringTest, CreateDestroy) {
@@ -156,9 +151,9 @@ TEST_F(InterpretationContainerStringTest, SizeEmptyClearContains) {
 }
 
 TEST_F(InterpretationContainerStringTest, KeysValuesItems) {
-  auto keys   = InterpretationContainerString_keys(container);
+  auto keys = InterpretationContainerString_keys(container);
   auto values = InterpretationContainerString_values(container);
-  auto items  = InterpretationContainerString_items(container);
+  auto items = InterpretationContainerString_items(container);
   EXPECT_NE(keys, nullptr);
   EXPECT_NE(values, nullptr);
   EXPECT_NE(items, nullptr);
@@ -203,7 +198,7 @@ TEST_F(InterpretationContainerStringTest, Equality) {
 
 TEST_F(InterpretationContainerStringTest, ToJsonFromJson) {
   auto json = InterpretationContainerString_to_json_string(container);
-  auto c2   = InterpretationContainerString_from_json_string(json);
+  auto c2 = InterpretationContainerString_from_json_string(json);
   EXPECT_TRUE(InterpretationContainerString_equal(container, c2));
   InterpretationContainerString_destroy(c2);
   String_destroy(json);
@@ -262,10 +257,11 @@ TEST_F(InterpretationContainerStringTest, SelectByIndependentConnection) {
       container, conn);
   EXPECT_NE(list, nullptr);
   set_last_error(0, nullptr);
-  InterpretationContainerString_select_by_independent_connection(                   nullptr, conn);
+  InterpretationContainerString_select_by_independent_connection(nullptr, conn);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerString_select_by_independent_connection(                   container, nullptr);
+  InterpretationContainerString_select_by_independent_connection(container,
+                                                                 nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   Connection_destroy(conn);
@@ -277,10 +273,11 @@ TEST_F(InterpretationContainerStringTest, SelectByDependentConnection) {
       container, conn);
   EXPECT_NE(list, nullptr);
   set_last_error(0, nullptr);
-  InterpretationContainerString_select_by_dependent_connection(                   nullptr, conn);
+  InterpretationContainerString_select_by_dependent_connection(nullptr, conn);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerString_select_by_dependent_connection(                   container, nullptr);
+  InterpretationContainerString_select_by_dependent_connection(container,
+                                                               nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   Connection_destroy(conn);
@@ -292,18 +289,18 @@ TEST_F(InterpretationContainerStringTest, SelectContexts) {
   ConnectionHandle dep_raw[1] = {
       Connection_create_plunger_gate(String_wrap("gateB"))};
   auto indp_list = ListConnection_create(indp_raw, 1);
-  auto dep_list  = ListConnection_create(dep_raw, 1);
-  auto list      = InterpretationContainerString_select_contexts(
+  auto dep_list = ListConnection_create(dep_raw, 1);
+  auto list = InterpretationContainerString_select_contexts(
       container, indp_list, dep_list);
   EXPECT_NE(list, nullptr);
   set_last_error(0, nullptr);
-  InterpretationContainerString_select_contexts(                   nullptr, indp_list, dep_list);
+  InterpretationContainerString_select_contexts(nullptr, indp_list, dep_list);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerString_select_contexts(                   container, nullptr, dep_list);
+  InterpretationContainerString_select_contexts(container, nullptr, dep_list);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InterpretationContainerString_select_contexts(                   container, indp_list, nullptr);
+  InterpretationContainerString_select_contexts(container, indp_list, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   ListInterpretationContext_destroy(list);
   ListConnection_destroy(indp_list);

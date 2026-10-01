@@ -9,33 +9,30 @@
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class ListPortTransformTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(PortTransformHandle sh) { PortTransform_destroy(sh); }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<PortTransformHandle> created_strings;
-  PortTransformHandle track_quantity(const PortTransformHandle& s) {
+  PortTransformHandle track_quantity(const PortTransformHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
     sh1 = track_quantity(PortTransform_create(
         InstrumentPort_create_knob(
-            String_wrap("name1"),
+            String_wrap("name1"), String_wrap("inst"),
             Connection_create_barrier_gate(String_wrap("gate1")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt(),
-            String_wrap("")),
+            INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")),
         AnalyticFunction_create_identity()));
     sh2 = track_quantity(PortTransform_create(
         InstrumentPort_create_knob(
-            String_wrap("name2"),
+            String_wrap("name2"), String_wrap("inst"),
             Connection_create_barrier_gate(String_wrap("gate2")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt(),
-            String_wrap("")),
+            INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")),
         AnalyticFunction_create_identity()));
   }
   PortTransformHandle sh1;
@@ -59,7 +56,7 @@ TEST_F(ListPortTransformTest, FillValue) {
 }
 
 TEST_F(ListPortTransformTest, CreateFromArray) {
-  PortTransformHandle     arr[2] = {sh1, sh2};
+  PortTransformHandle arr[2] = {sh1, sh2};
   ListPortTransformHandle handle = ListPortTransform_create(arr, 2);
   EXPECT_EQ(ListPortTransform_size(handle), 2);
   set_last_error(0, nullptr);
@@ -120,7 +117,7 @@ TEST_F(ListPortTransformTest, PushBackContainsIndex) {
 
 TEST_F(ListPortTransformTest, ItemsAt) {
   PortTransformHandle arr[2] = {sh1, sh2};
-  auto                handle = ListPortTransform_create(arr, 2);
+  auto handle = ListPortTransform_create(arr, 2);
   PortTransformHandle out[2];
   EXPECT_EQ(ListPortTransform_items(handle, out, 2), 2);
   ListPortTransform_destroy(handle);
@@ -137,8 +134,8 @@ TEST_F(ListPortTransformTest, ItemsAt) {
 
 TEST_F(ListPortTransformTest, EqualNotEqualIntersection) {
   PortTransformHandle arr[2] = {sh1, sh2};
-  auto                h1     = ListPortTransform_create(arr, 2);
-  auto                h2     = ListPortTransform_create(arr, 2);
+  auto h1 = ListPortTransform_create(arr, 2);
+  auto h2 = ListPortTransform_create(arr, 2);
   EXPECT_TRUE(ListPortTransform_equal(h1, h2));
   EXPECT_FALSE(ListPortTransform_not_equal(h1, h2));
   auto h3 = ListPortTransform_intersection(h1, h2);
@@ -167,10 +164,10 @@ TEST_F(ListPortTransformTest, EqualNotEqualIntersection) {
 }
 
 TEST_F(ListPortTransformTest, ToJsonFromJson) {
-  PortTransformHandle arr[1]  = {sh1};
-  auto                handle  = ListPortTransform_create(arr, 1);
-  auto                json    = ListPortTransform_to_json_string(handle);
-  auto                handle2 = ListPortTransform_from_json_string(json);
+  PortTransformHandle arr[1] = {sh1};
+  auto handle = ListPortTransform_create(arr, 1);
+  auto json = ListPortTransform_to_json_string(handle);
+  auto handle2 = ListPortTransform_from_json_string(json);
   EXPECT_TRUE(ListPortTransform_equal(handle, handle2));
   ListPortTransform_destroy(handle);
   ListPortTransform_destroy(handle2);
@@ -221,9 +218,9 @@ TEST_F(ListPortTransformTest, CreateNullArray) {
 
 TEST_F(ListPortTransformTest, At) {
   PortTransformHandle arr[2] = {sh1, sh2};
-  auto                handle = ListPortTransform_create(arr, 2);
-  auto                at0    = ListPortTransform_at(handle, 0);
-  auto                at1    = ListPortTransform_at(handle, 1);
+  auto handle = ListPortTransform_create(arr, 2);
+  auto at0 = ListPortTransform_at(handle, 0);
+  auto at1 = ListPortTransform_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListPortTransform_destroy(handle);

@@ -1,44 +1,42 @@
-#include <falcon-core/generic/ListLabelledControlArray_c_api.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include <falcon-core/generic/ListLabelledControlArray_c_api.h>
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
 class ListLabelledControlArrayTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(LabelledControlArrayHandle sh) {
     LabelledControlArray_destroy(sh);
   }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<LabelledControlArrayHandle> created_strings;
-  LabelledControlArrayHandle              track_quantity(
-                   const LabelledControlArrayHandle& s) {
+  LabelledControlArrayHandle
+  track_quantity(const LabelledControlArrayHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
-    double             data1[3] = {1.0, 2.0, 3.0};
-    double             data2[3] = {4.0, 5.0, 6.0};
+    double data1[3] = {1.0, 2.0, 3.0};
+    double data2[3] = {4.0, 5.0, 6.0};
     FArrayDoubleHandle farray1 =
         FArrayDouble_from_data(data1, (size_t[]){3}, 1);
     FArrayDoubleHandle farray2 =
         FArrayDouble_from_data(data2, (size_t[]){3}, 1);
     sh1 = track_quantity(LabelledControlArray_from_farray(
-        farray1,
-        AcquisitionContext_create(
-            Connection_create_plunger_gate(String_wrap("A")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt())));
+        farray1, AcquisitionContext_create(
+                     Connection_create_plunger_gate(String_wrap("A")),
+                     INSTRUMENT_VOLTMETER, SymbolUnit_create_volt())));
     sh2 = track_quantity(LabelledControlArray_from_farray(
-        farray2,
-        AcquisitionContext_create(
-            Connection_create_plunger_gate(String_wrap("A")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt())));
+        farray2, AcquisitionContext_create(
+                     Connection_create_plunger_gate(String_wrap("A")),
+                     INSTRUMENT_VOLTMETER, SymbolUnit_create_volt())));
   }
   LabelledControlArrayHandle sh1;
   LabelledControlArrayHandle sh2;
@@ -61,7 +59,7 @@ TEST_F(ListLabelledControlArrayTest, FillValue) {
 }
 
 TEST_F(ListLabelledControlArrayTest, CreateFromArray) {
-  LabelledControlArrayHandle     arr[2] = {sh1, sh2};
+  LabelledControlArrayHandle arr[2] = {sh1, sh2};
   ListLabelledControlArrayHandle handle =
       ListLabelledControlArray_create(arr, 2);
   EXPECT_EQ(ListLabelledControlArray_size(handle), 2);
@@ -123,7 +121,7 @@ TEST_F(ListLabelledControlArrayTest, PushBackContainsIndex) {
 
 TEST_F(ListLabelledControlArrayTest, ItemsAt) {
   LabelledControlArrayHandle arr[2] = {sh1, sh2};
-  auto                       handle = ListLabelledControlArray_create(arr, 2);
+  auto handle = ListLabelledControlArray_create(arr, 2);
   LabelledControlArrayHandle out[2];
   EXPECT_EQ(ListLabelledControlArray_items(handle, out, 2), 2);
   ListLabelledControlArray_destroy(handle);
@@ -140,8 +138,8 @@ TEST_F(ListLabelledControlArrayTest, ItemsAt) {
 
 TEST_F(ListLabelledControlArrayTest, EqualNotEqualIntersection) {
   LabelledControlArrayHandle arr[2] = {sh1, sh2};
-  auto                       h1     = ListLabelledControlArray_create(arr, 2);
-  auto                       h2     = ListLabelledControlArray_create(arr, 2);
+  auto h1 = ListLabelledControlArray_create(arr, 2);
+  auto h2 = ListLabelledControlArray_create(arr, 2);
   EXPECT_TRUE(ListLabelledControlArray_equal(h1, h2));
   EXPECT_FALSE(ListLabelledControlArray_not_equal(h1, h2));
   auto h3 = ListLabelledControlArray_intersection(h1, h2);
@@ -171,8 +169,8 @@ TEST_F(ListLabelledControlArrayTest, EqualNotEqualIntersection) {
 
 TEST_F(ListLabelledControlArrayTest, ToJsonFromJson) {
   LabelledControlArrayHandle arr[1] = {sh1};
-  auto                       handle = ListLabelledControlArray_create(arr, 1);
-  auto json    = ListLabelledControlArray_to_json_string(handle);
+  auto handle = ListLabelledControlArray_create(arr, 1);
+  auto json = ListLabelledControlArray_to_json_string(handle);
   auto handle2 = ListLabelledControlArray_from_json_string(json);
   EXPECT_TRUE(ListLabelledControlArray_equal(handle, handle2));
   ListLabelledControlArray_destroy(handle);
@@ -224,9 +222,9 @@ TEST_F(ListLabelledControlArrayTest, CreateNullArray) {
 
 TEST_F(ListLabelledControlArrayTest, At) {
   LabelledControlArrayHandle arr[2] = {sh1, sh2};
-  auto                       handle = ListLabelledControlArray_create(arr, 2);
-  auto                       at0    = ListLabelledControlArray_at(handle, 0);
-  auto                       at1    = ListLabelledControlArray_at(handle, 1);
+  auto handle = ListLabelledControlArray_create(arr, 2);
+  auto at0 = ListLabelledControlArray_at(handle, 0);
+  auto at1 = ListLabelledControlArray_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListLabelledControlArray_destroy(handle);

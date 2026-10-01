@@ -1,29 +1,27 @@
-#include <gtest/gtest.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include <gtest/gtest.h>
 
 #include "falcon-core/generic/PairInterpretationContextString_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 
 class PairInterpretationContextStringTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     ListMeasurementContextHandle axes_indp1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateA")),
-            InstrumentTypes_voltmeter()));
+        axes_indp1, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateA")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateB")),
-            InstrumentTypes_voltmeter()));
+        axes_dep1, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateB")),
+                       INSTRUMENT_VOLTMETER));
     t1 = InterpretationContext_create(AxesMeasurementContext_create(axes_indp1),
-                                      axes_dep1,
-                                      SymbolUnit_create_volt());
+                                      axes_dep1, SymbolUnit_create_volt());
     t2 = String_wrap("Test String");
     pair1 = PairInterpretationContextString_create(t1, t2);
     pair2 = PairInterpretationContextString_create(t1, t2);
@@ -35,8 +33,8 @@ class PairInterpretationContextStringTest : public ::testing::Test {
   }
   PairInterpretationContextStringHandle pair1;
   PairInterpretationContextStringHandle pair2;
-  InterpretationContextHandle           t1;
-  StringHandle                          t2;
+  InterpretationContextHandle t1;
+  StringHandle t2;
   bool String_equal(StringHandle a, StringHandle b) {
     if (a == nullptr || b == nullptr) {
       throw std::invalid_argument("Null StringHandle provided");
@@ -91,7 +89,7 @@ TEST_F(PairInterpretationContextStringTest, Equality) {
 
 TEST_F(PairInterpretationContextStringTest, ToJsonFromJson) {
   auto json = PairInterpretationContextString_to_json_string(pair1);
-  auto p2   = PairInterpretationContextString_from_json_string(json);
+  auto p2 = PairInterpretationContextString_from_json_string(json);
   EXPECT_TRUE(PairInterpretationContextString_equal(pair1, p2));
   PairInterpretationContextString_destroy(p2);
   set_last_error(0, nullptr);

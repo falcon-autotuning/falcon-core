@@ -4,27 +4,28 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/FArrayDouble_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/arrays/LabelledMeasuredArray_c_api.h"
 #include "falcon-core/math/arrays/MeasuredArray_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class LabelledMeasuredArrayTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     shape[0] = 6;
-    data[0]  = 1.0;
-    data[1]  = 2.0;
-    data[2]  = 3.0;
-    data[3]  = 4.0;
-    data[4]  = 5.0;
-    data[5]  = 6.0;
-    conn     = Connection_create_barrier_gate(String_wrap("GATE1"));
-    fa       = FArrayDouble_from_data(data, shape, 1);
-    ma       = MeasuredArray_from_data(data, shape, 1);
-    label    = AcquisitionContext_create(
-        conn, InstrumentTypes_voltmeter(), SymbolUnit_create_volt());
-    lma  = LabelledMeasuredArray_from_farray(fa, label);
+    data[0] = 1.0;
+    data[1] = 2.0;
+    data[2] = 3.0;
+    data[3] = 4.0;
+    data[4] = 5.0;
+    data[5] = 6.0;
+    conn = Connection_create_barrier_gate(String_wrap("GATE1"));
+    fa = FArrayDouble_from_data(data, shape, 1);
+    ma = MeasuredArray_from_data(data, shape, 1);
+    label = AcquisitionContext_create(conn, INSTRUMENT_VOLTMETER,
+                                      SymbolUnit_create_volt());
+    lma = LabelledMeasuredArray_from_farray(fa, label);
     lma2 = LabelledMeasuredArray_from_measured_array(ma, label);
   }
   void TearDown() override {
@@ -35,12 +36,12 @@ class LabelledMeasuredArrayTest : public ::testing::Test {
     MeasuredArray_destroy(ma);
     AcquisitionContext_destroy(label);
   }
-  double                      data[6];
-  size_t                      shape[1];
-  ConnectionHandle            conn;
-  FArrayDoubleHandle          fa;
-  MeasuredArrayHandle         ma;
-  AcquisitionContextHandle    label;
+  double data[6];
+  size_t shape[1];
+  ConnectionHandle conn;
+  FArrayDoubleHandle fa;
+  MeasuredArrayHandle ma;
+  AcquisitionContextHandle label;
   LabelledMeasuredArrayHandle lma;
   LabelledMeasuredArrayHandle lma2;
 };
@@ -62,10 +63,10 @@ TEST_F(LabelledMeasuredArrayTest, CreateDestroy) {
 }
 
 TEST_F(LabelledMeasuredArrayTest, Accessors) {
-  auto lbl   = LabelledMeasuredArray_label(lma);
-  auto conn  = LabelledMeasuredArray_connection(lma);
+  auto lbl = LabelledMeasuredArray_label(lma);
+  auto conn = LabelledMeasuredArray_connection(lma);
   auto instr = LabelledMeasuredArray_instrument_type(lma);
-  auto unit  = LabelledMeasuredArray_units(lma);
+  auto unit = LabelledMeasuredArray_units(lma);
   EXPECT_EQ(LabelledMeasuredArray_size(lma), 6);
   EXPECT_EQ(LabelledMeasuredArray_dimension(lma), 1);
   size_t out_shape[1];
@@ -74,7 +75,6 @@ TEST_F(LabelledMeasuredArrayTest, Accessors) {
   EXPECT_EQ(LabelledMeasuredArray_data(lma, out_data, 6), 6);
   AcquisitionContext_destroy(lbl);
   Connection_destroy(conn);
-  String_destroy(instr);
   SymbolUnit_destroy(unit);
   set_last_error(0, nullptr);
   LabelledMeasuredArray_label(nullptr);
@@ -107,9 +107,9 @@ TEST_F(LabelledMeasuredArrayTest, ArithmeticOperators) {
   LabelledMeasuredArray_plus_equals_double(lma, 1.0);
   LabelledMeasuredArray_plus_equals_int(lma, 1);
   auto lma_plus_lma = LabelledMeasuredArray_plus_measured_array(lma, lma2);
-  auto lma_plus_fa  = LabelledMeasuredArray_plus_farray(lma, fa);
-  auto lma_plus_d   = LabelledMeasuredArray_plus_double(lma, 1.0);
-  auto lma_plus_i   = LabelledMeasuredArray_plus_int(lma, 1);
+  auto lma_plus_fa = LabelledMeasuredArray_plus_farray(lma, fa);
+  auto lma_plus_d = LabelledMeasuredArray_plus_double(lma, 1.0);
+  auto lma_plus_i = LabelledMeasuredArray_plus_int(lma, 1);
   LabelledMeasuredArray_destroy(lma_plus_lma);
   LabelledMeasuredArray_destroy(lma_plus_fa);
   LabelledMeasuredArray_destroy(lma_plus_d);
@@ -121,8 +121,8 @@ TEST_F(LabelledMeasuredArrayTest, ArithmeticOperators) {
   LabelledMeasuredArray_minus_equals_int(lma, 1);
   auto lma_minus_ma = LabelledMeasuredArray_minus_measured_array(lma, ma);
   auto lma_minus_fa = LabelledMeasuredArray_minus_farray(lma, fa);
-  auto lma_minus_d  = LabelledMeasuredArray_minus_double(lma, 1.0);
-  auto lma_minus_i  = LabelledMeasuredArray_minus_int(lma, 1);
+  auto lma_minus_d = LabelledMeasuredArray_minus_double(lma, 1.0);
+  auto lma_minus_i = LabelledMeasuredArray_minus_int(lma, 1);
   LabelledMeasuredArray_destroy(lma_minus_ma);
   LabelledMeasuredArray_destroy(lma_minus_fa);
   LabelledMeasuredArray_destroy(lma_minus_d);
@@ -136,9 +136,9 @@ TEST_F(LabelledMeasuredArrayTest, ArithmeticOperators) {
   MeasuredArray_times_equals_double(lma, 2.0);
   LabelledMeasuredArray_times_equals_int(lma, 2);
   auto lma_times_lma = LabelledMeasuredArray_times_measured_array(lma, lma2);
-  auto lma_times_fa  = LabelledMeasuredArray_times_farray(lma, fa);
-  auto lma_times_d   = LabelledMeasuredArray_times_double(lma, 2.0);
-  auto lma_times_i   = LabelledMeasuredArray_times_int(lma, 2);
+  auto lma_times_fa = LabelledMeasuredArray_times_farray(lma, fa);
+  auto lma_times_d = LabelledMeasuredArray_times_double(lma, 2.0);
+  auto lma_times_i = LabelledMeasuredArray_times_int(lma, 2);
   LabelledMeasuredArray_destroy(lma_times_lma);
   LabelledMeasuredArray_destroy(lma_times_fa);
   LabelledMeasuredArray_destroy(lma_times_d);
@@ -149,9 +149,9 @@ TEST_F(LabelledMeasuredArrayTest, ArithmeticOperators) {
   LabelledMeasuredArray_divides_equals_double(lma, 2.0);
   LabelledMeasuredArray_divides_equals_int(lma, 2);
   auto lma_div_lma = LabelledMeasuredArray_divides_measured_array(lma, lma2);
-  auto lma_div_fa  = LabelledMeasuredArray_divides_farray(lma, fa);
-  auto lma_div_d   = LabelledMeasuredArray_divides_double(lma, 2.0);
-  auto lma_div_i   = LabelledMeasuredArray_divides_int(lma, 2);
+  auto lma_div_fa = LabelledMeasuredArray_divides_farray(lma, fa);
+  auto lma_div_d = LabelledMeasuredArray_divides_double(lma, 2.0);
+  auto lma_div_i = LabelledMeasuredArray_divides_int(lma, 2);
   LabelledMeasuredArray_destroy(lma_div_lma);
   LabelledMeasuredArray_destroy(lma_div_fa);
   LabelledMeasuredArray_destroy(lma_div_d);
@@ -163,12 +163,12 @@ TEST_F(LabelledMeasuredArrayTest, ArithmeticOperators) {
   auto lma_abs = LabelledMeasuredArray_abs(lma);
   LabelledMeasuredArray_destroy(lma_abs);
 
-  auto lma_min_fa  = LabelledMeasuredArray_min_farray(lma, fa);
+  auto lma_min_fa = LabelledMeasuredArray_min_farray(lma, fa);
   auto lma_min_lma = LabelledMeasuredArray_min_measured_array(lma, lma2);
   LabelledMeasuredArray_destroy(lma_min_fa);
   LabelledMeasuredArray_destroy(lma_min_lma);
 
-  auto lma_max_fa  = LabelledMeasuredArray_max_farray(lma, fa);
+  auto lma_max_fa = LabelledMeasuredArray_max_farray(lma, fa);
   auto lma_max_lma = LabelledMeasuredArray_max_measured_array(lma, lma2);
   LabelledMeasuredArray_destroy(lma_max_fa);
   LabelledMeasuredArray_destroy(lma_max_lma);
@@ -385,7 +385,7 @@ TEST_F(LabelledMeasuredArrayTest, OffsetSumReshapeWhereFlipGradient) {
   LabelledMeasuredArray_remove_offset(lma, 1.0);
   EXPECT_DOUBLE_EQ(LabelledMeasuredArray_sum(lma), 15.0);
   size_t new_shape[1] = {6};
-  auto   reshaped     = LabelledMeasuredArray_reshape(lma, new_shape, 1);
+  auto reshaped = LabelledMeasuredArray_reshape(lma, new_shape, 1);
   LabelledMeasuredArray_destroy(reshaped);
   auto where = LabelledMeasuredArray_where(lma, 2.0);
   ListListSizeT_destroy(where);
@@ -461,12 +461,12 @@ TEST_F(LabelledMeasuredArrayTest, ToJsonFromJson) {
 }
 
 TEST_F(LabelledMeasuredArrayTest, ShapeBufferTooSmall) {
-  size_t out_shape[1] = {0};  // buffer smaller than needed (should be 1)
+  size_t out_shape[1] = {0}; // buffer smaller than needed (should be 1)
   EXPECT_EQ(LabelledMeasuredArray_shape(lma, out_shape, 0), 0);
 }
 
 TEST_F(LabelledMeasuredArrayTest, DataBufferTooSmall) {
-  double out_data[2] = {0, 0};  // buffer smaller than needed (should be 6)
+  double out_data[2] = {0, 0}; // buffer smaller than needed (should be 6)
   EXPECT_EQ(LabelledMeasuredArray_data(lma, out_data, 2), 2);
 }
 
@@ -480,7 +480,8 @@ TEST_F(LabelledMeasuredArrayTest, TimesEqualsDouble) {
   LabelledMeasuredArray_times_equals_double(lma, 2.0);
   double out_data[6];
   EXPECT_EQ(LabelledMeasuredArray_data(lma, out_data, 6), 6);
-  for (int i = 0; i < 6; ++i) EXPECT_EQ(out_data[i], data[i] * 2.0);
+  for (int i = 0; i < 6; ++i)
+    EXPECT_EQ(out_data[i], data[i] * 2.0);
   set_last_error(0, nullptr);
   LabelledMeasuredArray_times_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);

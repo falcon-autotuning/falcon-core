@@ -1,37 +1,36 @@
-#include <falcon-core/generic/ListAcquisitionContext_c_api.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include <falcon-core/generic/ListAcquisitionContext_c_api.h>
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class ListAcquisitionContextTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(AcquisitionContextHandle sh) {
     AcquisitionContext_destroy(sh);
   }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<AcquisitionContextHandle> created_strings;
-  AcquisitionContextHandle track_quantity(const AcquisitionContextHandle& s) {
+  AcquisitionContextHandle track_quantity(const AcquisitionContextHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
     sh1 = track_quantity(AcquisitionContext_create(
         Connection_create_plunger_gate(String_wrap("gate1")),
-        InstrumentTypes_voltmeter(),
-        SymbolUnit_create_volt()));
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt()));
     sh2 = track_quantity(AcquisitionContext_create(
         Connection_create_plunger_gate(String_wrap("gate2")),
-        InstrumentTypes_voltmeter(),
-        SymbolUnit_create_volt()));
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt()));
   }
   AcquisitionContextHandle sh1;
   AcquisitionContextHandle sh2;
@@ -54,7 +53,7 @@ TEST_F(ListAcquisitionContextTest, FillValue) {
 }
 
 TEST_F(ListAcquisitionContextTest, CreateFromArray) {
-  AcquisitionContextHandle     arr[2] = {sh1, sh2};
+  AcquisitionContextHandle arr[2] = {sh1, sh2};
   ListAcquisitionContextHandle handle = ListAcquisitionContext_create(arr, 2);
   EXPECT_EQ(ListAcquisitionContext_size(handle), 2);
   set_last_error(0, nullptr);
@@ -115,7 +114,7 @@ TEST_F(ListAcquisitionContextTest, PushBackContainsIndex) {
 
 TEST_F(ListAcquisitionContextTest, ItemsAt) {
   AcquisitionContextHandle arr[2] = {sh1, sh2};
-  auto                     handle = ListAcquisitionContext_create(arr, 2);
+  auto handle = ListAcquisitionContext_create(arr, 2);
   AcquisitionContextHandle out[2];
   EXPECT_EQ(ListAcquisitionContext_items(handle, out, 2), 2);
   ListAcquisitionContext_destroy(handle);
@@ -132,8 +131,8 @@ TEST_F(ListAcquisitionContextTest, ItemsAt) {
 
 TEST_F(ListAcquisitionContextTest, EqualNotEqualIntersection) {
   AcquisitionContextHandle arr[2] = {sh1, sh2};
-  auto                     h1     = ListAcquisitionContext_create(arr, 2);
-  auto                     h2     = ListAcquisitionContext_create(arr, 2);
+  auto h1 = ListAcquisitionContext_create(arr, 2);
+  auto h2 = ListAcquisitionContext_create(arr, 2);
   EXPECT_TRUE(ListAcquisitionContext_equal(h1, h2));
   EXPECT_FALSE(ListAcquisitionContext_not_equal(h1, h2));
   auto h3 = ListAcquisitionContext_intersection(h1, h2);
@@ -163,9 +162,9 @@ TEST_F(ListAcquisitionContextTest, EqualNotEqualIntersection) {
 
 TEST_F(ListAcquisitionContextTest, ToJsonFromJson) {
   AcquisitionContextHandle arr[1] = {sh1};
-  auto                     handle = ListAcquisitionContext_create(arr, 1);
-  auto                     json = ListAcquisitionContext_to_json_string(handle);
-  auto handle2                  = ListAcquisitionContext_from_json_string(json);
+  auto handle = ListAcquisitionContext_create(arr, 1);
+  auto json = ListAcquisitionContext_to_json_string(handle);
+  auto handle2 = ListAcquisitionContext_from_json_string(json);
   EXPECT_TRUE(ListAcquisitionContext_equal(handle, handle2));
   ListAcquisitionContext_destroy(handle);
   ListAcquisitionContext_destroy(handle2);
@@ -216,9 +215,9 @@ TEST_F(ListAcquisitionContextTest, CreateNullArray) {
 
 TEST_F(ListAcquisitionContextTest, At) {
   AcquisitionContextHandle arr[2] = {sh1, sh2};
-  auto                     handle = ListAcquisitionContext_create(arr, 2);
-  auto                     at0    = ListAcquisitionContext_at(handle, 0);
-  auto                     at1    = ListAcquisitionContext_at(handle, 1);
+  auto handle = ListAcquisitionContext_create(arr, 2);
+  auto at0 = ListAcquisitionContext_at(handle, 0);
+  auto at1 = ListAcquisitionContext_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListAcquisitionContext_destroy(handle);

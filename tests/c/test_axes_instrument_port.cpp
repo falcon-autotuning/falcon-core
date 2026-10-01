@@ -6,28 +6,23 @@
 #include "falcon-core/generic/ListInstrumentPort_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
 #include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon-core/math/AxesInstrumentPort_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class AxesInstrumentPortTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     axes = AxesInstrumentPort_create_empty();
 
     // Create two tracked items and push them into axes and axes2
-    auto item1 = track_instrument_port(
-        InstrumentPort_create_port(String_wrap("port1"),
-                                   NULL,
-                                   InstrumentTypes_voltmeter(),
-                                   SymbolUnit_create_volt(),
-                                   String_wrap("")));
-    auto item2 = track_instrument_port(
-        InstrumentPort_create_port(String_wrap("port2"),
-                                   NULL,
-                                   InstrumentTypes_voltmeter(),
-                                   SymbolUnit_create_volt(),
-                                   String_wrap("")));
+    auto item1 = track_instrument_port(InstrumentPort_create_port(
+        String_wrap("port1"), String_wrap("instrument1"), SCOPE_LOCAL,
+        ACCESS_READ, INSTRUMENT_CHARACTERISTIC_NONE, PORT_TYPE_KNOB, NULL,
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")));
+    auto item2 = track_instrument_port(InstrumentPort_create_port(
+        String_wrap("port2"), String_wrap("instrument2"), SCOPE_LOCAL,
+        ACCESS_READ, INSTRUMENT_CHARACTERISTIC_NONE, PORT_TYPE_KNOB, NULL,
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")));
     AxesInstrumentPort_push_back(axes, item1);
     AxesInstrumentPort_push_back(axes, item2);
 
@@ -58,12 +53,12 @@ class AxesInstrumentPortTest : public ::testing::Test {
     return h;
   }
 
-  AxesInstrumentPortHandle axes  = nullptr;
+  AxesInstrumentPortHandle axes = nullptr;
   AxesInstrumentPortHandle axes2 = nullptr;
 
   // All InstrumentPort handles created during the fixture are tracked here.
   std::vector<InstrumentPortHandle> created_items;
-  InstrumentPortHandle              rawbuffer[2];
+  InstrumentPortHandle rawbuffer[2];
 };
 
 TEST_F(AxesInstrumentPortTest, CreateDestroy) {
@@ -85,14 +80,13 @@ TEST_F(AxesInstrumentPortTest, CreateDestroy) {
 
 TEST_F(AxesInstrumentPortTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesInstrumentPort_size(axes), 2u);
-  StringHandle         name1 = String_wrap("port1");
-  StringHandle         desc1 = String_wrap("");
-  InstrumentPortHandle sp1 =
-      InstrumentPort_create_port(name1,
-                                 NULL,
-                                 InstrumentTypes_voltmeter(),
-                                 SymbolUnit_create_volt(),
-                                 desc1);
+  StringHandle name1 = String_wrap("port1");
+  StringHandle instrument1 = String_wrap("instrument1");
+  StringHandle desc1 = String_wrap("");
+  InstrumentPortHandle sp1 = InstrumentPort_create_port(
+      name1, instrument1, SCOPE_LOCAL, ACCESS_READ,
+      INSTRUMENT_CHARACTERISTIC_NONE, PORT_TYPE_KNOB, NULL,
+      INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), desc1);
   track_instrument_port(sp1);
   String_destroy(name1);
   String_destroy(desc1);
@@ -126,7 +120,7 @@ TEST_F(AxesInstrumentPortTest, SerializationRoundTrip) {
   AxesInstrumentPort_to_json_string(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW({
-    auto json   = AxesInstrumentPort_to_json_string(axes);
+    auto json = AxesInstrumentPort_to_json_string(axes);
     auto loaded = AxesInstrumentPort_from_json_string(json);
     AxesInstrumentPort_destroy(loaded);
     String_destroy(json);

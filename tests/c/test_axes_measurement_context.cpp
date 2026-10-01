@@ -6,28 +6,30 @@
 #include <vector>
 
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 
 class AxesMeasurementContextTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(MeasurementContextHandle sh) {
     MeasurementContext_destroy(sh);
   }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<MeasurementContextHandle> created_strings;
-  MeasurementContextHandle track_quantity(const MeasurementContextHandle& s) {
+  MeasurementContextHandle track_quantity(const MeasurementContextHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
     sh1 = track_quantity(MeasurementContext_create(
         Connection_create_plunger_gate(String_wrap("Conn1")),
-        InstrumentTypes_voltmeter()));
+        INSTRUMENT_VOLTMETER));
     sh2 = track_quantity(MeasurementContext_create(
         Connection_create_plunger_gate(String_wrap("Conn2")),
-        InstrumentTypes_voltmeter()));
+        INSTRUMENT_VOLTMETER));
   }
   MeasurementContextHandle sh1;
   MeasurementContextHandle sh2;
@@ -44,7 +46,7 @@ TEST_F(AxesMeasurementContextTest, CreateEmpty) {
 }
 
 TEST_F(AxesMeasurementContextTest, CreateFromArray) {
-  MeasurementContextHandle     arr[2] = {sh1, sh2};
+  MeasurementContextHandle arr[2] = {sh1, sh2};
   ListMeasurementContextHandle list_handle =
       ListMeasurementContext_create(arr, 2);
   AxesMeasurementContextHandle handle =
@@ -92,7 +94,7 @@ TEST_F(AxesMeasurementContextTest, PushBackContainsIndex) {
 }
 
 TEST_F(AxesMeasurementContextTest, ItemsAt) {
-  MeasurementContextHandle     arr[2] = {sh1, sh2};
+  MeasurementContextHandle arr[2] = {sh1, sh2};
   ListMeasurementContextHandle list_handle =
       ListMeasurementContext_create(arr, 2);
   AxesMeasurementContextHandle handle =
@@ -112,7 +114,7 @@ TEST_F(AxesMeasurementContextTest, ItemsAt) {
 }
 
 TEST_F(AxesMeasurementContextTest, EqualNotEqualIntersection) {
-  MeasurementContextHandle     arr[2] = {sh1, sh2};
+  MeasurementContextHandle arr[2] = {sh1, sh2};
   ListMeasurementContextHandle list_handle =
       ListMeasurementContext_create(arr, 2);
   AxesMeasurementContextHandle h1 = AxesMeasurementContext_create(list_handle);
@@ -146,7 +148,7 @@ TEST_F(AxesMeasurementContextTest, EqualNotEqualIntersection) {
 }
 
 TEST_F(AxesMeasurementContextTest, Clear) {
-  MeasurementContextHandle     arr[2] = {sh1, sh2};
+  MeasurementContextHandle arr[2] = {sh1, sh2};
   ListMeasurementContextHandle list_handle =
       ListMeasurementContext_create(arr, 2);
   AxesMeasurementContextHandle handle =
@@ -160,7 +162,7 @@ TEST_F(AxesMeasurementContextTest, Clear) {
 }
 
 TEST_F(AxesMeasurementContextTest, EraseAt) {
-  MeasurementContextHandle     arr[2] = {sh1, sh2};
+  MeasurementContextHandle arr[2] = {sh1, sh2};
   ListMeasurementContextHandle list_handle =
       ListMeasurementContext_create(arr, 2);
   AxesMeasurementContextHandle handle =
@@ -174,12 +176,12 @@ TEST_F(AxesMeasurementContextTest, EraseAt) {
 }
 
 TEST_F(AxesMeasurementContextTest, ToJsonFromJson) {
-  MeasurementContextHandle     arr[2] = {sh1, sh2};
+  MeasurementContextHandle arr[2] = {sh1, sh2};
   ListMeasurementContextHandle list_handle =
       ListMeasurementContext_create(arr, 2);
   AxesMeasurementContextHandle handle =
       AxesMeasurementContext_create(list_handle);
-  auto json    = AxesMeasurementContext_to_json_string(handle);
+  auto json = AxesMeasurementContext_to_json_string(handle);
   auto handle2 = AxesMeasurementContext_from_json_string(json);
   EXPECT_TRUE(AxesMeasurementContext_equal(handle, handle2));
   AxesMeasurementContext_destroy(handle);
@@ -224,7 +226,7 @@ TEST_F(AxesMeasurementContextTest, CreateNullArray) {
 }
 
 TEST_F(AxesMeasurementContextTest, At) {
-  MeasurementContextHandle     arr[2] = {sh1, sh2};
+  MeasurementContextHandle arr[2] = {sh1, sh2};
   ListMeasurementContextHandle list_handle =
       ListMeasurementContext_create(arr, 2);
   AxesMeasurementContextHandle handle =

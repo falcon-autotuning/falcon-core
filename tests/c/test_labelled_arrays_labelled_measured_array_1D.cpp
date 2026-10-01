@@ -1,36 +1,34 @@
+#include "falcon-core/generic/ErrorHandling_c_api.h"
 #include <gtest/gtest.h>
-#include "falcon-core/generic/ErrorHandling_c_api.h"
-#include "falcon-core/generic/ErrorHandling_c_api.h"
 
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
 #include "falcon-core/math/arrays/LabelledMeasuredArray1D_c_api.h"
 
 class LabelledArraysLabelledMeasuredArray1DTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     shape[0] = 6;
-    data[0]  = 1.0;
-    data[1]  = 2.0;
-    data[2]  = 3.0;
-    data[3]  = 4.0;
-    data[4]  = 5.0;
-    data[5]  = 6.0;
+    data[0] = 1.0;
+    data[1] = 2.0;
+    data[2] = 3.0;
+    data[3] = 4.0;
+    data[4] = 5.0;
+    data[5] = 6.0;
     data2[0] = 2.0;
     data2[1] = 4.0;
     data2[2] = 6.0;
     data2[3] = 8.0;
     data2[4] = 10.0;
     data2[5] = 12.0;
-    fa       = FArrayDouble_from_data(data, shape, 1);
-    fa2      = FArrayDouble_from_data(data2, shape, 1);
-    label    = AcquisitionContext_create(
-        Connection_create_plunger_gate(String_wrap("P1")),
-        InstrumentTypes_voltmeter(),
+    fa = FArrayDouble_from_data(data, shape, 1);
+    fa2 = FArrayDouble_from_data(data2, shape, 1);
+    label = AcquisitionContext_create(
+        Connection_create_plunger_gate(String_wrap("P1")), INSTRUMENT_VOLTMETER,
         SymbolUnit_create_volt());
     label2 = AcquisitionContext_create(
-        Connection_create_barrier_gate(String_wrap("B1")),
-        InstrumentTypes_voltmeter(),
+        Connection_create_barrier_gate(String_wrap("B1")), INSTRUMENT_VOLTMETER,
         SymbolUnit_create_ampere());
     // Create two LabelledMeasuredArray1D objects
     arr1 = LabelledMeasuredArray1D_from_farray(fa, label);
@@ -48,16 +46,16 @@ class LabelledArraysLabelledMeasuredArray1DTest : public ::testing::Test {
     LabelledMeasuredArray1D_destroy(arr1);
     LabelledMeasuredArray1D_destroy(arr2);
   }
-  double                                      data[6];
-  double                                      data2[6];
-  size_t                                      shape[1];
-  AcquisitionContextHandle                    label;
-  AcquisitionContextHandle                    label2;
-  FArrayDoubleHandle                          fa;
-  FArrayDoubleHandle                          fa2;
-  LabelledMeasuredArray1DHandle               arr1;
-  LabelledMeasuredArray1DHandle               arr2;
-  ListLabelledMeasuredArray1DHandle           list;
+  double data[6];
+  double data2[6];
+  size_t shape[1];
+  AcquisitionContextHandle label;
+  AcquisitionContextHandle label2;
+  FArrayDoubleHandle fa;
+  FArrayDoubleHandle fa2;
+  LabelledMeasuredArray1DHandle arr1;
+  LabelledMeasuredArray1DHandle arr2;
+  ListLabelledMeasuredArray1DHandle list;
   LabelledArraysLabelledMeasuredArray1DHandle arrays;
 };
 

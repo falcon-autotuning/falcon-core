@@ -12,23 +12,24 @@
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 
 class DiscreteSpaceTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
-    domain           = Domain_create(0.0, 1.0, true, false);
-    discretizer      = Discretizer_create_cartesian_discretizer(0.1);
+    domain = Domain_create(0.0, 1.0, true, false);
+    discretizer = Discretizer_create_cartesian_discretizer(0.1);
     axes_discretizer = AxesDiscretizer_create_empty();
     AxesDiscretizer_push_back(axes_discretizer, discretizer);
     unitspace = UnitSpace_create(axes_discretizer, domain);
 
     name = String_wrap("knob");
-    type = String_wrap("type");
+    instrument = String_wrap("instrument");
+    type = INSTRUMENT_VOLTMETER;
     desc = String_wrap("desc");
     unit = SymbolUnit_create_volt();
     conn = Connection_create_plunger_gate(String_wrap("A"));
-    port = InstrumentPort_create_knob(name, conn, type, unit, desc);
+    port = InstrumentPort_create_knob(name, instrument, conn, type, unit, desc);
 
     ldom = LabelledDomain_create_primitive_knob(
-        name, 0.0, 1.0, conn, type, true, false, unit, desc);
+        name, instrument, 0.0, 1.0, unit, desc, conn, type, true, false);
     ldom_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(ldom_list, ldom);
     cldom = CoupledLabelledDomain_create(ldom_list);
@@ -61,30 +62,31 @@ class DiscreteSpaceTest : public ::testing::Test {
     Connection_destroy(conn);
     SymbolUnit_destroy(unit);
     String_destroy(name);
-    String_destroy(type);
+    String_destroy(name);
     String_destroy(desc);
     UnitSpace_destroy(unitspace);
     AxesDiscretizer_destroy(axes_discretizer);
     Discretizer_destroy(discretizer);
   }
-  DomainHandle                    domain            = nullptr;
-  DiscretizerHandle               discretizer       = nullptr;
-  AxesDiscretizerHandle           axes_discretizer  = nullptr;
-  UnitSpaceHandle                 unitspace         = nullptr;
-  StringHandle                    name              = nullptr;
-  StringHandle                    type              = nullptr;
-  StringHandle                    desc              = nullptr;
-  SymbolUnitHandle                unit              = nullptr;
-  ConnectionHandle                conn              = nullptr;
-  InstrumentPortHandle            port              = nullptr;
-  LabelledDomainHandle            ldom              = nullptr;
-  ListLabelledDomainHandle        ldom_list         = nullptr;
-  CoupledLabelledDomainHandle     cldom             = nullptr;
-  AxesCoupledLabelledDomainHandle axes_cldom        = nullptr;
-  MapStringBoolHandle             map_str_bool      = nullptr;
-  AxesMapStringBoolHandle         axes_map_str_bool = nullptr;
-  AxesIntHandle                   axes_int          = nullptr;
-  DiscreteSpaceHandle             ds                = nullptr;
+  DomainHandle domain = nullptr;
+  DiscretizerHandle discretizer = nullptr;
+  AxesDiscretizerHandle axes_discretizer = nullptr;
+  UnitSpaceHandle unitspace = nullptr;
+  StringHandle name = nullptr;
+  StringHandle instrument = nullptr;
+  Instrument type;
+  StringHandle desc = nullptr;
+  SymbolUnitHandle unit = nullptr;
+  ConnectionHandle conn = nullptr;
+  InstrumentPortHandle port = nullptr;
+  LabelledDomainHandle ldom = nullptr;
+  ListLabelledDomainHandle ldom_list = nullptr;
+  CoupledLabelledDomainHandle cldom = nullptr;
+  AxesCoupledLabelledDomainHandle axes_cldom = nullptr;
+  MapStringBoolHandle map_str_bool = nullptr;
+  AxesMapStringBoolHandle axes_map_str_bool = nullptr;
+  AxesIntHandle axes_int = nullptr;
+  DiscreteSpaceHandle ds = nullptr;
 };
 
 TEST_F(DiscreteSpaceTest, CreateDestroy) {
@@ -109,16 +111,16 @@ TEST_F(DiscreteSpaceTest, CreateCartesian) {
       axes_int, axes_cldom, axes_map_str_bool, domain);
   DiscreteSpace_destroy(d);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesian_discrete_space(
-      nullptr, axes_cldom, axes_map_str_bool, domain);
+  DiscreteSpace_create_cartesian_discrete_space(nullptr, axes_cldom,
+                                                axes_map_str_bool, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesian_discrete_space(
-      axes_int, nullptr, axes_map_str_bool, domain);
+  DiscreteSpace_create_cartesian_discrete_space(axes_int, nullptr,
+                                                axes_map_str_bool, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesian_discrete_space(
-      axes_int, axes_cldom, nullptr, domain);
+  DiscreteSpace_create_cartesian_discrete_space(axes_int, axes_cldom, nullptr,
+                                                domain);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
@@ -127,22 +129,22 @@ TEST_F(DiscreteSpaceTest, CreateCartesian1D) {
       1, cldom, map_str_bool, domain);
   DiscreteSpace_destroy(d);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesian_discrete_space_1D(
-      1, nullptr, map_str_bool, domain);
+  DiscreteSpace_create_cartesian_discrete_space_1D(1, nullptr, map_str_bool,
+                                                   domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   DiscreteSpace_create_cartesian_discrete_space_1D(1, cldom, nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  DiscreteSpace_create_cartesian_discrete_space_1D(
-      1, cldom, map_str_bool, nullptr);
+  DiscreteSpace_create_cartesian_discrete_space_1D(1, cldom, map_str_bool,
+                                                   nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(DiscreteSpaceTest, Accessors) {
-  auto us    = DiscreteSpace_space(ds);
-  auto axes  = DiscreteSpace_axes(ds);
-  auto inc   = DiscreteSpace_increasing(ds);
+  auto us = DiscreteSpace_space(ds);
+  auto axes = DiscreteSpace_axes(ds);
+  auto inc = DiscreteSpace_increasing(ds);
   auto knobs = DiscreteSpace_knobs(ds);
   UnitSpace_destroy(us);
   AxesCoupledLabelledDomain_destroy(axes);
@@ -226,7 +228,7 @@ TEST_F(DiscreteSpaceTest, Equality) {
 
 TEST_F(DiscreteSpaceTest, ToJsonFromJson) {
   auto json = DiscreteSpace_to_json_string(ds);
-  auto d2   = DiscreteSpace_from_json_string(json);
+  auto d2 = DiscreteSpace_from_json_string(json);
   EXPECT_TRUE(DiscreteSpace_equal(ds, d2));
   DiscreteSpace_destroy(d2);
   String_destroy(json);

@@ -3,29 +3,34 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
 #include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon-core/math/domains/Domain_c_api.h"
 #include "falcon-core/math/domains/LabelledDomain_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class LabelledDomainTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
-    name   = String_wrap("knob");
-    type   = InstrumentTypes_voltmeter();
-    desc   = String_wrap("desc");
-    unit   = SymbolUnit_create_volt();
-    conn   = Connection_create_plunger_gate(String_wrap("A"));
+    name = String_wrap("knob");
+    instrument = String_wrap("instrument");
+    type = INSTRUMENT_VOLTMETER;
+    desc = String_wrap("desc");
+    unit = SymbolUnit_create_volt();
+    conn = Connection_create_plunger_gate(String_wrap("A"));
     domain = Domain_create(0.0, 1.0, true, false);
-    port   = InstrumentPort_create_port(name, conn, type, unit, desc);
+    port =
+        InstrumentPort_create_port(name, instrument, SCOPE_LOCAL, ACCESS_READ,
+                                   INSTRUMENT_CHARACTERISTIC_NONE,
+                                   PORT_TYPE_SETTING, conn, type, unit, desc);
 
     knob = LabelledDomain_create_primitive_knob(
-        name, 0.0, 1.0, conn, type, true, false, unit, desc);
+        name, instrument, 0.0, 1.0, unit, desc, conn, type, true, false);
     meter = LabelledDomain_create_primitive_meter(
-        name, 0.0, 1.0, conn, type, true, true, unit, desc);
-    portdom = LabelledDomain_create_primitive_port(
-        name, 0.0, 1.0, conn, type, true, false, unit, desc);
+        name, instrument, 0.0, 1.0, unit, desc, conn, type, true, true);
+    portdom = LabelledDomain_create_primitive_setting(
+        name, instrument, SCOPE_LOCAL, ACCESS_READ,
+        INSTRUMENT_CHARACTERISTIC_NONE, 0.0, 1.0, unit, desc, conn, type, true,
+        false);
   }
   void TearDown() override {
     LabelledDomain_destroy(knob);
@@ -36,84 +41,96 @@ class LabelledDomainTest : public ::testing::Test {
     Connection_destroy(conn);
     SymbolUnit_destroy(unit);
     String_destroy(name);
-    String_destroy(type);
+    String_destroy(instrument);
     String_destroy(desc);
   }
-  StringHandle         name    = nullptr;
-  StringHandle         type    = nullptr;
-  StringHandle         desc    = nullptr;
-  SymbolUnitHandle     unit    = nullptr;
-  ConnectionHandle     conn    = nullptr;
-  DomainHandle         domain  = nullptr;
-  InstrumentPortHandle port    = nullptr;
-  LabelledDomainHandle knob    = nullptr;
-  LabelledDomainHandle meter   = nullptr;
+  StringHandle name = nullptr;
+  StringHandle instrument = nullptr;
+  Instrument type;
+  StringHandle desc = nullptr;
+  SymbolUnitHandle unit = nullptr;
+  ConnectionHandle conn = nullptr;
+  DomainHandle domain = nullptr;
+  InstrumentPortHandle port = nullptr;
+  LabelledDomainHandle knob = nullptr;
+  LabelledDomainHandle meter = nullptr;
   LabelledDomainHandle portdom = nullptr;
 };
 
 TEST_F(LabelledDomainTest, CreatePrimitive) {
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(
-      nullptr, 0.0, 1.0, conn, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_knob(nullptr, instrument, 0.0, 1.0, unit,
+                                       desc, conn, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(
-      name, 0.0, 1.0, nullptr, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_knob(name, nullptr, 0.0, 1.0, unit, desc,
+                                       conn, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(
-      name, 0.0, 1.0, conn, nullptr, true, false, unit, desc);
+  LabelledDomain_create_primitive_knob(name, instrument, 0.0, 1.0, nullptr,
+                                       desc, conn, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(
-      name, 0.0, 1.0, conn, type, true, false, nullptr, desc);
+  LabelledDomain_create_primitive_knob(name, instrument, 0.0, 1.0, unit,
+                                       nullptr, conn, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_knob(
-      name, 0.0, 1.0, conn, type, true, false, unit, nullptr);
+  LabelledDomain_create_primitive_knob(name, instrument, 0.0, 1.0, unit, desc,
+                                       nullptr, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
 
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(
-      nullptr, 0.0, 1.0, conn, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_meter(nullptr, instrument, 0.0, 1.0, unit,
+                                        desc, conn, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(
-      name, 0.0, 1.0, nullptr, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_meter(name, nullptr, 0.0, 1.0, unit, desc,
+                                        conn, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(
-      name, 0.0, 1.0, conn, nullptr, true, false, unit, desc);
+  LabelledDomain_create_primitive_meter(name, instrument, 0.0, 1.0, nullptr,
+                                        desc, conn, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(
-      name, 0.0, 1.0, conn, type, true, false, nullptr, desc);
+  LabelledDomain_create_primitive_meter(name, instrument, 0.0, 1.0, unit,
+                                        nullptr, conn, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_meter(
-      name, 0.0, 1.0, conn, type, true, false, unit, nullptr);
+  LabelledDomain_create_primitive_meter(name, instrument, 0.0, 1.0, unit, desc,
+                                        nullptr, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
 
-  set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(
-      nullptr, 0.0, 1.0, conn, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_setting(
+      nullptr, instrument, SCOPE_LOCAL, ACCESS_READ,
+      INSTRUMENT_CHARACTERISTIC_NONE, 0.0, 1.0, unit, desc, conn, type, true,
+      false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(
-      name, 0.0, 1.0, nullptr, type, true, false, unit, desc);
+  LabelledDomain_create_primitive_setting(
+      name, nullptr, SCOPE_LOCAL, ACCESS_READ, INSTRUMENT_CHARACTERISTIC_NONE,
+      0.0, 1.0, unit, desc, conn, type, true, false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(
-      name, 0.0, 1.0, conn, nullptr, true, false, unit, desc);
+  LabelledDomain_create_primitive_setting(
+      name, instrument, SCOPE_LOCAL, ACCESS_READ,
+      INSTRUMENT_CHARACTERISTIC_NONE, 0.0, 1.0, nullptr, desc, conn, type, true,
+      false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(
-      name, 0.0, 1.0, conn, type, true, false, nullptr, desc);
+  LabelledDomain_create_primitive_setting(
+      name, instrument, SCOPE_LOCAL, ACCESS_READ,
+      INSTRUMENT_CHARACTERISTIC_NONE, 0.0, 1.0, unit, nullptr, conn, type, true,
+      false);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_primitive_port(
-      name, 0.0, 1.0, conn, type, true, false, unit, nullptr);
+  LabelledDomain_create_primitive_setting(
+      name, instrument, SCOPE_LOCAL, ACCESS_READ,
+      INSTRUMENT_CHARACTERISTIC_NONE, 0.0, 1.0, unit, desc, nullptr, type, true,
+      false);
   EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
 }
 
 TEST_F(LabelledDomainTest, CreateFromPortAndDomain) {
@@ -134,27 +151,41 @@ TEST_F(LabelledDomainTest, CreateFromPortAndDomain) {
 }
 
 TEST_F(LabelledDomainTest, CreateFromDomain) {
-  auto ldd =
-      LabelledDomain_create_from_domain(domain, name, conn, type, unit, desc);
+  auto *ldd = LabelledDomain_create_from_domain(
+      domain, name, instrument, SCOPE_LOCAL, ACCESS_READ,
+      INSTRUMENT_CHARACTERISTIC_NONE, PORT_TYPE_KNOB, unit, desc, conn, type);
   LabelledDomain_destroy(ldd);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(nullptr, name, conn, type, unit, desc);
+  LabelledDomain_create_from_domain(nullptr, name, instrument, SCOPE_LOCAL,
+                                    ACCESS_READ, INSTRUMENT_CHARACTERISTIC_NONE,
+                                    PORT_TYPE_KNOB, unit, desc, conn, type);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(domain, nullptr, conn, type, unit, desc);
+  LabelledDomain_create_from_domain(domain, nullptr, instrument, SCOPE_LOCAL,
+                                    ACCESS_READ, INSTRUMENT_CHARACTERISTIC_NONE,
+                                    PORT_TYPE_KNOB, unit, desc, conn, type);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(domain, name, nullptr, type, unit, desc);
+  LabelledDomain_create_from_domain(domain, name, nullptr, SCOPE_LOCAL,
+                                    ACCESS_READ, INSTRUMENT_CHARACTERISTIC_NONE,
+                                    PORT_TYPE_KNOB, unit, desc, conn, type);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(domain, name, conn, nullptr, unit, desc);
+  LabelledDomain_create_from_domain(domain, name, instrument, SCOPE_LOCAL,
+                                    ACCESS_READ, INSTRUMENT_CHARACTERISTIC_NONE,
+                                    PORT_TYPE_KNOB, nullptr, desc, conn, type);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(domain, name, conn, type, nullptr, desc);
+  LabelledDomain_create_from_domain(domain, name, instrument, SCOPE_LOCAL,
+                                    ACCESS_READ, INSTRUMENT_CHARACTERISTIC_NONE,
+                                    PORT_TYPE_KNOB, unit, nullptr, conn, type);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  LabelledDomain_create_from_domain(domain, name, conn, type, unit, nullptr);
+  LabelledDomain_create_from_domain(domain, name, instrument, SCOPE_LOCAL,
+                                    ACCESS_READ, INSTRUMENT_CHARACTERISTIC_NONE,
+                                    PORT_TYPE_KNOB, unit, desc, nullptr, type);
   EXPECT_EQ(get_last_error_code(), 1);
+  set_last_error(0, nullptr);
 }
 
 TEST_F(LabelledDomainTest, DestroyNullThrows) {
@@ -224,7 +255,7 @@ TEST_F(LabelledDomainTest, InRangeRangeCenter) {
 
 TEST_F(LabelledDomainTest, IntersectionUnion) {
   auto inter = LabelledDomain_intersection(knob, meter);
-  auto uni   = LabelledDomain_union(knob, meter);
+  auto uni = LabelledDomain_union(knob, meter);
   LabelledDomain_destroy(inter);
   LabelledDomain_destroy(uni);
   set_last_error(0, nullptr);
@@ -257,7 +288,7 @@ TEST_F(LabelledDomainTest, IsEmptyContainsDomain) {
 
 TEST_F(LabelledDomainTest, ShiftScaleTransform) {
   auto shifted = LabelledDomain_shift(knob, 1.0);
-  auto scaled  = LabelledDomain_scale(knob, 2.0);
+  auto scaled = LabelledDomain_scale(knob, 2.0);
   EXPECT_DOUBLE_EQ(LabelledDomain_transform(knob, meter, 0.5),
                    LabelledDomain_transform(knob, meter, 0.5));
   LabelledDomain_destroy(shifted);
@@ -295,7 +326,7 @@ TEST_F(LabelledDomainTest, EqualNotEqual) {
 
 TEST_F(LabelledDomainTest, ToJsonFromJson) {
   auto json = LabelledDomain_to_json_string(knob);
-  auto l2   = LabelledDomain_from_json_string(json);
+  auto l2 = LabelledDomain_from_json_string(json);
   EXPECT_TRUE(LabelledDomain_equal(knob, l2));
   LabelledDomain_destroy(l2);
   String_destroy(json);

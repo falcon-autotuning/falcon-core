@@ -1,61 +1,54 @@
-#include <gtest/gtest.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include <gtest/gtest.h>
 
 #include "falcon-core/generic/MapInterpretationContextDouble_c_api.h"
 #include "falcon-core/generic/PairInterpretationContextDouble_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 
 class MapInterpretationContextDoubleTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     ListMeasurementContextHandle axes_indp1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateA")),
-            InstrumentTypes_voltmeter()));
+        axes_indp1, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateA")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateB")),
-            InstrumentTypes_voltmeter()));
+        axes_dep1, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateB")),
+                       INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_indp2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateC")),
-            InstrumentTypes_voltmeter()));
+        axes_indp2, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateC")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateD")),
-            InstrumentTypes_voltmeter()));
+        axes_dep2, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateD")),
+                       INSTRUMENT_VOLTMETER));
     p1 = PairInterpretationContextDouble_create(
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp1),
-                                     axes_dep1,
-                                     SymbolUnit_create_volt()),
+                                     axes_dep1, SymbolUnit_create_volt()),
         1.0);
     p2 = PairInterpretationContextDouble_create(
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp2),
-                                     axes_dep2,
-                                     SymbolUnit_create_volt()),
+                                     axes_dep2, SymbolUnit_create_volt()),
         1.0);
     PairInterpretationContextDoubleHandle arr[2] = {p1, p2};
-    map  = MapInterpretationContextDouble_create(arr, 2);
+    map = MapInterpretationContextDouble_create(arr, 2);
     map2 = MapInterpretationContextDouble_create_empty();
     MapInterpretationContextDouble_insert_or_assign(
-        map2,
-        PairInterpretationContextDouble_first(p1),
+        map2, PairInterpretationContextDouble_first(p1),
         PairInterpretationContextDouble_second(p1));
     MapInterpretationContextDouble_insert(
-        map2,
-        PairInterpretationContextDouble_first(p2),
+        map2, PairInterpretationContextDouble_first(p2),
         PairInterpretationContextDouble_second(p2));
   }
   void TearDown() override {
@@ -65,8 +58,8 @@ class MapInterpretationContextDoubleTest : public ::testing::Test {
   }
   PairInterpretationContextDoubleHandle p1;
   PairInterpretationContextDoubleHandle p2;
-  MapInterpretationContextDoubleHandle  map;
-  MapInterpretationContextDoubleHandle  map2;
+  MapInterpretationContextDoubleHandle map;
+  MapInterpretationContextDoubleHandle map2;
 };
 
 TEST_F(MapInterpretationContextDoubleTest, CreateDestroy) {
@@ -87,25 +80,33 @@ TEST_F(MapInterpretationContextDoubleTest, InsertAssignAccessErase) {
   EXPECT_FALSE(MapInterpretationContextDouble_contains(
       map, PairInterpretationContextDouble_first(p1)));
   set_last_error(0, nullptr);
-  MapInterpretationContextDouble_insert_or_assign(                   nullptr,                   PairInterpretationContextDouble_first(p1),                   PairInterpretationContextDouble_second(p1));
+  MapInterpretationContextDouble_insert_or_assign(
+      nullptr, PairInterpretationContextDouble_first(p1),
+      PairInterpretationContextDouble_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextDouble_insert_or_assign(                   map, nullptr, PairInterpretationContextDouble_second(p1));
+  MapInterpretationContextDouble_insert_or_assign(
+      map, nullptr, PairInterpretationContextDouble_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextDouble_insert(                   nullptr,                   PairInterpretationContextDouble_first(p1),                   PairInterpretationContextDouble_second(p1));
+  MapInterpretationContextDouble_insert(
+      nullptr, PairInterpretationContextDouble_first(p1),
+      PairInterpretationContextDouble_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextDouble_insert(                   map, nullptr, PairInterpretationContextDouble_second(p1));
+  MapInterpretationContextDouble_insert(
+      map, nullptr, PairInterpretationContextDouble_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextDouble_at(                   nullptr, PairInterpretationContextDouble_first(p1));
+  MapInterpretationContextDouble_at(nullptr,
+                                    PairInterpretationContextDouble_first(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInterpretationContextDouble_at(map, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextDouble_erase(                   nullptr, PairInterpretationContextDouble_first(p1));
+  MapInterpretationContextDouble_erase(
+      nullptr, PairInterpretationContextDouble_first(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInterpretationContextDouble_erase(map, nullptr);
@@ -127,7 +128,8 @@ TEST_F(MapInterpretationContextDoubleTest, SizeEmptyClearContains) {
   MapInterpretationContextDouble_clear(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  MapInterpretationContextDouble_contains(                   nullptr, PairInterpretationContextDouble_first(p1));
+  MapInterpretationContextDouble_contains(
+      nullptr, PairInterpretationContextDouble_first(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInterpretationContextDouble_contains(map2, nullptr);
@@ -168,7 +170,7 @@ TEST_F(MapInterpretationContextDoubleTest, Equality) {
 
 TEST_F(MapInterpretationContextDoubleTest, ToJsonFromJson) {
   auto json = MapInterpretationContextDouble_to_json_string(map);
-  auto m2   = MapInterpretationContextDouble_from_json_string(json);
+  auto m2 = MapInterpretationContextDouble_from_json_string(json);
   EXPECT_TRUE(MapInterpretationContextDouble_equal(map, m2));
   MapInterpretationContextDouble_destroy(m2);
   String_destroy(json);

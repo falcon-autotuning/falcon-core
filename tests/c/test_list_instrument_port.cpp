@@ -5,33 +5,31 @@
 #include <vector>
 
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class ListInstrumentPortTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(InstrumentPortHandle sh) { InstrumentPort_destroy(sh); }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<InstrumentPortHandle> created_strings;
-  InstrumentPortHandle track_quantity(const InstrumentPortHandle& s) {
+  InstrumentPortHandle track_quantity(const InstrumentPortHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
     sh1 = track_quantity(InstrumentPort_create_knob(
-        String_wrap("knob1"),
+        String_wrap("knob1"), String_wrap("inst"),
         Connection_create_barrier_gate(String_wrap("gate1")),
-        InstrumentTypes_voltmeter(),
-        SymbolUnit_create_volt(),
-        String_wrap("")));
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")));
     sh2 = track_quantity(InstrumentPort_create_knob(
-        String_wrap("knob2"),
+        String_wrap("knob2"), String_wrap("inst"),
         Connection_create_barrier_gate(String_wrap("gate2")),
-        InstrumentTypes_voltmeter(),
-        SymbolUnit_create_volt(),
-        String_wrap("")));
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")));
   }
   InstrumentPortHandle sh1;
   InstrumentPortHandle sh2;
@@ -54,7 +52,7 @@ TEST_F(ListInstrumentPortTest, FillValue) {
 }
 
 TEST_F(ListInstrumentPortTest, CreateFromArray) {
-  InstrumentPortHandle     arr[2] = {sh1, sh2};
+  InstrumentPortHandle arr[2] = {sh1, sh2};
   ListInstrumentPortHandle handle = ListInstrumentPort_create(arr, 2);
   EXPECT_EQ(ListInstrumentPort_size(handle), 2);
   set_last_error(0, nullptr);
@@ -115,7 +113,7 @@ TEST_F(ListInstrumentPortTest, PushBackContainsIndex) {
 
 TEST_F(ListInstrumentPortTest, ItemsAt) {
   InstrumentPortHandle arr[2] = {sh1, sh2};
-  auto                 handle = ListInstrumentPort_create(arr, 2);
+  auto handle = ListInstrumentPort_create(arr, 2);
   InstrumentPortHandle out[2];
   EXPECT_EQ(ListInstrumentPort_items(handle, out, 2), 2);
   ListInstrumentPort_destroy(handle);
@@ -132,8 +130,8 @@ TEST_F(ListInstrumentPortTest, ItemsAt) {
 
 TEST_F(ListInstrumentPortTest, EqualNotEqualIntersection) {
   InstrumentPortHandle arr[2] = {sh1, sh2};
-  auto                 h1     = ListInstrumentPort_create(arr, 2);
-  auto                 h2     = ListInstrumentPort_create(arr, 2);
+  auto h1 = ListInstrumentPort_create(arr, 2);
+  auto h2 = ListInstrumentPort_create(arr, 2);
   EXPECT_TRUE(ListInstrumentPort_equal(h1, h2));
   EXPECT_FALSE(ListInstrumentPort_not_equal(h1, h2));
   auto h3 = ListInstrumentPort_intersection(h1, h2);
@@ -162,10 +160,10 @@ TEST_F(ListInstrumentPortTest, EqualNotEqualIntersection) {
 }
 
 TEST_F(ListInstrumentPortTest, ToJsonFromJson) {
-  InstrumentPortHandle arr[1]  = {sh1};
-  auto                 handle  = ListInstrumentPort_create(arr, 1);
-  auto                 json    = ListInstrumentPort_to_json_string(handle);
-  auto                 handle2 = ListInstrumentPort_from_json_string(json);
+  InstrumentPortHandle arr[1] = {sh1};
+  auto handle = ListInstrumentPort_create(arr, 1);
+  auto json = ListInstrumentPort_to_json_string(handle);
+  auto handle2 = ListInstrumentPort_from_json_string(json);
   EXPECT_TRUE(ListInstrumentPort_equal(handle, handle2));
   ListInstrumentPort_destroy(handle);
   ListInstrumentPort_destroy(handle2);
@@ -216,9 +214,9 @@ TEST_F(ListInstrumentPortTest, CreateNullArray) {
 
 TEST_F(ListInstrumentPortTest, At) {
   InstrumentPortHandle arr[2] = {sh1, sh2};
-  auto                 handle = ListInstrumentPort_create(arr, 2);
-  auto                 at0    = ListInstrumentPort_at(handle, 0);
-  auto                 at1    = ListInstrumentPort_at(handle, 1);
+  auto handle = ListInstrumentPort_create(arr, 2);
+  auto at0 = ListInstrumentPort_at(handle, 0);
+  auto at1 = ListInstrumentPort_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListInstrumentPort_destroy(handle);

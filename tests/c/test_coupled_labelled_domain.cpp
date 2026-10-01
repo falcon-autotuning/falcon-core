@@ -10,18 +10,19 @@
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class CoupledLabelledDomainTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
-    name   = String_wrap("knob");
-    type   = String_wrap("type");
-    desc   = String_wrap("desc");
-    unit   = SymbolUnit_create_volt();
-    conn   = Connection_create_plunger_gate(String_wrap("A"));
+    name = String_wrap("knob");
+    instrument = String_wrap("instrument");
+    type = INSTRUMENT_AMNMETER;
+    desc = String_wrap("desc");
+    unit = SymbolUnit_create_volt();
+    conn = Connection_create_plunger_gate(String_wrap("A"));
     domain = Domain_create(0.0, 1.0, true, false);
-    port   = InstrumentPort_create_knob(name, conn, type, unit, desc);
+    port = InstrumentPort_create_knob(name, instrument, conn, type, unit, desc);
 
     ldom = LabelledDomain_create_primitive_knob(
-        name, 0.0, 1.0, conn, type, true, false, unit, desc);
+        name, instrument, 0.0, 1.0, unit, desc, conn, type, true, false);
 
     ldom_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(ldom_list, ldom);
@@ -37,19 +38,20 @@ class CoupledLabelledDomainTest : public ::testing::Test {
     Connection_destroy(conn);
     SymbolUnit_destroy(unit);
     String_destroy(name);
-    String_destroy(type);
+    String_destroy(instrument);
     String_destroy(desc);
   }
-  StringHandle                name      = nullptr;
-  StringHandle                type      = nullptr;
-  StringHandle                desc      = nullptr;
-  SymbolUnitHandle            unit      = nullptr;
-  ConnectionHandle            conn      = nullptr;
-  DomainHandle                domain    = nullptr;
-  InstrumentPortHandle        port      = nullptr;
-  LabelledDomainHandle        ldom      = nullptr;
-  ListLabelledDomainHandle    ldom_list = nullptr;
-  CoupledLabelledDomainHandle cldom     = nullptr;
+  StringHandle name = nullptr;
+  StringHandle instrument = nullptr;
+  Instrument type;
+  StringHandle desc = nullptr;
+  SymbolUnitHandle unit = nullptr;
+  ConnectionHandle conn = nullptr;
+  DomainHandle domain = nullptr;
+  InstrumentPortHandle port = nullptr;
+  LabelledDomainHandle ldom = nullptr;
+  ListLabelledDomainHandle ldom_list = nullptr;
+  CoupledLabelledDomainHandle cldom = nullptr;
 };
 
 TEST_F(CoupledLabelledDomainTest, CreateDestroy) {
@@ -93,7 +95,7 @@ TEST_F(CoupledLabelledDomainTest, GetDomain) {
 }
 
 TEST_F(CoupledLabelledDomainTest, Intersection) {
-  auto c2    = CoupledLabelledDomain_create(ldom_list);
+  auto c2 = CoupledLabelledDomain_create(ldom_list);
   auto inter = CoupledLabelledDomain_intersection(cldom, c2);
   CoupledLabelledDomain_destroy(inter);
   CoupledLabelledDomain_destroy(c2);
@@ -138,7 +140,7 @@ TEST_F(CoupledLabelledDomainTest, PushBackSizeEmptyEraseClear) {
 }
 
 TEST_F(CoupledLabelledDomainTest, AtConstAtItems) {
-  auto at  = CoupledLabelledDomain_at(cldom, 0);
+  auto at = CoupledLabelledDomain_at(cldom, 0);
   auto cat = CoupledLabelledDomain_const_at(cldom, 0);
   EXPECT_NE(at, nullptr);
   EXPECT_NE(cat, nullptr);
@@ -199,7 +201,7 @@ TEST_F(CoupledLabelledDomainTest, Equality) {
 
 TEST_F(CoupledLabelledDomainTest, ToJsonFromJson) {
   auto json = CoupledLabelledDomain_to_json_string(cldom);
-  auto c2   = CoupledLabelledDomain_from_json_string(json);
+  auto c2 = CoupledLabelledDomain_from_json_string(json);
   EXPECT_TRUE(CoupledLabelledDomain_equal(cldom, c2));
   CoupledLabelledDomain_destroy(c2);
   String_destroy(json);

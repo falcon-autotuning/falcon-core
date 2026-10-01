@@ -4,59 +4,52 @@
 #include "falcon-core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon-core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class MapInterpretationContextQuantityTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     ListMeasurementContextHandle axes_indp1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateA")),
-            InstrumentTypes_voltmeter()));
+        axes_indp1, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateA")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateB")),
-            InstrumentTypes_voltmeter()));
+        axes_dep1, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateB")),
+                       INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_indp2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateC")),
-            InstrumentTypes_voltmeter()));
+        axes_indp2, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateC")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateD")),
-            InstrumentTypes_voltmeter()));
+        axes_dep2, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateD")),
+                       INSTRUMENT_VOLTMETER));
     p1 = PairInterpretationContextQuantity_create(
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp1),
-                                     axes_dep1,
-                                     SymbolUnit_create_volt()),
+                                     axes_dep1, SymbolUnit_create_volt()),
         Quantity_create(1.0, SymbolUnit_create_volt()));
     p2 = PairInterpretationContextQuantity_create(
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp2),
-                                     axes_dep2,
-                                     SymbolUnit_create_volt()),
+                                     axes_dep2, SymbolUnit_create_volt()),
         Quantity_create(2.0, SymbolUnit_create_volt()));
     PairInterpretationContextQuantityHandle arr[2] = {p1, p2};
-    map  = MapInterpretationContextQuantity_create(arr, 2);
+    map = MapInterpretationContextQuantity_create(arr, 2);
     map2 = MapInterpretationContextQuantity_create_empty();
     MapInterpretationContextQuantity_insert_or_assign(
-        map2,
-        PairInterpretationContextQuantity_first(p1),
+        map2, PairInterpretationContextQuantity_first(p1),
         PairInterpretationContextQuantity_second(p1));
     MapInterpretationContextQuantity_insert(
-        map2,
-        PairInterpretationContextQuantity_first(p2),
+        map2, PairInterpretationContextQuantity_first(p2),
         PairInterpretationContextQuantity_second(p2));
   }
   void TearDown() override {
@@ -66,8 +59,8 @@ class MapInterpretationContextQuantityTest : public ::testing::Test {
   }
   PairInterpretationContextQuantityHandle p1;
   PairInterpretationContextQuantityHandle p2;
-  MapInterpretationContextQuantityHandle  map;
-  MapInterpretationContextQuantityHandle  map2;
+  MapInterpretationContextQuantityHandle map;
+  MapInterpretationContextQuantityHandle map2;
 };
 
 TEST_F(MapInterpretationContextQuantityTest, CreateDestroy) {
@@ -90,8 +83,7 @@ TEST_F(MapInterpretationContextQuantityTest, InsertAssignAccessErase) {
       map, PairInterpretationContextQuantity_first(p1)));
   set_last_error(0, nullptr);
   MapInterpretationContextQuantity_insert_or_assign(
-      nullptr,
-      PairInterpretationContextQuantity_first(p1),
+      nullptr, PairInterpretationContextQuantity_first(p1),
       PairInterpretationContextQuantity_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
@@ -104,8 +96,7 @@ TEST_F(MapInterpretationContextQuantityTest, InsertAssignAccessErase) {
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   MapInterpretationContextQuantity_insert(
-      nullptr,
-      PairInterpretationContextQuantity_first(p1),
+      nullptr, PairInterpretationContextQuantity_first(p1),
       PairInterpretationContextQuantity_second(p1));
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
@@ -189,7 +180,7 @@ TEST_F(MapInterpretationContextQuantityTest, Equality) {
 
 TEST_F(MapInterpretationContextQuantityTest, ToJsonFromJson) {
   auto json = MapInterpretationContextQuantity_to_json_string(map);
-  auto m2   = MapInterpretationContextQuantity_from_json_string(json);
+  auto m2 = MapInterpretationContextQuantity_from_json_string(json);
   EXPECT_TRUE(MapInterpretationContextQuantity_equal(map, m2));
   MapInterpretationContextQuantity_destroy(m2);
   String_destroy(json);

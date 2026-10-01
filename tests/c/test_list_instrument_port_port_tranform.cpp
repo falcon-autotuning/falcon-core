@@ -1,57 +1,52 @@
 #include <falcon-core/generic/ListPairInstrumentPortPortTransform_c_api.h>
 #include <gtest/gtest.h>
 
-#include <stdexcept>
 #include <vector>
 
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class ListPairInstrumentPortPortTransformTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(PairInstrumentPortPortTransformHandle sh) {
     PairInstrumentPortPortTransform_destroy(sh);
   }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<PairInstrumentPortPortTransformHandle> created_strings;
-  PairInstrumentPortPortTransformHandle              track_quantity(
-                   const PairInstrumentPortPortTransformHandle& s) {
+  PairInstrumentPortPortTransformHandle
+  track_quantity(const PairInstrumentPortPortTransformHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
     sh1 = track_quantity(PairInstrumentPortPortTransform_create(
         InstrumentPort_create_knob(
-            String_wrap("Channel1"),
+            String_wrap("Channel1"), String_wrap("inst"),
             Connection_create_plunger_gate(String_wrap("gate1")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt(),
-            String_wrap("")),
+            INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")),
         PortTransform_create(
             InstrumentPort_create_knob(
-                String_wrap("Channel1"),
+                String_wrap("Channel1"), String_wrap("inst"),
                 Connection_create_plunger_gate(String_wrap("gate1")),
-                InstrumentTypes_voltmeter(),
-                SymbolUnit_create_volt(),
+                INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(),
                 String_wrap("")),
             AnalyticFunction_create_identity())));
     sh2 = track_quantity(PairInstrumentPortPortTransform_create(
         InstrumentPort_create_knob(
-            String_wrap("Channel2"),
+            String_wrap("Channel2"), String_wrap("inst"),
             Connection_create_plunger_gate(String_wrap("gate`")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt(),
-            String_wrap("")),
+            INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap("")),
         PortTransform_create(
             InstrumentPort_create_knob(
-                String_wrap("Channel2"),
+                String_wrap("Channel2"), String_wrap("inst"),
                 Connection_create_plunger_gate(String_wrap("gate2")),
-                InstrumentTypes_voltmeter(),
-                SymbolUnit_create_volt(),
+                INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(),
                 String_wrap("")),
             AnalyticFunction_create_identity())));
   }
@@ -76,7 +71,7 @@ TEST_F(ListPairInstrumentPortPortTransformTest, FillValue) {
 }
 
 TEST_F(ListPairInstrumentPortPortTransformTest, CreateFromArray) {
-  PairInstrumentPortPortTransformHandle     arr[2] = {sh1, sh2};
+  PairInstrumentPortPortTransformHandle arr[2] = {sh1, sh2};
   ListPairInstrumentPortPortTransformHandle handle =
       ListPairInstrumentPortPortTransform_create(arr, 2);
   EXPECT_EQ(ListPairInstrumentPortPortTransform_size(handle), 2);
@@ -186,8 +181,8 @@ TEST_F(ListPairInstrumentPortPortTransformTest, EqualNotEqualIntersection) {
 
 TEST_F(ListPairInstrumentPortPortTransformTest, ToJsonFromJson) {
   PairInstrumentPortPortTransformHandle arr[1] = {sh1};
-  auto handle  = ListPairInstrumentPortPortTransform_create(arr, 1);
-  auto json    = ListPairInstrumentPortPortTransform_to_json_string(handle);
+  auto handle = ListPairInstrumentPortPortTransform_create(arr, 1);
+  auto json = ListPairInstrumentPortPortTransform_to_json_string(handle);
   auto handle2 = ListPairInstrumentPortPortTransform_from_json_string(json);
   EXPECT_TRUE(ListPairInstrumentPortPortTransform_equal(handle, handle2));
   ListPairInstrumentPortPortTransform_destroy(handle);
@@ -240,8 +235,8 @@ TEST_F(ListPairInstrumentPortPortTransformTest, CreateNullArray) {
 TEST_F(ListPairInstrumentPortPortTransformTest, At) {
   PairInstrumentPortPortTransformHandle arr[2] = {sh1, sh2};
   auto handle = ListPairInstrumentPortPortTransform_create(arr, 2);
-  auto at0    = ListPairInstrumentPortPortTransform_at(handle, 0);
-  auto at1    = ListPairInstrumentPortPortTransform_at(handle, 1);
+  auto at0 = ListPairInstrumentPortPortTransform_at(handle, 0);
+  auto at1 = ListPairInstrumentPortPortTransform_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListPairInstrumentPortPortTransform_destroy(handle);

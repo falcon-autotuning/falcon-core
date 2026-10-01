@@ -5,30 +5,30 @@
 #include <vector>
 
 #include "falcon-core/generic/ErrorHandling_c_api.h"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class ListWaveformTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(WaveformHandle sh) { Waveform_destroy(sh); }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<WaveformHandle> created_strings;
-  WaveformHandle              track_quantity(const WaveformHandle& s) {
+  WaveformHandle track_quantity(const WaveformHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
-    DomainHandle         domain       = Domain_create(0, 1.0, true, true);
-    StringHandle         default_name = String_wrap("A");
-    InstrumentPortHandle port =
-        InstrumentPort_create_knob(default_name,
-                                   Connection_create_barrier_gate(default_name),
-                                   InstrumentTypes_voltmeter(),
-                                   SymbolUnit_create_volt(),
-                                   String_wrap(""));
+    DomainHandle domain = Domain_create(0, 1.0, true, true);
+    StringHandle default_name = String_wrap("A");
+    StringHandle instrument_name = String_wrap("inst");
+    InstrumentPortHandle port = InstrumentPort_create_knob(
+        default_name, instrument_name,
+        Connection_create_barrier_gate(default_name), INSTRUMENT_VOLTMETER,
+        SymbolUnit_create_volt(), String_wrap(""));
     ListLabelledDomainHandle domain_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
         domain_list, LabelledDomain_create_from_port_and_domain(port, domain));
@@ -39,17 +39,17 @@ class ListWaveformTest : public ::testing::Test {
     AxesCoupledLabelledDomain_push_back(
         axes, CoupledLabelledDomain_create(labelled_domain));
     AxesMapStringBoolHandle increasing = AxesMapStringBool_create_empty();
-    MapStringBoolHandle     map        = MapStringBool_create_empty();
+    MapStringBoolHandle map = MapStringBool_create_empty();
     MapStringBool_insert(map, default_name, true);
     AxesMapStringBool_push_back(increasing, map);
     AxesDiscretizerHandle discretizers = AxesDiscretizer_create_empty();
     AxesDiscretizer_push_back(discretizers,
                               Discretizer_create_cartesian_discretizer(0.1));
-    UnitSpaceHandle     unit_space = UnitSpace_create(discretizers, domain);
+    UnitSpaceHandle unit_space = UnitSpace_create(discretizers, domain);
     DiscreteSpaceHandle space =
         DiscreteSpace_create(unit_space, axes, increasing);
     ListPortTransformHandle transforms = ListPortTransform_create_empty();
-    ListStringHandle        labels     = ListString_create_empty();
+    ListStringHandle labels = ListString_create_empty();
     ListString_push_back(labels, String_wrap("x"));
     AnalyticFunctionHandle analytic =
         AnalyticFunction_create(labels, String_wrap("2x[0]+1"));
@@ -80,7 +80,7 @@ TEST_F(ListWaveformTest, FillValue) {
 }
 
 TEST_F(ListWaveformTest, CreateFromArray) {
-  WaveformHandle     arr[2] = {sh1, sh2};
+  WaveformHandle arr[2] = {sh1, sh2};
   ListWaveformHandle handle = ListWaveform_create(arr, 2);
   EXPECT_EQ(ListWaveform_size(handle), 2);
   set_last_error(0, nullptr);
@@ -141,7 +141,7 @@ TEST_F(ListWaveformTest, PushBackContainsIndex) {
 
 TEST_F(ListWaveformTest, ItemsAt) {
   WaveformHandle arr[2] = {sh1, sh2};
-  auto           handle = ListWaveform_create(arr, 2);
+  auto handle = ListWaveform_create(arr, 2);
   WaveformHandle out[2];
   EXPECT_EQ(ListWaveform_items(handle, out, 2), 2);
   ListWaveform_destroy(handle);
@@ -158,8 +158,8 @@ TEST_F(ListWaveformTest, ItemsAt) {
 
 TEST_F(ListWaveformTest, EqualNotEqualIntersection) {
   WaveformHandle arr[2] = {sh1, sh2};
-  auto           h1     = ListWaveform_create(arr, 2);
-  auto           h2     = ListWaveform_create(arr, 2);
+  auto h1 = ListWaveform_create(arr, 2);
+  auto h2 = ListWaveform_create(arr, 2);
   EXPECT_TRUE(ListWaveform_equal(h1, h2));
   EXPECT_FALSE(ListWaveform_not_equal(h1, h2));
   auto h3 = ListWaveform_intersection(h1, h2);
@@ -188,10 +188,10 @@ TEST_F(ListWaveformTest, EqualNotEqualIntersection) {
 }
 
 TEST_F(ListWaveformTest, ToJsonFromJson) {
-  WaveformHandle arr[1]  = {sh1};
-  auto           handle  = ListWaveform_create(arr, 1);
-  auto           json    = ListWaveform_to_json_string(handle);
-  auto           handle2 = ListWaveform_from_json_string(json);
+  WaveformHandle arr[1] = {sh1};
+  auto handle = ListWaveform_create(arr, 1);
+  auto json = ListWaveform_to_json_string(handle);
+  auto handle2 = ListWaveform_from_json_string(json);
   EXPECT_TRUE(ListWaveform_equal(handle, handle2));
   ListWaveform_destroy(handle);
   ListWaveform_destroy(handle2);
@@ -242,9 +242,9 @@ TEST_F(ListWaveformTest, CreateNullArray) {
 
 TEST_F(ListWaveformTest, At) {
   WaveformHandle arr[2] = {sh1, sh2};
-  auto           handle = ListWaveform_create(arr, 2);
-  auto           at0    = ListWaveform_at(handle, 0);
-  auto           at1    = ListWaveform_at(handle, 1);
+  auto handle = ListWaveform_create(arr, 2);
+  auto at0 = ListWaveform_at(handle, 0);
+  auto at1 = ListWaveform_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListWaveform_destroy(handle);

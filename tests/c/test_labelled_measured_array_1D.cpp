@@ -1,32 +1,31 @@
 #include <gtest/gtest.h>
 
-#include <cmath>
-
 #include "falcon-core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/FArrayDouble_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/arrays/LabelledMeasuredArray1D_c_api.h"
 #include "falcon-core/math/arrays/MeasuredArray_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class LabelledMeasuredArray1DTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     shape[0] = 6;
-    data[0]  = 1.0;
-    data[1]  = 2.0;
-    data[2]  = 3.0;
-    data[3]  = 4.0;
-    data[4]  = 5.0;
-    data[5]  = 6.0;
-    fa       = FArrayDouble_from_data(data, shape, 1);
-    ma       = MeasuredArray_from_data(data, shape, 1);
-    conn     = Connection_create_barrier_gate(String_wrap("GATE1"));
-    label    = AcquisitionContext_create(
-        conn, InstrumentTypes_voltmeter(), SymbolUnit_create_volt());
-    lma  = LabelledMeasuredArray1D_from_farray(fa, label);
+    data[0] = 1.0;
+    data[1] = 2.0;
+    data[2] = 3.0;
+    data[3] = 4.0;
+    data[4] = 5.0;
+    data[5] = 6.0;
+    fa = FArrayDouble_from_data(data, shape, 1);
+    ma = MeasuredArray_from_data(data, shape, 1);
+    conn = Connection_create_barrier_gate(String_wrap("GATE1"));
+    label = AcquisitionContext_create(conn, INSTRUMENT_VOLTMETER,
+                                      SymbolUnit_create_volt());
+    lma = LabelledMeasuredArray1D_from_farray(fa, label);
     lma2 = LabelledMeasuredArray1D_from_measured_array(ma, label);
   }
   void TearDown() override {
@@ -37,12 +36,12 @@ class LabelledMeasuredArray1DTest : public ::testing::Test {
     MeasuredArray_destroy(ma);
     AcquisitionContext_destroy(label);
   }
-  double                        data[6];
-  size_t                        shape[1];
-  ConnectionHandle              conn;
-  FArrayDoubleHandle            fa;
-  MeasuredArrayHandle           ma;
-  AcquisitionContextHandle      label;
+  double data[6];
+  size_t shape[1];
+  ConnectionHandle conn;
+  FArrayDoubleHandle fa;
+  MeasuredArrayHandle ma;
+  AcquisitionContextHandle label;
   LabelledMeasuredArray1DHandle lma;
   LabelledMeasuredArray1DHandle lma2;
 };
@@ -129,7 +128,8 @@ TEST_F(LabelledMeasuredArray1DTest, SizeAndShapeAndData) {
   EXPECT_EQ(out_shape[0], 6);
   double out_data[6];
   EXPECT_EQ(LabelledMeasuredArray1D_data(lma, out_data, 6), 6);
-  for (int i = 0; i < 6; ++i) EXPECT_EQ(out_data[i], data[i]);
+  for (int i = 0; i < 6; ++i)
+    EXPECT_EQ(out_data[i], data[i]);
   set_last_error(0, nullptr);
   LabelledMeasuredArray1D_size(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
@@ -149,9 +149,9 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   LabelledMeasuredArray1D_plus_equals_double(lma, 1.0);
   LabelledMeasuredArray1D_plus_equals_int(lma, 1);
   auto lma_plus_lma = LabelledMeasuredArray1D_plus_measured_array(lma, lma2);
-  auto lma_plus_fa  = LabelledMeasuredArray1D_plus_farray(lma, fa);
-  auto lma_plus_d   = LabelledMeasuredArray1D_plus_double(lma, 1.0);
-  auto lma_plus_i   = LabelledMeasuredArray1D_plus_int(lma, 1);
+  auto lma_plus_fa = LabelledMeasuredArray1D_plus_farray(lma, fa);
+  auto lma_plus_d = LabelledMeasuredArray1D_plus_double(lma, 1.0);
+  auto lma_plus_i = LabelledMeasuredArray1D_plus_int(lma, 1);
   LabelledMeasuredArray1D_destroy(lma_plus_lma);
   LabelledMeasuredArray1D_destroy(lma_plus_fa);
   LabelledMeasuredArray1D_destroy(lma_plus_d);
@@ -163,8 +163,8 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   LabelledMeasuredArray1D_minus_equals_int(lma, 1);
   auto lma_minus_ma = LabelledMeasuredArray1D_minus_measured_array(lma, ma);
   auto lma_minus_fa = LabelledMeasuredArray1D_minus_farray(lma, fa);
-  auto lma_minus_d  = LabelledMeasuredArray1D_minus_double(lma, 1.0);
-  auto lma_minus_i  = LabelledMeasuredArray1D_minus_int(lma, 1);
+  auto lma_minus_d = LabelledMeasuredArray1D_minus_double(lma, 1.0);
+  auto lma_minus_i = LabelledMeasuredArray1D_minus_int(lma, 1);
   LabelledMeasuredArray1D_destroy(lma_minus_ma);
   LabelledMeasuredArray1D_destroy(lma_minus_fa);
   LabelledMeasuredArray1D_destroy(lma_minus_d);
@@ -178,9 +178,9 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   MeasuredArray_times_equals_double(lma, 2.0);
   LabelledMeasuredArray1D_times_equals_int(lma, 2);
   auto lma_times_lma = LabelledMeasuredArray1D_times_measured_array(lma, lma2);
-  auto lma_times_fa  = LabelledMeasuredArray1D_times_farray(lma, fa);
-  auto lma_times_d   = LabelledMeasuredArray1D_times_double(lma, 2.0);
-  auto lma_times_i   = LabelledMeasuredArray1D_times_int(lma, 2);
+  auto lma_times_fa = LabelledMeasuredArray1D_times_farray(lma, fa);
+  auto lma_times_d = LabelledMeasuredArray1D_times_double(lma, 2.0);
+  auto lma_times_i = LabelledMeasuredArray1D_times_int(lma, 2);
   LabelledMeasuredArray1D_destroy(lma_times_lma);
   LabelledMeasuredArray1D_destroy(lma_times_fa);
   LabelledMeasuredArray1D_destroy(lma_times_d);
@@ -191,9 +191,9 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   LabelledMeasuredArray1D_divides_equals_double(lma, 2.0);
   LabelledMeasuredArray1D_divides_equals_int(lma, 2);
   auto lma_div_lma = LabelledMeasuredArray1D_divides_measured_array(lma, lma2);
-  auto lma_div_fa  = LabelledMeasuredArray1D_divides_farray(lma, fa);
-  auto lma_div_d   = LabelledMeasuredArray1D_divides_double(lma, 2.0);
-  auto lma_div_i   = LabelledMeasuredArray1D_divides_int(lma, 2);
+  auto lma_div_fa = LabelledMeasuredArray1D_divides_farray(lma, fa);
+  auto lma_div_d = LabelledMeasuredArray1D_divides_double(lma, 2.0);
+  auto lma_div_i = LabelledMeasuredArray1D_divides_int(lma, 2);
   LabelledMeasuredArray1D_destroy(lma_div_lma);
   LabelledMeasuredArray1D_destroy(lma_div_fa);
   LabelledMeasuredArray1D_destroy(lma_div_d);
@@ -205,12 +205,12 @@ TEST_F(LabelledMeasuredArray1DTest, ArithmeticOperators) {
   auto lma_abs = LabelledMeasuredArray1D_abs(lma);
   LabelledMeasuredArray1D_destroy(lma_abs);
 
-  auto lma_min_fa  = LabelledMeasuredArray1D_min_farray(lma, fa);
+  auto lma_min_fa = LabelledMeasuredArray1D_min_farray(lma, fa);
   auto lma_min_lma = LabelledMeasuredArray1D_min_measured_array(lma, lma2);
   LabelledMeasuredArray1D_destroy(lma_min_fa);
   LabelledMeasuredArray1D_destroy(lma_min_lma);
 
-  auto lma_max_fa  = LabelledMeasuredArray1D_max_farray(lma, fa);
+  auto lma_max_fa = LabelledMeasuredArray1D_max_farray(lma, fa);
   auto lma_max_lma = LabelledMeasuredArray1D_max_measured_array(lma, lma2);
   LabelledMeasuredArray1D_destroy(lma_max_fa);
   LabelledMeasuredArray1D_destroy(lma_max_lma);
@@ -427,7 +427,7 @@ TEST_F(LabelledMeasuredArray1DTest, OffsetSumReshapeWhereFlipGradient) {
   LabelledMeasuredArray1D_remove_offset(lma, 1.0);
   EXPECT_DOUBLE_EQ(LabelledMeasuredArray1D_sum(lma), 15.0);
   size_t new_shape[1] = {6};
-  auto   reshaped     = LabelledMeasuredArray1D_reshape(lma, new_shape, 1);
+  auto reshaped = LabelledMeasuredArray1D_reshape(lma, new_shape, 1);
   LabelledMeasuredArray1D_destroy(reshaped);
   auto where = LabelledMeasuredArray1D_where(lma, 2.0);
   ListListSizeT_destroy(where);
@@ -507,7 +507,8 @@ TEST_F(LabelledMeasuredArray1DTest, TimesEqualsDouble) {
   LabelledMeasuredArray1D_times_equals_double(lma, 2.0);
   double out_data[6];
   EXPECT_EQ(LabelledMeasuredArray1D_data(lma, out_data, 6), 6);
-  for (int i = 0; i < 6; ++i) EXPECT_DOUBLE_EQ(out_data[i], data[i] * 2.0);
+  for (int i = 0; i < 6; ++i)
+    EXPECT_DOUBLE_EQ(out_data[i], data[i] * 2.0);
   set_last_error(0, nullptr);
   LabelledMeasuredArray1D_times_equals_double(nullptr, 2.0);
   EXPECT_EQ(get_last_error_code(), 1);

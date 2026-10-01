@@ -1,11 +1,9 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
-#include <gtest/gtest.h>
-
-#include "falcon-core/generic/FArrayDouble_c_api.h"
-#include "falcon-core/generic/PairFloatFloat_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/config/core/Adjacency_c_api.h"
 #include "falcon-core/physics/config/core/VoltageConstraints_c_api.h"
+#include <gtest/gtest.h>
 
 class VoltageConstraintsTest : public ::testing::Test {
 protected:
@@ -76,12 +74,11 @@ TEST_F(VoltageConstraintsTest, ComputeOneNeighborDomainRequest) {
                          Connection_create_barrier_gate(String_wrap("B1")), 1.0,
                          SymbolUnit_create_volt()));
   PortsHandle ports = Ports_create_empty();
-  Ports_push_back(ports,
-                  InstrumentPort_create_meter(
-                      String_wrap("ohmicTest"),
-                      Connection_create_ohmic(String_wrap("O1")),
-                      InstrumentTypes_amnmeter(), SymbolUnit_create_volt(),
-                      String_wrap("ohmicTest")));
+  Ports_push_back(ports, InstrumentPort_create_meter(
+                             String_wrap("ohmicTest"), String_wrap("inst"),
+                             Connection_create_ohmic(String_wrap("O1")),
+                             INSTRUMENT_AMNMETER, SymbolUnit_create_volt(),
+                             String_wrap("ohmicTest")));
   auto maximal_domain =
       VoltageConstraints_compute_maximal_domain(handle, ports, current_state);
   EXPECT_NE(maximal_domain, nullptr) << "Maximal domain should not be null";

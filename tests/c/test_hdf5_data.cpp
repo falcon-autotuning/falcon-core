@@ -5,6 +5,7 @@
 #include "falcon-core/generic/MapStringString_c_api.h"
 #include "falcon-core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/AxesControlArray_c_api.h"
 #include "falcon-core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon-core/math/AxesInt_c_api.h"
@@ -12,53 +13,41 @@
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class HDF5DataTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     // Minimal valid construction for all required handles
     shape = AxesInt_create_empty();
     AxesInt_push_back(shape, 2);
 
-    unit_domain     = AxesControlArray_create_empty();
-    farray          = FArrayDouble_from_data(data, size, 1);
+    unit_domain = AxesControlArray_create_empty();
+    farray = FArrayDouble_from_data(data, size, 1);
     measured_farray = FArrayDouble_from_data(measured_data, size, 1);
     AxesControlArray_push_back(unit_domain, ControlArray_from_farray(farray));
 
     domain_labels = AxesCoupledLabelledDomain_create_empty();
     AxesCoupledLabelledDomain_push_back(domain_labels,
                                         CoupledLabelledDomain_create_empty());
-    label =
-        AcquisitionContext_create(Connection_create_ohmic(String_wrap("In")),
-                                  InstrumentTypes_voltage_source(),
-                                  SymbolUnit_create_volt());
+    label = AcquisitionContext_create(
+        Connection_create_ohmic(String_wrap("In")),
+        INSTRUMENT_DC_VOLTAGE_SOURCE, SymbolUnit_create_volt());
     measured_arrays = ListLabelledMeasuredArray_create_empty();
     ListLabelledMeasuredArray_push_back(
         measured_arrays,
         LabelledMeasuredArray_from_farray(measured_farray, label));
 
-    ranges   = LabelledArraysLabelledMeasuredArray_create(measured_arrays);
+    ranges = LabelledArraysLabelledMeasuredArray_create(measured_arrays);
     metadata = MapStringString_create_empty();
     MapStringString_insert(metadata, String_wrap("key"), String_wrap("value"));
 
     measurement_title = String_wrap("title");
-    unique_id         = 42;
-    timestamp         = 123456;
+    unique_id = 42;
+    timestamp = 123456;
 
-    hdf5   = HDF5Data_create(shape,
-                           unit_domain,
-                           domain_labels,
-                           ranges,
-                           metadata,
-                           measurement_title,
-                           unique_id,
-                           timestamp);
-    hdf5_2 = HDF5Data_create(shape,
-                             unit_domain,
-                             domain_labels,
-                             ranges,
-                             metadata,
-                             measurement_title,
-                             unique_id + 1,
-                             timestamp + 1);
+    hdf5 = HDF5Data_create(shape, unit_domain, domain_labels, ranges, metadata,
+                           measurement_title, unique_id, timestamp);
+    hdf5_2 =
+        HDF5Data_create(shape, unit_domain, domain_labels, ranges, metadata,
+                        measurement_title, unique_id + 1, timestamp + 1);
     set_last_error(0, nullptr);
   }
   void TearDown() override {
@@ -75,94 +64,52 @@ class HDF5DataTest : public ::testing::Test {
     MapStringString_destroy(metadata);
     String_destroy(measurement_title);
   }
-  double                                    data[2]          = {1.0, 2.0};
-  double                                    measured_data[2] = {8.2, 4.0};
-  size_t                                    size[1]          = {2};
-  ListLabelledMeasuredArrayHandle           measured_arrays;
-  FArrayDoubleHandle                        farray;
-  AcquisitionContextHandle                  label;
-  FArrayDoubleHandle                        measured_farray;
-  AxesIntHandle                             shape;
-  AxesControlArrayHandle                    unit_domain;
-  AxesCoupledLabelledDomainHandle           domain_labels;
+  double data[2] = {1.0, 2.0};
+  double measured_data[2] = {8.2, 4.0};
+  size_t size[1] = {2};
+  ListLabelledMeasuredArrayHandle measured_arrays;
+  FArrayDoubleHandle farray;
+  AcquisitionContextHandle label;
+  FArrayDoubleHandle measured_farray;
+  AxesIntHandle shape;
+  AxesControlArrayHandle unit_domain;
+  AxesCoupledLabelledDomainHandle domain_labels;
   LabelledArraysLabelledMeasuredArrayHandle ranges;
-  MapStringStringHandle                     metadata;
-  StringHandle                              measurement_title;
-  int                                       unique_id = 0;
-  int                                       timestamp = 0;
-  HDF5DataHandle                            hdf5;
-  HDF5DataHandle                            hdf5_2;
+  MapStringStringHandle metadata;
+  StringHandle measurement_title;
+  int unique_id = 0;
+  int timestamp = 0;
+  HDF5DataHandle hdf5;
+  HDF5DataHandle hdf5_2;
 };
 
 TEST_F(HDF5DataTest, CreateDestroy) {
-  auto h = HDF5Data_create(shape,
-                           unit_domain,
-                           domain_labels,
-                           ranges,
-                           metadata,
-                           measurement_title,
-                           unique_id,
-                           timestamp);
+  auto h = HDF5Data_create(shape, unit_domain, domain_labels, ranges, metadata,
+                           measurement_title, unique_id, timestamp);
   HDF5Data_destroy(h);
   set_last_error(0, nullptr);
-  HDF5Data_create(nullptr,
-                  unit_domain,
-                  domain_labels,
-                  ranges,
-                  metadata,
-                  measurement_title,
-                  unique_id,
-                  timestamp);
+  HDF5Data_create(nullptr, unit_domain, domain_labels, ranges, metadata,
+                  measurement_title, unique_id, timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,
-                  nullptr,
-                  domain_labels,
-                  ranges,
-                  metadata,
-                  measurement_title,
-                  unique_id,
-                  timestamp);
+  HDF5Data_create(shape, nullptr, domain_labels, ranges, metadata,
+                  measurement_title, unique_id, timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,
-                  unit_domain,
-                  nullptr,
-                  ranges,
-                  metadata,
-                  measurement_title,
-                  unique_id,
-                  timestamp);
+  HDF5Data_create(shape, unit_domain, nullptr, ranges, metadata,
+                  measurement_title, unique_id, timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,
-                  unit_domain,
-                  domain_labels,
-                  nullptr,
-                  metadata,
-                  measurement_title,
-                  unique_id,
-                  timestamp);
+  HDF5Data_create(shape, unit_domain, domain_labels, nullptr, metadata,
+                  measurement_title, unique_id, timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,
-                  unit_domain,
-                  domain_labels,
-                  ranges,
-                  nullptr,
-                  measurement_title,
-                  unique_id,
-                  timestamp);
+  HDF5Data_create(shape, unit_domain, domain_labels, ranges, nullptr,
+                  measurement_title, unique_id, timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  HDF5Data_create(shape,
-                  unit_domain,
-                  domain_labels,
-                  ranges,
-                  metadata,
-                  nullptr,
-                  unique_id,
-                  timestamp);
+  HDF5Data_create(shape, unit_domain, domain_labels, ranges, metadata, nullptr,
+                  unique_id, timestamp);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   HDF5Data_destroy(nullptr);
@@ -190,7 +137,7 @@ TEST_F(HDF5DataTest, Equality) {
 
 TEST_F(HDF5DataTest, ToJsonFromJson) {
   auto json = HDF5Data_to_json_string(hdf5);
-  auto h2   = HDF5Data_from_json_string(json);
+  auto h2 = HDF5Data_from_json_string(json);
   HDF5Data_destroy(h2);
   String_destroy(json);
   set_last_error(0, nullptr);
@@ -226,37 +173,30 @@ TEST_F(HDF5DataTest, ToFileAndCreateFromFile) {
 TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   // Construct a valid MeasurementRequest (copy from MeasurementRequestTest
   // setup)
-  double             data1[3]     = {1.0, 2.0, 3.0};
-  size_t             shape1[1]    = {3};
-  FArrayDoubleHandle farray1      = FArrayDouble_from_data(data1, shape1, 1);
+  double data1[3] = {1.0, 2.0, 3.0};
+  size_t shape1[1] = {3};
+  FArrayDoubleHandle farray1 = FArrayDouble_from_data(data1, shape1, 1);
   LabelledMeasuredArrayHandle sh1 = LabelledMeasuredArray_from_farray(
-      farray1,
-      AcquisitionContext_create(
-          Connection_create_plunger_gate(String_wrap("A")),
-          InstrumentTypes_voltmeter(),
-          SymbolUnit_create_volt()));
+      farray1, AcquisitionContext_create(
+                   Connection_create_plunger_gate(String_wrap("A")),
+                   INSTRUMENT_VOLTMETER, SymbolUnit_create_volt()));
   ListLabelledMeasuredArrayHandle lch =
       ListLabelledMeasuredArray_create_empty();
   ListLabelledMeasuredArray_push_back(lch, sh1);
-  StringHandle         msg          = String_wrap("msg");
-  StringHandle         name         = String_wrap("measurement");
-  DomainHandle         domain       = Domain_create(0, 1.0, true, true);
-  StringHandle         default_name = String_wrap("A");
-  StringHandle         desc         = String_wrap("");
-  StringHandle         metername    = String_wrap("ohm1");
-  InstrumentPortHandle port =
-      InstrumentPort_create_knob(default_name,
-                                 Connection_create_barrier_gate(default_name),
-                                 InstrumentTypes_voltmeter(),
-                                 SymbolUnit_create_volt(),
-                                 desc);
+  StringHandle msg = String_wrap("msg");
+  StringHandle name = String_wrap("measurement");
+  DomainHandle domain = Domain_create(0, 1.0, true, true);
+  StringHandle default_name = String_wrap("A");
+  StringHandle instrument = String_wrap("instrument");
+  StringHandle desc = String_wrap("");
+  StringHandle metername = String_wrap("ohm1");
+  InstrumentPortHandle port = InstrumentPort_create_knob(
+      default_name, instrument, Connection_create_barrier_gate(default_name),
+      INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), desc);
 
-  InstrumentPortHandle getter =
-      InstrumentPort_create_meter(metername,
-                                  Connection_create_ohmic(metername),
-                                  InstrumentTypes_amnmeter(),
-                                  SymbolUnit_create_ampere(),
-                                  desc);
+  InstrumentPortHandle getter = InstrumentPort_create_meter(
+      metername, instrument, Connection_create_ohmic(metername),
+      INSTRUMENT_AMNMETER, SymbolUnit_create_ampere(), desc);
   String_destroy(desc);
   String_destroy(metername);
   ListLabelledDomainHandle domain_list = ListLabelledDomain_create_empty();
@@ -268,24 +208,24 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
       AxesCoupledLabelledDomain_create_empty();
   AxesCoupledLabelledDomain_push_back(axes, labelled_domain);
   AxesMapStringBoolHandle increasing = AxesMapStringBool_create_empty();
-  MapStringBoolHandle     map        = MapStringBool_create_empty();
+  MapStringBoolHandle map = MapStringBool_create_empty();
   MapStringBool_insert(map, default_name, true);
   AxesMapStringBool_push_back(increasing, map);
   AxesDiscretizerHandle discretizers = AxesDiscretizer_create_empty();
   AxesDiscretizer_push_back(discretizers,
                             Discretizer_create_cartesian_discretizer(0.1));
-  UnitSpaceHandle     unit_space = UnitSpace_create(discretizers, domain);
+  UnitSpaceHandle unit_space = UnitSpace_create(discretizers, domain);
   DiscreteSpaceHandle space =
       DiscreteSpace_create(unit_space, axes, increasing);
   ListPortTransformHandle transforms = ListPortTransform_create_empty();
-  ListStringHandle        labels     = ListString_create_empty();
+  ListStringHandle labels = ListString_create_empty();
   ListString_push_back(labels, String_wrap("x"));
   AnalyticFunctionHandle analytic =
       AnalyticFunction_create(labels, String_wrap("2x[0]+1"));
   PortTransformHandle pt = PortTransform_create(port, analytic);
   ListPortTransform_push_back(transforms, pt);
 
-  WaveformHandle     waveform  = Waveform_create(space, transforms);
+  WaveformHandle waveform = Waveform_create(space, transforms);
   ListWaveformHandle waveforms = ListWaveform_create_empty();
   ListWaveform_push_back(waveforms, waveform);
 
@@ -300,28 +240,24 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
       0.0, 1.0, InstrumentPort_create_execution_clock(), true, true);
 
   MeasurementRequestHandle request = MeasurementRequest_create(
-      msg, name, waveforms, getters, meter_transforms, time_domain);
+      msg, waveforms, getters, meter_transforms, time_domain);
   MeasurementResponseHandle response = MeasurementResponse_create(
       LabelledArraysLabelledMeasuredArray_create(lch));
 
   DeviceVoltageStatesHandle voltage_states = DeviceVoltageStates_create_empty();
-  int8_t                    session_id[16] = {0};
-  StringHandle              title          = String_wrap("title");
-  int                       unique_id      = 42;
-  int                       timestamp      = 123456;
+  int8_t session_id[16] = {0};
+  StringHandle title = String_wrap("title");
+  int unique_id = 42;
+  int timestamp = 123456;
   EXPECT_EQ(get_last_error_code(), 0);
   if (get_last_error_msg() != 0) {
     std::cerr << "Other Error: " << get_last_error_msg() << std::endl;
   }
 
   // Create HDF5Data from communications
-  auto hdf5 = HDF5Data_create_from_communications(request,
-                                                  response,
-                                                  voltage_states,
-                                                  session_id,
-                                                  title,
-                                                  unique_id,
-                                                  timestamp);
+  auto hdf5 = HDF5Data_create_from_communications(request, response,
+                                                  voltage_states, session_id,
+                                                  title, unique_id, timestamp);
   EXPECT_EQ(get_last_error_code(), 0);
   if (get_last_error_msg() != 0) {
     std::cerr << "From communications Error: " << get_last_error_msg()
@@ -348,6 +284,7 @@ TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
   String_destroy(title);
   String_destroy(msg);
   String_destroy(name);
+  String_destroy(instrument);
   Waveform_destroy(waveform);
   ListWaveform_destroy(waveforms);
   InstrumentPort_destroy(port);
@@ -389,19 +326,13 @@ TEST_F(HDF5DataTest, ComplexDataStructures) {
   AxesControlArray_push_back(unit_domain, ControlArray_from_farray(farray));
   AxesCoupledLabelledDomain_push_back(domain_labels,
                                       CoupledLabelledDomain_create_empty());
-  MapStringString_insert(
-      metadata, String_wrap("another"), String_wrap("entry"));
+  MapStringString_insert(metadata, String_wrap("another"),
+                         String_wrap("entry"));
 
-  auto h    = HDF5Data_create(shape,
-                           unit_domain,
-                           domain_labels,
-                           ranges,
-                           metadata,
-                           measurement_title,
-                           unique_id,
-                           timestamp);
+  auto h = HDF5Data_create(shape, unit_domain, domain_labels, ranges, metadata,
+                           measurement_title, unique_id, timestamp);
   auto json = HDF5Data_to_json_string(h);
-  auto h2   = HDF5Data_from_json_string(json);
+  auto h2 = HDF5Data_from_json_string(json);
   EXPECT_TRUE(HDF5Data_equal(h, h2));
   HDF5Data_destroy(h);
   HDF5Data_destroy(h2);
@@ -409,16 +340,10 @@ TEST_F(HDF5DataTest, ComplexDataStructures) {
 }
 
 TEST_F(HDF5DataTest, UniqueIdTimestamp) {
-  auto h    = HDF5Data_create(shape,
-                           unit_domain,
-                           domain_labels,
-                           ranges,
-                           metadata,
-                           measurement_title,
-                           999,
-                           888);
+  auto h = HDF5Data_create(shape, unit_domain, domain_labels, ranges, metadata,
+                           measurement_title, 999, 888);
   auto json = HDF5Data_to_json_string(h);
-  auto h2   = HDF5Data_from_json_string(json);
+  auto h2 = HDF5Data_from_json_string(json);
   EXPECT_TRUE(HDF5Data_equal(h, h2));
   HDF5Data_destroy(h);
   HDF5Data_destroy(h2);

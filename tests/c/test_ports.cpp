@@ -8,14 +8,17 @@
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class PortsTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     name = String_wrap("default");
-    type = String_wrap("type");
+    instrument = String_wrap("inst");
+    type = INSTRUMENT_VOLTMETER;
     desc = String_wrap("desc");
     unit = SymbolUnit_create_volt();
     conn = Connection_create_plunger_gate(String_wrap("A"));
-    port = InstrumentPort_create_port(name, conn, type, unit, desc);
+    port = InstrumentPort_create_port(
+        name, instrument, SCOPE_LOCAL, ACCESS_READ,
+        INSTRUMENT_CHARACTERISTIC_NONE, PORT_TYPE_KNOB, conn, type, unit, desc);
 
     items = ListInstrumentPort_create_empty();
     ListInstrumentPort_push_back(items, port);
@@ -27,19 +30,20 @@ class PortsTest : public ::testing::Test {
     ListInstrumentPort_destroy(items);
     InstrumentPort_destroy(port);
     String_destroy(name);
-    String_destroy(type);
+    String_destroy(instrument);
     String_destroy(desc);
     SymbolUnit_destroy(unit);
     Connection_destroy(conn);
   }
-  StringHandle             name  = nullptr;
-  StringHandle             type  = nullptr;
-  StringHandle             desc  = nullptr;
-  SymbolUnitHandle         unit  = nullptr;
-  ConnectionHandle         conn  = nullptr;
-  InstrumentPortHandle     port  = nullptr;
+  StringHandle name = nullptr;
+  StringHandle instrument = nullptr;
+  Instrument type;
+  StringHandle desc = nullptr;
+  SymbolUnitHandle unit = nullptr;
+  ConnectionHandle conn = nullptr;
+  InstrumentPortHandle port = nullptr;
   ListInstrumentPortHandle items = nullptr;
-  PortsHandle              ports = nullptr;
+  PortsHandle ports = nullptr;
 };
 
 TEST_F(PortsTest, CreateDestroy) {
@@ -100,16 +104,12 @@ TEST_F(PortsTest, MatchingPort) {
   Ports__get_psuedoname_matching_port(ports, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
-  auto t  = String_wrap("type");
-  auto p2 = Ports__get_instrument_type_matching_port(ports, t);
+  auto p2 = Ports__get_instrument_type_matching_port(ports, type);
   InstrumentPort_destroy(p2);
-  String_destroy(t);
   set_last_error(0, nullptr);
-  Ports__get_instrument_type_matching_port(nullptr, t);
+  Ports__get_instrument_type_matching_port(nullptr, type);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Ports__get_instrument_type_matching_port(ports, nullptr);
-  EXPECT_EQ(get_last_error_code(), 1);
 }
 
 TEST_F(PortsTest, TypeChecks) {
@@ -124,7 +124,7 @@ TEST_F(PortsTest, TypeChecks) {
 }
 
 TEST_F(PortsTest, Intersection) {
-  auto p2    = Ports_create(items);
+  auto p2 = Ports_create(items);
   auto inter = Ports_intersection(ports, p2);
   Ports_destroy(inter);
   Ports_destroy(p2);
@@ -214,7 +214,7 @@ TEST_F(PortsTest, Equality) {
 
 TEST_F(PortsTest, Serialization) {
   auto json = Ports_to_json_string(ports);
-  auto p2   = Ports_from_json_string(json);
+  auto p2 = Ports_from_json_string(json);
   EXPECT_TRUE(Ports_equal(ports, p2));
   Ports_destroy(p2);
   String_destroy(json);

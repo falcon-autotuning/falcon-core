@@ -3,40 +3,34 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class PairMeasurementResponseMeasurementRequestTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
-    double             data1[3]     = {1.0, 2.0, 3.0};
-    size_t             shape1[1]    = {3};
-    FArrayDoubleHandle farray1      = FArrayDouble_from_data(data1, shape1, 1);
+    double data1[3] = {1.0, 2.0, 3.0};
+    size_t shape1[1] = {3};
+    FArrayDoubleHandle farray1 = FArrayDouble_from_data(data1, shape1, 1);
     LabelledMeasuredArrayHandle sh1 = LabelledMeasuredArray_from_farray(
-        farray1,
-        AcquisitionContext_create(
-            Connection_create_plunger_gate(String_wrap("A")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt()));
+        farray1, AcquisitionContext_create(
+                     Connection_create_plunger_gate(String_wrap("A")),
+                     INSTRUMENT_VOLTMETER, SymbolUnit_create_volt()));
     ListLabelledMeasuredArrayHandle lch =
         ListLabelledMeasuredArray_create_empty();
     ListLabelledMeasuredArray_push_back(lch, sh1);
-    StringHandle         msg          = String_wrap("msg");
-    StringHandle         name         = String_wrap("measurement");
-    DomainHandle         domain       = Domain_create(0, 1.0, true, true);
-    StringHandle         default_name = String_wrap("A");
-    InstrumentPortHandle port =
-        InstrumentPort_create_knob(default_name,
-                                   Connection_create_barrier_gate(default_name),
-                                   InstrumentTypes_voltmeter(),
-                                   SymbolUnit_create_volt(),
-                                   String_wrap(""));
+    StringHandle msg = String_wrap("msg");
+    StringHandle name = String_wrap("measurement");
+    DomainHandle domain = Domain_create(0, 1.0, true, true);
+    StringHandle default_name = String_wrap("A");
+    StringHandle instrument = String_wrap("inst");
+    InstrumentPortHandle port = InstrumentPort_create_knob(
+        default_name, instrument, Connection_create_barrier_gate(default_name),
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap(""));
     InstrumentPortHandle getter = InstrumentPort_create_meter(
-        String_wrap("ohm1"),
-        Connection_create_ohmic(String_wrap("ohm1")),
-        InstrumentTypes_amnmeter(),
-        SymbolUnit_create_ampere(),
-        String_wrap(""));
+        String_wrap("ohm1"), instrument,
+        Connection_create_ohmic(String_wrap("ohm1")), INSTRUMENT_AMNMETER,
+        SymbolUnit_create_ampere(), String_wrap(""));
     ListLabelledDomainHandle domain_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
         domain_list, LabelledDomain_create_from_port_and_domain(port, domain));
@@ -47,24 +41,24 @@ class PairMeasurementResponseMeasurementRequestTest : public ::testing::Test {
     AxesCoupledLabelledDomain_push_back(
         axes, CoupledLabelledDomain_create(labelled_domain));
     AxesMapStringBoolHandle increasing = AxesMapStringBool_create_empty();
-    MapStringBoolHandle     map        = MapStringBool_create_empty();
+    MapStringBoolHandle map = MapStringBool_create_empty();
     MapStringBool_insert(map, default_name, true);
     AxesMapStringBool_push_back(increasing, map);
     AxesDiscretizerHandle discretizers = AxesDiscretizer_create_empty();
     AxesDiscretizer_push_back(discretizers,
                               Discretizer_create_cartesian_discretizer(0.1));
-    UnitSpaceHandle     unit_space = UnitSpace_create(discretizers, domain);
+    UnitSpaceHandle unit_space = UnitSpace_create(discretizers, domain);
     DiscreteSpaceHandle space =
         DiscreteSpace_create(unit_space, axes, increasing);
     ListPortTransformHandle transforms = ListPortTransform_create_empty();
-    ListStringHandle        labels     = ListString_create_empty();
+    ListStringHandle labels = ListString_create_empty();
     ListString_push_back(labels, String_wrap("x"));
     AnalyticFunctionHandle analytic =
         AnalyticFunction_create(labels, String_wrap("2x[0]+1"));
     PortTransformHandle pt = PortTransform_create(port, analytic);
     ListPortTransform_push_back(transforms, pt);
 
-    WaveformHandle     waveform  = Waveform_create(space, transforms);
+    WaveformHandle waveform = Waveform_create(space, transforms);
     ListWaveformHandle waveforms = ListWaveform_create_empty();
     ListWaveform_push_back(waveforms, waveform);
 
@@ -78,8 +72,8 @@ class PairMeasurementResponseMeasurementRequestTest : public ::testing::Test {
     LabelledDomainHandle time_domain = LabelledDomain_create_from_port(
         0.0, 1.0, InstrumentPort_create_execution_clock(), true, true);
 
-    t2 = MeasurementRequest_create(
-        msg, name, waveforms, getters, meter_transforms, time_domain);
+    t2 = MeasurementRequest_create(msg, waveforms, getters, meter_transforms,
+                                   time_domain);
     t1 = MeasurementResponse_create(
         LabelledArraysLabelledMeasuredArray_create(lch));
     pair1 = PairMeasurementResponseMeasurementRequest_create(t1, t2);
@@ -93,8 +87,8 @@ class PairMeasurementResponseMeasurementRequestTest : public ::testing::Test {
   }
   PairMeasurementResponseMeasurementRequestHandle pair1;
   PairMeasurementResponseMeasurementRequestHandle pair2;
-  MeasurementResponseHandle                       t1;
-  MeasurementRequestHandle                        t2;
+  MeasurementResponseHandle t1;
+  MeasurementRequestHandle t2;
 };
 
 TEST_F(PairMeasurementResponseMeasurementRequestTest, CreateDestroy) {
@@ -142,7 +136,7 @@ TEST_F(PairMeasurementResponseMeasurementRequestTest, Equality) {
 
 TEST_F(PairMeasurementResponseMeasurementRequestTest, ToJsonFromJson) {
   auto json = PairMeasurementResponseMeasurementRequest_to_json_string(pair1);
-  auto p2   = PairMeasurementResponseMeasurementRequest_from_json_string(json);
+  auto p2 = PairMeasurementResponseMeasurementRequest_from_json_string(json);
   EXPECT_TRUE(PairMeasurementResponseMeasurementRequest_equal(pair1, p2));
   PairMeasurementResponseMeasurementRequest_destroy(p2);
   set_last_error(0, nullptr);

@@ -3,24 +3,22 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
 #include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes_c_api.h"
 #include "falcon-core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
 #include "falcon-core/math/AnalyticFunction_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class PortTransformTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
-    port   = InstrumentPort_create_port(String_wrap("P1"),
-                                      NULL,
-                                      InstrumentTypes_voltmeter(),
-                                      SymbolUnit_create_volt(),
-                                      String_wrap(""));
+    port = InstrumentPort_create_port(
+        String_wrap("P1"), String_wrap("inst"), SCOPE_LOCAL, ACCESS_READ,
+        INSTRUMENT_CHARACTERISTIC_NONE, PORT_TYPE_SETTING, nullptr,
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap(""));
     labels = ListString_create_empty();
     ListString_push_back(labels, String_wrap("x"));
     transform = AnalyticFunction_create(labels, String_wrap("2x[0] +1"));
-    pt        = PortTransform_create(port, transform);
-    pt2       = PortTransform_create_constant_transform(port, 5.0);
+    pt = PortTransform_create(port, transform);
+    pt2 = PortTransform_create_constant_transform(port, 5.0);
   }
   void TearDown() override {
     ListString_destroy(labels);
@@ -29,11 +27,11 @@ class PortTransformTest : public ::testing::Test {
     InstrumentPort_destroy(port);
     AnalyticFunction_destroy(transform);
   }
-  InstrumentPortHandle   port;
-  ListStringHandle       labels;
+  InstrumentPortHandle port;
+  ListStringHandle labels;
   AnalyticFunctionHandle transform;
-  PortTransformHandle    pt;
-  PortTransformHandle    pt2;
+  PortTransformHandle pt;
+  PortTransformHandle pt2;
 };
 
 TEST_F(PortTransformTest, CreateDestroy) {
@@ -85,7 +83,7 @@ TEST_F(PortTransformTest, Evaluate) {
   MapStringDouble_insert(args, String_wrap("x"), 2.0);
 
   double result = PortTransform_evaluate(pt, args, 0.0);
-  EXPECT_DOUBLE_EQ(result, 2.0 * 2.0 + 1.0);  // f(x) = 2x + 1
+  EXPECT_DOUBLE_EQ(result, 2.0 * 2.0 + 1.0); // f(x) = 2x + 1
 
   auto arr = PortTransform_evaluate_arraywise(pt, args, 1.0, 3.0);
   EXPECT_NE(arr, nullptr);

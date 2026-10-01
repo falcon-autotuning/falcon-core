@@ -4,27 +4,28 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/FArrayDouble_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/arrays/ControlArray_c_api.h"
 #include "falcon-core/math/arrays/LabelledControlArray_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class LabelledControlArrayTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     shape[0] = 6;
-    data[0]  = 1.0;
-    data[1]  = 2.0;
-    data[2]  = 3.0;
-    data[3]  = 4.0;
-    data[4]  = 5.0;
-    data[5]  = 6.0;
-    fa       = FArrayDouble_from_data(data, shape, 1);
-    ca       = ControlArray_from_data(data, shape, 1);
-    conn     = Connection_create_barrier_gate(String_wrap("GATE1"));
-    label    = AcquisitionContext_create(
-        conn, InstrumentTypes_voltmeter(), SymbolUnit_create_volt());
-    lca  = LabelledControlArray_from_farray(fa, label);
+    data[0] = 1.0;
+    data[1] = 2.0;
+    data[2] = 3.0;
+    data[3] = 4.0;
+    data[4] = 5.0;
+    data[5] = 6.0;
+    fa = FArrayDouble_from_data(data, shape, 1);
+    ca = ControlArray_from_data(data, shape, 1);
+    conn = Connection_create_barrier_gate(String_wrap("GATE1"));
+    label = AcquisitionContext_create(conn, INSTRUMENT_VOLTMETER,
+                                      SymbolUnit_create_volt());
+    lca = LabelledControlArray_from_farray(fa, label);
     lca2 = LabelledControlArray_from_control_array(ca, label);
   }
   void TearDown() override {
@@ -34,12 +35,12 @@ class LabelledControlArrayTest : public ::testing::Test {
     ControlArray_destroy(ca);
     AcquisitionContext_destroy(label);
   }
-  double                     data[6];
-  size_t                     shape[1];
-  ConnectionHandle           conn;
-  FArrayDoubleHandle         fa;
-  ControlArrayHandle         ca;
-  AcquisitionContextHandle   label;
+  double data[6];
+  size_t shape[1];
+  ConnectionHandle conn;
+  FArrayDoubleHandle fa;
+  ControlArrayHandle ca;
+  AcquisitionContextHandle label;
   LabelledControlArrayHandle lca;
   LabelledControlArrayHandle lca2;
 };
@@ -61,10 +62,10 @@ TEST_F(LabelledControlArrayTest, CreateDestroy) {
 }
 
 TEST_F(LabelledControlArrayTest, Accessors) {
-  auto lbl   = LabelledControlArray_label(lca);
-  auto conn  = LabelledControlArray_connection(lca);
+  auto lbl = LabelledControlArray_label(lca);
+  auto conn = LabelledControlArray_connection(lca);
   auto instr = LabelledControlArray_instrument_type(lca);
-  auto unit  = LabelledControlArray_units(lca);
+  auto unit = LabelledControlArray_units(lca);
   EXPECT_EQ(LabelledControlArray_size(lca), 6);
   EXPECT_EQ(LabelledControlArray_dimension(lca), 1);
   size_t out_shape[1];
@@ -73,7 +74,6 @@ TEST_F(LabelledControlArrayTest, Accessors) {
   EXPECT_EQ(LabelledControlArray_data(lca, out_data, 6), 6);
   AcquisitionContext_destroy(lbl);
   Connection_destroy(conn);
-  String_destroy(instr);
   SymbolUnit_destroy(unit);
   set_last_error(0, nullptr);
   LabelledControlArray_label(nullptr);
@@ -106,9 +106,9 @@ TEST_F(LabelledControlArrayTest, Addition) {
   LabelledControlArray_plus_equals_double(lca, 1.0);
   LabelledControlArray_plus_equals_int(lca, 1);
   auto lca_plus_lca = LabelledControlArray_plus_control_array(lca, lca2);
-  auto lca_plus_fa  = LabelledControlArray_plus_farray(lca, fa);
-  auto lca_plus_d   = LabelledControlArray_plus_double(lca, 1.0);
-  auto lca_plus_i   = LabelledControlArray_plus_int(lca, 1);
+  auto lca_plus_fa = LabelledControlArray_plus_farray(lca, fa);
+  auto lca_plus_d = LabelledControlArray_plus_double(lca, 1.0);
+  auto lca_plus_i = LabelledControlArray_plus_int(lca, 1);
   LabelledControlArray_destroy(lca_plus_lca);
   LabelledControlArray_destroy(lca_plus_fa);
   LabelledControlArray_destroy(lca_plus_d);
@@ -121,9 +121,9 @@ TEST_F(LabelledControlArrayTest, Subtraction) {
   LabelledControlArray_minus_equals_double(lca, 1.0);
   LabelledControlArray_minus_equals_int(lca, 1);
   auto lca_minus_lca = LabelledControlArray_minus_control_array(lca, lca2);
-  auto lca_minus_fa  = LabelledControlArray_minus_farray(lca, fa);
-  auto lca_minus_d   = LabelledControlArray_minus_double(lca, 1.0);
-  auto lca_minus_i   = LabelledControlArray_minus_int(lca, 1);
+  auto lca_minus_fa = LabelledControlArray_minus_farray(lca, fa);
+  auto lca_minus_d = LabelledControlArray_minus_double(lca, 1.0);
+  auto lca_minus_i = LabelledControlArray_minus_int(lca, 1);
   LabelledControlArray_destroy(lca_minus_lca);
   LabelledControlArray_destroy(lca_minus_fa);
   LabelledControlArray_destroy(lca_minus_d);
@@ -160,12 +160,12 @@ TEST_F(LabelledControlArrayTest, MiscArithmeticOperators) {
   auto lca_abs = LabelledControlArray_abs(lca);
   LabelledControlArray_destroy(lca_abs);
 
-  auto lca_min_fa  = LabelledControlArray_min_farray(lca, fa);
+  auto lca_min_fa = LabelledControlArray_min_farray(lca, fa);
   auto lca_min_lca = LabelledControlArray_min_control_array(lca, lca2);
   LabelledControlArray_destroy(lca_min_fa);
   LabelledControlArray_destroy(lca_min_lca);
 
-  auto lca_max_fa  = LabelledControlArray_max_farray(lca, fa);
+  auto lca_max_fa = LabelledControlArray_max_farray(lca, fa);
   auto lca_max_lca = LabelledControlArray_max_control_array(lca, lca2);
   LabelledControlArray_destroy(lca_max_fa);
   LabelledControlArray_destroy(lca_max_lca);

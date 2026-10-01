@@ -1,29 +1,27 @@
-#include <gtest/gtest.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include <gtest/gtest.h>
 
 #include "falcon-core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 
 class PairInterpretationContextQuantityTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     ListMeasurementContextHandle axes_indp1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateA")),
-            InstrumentTypes_voltmeter()));
+        axes_indp1, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateA")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateB")),
-            InstrumentTypes_voltmeter()));
+        axes_dep1, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateB")),
+                       INSTRUMENT_VOLTMETER));
     t1 = InterpretationContext_create(AxesMeasurementContext_create(axes_indp1),
-                                      axes_dep1,
-                                      SymbolUnit_create_volt());
+                                      axes_dep1, SymbolUnit_create_volt());
     t2 = Quantity_create(1.0, SymbolUnit_create_volt());
     pair1 = PairInterpretationContextQuantity_create(t1, t2);
     pair2 = PairInterpretationContextQuantity_create(t1, t2);
@@ -36,8 +34,8 @@ class PairInterpretationContextQuantityTest : public ::testing::Test {
   }
   PairInterpretationContextQuantityHandle pair1;
   PairInterpretationContextQuantityHandle pair2;
-  InterpretationContextHandle             t1;
-  QuantityHandle                          t2;
+  InterpretationContextHandle t1;
+  QuantityHandle t2;
 };
 
 TEST_F(PairInterpretationContextQuantityTest, CreateDestroy) {
@@ -84,7 +82,7 @@ TEST_F(PairInterpretationContextQuantityTest, Equality) {
 
 TEST_F(PairInterpretationContextQuantityTest, ToJsonFromJson) {
   auto json = PairInterpretationContextQuantity_to_json_string(pair1);
-  auto p2   = PairInterpretationContextQuantity_from_json_string(json);
+  auto p2 = PairInterpretationContextQuantity_from_json_string(json);
   EXPECT_TRUE(PairInterpretationContextQuantity_equal(pair1, p2));
   PairInterpretationContextQuantity_destroy(p2);
   set_last_error(0, nullptr);

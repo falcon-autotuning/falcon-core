@@ -1,24 +1,26 @@
-#include <falcon-core/generic/ListPairInterpretationContextQuantity_c_api.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include <falcon-core/generic/ListPairInterpretationContextQuantity_c_api.h>
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class ListPairInterpretationContextQuantityTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(PairInterpretationContextQuantityHandle sh) {
     PairInterpretationContextQuantity_destroy(sh);
   }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<PairInterpretationContextQuantityHandle> created_strings;
-  PairInterpretationContextQuantityHandle              track_quantity(
-                   const PairInterpretationContextQuantityHandle& s) {
+  PairInterpretationContextQuantityHandle
+  track_quantity(const PairInterpretationContextQuantityHandle &s) {
     created_strings.push_back(s);
     return s;
   }
@@ -26,40 +28,34 @@ class ListPairInterpretationContextQuantityTest : public ::testing::Test {
     ListMeasurementContextHandle axes_indp1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateA")),
-            InstrumentTypes_voltmeter()));
+        axes_indp1, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateA")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep1 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep1,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateB")),
-            InstrumentTypes_voltmeter()));
+        axes_dep1, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateB")),
+                       INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_indp2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_indp2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateC")),
-            InstrumentTypes_voltmeter()));
+        axes_indp2, MeasurementContext_create(
+                        Connection_create_plunger_gate(String_wrap("gateC")),
+                        INSTRUMENT_VOLTMETER));
     ListMeasurementContextHandle axes_dep2 =
         ListMeasurementContext_create_empty();
     ListMeasurementContext_push_back(
-        axes_dep2,
-        MeasurementContext_create(
-            Connection_create_plunger_gate(String_wrap("gateD")),
-            InstrumentTypes_voltmeter()));
+        axes_dep2, MeasurementContext_create(
+                       Connection_create_plunger_gate(String_wrap("gateD")),
+                       INSTRUMENT_VOLTMETER));
     sh1 = track_quantity(PairInterpretationContextQuantity_create(
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp1),
-                                     axes_dep1,
-                                     SymbolUnit_create_volt()),
+                                     axes_dep1, SymbolUnit_create_volt()),
         Quantity_create(5.0, SymbolUnit_create_ampere())));
     sh2 = track_quantity(PairInterpretationContextQuantity_create(
         InterpretationContext_create(AxesMeasurementContext_create(axes_indp2),
-                                     axes_dep2,
-                                     SymbolUnit_create_volt()),
+                                     axes_dep2, SymbolUnit_create_volt()),
         Quantity_create(5.0, SymbolUnit_create_ampere())));
   }
   PairInterpretationContextQuantityHandle sh1;
@@ -83,7 +79,7 @@ TEST_F(ListPairInterpretationContextQuantityTest, FillValue) {
 }
 
 TEST_F(ListPairInterpretationContextQuantityTest, CreateFromArray) {
-  PairInterpretationContextQuantityHandle     arr[2] = {sh1, sh2};
+  PairInterpretationContextQuantityHandle arr[2] = {sh1, sh2};
   ListPairInterpretationContextQuantityHandle handle =
       ListPairInterpretationContextQuantity_create(arr, 2);
   EXPECT_EQ(ListPairInterpretationContextQuantity_size(handle), 2);
@@ -193,8 +189,8 @@ TEST_F(ListPairInterpretationContextQuantityTest, EqualNotEqualIntersection) {
 
 TEST_F(ListPairInterpretationContextQuantityTest, ToJsonFromJson) {
   PairInterpretationContextQuantityHandle arr[1] = {sh1};
-  auto handle  = ListPairInterpretationContextQuantity_create(arr, 1);
-  auto json    = ListPairInterpretationContextQuantity_to_json_string(handle);
+  auto handle = ListPairInterpretationContextQuantity_create(arr, 1);
+  auto json = ListPairInterpretationContextQuantity_to_json_string(handle);
   auto handle2 = ListPairInterpretationContextQuantity_from_json_string(json);
   EXPECT_TRUE(ListPairInterpretationContextQuantity_equal(handle, handle2));
   ListPairInterpretationContextQuantity_destroy(handle);
@@ -247,8 +243,8 @@ TEST_F(ListPairInterpretationContextQuantityTest, CreateNullArray) {
 TEST_F(ListPairInterpretationContextQuantityTest, At) {
   PairInterpretationContextQuantityHandle arr[2] = {sh1, sh2};
   auto handle = ListPairInterpretationContextQuantity_create(arr, 2);
-  auto at0    = ListPairInterpretationContextQuantity_at(handle, 0);
-  auto at1    = ListPairInterpretationContextQuantity_at(handle, 1);
+  auto at0 = ListPairInterpretationContextQuantity_at(handle, 0);
+  auto at1 = ListPairInterpretationContextQuantity_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListPairInterpretationContextQuantity_destroy(handle);

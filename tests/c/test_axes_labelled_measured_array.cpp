@@ -5,40 +5,37 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/ListLabelledMeasuredArray_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/AxesLabelledMeasuredArray_c_api.h"
 #include "falcon-core/math/arrays/LabelledMeasuredArray_c_api.h"
 
 class AxesLabelledMeasuredArrayTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     shape2d[0] = 2;
     shape2d[1] = 3;
-    data2d[0]  = 1.0;
-    data2d[1]  = 2.0;
-    data2d[2]  = 3.0;
-    data2d[3]  = 1.0;
-    data2d[4]  = 2.0;
-    data2d[5]  = 3.0;
-    axes       = AxesLabelledMeasuredArray_create_empty();
+    data2d[0] = 1.0;
+    data2d[1] = 2.0;
+    data2d[2] = 3.0;
+    data2d[3] = 1.0;
+    data2d[4] = 2.0;
+    data2d[5] = 3.0;
+    axes = AxesLabelledMeasuredArray_create_empty();
 
     auto pre_item1 = MeasuredArray_from_data(data2d, shape2d, 2);
     auto pre_item2 = MeasuredArray_from_data(data2d, shape2d, 2);
 
     ca1d =
         track_labelled_control_array(LabelledMeasuredArray_from_measured_array(
-            pre_item1,
-            AcquisitionContext_create(
-                Connection_create_plunger_gate(String_wrap("A")),
-                InstrumentTypes_voltmeter(),
-                SymbolUnit_create_volt())));
+            pre_item1, AcquisitionContext_create(
+                           Connection_create_plunger_gate(String_wrap("A")),
+                           INSTRUMENT_VOLTMETER, SymbolUnit_create_volt())));
 
     ca2d =
         track_labelled_control_array(LabelledMeasuredArray_from_measured_array(
-            pre_item2,
-            AcquisitionContext_create(
-                Connection_create_plunger_gate(String_wrap("A")),
-                InstrumentTypes_voltmeter(),
-                SymbolUnit_create_volt())));
+            pre_item2, AcquisitionContext_create(
+                           Connection_create_plunger_gate(String_wrap("A")),
+                           INSTRUMENT_VOLTMETER, SymbolUnit_create_volt())));
 
     AxesLabelledMeasuredArray_push_back(axes, ca1d);
     AxesLabelledMeasuredArray_push_back(axes, ca2d);
@@ -58,7 +55,8 @@ class AxesLabelledMeasuredArrayTest : public ::testing::Test {
         owned_by_axes = true;
       if (axes2 && AxesLabelledMeasuredArray_contains(axes2, h))
         owned_by_axes = true;
-      if (!owned_by_axes) remaining.push_back(h);
+      if (!owned_by_axes)
+        remaining.push_back(h);
     }
 
     if (axes) {
@@ -76,23 +74,23 @@ class AxesLabelledMeasuredArrayTest : public ::testing::Test {
     created_items.clear();
   }
 
-  LabelledMeasuredArrayHandle track_labelled_control_array(
-      LabelledMeasuredArrayHandle h) {
+  LabelledMeasuredArrayHandle
+  track_labelled_control_array(LabelledMeasuredArrayHandle h) {
     created_items.push_back(h);
     return h;
   }
 
-  AxesLabelledMeasuredArrayHandle axes  = nullptr;
+  AxesLabelledMeasuredArrayHandle axes = nullptr;
   AxesLabelledMeasuredArrayHandle axes2 = nullptr;
-  LabelledMeasuredArrayHandle     rawbuffer[2];
-  double                          data2d[6];
-  size_t                          shape2d[2];
-  double                          data1d[6];
-  size_t                          shape1d[1];
-  LabelledMeasuredArrayHandle     ca2d;
-  LabelledMeasuredArrayHandle     ca1d;
-  LabelledMeasuredArrayHandle     ca2d_2;
-  FArrayDoubleHandle              fa2d;
+  LabelledMeasuredArrayHandle rawbuffer[2];
+  double data2d[6];
+  size_t shape2d[2];
+  double data1d[6];
+  size_t shape1d[1];
+  LabelledMeasuredArrayHandle ca2d;
+  LabelledMeasuredArrayHandle ca1d;
+  LabelledMeasuredArrayHandle ca2d_2;
+  FArrayDoubleHandle fa2d;
 
   std::vector<LabelledMeasuredArrayHandle> created_items;
 };
@@ -106,7 +104,7 @@ TEST_F(AxesLabelledMeasuredArrayTest, CreateDestroy) {
   set_last_error(0, nullptr);
   AxesLabelledMeasuredArray_destroy(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
-  LabelledMeasuredArrayHandle     arr[2] = {ca2d, ca1d};
+  LabelledMeasuredArrayHandle arr[2] = {ca2d, ca1d};
   ListLabelledMeasuredArrayHandle handle =
       ListLabelledMeasuredArray_create(arr, 2);
   EXPECT_NO_THROW(AxesLabelledMeasuredArray_create(handle));
@@ -115,13 +113,12 @@ TEST_F(AxesLabelledMeasuredArrayTest, CreateDestroy) {
 
 TEST_F(AxesLabelledMeasuredArrayTest, AccessorsAndMutators) {
   EXPECT_EQ(AxesLabelledMeasuredArray_size(axes), 2u);
-  LabelledMeasuredArrayHandle     arr[2] = {ca2d, ca1d};
+  LabelledMeasuredArrayHandle arr[2] = {ca2d, ca1d};
   ListLabelledMeasuredArrayHandle handle =
       ListLabelledMeasuredArray_create(arr, 2);
   // ListLabelledMeasuredArrayHandle out1[1] = {handle};
   auto label = AcquisitionContext_create(
-      Connection_create_plunger_gate(String_wrap("A")),
-      InstrumentTypes_voltmeter(),
+      Connection_create_plunger_gate(String_wrap("A")), INSTRUMENT_VOLTMETER,
       SymbolUnit_create_volt());
   auto lca = LabelledMeasuredArray_from_measured_array(
       MeasuredArray_from_data(data2d, shape2d, 2), label);
@@ -154,7 +151,7 @@ TEST_F(AxesLabelledMeasuredArrayTest, SerializationRoundTrip) {
   AxesLabelledMeasuredArray_to_json_string(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   EXPECT_NO_THROW({
-    auto json   = AxesLabelledMeasuredArray_to_json_string(axes);
+    auto json = AxesLabelledMeasuredArray_to_json_string(axes);
     auto loaded = AxesLabelledMeasuredArray_from_json_string(json);
     AxesLabelledMeasuredArray_destroy(loaded);
     String_destroy(json);

@@ -3,47 +3,43 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/ListPortTransform_c_api.h"
 #include "falcon-core/instrument_interfaces/Waveform_c_api.h"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/discrete_spaces/Discretizer_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 class WaveformTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
-    domain       = Domain_create(0, 1.0, true, true);
+    domain = Domain_create(0, 1.0, true, true);
     default_name = String_wrap("A");
-    port =
-        InstrumentPort_create_knob(default_name,
-                                   Connection_create_barrier_gate(default_name),
-                                   InstrumentTypes_voltmeter(),
-                                   SymbolUnit_create_volt(),
-                                   String_wrap(""));
+    instrument = String_wrap("inst");
+    port = InstrumentPort_create_knob(
+        default_name, instrument, Connection_create_barrier_gate(default_name),
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap(""));
     getter = InstrumentPort_create_meter(
-        String_wrap("ohm1"),
-        Connection_create_ohmic(String_wrap("ohm1")),
-        InstrumentTypes_amnmeter(),
-        SymbolUnit_create_ampere(),
-        String_wrap(""));
+        String_wrap("ohm1"), instrument,
+        Connection_create_ohmic(String_wrap("ohm1")), INSTRUMENT_AMNMETER,
+        SymbolUnit_create_ampere(), String_wrap(""));
     domain_list = ListLabelledDomain_create_empty();
     ListLabelledDomain_push_back(
         domain_list, LabelledDomain_create_from_port_and_domain(port, domain));
     labelled_domain = CoupledLabelledDomain_create(domain_list);
-    axes            = AxesCoupledLabelledDomain_create_empty();
+    axes = AxesCoupledLabelledDomain_create_empty();
     AxesCoupledLabelledDomain_push_back(
         axes, CoupledLabelledDomain_create(labelled_domain));
     increasing = AxesMapStringBool_create_empty();
-    map        = MapStringBool_create_empty();
+    map = MapStringBool_create_empty();
     MapStringBool_insert(map, default_name, true);
     AxesMapStringBool_push_back(increasing, map);
     discretizers = AxesDiscretizer_create_empty();
     AxesDiscretizer_push_back(discretizers,
                               Discretizer_create_cartesian_discretizer(0.1));
     unit_space = UnitSpace_create(discretizers, domain);
-    space      = DiscreteSpace_create(unit_space, axes, increasing);
+    space = DiscreteSpace_create(unit_space, axes, increasing);
     transforms = ListPortTransform_create_empty();
-    labels     = ListString_create_empty();
+    labels = ListString_create_empty();
     ListString_push_back(labels, String_wrap("x"));
     analytic = AnalyticFunction_create(labels, String_wrap("2x[0]+1"));
-    pt       = PortTransform_create(port, analytic);
+    pt = PortTransform_create(port, analytic);
     ListPortTransform_push_back(transforms, pt);
 
     // For cartesianwaveform
@@ -53,6 +49,7 @@ class WaveformTest : public ::testing::Test {
   void TearDown() override {
     MapStringBool_destroy(map);
     String_destroy(default_name);
+    String_destroy(instrument);
     ListLabelledDomain_destroy(domain_list);
     CoupledLabelledDomain_destroy(labelled_domain);
     DiscreteSpace_destroy(space);
@@ -69,23 +66,24 @@ class WaveformTest : public ::testing::Test {
     Domain_destroy(domain);
     InstrumentPort_destroy(getter);
   }
-  MapStringBoolHandle             map;
-  InstrumentPortHandle            getter;
-  StringHandle                    default_name;
-  ListLabelledDomainHandle        domain_list;
-  CoupledLabelledDomainHandle     labelled_domain;
-  DiscreteSpaceHandle             space;
-  UnitSpaceHandle                 unit_space;
-  AxesDiscretizerHandle           discretizers;
-  ListPortTransformHandle         transforms;
-  PortTransformHandle             pt;
-  InstrumentPortHandle            port;
-  ListStringHandle                labels;
-  AnalyticFunctionHandle          analytic;
-  AxesIntHandle                   divisions;
+  MapStringBoolHandle map;
+  InstrumentPortHandle getter;
+  StringHandle default_name;
+  StringHandle instrument = nullptr;
+  ListLabelledDomainHandle domain_list;
+  CoupledLabelledDomainHandle labelled_domain;
+  DiscreteSpaceHandle space;
+  UnitSpaceHandle unit_space;
+  AxesDiscretizerHandle discretizers;
+  ListPortTransformHandle transforms;
+  PortTransformHandle pt;
+  InstrumentPortHandle port;
+  ListStringHandle labels;
+  AnalyticFunctionHandle analytic;
+  AxesIntHandle divisions;
   AxesCoupledLabelledDomainHandle axes;
-  AxesMapStringBoolHandle         increasing;
-  DomainHandle                    domain;
+  AxesMapStringBoolHandle increasing;
+  DomainHandle domain;
 };
 
 TEST_F(WaveformTest, CreateDestroy) {
@@ -102,42 +100,42 @@ TEST_F(WaveformTest, CreateDestroy) {
   Waveform_destroy(nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
-  auto w2 = Waveform_create_cartesian_waveform(
-      divisions, axes, increasing, transforms, domain);
+  auto w2 = Waveform_create_cartesian_waveform(divisions, axes, increasing,
+                                               transforms, domain);
   Waveform_destroy(w2);
 
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform(
-      nullptr, axes, increasing, transforms, domain);
+  Waveform_create_cartesian_waveform(nullptr, axes, increasing, transforms,
+                                     domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform(
-      divisions, nullptr, increasing, transforms, domain);
+  Waveform_create_cartesian_waveform(divisions, nullptr, increasing, transforms,
+                                     domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform(
-      divisions, axes, nullptr, transforms, domain);
+  Waveform_create_cartesian_waveform(divisions, axes, nullptr, transforms,
+                                     domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform(
-      divisions, axes, increasing, nullptr, domain);
+  Waveform_create_cartesian_waveform(divisions, axes, increasing, nullptr,
+                                     domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform(
-      divisions, axes, increasing, transforms, nullptr);
+  Waveform_create_cartesian_waveform(divisions, axes, increasing, transforms,
+                                     nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
-  auto w3 = Waveform_create_cartesian_identity_waveform(
-      divisions, axes, increasing, domain);
+  auto w3 = Waveform_create_cartesian_identity_waveform(divisions, axes,
+                                                        increasing, domain);
   Waveform_destroy(w3);
 
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_identity_waveform(
-      nullptr, axes, increasing, domain);
+  Waveform_create_cartesian_identity_waveform(nullptr, axes, increasing,
+                                              domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_identity_waveform(
-      divisions, nullptr, increasing, domain);
+  Waveform_create_cartesian_identity_waveform(divisions, nullptr, increasing,
+                                              domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   Waveform_create_cartesian_identity_waveform(divisions, axes, nullptr, domain);
@@ -292,7 +290,7 @@ TEST_F(WaveformTest, EqualityIntersection) {
 }
 
 TEST_F(WaveformTest, ToJsonFromJson) {
-  auto w    = Waveform_create(space, transforms);
+  auto w = Waveform_create(space, transforms);
   auto json = Waveform_to_json_string(w);
   EXPECT_NE(json, nullptr);
 
@@ -319,14 +317,11 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
       AxesCoupledLabelledDomain_create_empty();
   AxesCoupledLabelledDomain_push_back(
       axes2D, CoupledLabelledDomain_create(labelled_domain));
-  StringHandle         other_name = String_wrap("B");
-  StringHandle         desc1      = String_wrap("");
-  InstrumentPortHandle other_port =
-      InstrumentPort_create_knob(other_name,
-                                 Connection_create_barrier_gate(default_name),
-                                 InstrumentTypes_voltmeter(),
-                                 SymbolUnit_create_volt(),
-                                 desc1);
+  StringHandle other_name = String_wrap("B");
+  StringHandle desc1 = String_wrap("");
+  InstrumentPortHandle other_port = InstrumentPort_create_knob(
+      other_name, instrument, Connection_create_barrier_gate(default_name),
+      INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), desc1);
   ListLabelledDomainHandle other_domain_list =
       ListLabelledDomain_create_empty();
   ListLabelledDomain_push_back(
@@ -347,24 +342,24 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   Waveform_destroy(w2d);
 
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform_2D(
-      nullptr, axes2D, increasing2D, transforms, domain);
+  Waveform_create_cartesian_waveform_2D(nullptr, axes2D, increasing2D,
+                                        transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform_2D(
-      divisions2D, nullptr, increasing2D, transforms, domain);
+  Waveform_create_cartesian_waveform_2D(divisions2D, nullptr, increasing2D,
+                                        transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform_2D(
-      divisions2D, axes2D, nullptr, transforms, domain);
+  Waveform_create_cartesian_waveform_2D(divisions2D, axes2D, nullptr,
+                                        transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform_2D(
-      divisions2D, axes2D, increasing2D, nullptr, domain);
+  Waveform_create_cartesian_waveform_2D(divisions2D, axes2D, increasing2D,
+                                        nullptr, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform_2D(
-      divisions2D, axes2D, increasing2D, transforms, nullptr);
+  Waveform_create_cartesian_waveform_2D(divisions2D, axes2D, increasing2D,
+                                        transforms, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
   // 2D identity waveform creation/destruction
@@ -373,41 +368,41 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   Waveform_destroy(w2d_id);
 
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_identity_waveform_2D(
-      nullptr, axes2D, increasing2D, domain);
+  Waveform_create_cartesian_identity_waveform_2D(nullptr, axes2D, increasing2D,
+                                                 domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_identity_waveform_2D(
-      divisions2D, nullptr, increasing2D, domain);
+  Waveform_create_cartesian_identity_waveform_2D(divisions2D, nullptr,
+                                                 increasing2D, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_identity_waveform_2D(
-      divisions2D, axes2D, nullptr, domain);
+  Waveform_create_cartesian_identity_waveform_2D(divisions2D, axes2D, nullptr,
+                                                 domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_identity_waveform_2D(
-      divisions2D, axes2D, increasing2D, nullptr);
+  Waveform_create_cartesian_identity_waveform_2D(divisions2D, axes2D,
+                                                 increasing2D, nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
   // 1D waveform creation/destruction
-  auto w1d = Waveform_create_cartesian_waveform_1D(
-      2, labelled_domain, map, transforms, domain);
+  auto w1d = Waveform_create_cartesian_waveform_1D(2, labelled_domain, map,
+                                                   transforms, domain);
   Waveform_destroy(w1d);
 
   set_last_error(0, nullptr);
   Waveform_create_cartesian_waveform_1D(2, nullptr, map, transforms, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform_1D(
-      2, labelled_domain, nullptr, transforms, domain);
+  Waveform_create_cartesian_waveform_1D(2, labelled_domain, nullptr, transforms,
+                                        domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform_1D(
-      2, labelled_domain, map, nullptr, domain);
+  Waveform_create_cartesian_waveform_1D(2, labelled_domain, map, nullptr,
+                                        domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_waveform_1D(
-      2, labelled_domain, map, transforms, nullptr);
+  Waveform_create_cartesian_waveform_1D(2, labelled_domain, map, transforms,
+                                        nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
 
   // 1D identity waveform creation/destruction
@@ -419,12 +414,12 @@ TEST_F(WaveformTest, CartesianWaveformVariants) {
   Waveform_create_cartesian_identity_waveform_1D(2, nullptr, map, domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_identity_waveform_1D(
-      2, labelled_domain, nullptr, domain);
+  Waveform_create_cartesian_identity_waveform_1D(2, labelled_domain, nullptr,
+                                                 domain);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  Waveform_create_cartesian_identity_waveform_1D(
-      2, labelled_domain, map, nullptr);
+  Waveform_create_cartesian_identity_waveform_1D(2, labelled_domain, map,
+                                                 nullptr);
   EXPECT_EQ(get_last_error_code(), 1);
   String_destroy(other_name);
   String_destroy(desc1);

@@ -1,31 +1,33 @@
-#include <falcon-core/generic/ListMeasurementContext_c_api.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include <falcon-core/generic/ListMeasurementContext_c_api.h>
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
 class ListMeasurementContextTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(MeasurementContextHandle sh) {
     MeasurementContext_destroy(sh);
   }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<MeasurementContextHandle> created_strings;
-  MeasurementContextHandle track_quantity(const MeasurementContextHandle& s) {
+  MeasurementContextHandle track_quantity(const MeasurementContextHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
     sh1 = track_quantity(MeasurementContext_create(
         Connection_create_plunger_gate(String_wrap("Conn1")),
-        InstrumentTypes_voltmeter()));
+        INSTRUMENT_VOLTMETER));
     sh2 = track_quantity(MeasurementContext_create(
         Connection_create_plunger_gate(String_wrap("Conn2")),
-        InstrumentTypes_voltmeter()));
+        INSTRUMENT_VOLTMETER));
   }
   MeasurementContextHandle sh1;
   MeasurementContextHandle sh2;
@@ -48,7 +50,7 @@ TEST_F(ListMeasurementContextTest, FillValue) {
 }
 
 TEST_F(ListMeasurementContextTest, CreateFromArray) {
-  MeasurementContextHandle     arr[2] = {sh1, sh2};
+  MeasurementContextHandle arr[2] = {sh1, sh2};
   ListMeasurementContextHandle handle = ListMeasurementContext_create(arr, 2);
   EXPECT_EQ(ListMeasurementContext_size(handle), 2);
   set_last_error(0, nullptr);
@@ -109,7 +111,7 @@ TEST_F(ListMeasurementContextTest, PushBackContainsIndex) {
 
 TEST_F(ListMeasurementContextTest, ItemsAt) {
   MeasurementContextHandle arr[2] = {sh1, sh2};
-  auto                     handle = ListMeasurementContext_create(arr, 2);
+  auto handle = ListMeasurementContext_create(arr, 2);
   MeasurementContextHandle out[2];
   EXPECT_EQ(ListMeasurementContext_items(handle, out, 2), 2);
   ListMeasurementContext_destroy(handle);
@@ -126,8 +128,8 @@ TEST_F(ListMeasurementContextTest, ItemsAt) {
 
 TEST_F(ListMeasurementContextTest, EqualNotEqualIntersection) {
   MeasurementContextHandle arr[2] = {sh1, sh2};
-  auto                     h1     = ListMeasurementContext_create(arr, 2);
-  auto                     h2     = ListMeasurementContext_create(arr, 2);
+  auto h1 = ListMeasurementContext_create(arr, 2);
+  auto h2 = ListMeasurementContext_create(arr, 2);
   EXPECT_TRUE(ListMeasurementContext_equal(h1, h2));
   EXPECT_FALSE(ListMeasurementContext_not_equal(h1, h2));
   auto h3 = ListMeasurementContext_intersection(h1, h2);
@@ -157,9 +159,9 @@ TEST_F(ListMeasurementContextTest, EqualNotEqualIntersection) {
 
 TEST_F(ListMeasurementContextTest, ToJsonFromJson) {
   MeasurementContextHandle arr[1] = {sh1};
-  auto                     handle = ListMeasurementContext_create(arr, 1);
-  auto                     json = ListMeasurementContext_to_json_string(handle);
-  auto handle2                  = ListMeasurementContext_from_json_string(json);
+  auto handle = ListMeasurementContext_create(arr, 1);
+  auto json = ListMeasurementContext_to_json_string(handle);
+  auto handle2 = ListMeasurementContext_from_json_string(json);
   EXPECT_TRUE(ListMeasurementContext_equal(handle, handle2));
   ListMeasurementContext_destroy(handle);
   ListMeasurementContext_destroy(handle2);
@@ -210,9 +212,9 @@ TEST_F(ListMeasurementContextTest, CreateNullArray) {
 
 TEST_F(ListMeasurementContextTest, At) {
   MeasurementContextHandle arr[2] = {sh1, sh2};
-  auto                     handle = ListMeasurementContext_create(arr, 2);
-  auto                     at0    = ListMeasurementContext_at(handle, 0);
-  auto                     at1    = ListMeasurementContext_at(handle, 1);
+  auto handle = ListMeasurementContext_create(arr, 2);
+  auto at0 = ListMeasurementContext_at(handle, 0);
+  auto at1 = ListMeasurementContext_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListMeasurementContext_destroy(handle);

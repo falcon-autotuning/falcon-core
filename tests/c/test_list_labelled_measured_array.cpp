@@ -1,44 +1,42 @@
-#include <falcon-core/generic/ListLabelledMeasuredArray_c_api.h>
 #include "falcon-core/generic/ErrorHandling_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
+#include <falcon-core/generic/ListLabelledMeasuredArray_c_api.h>
 #include <gtest/gtest.h>
 
 #include <stdexcept>
 #include <vector>
 
 class ListLabelledMeasuredArrayTest : public ::testing::Test {
- protected:
+protected:
   void destroy_string(LabelledMeasuredArrayHandle sh) {
     LabelledMeasuredArray_destroy(sh);
   }
   void TearDown() override {
-    for (auto sh : created_strings) destroy_string(sh);
+    for (auto sh : created_strings)
+      destroy_string(sh);
     created_strings.clear();
   }
   std::vector<LabelledMeasuredArrayHandle> created_strings;
-  LabelledMeasuredArrayHandle              track_quantity(
-                   const LabelledMeasuredArrayHandle& s) {
+  LabelledMeasuredArrayHandle
+  track_quantity(const LabelledMeasuredArrayHandle &s) {
     created_strings.push_back(s);
     return s;
   }
   void SetUp() override {
-    double             data1[3] = {1.0, 2.0, 3.0};
-    double             data2[3] = {4.0, 5.0, 6.0};
+    double data1[3] = {1.0, 2.0, 3.0};
+    double data2[3] = {4.0, 5.0, 6.0};
     FArrayDoubleHandle farray1 =
         FArrayDouble_from_data(data1, (size_t[]){3}, 1);
     FArrayDoubleHandle farray2 =
         FArrayDouble_from_data(data2, (size_t[]){3}, 1);
     sh1 = track_quantity(LabelledMeasuredArray_from_farray(
-        farray1,
-        AcquisitionContext_create(
-            Connection_create_plunger_gate(String_wrap("A")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt())));
+        farray1, AcquisitionContext_create(
+                     Connection_create_plunger_gate(String_wrap("A")),
+                     INSTRUMENT_VOLTMETER, SymbolUnit_create_volt())));
     sh2 = track_quantity(LabelledMeasuredArray_from_farray(
-        farray2,
-        AcquisitionContext_create(
-            Connection_create_plunger_gate(String_wrap("A")),
-            InstrumentTypes_voltmeter(),
-            SymbolUnit_create_volt())));
+        farray2, AcquisitionContext_create(
+                     Connection_create_plunger_gate(String_wrap("A")),
+                     INSTRUMENT_VOLTMETER, SymbolUnit_create_volt())));
   }
   LabelledMeasuredArrayHandle sh1;
   LabelledMeasuredArrayHandle sh2;
@@ -61,7 +59,7 @@ TEST_F(ListLabelledMeasuredArrayTest, FillValue) {
 }
 
 TEST_F(ListLabelledMeasuredArrayTest, CreateFromArray) {
-  LabelledMeasuredArrayHandle     arr[2] = {sh1, sh2};
+  LabelledMeasuredArrayHandle arr[2] = {sh1, sh2};
   ListLabelledMeasuredArrayHandle handle =
       ListLabelledMeasuredArray_create(arr, 2);
   EXPECT_EQ(ListLabelledMeasuredArray_size(handle), 2);
@@ -123,7 +121,7 @@ TEST_F(ListLabelledMeasuredArrayTest, PushBackContainsIndex) {
 
 TEST_F(ListLabelledMeasuredArrayTest, ItemsAt) {
   LabelledMeasuredArrayHandle arr[2] = {sh1, sh2};
-  auto                        handle = ListLabelledMeasuredArray_create(arr, 2);
+  auto handle = ListLabelledMeasuredArray_create(arr, 2);
   LabelledMeasuredArrayHandle out[2];
   EXPECT_EQ(ListLabelledMeasuredArray_items(handle, out, 2), 2);
   ListLabelledMeasuredArray_destroy(handle);
@@ -140,8 +138,8 @@ TEST_F(ListLabelledMeasuredArrayTest, ItemsAt) {
 
 TEST_F(ListLabelledMeasuredArrayTest, EqualNotEqualIntersection) {
   LabelledMeasuredArrayHandle arr[2] = {sh1, sh2};
-  auto                        h1     = ListLabelledMeasuredArray_create(arr, 2);
-  auto                        h2     = ListLabelledMeasuredArray_create(arr, 2);
+  auto h1 = ListLabelledMeasuredArray_create(arr, 2);
+  auto h2 = ListLabelledMeasuredArray_create(arr, 2);
   EXPECT_TRUE(ListLabelledMeasuredArray_equal(h1, h2));
   EXPECT_FALSE(ListLabelledMeasuredArray_not_equal(h1, h2));
   auto h3 = ListLabelledMeasuredArray_intersection(h1, h2);
@@ -171,8 +169,8 @@ TEST_F(ListLabelledMeasuredArrayTest, EqualNotEqualIntersection) {
 
 TEST_F(ListLabelledMeasuredArrayTest, ToJsonFromJson) {
   LabelledMeasuredArrayHandle arr[1] = {sh1};
-  auto                        handle = ListLabelledMeasuredArray_create(arr, 1);
-  auto json    = ListLabelledMeasuredArray_to_json_string(handle);
+  auto handle = ListLabelledMeasuredArray_create(arr, 1);
+  auto json = ListLabelledMeasuredArray_to_json_string(handle);
   auto handle2 = ListLabelledMeasuredArray_from_json_string(json);
   EXPECT_TRUE(ListLabelledMeasuredArray_equal(handle, handle2));
   ListLabelledMeasuredArray_destroy(handle);
@@ -224,9 +222,9 @@ TEST_F(ListLabelledMeasuredArrayTest, CreateNullArray) {
 
 TEST_F(ListLabelledMeasuredArrayTest, At) {
   LabelledMeasuredArrayHandle arr[2] = {sh1, sh2};
-  auto                        handle = ListLabelledMeasuredArray_create(arr, 2);
-  auto                        at0    = ListLabelledMeasuredArray_at(handle, 0);
-  auto                        at1    = ListLabelledMeasuredArray_at(handle, 1);
+  auto handle = ListLabelledMeasuredArray_create(arr, 2);
+  auto at0 = ListLabelledMeasuredArray_at(handle, 0);
+  auto at1 = ListLabelledMeasuredArray_at(handle, 1);
   destroy_string(at0);
   destroy_string(at1);
   ListLabelledMeasuredArray_destroy(handle);

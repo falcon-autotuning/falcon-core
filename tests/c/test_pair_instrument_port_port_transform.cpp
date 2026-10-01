@@ -3,19 +3,17 @@
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/PairInstrumentPortPortTransform_c_api.h"
 #include "falcon-core/generic/String_c_api.h"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
 
 class PairInstrumentPortPortTransformTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     t1 = InstrumentPort_create_knob(
-        String_wrap("A"),
+        String_wrap("A"), String_wrap("inst"),
         Connection_create_plunger_gate(String_wrap("gate1")),
-        InstrumentTypes_voltmeter(),
-        SymbolUnit_create_volt(),
-        String_wrap(""));
-    t2    = PortTransform_create(t1, AnalyticFunction_create_identity());
+        INSTRUMENT_VOLTMETER, SymbolUnit_create_volt(), String_wrap(""));
+    t2 = PortTransform_create(t1, AnalyticFunction_create_identity());
     pair1 = PairInstrumentPortPortTransform_create(t1, t2);
     pair2 = PairInstrumentPortPortTransform_create(t1, t2);
   }
@@ -27,8 +25,8 @@ class PairInstrumentPortPortTransformTest : public ::testing::Test {
   }
   PairInstrumentPortPortTransformHandle pair1;
   PairInstrumentPortPortTransformHandle pair2;
-  InstrumentPortHandle                  t1;
-  PortTransformHandle                   t2;
+  InstrumentPortHandle t1;
+  PortTransformHandle t2;
 };
 
 TEST_F(PairInstrumentPortPortTransformTest, CreateDestroy) {
@@ -75,7 +73,7 @@ TEST_F(PairInstrumentPortPortTransformTest, Equality) {
 
 TEST_F(PairInstrumentPortPortTransformTest, ToJsonFromJson) {
   auto json = PairInstrumentPortPortTransform_to_json_string(pair1);
-  auto p2   = PairInstrumentPortPortTransform_from_json_string(json);
+  auto p2 = PairInstrumentPortPortTransform_from_json_string(json);
   EXPECT_TRUE(PairInstrumentPortPortTransform_equal(pair1, p2));
   PairInstrumentPortPortTransform_destroy(p2);
   set_last_error(0, nullptr);

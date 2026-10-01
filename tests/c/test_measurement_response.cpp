@@ -4,24 +4,25 @@
 #include "falcon-core/communications/messages/MeasurementResponse_c_api.h"
 #include "falcon-core/generic/ErrorHandling_c_api.h"
 #include "falcon-core/generic/FArrayDouble_c_api.h"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/math/arrays/LabelledMeasuredArray_c_api.h"
 
 class MeasurementResponseTest : public ::testing::Test {
- protected:
+protected:
   void SetUp() override {
     shape_arr[0] = 2;
     shape_arr[1] = 2;
-    zeros        = FArrayDouble_from_shape(shape_arr, 2);
-    conn         = Connection_create_plunger_gate(String_wrap("plung"));
-    label        = AcquisitionContext_create(
-        conn, InstrumentTypes_voltmeter(), SymbolUnit_create_volt());
-    arr         = LabelledMeasuredArray_from_farray(zeros, label);
+    zeros = FArrayDouble_from_shape(shape_arr, 2);
+    conn = Connection_create_plunger_gate(String_wrap("plung"));
+    label = AcquisitionContext_create(conn, INSTRUMENT_VOLTMETER,
+                                      SymbolUnit_create_volt());
+    arr = LabelledMeasuredArray_from_farray(zeros, label);
     arrays_list = ListLabelledMeasuredArray_create_empty();
-    empty_list  = ListLabelledMeasuredArray_create_empty();
+    empty_list = ListLabelledMeasuredArray_create_empty();
     ListLabelledMeasuredArray_push_back(arrays_list, arr);
     arrays = LabelledArraysLabelledMeasuredArray_create(arrays_list);
-    resp   = MeasurementResponse_create(arrays);
-    resp2  = MeasurementResponse_create(
+    resp = MeasurementResponse_create(arrays);
+    resp2 = MeasurementResponse_create(
         LabelledArraysLabelledMeasuredArray_create(empty_list));
   }
   void TearDown() override {
@@ -35,16 +36,16 @@ class MeasurementResponseTest : public ::testing::Test {
     LabelledMeasuredArray_destroy(arr);
     LabelledArraysLabelledMeasuredArray_destroy(arrays);
   }
-  ListLabelledMeasuredArrayHandle           empty_list;
-  ListLabelledMeasuredArrayHandle           arrays_list;
-  ConnectionHandle                          conn;
-  size_t                                    shape_arr[2];
-  AcquisitionContextHandle                  label;
-  FArrayDoubleHandle                        zeros;
-  LabelledMeasuredArrayHandle               arr;
+  ListLabelledMeasuredArrayHandle empty_list;
+  ListLabelledMeasuredArrayHandle arrays_list;
+  ConnectionHandle conn;
+  size_t shape_arr[2];
+  AcquisitionContextHandle label;
+  FArrayDoubleHandle zeros;
+  LabelledMeasuredArrayHandle arr;
   LabelledArraysLabelledMeasuredArrayHandle arrays;
-  MeasurementResponseHandle                 resp;
-  MeasurementResponseHandle                 resp2;
+  MeasurementResponseHandle resp;
+  MeasurementResponseHandle resp2;
 };
 
 TEST_F(MeasurementResponseTest, CreateDestroy) {
@@ -89,7 +90,7 @@ TEST_F(MeasurementResponseTest, Equality) {
 
 TEST_F(MeasurementResponseTest, ToJsonFromJson) {
   auto json = MeasurementResponse_to_json_string(resp);
-  auto r2   = MeasurementResponse_from_json_string(json);
+  auto r2 = MeasurementResponse_from_json_string(json);
   EXPECT_TRUE(MeasurementResponse_equal(resp, r2));
   MeasurementResponse_destroy(r2);
   String_destroy(json);
