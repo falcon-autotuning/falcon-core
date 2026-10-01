@@ -62,7 +62,7 @@ protected:
     Connection_destroy(conn);
     SymbolUnit_destroy(unit);
     String_destroy(name);
-    String_destroy(name);
+    String_destroy(instrument);
     String_destroy(desc);
     UnitSpace_destroy(unitspace);
     AxesDiscretizer_destroy(axes_discretizer);

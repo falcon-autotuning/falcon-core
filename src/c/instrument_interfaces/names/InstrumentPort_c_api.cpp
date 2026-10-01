@@ -24,6 +24,10 @@ InstrumentPortHandle InstrumentPort_create_port(
     throw std::invalid_argument(
         "InstrumentPort_create_port: default_name cannot be null");
   }
+  if (!instrument_name) {
+    throw std::invalid_argument(
+        "InstrumentPort_create_setting: instrument_name cannot be null");
+  }
   if (!units) {
     throw std::invalid_argument(
         "InstrumentPort_create_port: units cannot be null");

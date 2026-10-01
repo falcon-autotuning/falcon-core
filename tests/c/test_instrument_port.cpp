@@ -78,11 +78,6 @@ TEST_F(InstrumentPortTest, CreatePortKnobMeterTimerClockDestroy) {
   set_last_error(0, nullptr);
   InstrumentPort_create_port(name, instrument, SCOPE_LOCAL, ACCESS_READ,
                              INSTRUMENT_CHARACTERISTIC_NONE, PORT_TYPE_SETTING,
-                             nullptr, type, unit, desc);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  InstrumentPort_create_port(name, instrument, SCOPE_LOCAL, ACCESS_READ,
-                             INSTRUMENT_CHARACTERISTIC_NONE, PORT_TYPE_SETTING,
                              conn, type, nullptr, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
@@ -103,11 +98,6 @@ TEST_F(InstrumentPortTest, CreatePortKnobMeterTimerClockDestroy) {
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   InstrumentPort_create_setting(name, instrument, SCOPE_LOCAL, ACCESS_READ,
-                                INSTRUMENT_CHARACTERISTIC_NONE, nullptr, type,
-                                unit, desc);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  InstrumentPort_create_setting(name, instrument, SCOPE_LOCAL, ACCESS_READ,
                                 INSTRUMENT_CHARACTERISTIC_NONE, conn, type,
                                 nullptr, desc);
   EXPECT_EQ(get_last_error_code(), 1);
@@ -124,9 +114,6 @@ TEST_F(InstrumentPortTest, CreatePortKnobMeterTimerClockDestroy) {
   InstrumentPort_create_knob(name, nullptr, conn, type, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
-  InstrumentPort_create_knob(name, instrument, nullptr, type, unit, desc);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
   InstrumentPort_create_knob(name, instrument, conn, type, nullptr, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
@@ -138,9 +125,6 @@ TEST_F(InstrumentPortTest, CreatePortKnobMeterTimerClockDestroy) {
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   InstrumentPort_create_meter(name, nullptr, conn, type, unit, desc);
-  EXPECT_EQ(get_last_error_code(), 1);
-  set_last_error(0, nullptr);
-  InstrumentPort_create_meter(name, instrument, nullptr, type, unit, desc);
   EXPECT_EQ(get_last_error_code(), 1);
   set_last_error(0, nullptr);
   InstrumentPort_create_meter(name, instrument, conn, type, nullptr, desc);

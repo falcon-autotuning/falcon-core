@@ -395,6 +395,16 @@ CEREAL_REGISTER_TYPE(
     falcon_core::instrument_interfaces::port_transforms::PortTransforms)
 CEREAL_REGISTER_TYPE(
     falcon_core::instrument_interfaces::port_transforms::PortTransform)
+CEREAL_REGISTER_TYPE(falcon_core::generic::Pair<
+                     falcon_core::instrument_interfaces::names::InstrumentPort,
+                     falcon_core::math::Quantity>)
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::instrument_interfaces::names::InstrumentPort,
+        falcon_core::math::Quantity>>)
+CEREAL_REGISTER_TYPE(falcon_core::generic::Map<
+                     falcon_core::instrument_interfaces::names::InstrumentPort,
+                     falcon_core::math::Quantity>)
 
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::generic::List<

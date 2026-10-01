@@ -30,6 +30,7 @@ protected:
     label = AcquisitionContext_create(
         Connection_create_ohmic(String_wrap("In")),
         INSTRUMENT_DC_VOLTAGE_SOURCE, SymbolUnit_create_volt());
+    EXPECT_NE(label, nullptr);
     measured_arrays = ListLabelledMeasuredArray_create_empty();
     ListLabelledMeasuredArray_push_back(
         measured_arrays,
@@ -171,6 +172,7 @@ TEST_F(HDF5DataTest, ToFileAndCreateFromFile) {
 }
 
 TEST_F(HDF5DataTest, FromCommunicationsAndToCommunications) {
+  set_last_error(0, nullptr);
   // Construct a valid MeasurementRequest (copy from MeasurementRequestTest
   // setup)
   double data1[3] = {1.0, 2.0, 3.0};

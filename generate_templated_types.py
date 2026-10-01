@@ -3489,6 +3489,25 @@ registry: dict[str, Entry] = {
         ],
         Path("generic"),
     ),
+    "PairInstrumentPortQuantityList": Entry(
+        Options.List,
+        [
+            "PairInstrumentPortQuantityHandle",
+            "falcon_core::generic::Pair<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::math::Quantity>",
+            "falcon_core::generic::PairSP<falcon_core::instrument_interfaces::names::InstrumentPort, falcon_core::math::Quantity>",
+            "PairInstrumentPortQuantity",
+        ],
+        [
+            '"falcon-core/generic/PairInstrumentPortQuantity_c_api.h"',
+            "<stdbool.h>",
+        ],
+        [
+            "<falcon-core/generic/Pair.hpp>",
+            "<falcon-core/instrument_interfaces/names/InstrumentPort.hpp>",
+            "<falcon-core/math/Quantity.hpp>",
+        ],
+        Path("generic"),
+    ),
     "PairStringStringList": Entry(
         Options.List,
         [
@@ -3681,6 +3700,28 @@ registry: dict[str, Entry] = {
         [
             "<falcon-core/instrument_interfaces/names/InstrumentPort.hpp>",
             "<falcon-core/instrument_interfaces/port_transforms/PortTransform.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "InstrumentPortQuantityPair": Entry(
+        Options.Pair,
+        [
+            "InstrumentPortHandle",
+            "falcon_core::instrument_interfaces::names::InstrumentPort",
+            "falcon_core::instrument_interfaces::names::InstrumentPortSP",
+            "QuantityHandle",
+            "falcon_core::math::Quantity",
+            "falcon_core::math::QuantitySP",
+            "InstrumentPortQuantity",
+        ],
+        [
+            '"falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"',
+            '"falcon-core/math/Quantity_c_api.h"',
+            "<stdbool.h>",
+        ],
+        [
+            "<falcon-core/instrument_interfaces/names/InstrumentPort.hpp>",
+            "<falcon-core/math/Quantity.hpp>",
         ],
         Path("generic"),
     ),
@@ -3976,6 +4017,32 @@ registry: dict[str, Entry] = {
             "<falcon-core/instrument_interfaces/names/InstrumentPort.hpp>",
             "<falcon-core/instrument_interfaces/port_transforms/PortTransform.hpp>",
             "<falcon-core/instrument_interfaces/Waveform.hpp>",
+        ],
+        Path("generic"),
+    ),
+    "InstrumentPortQuantityMap": Entry(
+        Options.Map,
+        [
+            "InstrumentPortHandle",
+            "falcon_core::instrument_interfaces::names::InstrumentPort",
+            "falcon_core::instrument_interfaces::names::InstrumentPortSP",
+            "QuantityHandle",
+            "falcon_core::math::Quantity",
+            "falcon_core::math::QuantitySP",
+            "InstrumentPort",
+            "Quantity",
+            "InstrumentPortQuantity",
+        ],
+        [
+            '"falcon-core/generic/PairInstrumentPortQuantity_c_api.h"',
+            '"falcon-core/generic/ListInstrumentPort_c_api.h"',
+            '"falcon-core/generic/ListQuantity_c_api.h"',
+            '"falcon-core/generic/ListPairInstrumentPortQuantity_c_api.h"',
+        ],
+        [
+            "<falcon-core/generic/Pair.hpp>",
+            "<falcon-core/instrument_interfaces/names/InstrumentPort.hpp>",
+            "<falcon-core/math/Quantity.hpp>",
         ],
         Path("generic"),
     ),
@@ -4712,6 +4779,9 @@ entry_queue: list[str] = [
     "PairInterpretationContextQuantityList",
     "InterpretationContextQuantityMap",
     "QuantityInterpretationContainer",
+    "InstrumentPortQuantityPair",
+    "PairInstrumentPortQuantityList",
+    "InstrumentPortQuantityMap",
 ]
 
 

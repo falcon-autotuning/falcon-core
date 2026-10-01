@@ -16,9 +16,10 @@ protected:
     desc = String_wrap("desc");
     unit = SymbolUnit_create_volt();
     conn = Connection_create_plunger_gate(String_wrap("A"));
-    port = InstrumentPort_create_port(
-        name, instrument, SCOPE_LOCAL, ACCESS_READ,
-        INSTRUMENT_CHARACTERISTIC_NONE, PORT_TYPE_KNOB, conn, type, unit, desc);
+    port =
+        InstrumentPort_create_port(name, instrument, SCOPE_LOCAL, ACCESS_READ,
+                                   INSTRUMENT_CHARACTERISTIC_NONE,
+                                   PORT_TYPE_SETTING, conn, type, unit, desc);
 
     items = ListInstrumentPort_create_empty();
     ListInstrumentPort_push_back(items, port);

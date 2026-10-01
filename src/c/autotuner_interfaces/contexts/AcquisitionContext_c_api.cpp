@@ -26,10 +26,6 @@ AcquisitionContextHandle AcquisitionContext_create(ConnectionHandle connection,
     throw std::invalid_argument(
         "AcquisitionContext_create: connection handle cannot be null");
   }
-  if (!instrument_type) {
-    throw std::invalid_argument(
-        "AcquisitionContext_create: instrument_type handle cannot be null");
-  }
   if (!units) {
     throw std::invalid_argument(
         "AcquisitionContext_create: units handle cannot be null");
