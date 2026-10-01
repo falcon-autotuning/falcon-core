@@ -1,0 +1,15 @@
+Diagnostics:
+  ClangTidy:
+    Add:
+      - bugprone-*
+      - clang-analyzer-*
+      - portability-*
+      - cert-*
+    Remove:
+      - cppcoreguidelines-*
+      - hicpp-*
+      - modernize-*
+      - cppcoreguidelines-owning-memory
+      - bugprone-easily-swappable-parameters
+      - readability-implicit-bool-conversion
+      - performance-enum-size
