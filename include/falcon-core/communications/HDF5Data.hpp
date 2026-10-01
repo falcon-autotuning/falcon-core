@@ -18,14 +18,14 @@ namespace falcon_core {
 namespace communications {
 class FALCON_CORE_CPP_API HDF5Data : public generic::Song {
   using Metadata = generic::Map<std::string, std::string>;
-  math::AxesSP<int>                                  _shape;
-  math::AxesSP<math::arrays::ControlArray>           _unit_domain;
+  math::AxesSP<int> _shape;
+  math::AxesSP<math::arrays::ControlArray> _unit_domain;
   math::AxesSP<math::domains::CoupledLabelledDomain> _domain_labels;
   math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray> _ranges;
-  std::shared_ptr<Metadata>                                           _metadata;
-  std::string                     _measurement_title;
-  int                             _unique_id;
-  int                             _timestamp;
+  std::shared_ptr<Metadata> _metadata;
+  std::string _measurement_title;
+  int _unique_id;
+  int _timestamp;
   mutable std::shared_timed_mutex _mu_metadata;
   mutable std::shared_timed_mutex _mu_ranges;
   mutable std::shared_timed_mutex _mu_unit_domain;
@@ -35,11 +35,10 @@ class FALCON_CORE_CPP_API HDF5Data : public generic::Song {
   mutable std::shared_timed_mutex _mu_unique_id;
   mutable std::shared_timed_mutex _mu_timestamp;
 
- protected:
+protected:
   friend class cereal::access;
   HDF5Data();
-  template <class Archive>
-  inline void serialize(Archive& ar) {
+  template <class Archive> void serialize(Archive &ar) {
     std::shared_lock<std::shared_timed_mutex> lock_m(_mu_metadata,
                                                      std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_r(_mu_ranges,
@@ -56,22 +55,16 @@ class FALCON_CORE_CPP_API HDF5Data : public generic::Song {
                                                        std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_ts(_mu_timestamp,
                                                       std::defer_lock);
-    std::lock(
-        lock_m, lock_r, lock_ud, lock_dl, lock_s, lock_mt, lock_uid, lock_ts);
-    ar(cereal::base_class<generic::Song>(this),
-       _shape,
-       _unit_domain,
-       _domain_labels,
-       _ranges,
-       _metadata,
-       _unique_id,
-       _measurement_title,
+    std::lock(lock_m, lock_r, lock_ud, lock_dl, lock_s, lock_mt, lock_uid,
+              lock_ts);
+    ar(cereal::base_class<generic::Song>(this), _shape, _unit_domain,
+       _domain_labels, _ranges, _metadata, _unique_id, _measurement_title,
        _timestamp);
   }
 
- public:
-  HDF5Data(const HDF5Data& other);
-  HDF5Data& operator=(const HDF5Data& other);
+public:
+  HDF5Data(const HDF5Data &other);
+  HDF5Data &operator=(const HDF5Data &other);
   /**
    * @brief Construct the protable data for database storage.
    * @param shape The shape of the data array.
@@ -84,21 +77,20 @@ class FALCON_CORE_CPP_API HDF5Data : public generic::Song {
    * @param timestamp A timestamp for the measurement.
    */
   HDF5Data(
-      const math::AxesSP<int>&                                  shape,
-      const math::AxesSP<math::arrays::ControlArray>&           unit_domain,
-      const math::AxesSP<math::domains::CoupledLabelledDomain>& domain_labels,
-      const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>&
-                                       ranges,
-      const std::shared_ptr<Metadata>& metadata,
-      const std::string&               measurement_title,
-      const int&                       unique_id,
-      const int&                       timestamp);
+      const math::AxesSP<int> &shape,
+      const math::AxesSP<math::arrays::ControlArray> &unit_domain,
+      const math::AxesSP<math::domains::CoupledLabelledDomain> &domain_labels,
+      const math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>
+          &ranges,
+      const std::shared_ptr<Metadata> &metadata,
+      const std::string &measurement_title, const int &unique_id,
+      const int &timestamp);
   /**
    * @brief Convert from a file to an HDF5Data object.
    * @param path The path to the HDF5 file.
    * @return A HDF5Data object.
    */
-  static const std::shared_ptr<HDF5Data> from_file(const std::string& path);
+  static const std::shared_ptr<HDF5Data> from_file(const std::string &path);
   /**
    * @brief Load the data from a MeasurementResponse and MeasurementResponse.
    * @param request The MeasurementRequest from falcon.
@@ -111,18 +103,17 @@ class FALCON_CORE_CPP_API HDF5Data : public generic::Song {
    * @return A HDF5Data object.
    */
   static const std::shared_ptr<HDF5Data> from_communications(
-      const messages::MeasurementRequestSP&        request,
-      const messages::MeasurementResponseSP&       response,
-      const voltage_states::DeviceVoltageStatesSP& device_voltage_states,
-      const boost::uuids::uuid&                    session_id,
-      const std::string&                           measurement_title,
-      const int&                                   unique_id,
-      const int&                                   timestamp);
+      const messages::MeasurementRequestSP &request,
+      const messages::MeasurementResponseSP &response,
+      const voltage_states::DeviceVoltageStatesSP &device_voltage_states,
+      const boost::uuids::uuid &session_id,
+      const std::string &measurement_title, const int &unique_id,
+      const int &timestamp);
   /**
    * @brief Convert from an HDF5Data object to a file.
    * @param path The path to write the HDF5 file at.
    */
-  void to_file(const std::string& path) const;
+  void to_file(const std::string &path) const;
   /**
    * @brief Get the shape of the data array.
    * @return The shape of the data array.
@@ -142,8 +133,8 @@ class FALCON_CORE_CPP_API HDF5Data : public generic::Song {
    * @brief Get the ranges for each axis.
    * @return The ranges for each axis.
    */
-  math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray> ranges()
-      const;
+  math::arrays::LabelledArraysSP<math::arrays::LabelledMeasuredArray>
+  ranges() const;
   /**
    * @brief Get the metadata for the measurement.
    * @return The metadata for the measurement.
@@ -173,9 +164,9 @@ class FALCON_CORE_CPP_API HDF5Data : public generic::Song {
                   communications::messages::MeasurementRequestSP>
   to_communications() const;
 
-  bool operator==(const HDF5Data& other);
-  bool operator!=(const HDF5Data& other);
+  bool operator==(const HDF5Data &other);
+  bool operator!=(const HDF5Data &other);
 };
 using HDF5DataSP = std::shared_ptr<HDF5Data>;
-}  // namespace communications
-}  // namespace falcon_core
+} // namespace communications
+} // namespace falcon_core

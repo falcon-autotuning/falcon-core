@@ -12,50 +12,43 @@ namespace messages {
 // Use the base waveform type for BaseDiscreteSpace
 
 class FALCON_CORE_CPP_API MeasurementRequest : public BaseMessage {
-  std::string                                      _measurement_name;
   generic::ListSP<instrument_interfaces::Waveform> _waveforms;
-  instrument_interfaces::names::PortsSP            _getters;
+  instrument_interfaces::names::PortsSP _getters;
   generic::MapSP<instrument_interfaces::names::InstrumentPort,
                  instrument_interfaces::port_transforms::PortTransform>
-                                  _meter_transforms;
+      _meter_transforms;
   math::domains::LabelledDomainSP _time_domain;
-  mutable std::shared_timed_mutex _mu_measurement_name;
   mutable std::shared_timed_mutex _mu_waveforms;
   mutable std::shared_timed_mutex _mu_getters;
   mutable std::shared_timed_mutex _mu_meter_transforms;
   mutable std::shared_timed_mutex _mu_time_domain;
 
- public:
-  MeasurementRequest(const MeasurementRequest& other);
-  MeasurementRequest& operator=(const MeasurementRequest& other);
+public:
+  MeasurementRequest(const MeasurementRequest &other);
+  MeasurementRequest &operator=(const MeasurementRequest &other);
   MeasurementRequest(
-      const std::string&                                      message,
-      const std::string&                                      measurement_name,
-      const generic::ListSP<instrument_interfaces::Waveform>& waveforms,
-      const instrument_interfaces::names::PortsSP&            getters,
+      const std::string &message,
+      const generic::ListSP<instrument_interfaces::Waveform> &waveforms,
+      const instrument_interfaces::names::PortsSP &getters,
       const generic::MapSP<
           instrument_interfaces::names::InstrumentPort,
-          instrument_interfaces::port_transforms::PortTransform>&
-                                             meter_transforms,
-      const math::domains::LabelledDomainSP& time_domain);
+          instrument_interfaces::port_transforms::PortTransform>
+          &meter_transforms,
+      const math::domains::LabelledDomainSP &time_domain);
 
-  const std::string&                           measurement_name() const;
-  const instrument_interfaces::names::PortsSP& getters() const;
+  const instrument_interfaces::names::PortsSP &getters() const;
   const generic::ListSP<instrument_interfaces::Waveform> waveforms() const;
   const generic::MapSP<instrument_interfaces::names::InstrumentPort,
-                       instrument_interfaces::port_transforms::PortTransform>&
-                                         meter_transforms() const;
-  const math::domains::LabelledDomainSP& time_domain() const;
-  bool operator==(const MeasurementRequest& other) const;
-  bool operator!=(const MeasurementRequest& other) const;
+                       instrument_interfaces::port_transforms::PortTransform> &
+  meter_transforms() const;
+  const math::domains::LabelledDomainSP &time_domain() const;
+  bool operator==(const MeasurementRequest &other) const;
+  bool operator!=(const MeasurementRequest &other) const;
 
- protected:
+protected:
   MeasurementRequest();
   friend class cereal::access;
-  template <class Archive>
-  inline void serialize(Archive& ar) {
-    std::shared_lock<std::shared_timed_mutex> lock_mn(_mu_measurement_name,
-                                                      std::defer_lock);
+  template <class Archive> void serialize(Archive &ar) {
     std::shared_lock<std::shared_timed_mutex> lock_wf(_mu_waveforms,
                                                       std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_g(_mu_getters,
@@ -64,16 +57,12 @@ class FALCON_CORE_CPP_API MeasurementRequest : public BaseMessage {
                                                       std::defer_lock);
     std::shared_lock<std::shared_timed_mutex> lock_td(_mu_time_domain,
                                                       std::defer_lock);
-    std::lock(lock_mn, lock_wf, lock_g, lock_mt, lock_td);
-    ar(cereal::base_class<BaseMessage>(this),
-       _measurement_name,
-       _waveforms,
-       _getters,
-       _meter_transforms,
-       _time_domain);
+    std::lock(lock_wf, lock_g, lock_mt, lock_td);
+    ar(cereal::base_class<BaseMessage>(this), _waveforms, _getters,
+       _meter_transforms, _time_domain);
   }
 };
 using MeasurementRequestSP = std::shared_ptr<MeasurementRequest>;
-}  // namespace messages
-}  // namespace communications
-}  // namespace falcon_core
+} // namespace messages
+} // namespace communications
+} // namespace falcon_core

@@ -18,22 +18,22 @@ using namespace falcon_core::instrument_interfaces::names;
 using namespace falcon_core::generic;
 
 class DiscreteSpaceTest : public ::testing::Test {
- protected:
-  UnitSpaceSP                    unit_space;
-  CoupledLabelledDomainSP        coupled_domain;
-  AxesSP<CoupledLabelledDomain>  axes;
+protected:
+  UnitSpaceSP unit_space;
+  CoupledLabelledDomainSP coupled_domain;
+  AxesSP<CoupledLabelledDomain> axes;
   AxesSP<Map<std::string, bool>> increasing;
-  MapSP<std::string, bool>       map_increasing;
-  PortsSP                        knobs;
-  DomainSP                       domain;
-  InstrumentPortSP               knob_port;
-  LabelledDomainSP               labelled_domain;
-  DiscretizerSP                  discretizer;
+  MapSP<std::string, bool> map_increasing;
+  PortsSP knobs;
+  DomainSP domain;
+  InstrumentPortSP knob_port;
+  LabelledDomainSP labelled_domain;
+  DiscretizerSP discretizer;
 
   void SetUp() override {
     // Create a knob InstrumentPort
     knob_port = InstrumentPort::Knob(
-        "Vg1",
+        "Vg1", "instrument1",
         falcon_core::physics::device_structures::Connection::PlungerGate("P1"));
 
     // Create a domain for the knob
@@ -81,13 +81,13 @@ TEST_F(DiscreteSpaceTest, ConstructorWorks) {
 TEST_F(DiscreteSpaceTest, CartesianDiscreteSpaceWorks) {
   auto divisions = std::make_shared<Axes<int>>();
   divisions->push_back(10);
-  auto space = DiscreteSpace::CartesianDiscreteSpace(
-      divisions, axes, increasing, domain);
+  auto space = DiscreteSpace::CartesianDiscreteSpace(divisions, axes,
+                                                     increasing, domain);
   ASSERT_NE(space, nullptr);
 }
 TEST_F(DiscreteSpaceTest, CartesianDiscreteSpace1DWorks) {
-  auto space = DiscreteSpace::CartesianDiscreteSpace1D(
-      10, coupled_domain, map_increasing, domain);
+  auto space = DiscreteSpace::CartesianDiscreteSpace1D(10, coupled_domain,
+                                                       map_increasing, domain);
   ASSERT_NE(space, nullptr);
 }
 TEST_F(DiscreteSpaceTest, NullptrThrows) {
@@ -106,7 +106,7 @@ TEST_F(DiscreteSpaceTest, GetDomainThrowsOnNullKnob) {
 }
 TEST_F(DiscreteSpaceTest, KnobsAreCorrect) {
   DiscreteSpace space(unit_space, axes, increasing);
-  auto          space_knobs = space.knobs();
+  auto space_knobs = space.knobs();
   ASSERT_EQ(space_knobs->size(), 1);
   EXPECT_EQ(space_knobs->at(0)->default_name(), "Vg1");
 }
@@ -120,8 +120,8 @@ TEST_F(DiscreteSpaceTest, ValidateKnobUniqueness) {
 }
 TEST_F(DiscreteSpaceTest, SerializationRoundTrip) {
   DiscreteSpace space(unit_space, axes, increasing);
-  auto          string = space.to_json_string();
-  auto          loaded = DiscreteSpace::from_json_string<DiscreteSpace>(string);
+  auto string = space.to_json_string();
+  auto loaded = DiscreteSpace::from_json_string<DiscreteSpace>(string);
   EXPECT_EQ(space, *loaded);
 }
 
@@ -131,45 +131,45 @@ TEST_F(DiscreteSpaceTest, CartesianDiscreteSpaceThrowsOnNullArgs) {
   EXPECT_THROW(
       DiscreteSpace::CartesianDiscreteSpace(nullptr, axes, increasing, domain),
       std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace::CartesianDiscreteSpace(
-                   divisions, nullptr, increasing, domain),
+  EXPECT_THROW(DiscreteSpace::CartesianDiscreteSpace(divisions, nullptr,
+                                                     increasing, domain),
                std::invalid_argument);
   EXPECT_THROW(
       DiscreteSpace::CartesianDiscreteSpace(divisions, axes, nullptr, domain),
       std::invalid_argument);
-  EXPECT_THROW(DiscreteSpace::CartesianDiscreteSpace(
-                   divisions, axes, increasing, nullptr),
+  EXPECT_THROW(DiscreteSpace::CartesianDiscreteSpace(divisions, axes,
+                                                     increasing, nullptr),
                std::invalid_argument);
 }
 
 TEST_F(DiscreteSpaceTest, ValidateUnitSpaceDimensionalityThrows) {
   auto axes_mismatch = std::make_shared<Axes<CoupledLabelledDomain>>();
   axes_mismatch->push_back(coupled_domain);
-  axes_mismatch->push_back(coupled_domain);  // size 2
+  axes_mismatch->push_back(coupled_domain); // size 2
   EXPECT_THROW(DiscreteSpace space(unit_space, axes_mismatch, increasing),
                std::invalid_argument);
 }
 
 TEST_F(DiscreteSpaceTest, GetAxisThrowsIfKnobNotFound) {
   DiscreteSpace space(unit_space, axes, increasing);
-  auto          other_knob = InstrumentPort::Knob(
-      "Vg2",
+  auto other_knob = InstrumentPort::Knob(
+      "Vg2", "instrument2",
       falcon_core::physics::device_structures::Connection::PlungerGate("P5"));
   EXPECT_THROW(space.get_axis(other_knob), std::runtime_error);
 }
 
 TEST_F(DiscreteSpaceTest, GetDomainThrowsIfKnobNotFound) {
   DiscreteSpace space(unit_space, axes, increasing);
-  auto          other_knob = InstrumentPort::Knob(
-      "Vg2",
+  auto other_knob = InstrumentPort::Knob(
+      "Vg2", "instrument2",
       falcon_core::physics::device_structures::Connection::PlungerGate("P5"));
   EXPECT_THROW(space.get_domain(other_knob), std::runtime_error);
 }
 
 TEST_F(DiscreteSpaceTest, OperatorNotEqual) {
   DiscreteSpace space1(unit_space, axes, increasing);
-  auto          other_knob = InstrumentPort::Knob(
-      "Vg2",
+  auto other_knob = InstrumentPort::Knob(
+      "Vg2", "instrument2",
       falcon_core::physics::device_structures::Connection::PlungerGate("P5"));
   auto labelled_domain2 =
       LabelledDomain::from_port_and_domain(other_knob, domain);
@@ -188,16 +188,16 @@ TEST_F(DiscreteSpaceTest, GetProjectionThrowsOnNullProjection) {
 
 TEST_F(DiscreteSpaceTest, GetProjectionThrowsOnDimensionalityMismatch) {
   DiscreteSpace space(unit_space, axes, increasing);
-  auto          projection = std::make_shared<Axes<InstrumentPort>>();
+  auto projection = std::make_shared<Axes<InstrumentPort>>();
   projection->push_back(knob_port);
-  projection->push_back(knob_port);  // dimension > unit_space->dimension()
+  projection->push_back(knob_port); // dimension > unit_space->dimension()
   EXPECT_THROW(space.get_projection(projection), std::runtime_error);
 }
 
 TEST_F(DiscreteSpaceTest, GetProjectionThrowsOnDuplicateAxes) {
   // Create a second knob and domain
   auto knob_port2 = InstrumentPort::Knob(
-      "Vg2",
+      "Vg2", "instrument2",
       falcon_core::physics::device_structures::Connection::PlungerGate("P2"));
   auto labelled_domain2 =
       LabelledDomain::from_port_and_domain(knob_port2, domain);
@@ -224,16 +224,16 @@ TEST_F(DiscreteSpaceTest, GetProjectionThrowsOnDuplicateAxes) {
 
   auto projection = std::make_shared<Axes<InstrumentPort>>();
   projection->push_back(knob_port);
-  projection->push_back(knob_port);  // duplicate knob
+  projection->push_back(knob_port); // duplicate knob
 
   EXPECT_THROW(fudge_space.get_projection(projection), std::runtime_error);
 }
 
 TEST_F(DiscreteSpaceTest, GetProjectionThrowsOnKnobNotFound) {
   DiscreteSpace space(unit_space, axes, increasing);
-  auto          projection = std::make_shared<Axes<InstrumentPort>>();
-  auto          other_knob = InstrumentPort::Knob(
-      "Vg2",
+  auto projection = std::make_shared<Axes<InstrumentPort>>();
+  auto other_knob = InstrumentPort::Knob(
+      "Vg2", "instrument2",
       falcon_core::physics::device_structures::Connection::PlungerGate("P5"));
   projection->push_back(other_knob);
   EXPECT_THROW(space.get_projection(projection), std::runtime_error);
@@ -241,7 +241,7 @@ TEST_F(DiscreteSpaceTest, GetProjectionThrowsOnKnobNotFound) {
 
 TEST_F(DiscreteSpaceTest, GetProjectionWorks) {
   DiscreteSpace space(unit_space, axes, increasing);
-  auto          projection = std::make_shared<Axes<InstrumentPort>>();
+  auto projection = std::make_shared<Axes<InstrumentPort>>();
   projection->push_back(knob_port);
   auto result = space.get_projection(projection);
   ASSERT_NE(result, nullptr);
@@ -249,4 +249,4 @@ TEST_F(DiscreteSpaceTest, GetProjectionWorks) {
   ASSERT_NE(result->at(0), nullptr);
   ASSERT_EQ(result->at(0)->label()->connection()->name(), "P1");
 }
-}  // namespace
+} // namespace

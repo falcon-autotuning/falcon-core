@@ -20,25 +20,27 @@ using falcon_core::instrument_interfaces::names::InstrumentPort;
 using falcon_core::instrument_interfaces::names::InstrumentPortSP;
 
 class LabelledArraysTest : public ::testing::Test {
- protected:
-  xt::xarray<double>      arr1 = {1.0, 2.0};
-  xt::xarray<double>      arr2 = {3.0, 4.0};
-  AcquisitionContextSP    labelA;
-  AcquisitionContextSP    labelB;
-  InstrumentPortSP        portA;
-  InstrumentPortSP        portB;
+protected:
+  xt::xarray<double> arr1 = {1.0, 2.0};
+  xt::xarray<double> arr2 = {3.0, 4.0};
+  AcquisitionContextSP labelA;
+  AcquisitionContextSP labelB;
+  InstrumentPortSP portA;
+  InstrumentPortSP portB;
   LabelledMeasuredArraySP lma1;
   LabelledMeasuredArraySP lma2;
-  LabelledControlArraySP  lca1;
-  LabelledControlArraySP  lca2;
-  void                    SetUp() override {
+  LabelledControlArraySP lca1;
+  LabelledControlArraySP lca2;
+  void SetUp() override {
     portA = InstrumentPort::Knob(
-        "A", physics::device_structures::Connection::PlungerGate("PA"));
+        "A", "instrumentA",
+        physics::device_structures::Connection::PlungerGate("PA"));
     labelA = std::make_shared<AcquisitionContext>(portA);
-    portB  = InstrumentPort::Knob(
-        "B", physics::device_structures::Connection::PlungerGate("PB"));
+    portB = InstrumentPort::Knob(
+        "B", "instrumentB",
+        physics::device_structures::Connection::PlungerGate("PB"));
     labelB = std::make_shared<AcquisitionContext>(portB);
-    lma1   = std::make_shared<LabelledMeasuredArray>(
+    lma1 = std::make_shared<LabelledMeasuredArray>(
         std::make_shared<MeasuredArray>(arr1), labelA);
     lma2 = std::make_shared<LabelledMeasuredArray>(
         std::make_shared<MeasuredArray>(arr2), labelB);
@@ -60,7 +62,7 @@ TEST_F(LabelledArraysTest, DefaultConstructorControl) {
 }
 
 TEST_F(LabelledArraysTest, ItemsConstructorMeasured) {
-  std::vector<LabelledMeasuredArraySP>  vec{lma1, lma2};
+  std::vector<LabelledMeasuredArraySP> vec{lma1, lma2};
   LabelledArrays<LabelledMeasuredArray> arrs(vec);
   EXPECT_EQ(arrs.size(), 2);
   EXPECT_EQ(arrs.arrays().size(), 2);
@@ -70,7 +72,7 @@ TEST_F(LabelledArraysTest, ItemsConstructorMeasured) {
 }
 
 TEST_F(LabelledArraysTest, ItemsConstructorControl) {
-  std::vector<LabelledControlArraySP>  vec{lca1, lca2};
+  std::vector<LabelledControlArraySP> vec{lca1, lca2};
   LabelledArrays<LabelledControlArray> arrs(vec);
   EXPECT_EQ(arrs.size(), 2);
   EXPECT_EQ(arrs.arrays().size(), 2);
@@ -86,9 +88,9 @@ TEST_F(LabelledArraysTest, UniqueLabelCheckThrows) {
 }
 
 TEST_F(LabelledArraysTest, IsControlArraysAndIsMeasuredArrays) {
-  std::vector<LabelledControlArraySP>   cvec{lca1, lca2};
-  std::vector<LabelledMeasuredArraySP>  mvec{lma1, lma2};
-  LabelledArrays<LabelledControlArray>  carrs(cvec);
+  std::vector<LabelledControlArraySP> cvec{lca1, lca2};
+  std::vector<LabelledMeasuredArraySP> mvec{lma1, lma2};
+  LabelledArrays<LabelledControlArray> carrs(cvec);
   LabelledArrays<LabelledMeasuredArray> marrs(mvec);
   EXPECT_TRUE(carrs.is_control_arrays());
   EXPECT_FALSE(carrs.is_measured_arrays());
@@ -97,9 +99,9 @@ TEST_F(LabelledArraysTest, IsControlArraysAndIsMeasuredArrays) {
 }
 
 TEST_F(LabelledArraysTest, SerializationRoundTripMeasured) {
-  std::vector<LabelledMeasuredArraySP>  vec{lma1, lma2};
+  std::vector<LabelledMeasuredArraySP> vec{lma1, lma2};
   LabelledArrays<LabelledMeasuredArray> arrs(vec);
-  auto                                  json = arrs.to_json_string();
+  auto json = arrs.to_json_string();
   auto arrs2 = LabelledArrays<LabelledMeasuredArray>::from_json_string<
       LabelledArrays<LabelledMeasuredArray>>(json);
   EXPECT_EQ(arrs.size(), arrs2->size());
@@ -108,9 +110,9 @@ TEST_F(LabelledArraysTest, SerializationRoundTripMeasured) {
 }
 
 TEST_F(LabelledArraysTest, SerializationRoundTripControl) {
-  std::vector<LabelledControlArraySP>  vec{lca1, lca2};
+  std::vector<LabelledControlArraySP> vec{lca1, lca2};
   LabelledArrays<LabelledControlArray> arrs(vec);
-  auto                                 json = arrs.to_json_string();
+  auto json = arrs.to_json_string();
   auto arrs2 = LabelledArrays<LabelledControlArray>::from_json_string<
       LabelledArrays<LabelledControlArray>>(json);
   EXPECT_EQ(arrs, *arrs2);
@@ -122,7 +124,7 @@ TEST_F(LabelledArraysTest, StaticConstructorsMeasured) {
   EXPECT_EQ(arrs_empty->size(), 0);
 
   std::vector<LabelledMeasuredArraySP> vec{lma1, lma2};
-  auto                                 arrs_vec =
+  auto arrs_vec =
       LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays(vec);
   EXPECT_EQ(arrs_vec->size(), 2);
 }
@@ -133,39 +135,39 @@ TEST_F(LabelledArraysTest, StaticConstructorsControl) {
   EXPECT_EQ(arrs_empty->size(), 0);
 
   std::vector<LabelledControlArraySP> vec{lca1, lca2};
-  auto                                arrs_vec =
+  auto arrs_vec =
       LabelledArrays<LabelledControlArray>::LabelledControlArrays(vec);
   EXPECT_EQ(arrs_vec->size(), 2);
 }
 
 TEST_F(LabelledArraysTest, ArraysGetterMeasured) {
-  std::vector<LabelledMeasuredArraySP>  vec{lma1, lma2};
+  std::vector<LabelledMeasuredArraySP> vec{lma1, lma2};
   LabelledArrays<LabelledMeasuredArray> arrs(vec);
-  auto                                  arrays_ref = arrs.arrays();
+  auto arrays_ref = arrs.arrays();
   EXPECT_EQ(arrays_ref.size(), 2);
   EXPECT_EQ(arrays_ref[0], lma1);
 }
 
 TEST_F(LabelledArraysTest, ArraysGetterControl) {
-  std::vector<LabelledControlArraySP>  vec{lca1, lca2};
+  std::vector<LabelledControlArraySP> vec{lca1, lca2};
   LabelledArrays<LabelledControlArray> arrs(vec);
-  auto                                 arrays_ref = arrs.arrays();
+  auto arrays_ref = arrs.arrays();
   EXPECT_EQ(arrays_ref.size(), 2);
   EXPECT_EQ(arrays_ref[0], lca1);
 }
 
 TEST_F(LabelledArraysTest, LabelsGetterMeasured) {
-  std::vector<LabelledMeasuredArraySP>  vec{lma1, lma2};
+  std::vector<LabelledMeasuredArraySP> vec{lma1, lma2};
   LabelledArrays<LabelledMeasuredArray> arrs(vec);
-  auto                                  labels = arrs.labels();
+  auto labels = arrs.labels();
   EXPECT_EQ(labels->size(), 2);
   EXPECT_EQ(*labels->at(0), *labelA);
 }
 
 TEST_F(LabelledArraysTest, LabelsGetterControl) {
-  std::vector<LabelledControlArraySP>  vec{lca1, lca2};
+  std::vector<LabelledControlArraySP> vec{lca1, lca2};
   LabelledArrays<LabelledControlArray> arrs(vec);
-  auto                                 labels = arrs.labels();
+  auto labels = arrs.labels();
   EXPECT_EQ(labels->size(), 2);
   EXPECT_EQ(*labels->at(0), *labelA);
 }
@@ -187,4 +189,4 @@ TEST_F(LabelledArraysTest, IsMeasuredArraysHandlesNullptr) {
   EXPECT_THROW(LabelledArrays<LabelledMeasuredArray> arrs(vec),
                std::invalid_argument);
 }
-}  // namespace
+} // namespace

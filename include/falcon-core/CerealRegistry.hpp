@@ -1,10 +1,3 @@
-#include <falcon-core/communications/messages/BaseMessage.hpp>
-#include <falcon-core/communications/messages/MeasurementRequest.hpp>
-#include <falcon-core/communications/messages/MeasurementResponse.hpp>
-#include <falcon-core/communications/messages/StandardRequest.hpp>
-#include <falcon-core/communications/messages/StandardResponse.hpp>
-#include <falcon-core/communications/messages/VoltageStatesResponse.hpp>
-
 #include "falcon-core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon-core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContainer.hpp"
@@ -14,6 +7,14 @@
 #include "falcon-core/autotuner_interfaces/names/Gname.hpp"
 #include "falcon-core/communications/HDF5Data.hpp"
 #include "falcon-core/communications/Time.hpp"
+#include "falcon-core/communications/messages/BaseMessage.hpp"
+#include "falcon-core/communications/messages/MeasurementRequest.hpp"
+#include "falcon-core/communications/messages/MeasurementResponse.hpp"
+#include "falcon-core/communications/messages/SettingRequest.hpp"
+#include "falcon-core/communications/messages/SettingResponse.hpp"
+#include "falcon-core/communications/messages/StandardRequest.hpp"
+#include "falcon-core/communications/messages/StandardResponse.hpp"
+#include "falcon-core/communications/messages/VoltageStatesResponse.hpp"
 #include "falcon-core/communications/voltage_states/DeviceVoltageState.hpp"
 #include "falcon-core/generic/FArray.hpp"
 #include "falcon-core/generic/List.hpp"
@@ -101,16 +102,16 @@ CEREAL_REGISTER_TYPE(falcon_core::math::Quantity)
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::math::Quantity>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::Pair<falcon_core::math::Quantity,
                                                 falcon_core::math::Quantity>);
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<
-                     falcon_core::generic::Pair<falcon_core::math::Quantity,
-                                                falcon_core::math::Quantity>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::math::Quantity, falcon_core::math::Quantity>>);
 CEREAL_REGISTER_TYPE(falcon_core::physics::config::core::Adjacency)
-CEREAL_REGISTER_TYPE(falcon_core::generic::Map<
-                     falcon_core::physics::device_structures::Connection,
-                     float>);
-CEREAL_REGISTER_TYPE(falcon_core::generic::Map<
-                     falcon_core::physics::device_structures::Connection,
-                     double>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::Map<
+        falcon_core::physics::device_structures::Connection, float>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::Map<
+        falcon_core::physics::device_structures::Connection, double>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::Map<
                      falcon_core::autotuner_interfaces::names::Channel,
                      falcon_core::physics::device_structures::Connections>);
@@ -255,12 +256,12 @@ CEREAL_REGISTER_TYPE(
     falcon_core::generic::Pair<
         falcon_core::communications::messages::MeasurementResponse,
         falcon_core::communications::messages::MeasurementRequest>);
-CEREAL_REGISTER_TYPE(falcon_core::generic::Pair<
-                     falcon_core::physics::device_structures::Connection,
-                     float>);
-CEREAL_REGISTER_TYPE(falcon_core::generic::Pair<
-                     falcon_core::physics::device_structures::Connection,
-                     double>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::Pair<
+        falcon_core::physics::device_structures::Connection, float>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::Pair<
+        falcon_core::physics::device_structures::Connection, double>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<
                      falcon_core::autotuner_interfaces::names::Gname>);
 CEREAL_REGISTER_TYPE(
@@ -283,15 +284,15 @@ CEREAL_REGISTER_TYPE(
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
                          falcon_core::autotuner_interfaces::names::Gname,
                          falcon_core::physics::config::core::Group>>)
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
-                         falcon_core::physics::device_structures::Connection,
-                         double>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::physics::device_structures::Connection, double>>);
 CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
                          falcon_core::physics::device_structures::Connection,
                          falcon_core::math::Quantity>>);
-CEREAL_REGISTER_TYPE(falcon_core::generic::List<falcon_core::generic::Pair<
-                         falcon_core::physics::device_structures::Connection,
-                         float>>);
+CEREAL_REGISTER_TYPE(
+    falcon_core::generic::List<falcon_core::generic::Pair<
+        falcon_core::physics::device_structures::Connection, float>>);
 CEREAL_REGISTER_TYPE(
     falcon_core::generic::List<falcon_core::generic::Pair<
         falcon_core::physics::device_structures::Connection,
@@ -339,6 +340,8 @@ CEREAL_REGISTER_TYPE(falcon_core::math::domains::CoupledLabelledDomain);
 CEREAL_REGISTER_TYPE(falcon_core::math::discrete_spaces::DiscreteSpace)
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementRequest)
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::MeasurementResponse)
+CEREAL_REGISTER_TYPE(falcon_core::communications::messages::SettingRequest)
+CEREAL_REGISTER_TYPE(falcon_core::communications::messages::SettingResponse)
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::StandardRequest)
 CEREAL_REGISTER_TYPE(falcon_core::communications::messages::StandardResponse)
 CEREAL_REGISTER_TYPE(
@@ -438,11 +441,11 @@ using MICD = falcon_core::generic::Map<
     falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
     double>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MICD);
-using MCnF = falcon_core::generic::
-    Map<falcon_core::physics::device_structures::Connection, float>;
+using MCnF = falcon_core::generic::Map<
+    falcon_core::physics::device_structures::Connection, float>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MCnF);
-using MCnD = falcon_core::generic::
-    Map<falcon_core::physics::device_structures::Connection, double>;
+using MCnD = falcon_core::generic::Map<
+    falcon_core::physics::device_structures::Connection, double>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, MCnD);
 using MCC = falcon_core::generic::Map<
     falcon_core::autotuner_interfaces::names::Channel,
@@ -551,6 +554,12 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::communications::messages::MeasurementResponse)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::communications::messages::BaseMessage,
+    falcon_core::communications::messages::SettingRequest)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::communications::messages::BaseMessage,
+    falcon_core::communications::messages::SettingResponse)
+CEREAL_REGISTER_POLYMORPHIC_RELATION(
+    falcon_core::communications::messages::BaseMessage,
     falcon_core::communications::messages::StandardRequest)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::communications::messages::BaseMessage,
@@ -651,11 +660,11 @@ using PMRMR = falcon_core::generic::Pair<
     falcon_core::communications::messages::MeasurementResponse,
     falcon_core::communications::messages::MeasurementRequest>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PMRMR);
-using PCnF = falcon_core::generic::
-    Pair<falcon_core::physics::device_structures::Connection, float>;
+using PCnF = falcon_core::generic::Pair<
+    falcon_core::physics::device_structures::Connection, float>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PCnF);
-using PCnD = falcon_core::generic::
-    Pair<falcon_core::physics::device_structures::Connection, double>;
+using PCnD = falcon_core::generic::Pair<
+    falcon_core::physics::device_structures::Connection, double>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song, PCnD);
 using PICD = falcon_core::generic::Pair<
     falcon_core::autotuner_interfaces::interpretations::InterpretationContext,
@@ -783,8 +792,8 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(
     falcon_core::math::UnitSpace)
 using PQQ = falcon_core::generic::Pair<falcon_core::math::Quantity,
                                        falcon_core::math::Quantity>;
-using MBD = falcon_core::generic::
-    Map<falcon_core::physics::device_structures::Connection, PQQ>;
+using MBD = falcon_core::generic::Map<
+    falcon_core::physics::device_structures::Connection, PQQ>;
 CEREAL_REGISTER_POLYMORPHIC_RELATION(MBD, falcon_core::math::Vector)
 CEREAL_REGISTER_POLYMORPHIC_RELATION(falcon_core::generic::Song,
                                      falcon_core::physics::units::Unit)

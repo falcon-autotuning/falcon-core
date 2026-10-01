@@ -3,12 +3,11 @@
 namespace falcon_core {
 namespace physics {
 namespace device_structures {
-Connection::Connection(const Connection& other) {
+Connection::Connection(const Connection &other) : _type(other._type) {
   std::shared_lock<std::shared_timed_mutex> lock_other_type(other._mu_type);
   _name = other.name();
-  _type = other._type;
 }
-Connection& Connection::operator=(const Connection& other) {
+Connection &Connection::operator=(const Connection &other) {
   if (this != &other) {
     std::unique_lock<std::shared_timed_mutex> lock_name(_mu_name,
                                                         std::defer_lock);
@@ -22,22 +21,22 @@ Connection& Connection::operator=(const Connection& other) {
   }
   return *this;
 }
-Connection::Connection() : _name(""), _type(DeviceFeature::Ohmic) {}
-Connection::Connection(const std::string& name, const DeviceFeature& type)
+Connection::Connection() : _type(DeviceFeature::Ohmic) {}
+Connection::Connection(const std::string &name, const DeviceFeature &type)
     : _name(name), _type(type) {}
-ConnectionSP Connection::BarrierGate(const std::string& name) {
+ConnectionSP Connection::BarrierGate(const std::string &name) {
   return std::make_shared<Connection>(name, DeviceFeature::BarrierGate);
 }
-ConnectionSP Connection::PlungerGate(const std::string& name) {
+ConnectionSP Connection::PlungerGate(const std::string &name) {
   return std::make_shared<Connection>(name, DeviceFeature::PlungerGate);
 }
-ConnectionSP Connection::ReservoirGate(const std::string& name) {
+ConnectionSP Connection::ReservoirGate(const std::string &name) {
   return std::make_shared<Connection>(name, DeviceFeature::ReservoirGate);
 }
-ConnectionSP Connection::ScreeningGate(const std::string& name) {
+ConnectionSP Connection::ScreeningGate(const std::string &name) {
   return std::make_shared<Connection>(name, DeviceFeature::ScreeningGate);
 }
-ConnectionSP Connection::Ohmic(const std::string& name) {
+ConnectionSP Connection::Ohmic(const std::string &name) {
   return std::make_shared<Connection>(name, DeviceFeature::Ohmic);
 }
 const std::string Connection::name() const {
@@ -67,16 +66,18 @@ bool Connection::is_ohmic() const {
   return type() == DeviceFeatureNames.at(DeviceFeature::Ohmic);
 }
 bool Connection::is_gate() const { return !is_ohmic(); }
-bool Connection::operator<(const Connection& other) const {
-  return name() < other.name();  // Compare based on name
+bool Connection::operator<(const Connection &other) const {
+  return name() < other.name(); // Compare based on name
 }
-bool Connection::operator==(const Connection& other) const {
-  if (this == &other) return true;
+bool Connection::operator==(const Connection &other) const {
+  if (this == &other) {
+    return true;
+  }
   return (name() == other.name()) && (type() == other.type());
 }
-bool Connection::operator!=(const Connection& other) const {
+bool Connection::operator!=(const Connection &other) const {
   return !(*this == other);
 }
-}  // namespace device_structures
-}  // namespace physics
-}  // namespace falcon_core
+} // namespace device_structures
+} // namespace physics
+} // namespace falcon_core

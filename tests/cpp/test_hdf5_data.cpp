@@ -4,13 +4,11 @@
 #include <boost/uuid/random_generator.hpp>
 #include <cereal/types/memory.hpp>
 #include <cereal/types/polymorphic.hpp>
-#include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
 #include <xtensor/xarray.hpp>
 
-#include "falcon-core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon-core/communications/HDF5Data.hpp"
 #include "falcon-core/communications/messages/MeasurementRequest.hpp"
 #include "falcon-core/communications/messages/MeasurementResponse.hpp"
@@ -20,7 +18,6 @@
 #include "falcon-core/generic/Map.hpp"
 #include "falcon-core/instrument_interfaces/Waveform.hpp"
 #include "falcon-core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes.hpp"
 #include "falcon-core/instrument_interfaces/names/Ports.hpp"
 #include "falcon-core/instrument_interfaces/port_transforms/PortTransform.hpp"
 #include "falcon-core/math/Axes.hpp"
@@ -110,14 +107,15 @@ TEST(HDF5DataTest, ToCommunicationsRoundTrip) {
   using namespace falcon_core::physics::device_structures;
   using namespace falcon_core::instrument_interfaces::names;
   auto pseudo_conn = Connection::PlungerGate("P1");
-  Instrument instr = InstrumentTypes::DC_VOLTAGE_SOURCE;
-  auto port = std::make_shared<InstrumentPort>("port", pseudo_conn, instr);
+  Instrument instr = Instrument::DC_Voltage_Source;
+  auto port = std::make_shared<InstrumentPort>(
+      "port", "instrument1", Scope::Local, Access::Read,
+      InstrumentCharacteristic::None, PortType::Meter, pseudo_conn, instr);
   auto time_domain =
       math::domains::LabelledDomain::from_port(std::make_pair(0.0, 1.0), port);
 
   auto request = std::make_shared<MeasurementRequest>(
-      std::string("msg"), std::string("measurement_name"), waveforms, getters,
-      meter_transforms, time_domain);
+      std::string("msg"), waveforms, getters, meter_transforms, time_domain);
 
   auto arrays = LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
   auto response = std::make_shared<MeasurementResponse>(arrays);
@@ -173,8 +171,10 @@ TEST(HDF5DataTest, FileRoundTripFull) {
   // domain_labels: one CoupledLabelledDomain with a single LabelledDomain from
   // a port
   auto pseudo_conn = Connection::PlungerGate("P1");
-  Instrument instr = InstrumentTypes::DC_VOLTAGE_SOURCE;
-  auto port = std::make_shared<InstrumentPort>("port", pseudo_conn, instr);
+  Instrument instr = Instrument::DC_Voltage_Source;
+  auto port = std::make_shared<InstrumentPort>(
+      "port", "instrument1", Scope::Local, Access::Read,
+      InstrumentCharacteristic::None, PortType::Meter, pseudo_conn, instr);
   auto labelled =
       math::domains::LabelledDomain::from_port(std::make_pair(0.0, 1.0), port);
   auto coupled = std::make_shared<math::domains::CoupledLabelledDomain>(
@@ -261,7 +261,8 @@ TEST(HDF5DataTest, FromCommunicationsSetsFields) {
 
   // Build valid waveform using CartesianWaveform1D
   auto knob_port = InstrumentPort::Knob(
-      "Vg1", physics::device_structures::Connection::PlungerGate("P1"));
+      "Vg1", "instrument1",
+      physics::device_structures::Connection::PlungerGate("P1"));
   auto domain = std::make_shared<Domain>(std::pair<double, double>(0, 1));
   auto labelled_domain =
       LabelledDomain::from_port_and_domain(knob_port, domain);
@@ -282,7 +283,7 @@ TEST(HDF5DataTest, FromCommunicationsSetsFields) {
   auto time_domain = LabelledDomain::from_port_and_domain(knob_port, domain);
 
   auto request = std::make_shared<MeasurementRequest>(
-      "msg", "name", waveforms, getters, meter_transforms, time_domain);
+      "msg", waveforms, getters, meter_transforms, time_domain);
   auto arrays = math::arrays::LabelledArrays<
       math::arrays::LabelledMeasuredArray>::LabelledMeasuredArrays();
   auto response = std::make_shared<MeasurementResponse>(arrays);
@@ -292,7 +293,7 @@ TEST(HDF5DataTest, FromCommunicationsSetsFields) {
   int unique_id = 123;
   int timestamp = 456;
   auto request1 = std::make_shared<MeasurementRequest>(
-      "msg", "name", waveforms, getters, meter_transforms, time_domain);
+      "msg", waveforms, getters, meter_transforms, time_domain);
   auto hdf =
       HDF5Data::from_communications(request, response, voltage_states,
                                     session_id, title, unique_id, timestamp);
@@ -317,7 +318,8 @@ TEST(HDF5DataTest, MeasurementTitleRoundTrip) {
   auto unit_domain = std::make_shared<Axes<ControlArray>>(
       std::vector<std::shared_ptr<ControlArray>>{control_array});
   auto knob_port = instrument_interfaces::names::InstrumentPort::Knob(
-      "Vg1", physics::device_structures::Connection::PlungerGate("P1"));
+      "Vg1", "instrument1",
+      physics::device_structures::Connection::PlungerGate("P1"));
   auto domain = std::make_shared<Domain>(std::pair<double, double>(0, 1));
   auto labelled_domain =
       LabelledDomain::from_port_and_domain(knob_port, domain);

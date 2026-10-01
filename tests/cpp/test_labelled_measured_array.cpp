@@ -3,6 +3,7 @@
 #include <stdexcept>
 
 #include "falcon-core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon-core/math/arrays/LabelledMeasuredArray.hpp"
 namespace {
 using namespace falcon_core;
@@ -14,23 +15,25 @@ using falcon_core::instrument_interfaces::names::InstrumentPort;
 using falcon_core::instrument_interfaces::names::InstrumentPortSP;
 
 class LabelledMeasuredArrayTest : public ::testing::Test {
- protected:
-  xt::xarray<double>      arr1 = {{1.0, 2.0}, {3.0, 4.0}};
-  xt::xarray<double>      arr2 = {{5.0, 6.0}, {7.0, 8.0}};
-  AcquisitionContextSP    labelA;
-  AcquisitionContextSP    labelB;
-  InstrumentPortSP        portA;
-  InstrumentPortSP        portB;
+protected:
+  xt::xarray<double> arr1 = {{1.0, 2.0}, {3.0, 4.0}};
+  xt::xarray<double> arr2 = {{5.0, 6.0}, {7.0, 8.0}};
+  AcquisitionContextSP labelA;
+  AcquisitionContextSP labelB;
+  InstrumentPortSP portA;
+  InstrumentPortSP portB;
   LabelledMeasuredArraySP lma1;
   LabelledMeasuredArraySP lma2;
-  void                    SetUp() override {
+  void SetUp() override {
     portA = InstrumentPort::Meter(
-        "A", physics::device_structures::Connection::Ohmic("OA"));
+        "A", "instrumentA",
+        physics::device_structures::Connection::Ohmic("OA"));
     labelA = std::make_shared<AcquisitionContext>(portA);
-    portB  = InstrumentPort::Meter(
-        "B", physics::device_structures::Connection::Ohmic("OB"));
+    portB = InstrumentPort::Meter(
+        "B", "instrumentB",
+        physics::device_structures::Connection::Ohmic("OB"));
     labelB = std::make_shared<AcquisitionContext>(portB);
-    lma1   = std::make_shared<LabelledMeasuredArray>(
+    lma1 = std::make_shared<LabelledMeasuredArray>(
         std::make_shared<MeasuredArray>(arr1), labelA);
     lma2 = std::make_shared<LabelledMeasuredArray>(
         std::make_shared<MeasuredArray>(arr2), labelB);
@@ -38,7 +41,7 @@ class LabelledMeasuredArrayTest : public ::testing::Test {
 };
 
 TEST_F(LabelledMeasuredArrayTest, MeasuredArraySPConstructor) {
-  auto                  ma = std::make_shared<MeasuredArray>(arr1);
+  auto ma = std::make_shared<MeasuredArray>(arr1);
   LabelledMeasuredArray lma(ma, labelA);
   EXPECT_EQ(lma.shape(), arr1.shape());
   EXPECT_EQ(lma.label(), labelA);
@@ -53,7 +56,7 @@ TEST_F(LabelledMeasuredArrayTest, MeasuredArraySPConstructorNullThrows) {
 }
 
 TEST_F(LabelledMeasuredArrayTest, FArraySPConstructor) {
-  auto                  farr = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   LabelledMeasuredArray lma(farr, labelA);
   EXPECT_EQ(lma.shape(), arr1.shape());
   EXPECT_EQ(lma.label(), labelA);
@@ -94,7 +97,7 @@ TEST_F(LabelledMeasuredArrayTest,
 }
 
 TEST_F(LabelledMeasuredArrayTest, ArithmeticAddFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = lma1->operator+(farr);
   EXPECT_EQ(result->shape(), lma1->shape());
 }
@@ -128,7 +131,7 @@ TEST_F(LabelledMeasuredArrayTest,
 }
 
 TEST_F(LabelledMeasuredArrayTest, ArithmeticSubFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = lma1->operator-(farr);
   EXPECT_EQ(result->shape(), lma1->shape());
 }
@@ -168,7 +171,7 @@ TEST_F(LabelledMeasuredArrayTest,
 }
 
 TEST_F(LabelledMeasuredArrayTest, ArithmeticMulFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = lma1->operator*(farr);
   EXPECT_EQ(result->shape(), lma1->shape());
 }
@@ -202,7 +205,7 @@ TEST_F(LabelledMeasuredArrayTest,
 }
 
 TEST_F(LabelledMeasuredArrayTest, ArithmeticDivFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = lma1->operator/(farr);
   EXPECT_EQ(result->shape(), lma1->shape());
 }
@@ -235,7 +238,7 @@ TEST_F(LabelledMeasuredArrayTest, MinLabelledMeasuredArrayNullThrows) {
 }
 
 TEST_F(LabelledMeasuredArrayTest, MinFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = lma1->min(farr);
   EXPECT_EQ(result->shape(), lma1->shape());
 }
@@ -255,7 +258,7 @@ TEST_F(LabelledMeasuredArrayTest, MaxLabelledMeasuredArrayNullThrows) {
 }
 
 TEST_F(LabelledMeasuredArrayTest, MaxFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = lma1->max(farr);
   EXPECT_EQ(result->shape(), lma1->shape());
 }
@@ -293,8 +296,12 @@ TEST_F(LabelledMeasuredArrayTest, SerializationRoundTrip) {
 }
 
 TEST_F(LabelledMeasuredArrayTest, InstrumentPortConstructorAndNullThrows) {
-  auto             farr = std::make_shared<FArray<double>>(arr1);
-  InstrumentPortSP port = std::make_shared<InstrumentPort>("portA");
+  auto farr = std::make_shared<FArray<double>>(arr1);
+  InstrumentPortSP port = std::make_shared<InstrumentPort>(
+      "portA", "instrumentA", instrument_interfaces::names::Scope::Global,
+      instrument_interfaces::names::Access::Read,
+      instrument_interfaces::names::InstrumentCharacteristic::Applied_Voltage,
+      instrument_interfaces::names::PortType::Setting);
   EXPECT_THROW(LabelledMeasuredArray lma(farr, port), std::runtime_error);
 }
 
@@ -354,4 +361,4 @@ TEST_F(LabelledMeasuredArrayTest, InEqualOperator) {
   EXPECT_TRUE(*lmaA != *lmaB);
   EXPECT_FALSE(*lmaA != *lmaA);
 }
-}  // namespace
+} // namespace

@@ -14,23 +14,25 @@ using falcon_core::instrument_interfaces::names::InstrumentPort;
 using falcon_core::instrument_interfaces::names::InstrumentPortSP;
 
 class LabelledControlArrayTest : public ::testing::Test {
- protected:
-  xt::xarray<double>     arr1 = {{1.0, 2.0}, {1.0, 2.0}};
-  xt::xarray<double>     arr2 = {{5.0, 5.0}, {7.0, 7.0}};
-  AcquisitionContextSP   labelA;
-  AcquisitionContextSP   labelB;
-  InstrumentPortSP       portA;
-  InstrumentPortSP       portB;
+protected:
+  xt::xarray<double> arr1 = {{1.0, 2.0}, {1.0, 2.0}};
+  xt::xarray<double> arr2 = {{5.0, 5.0}, {7.0, 7.0}};
+  AcquisitionContextSP labelA;
+  AcquisitionContextSP labelB;
+  InstrumentPortSP portA;
+  InstrumentPortSP portB;
   LabelledControlArraySP lca1;
   LabelledControlArraySP lca2;
-  void                   SetUp() override {
+  void SetUp() override {
     portA = InstrumentPort::Knob(
-        "A", physics::device_structures::Connection::PlungerGate("PA"));
+        "A", "instrumentA",
+        physics::device_structures::Connection::PlungerGate("PA"));
     labelA = std::make_shared<AcquisitionContext>(portA);
-    portB  = InstrumentPort::Knob(
-        "B", physics::device_structures::Connection::PlungerGate("PB"));
+    portB = InstrumentPort::Knob(
+        "B", "instrumentB",
+        physics::device_structures::Connection::PlungerGate("PB"));
     labelB = std::make_shared<AcquisitionContext>(portB);
-    lca1   = std::make_shared<LabelledControlArray>(
+    lca1 = std::make_shared<LabelledControlArray>(
         std::make_shared<ControlArray>(arr1), labelA);
     lca2 = std::make_shared<LabelledControlArray>(
         std::make_shared<ControlArray>(arr2), labelB);
@@ -38,7 +40,7 @@ class LabelledControlArrayTest : public ::testing::Test {
 };
 
 TEST_F(LabelledControlArrayTest, ControlArraySPConstructor) {
-  auto                 ca = std::make_shared<ControlArray>(arr1);
+  auto ca = std::make_shared<ControlArray>(arr1);
   LabelledControlArray lca(ca, labelA);
   EXPECT_EQ(lca.shape(), arr1.shape());
   EXPECT_EQ(*lca.label(), *labelA);
@@ -53,7 +55,7 @@ TEST_F(LabelledControlArrayTest, ControlArraySPConstructorNullThrows) {
 }
 
 TEST_F(LabelledControlArrayTest, FArraySPConstructor) {
-  auto                 farr = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   LabelledControlArray lca(farr, labelA);
   EXPECT_EQ(lca.shape(), arr1.shape());
   EXPECT_EQ(lca.label(), labelA);
@@ -68,7 +70,7 @@ TEST_F(LabelledControlArrayTest, FArraySPConstructorNullThrows) {
 }
 
 TEST_F(LabelledControlArrayTest, InstrumentPortConstructor) {
-  auto                 farr = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   LabelledControlArray lca(farr, portA);
   EXPECT_EQ(lca.shape(), arr1.shape());
   EXPECT_NE(lca.label(), nullptr);
@@ -103,7 +105,7 @@ TEST_F(LabelledControlArrayTest, ArithmeticAddLabelledControlArrayNullThrows) {
 }
 
 TEST_F(LabelledControlArrayTest, ArithmeticAddFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = lca1->operator+(farr);
   EXPECT_EQ(result->shape(), lca1->shape());
 }
@@ -136,7 +138,7 @@ TEST_F(LabelledControlArrayTest, ArithmeticSubLabelledControlArrayNullThrows) {
 }
 
 TEST_F(LabelledControlArrayTest, ArithmeticSubFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = (*lca1 * 2)->operator-(farr);
   EXPECT_EQ(result->shape(), lca1->shape());
 }
@@ -199,7 +201,7 @@ TEST_F(LabelledControlArrayTest, MinLabelledControlArrayNullThrows) {
 }
 
 TEST_F(LabelledControlArrayTest, MinFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = lca1->min(farr);
   EXPECT_EQ(result->shape(), lca1->shape());
 }
@@ -219,7 +221,7 @@ TEST_F(LabelledControlArrayTest, MaxLabelledControlArrayNullThrows) {
 }
 
 TEST_F(LabelledControlArrayTest, MaxFArraySP) {
-  auto farr   = std::make_shared<FArray<double>>(arr1);
+  auto farr = std::make_shared<FArray<double>>(arr1);
   auto result = lca1->max(farr);
   EXPECT_EQ(result->shape(), lca1->shape());
 }
@@ -271,4 +273,4 @@ TEST_F(LabelledControlArrayTest, SubtractDoubleThrowsIfZero) {
   EXPECT_THROW(lcaA->operator-(0.0), std::invalid_argument);
 }
 
-}  // namespace
+} // namespace

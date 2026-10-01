@@ -2,6 +2,7 @@
 
 #include "falcon-core/autotuner_interfaces/contexts/AcquisitionContext.hpp"
 #include "falcon-core/communications/messages/MeasurementResponse.hpp"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon-core/math/arrays/LabelledArrays.hpp"
 #include "falcon-core/math/arrays/LabelledMeasuredArray.hpp"
 
@@ -11,10 +12,10 @@ using namespace falcon_core::math::arrays;
 using namespace falcon_core::autotuner_interfaces::contexts;
 
 class MeasurementResponseTest : public ::testing::Test {
- protected:
+protected:
   LabelledArraysSP<LabelledMeasuredArray> arrays;
-  LabelledMeasuredArraySP                 measured_array;
-  AcquisitionContextSP                    label;
+  LabelledMeasuredArraySP measured_array;
+  AcquisitionContextSP label;
 
   void SetUp() override {
     // Create a dummy MeasuredArray with shape [2]
@@ -22,9 +23,14 @@ class MeasurementResponseTest : public ::testing::Test {
     // Create a dummy InstrumentPort for AcquisitionContext
     auto port = std::make_shared<
         falcon_core::instrument_interfaces::names::InstrumentPort>(
-        "Vg1",
+        "Vg1", "instrument1",
+        falcon_core::instrument_interfaces::names::Scope::Local,
+        falcon_core::instrument_interfaces::names::Access::Read,
+        falcon_core::instrument_interfaces::names::InstrumentCharacteristic::
+            Applied_Voltage,
+        falcon_core::instrument_interfaces::names::PortType::Setting,
         falcon_core::physics::device_structures::Connection::PlungerGate("P1"));
-    label          = std::make_shared<AcquisitionContext>(port);
+    label = std::make_shared<AcquisitionContext>(port);
     measured_array = std::make_shared<LabelledMeasuredArray>(base_array, label);
     arrays = LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays(
         {measured_array});
@@ -54,9 +60,9 @@ TEST_F(MeasurementResponseTest, EqualityOperators) {
 
 TEST_F(MeasurementResponseTest, SerializationRoundTrip) {
   MeasurementResponse resp(arrays);
-  auto                string = resp.to_json_string();
-  auto                loaded =
+  auto string = resp.to_json_string();
+  auto loaded =
       MeasurementResponse::from_json_string<MeasurementResponse>(string);
   EXPECT_EQ(resp, *loaded);
 }
-}  // namespace
+} // namespace

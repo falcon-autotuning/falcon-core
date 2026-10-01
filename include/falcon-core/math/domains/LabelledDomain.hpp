@@ -19,14 +19,19 @@ namespace domains {
  */
 class FALCON_CORE_CPP_API LabelledDomain : public Domain {
   instrument_interfaces::names::InstrumentPortSP _port;
-  mutable std::shared_timed_mutex                _mu_port;
+  mutable std::shared_timed_mutex _mu_port;
 
- public:
-  LabelledDomain(const LabelledDomain& other);
-  LabelledDomain& operator=(const LabelledDomain& other);
+public:
+  LabelledDomain(const LabelledDomain &other);
+  LabelledDomain &operator=(const LabelledDomain &other);
   /**
    * @brief Construct a labelled domain.
    * @default_name The default_name for the instrument.
+   * @instrument_name The name for the instrument.
+   * @param scope The access scope to this parameter (Read, Write, ReadWrite)
+   * @param access The spread of this parameter (Global or local insturment
+   * control)
+   * @param characteristic The type of characteristic
    * @bounds The bounds on the domain.
    * @psuedo_name The name of the connection on the instrument if available.
    * @instrument_type The type of instrument connected to
@@ -36,26 +41,30 @@ class FALCON_CORE_CPP_API LabelledDomain : public Domain {
    * @description The description of the instrument.
    */
   LabelledDomain(
-      const std::string&                              default_name,
-      const std::pair<double, double>&                bounds,
-      const physics::device_structures::ConnectionSP& psuedo_name,
-      const instrument_interfaces::names::Instrument& instrument_type,
-      bool                                            lesser_bound_contained,
-      bool                                            greater_bound_contained,
-      const physics::units::SymbolUnitSP&             units,
-      const std::string&                              description,
-      const instrument_interfaces::names::PortType    type =
-          instrument_interfaces::names::PortType::Knob);
+      const std::string &default_name, const std::string &instrument_name,
+      instrument_interfaces::names::Scope scope,
+      instrument_interfaces::names::Access access,
+      instrument_interfaces::names::InstrumentCharacteristic characteristic,
+      const std::pair<double, double> &bounds,
+      instrument_interfaces::names::PortType type =
+          instrument_interfaces::names::PortType::Knob,
+      const physics::units::SymbolUnitSP &units =
+          physics::units::SymbolUnit::Volt(),
+      const std::string &description = "",
+      const physics::device_structures::ConnectionSP &psuedo_name = nullptr,
+      const instrument_interfaces::names::Instrument &instrument_type =
+          instrument_interfaces::names::Instrument::DC_Voltage_Source,
+      bool lesser_bound_contained = true, bool greater_bound_contained = true);
   /**
    * @brief Construct a labelled domain.
    * @param bounds Minimum, Maximum pair of the domain.
    * @param port Shared pointer to the port.
    */
-  static const std::shared_ptr<LabelledDomain> from_port(
-      const std::pair<double, double>&                      bounds,
-      const instrument_interfaces::names::InstrumentPortSP& port,
-      const bool& lesser_bound_contained  = true,
-      const bool& greater_bound_contained = true);
+  static const std::shared_ptr<LabelledDomain>
+  from_port(const std::pair<double, double> &bounds,
+            const instrument_interfaces::names::InstrumentPortSP &port,
+            const bool &lesser_bound_contained = true,
+            const bool &greater_bound_contained = true);
   /**
    * @brief Create a LabelledDomain from an existing knob and domain.
    * @param knob The knob to associate with the domain.
@@ -63,8 +72,8 @@ class FALCON_CORE_CPP_API LabelledDomain : public Domain {
    * @return A created LabelledDomain.
    */
   static const std::shared_ptr<LabelledDomain> from_port_and_domain(
-      const instrument_interfaces::names::InstrumentPortSP& port,
-      const DomainSP&                                       domain);
+      const instrument_interfaces::names::InstrumentPortSP &port,
+      const DomainSP &domain);
   /**
    * @brief Create a LabelledDomain from an existing domain.
    * @param domain The domain to associate with the knob.
@@ -76,19 +85,25 @@ class FALCON_CORE_CPP_API LabelledDomain : public Domain {
    * @return A created LabelledDomain.
    */
   static const std::shared_ptr<LabelledDomain> from_domain(
-      const DomainSP&                                 domain,
-      const std::string&                              default_name,
-      const physics::device_structures::ConnectionSP& pseudo_name,
-      const instrument_interfaces::names::Instrument& instrument_type,
-      const physics::units::SymbolUnitSP&             units =
+      const DomainSP &domain, const std::string &default_name,
+      const std::string &instrument_name,
+      instrument_interfaces::names::Scope scope,
+      instrument_interfaces::names::Access access,
+      instrument_interfaces::names::InstrumentCharacteristic characteristic,
+      instrument_interfaces::names::PortType type =
+          instrument_interfaces::names::PortType::Knob,
+      const physics::units::SymbolUnitSP &units =
           physics::units::SymbolUnit::Volt(),
-      const std::string& description = "");
+      const std::string &description = "",
+      const physics::device_structures::ConnectionSP &psuedo_name = nullptr,
+      const instrument_interfaces::names::Instrument &instrument_type =
+          instrument_interfaces::names::Instrument::DC_Voltage_Source);
 
   /**
    * @brief Get the port.
    * @return Shared pointer to the port.
    */
-  const instrument_interfaces::names::InstrumentPortSP& port() const;
+  const instrument_interfaces::names::InstrumentPortSP &port() const;
   /**
    * @brief Gets the domain associated with the port.
    */
@@ -99,20 +114,19 @@ class FALCON_CORE_CPP_API LabelledDomain : public Domain {
    * @return True if the ports match, false otherwise.
    */
   bool matching_port(
-      const instrument_interfaces::names::InstrumentPortSP& port) const;
-  bool operator==(const LabelledDomain& other) const;
-  bool operator!=(const LabelledDomain& other) const;
+      const instrument_interfaces::names::InstrumentPortSP &port) const;
+  bool operator==(const LabelledDomain &other) const;
+  bool operator!=(const LabelledDomain &other) const;
 
- protected:
+protected:
   LabelledDomain();
   friend class cereal::access;
-  template <class Archive>
-  inline void serialize(Archive& ar) {
+  template <class Archive> void serialize(Archive &ar) {
     std::shared_lock<std::shared_timed_mutex> lock_port(_mu_port);
     ar(cereal::base_class<Domain>(this), _port);
   }
 };
 using LabelledDomainSP = std::shared_ptr<LabelledDomain>;
-}  // namespace domains
-}  // namespace math
-}  // namespace falcon_core
+} // namespace domains
+} // namespace math
+} // namespace falcon_core

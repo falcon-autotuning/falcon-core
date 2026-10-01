@@ -26,13 +26,13 @@ protected:
         std::make_shared<falcon_core::instrument_interfaces::names::Ports>();
     ports->push_back(
         falcon_core::instrument_interfaces::names::InstrumentPort::Meter(
-            "ohmicTest", Connection::Ohmic("O1")));
+            "ohmicTest", "instrument1", Connection::Ohmic("O1")));
     ports->push_back(
         falcon_core::instrument_interfaces::names::InstrumentPort::Knob(
-            "reservoirTest", Connection::ReservoirGate("R1")));
+            "reservoirTest", "instrument1", Connection::ReservoirGate("R1")));
     ports->push_back(
         falcon_core::instrument_interfaces::names::InstrumentPort::Knob(
-            "barrierTest", Connection::BarrierGate("B1")));
+            "barrierTest", "instrument1", Connection::BarrierGate("B1")));
     adj_matrix = xt::xarray<int>{{0, 1, 0}, {1, 0, 1}, {0, 1, 0}};
     adjacency = std::make_shared<Adjacency>(adj_matrix, indexes);
     max_safe_diff = 1.5;

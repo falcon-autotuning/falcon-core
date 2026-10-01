@@ -5,7 +5,7 @@
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
 #include "falcon-core/generic/List.hpp"
 #include "falcon-core/generic/Map.hpp"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes.hpp"
+#include "falcon-core/instrument_interfaces/names/InstrumentPort.hpp"
 #include "falcon-core/physics/device_structures/Connection.hpp"
 #include "falcon-core/physics/device_structures/Connections.hpp"
 #include "falcon-core/physics/units/SymbolUnit.hpp"
@@ -19,7 +19,7 @@ using namespace device_structures;
 using namespace contexts;
 
 class InterpretationContainerTest : public ::testing::Test {
- protected:
+protected:
   std::shared_ptr<Connection> connA =
       std::make_shared<Connection>("A", DeviceFeature::PlungerGate);
   std::shared_ptr<Connection> connB =
@@ -30,15 +30,12 @@ class InterpretationContainerTest : public ::testing::Test {
       std::make_shared<units::SymbolUnit>(units::Unit::Volt());
   std::shared_ptr<units::SymbolUnit> unitA =
       std::make_shared<units::SymbolUnit>(units::Unit::Ampere());
-  MeasurementContextSP    mcA, mcB, mcO;
+  MeasurementContextSP mcA, mcB, mcO;
   InterpretationContextSP ctxA_O_V, ctxB_O_V, ctxA_O_A;
-  void                    SetUp() override {
-    mcA =
-        std::make_shared<MeasurementContext>(connA, InstrumentTypes::VOLTMETER);
-    mcB =
-        std::make_shared<MeasurementContext>(connB, InstrumentTypes::VOLTMETER);
-    mcO =
-        std::make_shared<MeasurementContext>(connO, InstrumentTypes::VOLTMETER);
+  void SetUp() override {
+    mcA = std::make_shared<MeasurementContext>(connA, Instrument::Voltmeter);
+    mcB = std::make_shared<MeasurementContext>(connB, Instrument::Voltmeter);
+    mcO = std::make_shared<MeasurementContext>(connO, Instrument::Voltmeter);
     ctxA_O_V = std::make_shared<InterpretationContext>(
         std::make_shared<math::Axes<MeasurementContext>>(
             std::vector<MeasurementContextSP>{mcA}),
@@ -67,7 +64,7 @@ TEST_F(InterpretationContainerTest, ConstructionAndUnit) {
   EXPECT_EQ(*container.unit(), *unitV);
   EXPECT_EQ(container.keys()->size(), 1);
   generic::List<InterpretationContext> keys = *(container.keys());
-  for (const InterpretationContextSP& context : keys) {
+  for (const InterpretationContextSP &context : keys) {
     if (!context) {
       throw std::invalid_argument("This is a broken context");
     }
@@ -85,7 +82,7 @@ TEST_F(InterpretationContainerTest, ConstructionAndUnitBigger) {
   EXPECT_EQ(*container.unit(), *unitV);
   EXPECT_EQ(container.keys()->size(), 2);
   generic::List<InterpretationContext> keys = *(container.keys());
-  for (const InterpretationContextSP& context : keys) {
+  for (const InterpretationContextSP &context : keys) {
     EXPECT_EQ(context->dimension(), 1);
   }
   EXPECT_EQ(container.values()->size(), 2);
@@ -119,11 +116,11 @@ TEST_F(InterpretationContainerTest, SelectByConnections) {
   map->insert(ctxA_O_V, 1.0);
   map->insert(ctxB_O_V, 2.0);
   InterpretationContainer<double> container(map);
-  std::vector<ConnectionSP>       connections = {connA, connB};
+  std::vector<ConnectionSP> connections = {connA, connB};
   auto result = container.select_by_connections(connections);
-  EXPECT_EQ(result->size(), 0);  // No context matches both connections
+  EXPECT_EQ(result->size(), 0); // No context matches both connections
   connections = {connA};
-  result      = container.select_by_connections(connections);
+  result = container.select_by_connections(connections);
   EXPECT_EQ(result->size(), 1);
   EXPECT_EQ(*result->at(0), *ctxA_O_V);
 }
@@ -175,7 +172,7 @@ TEST_F(InterpretationContainerTest, SerializationRoundTrip) {
   auto map = std::make_shared<generic::Map<InterpretationContext, double>>();
   map->insert(ctxA_O_V, 1.0);
   InterpretationContainer<double> container(map);
-  auto                            string = container.to_json_string();
+  auto string = container.to_json_string();
   auto c2 = InterpretationContainer<double>::from_json_string<
       InterpretationContainer<double>>(string);
   EXPECT_EQ(container, *c2);

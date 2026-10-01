@@ -9,7 +9,6 @@
 #include "falcon-core/autotuner_interfaces/contexts/MeasurementContext.hpp"
 #include "falcon-core/autotuner_interfaces/interpretations/InterpretationContext.hpp"
 #include "falcon-core/generic/List.hpp"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes.hpp"
 #include "falcon-core/math/Axes.hpp"
 #include "falcon-core/physics/device_structures/Connection.hpp"
 #include "falcon-core/physics/units/SymbolUnit.hpp"
@@ -47,9 +46,9 @@ CEREAL_REGISTER_POLYMORPHIC_RELATION(
         falcon_core::autotuner_interfaces::contexts::MeasurementContext>)
 
 TEST(InterpretationContextTest, JsonSerializeDeserialize) {
-  auto       conn1 = Connection::PlungerGate("ind_conn");
-  auto       conn2 = Connection::PlungerGate("dep_conn");
-  Instrument instr = InstrumentTypes::VOLTAGE_SOURCE;
+  auto conn1 = Connection::PlungerGate("ind_conn");
+  auto conn2 = Connection::PlungerGate("dep_conn");
+  Instrument instr = Instrument::Voltage_Source;
 
   auto m_ind = std::make_shared<MeasurementContext>(conn1, instr);
   auto m_dep = std::make_shared<MeasurementContext>(conn2, instr);
@@ -79,9 +78,9 @@ TEST(InterpretationContextTest, JsonSerializeDeserialize) {
 
 TEST(InterpretationContextTest,
      JsonSerializeDeserialize_WithCerealRegistration) {
-  auto       conn1 = Connection::PlungerGate("ind_conn");
-  auto       conn2 = Connection::PlungerGate("dep_conn");
-  Instrument instr = InstrumentTypes::VOLTAGE_SOURCE;
+  auto conn1 = Connection::PlungerGate("ind_conn");
+  auto conn2 = Connection::PlungerGate("dep_conn");
+  Instrument instr = Instrument::Voltage_Source;
 
   auto m_ind = std::make_shared<MeasurementContext>(conn1, instr);
   auto m_dep = std::make_shared<MeasurementContext>(conn2, instr);
@@ -120,9 +119,9 @@ TEST(InterpretationContextTest,
 }
 
 TEST(InterpretationContextTest, IndependentVarialblesGetter) {
-  auto       conn1 = Connection::PlungerGate("ind_conn");
-  auto       conn2 = Connection::PlungerGate("dep_conn");
-  Instrument instr = InstrumentTypes::VOLTAGE_SOURCE;
+  auto conn1 = Connection::PlungerGate("ind_conn");
+  auto conn2 = Connection::PlungerGate("dep_conn");
+  Instrument instr = Instrument::Voltage_Source;
 
   auto m_ind = std::make_shared<MeasurementContext>(conn1, instr);
   auto m_dep = std::make_shared<MeasurementContext>(conn2, instr);
@@ -144,9 +143,9 @@ TEST(InterpretationContextTest, IndependentVarialblesGetter) {
 }
 
 TEST(InterpretationContextTest, BehaviorOperations) {
-  auto       conn1 = Connection::PlungerGate("ind_conn");
-  auto       conn2 = Connection::PlungerGate("dep_conn");
-  Instrument instr = InstrumentTypes::VOLTAGE_SOURCE;
+  auto conn1 = Connection::PlungerGate("ind_conn");
+  auto conn2 = Connection::PlungerGate("dep_conn");
+  Instrument instr = Instrument::Voltage_Source;
 
   auto m_ind = std::make_shared<MeasurementContext>(conn1, instr);
   auto m_dep = std::make_shared<MeasurementContext>(conn2, instr);
@@ -184,7 +183,7 @@ TEST(InterpretationContextTest, BehaviorOperations) {
   ASSERT_THROW(ctx.replace_dependent_variable(100, m_ind), std::out_of_range);
 
   auto new_unit = std::make_shared<SymbolUnit>(Unit::Kilogram());
-  auto new_ctx  = ctx.with_unit(new_unit);
+  auto new_ctx = ctx.with_unit(new_unit);
   EXPECT_THROW(ctx.with_unit(nullptr), std::invalid_argument);
   ASSERT_NE(new_ctx, nullptr);
   EXPECT_EQ(new_ctx->unit(), new_unit);

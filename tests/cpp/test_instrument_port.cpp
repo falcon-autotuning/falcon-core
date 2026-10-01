@@ -2,9 +2,7 @@
 
 #include <stdexcept>
 
-#include "falcon-core/instrument_interfaces/names/Instrument.hpp"
 #include "falcon-core/instrument_interfaces/names/InstrumentPort.hpp"
-#include "falcon-core/instrument_interfaces/names/InstrumentTypes.hpp"
 #include "falcon-core/physics/device_structures/Connection.hpp"
 #include "falcon-core/physics/units/SymbolUnit.hpp"
 
@@ -14,80 +12,87 @@ using namespace falcon_core::physics::device_structures;
 using namespace falcon_core::physics::units;
 
 class InstrumentPortTest : public ::testing::Test {
- protected:
-  std::string  default_name    = "foo";
-  ConnectionSP pseudo_name     = Connection::PlungerGate("P1");
-  Instrument   instrument_type = InstrumentTypes::DC_VOLTAGE_SOURCE;
-  SymbolUnitSP units           = SymbolUnit::Volt();
-  std::string  description     = "desc";
-  PortType     type            = PortType::InstrumentPort;
+protected:
+  std::string default_name = "foo";
+  std::string instrument_name = "Instrument1";
+  ConnectionSP pseudo_name = Connection::PlungerGate("P1");
+  Instrument instrument_type = Instrument::DC_Voltage_Source;
+  SymbolUnitSP units = SymbolUnit::Volt();
+  std::string description = "desc";
+
+  Scope scope = Scope::Local;
+  Access access = Access::ReadWrite;
+  InstrumentCharacteristic characteristic = InstrumentCharacteristic::None;
+
+  PortType type = PortType::Setting;
 };
 
 TEST_F(InstrumentPortTest, ConstructValidInstrumentPort) {
-  InstrumentPort port(
-      default_name, pseudo_name, instrument_type, units, description, type);
+  InstrumentPort port(default_name, instrument_name, scope, access,
+                      characteristic, type, pseudo_name, instrument_type, units,
+                      description);
+
   EXPECT_EQ(port.default_name(), default_name);
+  EXPECT_EQ(port.instrument_name(), instrument_name);
   EXPECT_EQ(port.pseudo_name(), pseudo_name);
   EXPECT_EQ(port.instrument_type(), instrument_type);
+  EXPECT_EQ(port.scope(), scope);
+  EXPECT_EQ(port.access(), access);
+  EXPECT_EQ(port.characteristic(), characteristic);
   EXPECT_EQ(port.units()->symbol(), units->symbol());
   EXPECT_EQ(port.description(), description);
-  EXPECT_TRUE(port.is_port());
+
+  EXPECT_TRUE(port.is_setting());
   EXPECT_FALSE(port.is_knob());
   EXPECT_FALSE(port.is_meter());
 }
 
 TEST_F(InstrumentPortTest, KnobFactoryValid) {
-  auto knob = InstrumentPort::Knob(default_name,
-                                   pseudo_name,
-                                   instrument_type,
-                                   SymbolUnit::MilliVolt(),
-                                   "desc");
+  auto knob =
+      InstrumentPort::Knob(default_name, instrument_name, pseudo_name,
+                           instrument_type, SymbolUnit::MilliVolt(), "desc");
+
   EXPECT_TRUE(knob->is_knob());
   EXPECT_FALSE(knob->is_meter());
-  EXPECT_FALSE(knob->is_port());
+  EXPECT_FALSE(knob->is_setting());
 }
 
 TEST_F(InstrumentPortTest, PortNullptrThrowsPsuedoName) {
-  InstrumentPort port(
-      default_name, nullptr, instrument_type, SymbolUnit::MilliVolt(), "desc");
-  EXPECT_EQ(port.instrument_facing_name(), port.instrument_type());
+  InstrumentPort port(default_name, instrument_name, scope, access,
+                      characteristic, PortType::Setting, nullptr,
+                      instrument_type, SymbolUnit::MilliVolt(), "desc");
+  EXPECT_EQ(port.instrument_facing_name(), ToString(port.instrument_type()));
+
   EXPECT_THROW(port.pseudo_name(), std::runtime_error);
 }
 
 TEST_F(InstrumentPortTest, KnobFactoryNullptrThrows) {
-  EXPECT_THROW(InstrumentPort::Knob(default_name,
-                                    nullptr,
-                                    instrument_type,
-                                    SymbolUnit::MilliVolt(),
+  EXPECT_THROW(InstrumentPort::Knob(default_name, instrument_name, nullptr,
+                                    instrument_type, SymbolUnit::MilliVolt(),
                                     "desc"),
                std::invalid_argument);
 }
 
 TEST_F(InstrumentPortTest, KnobFactoryNullUnitThrows) {
-  EXPECT_THROW(InstrumentPort::Knob(default_name,
+  EXPECT_THROW(InstrumentPort::Knob(default_name, instrument_name,
                                     Connection::PlungerGate("P1"),
-                                    instrument_type,
-                                    nullptr,
-                                    "desc"),
+                                    instrument_type, nullptr, "desc"),
                std::invalid_argument);
 }
 
 TEST_F(InstrumentPortTest, MeterFactoryValid) {
-  auto meter = InstrumentPort::Meter(default_name,
-                                     pseudo_name,
-                                     instrument_type,
-                                     SymbolUnit::NanoAmpere(),
-                                     "desc");
+  auto meter =
+      InstrumentPort::Meter(default_name, instrument_name, pseudo_name,
+                            instrument_type, SymbolUnit::NanoAmpere(), "desc");
+
   EXPECT_TRUE(meter->is_meter());
   EXPECT_FALSE(meter->is_knob());
-  EXPECT_FALSE(meter->is_port());
+  EXPECT_FALSE(meter->is_setting());
 }
 
 TEST_F(InstrumentPortTest, MeterFactoryNullptrThrows) {
-  EXPECT_THROW(InstrumentPort::Meter(default_name,
-                                     nullptr,
-                                     instrument_type,
-                                     SymbolUnit::NanoAmpere(),
+  EXPECT_THROW(InstrumentPort::Meter(default_name, instrument_name, nullptr,
+                                     instrument_type, SymbolUnit::NanoAmpere(),
                                      "desc"),
                std::invalid_argument);
 }
@@ -100,105 +105,110 @@ TEST_F(InstrumentPortTest, TimerAndExecutionClock) {
 }
 
 TEST_F(InstrumentPortTest, InstrumentFacingNameWithPseudoName) {
-  InstrumentPort port(
-      default_name, pseudo_name, instrument_type, units, description, type);
+  InstrumentPort port(default_name, instrument_name, scope, access,
+                      characteristic, type, pseudo_name, instrument_type, units,
+                      description);
+
   EXPECT_EQ(port.instrument_facing_name(), pseudo_name->name());
 }
 
 TEST_F(InstrumentPortTest, SerializationRoundTrip) {
-  InstrumentPort port(
-      default_name, pseudo_name, instrument_type, units, description, type);
-  std::string json  = port.to_json_string();
-  auto        port2 = InstrumentPort::from_json_string<InstrumentPort>(json);
+  InstrumentPort port(default_name, instrument_name, scope, access,
+                      characteristic, type, pseudo_name, instrument_type, units,
+                      description);
+  std::string json = port.to_json_string();
+  auto port2 = InstrumentPort::from_json_string<InstrumentPort>(json);
   ASSERT_NE(port2, nullptr);
   EXPECT_EQ(port2->default_name(), default_name);
   EXPECT_EQ(port2->pseudo_name()->name(), pseudo_name->name());
   EXPECT_EQ(port2->instrument_type(), instrument_type);
   EXPECT_EQ(port2->units()->symbol(), units->symbol());
   EXPECT_EQ(port2->description(), description);
-  EXPECT_TRUE(port2->is_port());
+  EXPECT_TRUE(port2->is_setting());
+  EXPECT_EQ(port2->instrument_name(), instrument_name);
+  EXPECT_EQ(port2->scope(), scope);
+  EXPECT_EQ(port2->access(), access);
+  EXPECT_EQ(port2->characteristic(), characteristic);
 }
 
 TEST_F(InstrumentPortTest, EqualityOperatorTrueForIdentical) {
-  InstrumentPort port1(
-      default_name, pseudo_name, instrument_type, units, description, type);
-  InstrumentPort port2(
-      default_name, pseudo_name, instrument_type, units, description, type);
+  InstrumentPort port1(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, description);
+  InstrumentPort port2(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, description);
   EXPECT_TRUE(port1 == port2);
   EXPECT_FALSE(port1 != port2);
 }
 
 TEST_F(InstrumentPortTest, EqualityOperatorFalseForDifferentName) {
-  InstrumentPort port1(
-      default_name, pseudo_name, instrument_type, units, description, type);
-  InstrumentPort port2(
-      "different", pseudo_name, instrument_type, units, description, type);
+  InstrumentPort port1(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, description);
+  InstrumentPort port2("different", instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, description);
   EXPECT_FALSE(port1 == port2);
   EXPECT_TRUE(port1 != port2);
 }
 
 TEST_F(InstrumentPortTest, EqualityOperatorFalseForDifferentInstrumentType) {
-  InstrumentPort port1(
-      default_name, pseudo_name, instrument_type, units, description, type);
-  InstrumentPort port2(default_name,
-                       pseudo_name,
-                       InstrumentTypes::DC_CURRENT_SOURCE,
-                       units,
-                       description,
-                       type);
+  InstrumentPort port1(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, description);
+  InstrumentPort port2(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name,
+                       Instrument::DC_Current_Source, units, description);
   EXPECT_FALSE(port1 == port2);
   EXPECT_TRUE(port1 != port2);
 }
 
 TEST_F(InstrumentPortTest, EqualityOperatorFalseForDifferentUnits) {
-  InstrumentPort port1(
-      default_name, pseudo_name, instrument_type, units, description, type);
-  InstrumentPort port2(default_name,
-                       pseudo_name,
-                       instrument_type,
-                       SymbolUnit::MilliVolt(),
-                       description,
-                       type);
+  InstrumentPort port1(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, description);
+  InstrumentPort port2(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       SymbolUnit::MilliVolt(), description);
   EXPECT_FALSE(port1 == port2);
   EXPECT_TRUE(port1 != port2);
 }
 
 TEST_F(InstrumentPortTest, EqualityOperatorFalseForDifferentDescription) {
-  InstrumentPort port1(
-      default_name, pseudo_name, instrument_type, units, description, type);
-  InstrumentPort port2(
-      default_name, pseudo_name, instrument_type, units, "otherdesc", type);
+  InstrumentPort port1(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, description);
+  InstrumentPort port2(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, "otherdesc");
   EXPECT_FALSE(port1 == port2);
   EXPECT_TRUE(port1 != port2);
 }
 
 TEST_F(InstrumentPortTest, EqualityOperatorFalseForDifferentType) {
-  InstrumentPort port1(default_name,
-                       pseudo_name,
-                       instrument_type,
-                       units,
-                       description,
-                       PortType::InstrumentPort);
-  InstrumentPort port2(default_name,
-                       pseudo_name,
-                       instrument_type,
-                       units,
-                       description,
-                       PortType::Knob);
+  InstrumentPort port1(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, description);
+  InstrumentPort port2(default_name, instrument_name, scope, access,
+                       characteristic, PortType::Knob, pseudo_name,
+                       instrument_type, units, description);
   EXPECT_FALSE(port1 == port2);
   EXPECT_TRUE(port1 != port2);
 }
 
 TEST_F(InstrumentPortTest,
        EqualityOperatorFalseForDifferentInstrumentFacingName) {
-  InstrumentPort port1(
-      default_name, pseudo_name, instrument_type, units, description, type);
+  InstrumentPort port1(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name, instrument_type,
+                       units, description);
   // Use a different pseudo_name to change instrument_facing_name
-  ConnectionSP   pseudo_name2 = Connection::PlungerGate("P2");
-  InstrumentPort port2(
-      default_name, pseudo_name2, instrument_type, units, description, type);
+  ConnectionSP pseudo_name2 = Connection::PlungerGate("P2");
+  InstrumentPort port2(default_name, instrument_name, scope, access,
+                       characteristic, type, pseudo_name2, instrument_type,
+                       units, description);
   EXPECT_FALSE(port1 == port2);
   EXPECT_TRUE(port1 != port2);
 }
 
-}  // namespace
+} // namespace
