@@ -15,4 +15,5 @@ Diagnostics:
       - modernize-use-trailing-return-type
       - cppcoreguidelines-non-private-member-variables-in-classes
       - misc-non-private-member-variables-in-classes
+      - performance-enum-size
   UnusedIncludes: Strict

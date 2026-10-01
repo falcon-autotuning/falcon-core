@@ -9,20 +9,21 @@ extern "C" {
 #include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
-typedef void* AcquisitionContextHandle;
+typedef void *AcquisitionContextHandle;
 
 // @category:allocation
 FALCON_CORE_C_API AcquisitionContextHandle
 AcquisitionContext_copy(AcquisitionContextHandle handle);
 // @category:deallocation
-FALCON_CORE_C_API void AcquisitionContext_destroy(
-    AcquisitionContextHandle handle);
+FALCON_CORE_C_API void
+AcquisitionContext_destroy(AcquisitionContextHandle handle);
 // @category:read
 FALCON_CORE_C_API bool AcquisitionContext_equal(AcquisitionContextHandle handle,
                                                 AcquisitionContextHandle other);
 // @category:read
-FALCON_CORE_C_API bool AcquisitionContext_not_equal(
-    AcquisitionContextHandle handle, AcquisitionContextHandle other);
+FALCON_CORE_C_API bool
+AcquisitionContext_not_equal(AcquisitionContextHandle handle,
+                             AcquisitionContextHandle other);
 // @category:read
 FALCON_CORE_C_API StringHandle
 AcquisitionContext_to_json_string(AcquisitionContextHandle handle);
@@ -32,8 +33,7 @@ AcquisitionContext_from_json_string(StringHandle json);
 // @category:allocation
 FALCON_CORE_C_API AcquisitionContextHandle
 AcquisitionContext_create(ConnectionHandle connection,
-                          StringHandle     instrument_type,
-                          SymbolUnitHandle units);
+                          Instrument instrument_type, SymbolUnitHandle units);
 // @category:allocation
 FALCON_CORE_C_API AcquisitionContextHandle
 AcquisitionContext_create_from_port(InstrumentPortHandle port);
@@ -41,7 +41,7 @@ AcquisitionContext_create_from_port(InstrumentPortHandle port);
 FALCON_CORE_C_API ConnectionHandle
 AcquisitionContext_connection(AcquisitionContextHandle handle);
 // @category:read
-FALCON_CORE_C_API StringHandle
+FALCON_CORE_C_API Instrument
 AcquisitionContext_instrument_type(AcquisitionContextHandle handle);
 // @category:read
 /* AUTO-DOC from cpp: AcquisitionContext_units |
@@ -66,8 +66,9 @@ FALCON_CORE_C_API AcquisitionContextHandle AcquisitionContext_division(
  * @param other: The unit to divide by.
  * @return A new context with the divided units.
  */
-FALCON_CORE_C_API bool AcquisitionContext_match_connection(
-    AcquisitionContextHandle handle, ConnectionHandle other);
+FALCON_CORE_C_API bool
+AcquisitionContext_match_connection(AcquisitionContextHandle handle,
+                                    ConnectionHandle other);
 // @category:read
 /* AUTO-DOC from cpp: AcquisitionContext_match_instrument_type |
  * falcon_core::autotuner_interfaces::contexts::AcquisitionContext::match_instrument_type
@@ -75,8 +76,9 @@ FALCON_CORE_C_API bool AcquisitionContext_match_connection(
 /**
  * @brief Returns if the instrument type matches this context.
  */
-FALCON_CORE_C_API bool AcquisitionContext_match_instrument_type(
-    AcquisitionContextHandle handle, StringHandle other);
+FALCON_CORE_C_API bool
+AcquisitionContext_match_instrument_type(AcquisitionContextHandle handle,
+                                         Instrument other);
 
 #ifdef __cplusplus
 }

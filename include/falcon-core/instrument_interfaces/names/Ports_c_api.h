@@ -9,7 +9,7 @@ extern "C" {
 #include "falcon-core/generic/ListString_c_api.h"
 #include "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h"
 
-typedef void* PortsHandle;
+typedef void *PortsHandle;
 
 // @category:allocation
 FALCON_CORE_C_API PortsHandle Ports_copy(PortsHandle handle);
@@ -78,7 +78,7 @@ Ports__get_psuedoname_matching_port(PortsHandle handle, ConnectionHandle name);
  * @throws std::runtime_error if no port has the given type.
  */
 FALCON_CORE_C_API InstrumentPortHandle Ports__get_instrument_type_matching_port(
-    PortsHandle handle, StringHandle insttype);
+    PortsHandle handle, Instrument insttype);
 // @category:read
 /* AUTO-DOC from cpp: Ports_is_knobs |
  * falcon_core::instrument_interfaces::names::Ports::is_knobs */
@@ -96,10 +96,18 @@ FALCON_CORE_C_API bool Ports_is_knobs(PortsHandle handle);
  */
 FALCON_CORE_C_API bool Ports_is_meters(PortsHandle handle);
 // @category:read
+/* AUTO-DOC from cpp: Ports_is_settings|
+ * falcon_core::instrument_interfaces::names::Ports::is_settings */
+/**
+ * @brief Check if the ports contains only settings.
+ * @return True if the ports only contain settings.
+ */
+FALCON_CORE_C_API bool Ports_is_settings(PortsHandle handle);
+// @category:read
 FALCON_CORE_C_API PortsHandle Ports_intersection(PortsHandle handle,
                                                  PortsHandle other);
 // @category:write
-FALCON_CORE_C_API void Ports_push_back(PortsHandle          handle,
+FALCON_CORE_C_API void Ports_push_back(PortsHandle handle,
                                        InstrumentPortHandle value);
 // @category:read
 FALCON_CORE_C_API size_t Ports_size(PortsHandle handle);
@@ -114,10 +122,10 @@ FALCON_CORE_C_API InstrumentPortHandle Ports_at(PortsHandle handle, size_t idx);
 // @category:read
 FALCON_CORE_C_API ListStringHandle Ports_items(PortsHandle handle);
 // @category:read
-FALCON_CORE_C_API bool Ports_contains(PortsHandle          handle,
+FALCON_CORE_C_API bool Ports_contains(PortsHandle handle,
                                       InstrumentPortHandle value);
 // @category:read
-FALCON_CORE_C_API size_t Ports_index(PortsHandle          handle,
+FALCON_CORE_C_API size_t Ports_index(PortsHandle handle,
                                      InstrumentPortHandle value);
 
 #ifdef __cplusplus

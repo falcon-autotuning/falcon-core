@@ -8,7 +8,7 @@ extern "C" {
 #include "falcon-core/math/domains/Domain_c_api.h"
 #include "falcon-core/physics/device_structures/Connection_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
-typedef void* LabelledDomainHandle;
+typedef void *LabelledDomainHandle;
 
 // @category:allocation
 FALCON_CORE_C_API LabelledDomainHandle
@@ -28,57 +28,39 @@ LabelledDomain_to_json_string(LabelledDomainHandle handle);
 FALCON_CORE_C_API LabelledDomainHandle
 LabelledDomain_from_json_string(StringHandle json);
 // @category:allocation
-FALCON_CORE_C_API LabelledDomainHandle
-LabelledDomain_create_primitive_knob(StringHandle     default_name,
-                                     double           min_val,
-                                     double           max_val,
-                                     ConnectionHandle psuedo_name,
-                                     StringHandle     instrument_type,
-                                     bool             lesser_bound_contained,
-                                     bool             greater_bound_contained,
-                                     SymbolUnitHandle units,
-                                     StringHandle     description);
+FALCON_CORE_C_API LabelledDomainHandle LabelledDomain_create_primitive_knob(
+    StringHandle default_name, StringHandle instrument_name, double min_val,
+    double max_val, SymbolUnitHandle units, StringHandle description,
+    ConnectionHandle psuedo_name, Instrument instrument_type,
+    bool lesser_bound_contained, bool greater_bound_contained);
 // @category:allocation
-FALCON_CORE_C_API LabelledDomainHandle
-LabelledDomain_create_primitive_meter(StringHandle     default_name,
-                                      double           min_val,
-                                      double           max_val,
-                                      ConnectionHandle psuedo_name,
-                                      StringHandle     instrument_type,
-                                      bool             lesser_bound_contained,
-                                      bool             greater_bound_contained,
-                                      SymbolUnitHandle units,
-                                      StringHandle     description);
+FALCON_CORE_C_API LabelledDomainHandle LabelledDomain_create_primitive_meter(
+    StringHandle default_name, StringHandle instrument_name, double min_val,
+    double max_val, SymbolUnitHandle units, StringHandle description,
+    ConnectionHandle psuedo_name, Instrument instrument_type,
+    bool lesser_bound_contained, bool greater_bound_contained);
 // @category:allocation
-FALCON_CORE_C_API LabelledDomainHandle
-LabelledDomain_create_primitive_port(StringHandle     default_name,
-                                     double           min_val,
-                                     double           max_val,
-                                     ConnectionHandle psuedo_name,
-                                     StringHandle     instrument_type,
-                                     bool             lesser_bound_contained,
-                                     bool             greater_bound_contained,
-                                     SymbolUnitHandle units,
-                                     StringHandle     description);
+FALCON_CORE_C_API LabelledDomainHandle LabelledDomain_create_primitive_setting(
+    StringHandle default_name, StringHandle instrument_name, Scope scope,
+    Access access, InstrumentCharacteristic characteristic, double min_val,
+    double max_val, SymbolUnitHandle units, StringHandle description,
+    ConnectionHandle psuedo_name, Instrument instrument_type,
+    bool lesser_bound_contained, bool greater_bound_contained);
 // @category:allocation
-FALCON_CORE_C_API LabelledDomainHandle
-LabelledDomain_create_from_port(double               min_val,
-                                double               max_val,
-                                InstrumentPortHandle port,
-                                bool                 lesser_bound_contained,
-                                bool                 greater_bound_contained);
+FALCON_CORE_C_API LabelledDomainHandle LabelledDomain_create_from_port(
+    double min_val, double max_val, InstrumentPortHandle port,
+    bool lesser_bound_contained, bool greater_bound_contained);
 // @category:allocation
 FALCON_CORE_C_API LabelledDomainHandle
 LabelledDomain_create_from_port_and_domain(InstrumentPortHandle port,
-                                           DomainHandle         domain);
+                                           DomainHandle domain);
 // @category:allocation
-FALCON_CORE_C_API LabelledDomainHandle
-LabelledDomain_create_from_domain(DomainHandle     domain,
-                                  StringHandle     default_name,
-                                  ConnectionHandle psuedo_name,
-                                  StringHandle     instrument_type,
-                                  SymbolUnitHandle units,
-                                  StringHandle     description);
+FALCON_CORE_C_API LabelledDomainHandle LabelledDomain_create_from_domain(
+    DomainHandle domain, StringHandle default_name,
+    StringHandle instrument_name, Scope scope, Access access,
+    InstrumentCharacteristic characteristic, PortType type,
+    SymbolUnitHandle units, StringHandle description,
+    ConnectionHandle psuedo_name, Instrument instrument_type);
 // @category:read
 /* AUTO-DOC from cpp: LabelledDomain_port |
  * falcon_core::math::domains::LabelledDomain::port */
@@ -107,20 +89,20 @@ LabelledDomain_domain(LabelledDomainHandle handle);
 FALCON_CORE_C_API bool LabelledDomain_matching_port(LabelledDomainHandle handle,
                                                     InstrumentPortHandle port);
 // @category:read
-FALCON_CORE_C_API double LabelledDomain_lesser_bound(
-    LabelledDomainHandle handle);
+FALCON_CORE_C_API double
+LabelledDomain_lesser_bound(LabelledDomainHandle handle);
 // @category:read
-FALCON_CORE_C_API double LabelledDomain_greater_bound(
-    LabelledDomainHandle handle);
+FALCON_CORE_C_API double
+LabelledDomain_greater_bound(LabelledDomainHandle handle);
 // @category:read
-FALCON_CORE_C_API bool LabelledDomain_lesser_bound_contained(
-    LabelledDomainHandle handle);
+FALCON_CORE_C_API bool
+LabelledDomain_lesser_bound_contained(LabelledDomainHandle handle);
 // @category:read
-FALCON_CORE_C_API bool LabelledDomain_greater_bound_contained(
-    LabelledDomainHandle handle);
+FALCON_CORE_C_API bool
+LabelledDomain_greater_bound_contained(LabelledDomainHandle handle);
 // @category:read
 FALCON_CORE_C_API bool LabelledDomain_in(LabelledDomainHandle handle,
-                                         double               value);
+                                         double value);
 // @category:read
 FALCON_CORE_C_API double LabelledDomain_range(LabelledDomainHandle handle);
 // @category:read
@@ -134,8 +116,9 @@ LabelledDomain_union(LabelledDomainHandle handle, LabelledDomainHandle other);
 // @category:read
 FALCON_CORE_C_API bool LabelledDomain_is_empty(LabelledDomainHandle handle);
 // @category:read
-FALCON_CORE_C_API bool LabelledDomain_contains_domain(
-    LabelledDomainHandle handle, LabelledDomainHandle other);
+FALCON_CORE_C_API bool
+LabelledDomain_contains_domain(LabelledDomainHandle handle,
+                               LabelledDomainHandle other);
 // @category:read
 FALCON_CORE_C_API LabelledDomainHandle
 LabelledDomain_shift(LabelledDomainHandle handle, double offset);
@@ -145,7 +128,7 @@ LabelledDomain_scale(LabelledDomainHandle handle, double scale);
 // @category:read
 FALCON_CORE_C_API double LabelledDomain_transform(LabelledDomainHandle handle,
                                                   LabelledDomainHandle other,
-                                                  double               value);
+                                                  double value);
 
 #ifdef __cplusplus
 }

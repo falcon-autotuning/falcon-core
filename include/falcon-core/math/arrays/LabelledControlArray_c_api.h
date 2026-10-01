@@ -10,20 +10,22 @@ extern "C" {
 #include "falcon-core/generic/String_c_api.h"
 #include "falcon-core/math/arrays/ControlArray_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
-typedef void* LabelledControlArrayHandle;
+typedef void *LabelledControlArrayHandle;
 
 // @category:allocation
 FALCON_CORE_C_API LabelledControlArrayHandle
 LabelledControlArray_copy(LabelledControlArrayHandle handle);
 // @category:deallocation
-FALCON_CORE_C_API void LabelledControlArray_destroy(
-    LabelledControlArrayHandle handle);
+FALCON_CORE_C_API void
+LabelledControlArray_destroy(LabelledControlArrayHandle handle);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray_equal(
-    LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
+FALCON_CORE_C_API bool
+LabelledControlArray_equal(LabelledControlArrayHandle handle,
+                           LabelledControlArrayHandle other);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray_not_equal(
-    LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
+FALCON_CORE_C_API bool
+LabelledControlArray_not_equal(LabelledControlArrayHandle handle,
+                               LabelledControlArrayHandle other);
 // @category:read
 FALCON_CORE_C_API StringHandle
 LabelledControlArray_to_json_string(LabelledControlArrayHandle handle);
@@ -35,7 +37,7 @@ FALCON_CORE_C_API LabelledControlArrayHandle LabelledControlArray_from_farray(
     FArrayDoubleHandle farray, AcquisitionContextHandle label);
 // @category:allocation
 FALCON_CORE_C_API LabelledControlArrayHandle
-LabelledControlArray_from_control_array(ControlArrayHandle       controlarray,
+LabelledControlArray_from_control_array(ControlArrayHandle controlarray,
                                         AcquisitionContextHandle label);
 // @category:read
 FALCON_CORE_C_API AcquisitionContextHandle
@@ -44,7 +46,7 @@ LabelledControlArray_label(LabelledControlArrayHandle handle);
 FALCON_CORE_C_API ConnectionHandle
 LabelledControlArray_connection(LabelledControlArrayHandle handle);
 // @category:read
-FALCON_CORE_C_API StringHandle
+FALCON_CORE_C_API Instrument
 LabelledControlArray_instrument_type(LabelledControlArrayHandle handle);
 // @category:read
 FALCON_CORE_C_API SymbolUnitHandle
@@ -57,19 +59,22 @@ FALCON_CORE_C_API size_t
 LabelledControlArray_dimension(LabelledControlArrayHandle handle);
 // @category:read
 FALCON_CORE_C_API size_t LabelledControlArray_shape(
-    LabelledControlArrayHandle handle, size_t* out_buffer, size_t ndim);
+    LabelledControlArrayHandle handle, size_t *out_buffer, size_t ndim);
 // @category:read
 FALCON_CORE_C_API size_t LabelledControlArray_data(
-    LabelledControlArrayHandle handle, double* out_buffer, size_t numdata);
+    LabelledControlArrayHandle handle, double *out_buffer, size_t numdata);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_plus_equals_farray(
-    LabelledControlArrayHandle handle, FArrayDoubleHandle other);
+FALCON_CORE_C_API void
+LabelledControlArray_plus_equals_farray(LabelledControlArrayHandle handle,
+                                        FArrayDoubleHandle other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_plus_equals_double(
-    LabelledControlArrayHandle handle, double other);
+FALCON_CORE_C_API void
+LabelledControlArray_plus_equals_double(LabelledControlArrayHandle handle,
+                                        double other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_plus_equals_int(
-    LabelledControlArrayHandle handle, int other);
+FALCON_CORE_C_API void
+LabelledControlArray_plus_equals_int(LabelledControlArrayHandle handle,
+                                     int other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArrayHandle
 LabelledControlArray_plus_control_array(LabelledControlArrayHandle handle,
@@ -87,14 +92,17 @@ LabelledControlArray_plus_int(LabelledControlArrayHandle handle, int other);
 FALCON_CORE_C_API void LabelledControlArray_minus_equals_control_array(
     LabelledControlArrayHandle handle, LabelledControlArrayHandle other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_minus_equals_farray(
-    LabelledControlArrayHandle handle, FArrayDoubleHandle other);
+FALCON_CORE_C_API void
+LabelledControlArray_minus_equals_farray(LabelledControlArrayHandle handle,
+                                         FArrayDoubleHandle other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_minus_equals_double(
-    LabelledControlArrayHandle handle, double other);
+FALCON_CORE_C_API void
+LabelledControlArray_minus_equals_double(LabelledControlArrayHandle handle,
+                                         double other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_minus_equals_int(
-    LabelledControlArrayHandle handle, int other);
+FALCON_CORE_C_API void
+LabelledControlArray_minus_equals_int(LabelledControlArrayHandle handle,
+                                      int other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArrayHandle
 LabelledControlArray_minus_control_array(LabelledControlArrayHandle handle,
@@ -112,11 +120,13 @@ LabelledControlArray_minus_int(LabelledControlArrayHandle handle, int other);
 FALCON_CORE_C_API LabelledControlArrayHandle
 LabelledControlArray_negation(LabelledControlArrayHandle handle);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_times_equals_double(
-    LabelledControlArrayHandle handle, double other);
+FALCON_CORE_C_API void
+LabelledControlArray_times_equals_double(LabelledControlArrayHandle handle,
+                                         double other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_times_equals_int(
-    LabelledControlArrayHandle handle, int other);
+FALCON_CORE_C_API void
+LabelledControlArray_times_equals_int(LabelledControlArrayHandle handle,
+                                      int other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArrayHandle LabelledControlArray_times_double(
     LabelledControlArrayHandle handle, double other);
@@ -124,15 +134,17 @@ FALCON_CORE_C_API LabelledControlArrayHandle LabelledControlArray_times_double(
 FALCON_CORE_C_API LabelledControlArrayHandle
 LabelledControlArray_times_int(LabelledControlArrayHandle handle, int other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_divides_equals_double(
-    LabelledControlArrayHandle handle, double other);
+FALCON_CORE_C_API void
+LabelledControlArray_divides_equals_double(LabelledControlArrayHandle handle,
+                                           double other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_divides_equals_int(
-    LabelledControlArrayHandle handle, int other);
+FALCON_CORE_C_API void
+LabelledControlArray_divides_equals_int(LabelledControlArrayHandle handle,
+                                        int other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArrayHandle
 LabelledControlArray_divides_double(LabelledControlArrayHandle handle,
-                                    double                     other);
+                                    double other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArrayHandle
 LabelledControlArray_divides_int(LabelledControlArrayHandle handle, int other);
@@ -148,8 +160,8 @@ LabelledControlArray_abs(LabelledControlArrayHandle handle);
 /**
  * @brief Return the minimum value of the array.
  */
-FALCON_CORE_C_API double LabelledControlArray_min(
-    LabelledControlArrayHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray_min(LabelledControlArrayHandle handle);
 // @category:read
 FALCON_CORE_C_API LabelledControlArrayHandle LabelledControlArray_min_farray(
     LabelledControlArrayHandle handle, FArrayDoubleHandle other);
@@ -163,8 +175,8 @@ LabelledControlArray_min_control_array(LabelledControlArrayHandle handle,
 /**
  * @brief Return the maximum value of the array.
  */
-FALCON_CORE_C_API double LabelledControlArray_max(
-    LabelledControlArrayHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray_max(LabelledControlArrayHandle handle);
 // @category:read
 FALCON_CORE_C_API LabelledControlArrayHandle LabelledControlArray_max_farray(
     LabelledControlArrayHandle handle, FArrayDoubleHandle other);
@@ -173,17 +185,19 @@ FALCON_CORE_C_API LabelledControlArrayHandle
 LabelledControlArray_max_control_array(LabelledControlArrayHandle handle,
                                        LabelledControlArrayHandle other);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray_greater_than(
-    LabelledControlArrayHandle handle, double value);
+FALCON_CORE_C_API bool
+LabelledControlArray_greater_than(LabelledControlArrayHandle handle,
+                                  double value);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray_less_than(
-    LabelledControlArrayHandle handle, double value);
+FALCON_CORE_C_API bool
+LabelledControlArray_less_than(LabelledControlArrayHandle handle, double value);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray_remove_offset(
-    LabelledControlArrayHandle handle, double offset);
+FALCON_CORE_C_API void
+LabelledControlArray_remove_offset(LabelledControlArrayHandle handle,
+                                   double offset);
 // @category:read
-FALCON_CORE_C_API double LabelledControlArray_sum(
-    LabelledControlArrayHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray_sum(LabelledControlArrayHandle handle);
 // @category:read
 FALCON_CORE_C_API ListListSizeTHandle
 LabelledControlArray_where(LabelledControlArrayHandle handle, double value);
@@ -198,10 +212,9 @@ LabelledControlArray_where(LabelledControlArrayHandle handle, double value);
 FALCON_CORE_C_API LabelledControlArrayHandle
 LabelledControlArray_flip(LabelledControlArrayHandle handle, size_t axis);
 // @category:read
-FALCON_CORE_C_API size_t
-LabelledControlArray_full_gradient(LabelledControlArrayHandle handle,
-                                   FArrayDoubleHandle*        out_buffer,
-                                   size_t                     buffer_size);
+FALCON_CORE_C_API size_t LabelledControlArray_full_gradient(
+    LabelledControlArrayHandle handle, FArrayDoubleHandle *out_buffer,
+    size_t buffer_size);
 // @category:read
 /* AUTO-DOC from cpp: LabelledControlArray_gradient |
  * falcon_core::math::arrays::LabelledControlArray::gradient */
@@ -228,8 +241,8 @@ LabelledControlArray_full_gradient(LabelledControlArrayHandle handle,
 FALCON_CORE_C_API FArrayDoubleHandle
 LabelledControlArray_gradient(LabelledControlArrayHandle handle, size_t axis);
 // @category:read
-FALCON_CORE_C_API double LabelledControlArray_get_sum_of_squares(
-    LabelledControlArrayHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray_get_sum_of_squares(LabelledControlArrayHandle handle);
 // @category:read
 FALCON_CORE_C_API double LabelledControlArray_get_summed_diff_int_of_squares(
     LabelledControlArrayHandle handle, int other);

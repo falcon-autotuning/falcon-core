@@ -12,20 +12,22 @@ extern "C" {
 #include "falcon-core/generic/String_c_api.h"
 #include "falcon-core/math/arrays/ControlArray_c_api.h"
 #include "falcon-core/physics/units/SymbolUnit_c_api.h"
-typedef void* LabelledControlArray1DHandle;
+typedef void *LabelledControlArray1DHandle;
 
 // @category:allocation
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_copy(LabelledControlArray1DHandle handle);
 // @category:deallocation
-FALCON_CORE_C_API void LabelledControlArray1D_destroy(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API void
+LabelledControlArray1D_destroy(LabelledControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray1D_equal(
-    LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
+FALCON_CORE_C_API bool
+LabelledControlArray1D_equal(LabelledControlArray1DHandle handle,
+                             LabelledControlArray1DHandle other);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray1D_not_equal(
-    LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other);
+FALCON_CORE_C_API bool
+LabelledControlArray1D_not_equal(LabelledControlArray1DHandle handle,
+                                 LabelledControlArray1DHandle other);
 // @category:read
 FALCON_CORE_C_API StringHandle
 LabelledControlArray1D_to_json_string(LabelledControlArray1DHandle handle);
@@ -34,42 +36,42 @@ FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_from_json_string(StringHandle json);
 // @category:allocation
 FALCON_CORE_C_API LabelledControlArray1DHandle
-LabelledControlArray1D_from_farray(FArrayDoubleHandle       farray,
+LabelledControlArray1D_from_farray(FArrayDoubleHandle farray,
                                    AcquisitionContextHandle label);
 // @category:allocation
 FALCON_CORE_C_API LabelledControlArray1DHandle
-LabelledControlArray1D_from_control_array(ControlArrayHandle       controlarray,
+LabelledControlArray1D_from_control_array(ControlArrayHandle controlarray,
                                           AcquisitionContextHandle label);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray1D_is_1D(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API bool
+LabelledControlArray1D_is_1D(LabelledControlArray1DHandle handle);
 // @category:read
 FALCON_CORE_C_API FArrayDoubleHandle
 LabelledControlArray1D_as_1D(LabelledControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_API double LabelledControlArray1D_get_start(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray1D_get_start(LabelledControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_API double LabelledControlArray1D_get_end(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray1D_get_end(LabelledControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray1D_is_decreasing(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API bool
+LabelledControlArray1D_is_decreasing(LabelledControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray1D_is_increasing(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API bool
+LabelledControlArray1D_is_increasing(LabelledControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_API double LabelledControlArray1D_get_distance(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray1D_get_distance(LabelledControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_API double LabelledControlArray1D_get_mean(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray1D_get_mean(LabelledControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_API double LabelledControlArray1D_get_std(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray1D_get_std(LabelledControlArray1DHandle handle);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_reverse(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API void
+LabelledControlArray1D_reverse(LabelledControlArray1DHandle handle);
 // @category:read
 FALCON_CORE_C_API size_t LabelledControlArray1D_get_closest_index(
     LabelledControlArray1DHandle handle, double value);
@@ -83,7 +85,7 @@ LabelledControlArray1D_label(LabelledControlArray1DHandle handle);
 FALCON_CORE_C_API ConnectionHandle
 LabelledControlArray1D_connection(LabelledControlArray1DHandle handle);
 // @category:read
-FALCON_CORE_C_API StringHandle
+FALCON_CORE_C_API Instrument
 LabelledControlArray1D_instrument_type(LabelledControlArray1DHandle handle);
 // @category:read
 FALCON_CORE_C_API SymbolUnitHandle
@@ -96,19 +98,22 @@ FALCON_CORE_C_API size_t
 LabelledControlArray1D_dimension(LabelledControlArray1DHandle handle);
 // @category:read
 FALCON_CORE_C_API size_t LabelledControlArray1D_shape(
-    LabelledControlArray1DHandle handle, size_t* out_buffer, size_t ndim);
+    LabelledControlArray1DHandle handle, size_t *out_buffer, size_t ndim);
 // @category:read
 FALCON_CORE_C_API size_t LabelledControlArray1D_data(
-    LabelledControlArray1DHandle handle, double* out_buffer, size_t numdata);
+    LabelledControlArray1DHandle handle, double *out_buffer, size_t numdata);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_plus_equals_farray(
-    LabelledControlArray1DHandle handle, FArrayDoubleHandle other);
+FALCON_CORE_C_API void
+LabelledControlArray1D_plus_equals_farray(LabelledControlArray1DHandle handle,
+                                          FArrayDoubleHandle other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_plus_equals_double(
-    LabelledControlArray1DHandle handle, double other);
+FALCON_CORE_C_API void
+LabelledControlArray1D_plus_equals_double(LabelledControlArray1DHandle handle,
+                                          double other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_plus_equals_int(
-    LabelledControlArray1DHandle handle, int other);
+FALCON_CORE_C_API void
+LabelledControlArray1D_plus_equals_int(LabelledControlArray1DHandle handle,
+                                       int other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_plus_control_array(LabelledControlArray1DHandle handle,
@@ -116,23 +121,26 @@ LabelledControlArray1D_plus_control_array(LabelledControlArray1DHandle handle,
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_plus_farray(LabelledControlArray1DHandle handle,
-                                   FArrayDoubleHandle           other);
+                                   FArrayDoubleHandle other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_plus_double(LabelledControlArray1DHandle handle,
-                                   double                       other);
+                                   double other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_plus_int(LabelledControlArray1DHandle handle, int other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_minus_equals_farray(
-    LabelledControlArray1DHandle handle, FArrayDoubleHandle other);
+FALCON_CORE_C_API void
+LabelledControlArray1D_minus_equals_farray(LabelledControlArray1DHandle handle,
+                                           FArrayDoubleHandle other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_minus_equals_double(
-    LabelledControlArray1DHandle handle, double other);
+FALCON_CORE_C_API void
+LabelledControlArray1D_minus_equals_double(LabelledControlArray1DHandle handle,
+                                           double other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_minus_equals_int(
-    LabelledControlArray1DHandle handle, int other);
+FALCON_CORE_C_API void
+LabelledControlArray1D_minus_equals_int(LabelledControlArray1DHandle handle,
+                                        int other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_minus_control_array(LabelledControlArray1DHandle handle,
@@ -140,11 +148,11 @@ LabelledControlArray1D_minus_control_array(LabelledControlArray1DHandle handle,
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_minus_farray(LabelledControlArray1DHandle handle,
-                                    FArrayDoubleHandle           other);
+                                    FArrayDoubleHandle other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_minus_double(LabelledControlArray1DHandle handle,
-                                    double                       other);
+                                    double other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle LabelledControlArray1D_minus_int(
     LabelledControlArray1DHandle handle, int other);
@@ -152,15 +160,17 @@ FALCON_CORE_C_API LabelledControlArray1DHandle LabelledControlArray1D_minus_int(
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_negation(LabelledControlArray1DHandle handle);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_times_equals_double(
-    LabelledControlArray1DHandle handle, double other);
+FALCON_CORE_C_API void
+LabelledControlArray1D_times_equals_double(LabelledControlArray1DHandle handle,
+                                           double other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_times_equals_int(
-    LabelledControlArray1DHandle handle, int other);
+FALCON_CORE_C_API void
+LabelledControlArray1D_times_equals_int(LabelledControlArray1DHandle handle,
+                                        int other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_times_double(LabelledControlArray1DHandle handle,
-                                    double                       other);
+                                    double other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle LabelledControlArray1D_times_int(
     LabelledControlArray1DHandle handle, int other);
@@ -168,16 +178,17 @@ FALCON_CORE_C_API LabelledControlArray1DHandle LabelledControlArray1D_times_int(
 FALCON_CORE_C_API void LabelledControlArray1D_divides_equals_double(
     LabelledControlArray1DHandle handle, double other);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_divides_equals_int(
-    LabelledControlArray1DHandle handle, int other);
+FALCON_CORE_C_API void
+LabelledControlArray1D_divides_equals_int(LabelledControlArray1DHandle handle,
+                                          int other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_divides_double(LabelledControlArray1DHandle handle,
-                                      double                       other);
+                                      double other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_divides_int(LabelledControlArray1DHandle handle,
-                                   int                          other);
+                                   int other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_pow(LabelledControlArray1DHandle handle, double other);
@@ -190,12 +201,12 @@ LabelledControlArray1D_abs(LabelledControlArray1DHandle handle);
 /**
  * @brief Return the minimum value of the array.
  */
-FALCON_CORE_C_API double LabelledControlArray1D_min(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray1D_min(LabelledControlArray1DHandle handle);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_min_farray(LabelledControlArray1DHandle handle,
-                                  FArrayDoubleHandle           other);
+                                  FArrayDoubleHandle other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_min_control_array(LabelledControlArray1DHandle handle,
@@ -206,28 +217,31 @@ LabelledControlArray1D_min_control_array(LabelledControlArray1DHandle handle,
 /**
  * @brief Return the maximum value of the array.
  */
-FALCON_CORE_C_API double LabelledControlArray1D_max(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray1D_max(LabelledControlArray1DHandle handle);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_max_farray(LabelledControlArray1DHandle handle,
-                                  FArrayDoubleHandle           other);
+                                  FArrayDoubleHandle other);
 // @category:read
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_max_control_array(LabelledControlArray1DHandle handle,
                                          LabelledControlArray1DHandle other);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray1D_greater_than(
-    LabelledControlArray1DHandle handle, double value);
+FALCON_CORE_C_API bool
+LabelledControlArray1D_greater_than(LabelledControlArray1DHandle handle,
+                                    double value);
 // @category:read
-FALCON_CORE_C_API bool LabelledControlArray1D_less_than(
-    LabelledControlArray1DHandle handle, double value);
+FALCON_CORE_C_API bool
+LabelledControlArray1D_less_than(LabelledControlArray1DHandle handle,
+                                 double value);
 // @category:write
-FALCON_CORE_C_API void LabelledControlArray1D_remove_offset(
-    LabelledControlArray1DHandle handle, double offset);
+FALCON_CORE_C_API void
+LabelledControlArray1D_remove_offset(LabelledControlArray1DHandle handle,
+                                     double offset);
 // @category:read
-FALCON_CORE_C_API double LabelledControlArray1D_sum(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray1D_sum(LabelledControlArray1DHandle handle);
 // @category:read
 FALCON_CORE_C_API ListListSizeTHandle
 LabelledControlArray1D_where(LabelledControlArray1DHandle handle, double value);
@@ -242,10 +256,9 @@ LabelledControlArray1D_where(LabelledControlArray1DHandle handle, double value);
 FALCON_CORE_C_API LabelledControlArray1DHandle
 LabelledControlArray1D_flip(LabelledControlArray1DHandle handle, size_t axis);
 // @category:read
-FALCON_CORE_C_API size_t
-LabelledControlArray1D_full_gradient(LabelledControlArray1DHandle handle,
-                                     FArrayDoubleHandle*          out_buffer,
-                                     size_t                       buffer_size);
+FALCON_CORE_C_API size_t LabelledControlArray1D_full_gradient(
+    LabelledControlArray1DHandle handle, FArrayDoubleHandle *out_buffer,
+    size_t buffer_size);
 // @category:read
 /* AUTO-DOC from cpp: LabelledControlArray1D_gradient |
  * falcon_core::math::arrays::LabelledControlArray1D::gradient */
@@ -272,8 +285,8 @@ LabelledControlArray1D_full_gradient(LabelledControlArray1DHandle handle,
 FALCON_CORE_C_API FArrayDoubleHandle LabelledControlArray1D_gradient(
     LabelledControlArray1DHandle handle, size_t axis);
 // @category:read
-FALCON_CORE_C_API double LabelledControlArray1D_get_sum_of_squares(
-    LabelledControlArray1DHandle handle);
+FALCON_CORE_C_API double
+LabelledControlArray1D_get_sum_of_squares(LabelledControlArray1DHandle handle);
 // @category:read
 FALCON_CORE_C_API double LabelledControlArray1D_get_summed_diff_int_of_squares(
     LabelledControlArray1DHandle handle, int other);

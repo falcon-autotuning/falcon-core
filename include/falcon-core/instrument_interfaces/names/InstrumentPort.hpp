@@ -130,6 +130,8 @@ enum class InstrumentCharacteristic : std::uint8_t {
   Voltage_Ramp_Slope,
   Max_Voltage_Ramp_Slope,
   Min_Voltage_Ramp_Slope,
+  Temperature,
+  Magnet_Strength,
   // Currently only the characteristics suitable for DC_Voltage_Source and
   // Amnmeter
 };
@@ -162,6 +164,10 @@ inline const char *ToString(InstrumentCharacteristic characteristic) {
     return "Max_Voltage_Ramp_Slope";
   case InstrumentCharacteristic::Min_Voltage_Ramp_Slope:
     return "Min_Voltage_Ramp_Slope";
+  case InstrumentCharacteristic::Temperature:
+    return "Temperature";
+  case InstrumentCharacteristic::Magnet_Strength:
+    return "Magnet_Strength";
   }
 
   return "Unknown";
