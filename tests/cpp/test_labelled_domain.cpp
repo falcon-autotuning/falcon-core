@@ -107,7 +107,7 @@ TEST_F(LabelledDomainTest, MatchingPortFalse) {
   // Different port (different name)
   auto other_port = std::make_shared<InstrumentPort>(
       "other_port", "other_instrument", Scope::Global, Access::Read,
-      InstrumentCharacteristic::Applied_Voltage, PortType::Knob, pseudo_name,
+      InstrumentCharacteristic::Source_Voltage, PortType::Knob, pseudo_name,
       instrument_type);
   EXPECT_FALSE(domain->matching_port(other_port));
 }

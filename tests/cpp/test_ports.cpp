@@ -72,7 +72,7 @@ TEST_F(PortsTest, GetPseudoNames) {
 TEST_F(PortsTest, GetPseudoNamesThrowsIfMissing) {
   InstrumentPortSP no_pseudo = std::make_shared<InstrumentPort>(
       "D", "instrumentD", Scope::Global, Access::Read,
-      InstrumentCharacteristic::Applied_Voltage, PortType::Knob);
+      InstrumentCharacteristic::Source_Voltage, PortType::Knob);
   Ports ports({no_pseudo});
   EXPECT_THROW(ports.get_pseudo_names(), std::runtime_error);
 }

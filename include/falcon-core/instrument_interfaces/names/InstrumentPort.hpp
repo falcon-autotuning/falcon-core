@@ -121,53 +121,113 @@ enum class InstrumentCharacteristic : std::uint8_t {
   Sample_Rate,
   Max_Sample_Rate,
   Min_Sample_Rate,
-  Applied_Voltage,
+  Source_Voltage,
   Max_Source_Voltage,
   Min_Source_Voltage,
-  Number_Of_Samples,
-  Max_Number_Of_Samples,
-  Min_Number_Of_Samples,
   Voltage_Ramp_Slope,
   Max_Voltage_Ramp_Slope,
   Min_Voltage_Ramp_Slope,
+  Source_Current,
+  Max_Source_Current,
+  Min_Source_Current,
+  Current_Ramp_Slope,
+  Max_Current_Ramp_Slope,
+  Min_Current_Ramp_Slope,
+  Source_Frequency,
+  Max_Source_Frequency,
+  Min_Source_Frequency,
+  Sink_Frequency,
+  Max_Sink_Frequency,
+  Min_Sink_Frequency,
+  AC_Amplitude,
+  Max_AC_Amplitude,
+  Min_AC_Amplitude,
+  Number_Of_Samples,
+  Max_Number_Of_Samples,
+  Min_Number_Of_Samples,
   Temperature,
   Magnet_Strength,
-  // Currently only the characteristics suitable for DC_Voltage_Source and
-  // Amnmeter
+  Max_Magnet_Strength,
+  Min_Magnet_Strength,
 };
 
 inline const char *ToString(InstrumentCharacteristic characteristic) {
   switch (characteristic) {
   case InstrumentCharacteristic::None:
     return "None";
+
   case InstrumentCharacteristic::Sample_Rate:
     return "Sample_Rate";
   case InstrumentCharacteristic::Max_Sample_Rate:
     return "Max_Sample_Rate";
   case InstrumentCharacteristic::Min_Sample_Rate:
     return "Min_Sample_Rate";
-  case InstrumentCharacteristic::Applied_Voltage:
-    return "Applied_Voltage";
+
+  case InstrumentCharacteristic::Source_Voltage:
+    return "Source_Voltage";
   case InstrumentCharacteristic::Max_Source_Voltage:
     return "Max_Source_Voltage";
   case InstrumentCharacteristic::Min_Source_Voltage:
     return "Min_Source_Voltage";
-  case InstrumentCharacteristic::Number_Of_Samples:
-    return "Number_Of_Samples";
-  case InstrumentCharacteristic::Max_Number_Of_Samples:
-    return "Max_Number_Of_Samples";
-  case InstrumentCharacteristic::Min_Number_Of_Samples:
-    return "Min_Number_Of_Samples";
+
   case InstrumentCharacteristic::Voltage_Ramp_Slope:
     return "Voltage_Ramp_Slope";
   case InstrumentCharacteristic::Max_Voltage_Ramp_Slope:
     return "Max_Voltage_Ramp_Slope";
   case InstrumentCharacteristic::Min_Voltage_Ramp_Slope:
     return "Min_Voltage_Ramp_Slope";
+
+  case InstrumentCharacteristic::Source_Current:
+    return "Source_Current";
+  case InstrumentCharacteristic::Max_Source_Current:
+    return "Max_Source_Current";
+  case InstrumentCharacteristic::Min_Source_Current:
+    return "Min_Source_Current";
+
+  case InstrumentCharacteristic::Current_Ramp_Slope:
+    return "Current_Ramp_Slope";
+  case InstrumentCharacteristic::Max_Current_Ramp_Slope:
+    return "Max_Current_Ramp_Slope";
+  case InstrumentCharacteristic::Min_Current_Ramp_Slope:
+    return "Min_Current_Ramp_Slope";
+
+  case InstrumentCharacteristic::Source_Frequency:
+    return "Source_Frequency";
+  case InstrumentCharacteristic::Max_Source_Frequency:
+    return "Max_Source_Frequency";
+  case InstrumentCharacteristic::Min_Source_Frequency:
+    return "Min_Source_Frequency";
+
+  case InstrumentCharacteristic::Sink_Frequency:
+    return "Sink_Frequency";
+  case InstrumentCharacteristic::Max_Sink_Frequency:
+    return "Max_Sink_Frequency";
+  case InstrumentCharacteristic::Min_Sink_Frequency:
+    return "Min_Sink_Frequency";
+
+  case InstrumentCharacteristic::AC_Amplitude:
+    return "AC_Amplitude";
+  case InstrumentCharacteristic::Max_AC_Amplitude:
+    return "Max_AC_Amplitude";
+  case InstrumentCharacteristic::Min_AC_Amplitude:
+    return "Min_AC_Amplitude";
+
+  case InstrumentCharacteristic::Number_Of_Samples:
+    return "Number_Of_Samples";
+  case InstrumentCharacteristic::Max_Number_Of_Samples:
+    return "Max_Number_Of_Samples";
+  case InstrumentCharacteristic::Min_Number_Of_Samples:
+    return "Min_Number_Of_Samples";
+
   case InstrumentCharacteristic::Temperature:
     return "Temperature";
+
   case InstrumentCharacteristic::Magnet_Strength:
     return "Magnet_Strength";
+  case InstrumentCharacteristic::Max_Magnet_Strength:
+    return "Max_Magnet_Strength";
+  case InstrumentCharacteristic::Min_Magnet_Strength:
+    return "Min_Magnet_Strength";
   }
 
   return "Unknown";

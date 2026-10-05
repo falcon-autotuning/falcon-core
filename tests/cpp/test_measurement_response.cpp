@@ -27,7 +27,7 @@ protected:
         falcon_core::instrument_interfaces::names::Scope::Local,
         falcon_core::instrument_interfaces::names::Access::Read,
         falcon_core::instrument_interfaces::names::InstrumentCharacteristic::
-            Applied_Voltage,
+            Source_Voltage,
         falcon_core::instrument_interfaces::names::PortType::Setting,
         falcon_core::physics::device_structures::Connection::PlungerGate("P1"));
     label = std::make_shared<AcquisitionContext>(port);

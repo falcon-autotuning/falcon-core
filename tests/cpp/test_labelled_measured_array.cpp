@@ -300,7 +300,7 @@ TEST_F(LabelledMeasuredArrayTest, InstrumentPortConstructorAndNullThrows) {
   InstrumentPortSP port = std::make_shared<InstrumentPort>(
       "portA", "instrumentA", instrument_interfaces::names::Scope::Global,
       instrument_interfaces::names::Access::Read,
-      instrument_interfaces::names::InstrumentCharacteristic::Applied_Voltage,
+      instrument_interfaces::names::InstrumentCharacteristic::Source_Voltage,
       instrument_interfaces::names::PortType::Setting);
   EXPECT_THROW(LabelledMeasuredArray lma(farr, port), std::runtime_error);
 }
