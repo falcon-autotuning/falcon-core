@@ -346,4 +346,66 @@ TEST(HDF5DataTest, MeasurementTitleRoundTrip) {
   boost::filesystem::remove(tmp_path);
 }
 
+TEST(HDF5DataTest, FileRoundTripPreservesBoundContainment) {
+  using namespace falcon_core;
+  using namespace math;
+  using namespace math::arrays;
+  using namespace math::domains;
+  using namespace generic;
+  using namespace instrument_interfaces::names;
+  using namespace physics::device_structures;
+
+  auto shape_axes = std::make_shared<Axes<int>>(std::vector<int>{1});
+
+  auto control_array =
+      std::make_shared<ControlArray>(xt::xarray<double>{{0.0, 1.0}});
+
+  auto unit_domain = std::make_shared<Axes<ControlArray>>(
+      std::vector<std::shared_ptr<ControlArray>>{
+          control_array,
+      });
+
+  auto knob_port =
+      InstrumentPort::Knob("Vg1", "instrument1", Connection::PlungerGate("P1"));
+
+  auto domain = std::make_shared<Domain>(0.0, 1.0, true, false);
+
+  auto labelled_domain =
+      LabelledDomain::from_port_and_domain(knob_port, domain);
+
+  auto coupled_domain =
+      std::make_shared<CoupledLabelledDomain>(std::vector<LabelledDomainSP>{
+          labelled_domain,
+      });
+
+  auto domain_labels = std::make_shared<Axes<CoupledLabelledDomain>>(
+      std::vector<std::shared_ptr<CoupledLabelledDomain>>{
+          coupled_domain,
+      });
+
+  auto ranges = LabelledArrays<LabelledMeasuredArray>::LabelledMeasuredArrays();
+
+  auto metadata = std::make_shared<Map<std::string, std::string>>(
+      std::vector<std::pair<std::string, std::string>>{});
+
+  HDF5Data original(shape_axes, unit_domain, domain_labels, ranges, metadata,
+                    "containment_test", 1, 1);
+
+  auto file = create_temp_path("containment_roundtrip.h5");
+
+  original.to_file(file.string());
+
+  auto loaded = HDF5Data::from_file(file.string());
+
+  ASSERT_NE(loaded, nullptr);
+
+  auto loaded_domain = loaded->domain_labels()->at(0)->domains().at(0);
+
+  EXPECT_TRUE(loaded_domain->lesser_bound_contained());
+
+  EXPECT_FALSE(loaded_domain->greater_bound_contained());
+
+  boost::filesystem::remove(file);
+}
+
 } // namespace

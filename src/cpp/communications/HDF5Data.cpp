@@ -254,6 +254,21 @@ void HDF5Data::to_file(const std::string &path) const {
       H5::DataSet stop_ds = label_group.createDataSet(
           "stop", H5::PredType::NATIVE_DOUBLE, data_space);
       stop_ds.write(&stop, H5::PredType::NATIVE_DOUBLE);
+
+      // lesser_bound_contained
+      bool lesser_contained = domain->lesser_bound_contained();
+      H5::DataSet lesser_ds = label_group.createDataSet(
+          "lesser_bound_contained", H5::PredType::NATIVE_HBOOL, data_space);
+
+      lesser_ds.write(&lesser_contained, H5::PredType::NATIVE_HBOOL);
+
+      // greater_bound_contained
+      bool greater_contained = domain->greater_bound_contained();
+      H5::DataSet greater_ds = label_group.createDataSet(
+          "greater_bound_contained", H5::PredType::NATIVE_HBOOL, data_space);
+
+      greater_ds.write(&greater_contained, H5::PredType::NATIVE_HBOOL);
+
       // knob
       std::string knob = domain->port()->to_json_string();
       H5::DataSet knob_ds =
@@ -377,12 +392,21 @@ const std::shared_ptr<HDF5Data> HDF5Data::from_file(const std::string &path) {
       double stop;
       stop_ds.read(&stop, H5::PredType::NATIVE_DOUBLE);
 
+      bool lesser_contained;
+      bool greater_contained;
+      H5::DataSet lesser_ds = label_group.openDataSet("lesser_bound_contained");
+      lesser_ds.read(&lesser_contained, H5::PredType::NATIVE_HBOOL);
+      H5::DataSet greater_ds =
+          label_group.openDataSet("greater_bound_contained");
+      greater_ds.read(&greater_contained, H5::PredType::NATIVE_HBOOL);
+
       // Construct DomainLabel (implement this for your type)
       instrument_interfaces::names::InstrumentPortSP knob =
           instrument_interfaces::names::InstrumentPort::from_json_string<
               instrument_interfaces::names::InstrumentPort>(rawKnob);
       auto domain_label = math::domains::LabelledDomain::from_port(
-          std::make_pair(start, stop), knob);
+          std::make_pair(start, stop), knob, lesser_contained,
+          greater_contained);
 
       labels_vec.push_back(domain_label);
     }
