@@ -152,6 +152,21 @@ void Config::check_impedance_consistency() const {
   }
 }
 
+bool equivalent_connections(const device_structures::Connections &a,
+                            const device_structures::Connections &b) {
+  if (a.size() != b.size()) {
+    return false;
+  }
+
+  for (const auto &conn : a) {
+    if (!b.contains(conn)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 void Config::check_group_consistency() const {
   device_structures::Connections sgates;
   device_structures::Connections rgates;
@@ -177,27 +192,27 @@ void Config::check_group_consistency() const {
       }
     }
   }
-  if (sgates != *screening_gates()) {
+  if (!equivalent_connections(sgates, *screening_gates())) {
     throw std::logic_error(
         "Config: Inconsistent between the groups and the total config for "
         "screening_gates");
   }
-  if (rgates != *reservoir_gates()) {
+  if (!equivalent_connections(rgates, *reservoir_gates())) {
     throw std::logic_error(
         "Config: Inconsistent between the groups and the total config for "
         "reservoir_gates");
   }
-  if (pgates != *plunger_gates()) {
+  if (!equivalent_connections(pgates, *plunger_gates())) {
     throw std::logic_error(
         "Config: Inconsistent between the groups and the total config for "
         "plunger_gates");
   }
-  if (bgates != *barrier_gates()) {
+  if (!equivalent_connections(bgates, *barrier_gates())) {
     throw std::logic_error(
         "Config: Inconsistent between the groups and the total config for "
         "barrier_gates");
   }
-  if (os != *ohmics()) {
+  if (!equivalent_connections(os, *ohmics())) {
     throw std::logic_error(
         "Config: Inconsistent between the groups and the total config for "
         "ohmics");

@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <vector>
 
+#include "falcon-core/autotuner_interfaces/names/Channel.hpp"
 #include "falcon-core/physics/config/Loader.hpp"
 
 namespace {
@@ -138,7 +139,7 @@ wiringDC:
   P20:
     resistance: 1740 
     capacitance: 0.0000000033
-  B21:
+  B20:
     resistance: 1740 
     capacitance: 0.0000000033
   B21:
@@ -183,6 +184,76 @@ wiringDC:
   CG0a:
     resistance: 1740 
     capacitance: 0.0000000033  
+)yaml";
+}
+std::string other_device_yaml() {
+  return R"yaml(
+ScreeningGates: "SG1;CG0a;CG0b"
+PlungerGates: "P0;P1;P2;P20"
+Ohmics: "S0;S1;S3;S2"
+BarrierGates: "B0;B1;B2;B3;B20;B21"
+ReservoirGates: "AC0;AC1;AC2;AC3"
+num-unique-channels: 2
+
+groups:
+  group1:
+    Name: "Qubit"
+    NumDots: 3
+    ScreeningGates: "SG1;CG0a"
+    ReservoirGates: "AC0;AC1"
+    PlungerGates: "P0;P1;P2"
+    BarrierGates: "B0;B1;B2;B3"
+    Order: "S0;AC0;B0;P0;B1;P1;B2;P2;B3;AC1;S1"
+
+  group2:
+    Name: "Sensor"
+    NumDots: 1
+    ScreeningGates: "SG1;CG0b"
+    ReservoirGates: "AC2;AC3"
+    PlungerGates: "P20"
+    BarrierGates: "B20;B21"
+    Order: "S3;AC3;B20;P20;B21;AC2;S2"
+
+adjacency:
+  CG0a: "P0;P1;P2;P20;P5;AC0;AC1;AC2;AC3;B0;B1;B2;B3;B20;B21"
+  SG1: "P0;P1;P2;AC0;AC1;B0;B1;B2;B3"
+  CG0b: "P20;B20;B21;AC2;AC3"
+  B0: "AC0;P0"
+  B1: "P0;P1"
+  B2: "P1;P2"
+  B3: "P2;AC1"
+  B21: "AC2;P20"
+  B20: "P20;AC3"
+  S0: "AC0"
+  S1: "AC1"
+  S2: "AC2"
+  S3: "AC3"
+
+max_safe_diff: 1.0
+safe_voltage_bounds: [-1.0, 1.0]
+
+wiringDC:
+  SG1: {resistance: 1000.0, capacitance: 1e-12}
+  CG0a: {resistance: 1000.0, capacitance: 1e-12}
+  CG0b: {resistance: 1000.0, capacitance: 1e-12}
+  P0: {resistance: 1000.0, capacitance: 1e-12}
+  P1: {resistance: 1000.0, capacitance: 1e-12}
+  P2: {resistance: 1000.0, capacitance: 1e-12}
+  P20: {resistance: 1000.0, capacitance: 1e-12}
+  S0: {resistance: 1000.0, capacitance: 1e-12}
+  S1: {resistance: 1000.0, capacitance: 1e-12}
+  S2: {resistance: 1000.0, capacitance: 1e-12}
+  S3: {resistance: 1000.0, capacitance: 1e-12}
+  AC0: {resistance: 1000.0, capacitance: 1e-12}
+  AC1: {resistance: 1000.0, capacitance: 1e-12}
+  AC2: {resistance: 1000.0, capacitance: 1e-12}
+  AC3: {resistance: 1000.0, capacitance: 1e-12}
+  B0: {resistance: 1000.0, capacitance: 1e-12}
+  B1: {resistance: 1000.0, capacitance: 1e-12}
+  B2: {resistance: 1000.0, capacitance: 1e-12}
+  B3: {resistance: 1000.0, capacitance: 1e-12}
+  B20: {resistance: 1000.0, capacitance: 1e-12}
+  B21: {resistance: 1000.0, capacitance: 1e-12}
 )yaml";
 }
 
@@ -246,6 +317,49 @@ TEST_F(LoaderTest, ThrowsOnMissingFile) {
                std::runtime_error);
 }
 
+TEST_F(LoaderTest, LoadsOtherDeviceConfig) {
+  const auto path = write_config(other_device_yaml());
+
+  Loader loader(path);
+
+  auto cfg = loader._load_config();
+
+  ASSERT_NE(cfg, nullptr);
+
+  EXPECT_EQ(cfg->num_unique_channels(), 2);
+  EXPECT_EQ(cfg->groups()->size(), 2);
+
+  auto groups = cfg->groups();
+
+  EXPECT_EQ(
+      *(groups
+            ->at(std::make_shared<
+                 falcon_core::autotuner_interfaces::names::Gname>("group1"))
+            ->name()),
+      falcon_core::autotuner_interfaces::names::Channel("group1"));
+  EXPECT_EQ(
+      groups
+          ->at(
+              std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(
+                  "group1"))
+          ->num_dots(),
+      3);
+
+  EXPECT_EQ(
+      *(groups
+            ->at(std::make_shared<
+                 falcon_core::autotuner_interfaces::names::Gname>("group2"))
+            ->name()),
+      falcon_core::autotuner_interfaces::names::Channel("group2"));
+  EXPECT_EQ(
+      groups
+          ->at(
+              std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(
+                  "group2"))
+          ->num_dots(),
+      1);
+}
+
 TEST_F(LoaderTest, LoadsRealDeviceConfig) {
   const auto path = write_config(complex_device_yaml());
 
@@ -260,11 +374,33 @@ TEST_F(LoaderTest, LoadsRealDeviceConfig) {
 
   auto groups = cfg->groups();
 
-  EXPECT_EQ(groups->at("group1").name(), "Qubit");
-  EXPECT_EQ(groups->at("group1").num_dots(), 3);
+  EXPECT_EQ(
+      *(groups
+            ->at(std::make_shared<
+                 falcon_core::autotuner_interfaces::names::Gname>("group1"))
+            ->name()),
+      falcon_core::autotuner_interfaces::names::Channel("group1"));
+  EXPECT_EQ(
+      groups
+          ->at(
+              std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(
+                  "group1"))
+          ->num_dots(),
+      3);
 
-  EXPECT_EQ(groups->at("group2").name(), "Sensor");
-  EXPECT_EQ(groups->at("group2").num_dots(), 1);
+  EXPECT_EQ(
+      *(groups
+            ->at(std::make_shared<
+                 falcon_core::autotuner_interfaces::names::Gname>("group2"))
+            ->name()),
+      falcon_core::autotuner_interfaces::names::Channel("group2"));
+  EXPECT_EQ(
+      groups
+          ->at(
+              std::make_shared<falcon_core::autotuner_interfaces::names::Gname>(
+                  "group2"))
+          ->num_dots(),
+      1);
 }
 
 } // namespace
